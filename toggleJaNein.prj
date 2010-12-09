@@ -1,0 +1,36 @@
+<?
+/* Toggeln von 'ja'-'nein' enums: das Toggeln wird nur angeboten, wenn der
+ * Feldwert als Arraywert vorkommt
+ * enum-Feldname_Tabelle=>wert1_wertn
+ */
+$toggleJaNein = array(
+  "erfolgt_Beistellung"=>"ja_nein",
+  "Einwand_EDV"=>"ja_nein",
+  "akzeptiert_EDV"=>"ja_nein",
+  "abgeschlossen_Auftrag"=>"ja_nein",
+  "abgeschlossen_ArchivCenter"=>"ja_nein",
+  "abgeschlossen_ArchivZAV"=>"ja_nein",
+  "angewiesen_GutschriftWartung"=>"ja_nein",
+  "abzugBeiVerzug_Aufwand"=>"ja_nein",
+  "Abrechnungsstatistik_Aufwand"=>"ja_nein",
+  "Controlling_ArchivZAV"=>"ja_nein",
+  "gelesen_Diskussion"=>"ja_nein",
+  "bezahlt_Deckblatt"=>"ja_nein",
+  "bezahlt_Einzeln"=>"ja_nein",
+  "gelesen_Aktennotiz"=>"ja_nein",
+  "generieren_DokumentationBenutzer"=>"ja_nein",
+  "generieren_DokumentationSoftware"=>"ja_nein",
+  "Individualschaden_PreisTarif"=>"ja_nein",
+  "erledigt_Aktennotiz"=>"ja_nein",
+  "verfuegbar_Regulierer"=>"ja_nein",
+  "erledigt_Ruecksprache"=>"ja_nein",
+  "erledigt_RueckspracheSub"=>"ja_nein",
+  "bezahlt_Rechnung"=>"ja_nein",
+  "Controlling_AuftragRegulierer"=>"ja_nein",
+  "REWE_AuftragRegulierer"=>"ja_nein",
+  "Umsatz_TarifIndividualposten"=>"ja_nein",
+  "zugestellt_Einzelrechnung"=>"ja_nein",
+  "zugestellt_Deckblatt"=>"ja_nein",
+  "zugestellt_Sammelgutschrift"=>"ja_nein",
+);
+?>

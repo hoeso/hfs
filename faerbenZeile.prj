@@ -1,0 +1,28 @@
+<?
+/************ Input **********************************************************
+ * wird includiert von anzeigeRoutinen.inc
+ * table   : Tabellenname
+ * elem    : ID in der Tabelle
+ *****************************************************************************/
+if( "AuftragPort" <> $table )
+  return;
+/* Notiz an Regulierer oder Centerleiter? */
+$msg = array ( 'CL', 'R' );
+$far = array ( 'lightgreen', 'lightsalmon' );
+unset($notiz);
+unset($farbe);
+for( $y=0; $y<2; $y++ )
+{
+  unset($arr);
+  $arr[0]=0;// hier Feld 0 rein = an
+  $arr[1]=1;// hier Feld 1 rein = Notiz
+  gibFelderArray( $MySQLDb, "SELECT an, Notiz FROM Aktennotiz WHERE AuftragID=$elem AND 'nein'=erledigt AND '$msg[$y]'=an", $arr );
+  if( true == habWas( $arr, 0, 1 ) )
+    $notiz = "an $arr[0]: $arr[1]";
+  if( isset( $notiz ) )
+  {
+    $farbe="$far[$y] onmouseover=\"Tip('$notiz')\" onmouseout=\"UnTip()\"";
+    $fTooltip=true;
+  }
+}
+?>

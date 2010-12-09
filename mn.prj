@@ -1,0 +1,40 @@
+<?
+switch( $_E['mn'] )
+{
+/* zum Kopieren:
+  case "":
+    if( !isset($_REQUEST[""]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "";
+    $_E[''] = $_REQUEST[""];
+    $_e = array( $_REQUEST[""], $_REQUEST[""] );
+  break;
+*/
+  case "5413":
+    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "bspAnzeigendTitel";
+    $_eTitel = array( $_REQUEST["a"], $_REQUEST["b"] );
+  break;
+  case "8417":
+    $_E['wZu'] = "bspVerbindendDB";
+    $_E['enableDbg'] = true; // Ausgaben von dbConnect.inc aktivieren
+  break;
+  case "6649": //bspFuellendRE
+    if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
+    $_E['wZu'] = "bspFuellendRE";
+    $_E['entitaet'] = $_REQUEST["a"];
+    $_eTitel = array( $_REQUEST["a"] );
+  break;
+  case "9422": // speicherndRE
+    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "speicherndRE";
+    $_E['entitaet'] = $_REQUEST["a"];
+    $_eTitel = array( $_REQUEST["b"] );
+  break;
+  default:
+    ?>you don't exist. Go away!<?
+    return;
+}
+?>

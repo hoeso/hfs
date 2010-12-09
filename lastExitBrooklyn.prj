@@ -1,0 +1,575 @@
+<?
+/************ Input **********************************************************
+ * die Datei wird von anzeigeRoutinen includiert als projektspezifisch
+ * table	    : die angezeigte Tabelle
+ * 
+ *****************************************************************************/
+include("eiZuEintretendBericht.inc");
+$fDebug=0;
+if( $fDebug ) echo "table: $table. recID : $recID";
+if( $table=="AuftragPort" or $table=="AuftragEingang" && $recID )
+{
+  // do deaf ea oiwei neischaugn:
+  $unterlage = $BERICHT_ROOT . $recID . "/ul/[^\.]*";// damit . und .. nicht dabei sind
+  $arrB = glob( $unterlage );
+  if( count($arrB) )
+    echo "\n<INPUT TYPE=image src='images/lupeUnterlagen.gif' NAME='detailsAuftrag'>";
+  else
+    echo "\n<INPUT TYPE=image src='images/lupe.gif' NAME='detailsAuftrag'>";
+  // do mias ma amoi schaugn wos no ged ...
+  $fErstkontakt = gibFeld( $MySQLDb, "SELECT ID FROM Erstkontakt WHERE AuftragID=$recID", 0 );
+  if( true == $fErstkontakt )
+  {
+    $fOrtstermin = gibFeld( $MySQLDb, "SELECT ID FROM Ortstermin WHERE AuftragID=$recID", 0 );
+    if( false == $fOrtstermin )
+    {
+?>
+  <INPUT TYPE=image src='images/erstkontakt.gif' NAME='ortstermin'>
+<?
+    }
+    $ext = ".odt";
+    $bericht = $BERICHT_ROOT . $recID . "/$recID-*" . $ext;
+    unset($arrB);
+    $arrB = glob( $bericht );
+    if( count($arrB) )
+      echo "&nbsp;<INPUT TYPE=image src='images/copy.gif' NAME='hochladenBericht'>";
+    else
+    {
+      $port=gibFeld( $MySQLDb, "SELECT Port FROM Auftrag, Port WHERE Auftrag.ID=$recID AND Auftrag.ReguliererID=Port.ReguliererID", 0 );
+      if( 53625<>$port and 53242<>$port )// Liermaennchen + Lange duerfen nicht mehr mitspielen
+        echo "&nbsp;<INPUT TYPE=image src='images/unterlagen.gif' NAME='hochladenUnterlage'>";
+    }
+//      echo "&nbsp;<INPUT TYPE=image src='images/unterlagen.gif' NAME='hochladenUnterlage'>";
+    // abgerechnet werden kann erst nach Eingabe des Ortstermines
+    if( true == $fOrtstermin )
+    {
+      $fTaschenR=false;
+      for( $bNr=1; $bNr<$BERICHTNR_HIGH; $bNr++ )
+      {
+        $bDir = $BERICHT_ROOT;
+        $bDir .= $recID . "/" . $bNr;
+        if( is_dir( $bDir ) )
+        {
+          $fTaschenR=true;
+          break;
+        }
+      }
+      if( $bNr == $BERICHTNR_HIGH )
+      {// nix gfundn, vielleicht gibts ja an freitext?
+        if( is_dir( $BERICHT_ROOT . $recID . "/99" ) )
+        {
+          $fTaschenR=true;
+        }
+      }
+      if( true == $fTaschenR )
+      {
+        // Phasenpruefung: existiert eine Abrechnung, zu der noch keine Rechnung
+        // generiert ist?
+        // Gibt es eine Abrechnung, zu der noch keine Rechnung existiert?
+        // Falls ja, dann wurde der Taschenrechner schon bedient
+        $arrA[0]=0;// hier Feld 0 rein = ID
+        $arrA[1]=1;// hier Feld 1 rein = Tarif
+        gibFelderArray( $MySQLDb, "SELECT Auftragabrechnung.ID, Tarif.Tarif FROM Auftragabrechnung, Tarif WHERE Auftragabrechnung.AuftragID=$recID AND Auftragabrechnung.TarifID=Tarif.ID AND NOT EXISTS ( SELECT Rechnung.ID FROM Rechnung WHERE Rechnung.AuftragabrechnungID=Auftragabrechnung.ID AND Auftragabrechnung.AuftragID=$recID )", $arrA );
+        if( true == habWas( $arrA, 0, 1 ) )
+        {
+          if( "?" == $arrA[1] )
+            echo "&nbsp;<A HREF=\"eiZu.php?wZu=aenderndRE&tableRE=Auftragabrechnung&ID=$arrA[0]&bestimmenTarif_x=1&Titel=ermitteln%20des%20abzurechnenden%20Tarifs\">Tarif?</A>";
+          else
+            echo "&nbsp;<IMG src='images/cl.gif'";
+        }
+        else
+          echo "&nbsp;<INPUT TYPE=image src='images/kalkulator.gif' NAME='berichtendSub'>";
+      }
+    }
+  }
+  else
+    hiddenFeldSchreiben( "fPlausi", "true" );
+}
+else if( ( $table=="Eingang" or $table=="EingangCenter" or $table=="EingangRevision" ) && $recID )
+{
+  $unterlage = $BERICHT_ROOT . $recID . "/ul/[^\.]*";// damit . und .. nicht dabei sind
+  $arrB = glob( $unterlage );
+  if( count($arrB) )
+  {
+    ?><INPUT TYPE=image src='images/lupeUnterlagen.gif' NAME='detailsPortal'><?
+  }
+  else
+  {
+    ?><INPUT TYPE=image src='images/lupe.gif' NAME='detailsPortal'><?
+  }
+  if( $table<>"EingangRevision" )
+  {
+  ?>
+  <INPUT TYPE=image src='images/unterlagen.gif' NAME='hochladenUnterlagePortal'>
+  <INPUT TYPE=image src='images/schadenNachtrag.gif' NAME='nachtragenEingang'>
+  <INPUT TYPE=image src='images/record_routing.gif' NAME='routen'>
+  <?
+  }
+}
+else if( ( $table=="ohneErstkontakt" ) && $recID )
+{
+?>
+  <INPUT TYPE=image src='images/lupe.gif' NAME='detailsAuftragZAV'>
+  <INPUT TYPE=image src='images/erstkontakt.gif' NAME='erstkontakt'>
+<?
+}
+else if( ( $table=="ohneOrtstermin" ) && $recID )
+{
+?>
+  <INPUT TYPE=image src='images/lupe.gif' NAME='detailsAuftragZAV'>
+  <INPUT TYPE=image src='images/erstkontakt.gif' NAME='ortstermin'>
+<?
+}
+else if( $table=="Auftragabrechnung" && $recID )
+{
+  $count = gibFeld( $MySQLDb, "SELECT COUNT(*) FROM AuftragabrechnungAufwand WHERE AuftragabrechnungID=$recID", 0 );
+  if( $count )
+  {// es gibt schon Aufwand, also Tariffindung anbieten.
+?>
+  <INPUT TYPE=image src='images/euro.gif' NAME='bestimmenTarif'>
+<?
+  }
+?>
+  <INPUT TYPE=image src='images/aufwand.php.gif' NAME='eingebenAufwand'>
+<?
+  $tarifID = gibFeld( $MySQLDb, "SELECT TarifID FROM Auftragabrechnung WHERE ID=$recID", 0 );
+  if( $tarifID )
+  {
+    $count = gibFeld( $MySQLDb, "SELECT COUNT(*) FROM TarifIndividualposten WHERE TarifID=$tarifID", 0 );
+    $fVorschuss = gibFeld( $MySQLDb, "SELECT vorschussMoeglich FROM Tarif WHERE ID=$tarifID", 0 );
+    if( $count or 'ja' == $fVorschuss )
+    {
+      hiddenFeldSchreiben( "tarifID", "$tarifID" );
+?>
+  &nbsp;<INPUT TYPE=image src='images/kalkulator.gif' NAME='angebenPosten'>
+<?
+    }
+  }
+?>
+  <INPUT TYPE=image src='images/lupe.gif' NAME='detailsAbrechnung'>
+<?
+}
+else if( $table=="AuftragabrechnungZAV" && $recID )
+{
+?>
+  <INPUT TYPE=image src='images/lupe.gif' NAME='detailsAbrechnung'>
+<?
+}
+else if( $table=="generierenRechnung" && $recID )
+{
+  $count = gibFeld( $MySQLDb, "SELECT COUNT(*) FROM AuftragabrechnungAufwand WHERE AuftragabrechnungID=$recID", 0 );
+  if( $count )
+  {
+?>
+  <INPUT TYPE=image src='images/euro.gif' NAME='generierenRechnung'>
+  <INPUT TYPE=image src='images/aufwand.php.gif' NAME='eingebenAufwand'>
+<?
+  }
+  $tarifID = gibFeld( $MySQLDb, "SELECT TarifID FROM Auftragabrechnung WHERE ID=$recID", 0 );
+  if( $tarifID )
+  {
+    $count = gibFeld( $MySQLDb, "SELECT COUNT(*) FROM TarifIndividualposten WHERE TarifID=$tarifID", 0 );
+    $fVorschuss = gibFeld( $MySQLDb, "SELECT vorschussMoeglich FROM Tarif WHERE ID=$tarifID", 0 );
+    if( $count or 'ja' == $fVorschuss )
+    {
+      hiddenFeldSchreiben( "tarifID", "$tarifID" );
+?>
+  &nbsp;<INPUT TYPE=image src='images/kalkulator.gif' NAME='angebenPosten'>
+<?
+    }
+  }
+?>
+  <INPUT TYPE=image src='images/lupe.gif' NAME='detailsAbrechnung'>
+<?
+}
+else if( ( $table=="AuftragRegulierer" or $table=="AuftragCenterRegulierer" or $table=="AuftragReguliererRevision" ) && $recID )
+{
+  if( isset( $fPeek ) )
+  {
+    for( $bNr=1; $bNr<$BERICHTNR_HIGH; $bNr++ )
+    {
+      $bDir = "$BERICHT_ROOT";
+      $bDir .= $recID . "/" . $bNr;
+      if( is_dir( $bDir ) )
+      {
+        echo "&nbsp;<INPUT TYPE=image src='images/copy.gif' NAME='detailsAuftragZAV'>";
+        break;
+      }
+    }
+    if( $bNr == $BERICHTNR_HIGH )
+    {// nix gfundn, vielleicht gibts ja an freitext?
+      if( is_dir( $BERICHT_ROOT . $recID . "/99" ) )
+      {
+        echo "&nbsp;<INPUT TYPE=image src='images/copy.gif' NAME='detailsAuftragZAV'>";
+      }
+      else
+        echo "\n<INPUT TYPE=image src='images/lupe.gif' NAME='detailsAuftragZAV'>";
+    }
+    if( $table<>"AuftragReguliererRevision" )
+    {
+    ?>
+    <INPUT TYPE=image src='images/schadenNachtrag.gif' NAME='nachtragen'>
+    <?
+    }
+    if( $table=="AuftragRegulierer" )
+    {
+      unset($a_);
+      $a_[0]=0;// hier Feld 0 rein = ID
+      $a_[1]=1;// hier Feld 1 rein = Status
+      gibFelderArray( $MySQLDb, "SELECT ID, Status FROM AuftragVerzug WHERE $recID=AuftragID", $a_ );
+      if( true == habWas( $a_, 0, 1 ) )
+      {
+        if( 'gelb' == $a_[1] )
+        {
+          echo "\n<INPUT TYPE=image src='images/verzug.gif' NAME='pruefenVerzug'>";
+          hiddenFeldSchreiben( "bezug", "AuftragRegulierer" );
+          hiddenFeldSchreiben( "AND", " AND $recID = Auftrag.ID" );
+          hiddenFeldSchreiben( "verzugID", "$a_[0]" );
+        }
+        else
+        {
+          if( 'rot' == $a_[1] )
+            $img="images/abzug.gif";
+          else
+            $img="images/keinAbzug.gif";
+          echo "\n<INPUT TYPE=image src='$img' NAME='zeigenVerzug'>";
+          hiddenFeldSchreiben( "bezug", "AuftragRegulierer" );
+          hiddenFeldSchreiben( "AND", " AND $recID = Auftrag.ID" );
+          hiddenFeldSchreiben( "verzugID", "$a_[0]" );
+        }
+      }
+    }
+  }
+  else
+    echo "\n<INPUT TYPE=image src='images/lupe.gif' NAME='detailsAuftragZAV'>";
+  if( $table <> "AuftragReguliererRevision" )
+  {
+    gibFeldArray( $MySQLDb, "SELECT Port.Port FROM Auftrag, Port WHERE $recID=Auftrag.ID AND Auftrag.ReguliererID=Port.ReguliererID", 0, $aT );
+    for( $t = 0; $t < count($aT); $t++ )
+    {
+      if( 55611 < $aT[$t] )
+        continue;
+      hiddenFeldSchreiben( "controlledPort", $aT[$t] );
+      break;
+    }
+    ?>&nbsp;<INPUT TYPE=image src='images/unterlagen.gif' NAME='hochladenUnterlage'><?
+  }
+}
+else if( ( $table=="ArchivSub" or $table=="ArchivCenter" or $table=="ArchivZAV" or $table=="ArchivRevision" ) && $recID )
+{
+  if( isset( $fPeek ) )
+  {
+    $tarif = gibFeld( $MySQLDb, "SELECT Tarif FROM Auftragabrechnung, Tarif WHERE Auftragabrechnung.ID=$recID AND Auftragabrechnung.TarifID=Tarif.ID", 0 );
+    if( "manuell abgerechnet" == $tarif and $table<>"ArchivRevision" )
+    {
+?>
+  <INPUT TYPE=image src='images/aufwand.php.gif' NAME='eingebenAufwand'>
+<?
+    }
+    /*** Code 21.1.1 Beginn ***/
+    else if( gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Rechnung, Gutschrift WHERE Rechnung.AuftragabrechnungID=$recID AND Rechnung.ID=Gutschrift.RechnungID", 0 ) )
+    {
+?>
+  <IMG SRC='images/euro.gif'>
+<?
+    }
+  /*** Code 21.1.1 Ende   ***/
+  }
+?>
+  <INPUT TYPE=image src='images/lupe.gif' NAME='detailsArchiv'>
+  <INPUT TYPE=image src='images/unterlagen.gif' NAME='hochladenUnterlageArchiv'>
+<?
+}
+else if( ( $table=="Regieaufwand" or $table=="FreigabeBericht" ) && $recID )
+{
+  echo "\n<INPUT TYPE=image src='images/lupe.gif' NAME='detailsErledigt'>";
+  $fKeineRuecksprache = gibFeld( $MySQLDb, "SELECT erledigt FROM Ruecksprache WHERE AuftragID=$recID AND 'nein'=erledigt LIMIT 1", 0 );
+  if( "nein" == $fKeineRuecksprache )
+  {
+    echo "&nbsp;RS";
+  }
+}
+else if( ( $table=="SubControlling" ) && $recID )
+{ // hier sind die Szenarien Detailansicht Sub, Rechnung generieren e.a. nachzubilden !!!
+  global $ext;
+  gibFeldArray( $MySQLDb, "SELECT Port.Port FROM Auftrag, Port WHERE $recID=Auftrag.ID AND Auftrag.ReguliererID=Port.ReguliererID", 0, $aT );
+  for( $t = 0; $t < count($aT); $t++ )
+  {
+    if( 55611 < $aT[$t] )
+      continue;
+    hiddenFeldSchreiben( "controlledPort", $aT[$t] );
+    break;
+  }
+  if( isset($ext) && $ext == "odt" )
+  {
+    echo "\n<INPUT TYPE=image src='images/lupe.gif' NAME='detailsErledigt'>";
+    hiddenFeldSchreiben( "centerID", $_REQUEST['centerID'] );
+    hiddenFeldSchreiben( "SELECTSL1", $_REQUEST['SELECTSL1'] );
+  }
+  else if( isset($ext) && $ext == "pdf" )
+  {
+    $a[0]=0;// hier Feld 0 rein = Auftragabrechnung.ID
+    $a[1]=1;// hier Feld 1 rein = Tarif
+    gibFelderArray( $MySQLDb, "SELECT Auftragabrechnung.ID, Tarif.Tarif  FROM Auftragabrechnung, Tarif WHERE $recID=AuftragID AND TarifID=Tarif.ID ORDER BY ID DESC LIMIT 1", $a ); // das ist die aktuelleste Abrechnung
+    if( false == habWas( $a, 0, 1 ) )
+    { // es wurde noch nicht abgerechnet
+      echo "\n<INPUT TYPE=image src='images/lupe.gif' NAME='detailsAuftrag'>";
+      hiddenFeldSchreiben( "layerZAV", "true" ); // wird uebernommen in eiZuZeigendDetailsAuftrag.inc. Ansonsten wuerde SELECT mit $port benutzt werden, siehe zeigenAuftragPortDetails.inc
+      hiddenFeldSchreiben( "centerID", $_REQUEST['centerID'] );
+      hiddenFeldSchreiben( "SELECTSL1", $_REQUEST['SELECTSL1'] );
+      hiddenFeldSchreiben( "Titel", "Schadenfall Abrechnung" );
+      echo"\nnoch abrechnen...";
+?>
+&nbsp;<INPUT TYPE=image src='images/kalkulator.gif' NAME='berichtendSub'>
+<?
+    }
+    else if( "?" == $a[1] )
+    {
+      echo "\n<INPUT TYPE=image src='images/lupe.gif' NAME='detailsAuftrag'>";
+      hiddenFeldSchreiben( "layerZAV", "true" ); // wird uebernommen in eiZuZeigendDetailsAuftrag.inc. Ansonsten wuerde SELECT mit $port benutzt werden, siehe zeigenAuftragPortDetails.inc
+      hiddenFeldSchreiben( "centerID", $_REQUEST['centerID'] );
+      hiddenFeldSchreiben( "SELECTSL1", $_REQUEST['SELECTSL1'] );
+      echo "&nbsp;<A HREF=\"eiZu.php?wZu=aenderndRE&tableRE=Auftragabrechnung&ID=$a[0]&bestimmenTarif_x=1&controlledPort=$aT[$t]&Titel=ermitteln%20des%20abzurechnenden%20Tarifs\">Tarif?</A>";
+    }
+    else
+    { // Rechnung generieren?
+      $aaID = $a[0];
+      $a[0]=0;// hier Feld 0 rein = Rechnung.ID
+      $a[1]=1;// hier Feld 1 rein = zugestellt
+      gibFelderArray( $MySQLDb, "SELECT ID, zugestellt FROM Rechnung WHERE $aaID=AuftragabrechnungID", $a );
+      if( false == habWas( $a, 0, 1 ) )
+      { // Szenario "Rechnung generieren" mit der Auftragabrechnung.ID
+        hiddenFeldSchreiben( "ID", $aaID ); // Center Rechnungen generieren vortaeuschen
+        hiddenFeldSchreiben( "fakedID", $recID );// 
+        hiddenFeldSchreiben( "SELECTSL1", $_REQUEST['SELECTSL1'] );
+?>
+  <INPUT TYPE=image src='images/aufwand.php.gif' NAME='eingebenAufwand'>
+<?
+        $count = gibFeld( $MySQLDb, "SELECT COUNT(*) FROM AuftragabrechnungAufwand WHERE AuftragabrechnungID=$aaID", 0 );
+        if( !$count )
+          echo"\nAufwand fehlt noch";
+        else
+        {
+?>
+  <INPUT TYPE=image src='images/euro.gif' NAME='generierenRechnung'>
+<?
+          echo"\nRechnung : generieren";
+        }
+        $tarifID = gibFeld( $MySQLDb, "SELECT TarifID FROM Auftragabrechnung WHERE ID=$aaID", 0 );
+        if( $tarifID )
+        {
+          $count = gibFeld( $MySQLDb, "SELECT COUNT(*) FROM TarifIndividualposten WHERE TarifID=$tarifID", 0 );
+          $fVorschuss = gibFeld( $MySQLDb, "SELECT vorschussMoeglich FROM Tarif WHERE ID=$tarifID", 0 );
+          if( $count or 'ja' == $fVorschuss )
+          {
+            hiddenFeldSchreiben( "tarifID", "$tarifID" );
+?>
+  &nbsp;<INPUT TYPE=image src='images/kalkulator.gif' NAME='angebenPosten'>
+<?
+          }
+        }
+        echo "\n<INPUT TYPE=image src='images/lupe.gif' NAME='detailsAuftrag'>";
+        hiddenFeldSchreiben( "layerZAV", "true" ); // wird uebernommen in eiZuZeigendDetailsAuftrag.inc. Ansonsten wuerde SELECT mit $port benutzt werden, siehe zeigenAuftragPortDetails.inc
+        hiddenFeldSchreiben( "centerID", $_REQUEST['centerID'] );
+      }
+      else
+      {  //Rechnung existiert
+        hiddenFeldSchreiben( "bgcolor", "white" );
+        hiddenFeldSchreiben( "ID", $a[0] );// Auftrag.ID ueberschreiben mit der Rechnung.ID
+        hiddenFeldSchreiben( "fakedID", $recID );// 
+        hiddenFeldSchreiben( "SELECTSL1", $_REQUEST['SELECTSL1'] );
+        echo "\n<INPUT TYPE=image src='images/seiten.gif' NAME='druckAnsicht'>";
+        $empfang = gibFeld( $MySQLDb, "SELECT Empfang FROM Auftrag, Portal, Bearbeiter, Schadenbuero, RechnungempfaengerVersicherer, Rechnungempfaenger WHERE $recID=Auftrag.ID AND Auftrag.PortalID=Portal.ID AND Portal.BearbeiterID=Bearbeiter.ID AND Bearbeiter.SchadenbueroID=Schadenbuero.ID AND Schadenbuero.VersichererID=RechnungempfaengerVersicherer.VersichererID AND RechnungempfaengerVersicherer.RechnungempfaengerID=Rechnungempfaenger.ID", 0 );
+        if( "einzeln" == $empfang )
+        {
+?>      
+  <INPUT TYPE=image src='images/pdf.gif' NAME='pdfRechnung'>
+<?
+          if( "nein" == $a[1] )
+            echo"\nRechnung zugestellt: <A HREF=\"./eiZu.php?wZu=toggelndEnum&ID=$a[0]&feld=zugestellt&wert=nein&table=Einzelrechnung&SELECTSL1={$_REQUEST['SELECTSL1']}&fakedID=$recID&tableREfake=$table\">nein</A>";
+        }
+        hiddenFeldSchreiben( "layerZAV", "true" ); // wird uebernommen in eiZuZeigendDetailsAuftrag.inc. Ansonsten wuerde SELECT mit $port benutzt werden, siehe zeigenAuftragPortDetails.inc
+        hiddenFeldSchreiben( "centerID", $_REQUEST['centerID'] );
+        ?><INPUT TYPE=image src='images/lupe.gif' NAME='detailsAuftrag'><?
+      }
+    }
+  }
+?>&nbsp;<INPUT TYPE=image src='images/unterlagen.gif' NAME='hochladenUnterlage'><?
+}
+else if( ( $table=="Einzelrechnung" or $table=="Einzeln" or $table=="einzelnRevision" or $table=="Sammelrechnung" or $table=="RechnungBezahlt" ) && $recID )
+{
+  global $centerID;
+  hiddenFeldSchreiben( "bgcolor", "white" );
+  echo "\n<INPUT TYPE=image src='images/seiten.gif' NAME='druckAnsicht'>";
+  if( $table=="Einzelrechnung" or $table=="Einzeln" && $recID )
+  { /*** noch ohne Sammelrechnung            ***/
+?>
+  <INPUT TYPE=image src='images/pdf.gif' NAME='pdfRechnung'>
+<?
+    $count = gibFeld( $MySQLDb, "SELECT COUNT(*) FROM GutschriftRechnung WHERE RechnungID=$recID", 0 );
+    if( $count )
+    {
+      echo "\n<INPUT TYPE=image src='images/widerspruch.gif' NAME='widerspruch'>";
+    }
+  }
+  hiddenFeldSchreiben( "centerID", $centerID );
+}
+else if( ( $table=="Sammelgutschrift" or $table=="SammelgutschriftRegulierer" or $table=="SammelgutschriftRevision" ) && $recID )
+{
+  hiddenFeldSchreiben( "bgcolor", "white" );
+?>
+<INPUT TYPE=image src='images/seiten.gif' NAME='deckblattGutschrift'>
+<INPUT TYPE=image src='images/pdf.gif' NAME='pdfGutschrift'>
+<INPUT TYPE=image src='images/lupe.gif' NAME='sammelGutschriftListe'>
+<?
+  if( $table=="Sammelgutschrift" )
+  {
+    if( gibFeld( $MySQLDb, "SELECT ID FROM ControllingGutschrift WHERE $recID=ControllingGutschrift.SammelgutschriftID", 0 )
+      )
+    {
+?>
+<INPUT TYPE=image src='images/euro.gif' NAME='controllingGutschrift'>
+<?
+    }
+  }
+}
+else if( ( $table=="Deckblatt" or $table=="DeckblattRevision" ) && $recID )
+{
+  hiddenFeldSchreiben( "bgcolor", "white" );
+?>
+  <INPUT TYPE=image src='images/seiten.gif' NAME='sammelDeckblatt'>
+  <INPUT TYPE=image src='images/pdf.gif' NAME='pdfDeckblatt'>
+<?
+  $count = gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Sammelabrechnung WHERE SammelrechnungID=$recID", 0 );
+  if( $count )
+  {
+?>
+  <INPUT TYPE=image src='images/lupe.gif' NAME='sammelRechnungListe'>
+  <!-- INPUT TYPE=image src='images/pdf.gif' NAME='pdfAnhangP' -->
+<?
+//  $fKeinDelete=true;
+  }
+//else
+//  $fKeinDelete=false;
+}
+else if( ( $table=="Rechnungempfaenger" ) && $recID )
+{
+  $count = gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Rechnungempfaenger WHERE ID=$recID AND 'sammelnd'=Empfang", 0 );
+  if( $count )
+    echo "\n<INPUT TYPE=image src='images/euro.gif' NAME='sammelRechnung'>";
+}
+else if( ( $table=="GutschriftForderung" ) && $recID )
+{
+    echo "\n<INPUT TYPE=image src='images/euro.gif' NAME='sammelGutschrift'>";
+}
+else if( ( $table=="GutschriftWartung" or $table=="GutschriftWartungRevision" ) && $recID )
+{
+  hiddenFeldSchreiben( "bgcolor", "white" );
+  $SELECTSL1=gibFeld( $MySQLDb, "SELECT WartungsmonatID FROM GutschriftWartung WHERE ID=$recID", 0 );
+  hiddenFeldSchreiben( "SELECTSL1", $SELECTSL1 );
+?>
+<INPUT TYPE=image src='images/seiten.gif' NAME='deckblattWartung'>
+<INPUT TYPE=image src='images/lupe.gif' NAME='anhangWartung'>
+<?
+}
+else if( ( $table=="Aktennotiz" ) && $recID )
+{
+  echo "\n<INPUT TYPE=image src='images/mail_reply.gif' NAME='antworten'>";
+}
+else if( ( $table=="EDV" ) && $recID )
+{
+  $count=gibFeld( $MySQLDb, "SELECT COUNT(*) FROM EDV WHERE ID=$recID AND installiertAm IS NOT NULL", 0 );
+  if( $count )
+    echo "\n<INPUT TYPE=image src='images/lichtAus.gif' NAME='diskussion'>";
+  else
+  {
+    $count=gibFeld( $MySQLDb, "SELECT COUNT(*) FROM EDV WHERE ID=$recID AND 'ja'=LEFT(akzeptiert,2)", 0 );
+    if( !$count )
+    {
+      $count=gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Diskussion WHERE Diskussion.EDVID=$recID AND 'nein'=gelesen", 0 );
+      if( $count )
+        echo "\n<INPUT TYPE=image src='images/mail_reply.gif' NAME='diskussion'>";
+      else
+        echo "\n<INPUT TYPE=image src='images/lichtAus.gif' NAME='diskussion'>";
+    }
+    else
+    {
+      $count=gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Diskussion WHERE Diskussion.EDVID=$recID AND 'nein'=gelesen", 0 );
+      if( !$count )
+        echo "\n<INPUT TYPE=image src='images/lichtAn.gif' NAME='diskussion'>";
+      else
+        echo "\n<INPUT TYPE=image src='images/mail_reply.gif' NAME='diskussion'>";
+    }
+  }
+}
+else if( ( $table=="Angebot" ) && $recID )
+{
+?>
+<INPUT TYPE=image src='images/down.gif' NAME='runter'>
+<INPUT TYPE=image src='images/up.gif' NAME='rauf'>
+<?
+  hiddenFeldSchreiben( "zumVaschiam", "Position" );//das zu verschiebende enum-numerische Feld
+  hiddenFeldSchreiben( "woVaschiam", "EDVID" );//der gruppierende Fremdschluessel
+  hiddenFeldSchreiben( "doVaschiam", "Angebot" );//die Tabelle, in welcher die Verschiebung erfolgt
+  $count=gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Beistellung WHERE Beistellung.AngebotID=$recID", 0 );
+  if( !$count )
+    echo "\n<INPUT TYPE=image src='images/lupe.gif' NAME='beistellung'>";
+  else
+  {
+    $count=gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Beistellung WHERE Beistellung.AngebotID=$recID AND 'nein'=erfolgt", 0 );
+    if( $count )
+      echo "\n<INPUT TYPE=image src='images/lichtAus.gif' NAME='beistellung'>";
+    else
+      echo "\n<INPUT TYPE=image src='images/lichtAn.gif' NAME='beistellung'>";
+  }
+  $str=gibFeld( $MySQLDb, "SELECT Section FROM $table WHERE ID=$recID", 0 );
+  if( !strstr( $str, "okumentation" ) && !strstr( $str, "inspielen und Abnahme" ) )
+  {
+?>
+<INPUT TYPE=image src='images/dokuUser.gif' NAME='dokuUser'>&nbsp;<INPUT TYPE=image src='images/dokuCode.gif' NAME='dokuCode'>
+<?
+  }
+}
+include("eiZuEintretendRechnung.inc"); // ab hier bitte keine Pruefung auf Berichte
+if( ( $table=="EDV" ) or ( $table=="EDVAngebot" ) && $recID )
+{
+  if( file_exists( $BERICHT_ROOT . "hoermann$recID.tex" ) )
+  {
+    if ( "ja" == gibFeld( $MySQLDb, "SELECT PDF FROM EDV WHERE ID=$recID", 0 ) )
+    {
+?>&nbsp;<INPUT TYPE=image src='images/pdf.gif' NAME='edvAngebot'><?
+      hiddenFeldSchreiben( "roPaper", "hoermann$recID.pdf" );//das Dokument
+    }
+  }
+}
+if( $table=="EDVAngebot" && $recID )
+{
+  $count=gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Diskussion WHERE Diskussion.EDVID=$recID AND 'nein'=gelesen", 0 );
+  if( $count )
+    echo "\n<INPUT TYPE=image src='images/mail_reply.gif' NAME='diskussion'>";
+}
+else if( $table=="EDVInstallation" && $recID )
+{
+  if( file_exists( $BERICHT_ROOT . "Benutzer-Dokumentation$recID.pdf" ) )
+    echo"\n<INPUT TYPE=image src='images/dokuCode.gif' NAME='edvCodeDok'>&nbsp;";
+  if( file_exists( $BERICHT_ROOT . "Benutzer-Dokumentation$recID.pdf" ) )
+    echo"\n<INPUT TYPE=image src='images/dokuUser.gif' NAME='edvUserDok'>";
+}
+include("eiZuEintretendBericht.inc");
+if( isset($_REQUEST["prepfork3docC"]) )
+  hiddenFeldSchreiben( "prepfork2docC", $_REQUEST["prepfork3docC"] );
+else if( isset($_REQUEST["prepfork2docC"]) )
+  hiddenFeldSchreiben( "prepforkdocC", $_REQUEST["prepfork2docC"] );
+else if( isset($_REQUEST["prepforkdocC"]) )
+  hiddenFeldSchreiben( "forkdocC", $_REQUEST["prepforkdocC"] );
+else if( isset($_REQUEST["prepare3docC"]) )
+  hiddenFeldSchreiben( "prepare2docC", $_REQUEST["prepare3docC"] );
+else if( isset($_REQUEST["prepare2docC"]) )
+  hiddenFeldSchreiben( "preparedocC", $_REQUEST["prepare2docC"] );
+else if( isset($_REQUEST["preparedocC"]) )
+  hiddenFeldSchreiben( "docC", $_REQUEST["preparedocC"] );
+if( isset($_REQUEST["docZustand"]) )
+  hiddenFeldSchreiben( "docZustand", $_REQUEST["docZustand"] );
+if( isset($_REQUEST["fKeinVorspann"]) )
+  hiddenFeldSchreiben( "fKeinVorspann", $_REQUEST["fKeinVorspann"] );
+?>
