@@ -1,4 +1,5 @@
 <?
+include("agieren.inc");
 switch( $_E['mn'] )
 {
 /* zum Kopieren:
@@ -25,6 +26,8 @@ switch( $_E['mn'] )
     $_E['wZu'] = "bspFuellendRE";
     $_E['entitaet'] = $_REQUEST["a"];
     $_eTitel = array( $_REQUEST["a"] );
+    if( isset($_REQUEST["b"]) )
+      $_E['bleistift'] = $_REQUEST["b"];
   break;
   case "9422": // speicherndRE
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
@@ -32,6 +35,23 @@ switch( $_E['mn'] )
     $_E['wZu'] = "speicherndRE";
     $_E['entitaet'] = $_REQUEST["a"];
     $_eTitel = array( $_REQUEST["b"] );
+  break;
+  case "3653": // aenderndRE
+    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["ID"]) ) { echo $exitus; return; }
+    agieren($_REQUEST);
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "aenderndRE";
+    $_E['entitaet'] = $_REQUEST["a"];
+    $_E['ID'] = $_REQUEST["ID"];
+    $_eTitel = array( "{$_REQUEST["a"]} &auml;ndern ..." );
+  break;
+  case "7774": // aenderungSpeicherndRE
+    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["ID"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "aenderungSpeicherndRE";
+    $_E['entitaet'] = $_REQUEST["a"];
+    $_E['ID'] = $_REQUEST["ID"];
+    $_eTitel = array( "{$_REQUEST["a"]} &Auml;nderung gespeichert." );
   break;
   default:
     ?>you don't exist. Go away!<?

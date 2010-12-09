@@ -67,6 +67,65 @@ $automat = array(
 		"dbClose.inc",
 		"linkFortsetzen.inc",
 	),
+	"bspVerbindendEntitaeten"=>array(
+		"eiZuMMGruppierungEingebend.inc",
+		"verbindenMitDB.inc",
+		"transpHeader.html",
+		"ueberschrift.inc",
+		"routinen.inc",
+		"formularFuerMM.inc",
+		"anzeigenZieltabelle.inc",
+	),
+// intern gerufende Automaten:
+	"aenderndRE"=>array(
+		"dbConnect.inc",
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",
+		"hauptteil.html",
+		"wichtigerInhalt.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"editierenRE.inc",
+		"erlaubenFK.inc",
+		"anbietenFK.inc",
+		"endeContainer.html", //haupttext
+		"endeContainer.html", //wichtigerInhalt
+		"endeContainer.html", //hauptteil
+		"dbClose.inc",
+		"linkFortsetzen.inc",
+	),
+	"aenderungSpeicherndRE"=>array(
+		"dbConnect.inc",
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",
+		"hauptteil.html",
+		"wichtigerInhalt.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"updateRE.inc",
+		"linkFortsetzen.inc",
+	),
+	"speicherndRE"=>array(
+		"dbConnect.inc",
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",
+		"hauptteil.html",
+		"wichtigerInhalt.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"insertRE.inc",
+		"endeContainer.html", //haupttext
+		"endeContainer.html", //wichtigerInhalt
+		"endeContainer.html", //hauptteil
+		"dbClose.inc",
+		"linkFortsetzen.inc",
+	),
 	"anzeigendSprechstunden"=>array(
 		"eiZuEintretend.inc",
 		"row01.inc",
@@ -93,27 +152,6 @@ $automat = array(
 		"ueberschrift.inc",
 		"routinen.inc",
 		"aendernFK.inc",
-		"linkFortsetzen.inc",
-	),
-	"aenderndRE"=>array(
-		"eiZuAenderndRE.inc",
-		"verbindenMitDB.inc",
-		"transpHeader.html",
-		"ueberschrift.inc",
-		"routinen.inc",
-		"pruefenEingaben.js",
-		"editierenRE.inc",
-		"erlaubenFK.inc",
-		"anbietenFK.inc"
-	),
-	"aenderungSpeicherndRE"=>array(
-		"eiZuAenderungSpeicherndRE.inc",
-		"verbindenMitDB.inc",
-		"transpHeader.html",
-		"ueberschrift.inc",
-		"routinen.inc",
-		"plausiIssetA.inc",
-		"updateRE.inc",
 		"linkFortsetzen.inc",
 	),
 	"anzeigendTabelle"=>array(
@@ -252,23 +290,6 @@ $automat = array(
 		"verbindenMitDB.inc",
 		"routinen.inc",
 		"insertMM.inc"
-	),
-	"speicherndRE"=>array(
-		"dbConnect.inc",
-		"hauptnavigation.html",
-		"bspNavi.html",
-		"endeNavigation.html",
-		"hauptteil.html",
-		"wichtigerInhalt.html",
-		"haupttext.html",
-		"containerTitel.php",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"insertRE.inc",
-		"endeContainer.html",
-		"endeContainer.html",
-		"endeContainer.html",
-		"dbClose.inc",
-		"linkFortsetzen.inc",
 	),
 	"toggelndEnum"=>array(
 		"eiZuToggelndEnum.inc",

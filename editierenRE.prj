@@ -1,0 +1,34 @@
+<?
+if( !strcmp( "Portal", $_E['entitaet'] ) or !strcmp( "Auftrag", $_E['entitaet'] ) )
+{
+  $wZu="aenderndPortal";
+  include("forkZu.inc");
+}
+else if( !strcmp( "PortalAttribute", $_E['entitaet'] ) )
+{ // includiert in editierenAttribute.inc
+  $_E['entitaet'] = "Portal";
+}
+else if( !strcmp( "berichteTarif", $_E['entitaet'] ) )
+{ // includiert in editierenAttribute.inc
+  $_E['entitaet'] = "Portal";
+}
+else if( !strcmp( "Auftragabrechnung", $_E['entitaet'] ) )
+{ // includiert in editierenAttribute.inc
+  $workflowAenderndFK = "aenderndTarif";
+}
+else if( !strcmp( "Rechnung", $_E['entitaet'] ) )
+{ // includiert in editierenAttribute.inc
+  $fZugestellt = gibFeld( $MySQLDb, "SELECT zugestellt FROM Rechnung WHERE ID=$ID", 0 );
+  if( "ja" == $fZugestellt )
+  {
+    echo"<h4>Die Rechnung wurde bereits zugestellt und kann deshalb nicht mehr ge&auml;ndert werden</h4>";
+    $wZu="anbietendKnopfZurueck";
+    include("forkZu.inc");
+  }
+}
+else if( !strcmp( "EDVAngebot", $_E['entitaet'] ) )
+{
+    $wZu="editierendAngebot";
+    include("forkZu.inc");
+}
+?>

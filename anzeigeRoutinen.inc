@@ -237,7 +237,7 @@ $mapAushang["<="]="qm";
       $istKeineID = true;
       if( $fSubmit )
       {
-      $str = "./eiZu.php?wZu=aenderndRE&tableRE=$table&$proj";
+      $str = "./mn.php?mn=3653&a=$table&$proj";
       if( $ActionSuffix )
           $str .= $ActionSuffix;
       formularBeginnen($str, "");
@@ -283,6 +283,7 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
   global $proj;
   global $pw;
   global $gfaerbteSpoidn;
+  global $_E;
 
   if( isset( $gfaerbteSpoidn[$table] ) )
   {
@@ -411,7 +412,7 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
     else
     {
       $istKeineID = true;
-      $str = "./eiZu.php?wZu=aenderndRE&tableRE=$table&$proj";
+      $str = "./mn.php?mn=3653&a=$table&$proj";
       if( "Verzoegerung" == $table )
         $str .= "&WohnungID=$WohnungID";
       if( $ActionSuffix )
@@ -437,7 +438,7 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
   global $fPeek;
   include("lastExitBrooklyn.prj");
 
-  if( !isset($gutschriftZugestellt) && !$fPopup && !$fKeinUpdate )
+  if( !isset($gutschriftZugestellt) && !$fPopup && !isset($_E['bleistift']) )
   {
     ?><input type=image src='images/edit.gif' name='update'><?
   }
@@ -533,7 +534,7 @@ global $pw;
         $istKeineID = true;
         if( $fSubmit )
         {
-          $str = "./eiZu.php?wZu=aenderndRE&tableRE=$table&$proj";
+          $str = "./mn.php?mn=3653&a=$table&$proj";
           if( $ActionSuffix )
             $str .= $ActionSuffix;
           formularBeginnen($str, "");
@@ -592,7 +593,7 @@ function ausgebenAlsTabelleVertikal( $spaltenName, $auchID, &$cSpalten, $sql, $z
     $enumListe["$strKey"]=str_replace( "&ouml;", "ö", $enumListe["$strKey"] );
     $enumListe["$strKey"]=str_replace( "&auml;", "ä", $enumListe["$strKey"] );
   }
-  //  $str = "./eiZu.php?wZu=aenderungSpeicherndRE&tableRE=$table&$proj";
+  //  $str = "./mn.php?mn=7774&a=$table&$proj";
   $str = $ActionSuffix;
   formularBeginnen($str, "NAME='frm$table' onSubmit='return pruefenEingaben(this)'");
   $arr = mysql_fetch_row( $result );
@@ -684,7 +685,7 @@ function ausgebenAlsTabelleZumVertikalenAendern( $spaltenName, $auchID, &$cSpalt
     $enumListe["$strKey"]=str_replace( "&ouml;", "ö", $enumListe["$strKey"] );
     $enumListe["$strKey"]=str_replace( "&auml;", "ä", $enumListe["$strKey"] );
   }
-  $str = "./eiZu.php?wZu=aenderungSpeicherndRE&tableRE=$table&$proj";
+  $str = "./mn.php?mn=7774&a=$table&$proj";
   $str .= $ActionSuffix;
   formularBeginnen($str, "name='frm$table' onSubmit='return pruefenEingaben(this)'");
   $arr = mysql_fetch_row( $result );
@@ -751,7 +752,7 @@ function ausgebenAlsAenderbareTabellenzeile( $result ,$table, $ID, $enumListe, $
   global  $proj;
   global  $pw;
   $enumListe=str_replace( "&uuml;", "ü", $enumListe );
-        $str = "./eiZu.php?wZu=aenderungSpeicherndRE&tableRE=$table&$proj";
+  $str = "./mn.php?mn=7774&a=$table&$proj";
   $str .= $ActionSuffix;
   formularBeginnen($str, "NAME='frm$table' onSubmit='return pruefenEingaben(this)'");
   $arr = mysql_fetch_row( $result );

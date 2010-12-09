@@ -1,6 +1,15 @@
 <?
+if( 1 )
+{
+  echo"\nPOSTS:<br>";
+  foreach( $_POST as $k=>$elem )
+    echo"\nk : $k, elem: $elem<br>";
+  echo"\nREQUESTS:<br>";
+  foreach( $_REQUEST as $k=>$elem )
+    echo"\nk : $k, elem: $elem<br>";
+}
 $_E['mn'] = $_REQUEST["mn"];
-$E_['bodyID'] = "main";
+$_E['bodyID'] = "main";
 $exitus="you don't exist. Go away!";
 include("mn.prj");
 include("tee.inc");
@@ -12,7 +21,7 @@ include("tee.inc");
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
 </head>
 <body id=<?
-echo "{$E_['bodyID']}";
+echo "{$_E['bodyID']}";
 ?>><?
 function logZustandswechsel( $str )
 {
