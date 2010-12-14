@@ -1,0 +1,22 @@
+<?
+/************************
+ * das Loeschen verzweigt entsprechend des Array
+ * eintrags aus loeschenVorspiel, wenn die zu
+ * loeschende Instanz aus einer der unten 
+ * stehenden Entitaet stammt.
+ *
+ **********************************************/
+$loeschenVorspiel = array(
+/* Entitaet                 Automat fuer das Vorspiel   ***/
+  "Auftrag"              =>"loeschendAuftrag",
+  "Rechnung"             =>"loeschendRechnung",
+);
+
+/*****************************************************************************
+ *  Der oben angegebene Automat wird vor dem Loeschen des Datensatzes
+ *  eingeschoben, indem er aus dem Modul loeschen.inc angesprungen wird.
+ *  An seinem Ausgang muss er
+ *  1. die Steuervariable fLoeschenVorspielWurdeBedient auf true setzen
+ *  2. das Modul loeschen.inc als naechstes includieren
+ *****************************************************************************/
+?>

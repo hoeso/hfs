@@ -1,0 +1,26 @@
+<?
+/***
+ * gedruecktes Symbol pruefen + gegebenenfalls ausfuehren:
+ ***/
+unset($_E['wZu']);
+if( isset($_REQUEST["update_x"]) )
+{
+  return; //Standardverhalten
+}
+else if( isset($_REQUEST["delete_x"]) )
+{
+  $delTab=$_E['entitaet'];
+  $_E['wZu']="fragendLoeschen";
+}
+else if( isset($_REQUEST["symbol_x"]) )
+  $_E['wZu']="anbietendKnopfZurueck";
+
+if( isset($_E['wZu']) )
+  include("forkZu.inc");
+else
+{
+  ?>F&uuml;r dieses Symbol ist kein Verhalten hinterlegt im Modul <em>pruefenSymbol.prj</em><?
+  $_E['wZu']="anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
+?>

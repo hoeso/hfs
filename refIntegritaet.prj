@@ -1,0 +1,25 @@
+<?
+$arrRefs = array(
+/*zum Kopieren:
+	""=>array( // ich bin die Entitaet
+		"",// ich benutze einen Fremdschluessel auf die Entitaet
+	),
+*/
+/*zum Kopieren:
+	""=>array(
+		"",
+	),
+*/
+);
+$adm="Administration";
+$buc="Buchhaltung";
+
+$Verweis = array(
+	"BeweglicheFeiertageBund"=>"$adm-$ein-Feiertage-Beweglich-Bund",
+	"BeweglicheFeiertageLaender"=>"$adm-$ein-Feiertage-Beweglich-L&auml;nder",
+	"FesteFeiertageBund"=>"$adm-$ein-Feste Feiertage Bund",
+	"FesteFeiertageLaender"=>"$adm-$ein-Feste Feiertage L&auml;nder",
+	"Mehrwertsteuer"=>"$buc-Mehrwertsteuer",
+	"BeweglicheFeiertageBund"=>"$adm-$ein-Feiertage-Beweglich-Bund",
+);
+?>
