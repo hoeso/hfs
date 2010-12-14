@@ -112,7 +112,7 @@ function ausgebenAlsTabellenkopf( $spaltenName, $auchID, &$cSpalten, $sql, $ziel
   {
     $Bezug="";
     ?><th><?
-    echo_("\n<FORM ACTION=\"./eiZu.php?wZu=zeigendDruckansicht&zielTabelle=$zielTabelle&Bezug=$Bezug&bgcolor=white&gruppenStaerke=$gruppenStaerke&$proj\" METHOD=POST>\n<INPUT TYPE=HIDDEN NAME=sql VALUE=\"$sql\">\n<INPUT TYPE=SUBMIT VALUE=Druckansicht>\n</FORM>");
+//    echo_("\n<FORM ACTION=\"./eiZu.php?wZu=zeigendDruckansicht&zielTabelle=$zielTabelle&Bezug=$Bezug&bgcolor=white&gruppenStaerke=$gruppenStaerke&$proj\" METHOD=POST>\n<INPUT TYPE=HIDDEN NAME=sql VALUE=\"$sql\">\n<INPUT TYPE=SUBMIT VALUE=Druckansicht>\n</FORM>");
 //    echo_("\n<A HREF=\"./eiZu.php?wZu=zeigendDruckansicht&zielTabelle=$zielTabelle&sql=$str&Bezug=$Bezug&bgcolor=white&gruppenStaerke=$gruppenStaerke&$proj\">Druckansicht</A>");
     ?></th></tr><?
   }
@@ -338,12 +338,12 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
       {
         if( !$globalID )
         {
-          ?> CHECKED<?
+          ?> checked<?
           $fChecked = true;
         }
         if( $globalID == $elem )
         {
-          ?> CHECKED<?
+          ?> checked<?
           $fChecked = true;
         }
       }
@@ -368,8 +368,8 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
         $farbe = 'burlywood';
       else if( $zuFaerbendeCols && $zuFaerbendeCols >= $i )
         $farbe = $faerbung;
-      else if( false == isset( $zuFaerbendeCols ) || $zuFaerbendeCols < $i )
-        $farbe = '#E8E8E8';
+//    else if( false == isset( $zuFaerbendeCols ) || $zuFaerbendeCols < $i )
+  //    $farbe = '#E8E8E8';
       // Iss de Bearbeitung und hamma vielleicht an Verzug?
       if( "AuftragPort" == $table )
       {
@@ -382,7 +382,13 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
             $farbe = 'red';
         }
       }
-      echo "\n\t\t<td bgcolor=$farbe>";
+      ?><td<?
+      if( isset($farbe) )
+      {
+        ?> bgcolor=<?
+        echo $farbe;
+      }
+      ?>><?
       $key=$arrFeldName[$i] . "_" . $table;
       if( isset($toggleJaNein["$key"]) && strstr( $arrFeldFlag[$i], 'enum' ) && strstr( $toggleJaNein["$key"], $elem ) )
       {
@@ -649,7 +655,7 @@ function ausgebenAlsTabelleVertikal( $spaltenName, $auchID, &$cSpalten, $sql, $z
     else
       $Bezug="";
     echo_("\n\t<th><font size='-2'>");
-    echo_("\n<A HREF=\"./eiZu.php?wZu=zeigendDruckansicht&zielTabelle=$zielTabelle&sql=$str&Bezug=$Bezug&bgcolor=white&gruppenStaerke=$gruppenStaerke&$proj\">Druckansicht</A>");
+//    echo_("\n<A HREF=\"./eiZu.php?wZu=zeigendDruckansicht&zielTabelle=$zielTabelle&sql=$str&Bezug=$Bezug&bgcolor=white&gruppenStaerke=$gruppenStaerke&$proj\">Druckansicht</A>");
     echo_("\n</th>");
     echo_("\n</tr>");
   }
@@ -741,7 +747,7 @@ function ausgebenAlsTabelleZumVertikalenAendern( $spaltenName, $auchID, &$cSpalt
     else
         $Bezug="";
     echo_("\n\t<th><font size='-2'>");
-    echo_("\n<A HREF=\"./eiZu.php?wZu=zeigendDruckansicht&zielTabelle=$zielTabelle&sql=$str&Bezug=$Bezug&bgcolor=white&gruppenStaerke=$gruppenStaerke&$proj\">Druckansicht</A>");
+//    echo_("\n<A HREF=\"./eiZu.php?wZu=zeigendDruckansicht&zielTabelle=$zielTabelle&sql=$str&Bezug=$Bezug&bgcolor=white&gruppenStaerke=$gruppenStaerke&$proj\">Druckansicht</A>");
     echo_("\n</th>");
     echo_("\n</tr>");
   }
@@ -796,7 +802,7 @@ function ListeMitID( $result, $label, $table, $fDatum, $anzuzeigen )
     echo"\n<!-- SELECTRE2 = $SELECTRE2 -->";
   }
   else if( "RE3" == $label )
-  {
+ {
     $IDgewaehlt=$SELECTRE3;
     echo"\n<!-- SELECTRE3 = $SELECTRE3 -->";
   }
@@ -804,10 +810,12 @@ function ListeMitID( $result, $label, $table, $fDatum, $anzuzeigen )
   if( !isset($keinInsert) or false == $keinInsert )
   {
     ?><input type='hidden' name='Tabelle<?
-    echo "$label";
-    ?> value='$table'>
+    echo $label;
+    ?>' value='<?
+    echo $table;
+    ?>'>
     <select name='SELECT<?
-    echo "$label";
+    echo $label;
     ?>'><?
   }
   $f=false;
@@ -875,7 +883,7 @@ function ListeMitID( $result, $label, $table, $fDatum, $anzuzeigen )
   }
   if( !isset($keinInsert) or false == $keinInsert )
   {
-    ?></SELECT><?
+    ?></select><?
   }
 }
 function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
@@ -911,9 +919,9 @@ function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
   if( !isset($keinInsert) or false == $keinInsert )
   {
     ?><input type 'hidden' name='Tabelle<?
-    echo "$label";
-    ?>' VALUE='<?
-    echo "$table";
+    echo $label;
+    ?>' value='<?
+    echo $table;
     ?>'><?
     ?><select name='SELECT<?
     echo "$label";
@@ -1056,39 +1064,32 @@ function anzeigenTabelle( $tabKopf, $zeilen, $align )
 
   if( !$gfTabelleObenOffen )
   {
-    if( !$gTableAlign )
-      $gTableAlign="center";
-    echo_("\n<DIV align=$gTableAlign>");
-
-    echo_("<table width=90% border=0 cellpadding='2' cellspacing='2'>");
+    ?><table><?
   }
-   echo_("\n<tr bgcolor=#D0D0D0>");
-   $anz = count($tabKopf);
-   for( $i=0; $i < $anz; $i++ )
-   {
-      echo_("\n\t<th><font size='-2'>");
-      echo_($tabKopf[ $i ]);
-      echo_("</th>");
-   }
-   echo_("\n</tr>");
-
-   for( $i=0; $i < count($zeilen); )
-   {
-      echo_("\n<tr>");
-      for( $j=0; $j < $anz; $j++ )
-      {
-   echo_("\n\t<td bgcolor='#E8E8E8' align='$align'><font size='-2'>");
-   echo_($zeilen[ $i++ ]);
-   echo_("</font></td>");
-      }
-      echo_("\n</tr>");
-   }
-   echo_("\n");
-   if( !$gfTabelleUntenOffen )
+  ?><tr><?
+  $anz = count($tabKopf);
+  for( $i=0; $i < $anz; $i++ )
   {
-    echo_("</TABLE>");
-    echo_("</DIV>");
-// echo_("</table>\n");
+    ?><th><?
+    echo $tabKopf[ $i ];
+    ?></th><?
+  }
+  ?></tr><?
+
+  for( $i=0; $i < count($zeilen); )
+  {
+    ?><tr><?
+    for( $j=0; $j < $anz; $j++ )
+    {
+      ?><td><?
+      echo $zeilen[ $i++ ];
+      ?></td><?
+    }
+    ?></tr><?
+  }
+  if( !$gfTabelleUntenOffen )
+  {
+    ?></table><?
   }
 }
 function anzeigenTabelleMitLink( $tabKopf, $zeilen, $align, $arrID, $arrNLID, $cFeld, $wZu, $dimStatCol, $tmpBGNLSummen )
@@ -1381,7 +1382,7 @@ function formularAttribut( $table, $result, $i, $attr, $enumListe, $laengeBeiTex
         echo ">";
       echo $arr[$j];
     }
-    echo "\n\t\t</SELECT";
+    echo "\n\t\t</select";
   }
   else if( "date" == $feldTyp )
   {

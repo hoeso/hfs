@@ -4,6 +4,25 @@ $forkAutomat = array(
 	""=>array(
 	),
 */
+	"fragendLoeschen"=>array(
+		"dbConnect.inc",
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",
+		"hauptteil.html",
+		"wichtigerInhalt.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"refIntegritaet.prj",
+		"loeschenVorspiel.prj",
+		"loeschen.inc",
+		"endeContainer.html", //haupttext
+		"endeContainer.html", //wichtigerInhalt
+		"endeContainer.html", //hauptteil
+		"dbClose.inc",
+		"linkFortsetzen.inc",
+	),
 	"abrechnend"=>array(
 		"eiZuAbrechnend.inc",
 		"frmBriefkopf.inc",

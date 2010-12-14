@@ -1,5 +1,4 @@
 <?
-include("agieren.inc");
 switch( $_E['mn'] )
 {
 /* zum Kopieren:
@@ -21,6 +20,15 @@ switch( $_E['mn'] )
     $_E['wZu'] = "bspVerbindendDB";
     $_E['enableDbg'] = true; // Ausgaben von dbConnect.inc aktivieren
   break;
+  case "8546": // bspVerbindendEntitaeten
+    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "bspVerbindendEntitaeten";
+    $_E['entitaetLinks'] = $_REQUEST["a"];
+    $_E['entitaetRechts'] = $_REQUEST["b"];
+    $_E['entitaet'] = $_REQUEST["c"];
+    $_eTitel = array( $_REQUEST["d"] );
+  break;
   case "6649": //bspFuellendRE
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
     $_E['wZu'] = "bspFuellendRE";
@@ -28,6 +36,14 @@ switch( $_E['mn'] )
     $_eTitel = array( $_REQUEST["a"] );
     if( isset($_REQUEST["b"]) )
       $_E['bleistift'] = $_REQUEST["b"];
+  break;
+/*** intern gesetzte Links: ***/
+  case "4454":
+    if( !isset($_REQUEST["TabelleM"]) or !isset($_REQUEST["TabelleA"]) or !isset($_REQUEST["SELECTA"]) or !isset($_REQUEST["TabelleB"]) or !isset($_REQUEST["SELECTB"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "speicherndNN";
+    $_E['entitaet'] = $_REQUEST["TabelleM"];
+    $_eTitel = array( "{$_REQUEST['TabelleM']} speichern" );
   break;
   case "9422": // speicherndRE
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
@@ -38,12 +54,11 @@ switch( $_E['mn'] )
   break;
   case "3653": // aenderndRE
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["ID"]) ) { echo $exitus; return; }
-    agieren($_REQUEST);
     $_E['bodyID'] = "standard";
-    $_E['wZu'] = "aenderndRE";
+    $_E['wZu'] = "pruefendSymbol";
     $_E['entitaet'] = $_REQUEST["a"];
     $_E['ID'] = $_REQUEST["ID"];
-    $_eTitel = array( "{$_REQUEST["a"]} &auml;ndern ..." );
+    $_eTitel = array( "{$_E['entitaet']} &auml;ndern ..." );
   break;
   case "7774": // aenderungSpeicherndRE
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["ID"]) ) { echo $exitus; return; }

@@ -68,13 +68,26 @@ $automat = array(
 		"linkFortsetzen.inc",
 	),
 	"bspVerbindendEntitaeten"=>array(
-		"eiZuMMGruppierungEingebend.inc",
-		"verbindenMitDB.inc",
-		"transpHeader.html",
-		"ueberschrift.inc",
-		"routinen.inc",
-		"formularFuerMM.inc",
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",
+		"dbConnect.inc",
+		"hauptteil.html",
+		"wichtigerInhalt.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"setzenFortsetzung.prj",
+		"formularFuerNN.inc",
+		"linkFortsetzen.inc",
+		"hinweis2.inc",
+		"containerHinweis.php",
 		"anzeigenZieltabelle.inc",
+		"endeContainer.html",
+		"endeContainer.html",
+		"endeContainer.html",
+		"dbClose.inc",
+		"linkFortsetzen.inc",
 	),
 // intern gerufende Automaten:
 	"aenderndRE"=>array(
@@ -109,6 +122,26 @@ $automat = array(
 		"updateRE.inc",
 		"linkFortsetzen.inc",
 	),
+	"pruefendSymbol"=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
+		"pruefenSymbol.prj",
+		"dbConnect.inc",
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",
+		"hauptteil.html",
+		"wichtigerInhalt.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"editierenRE.inc",
+		"erlaubenFK.inc",
+		"anbietenFK.inc",
+		"endeContainer.html", //haupttext
+		"endeContainer.html", //wichtigerInhalt
+		"endeContainer.html", //hauptteil
+		"dbClose.inc",
+		"linkFortsetzen.inc",
+	),
 	"speicherndRE"=>array(
 		"dbConnect.inc",
 		"hauptnavigation.html",
@@ -120,6 +153,29 @@ $automat = array(
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"insertRE.inc",
+		"endeContainer.html", //haupttext
+		"endeContainer.html", //wichtigerInhalt
+		"endeContainer.html", //hauptteil
+		"dbClose.inc",
+		"linkFortsetzen.inc",
+	),
+	"speicherndNN"=>array(
+		"eiZuSpeicherndNN.inc",
+		"dbConnect.inc",
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",
+		"hauptteil.html",
+		"wichtigerInhalt.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"insertNN.inc",
+		"hinweis1.inc",
+		"containerHinweis.php",
+		"linkFortsetzen.inc",
+		"containerHinweis.php",
+		"anzeigenNN.inc",
 		"endeContainer.html", //haupttext
 		"endeContainer.html", //wichtigerInhalt
 		"endeContainer.html", //hauptteil
