@@ -8,6 +8,9 @@ $arrRefs = array(
 	"Brotzeit"=>array( // ich bin eine Entitaet
 		"BrotzeitGewuerz",// ich benutze einen Fremdschluessel auf diese eine Entitaet
 	),
+	"Gewuerz"=>array( // ich bin eine Entitaet
+		"BrotzeitGewuerz",// ich benutze einen Fremdschluessel auf diese eine Entitaet
+	),
 /*zum Kopieren:
 	""=>array(
 		"",

@@ -1,7 +1,6 @@
-<center>
 <?
 /************ Input **********************************************************
- * $zielTabelle	: der Name der Zieltabelle
+ * $_E['entitaet']	: der Name der Zieltabelle
  * $mapTable	: falls der Name der Zieltabelle leer ist
  * $sql		: selektiert den gewuenschten Inhalt
  *****************************************************************************/
@@ -16,17 +15,17 @@ $map = array(
 	"Begehung"=>"Auftrag",
 );
 
-if( !isset($zielTabelle) and isset($mapTable) )
-    $zielTabelle=$map[$mapTable];
+if( !isset($_E['entitaet']) and isset($mapTable) )
+    $_E['entitaet']=$map[$mapTable];
 if( false == isset($ActionSuffix) )
   $ActionSuffix="";
 
-if( !isset($sql) and isset($zielTabelle) )
+if( !isset($sql) and isset($_E['entitaet']) )
   {
-    $sql = $Select[$zielTabelle];
-    if ( isset($OrderBy[$zielTabelle]))
+    $sql = $Select[$_E['entitaet']];
+    if ( isset($OrderBy[$_E['entitaet']]))
     {
-      $sql .= $OrderBy[$zielTabelle];
+      $sql .= $OrderBy[$_E['entitaet']];
       // die ORDER By -Klausel beginnt mit einem Space,
       // deshalb ist die Anfuegung so in Ordnung.
     }
@@ -34,7 +33,7 @@ if( !isset($sql) and isset($zielTabelle) )
 if( isset( $filterjahr ) )
 {
   $order=" ORDER";
-  $str=str_replace( "#filterjahr#", $filterjahr, $filterJahr[$zielTabelle] );
+  $str=str_replace( "#filterjahr#", $filterjahr, $filterJahr[$_E['entitaet']] );
   if( strstr( $sql, $order ) )
     $sql=str_replace( $order, $str . $order, $sql );
   else
@@ -43,5 +42,5 @@ if( isset( $filterjahr ) )
 if( !isset($zielTabelle) )
   $zielTabelle="";
 
-anzeigen( $MySQLDb, $sql, $zielTabelle, $ActionSuffix );
+anzeigen( $MySQLDb, $sql, $_E['entitaet'], $ActionSuffix );
 ?>

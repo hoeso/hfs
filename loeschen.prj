@@ -10,5 +10,8 @@ switch( $delTab )
     $geprueft = true;
   break;
 */
+  case "BrotzeitGewuerz":
+    $geprueft = true;
+  break;
 }
 ?>

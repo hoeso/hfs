@@ -1,7 +1,7 @@
 <?
 /************ Input ****************************************************************
  * $delTab                        : Tabelle, aus der ein Satz geloescht werden soll
- * $ID                            : Der Primaerschluessel des Datensatzes
+ * $_E['ID']                      : Der Primaerschluessel des Datensatzes
  * $loeschenVorspiel              : bestimmte Entitaeten erzwingen eine Abzweigung
  *                                : vor dem eigentlichen Loeschen.
  *                                : Name der Entitaet + der aufzurufende Automat
@@ -39,7 +39,7 @@ if( !$geprueft )
   {
     foreach( $arrRefs[$delTab] as $refTab )
     {
-      $sql="SELECT count(*) from $refTab WHERE $refTab.$delTab" . "ID=$ID";
+      $sql="SELECT COUNT(*) FROM $refTab WHERE $refTab.$delTab" . "ID={$_E['ID']}";
       $treffer = gibFeld( $MySQLDb, $sql, 0 );
       if( $treffer )
       {// das sind die bestehenden Referenzen
@@ -47,7 +47,7 @@ if( !$geprueft )
         echo"\n<!-- Referenz in $refTab -->";
         $bremse = true;
         //if( (!isset($gPaketID) or "" == $gPaketID ) and "Paket" == $delTab )
-          //$gPaketID=$ID;
+          //$gPaketID=$_E['ID'];
         $sql=$Select["$refTab"];
         if( !$sql )
         {// kann nicht gefischt werden
@@ -58,7 +58,7 @@ if( !$geprueft )
           $sql .= " AND ";
         else
           $sql .= " WHERE ";
-        $sql .= "$refTab.$delTab" . "ID=$ID";
+        $sql .= "$refTab.$delTab" . "ID={$_E['ID']}";
         $sql=str_replace( " ", "%20", $sql );
         if( isset($ID1) )
           $strID1="&ID1=$ID1";
@@ -69,7 +69,12 @@ if( !$geprueft )
         else
           $fKeinUpdate = $fKeinDelete = '';
         echo"\n<!-- $sql -->";
-        echo"\n<A HREF=\"./eiZu.php?wZu=anzeigendTabelle&sql=$sql&Titel=Verbundene%20Eintr&auml;ge&zielTabelle=$refTab$strID1&fKeinUpdate=$fKeinUpdate&fKeinDelete=$fKeinDelete\">$Verweis[$refTab]</A>.<p>";
+        echo"\n<A HREF=\"./mn.php?mn=1433&b=$sql&c=Eintr&auml;ge%20in%20$refTab%20mit%20Bezug%20zu%20$delTab&a=$refTab$strID1&fKeinUpdate=$fKeinUpdate&fKeinDelete=$fKeinDelete\">";
+        if( isset($Verweis[$refTab]) )
+          echo $Verweis[$refTab];
+        else
+          echo $refTab;
+        ?></A>.<p><?
       }
       $geprueft = true;
     }
@@ -102,12 +107,12 @@ if( isset($Select[$delTab]) )
     $sql .= " AND ";
   else
     $sql .= " WHERE ";
-  $sql .= $delTab . ".ID=$ID";
+  $sql .= $delTab . ".ID={$_E['ID']}";
 }
 else
-  $sql="SELECT * FROM $delTab WHERE ID=$ID";
+  $sql="SELECT * FROM $delTab WHERE ID={$_E['ID']}";
 
-anzeigen( $MySQLDb, $sql, "ohne submit Knopf", $ActionSuffix );
+anzeigen( $MySQLDb, $sql, "ohne submit Knopf", isset($ActionSuffix)?$ActionSuffix:"" );
 
 if( !isset($force) )
 {
@@ -119,11 +124,15 @@ if( !isset($force) )
     $strbackup="";
 
   unset( $candies );
-  foreach( $globalCandy as $k => $elem )
-    if( $elem )
-      $candies .= "&$k=$elem";
-
-  formularBeginnen( "./eiZu.php?wZu=aenderndRE&tableRE=$delTab&ID=$ID$strbackup&force=true&WohnungID=$WohnungID&ID1=$ID1$candies", "NAME='frm'");
+  if( isset($globalCandy) )
+    foreach( $globalCandy as $k => $elem )
+      if( $elem )
+        $candies .= "&$k=$elem";
+  if( !isset($candies) )
+    $candies="";
+  if( !isset($WohnungID) )
+    $WohnungID="";
+  formularBeginnen( "./eiZu.php?wZu=aenderndRE&tableRE=$delTab&ID={$_E['ID']}$strbackup&force=true&WohnungID=$WohnungID&ID1=$ID1$candies", "NAME='frm'");
   if( isset($_REQUEST["preparedocC"]) )
     hiddenFeldSchreiben( "docC", $_REQUEST["preparedocC"] );
   else if( isset($_REQUEST["prepforkdocC"]) )
@@ -155,7 +164,7 @@ else if( false == isset($fLoeschenVorspielWurdeBedient) and isset($loeschenVorsp
 }
 
 /*** es darf geloescht werden ... ***/
-$sql="DELETE FROM $delTab WHERE ID=$ID";
+$sql="DELETE FROM $delTab WHERE ID={$_E['ID']}";
 $result = mysql_db_query( $MySQLDb, $sql );
 //echo"\n<!-- $sql -->";
 if(!$result)

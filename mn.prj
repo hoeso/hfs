@@ -38,6 +38,14 @@ switch( $_E['mn'] )
       $_E['bleistift'] = $_REQUEST["b"];
   break;
 /*** intern gesetzte Links: ***/
+  case "1433": // 
+    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "anzeigendEntitaet";
+    $_E['entitaet'] = $_REQUEST["a"];
+    $sql = $_REQUEST["b"];
+    $_eTitel = array( $_REQUEST["c"] );
+  break;
   case "4454":
     if( !isset($_REQUEST["TabelleM"]) or !isset($_REQUEST["TabelleA"]) or !isset($_REQUEST["SELECTA"]) or !isset($_REQUEST["TabelleB"]) or !isset($_REQUEST["SELECTB"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";

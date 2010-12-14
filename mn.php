@@ -1,5 +1,5 @@
 <?
-if( 0 )
+if( 1 )
 {
   echo"\nPOSTS:<br>";
   foreach( $_POST as $k=>$elem )
