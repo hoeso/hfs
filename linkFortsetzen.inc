@@ -1,4 +1,3 @@
-<p>
 <?
 /************ Input *********************************************************
  * $SELECTRE1 :	    die ID des aus der 1. RE-Liste gewaehlten Eintrags.
@@ -113,8 +112,6 @@ if( 0 )
 }
 else if( isset( $dahin ) )
 {
-?><CENTER>
-<?
   echo"\n<A HREF=\"$dahin\"><em>&lt;&lt; fortsetzen</em></A><BR>";
 }
 if( isset($goto) )

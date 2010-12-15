@@ -57,6 +57,8 @@ $Select=array
 	""=>"",
 */
 	"BrotzeitGewuerz"=>"SELECT BrotzeitGewuerz.ID, Brotzeit.Brotzeit, Gewuerz.Gewuerz FROM BrotzeitGewuerz, Brotzeit, Gewuerz WHERE BrotzeitGewuerz.BrotzeitID=Brotzeit.ID AND BrotzeitGewuerz.GewuerzID=Gewuerz.ID",
+
+	"Ortsteil"=>"SELECT Ortsteil.ID, Ort.Ort, Ortsteil.Ortsteil FROM Ortsteil, Ort WHERE Ortsteil.OrtID=Ort.ID",
 /* zum Kopieren:
  	""=>"",
 
@@ -67,6 +69,8 @@ $OrderBy=array
 (
 //	""=>" ORDER BY ",
 	"BrotzeitGewuerz"=>" ORDER BY Brotzeit, Gewuerz",
+
+	"Ortsteil"=>" ORDER BY Ort, Ortsteil",
 );
 
 $gfaerbteSpoidn = array(

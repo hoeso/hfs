@@ -89,7 +89,30 @@ $automat = array(
 		"dbClose.inc",
 		"linkFortsetzen.inc",
 	),
-// intern gerufende Automaten:
+	"bspAnbietend1ZuN"=>array(
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",
+		"dbConnect.inc",
+		"hauptteil.html",
+		"wichtigerInhalt.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"setzenFortsetzung.prj",
+		"wohinDamit.inc",
+		"formularERMintro.inc",
+		//"mapSpaltennamen.inc",
+		"ERMListenfuellen.inc",
+		"ERMsubmit.inc",
+		//"anzeigenZieltabelle.inc",
+		"endeContainer.html",
+		"endeContainer.html",
+		"endeContainer.html",
+		"dbClose.inc",
+		"linkFortsetzen.inc",
+	),
+/*** intern gerufende Automaten: ***********************************************/
 	"aenderndRE"=>array(
 		"dbConnect.inc",
 		"hauptnavigation.html",
@@ -120,6 +143,9 @@ $automat = array(
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"updateRE.inc",
+		"linkFortsetzen.inc",
+	),
+	"anbietendKnopfZurueck"=>array(
 		"linkFortsetzen.inc",
 	),
 	"anzeigendEntitaet"=>array(

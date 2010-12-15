@@ -12,6 +12,11 @@ else if( isset($_REQUEST["delete_x"]) )
   $delTab=$_E['entitaet'];
   $_E['wZu']="fragendLoeschen";
 }
+else if( isset($_REQUEST["delete"]) )
+{
+  $delTab=$_E['entitaet'];
+  $_E['wZu']="fragendLoeschen";
+}
 else if( isset($_REQUEST["symbol_x"]) )
   $_E['wZu']="anbietendKnopfZurueck";
 

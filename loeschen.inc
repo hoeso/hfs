@@ -114,7 +114,7 @@ else
 
 anzeigen( $MySQLDb, $sql, "ohne submit Knopf", isset($ActionSuffix)?$ActionSuffix:"" );
 
-if( !isset($force) )
+if( !isset($_E['loeschen']) )
 {
   echo"\n<h4>Soll dieser Eintrag gel&ouml;scht werden?</h4>";
 
@@ -130,9 +130,7 @@ if( !isset($force) )
         $candies .= "&$k=$elem";
   if( !isset($candies) )
     $candies="";
-  if( !isset($WohnungID) )
-    $WohnungID="";
-  formularBeginnen( "./eiZu.php?wZu=aenderndRE&tableRE=$delTab&ID={$_E['ID']}$strbackup&force=true&WohnungID=$WohnungID&ID1=$ID1$candies", "NAME='frm'");
+  formularBeginnen( "./mn.php?mn=1142&a=$delTab&ID={$_E['ID']}$strbackup&force=true&ID1=$ID1$candies", "NAME='frm'");
   if( isset($_REQUEST["preparedocC"]) )
     hiddenFeldSchreiben( "docC", $_REQUEST["preparedocC"] );
   else if( isset($_REQUEST["prepforkdocC"]) )
@@ -142,9 +140,7 @@ if( !isset($force) )
   if( isset($_REQUEST["fKeinVorspann"]) )
     hiddenFeldSchreiben( "fKeinVorspann", $_REQUEST["fKeinVorspann"] );
   formularKnopf( "ja ...", "delete" );
-?>
-<img src="images/zwischenPfeil.gif">
-<?
+  ?>&nbsp;&nbsp;&nbsp;<?
 	formularKnopf( "nein ...", "dont" );
 	formularBeenden();
 ?>

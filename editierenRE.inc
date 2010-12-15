@@ -21,12 +21,12 @@ if( isset($richtung) )
 	include("forkZu.inc");
 }
 
-if( isset($dont) )
+/*** Block wird in mn.prj erledigt: if( isset($dont) )
 {
 	echo"\n<p>Der Eintrag wurde nicht gel&ouml;scht.<br>";
         $_E['wZu']="anbietendKnopfZurueck";
         include("forkZu.inc");
-}
+}***/
 
 if( isset($zoom) )
 {

@@ -10,6 +10,15 @@ switch( $_E['mn'] )
     $_e = array( $_REQUEST[""], $_REQUEST[""] );
   break;
 */
+  case "3655": // bsp1ZuN
+    if( !isset($_REQUEST["1"]) or !isset($_REQUEST["n"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "bspAnbietend1ZuN";
+    $_E['entitaet'] = $_REQUEST["1"];
+    $_E['entitaetN'] = $_REQUEST["n"];
+    $_E['recipient'] = 4224; // speichernd1ZuN
+    $_eTitel = array( "{$_REQUEST['n']} mit {$_REQUEST['1']}" );
+  break;
   case "5413":
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
@@ -38,6 +47,22 @@ switch( $_E['mn'] )
       $_E['bleistift'] = $_REQUEST["b"];
   break;
 /*** intern gesetzte Links: ***/
+  case "1142": // loeschen ja ... nein ...
+    if( isset($_REQUEST["dont"]) )
+    {
+      ?><p>... es wurde nichts gel&ouml;scht (;<p><?
+      $_E['wZu'] = "anbietendKnopfZurueck";
+      break;
+    }
+    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["ID"]) or !isset($_REQUEST["delete"]) ) { echo $exitus; return; }
+    if( isset($_REQUEST["force"]) )
+      $_E['loeschen'] = "ok";
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "pruefendSymbol";
+    $_E['entitaet'] = $_REQUEST["a"];
+    $_E['ID'] = $_REQUEST["ID"];
+    $_eTitel = array( "{$_E['entitaet']} l&ouml;schen ..." );
+  break;
   case "1433": // 
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
