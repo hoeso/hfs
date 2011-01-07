@@ -1,5 +1,5 @@
 <?
-if( ($strSubmitLabel) )
+if( isset($strSubmitLabel) )
     $value=$strSubmitLabel;
 else if( $zielTabelle )
     $value="speichern";

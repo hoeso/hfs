@@ -129,7 +129,7 @@ if( isset( $HTTP_POST_VARS ) )
     if( isset($Select[$_E['entitaet']]) )
     {
       $sql=$Select[$_E['entitaet']] . " AND " . $_E['entitaet'] . ".ID={$_E['ID']}";
-      anzeigen( $MySQLDb, $sql, "ohne submit Knopf", $ActionSuffix );
+      anzeigen( $MySQLDb, $sql, "ohne submit Knopf", isset($ActionSuffix)?$ActionSuffix:"" );
     }
   }
 }

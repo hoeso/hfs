@@ -105,7 +105,7 @@ $automat = array(
 		//"mapSpaltennamen.inc",
 		"ERMListenfuellen.inc",
 		"ERMsubmit.inc",
-		//"anzeigenZieltabelle.inc",
+		"anzeigenZieltabelle.inc",
 		"endeContainer.html",
 		"endeContainer.html",
 		"endeContainer.html",
@@ -186,6 +186,26 @@ $automat = array(
 		"dbClose.inc",
 		"linkFortsetzen.inc",
 	),
+	"speichernd"=>array(
+		//"eiZuSpeicherndERM.inc",
+		"dbConnect.inc",
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",
+		"hauptteil.html",
+		"wichtigerInhalt.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"insertERM.inc",
+		"linkFortsetzen.inc",
+		"nachSpeichernAnzeigen.inc",
+		"endeContainer.html", //haupttext
+		"endeContainer.html", //wichtigerInhalt
+		"endeContainer.html", //hauptteil
+		"dbClose.inc",
+		"linkFortsetzen.inc",
+	),
 	"speicherndRE"=>array(
 		"dbConnect.inc",
 		"hauptnavigation.html",
@@ -225,6 +245,25 @@ $automat = array(
 		"endeContainer.html", //hauptteil
 		"dbClose.inc",
 		"linkFortsetzen.inc",
+	),
+	"speichernd1ZuN"=>array(
+		"eiZuSpeicherndERM.inc",
+		"dbConnect.inc",
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",
+		"hauptteil.html",
+		"wichtigerInhalt.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"insertERM.inc",
+		"endeContainer.html", //haupttext
+		"endeContainer.html", //wichtigerInhalt
+		"endeContainer.html", //hauptteil
+		"dbClose.inc",
+		"linkFortsetzen.inc",
+		"nachSpeichernAnzeigen.inc"
 	),
 	"anzeigendSprechstunden"=>array(
 		"eiZuEintretend.inc",
