@@ -1,0 +1,25 @@
+Gratulation!
+
+Du hast mich im Automaten gesehen.
+
+Moeglicherweise hast Du Dir den HTML-Quelltext angesehen + es ist Dir aufgefallen, dass ich nicht includiert bin.
+
+Das - oder etwas anderes - hat Deine Neugierde geweckt.
+
+Dieser Inhalt soll Dir folgendes vermitteln:
+
+Der Rest des Automaten, an dessen Stelle ich - liesMich.txt - includiert bin, wird in mehreren Automaten benoetigt.
+Deshalb verzweigt mein Vorgaengermodul anbietenERM.inc in einen geteilten Automaten + setzt dort mit dem Zustand anbietendERM fort.
+
+Dieser neue Automat befindet sich im Modul forkAutomat.inc.
+
+Jetzt weisst Du Bescheid ueber diese Technik des Verzweigens.
+
+Diese Technik wird hier benutzt, um sich Copy&Paste zu sparen und so die Datei automat.inc kurz zu halten.
+
+Ein anderer Grund fuer eine solche Verzweigung kann sein, dass ein Automat eine Sondersituation erkennt + er deshalb von seinem Standardverhalten abweichen will.
+Das kann er durch eine Verzweigung in einen anderen Automaten der Datei forkAutomat.inc erreichen.
+
+Alles klar?
+
+Ein Tipp: Uebung macht den Meister .... ;-)
