@@ -10,6 +10,19 @@ switch( $_E['mn'] )
     $_e = array( $_REQUEST[""], $_REQUEST[""] );
   break;
 */
+  case "1466": // bspVerlinkendEntitaet
+    if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
+    if( isset($_REQUEST["re"]) and !isset($_REQUEST["re1"]) ) { echo $exitus; return; }
+    if( isset($_REQUEST["1n"]) and !isset($_REQUEST["1n1"]) ) { echo $exitus; return; }
+    if( isset($_REQUEST["nn"]) and !isset($_REQUEST["nn1"]) ) { echo $exitus; return; }
+    if( isset($_REQUEST["sl"]) and !isset($_REQUEST["sl1"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "bspVerlinkendEntitaet";
+    $_E['entitaet'] = $_REQUEST["a"];
+    $_E['recipient'] = 4224; // speichernd1ZuN
+    $_eTitel = array( $_REQUEST["a"] );
+  break;
+  // hier 100 cases bis 1566 freihalten fuer evtl. SL-Faelle. Ist kopierfreundlich.
   case "3655": // bsp1ZuN
     if( !isset($_REQUEST["1"]) or !isset($_REQUEST["n"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
@@ -18,6 +31,15 @@ switch( $_E['mn'] )
     $_E['entitaetN'] = $_REQUEST["n"];
     $_E['recipient'] = 4224; // speichernd1ZuN
     $_eTitel = array( "{$_REQUEST['n']} mit {$_REQUEST['1']}" );
+  break;
+  case "6914": // bsp1Zu1ZuN
+    if( !isset($_REQUEST["1"]) or !isset($_REQUEST["1n"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "bspAnbietend1Zu1ZuN";
+    $_E['entitaet'] = $_REQUEST["1"];
+    $_E['entitaet1N'] = $_REQUEST["1n"];
+    $_E['recipient'] = 4224; // speichernd1ZuN
+    $_eTitel = array( "{$_REQUEST['1n']} mit {$_REQUEST['1']}" );
   break;
   case "5413":
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
@@ -36,7 +58,7 @@ switch( $_E['mn'] )
     $_E['entitaetLinks'] = $_REQUEST["a"];
     $_E['entitaetRechts'] = $_REQUEST["b"];
     $_E['entitaet'] = $_REQUEST["c"];
-    $_eTitel = array( $_REQUEST["d"] );
+    $_eTitel = array( $_REQUEST["d"], $_REQUEST["c"] );
   break;
   case "6649": //bspFuellendRE
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }

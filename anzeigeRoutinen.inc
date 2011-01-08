@@ -918,7 +918,7 @@ function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
   //$size=max($size,1);
   if( !isset($keinInsert) or false == $keinInsert )
   {
-    ?><input type 'hidden' name='Tabelle<?
+    ?><input type='hidden' name='Tabelle<?
     echo $label;
     ?>' value='<?
     echo $table;

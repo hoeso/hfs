@@ -363,6 +363,9 @@ $debug=true;
 				case "time":
 				     $sql .= ", '".$elem."'";
 				     break;
+				case "blob":
+				     $sql .= ", '".$elem."'";
+				     break;
 				default:
 					echo "unbekannter Datentyp $arr[1]<br>";
 			}

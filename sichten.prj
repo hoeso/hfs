@@ -14,6 +14,7 @@ mitgezaehlt! ***/
 	"Aktennotiz_2"=>"nein,ja",// gelesen
 	"Aktennotiz_3"=>"nein,ja",// erledigt
 	"ASTAdresse"=>"Herr,Frau,",
+	"Spezl"=>"ja,nein",
 );
 
 $mandantKlausel=array
@@ -56,6 +57,10 @@ $Select=array
 /* zum Kopieren:
 	""=>"",
 */
+ 	"Biergarten"=>"SELECT Biergarten.ID, Ort.Ort, Ortsteil.Ortsteil, Biergarten.Biergarten FROM Biergarten, Ortsteil, Ort WHERE Biergarten.OrtsteilID=Ortsteil.ID AND Ortsteil.OrtID=Ort.ID",
+
+	"BiergartenEvent"=>"SELECT BiergartenEvent.ID, Event.Event, Event.am, Ort.Ort, Ortsteil.Ortsteil, Biergarten.Biergarten FROM BiergartenEvent, Event, Biergarten, Ortsteil, Ort WHERE BiergartenEvent.EventID=Event.ID AND BiergartenEvent.BiergartenID=Biergarten.ID AND Biergarten.OrtsteilID=Ortsteil.ID AND Ortsteil.OrtID=Ort.ID",
+
 	"BrotzeitGewuerz"=>"SELECT BrotzeitGewuerz.ID, Brotzeit.Brotzeit, Gewuerz.Gewuerz FROM BrotzeitGewuerz, Brotzeit, Gewuerz WHERE BrotzeitGewuerz.BrotzeitID=Brotzeit.ID AND BrotzeitGewuerz.GewuerzID=Gewuerz.ID",
 
 	"Ortsteil"=>"SELECT Ortsteil.ID, Ort.Ort, Ortsteil.Ortsteil FROM Ortsteil, Ort WHERE Ortsteil.OrtID=Ort.ID",
@@ -68,6 +73,8 @@ $Select=array
 $OrderBy=array
 (
 //	""=>" ORDER BY ",
+  	"Biergarten"=>" ORDER BY Ort, Ortsteil, Biergarten",
+	"BiergartenEvent"=>" ORDER BY am DESC, Ort",
 	"BrotzeitGewuerz"=>" ORDER BY Brotzeit, Gewuerz",
 
 	"Ortsteil"=>" ORDER BY Ort, Ortsteil",

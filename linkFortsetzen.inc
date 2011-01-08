@@ -12,7 +12,7 @@ if( isset($_COOKIE["dahinNachSpeichern"]) )
 }
 
 if( !isset( $dahin ) )
-  $dahin="index.php";
+  $dahin="index.php?1=1";//mit Fragezeichen evtl. &-Anhaengsel eroeffnen. Ein beginnendes & wuerde zum Dateinamen gerechnet werden
 
 
 if( isset($dahin) and $dahin )

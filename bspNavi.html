@@ -10,16 +10,16 @@ naechste Ziffer kleiner ? 1 Wurf : 2 Wuerfe
 <a href="./mn.php?mn=8417&a=d">DB</a>
 </li>
 <li>
-<a href="./mn.php?mn=6649&a=Brotzeit&">reine </a>Entit&auml;t 1
+<a href="./mn.php?mn=6649&a=Brotzeit&">reine </a>Entit&auml;t 1 (Brotzeit)
 </li>
 <li>
-<a href="./mn.php?mn=6649&a=Gewuerz&">reine </a>Entit&auml;t 2
+<a href="./mn.php?mn=6649&a=Gewuerz&">reine </a>Entit&auml;t 2  (Gew&uuml;rz)
 </li>
 <li>
-<a href="./mn.php?mn=8546&a=Gewuerz&b=Brotzeit&c=BrotzeitGewuerz&d=welches%20Gewuerz%20schmeckt%20zu%20welcher%20Brotzeit?">Verbindungs</a>entit&auml;t
+<a href="./mn.php?mn=8546&a=Gewuerz&b=Brotzeit&c=BrotzeitGewuerz&d=welches%20Gewuerz%20schmeckt%20zu%20welcher%20Brotzeit?">Verbindungs</a>entit&auml;t 1
 </li>
 <li>
-<a href="./mn.php?mn=6649&a=Ort">reine </a>Entit&auml;t 3
+<a href="./mn.php?mn=6649&a=Ort">reine </a>Entit&auml;t 3         (Ort)
 </li>
 <!--li>
 <a href="./mn.php?mn=6649&a=Biergarten&">reine </a>Entit&auml;t 4
@@ -27,23 +27,39 @@ naechste Ziffer kleiner ? 1 Wurf : 2 Wuerfe
 <li>
 <a href="./mn.php?mn=3655&1=Ortsteil&n=Ort">1 : N </a>Entit&auml;t
 </li>
+<li>
+<a href="./mn.php?mn=6649&a=Spezl">reine </a>Entit&auml;t 4       (Spezl)
+</li>
+<li>
+<a href="./mn.php?mn=6914&1=Biergarten&1n=Ortsteil">1 : 1:N</a>Entit&auml;t
+</li>
+<li>
+<a href="./mn.php?mn=6649&a=Event">reine </a>Entit&auml;t 5       (Event)
+</li>
+<li>
+<a href="./mn.php?mn=8546&b=Biergarten&a=Event&c=BiergartenEvent&d=was%20wann%20und%20wo?">Verbindungs</a>entit&auml;t 2
+</li>
+<li>
+<a href="./mn.php?mn=1466&a=BiergartenBrotzeit&re=1&re1=Spezl&nn=2&nn1=BiergartenEvent&nn2=BrotzeitGewuerz">variable </a>Entit&auml;t 1
+<!-- Bsp. mit 1 reinen Entitaet und 2 Verbindungsentitaeten als Fremdschluessel -->
+</li>
 <?
 /*** Menue-Links:
- *  mn         a               b                       c                d
- * -----+----------------+----------------+---------------------+----------------
+ *  mn         a               b                       c                d                   1                         n
+ * -----+----------------+----------------+---------------------+----------------+-------------------------+-----------------
  * 5413   1. Titel         2. Titel
  * 6649   reine Entitaet   Bleistift weg
  * 8417   dummy
  * 8546   reine Entitaet   reine Entitaet   Verbindungsentitaet   Titel
+ * 3655                                                                            zu speichernde Entitaet   Bezugsentitaet
  * 
  ***/
 
 /*** intern gesetzte Links:
- *  mn         a                       ID                       1                         n
- * -----+-------------------------+-------------------+-------------------------+-----------------
+ *  mn         a                       ID             
+ * -----+-------------------------+-------------------
  * 1142   zu loeschende Entitaet    Primaerschluessel
  * 3653   zu aendernde Entitaet
- * 3655                                                 zu speichernde Entitaet   Bezugsentitaet
  * 4454   zu speichernde Entitaet
  * 7774   zu aendernde Entitaet
  * 
