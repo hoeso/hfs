@@ -1,0 +1,12 @@
+/* basis elemente */
+table  { margin-left: 1px; border: 1px solid #000; }
+td, th { padding: 5px; }
+tbody th { text-align: right; }
+thead th { vertical-align: bottom; }
+tfoot th { vertical-align: top; }
+thead th, tfoot th { text-align: left; }
+
+thead th[rowspan]:first-child,
+tfoot th[rowspan]:first-child {
+  text-align: right;
+}

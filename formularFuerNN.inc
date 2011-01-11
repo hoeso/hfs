@@ -12,6 +12,8 @@ if( isset($debug) && $debug )
   echo "ausgeben der Tabelle '{$_E['entitaetLinks']}' ...<br>";
 
 ?><table>
+<caption><?echo $_E['entitaet'];?></caption>
+<thead>
 <tr>
 <th><?
 echo $_E['entitaetLinks'];
@@ -20,7 +22,20 @@ echo $_E['entitaetLinks'];
 echo $_E['entitaetRechts'];
 ?></th>
 <th></th>
-</tr><?
+</tr>
+</thead>
+<tfoot>
+<tr>
+<th><?
+echo $_E['entitaetLinks'];
+?></th>
+<th><?
+echo $_E['entitaetRechts'];
+?></th>
+<th></th>
+</tr>
+</tfoot>
+<?
 if( isset($fUpdateB) )
   $str="&fUpdateB=$fUpdateB";
 else
@@ -31,6 +46,7 @@ echo $str;
 <input type='hidden' name='TabelleM' value='<?
 echo $_E['entitaet'];
 ?>'>
+<tbody>
 <tr>
 <td><?
 ListeMitID( $result, 'A', $_E['entitaetLinks'], $fDatum, isset($anzuzeigen)?$anzuzeigen:"" );
@@ -48,6 +64,7 @@ if( $result )
 ?><td>
 <input type='submit' value='zuordnen'>
 </td></tr>
+</tbody>
 </form>
 </table><?
 

@@ -28,12 +28,12 @@ function formularBeenden()
   echo"\n</FORM>\n";
 }
 /******** Tabellen-Funktionen ************************************************/
-function tabelleBeginnen()
+function tabelleBeginnen( $caption = "" )
 {
   global $fAnzeigeUnterdruecken;
   if( $fAnzeigeUnterdruecken )
     return;
-  ?><table><?
+  ?><table><caption><?echo $caption;?></caption><?
   return true;
 }
 function tabelleBeenden()
@@ -64,7 +64,7 @@ function zaehlenAttributSpalten( $spaltenName, &$cSpalten )
     if( false == istForeignKeyName( $spaltenName[$i] ) )
       $cSpalten++;
 }
-function ausgebenAlsTabellenkopf( $spaltenName, $auchID, &$cSpalten, $sql, $zielTabelle, $aColspan )
+function headerFooter( $mark, $spaltenName, $auchID, &$cSpalten, $sql, $zielTabelle, $aColspan )
 {
   global $unterdrueckteSpalte;
   global  $gruppenStaerke;
@@ -74,6 +74,7 @@ function ausgebenAlsTabellenkopf( $spaltenName, $auchID, &$cSpalten, $sql, $ziel
   $str=str_replace( "&uuml;", "%FC", $str );
   $cSpalten = 0;
   $anz = count( $spaltenName );
+  echo "<$mark>";
   ?><tr><?
   if( $auchID )
   {
@@ -116,6 +117,12 @@ function ausgebenAlsTabellenkopf( $spaltenName, $auchID, &$cSpalten, $sql, $ziel
 //    echo_("\n<A HREF=\"./eiZu.php?wZu=zeigendDruckansicht&zielTabelle=$zielTabelle&sql=$str&Bezug=$Bezug&bgcolor=white&gruppenStaerke=$gruppenStaerke&$proj\">Druckansicht</A>");
     ?></th></tr><?
   }
+  echo "</$mark>";
+}
+function ausgebenAlsTabellenkopf( $spaltenName, $auchID, &$cSpalten, $sql, $zielTabelle, $aColspan )
+{
+  headerFooter( "thead", $spaltenName, $auchID, &$cSpalten, $sql, $zielTabelle, $aColspan );
+  headerFooter( "tfoot", $spaltenName, $auchID, &$cSpalten, $sql, $zielTabelle, $aColspan );
 }
 function ausgebenAlsTabellenzeile( $row, $auchID, &$fChecked, $spalte, $globalID, $arrFeldTyp, $table, $ActionSuffix, $aColspan, &$recID )
 {

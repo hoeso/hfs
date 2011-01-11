@@ -54,7 +54,7 @@ function anzeigen( $db, $sql, $table, $ActionSuffix )
         break;
       }
   }
-  tabelleBeginnen();
+  tabelleBeginnen( $table );
   ausgebenAlsTabellenkopf( $spaltenName, $auchIDausgeben, $cSpalten, $sql, $table, "" );
   //
 

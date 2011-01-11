@@ -118,7 +118,7 @@ if( isset($arrRE) )
     if( $result )
     {
       if( !isset($anzuzeigen) )
-        $anzuzeigen=2;
+        $anzuzeigen=1;
       ListeMitID( $result, $labelRE[$i], $arrRE[$i], $fDatum, $anzuzeigen );
       if( !isset($keinInsert) or false == $keinInsert )
       {

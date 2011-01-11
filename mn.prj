@@ -19,6 +19,27 @@ switch( $_E['mn'] )
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "bspVerlinkendEntitaet";
     $_E['entitaet'] = $_REQUEST["a"];
+    if( isset($_REQUEST["re"]) and $_REQUEST["re"] )
+    {
+      $_E['re'] = $_REQUEST["re"];
+      for( $i=1; $i <= $_E['re'] and $i < 6; $i++ )
+        if( isset($_REQUEST["re$i"]) )
+          $_E["re$i"] = $_REQUEST["re$i"];
+    }
+    if( isset($_REQUEST["nn"]) and $_REQUEST["nn"] )
+    {
+      $_E['nn'] = $_REQUEST["nn"];
+      for( $i=1; $i <= $_E['nn'] and $i < 6; $i++ )
+        if( isset($_REQUEST["nn$i"]) )
+          $_E["nn$i"] = $_REQUEST["nn$i"];
+    }
+    if( isset($_REQUEST["sl"]) and $_REQUEST["sl"] )
+    {
+      $_E['sl'] = $_REQUEST["sl"];
+      for( $i=1; $i <= $_E['sl'] and $i < 6; $i++ )
+        if( isset($_REQUEST["sl$i"]) )
+          $_E["sl$i"] = $_REQUEST["sl$i"];
+    }
     $_E['recipient'] = 4224; // speichernd1ZuN
     $_eTitel = array( $_REQUEST["a"] );
   break;

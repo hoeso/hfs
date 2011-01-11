@@ -93,10 +93,6 @@ if( !$geprueft )
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
-
-?>
-<center>
-<?
 echo"\n<h4>$delTab</h4>";
 
 if( isset($Select[$delTab]) )
