@@ -71,6 +71,7 @@ switch( $_E['mn'] )
   case "8417":
     $_E['wZu'] = "bspVerbindendDB";
     $_E['enableDbg'] = true; // Ausgaben von dbConnect.inc aktivieren
+    $_eTitel = array( "Live Test: Verbindung aufnehmen mit der Datenbank" );
   break;
   case "8546": // bspVerbindendEntitaeten
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"]) ) { echo $exitus; return; }
