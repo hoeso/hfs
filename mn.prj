@@ -93,7 +93,7 @@ switch( $_E['mn'] )
   case "1142": // loeschen ja ... nein ...
     if( isset($_REQUEST["dont"]) )
     {
-      ?><p>... es wurde nichts gel&ouml;scht (;<p><?
+      $_eTitel = array( "... es wurde nichts gel&ouml;scht --)" );
       $_E['wZu'] = "anbietendKnopfZurueck";
       break;
     }

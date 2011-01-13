@@ -1,81 +1,96 @@
 <?
+/*** zur vorgeschlagenen HTML-Struktur fuer Menue u. Inhalt vergleiche
+ *** Henick: Das Beste an HTML & CSS, O'Reilly 2010.
+ *** Seite 93
+ ***/
 $automat = array(
 /* zum Kopieren
 	""=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"containerTitel.php",
 		"dbConnect.inc",
+		"containerTitel.php",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
 		"hauptnavigation.html",
 		"bspNavi.html",
 		"endeNavigation.html",
-		"hauptteil.html",
-		"wichtigerInhalt.html",
-		"haupttext.html",
-		"containerTitel.php",
-		"containerTitel.php",
-		"endeContainer.html",
-		"endeContainer.html",
-		"endeContainer.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
 		"dbClose.inc",
-		"linkFortsetzen.inc",
 	),
 */
 	"bspAnzeigendTitel"=>array(
-		"hauptnavigation.html",
-		"bspNavi.html",
-		"endeNavigation.html",
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
 		"hauptteil.html",
-		"wichtigerInhalt.html",
 		"haupttext.html",
 		"containerTitel.php",
 		"containerTitel.php",
-		"endeContainer.html",
-		"endeContainer.html",
-		"endeContainer.html",
 		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
 	),
 	"bspVerbindendDB"=>array(
-		"hauptnavigation.html",
-		"bspNavi.html",
-		"endeNavigation.html",
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
 		"hauptteil.html",
-		"wichtigerInhalt.html",
-		"tutorialDB.html",
 		"haupttext.html",
+		"tutorialDB.html",
+		"containerTitel.php",
 		"dbConnect.inc",
 		"eiZuBspVerbindendDB.prj",
-		"containerTitel.php",
-		"endeContainer.html",
-		"endeContainer.html",
-		"endeContainer.html",
-		"dbClose.inc",
 		"linkFortsetzen.inc",
-	),
-	"bspFuellendRE"=>array( // reine Entitaet
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
 		"hauptnavigation.html",
 		"bspNavi.html",
 		"endeNavigation.html",
-		"dbConnect.inc",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
+	"bspFuellendRE"=>array( // reine Entitaet
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
 		"hauptteil.html",
-		"wichtigerInhalt.html",
 		"haupttext.html",
 		"containerTitel.php",
+		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
 		"formularFuerRE.inc",
-		"endeContainer.html",
-		"endeContainer.html",
-		"endeContainer.html",
-		"dbClose.inc",
 		"linkFortsetzen.inc",
-	),
-	"bspVerbindendEntitaeten"=>array(
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
 		"hauptnavigation.html",
 		"bspNavi.html",
 		"endeNavigation.html",
-		"dbConnect.inc",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
+	"bspVerbindendEntitaeten"=>array(
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
 		"hauptteil.html",
-		"wichtigerInhalt.html",
 		"haupttext.html",
 		"containerTitel.php",
+		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
 		"formularFuerNN.inc",
@@ -84,11 +99,15 @@ $automat = array(
 		"hinweis2.inc",
 		"containerHinweis.php",
 		"anzeigenZieltabelle.inc",
-		"endeContainer.html",
-		"endeContainer.html",
-		"endeContainer.html",
-		"dbClose.inc",
 		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
 	),
 	"bspAnbietend1ZuN"=>array(
 		"eiZuBspAnbietend1ZuN.inc",
@@ -106,125 +125,159 @@ $automat = array(
 	),
 /*** intern gerufende Automaten: ***********************************************/
 	"aenderndRE"=>array(
-		"dbConnect.inc",
-		"hauptnavigation.html",
-		"bspNavi.html",
-		"endeNavigation.html",
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
 		"hauptteil.html",
-		"wichtigerInhalt.html",
 		"haupttext.html",
 		"containerTitel.php",
+		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"editierenRE.inc",
 		"erlaubenFK.inc",
 		"anbietenFK.inc",
-		"endeContainer.html", //haupttext
-		"endeContainer.html", //wichtigerInhalt
-		"endeContainer.html", //hauptteil
-		"dbClose.inc",
 		"linkFortsetzen.inc",
-	),
-	"aenderungSpeicherndRE"=>array(
-		"dbConnect.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
 		"hauptnavigation.html",
 		"bspNavi.html",
 		"endeNavigation.html",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
+	"aenderungSpeicherndRE"=>array(
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
 		"hauptteil.html",
-		"wichtigerInhalt.html",
 		"haupttext.html",
+		"dbConnect.inc",
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"updateRE.inc",
 		"linkFortsetzen.inc",
-	),
-	"anbietendKnopfZurueck"=>array(
-		"linkFortsetzen.inc",
-	),
-	"anzeigendEntitaet"=>array(
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
 		"hauptnavigation.html",
 		"bspNavi.html",
 		"endeNavigation.html",
-		"dbConnect.inc",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
+	"anbietendKnopfZurueck"=>array(
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
 		"hauptteil.html",
-		"wichtigerInhalt.html",
 		"haupttext.html",
 		"containerTitel.php",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+	),
+	"anzeigendEntitaet"=>array(
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
 		"anzeigenZieltabelle.inc",
-		"endeContainer.html",
-		"endeContainer.html",
-		"endeContainer.html",
-		"dbClose.inc",
 		"linkFortsetzen.inc",
-	),
-	"pruefendSymbol"=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
-		"pruefenSymbol.prj",
-		"dbConnect.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
 		"hauptnavigation.html",
 		"bspNavi.html",
 		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
+	"pruefendSymbol"=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
 		"hauptteil.html",
-		"wichtigerInhalt.html",
 		"haupttext.html",
 		"containerTitel.php",
+		"pruefenSymbol.prj",
+		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"editierenRE.inc",
 		"erlaubenFK.inc",
 		"anbietenFK.inc",
-		"endeContainer.html", //haupttext
-		"endeContainer.html", //wichtigerInhalt
-		"endeContainer.html", //hauptteil
-		"dbClose.inc",
 		"linkFortsetzen.inc",
-	),
-	"speichernd"=>array(
-		//"eiZuSpeicherndERM.inc",
-		"dbConnect.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
 		"hauptnavigation.html",
 		"bspNavi.html",
 		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
+	"speichernd"=>array(
+		//"eiZuSpeicherndERM.inc",
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
 		"hauptteil.html",
-		"wichtigerInhalt.html",
 		"haupttext.html",
 		"containerTitel.php",
+		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"insertERM.inc",
 		"linkFortsetzen.inc",
 		"nachSpeichernAnzeigen.inc",
-		"endeContainer.html", //haupttext
-		"endeContainer.html", //wichtigerInhalt
-		"endeContainer.html", //hauptteil
-		"dbClose.inc",
 		"linkFortsetzen.inc",
-	),
-	"speicherndRE"=>array(
-		"dbConnect.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
 		"hauptnavigation.html",
 		"bspNavi.html",
 		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
+	"speicherndRE"=>array(
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
 		"hauptteil.html",
-		"wichtigerInhalt.html",
 		"haupttext.html",
 		"containerTitel.php",
+		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"insertRE.inc",
-		"endeContainer.html", //haupttext
-		"endeContainer.html", //wichtigerInhalt
-		"endeContainer.html", //hauptteil
-		"dbClose.inc",
 		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
 	),
 	"speicherndNN"=>array(
 		"eiZuSpeicherndNN.inc",
-		"dbConnect.inc",
-		"hauptnavigation.html",
-		"bspNavi.html",
-		"endeNavigation.html",
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
 		"hauptteil.html",
-		"wichtigerInhalt.html",
 		"haupttext.html",
 		"containerTitel.php",
+		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"insertNN.inc",
 		"hinweis1.inc",
@@ -232,30 +285,37 @@ $automat = array(
 		"linkFortsetzen.inc",
 		"containerHinweis.php",
 		"anzeigenNN.inc",
-		"endeContainer.html", //haupttext
-		"endeContainer.html", //wichtigerInhalt
-		"endeContainer.html", //hauptteil
-		"dbClose.inc",
 		"linkFortsetzen.inc",
-	),
-	"speichernd1ZuN"=>array(
-		"eiZuSpeicherndERM.inc",
-		"dbConnect.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
 		"hauptnavigation.html",
 		"bspNavi.html",
 		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
+	"speichernd1ZuN"=>array(
+		"eiZuSpeicherndERM.inc",
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
 		"hauptteil.html",
-		"wichtigerInhalt.html",
 		"haupttext.html",
 		"containerTitel.php",
+		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"insertERM.inc",
-		"endeContainer.html", //haupttext
-		"endeContainer.html", //wichtigerInhalt
-		"endeContainer.html", //hauptteil
-		"dbClose.inc",
 		"linkFortsetzen.inc",
-		"nachSpeichernAnzeigen.inc"
+		"nachSpeichernAnzeigen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
 	),
 	"anzeigendSprechstunden"=>array(
 		"eiZuEintretend.inc",

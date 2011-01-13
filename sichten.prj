@@ -59,6 +59,8 @@ $Select=array
 */
  	"Biergarten"=>"SELECT Biergarten.ID, Ort.Ort, Ortsteil.Ortsteil, Biergarten.Biergarten FROM Biergarten, Ortsteil, Ort WHERE Biergarten.OrtsteilID=Ortsteil.ID AND Ortsteil.OrtID=Ort.ID",
 
+	"BiergartenBrotzeit"=>"SELECT BiergartenBrotzeit.ID, Spezl.Spezl FROM BiergartenBrotzeit, Spezl WHERE BiergartenBrotzeit.SpezlID=Spezl.ID",
+
 	"BiergartenEvent"=>"SELECT BiergartenEvent.ID, Event.Event, Event.am, Ort.Ort, Ortsteil.Ortsteil, Biergarten.Biergarten FROM BiergartenEvent, Event, Biergarten, Ortsteil, Ort WHERE BiergartenEvent.EventID=Event.ID AND BiergartenEvent.BiergartenID=Biergarten.ID AND Biergarten.OrtsteilID=Ortsteil.ID AND Ortsteil.OrtID=Ort.ID",
 
 	"BrotzeitGewuerz"=>"SELECT BrotzeitGewuerz.ID, Brotzeit.Brotzeit, Gewuerz.Gewuerz FROM BrotzeitGewuerz, Brotzeit, Gewuerz WHERE BrotzeitGewuerz.BrotzeitID=Brotzeit.ID AND BrotzeitGewuerz.GewuerzID=Gewuerz.ID",
@@ -72,8 +74,9 @@ $Select=array
 
 $OrderBy=array
 (
-//	""=>" ORDER BY ",
+//	"BiergartenBrotzeit"=>" ORDER BY Spezl",
   	"Biergarten"=>" ORDER BY Ort, Ortsteil, Biergarten",
+	"BiergartenBrotzeit"=>"",
 	"BiergartenEvent"=>" ORDER BY am DESC, Ort",
 	"BrotzeitGewuerz"=>" ORDER BY Brotzeit, Gewuerz",
 

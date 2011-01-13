@@ -13,10 +13,17 @@
 </head>
 <link rel="stylesheet" href="./erica.css" media="screen" title="erica Stylesheet" />
 <body>
-<div id="haupttext">
+<? include("kopfteil.html"); ?>
+<? include("kopfteil.prj"); ?>
+<? include("endeContainer.html"); ?>
+<? include("hauptteil.html"); ?>
+<? include("haupttext.html"); ?>
+<? include("endeContainer.html"); ?>
+<? include("seitenleiste.html"); ?>
 <? include("hauptnavigation.html"); ?>
 <? include("bspNavi.html"); ?>
 <? include("endeNavigation.html"); ?>
-</div>
+<? include("endeContainer.html"); ?>
+<? include("endeContainer.html");//hauptteil ?>
 </body>
 </html>

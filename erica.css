@@ -1,3 +1,21 @@
+body {
+	margin: 0;
+	padding: 0;
+//	background-image: url(/images/bg_site.jpg);
+	background-attachment: fixed;
+	background-position: 100% 100%;
+	background-repeat: no-repeat;
+	color: rgb(64,64,64);
+	font-family: Georgia,Palatino,'Times New Roman',serif;
+	font-size: small;
+	line-height: 1.923em;
+}
+
+#hauptteil { height: 1%; overflow: auto; }
+#hauptteil, #kopfteil, #fussteil { width: 768px; margin: auto; }
+#haupttext { float: right; width: 598px; }
+#seitenleiste { margin-right: 608px; }
+
 /* basis elemente */
 table  { margin-left: 1px; border: 1px solid #000; }
 td, th { padding: 5px; }

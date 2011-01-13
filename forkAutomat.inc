@@ -5,14 +5,13 @@ $forkAutomat = array(
 	),
 */
 	"anbietendVerlinkenEntitaet"=>array(
-		"hauptnavigation.html",
-		"bspNavi.html",
-		"endeNavigation.html",
-		"dbConnect.inc",
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
 		"hauptteil.html",
-		"wichtigerInhalt.html",
 		"haupttext.html",
 		"containerTitel.php",
+		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
 		"wohinDamit.inc",
@@ -21,30 +20,32 @@ $forkAutomat = array(
 		"ERMListenfuellen.inc",
 		"ERMsubmit.inc",
 		"anzeigenZieltabelle.inc",
-		"endeContainer.html",
-		"endeContainer.html",
-		"endeContainer.html",
-		"dbClose.inc",
 		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",//seitenleiste
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
 	),
 	"fragendLoeschen"=>array(
 		"dbConnect.inc",
-		"hauptnavigation.html",
-		"bspNavi.html",
-		"endeNavigation.html",
-		"hauptteil.html",
-		"wichtigerInhalt.html",
-		"haupttext.html",
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"refIntegritaet.prj",
 		"loeschenVorspiel.prj",
 		"loeschen.inc",
-		"endeContainer.html", //haupttext
-		"endeContainer.html", //wichtigerInhalt
-		"endeContainer.html", //hauptteil
-		"dbClose.inc",
 		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
 	),
 	"abrechnend"=>array(
 		"eiZuAbrechnend.inc",
@@ -95,6 +96,13 @@ $forkAutomat = array(
 	),
 	"anbietendKnopfZurueck"=>array(
 		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
 	"anbietendSpeichernGutschrift"=>array(

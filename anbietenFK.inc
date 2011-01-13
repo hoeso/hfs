@@ -5,10 +5,7 @@
  ***************************************/
 $debug=0;
 if( !isset($arrFK[$_E['entitaet']]) )
-{
-  $_E['wZu']="anbietendKnopfZurueck";
-  include("forkZu.inc");
-}
+ return;
 lesenRETabelle( $result, $MySQLDb, $_E['entitaet'], " WHERE ID=$ID" );
 if( !$result )
 {
