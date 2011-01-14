@@ -43,7 +43,7 @@ switch( $_E['mn'] )
     $_E['recipient'] = 4224; // speichernd1ZuN
     $_eTitel = array( $_REQUEST["a"] );
   break;
-  case "1467": // bspVerlinkendEntitaet
+  case "1467": // SL fuer BrotzeitGewuerz
     if( !isset($_REQUEST["sl"]) or (isset($_REQUEST["sl"]) and !isset($_REQUEST["sl1"])) ) { echo $exitus; return; }
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
     if( isset($_REQUEST["re"]) and !isset($_REQUEST["re1"]) ) { echo $exitus; return; }
