@@ -75,6 +75,16 @@ switch( $_E['mn'] )
     }
     $_E['recipient'] = 4224; // speichernd1ZuN
     $_eTitel = array( $_REQUEST["a"] );
+    $_E['sl'] = $_REQUEST["sl"];
+    switch( $_REQUEST["sl1"] )
+    {
+      case "BiergartenEvent":
+        $_E['stm1'] = "SELECT 1, 'Kuchen'";
+      break;
+      default:
+        $_E['stm1'] = "SELECT 1, 'Fuer Entitaet {$_REQUEST["sl1"]} ist kein SELECT hinterlegt'";
+      break;
+    }
   break;
   // hier 100 cases bis 1566 freihalten fuer evtl. SL-Faelle. Ist kopierfreundlich.
   case "3655": // bsp1ZuN
