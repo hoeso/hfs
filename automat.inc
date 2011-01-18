@@ -42,6 +42,23 @@ $automat = array(
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
 	),
+	"bspTheoretisierendDB"=>array(
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"tutorialDB.html",
+		"containerTitel.php",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"bspNavi.html",
+		"endeNavigation.html",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"bspVerbindendDB"=>array(
 		"kopfteil.html",
 		"kopfteil.prj",

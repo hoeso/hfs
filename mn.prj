@@ -111,6 +111,11 @@ switch( $_E['mn'] )
     $_E['wZu'] = "bspAnzeigendTitel";
     $_eTitel = array( $_REQUEST["a"], $_REQUEST["b"] );
   break;
+  case "8416":
+    $_E['wZu'] = "bspTheoretisierendDB";
+    $_E['enableDbg'] = true; // Ausgaben von dbConnect.inc aktivieren
+    $_eTitel = array( "Das ist die Theorie" );
+  break;
   case "8417":
     $_E['wZu'] = "bspVerbindendDB";
     $_E['enableDbg'] = true; // Ausgaben von dbConnect.inc aktivieren
