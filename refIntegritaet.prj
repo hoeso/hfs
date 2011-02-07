@@ -5,7 +5,12 @@ $arrRefs = array(
     "BiergartenEvent",
   ),
 
+  "BiergartenBrotzeit"=>array(
+    "1-leaf",
+  ),
+
   "BiergartenEvent"=>array(
+    "BiergartenBrotzeit",
     "BiergartenMaenner",
   ),
 
@@ -18,15 +23,17 @@ $arrRefs = array(
   ),
 
   "BrotzeitGewuerz"=>array(
-    "1-leaf",
+    "BiergartenBrotzeit",
   ),
 
   "Event"=>array(
+    "BiergartenBrotzeit",
     "BiergartenEvent",
     "BiergartenMaenner",
   ),
 
   "Gewuerz"=>array(
+    "BiergartenBrotzeit",
     "BrotzeitGewuerz",
   ),
 
@@ -39,6 +46,7 @@ $arrRefs = array(
   ),
 
   "Spezl"=>array(
+    "BiergartenBrotzeit",
     "BiergartenMaenner",
   ),
 

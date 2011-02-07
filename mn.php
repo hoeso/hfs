@@ -9,7 +9,8 @@ if( 0 )
     echo"\nk : $k, elem: $elem<br>";
 }
 $_E['mn'] = $_REQUEST["mn"];
-$_E['bodyID'] = "main";
+$_E['bodyClass'] = "main";
+$_E['bodyId'] = "main";
 $exitus="you don't exist. Go away!";
 include("mn.prj");
 include("tee.inc");
@@ -23,9 +24,11 @@ include("tee.inc");
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
 </head>
 <link rel="stylesheet" href="./erica.css" media="screen" title="erica Stylesheet" />
-<body id=<?
-echo "{$_E['bodyID']}";
-?>><?
+<body class="<?
+echo $_E['bodyClass'];
+?>" id="<?
+echo $_E['bodyId'];
+?>"><?
 function logZustandswechsel( $str )
 {
   echo"\n<!-- Eintreten in Zustand $str ... -->\n";

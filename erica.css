@@ -1,6 +1,11 @@
-body {
+/* nach Ben Henick:Das Beste an HTML & CSS, O'Reilly 2010 */
+/* Seite 85 */
+html, body {
 	margin: 0;
 	padding: 0;
+}
+/* Seite ? */
+body {
 //	background-image: url(/images/bg_site.jpg);
 	background-attachment: fixed;
 	background-position: 100% 100%;
@@ -11,9 +16,10 @@ body {
 	line-height: 1.923em;
 }
 
+/* Seite 92 */
 #hauptteil { height: 1%; overflow: auto; }
-#hauptteil, #kopfteil, #fussteil { width: 768px; margin: auto; }
-#haupttext { float: right; width: 598px; }
+#hauptteil, #kopfteil, #fussteil { width: 1200px; margin: auto; }
+#haupttext { float: right; width: auto; }
 #seitenleiste { margin-right: 608px; }
 
 /* basis elemente */
@@ -28,3 +34,9 @@ thead th[rowspan]:first-child,
 tfoot th[rowspan]:first-child {
   text-align: right;
 }
+
+/* navigation Seite 72, 106 */
+.main #nav { display: block; width: 10em; overflow:hidden; }
+
+/* Seite 223 */
+h1 { font-size: xx-large; }

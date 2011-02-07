@@ -12,7 +12,15 @@
 </script>
 </head>
 <link rel="stylesheet" href="./erica.css" media="screen" title="erica Stylesheet" />
-<body>
+<?
+$_E['bodyClass'] = "main";
+$_E['bodyId'] = "main";
+?>
+<body class="<?
+echo $_E['bodyClass'];
+?>" id="<?
+echo $_E['bodyId'];
+?>">
 <? include("kopfteil.html"); ?>
 <? include("kopfteil.prj"); ?>
 <? include("endeContainer.html"); ?>
