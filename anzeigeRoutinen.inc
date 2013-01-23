@@ -121,8 +121,8 @@ function headerFooter( $mark, $spaltenName, $auchID, &$cSpalten, $sql, $zielTabe
 }
 function ausgebenAlsTabellenkopf( $spaltenName, $auchID, &$cSpalten, $sql, $zielTabelle, $aColspan )
 {
-  headerFooter( "thead", $spaltenName, $auchID, &$cSpalten, $sql, $zielTabelle, $aColspan );
-  headerFooter( "tfoot", $spaltenName, $auchID, &$cSpalten, $sql, $zielTabelle, $aColspan );
+  headerFooter( "thead", $spaltenName, $auchID, $cSpalten, $sql, $zielTabelle, $aColspan );
+  headerFooter( "tfoot", $spaltenName, $auchID, $cSpalten, $sql, $zielTabelle, $aColspan );
 }
 function ausgebenAlsTabellenzeile( $row, $auchID, &$fChecked, $spalte, $globalID, $arrFeldTyp, $table, $ActionSuffix, $aColspan, &$recID )
 {
