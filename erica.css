@@ -18,9 +18,9 @@ body {
 
 /* Seite 92 */
 #hauptteil { height: 1%; overflow: auto; }
-#hauptteil, #kopfteil, #fussteil { width: 1200px; margin: auto; }
-#haupttext { float: right; width: auto; }
-#seitenleiste { margin-right: 608px; }
+#hauptteil, #kopfteil, #fussteil { width: 100%; margin: 2%; }
+#haupttext { float: right; width: 80%; }
+#seitenleiste { margin-right: 1%; }
 
 /* basis elemente */
 table  { margin-left: 1px; border: 1px solid #000; }

@@ -14,7 +14,7 @@ Beschreibung zum Hinterlegen des DB-Host, dem Namen der DB, des zugreifenden Use
 <ol>
 <li> Im Modul <e>connect.prj</e> den Namen des Projektes setzen (kann z.B. der Name des lokalen Users sein):
 <br> $_E['projekt']="erica";
-<li> In der Konfigurationsdatei /etc/apache2/httpd.conf die Variablen <e> Host DB user pw</e> setzen, dabei im Variablennamen mit dem Namen des Projektes beginnen:
+<li> In der Konfigurationsdatei /etc/apache2/conf.d/httpd.conf die Variablen <e> Host DB user pw</e> setzen, dabei im Variablennamen mit dem Namen des Projektes beginnen:
 <br> SetEnv ericaHost   "localhost"
 <br> SetEnv ericaDB     "erica"
 <br> SetEnv ericaDBuser "wrzl"
