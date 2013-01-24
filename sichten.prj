@@ -57,15 +57,8 @@ $Select=array
 /* zum Kopieren:
 	""=>"",
 */
- 	"Biergarten"=>"SELECT Biergarten.ID, Ort.Ort, Ortsteil.Ortsteil, Biergarten.Biergarten FROM Biergarten, Ortsteil, Ort WHERE Biergarten.OrtsteilID=Ortsteil.ID AND Ortsteil.OrtID=Ort.ID",
+	"Schadenbuero"=>"SELECT Schadenbuero.ID, Versicherer, Schadenbuero, PLZ, Ort FROM Schadenbuero, Versicherer WHERE Schadenbuero.VersichererID=Versicherer.ID",
 
-	"BiergartenBrotzeit"=>"SELECT BiergartenBrotzeit.ID, Spezl.Spezl FROM BiergartenBrotzeit, Spezl WHERE BiergartenBrotzeit.SpezlID=Spezl.ID",
-
-	"BiergartenEvent"=>"SELECT BiergartenEvent.ID, Event.Event, Event.am, Ort.Ort, Ortsteil.Ortsteil, Biergarten.Biergarten FROM BiergartenEvent, Event, Biergarten, Ortsteil, Ort WHERE BiergartenEvent.EventID=Event.ID AND BiergartenEvent.BiergartenID=Biergarten.ID AND Biergarten.OrtsteilID=Ortsteil.ID AND Ortsteil.OrtID=Ort.ID",
-
-	"BrotzeitGewuerz"=>"SELECT BrotzeitGewuerz.ID, Brotzeit.Brotzeit, Gewuerz.Gewuerz FROM BrotzeitGewuerz, Brotzeit, Gewuerz WHERE BrotzeitGewuerz.BrotzeitID=Brotzeit.ID AND BrotzeitGewuerz.GewuerzID=Gewuerz.ID",
-
-	"Ortsteil"=>"SELECT Ortsteil.ID, Ort.Ort, Ortsteil.Ortsteil FROM Ortsteil, Ort WHERE Ortsteil.OrtID=Ort.ID",
 /* zum Kopieren:
  	""=>"",
 

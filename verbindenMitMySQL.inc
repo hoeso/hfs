@@ -15,6 +15,7 @@ exit;
   }
   if( !$lkid )
   {
+    /*if( isset( $_E['enableDbg'] ) )*/ exit;
 ?>
 <script language=javascript type='text/javascript'>
   location.href = '/'

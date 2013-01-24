@@ -8,7 +8,7 @@ else
 
 if( !isset($keinInsert) or false == $keinInsert )
 {
-  ?><input type='submit' value='<?
+  ?><input type='submit' id='submit' value='<?
   echo $value;
   ?>'><?
 }

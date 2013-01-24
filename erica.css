@@ -40,3 +40,26 @@ tfoot th[rowspan]:first-child {
 
 /* Seite 223 */
 h1 { font-size: xx-large; }
+
+/* Formular-Layout Seite 259 - 260 */
+
+form, form ul, form li, fieldset, textarea { margin: 0; padding: 0; }
+//label, input, select, textarea, form li span { display: block; }
+form ul, form li { list-style-type: none; }
+form li { clear: both; height: 1%; overflow: auto; }
+//fieldset { border: 0; }
+
+/* Beschriftungen links neben den Formularfeldern */
+label, form li span { float: left; width: 9em; padding-right: 1em; }
+#submit { float: right; margin-left: 10em; }
+//input, select, textarea { float: right; margin-left: 10em; }
+//fieldset label, fieldset input { float: left; }
+//fieldset label { clear: left; width: 4.25em; padding-right: .75em; }
+//fieldset input { margin-left: 5em; margin-right: 1.5em; }
+
+/* Beschriftungen und Formularfelder zusätzlich an einer gemeinsamen Achse ausrichten */
+//label, form li span { text-align: right; }
+
+/* Mehrspaltige Anordnung von Paaren aus label- und Formularelementen */
+//form { height: 1%; overflow: auto; }
+//form ul { float: left; width: 75%; margin-right: 5%; }

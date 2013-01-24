@@ -24,7 +24,7 @@ $forkAutomat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"bspNavi.html",
+		"naviElemente.html",
 		"endeNavigation.html",//seitenleiste
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
@@ -41,7 +41,7 @@ $forkAutomat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"bspNavi.html",
+		"naviElemente.html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -99,7 +99,7 @@ $forkAutomat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"bspNavi.html",
+		"naviElemente.html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil

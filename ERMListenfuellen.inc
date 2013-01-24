@@ -234,11 +234,14 @@ if( $debug )
 
 $focusFeld=false;      // Namen des 1. Eingabefeldes speichern in $focusName
 $enumIDX=1;
-
+echo "\n"; // damit Zeilenumbruch im Quelltext
+?><fieldset><legend><span><? echo $zielTabelle; ?>, neuer Eintrag:</span></legend><?
+echo "\n";
+?><ul><?
+echo "\n";
 for( $i=0; $i<$anz; $i++ )
 {
   $obj = mysql_fetch_field( $result, $i );
-
   $fType = false;
   foreach( $obj as $k=>$elem )
   {
@@ -251,6 +254,8 @@ for( $i=0; $i<$anz; $i++ )
         $str = substr($elem, $len, 2); 
         if( strstr($str, "ID" ) )
           break;
+        echo "\n";
+        ?><li><?
         $fType = true;
         $feld = $elem;
         // siehe Datei mapSpaltennamen.inc:
@@ -261,12 +266,13 @@ for( $i=0; $i<$anz; $i++ )
           if( $elem==$str )
           {
             if( $map[$SpaltenAlias] )
-              echo "\n$map[$SpaltenAlias]: <";
+              echo "\n<label for=\"$map[$SpaltenAlias]\">$map[$SpaltenAlias]:</label><";
             else
-              echo "\n$elem: <";
+              echo "\n<label for=\"$elem\">$elem:</label><";
           }
           else
-            echo "\n$elem: <";
+            echo "\n<label for=\"$elem\">$elem:</label><";
+          $strId = $elem;
         }
         $feldFlag = mysql_field_flags( $result, $i );
         if( !isset($keinInsert) or false == $keinInsert )
@@ -300,12 +306,12 @@ for( $i=0; $i<$anz; $i++ )
             case "date":
               echo " TYPE='TEXT' SIZE=10 VALUE='";
 	      include("eingabeFuellenDatum.prj");
-              echo "'><br>";
+              echo "'></li>";
             break;
             case "real":
               echo " TYPE='TEXT' SIZE=8 VALUE='";
 	      include("vorbelegenReal.prj");
-              echo"'><br>";
+              echo"'>\n</li>\n";
             break;
             case "string":
               $feldFlag = mysql_field_flags( $result, $i );
@@ -319,13 +325,13 @@ for( $i=0; $i<$anz; $i++ )
                   $enumIDX++;
                 }
   		include("vorbelegenEnum.prj");
-                echo "</SELECT><br>";
+                echo "</SELECT></li>";
               }
               else
               {
                 echo " TYPE='TEXT'";
                 include("vorbelegenString.prj");
-                echo"><br>";
+                echo" id=\"$strId\"/></li>";
               }
             break;
             case "time":
@@ -335,15 +341,15 @@ for( $i=0; $i<$anz; $i++ )
 	      {
                 $val=date("H:i",time());
 	      }
-              echo " TYPE='TEXT' SIZE=8 VALUE='$val'><br>";
+              echo " TYPE='TEXT' SIZE=8 VALUE='$val'>\n</li>\n";
             break;
             case "blob":
               echo " COLS=86 ROWS=3 WRAP=PHYSICAL>";
               include("vorbelegenBlob.prj");
-?></TEXTAREA><BR><?
+?></TEXTAREA></LI><?
             break;
             default:
-              echo " TYPE='TEXT' ><br>";
+              echo " TYPE='TEXT' >\n</li>\n";
               if( $debug ) echo"\nfeldFlag: $feldFlag. elem: $elem<br>";
 
             break;
@@ -355,6 +361,8 @@ for( $i=0; $i<$anz; $i++ )
   }
 }
 }
+echo "\n";
+?></ul></fieldset><?
 if( !isset($keinInsert) or false == $keinInsert )
 {
   if( $zielTabelle )// Speichern-Knopf mittig in unterste Tabellenzeile ausgeben

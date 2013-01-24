@@ -18,7 +18,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"bspNavi.html",
+		"naviElemente.html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -37,7 +37,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"bspNavi.html",
+		"naviElemente.html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
@@ -53,7 +53,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"bspNavi.html",
+		"naviElemente.html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
@@ -73,7 +73,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"bspNavi.html",
+		"naviElemente.html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
@@ -94,7 +94,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"bspNavi.html",
+		"naviElemente.html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
@@ -120,7 +120,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"bspNavi.html",
+		"naviElemente.html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
@@ -157,7 +157,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"bspNavi.html",
+		"naviElemente.html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
@@ -177,7 +177,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"bspNavi.html",
+		"naviElemente.html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -194,7 +194,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"bspNavi.html",
+		"naviElemente.html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -214,7 +214,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"bspNavi.html",
+		"naviElemente.html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -237,7 +237,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"bspNavi.html",
+		"naviElemente.html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -260,7 +260,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"bspNavi.html",
+		"naviElemente.html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -280,7 +280,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"bspNavi.html",
+		"naviElemente.html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -306,7 +306,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"bspNavi.html",
+		"naviElemente.html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -328,7 +328,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"bspNavi.html",
+		"naviElemente.html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
