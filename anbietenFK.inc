@@ -1,12 +1,12 @@
 <?
 /************ Input ********************
- * $ID         : Primaerschluessel des Datensatzes
+ * $_E['ID']   : Primaerschluessel des Datensatzes
  * $tableRE    : Name der Tabelle mit dem Primaerschluessel
  ***************************************/
 $debug=0;
 if( !isset($arrFK[$_E['entitaet']]) )
  return;
-lesenRETabelle( $result, $MySQLDb, $_E['entitaet'], " WHERE ID=$ID" );
+lesenRETabelle( $result, $MySQLDb, $_E['entitaet'], " WHERE ID=" . $_E['ID'] );
 if( !$result )
 {
   $_E['wZu']="anbietendKnopfZurueck";
@@ -150,7 +150,7 @@ for( $i=1; $i<$c; $i++)
 		$FK2['wert'][$j]=$arr[$j];
   }
 ?>
-<td bgcolor='#E8E8E8' align='center'><font size='-2'>
+<td>
 <SELECT NAME='SELECTFK' SIZE='1'>
 <?
   while( $row=mysql_fetch_array( $result, MYSQL_NUM ) )
@@ -186,7 +186,7 @@ for( $i=1; $i<$c; $i++)
   }
 ?>
 </SELECT>
-</font></td>
+</td>
 <td>
 <?
   echo"\n\t<INPUT TYPE='HIDDEN' NAME='Tabelle' VALUE='{$_E['entitaet']}'>";

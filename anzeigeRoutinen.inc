@@ -676,10 +676,10 @@ function ausgebenAlsTabelleZumVertikalenAendern( $spaltenName, $auchID, &$cSpalt
   global  $pw;
   $cSpalten = 0;
   $anz = count( $spaltenName );
-  echo_("\n\t<tr bgcolor=#D0D0D0>");
+  echo_("\n\t<tr>");
   if( $auchID )
   {
-    echo_("\n\t<th><font size='-2'>");
+    echo_("\n\t<th>");
     //echo $spaltenName[0];// is ja immer die 1. Spalte
     echo_("\n\t</th>");
   }
@@ -708,7 +708,7 @@ function ausgebenAlsTabelleZumVertikalenAendern( $spaltenName, $auchID, &$cSpalt
   {
     if( false == istForeignKeyName( $spaltenName[$i] ) )
     {
-      echo_("\n\t<th><font size='-2'>");
+      echo_("\n\t<th>");
       echo_($spaltenName[ $i ]);
       echo_("\n\t</th>");
 
@@ -729,7 +729,7 @@ function ausgebenAlsTabelleZumVertikalenAendern( $spaltenName, $auchID, &$cSpalt
         $fEnum = false;
       }
       echo_("\n\t</tr>");
-      echo_("\n\t<tr bgcolor=#D0D0D0>");
+      echo_("\n\t<tr>");
       $cSpalten++;
     }
   }
@@ -753,7 +753,7 @@ function ausgebenAlsTabelleZumVertikalenAendern( $spaltenName, $auchID, &$cSpalt
         $Bezug="Wohnung";
     else
         $Bezug="";
-    echo_("\n\t<th><font size='-2'>");
+    echo_("\n\t<th>");
 //    echo_("\n<A HREF=\"./eiZu.php?wZu=zeigendDruckansicht&zielTabelle=$zielTabelle&sql=$str&Bezug=$Bezug&bgcolor=white&gruppenStaerke=$gruppenStaerke&$proj\">Druckansicht</A>");
     echo_("\n</th>");
     echo_("\n</tr>");
@@ -1342,7 +1342,7 @@ function ausgebenInZelle( $table, $result, $i, $attr, $enumListe, $laengeBeiText
   }
   echo "</font></td>";
 }
-function formularAttribut( $table, $result, $i, $attr, $enumListe, $laengeBeiText, &$fEnum, $style="normal" )
+function formularAttribut( $table, $result, $i, $attr, $enumListe, $laengeBeiText, &$fEnum )
 {
   $feldName = mysql_field_name( $result, $i );
   $feldTyp = mysql_field_type( $result, $i );
@@ -1355,7 +1355,7 @@ function formularAttribut( $table, $result, $i, $attr, $enumListe, $laengeBeiTex
     for( $j=0; $j < count($feldTyp); $j++ )
       echo "\nfeldTyp : $feldTyp<br>";
   }
-  echo "\n\t<td bgcolor='#E8E8E8'><font size='-2'>\n\t\t<";
+  echo "\n\t<td>\n\t\t<";
   if( strstr( $feldFlag, "enum" ) )
   {
     echo "SELECT ";
@@ -1433,7 +1433,7 @@ function formularAttribut( $table, $result, $i, $attr, $enumListe, $laengeBeiTex
     if( $laengeBeiText )
       echo " SIZE=$laengeBeiText";
   }
-  echo " style='font-weight:$style'></font></td>";
+  echo "></td>";
 }
 function anzeigenPreisspiegel( $result, &$nuidSum, $table, $fNurCalc, $fKopflos, $ActionSuffix, $aColspan )
 {

@@ -4,7 +4,7 @@
  * $_E['loeschen']     : ist gesetzt, wenn der Satz geloescht werden soll
  * $delete_x   : ist gesetzt, wenn der Satz geloescht werden soll
  *	         die x-Koordinate vom Bild
- * $ID         : Primaerschluessel des Datensatzes
+ * $ID']         : Primaerschluessel des Datensatzes
  * $tableRE    : Name der Tabelle mit dem Primaerschluessel
  ***************************************/
 $fDebug=false;
@@ -61,18 +61,10 @@ if( $result )
 	     if( false == istForeignKeyName( $spaltenName[$i] ) )
 		 $hatAttribute = true;
 
-/*
-	if( false == $hatAttribute )
-	{
-		echo"<center><h3>'$_E['entitaet']' hat keine &auml;nderbaren Eigenschaften</h3>";
-		exit;
-	}
-*/
-
 	// --- Anzeige formatieren
 	$str=$_E['entitaet'];
 	$str=str_replace( "ae", "&auml;", $str );
-	echo "\n<H3>Eigenschaften von $str &auml;ndern ...</H3>";
+	//echo "\n<H3>Eigenschaften von $str &auml;ndern ...</H3>";
 	$auchIDausgeben = false;
 	tabelleBeginnen();
 	if( isset($backupSELECTSL1) )
