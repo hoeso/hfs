@@ -313,7 +313,7 @@ $automat = array(
 		"dbClose.inc",
 	),
 	"speichernd1ZuN"=>array(
-		"eiZuSpeicherndERM.inc",
+		//"eiZuSpeicherndERM.inc",
 		"kopfteil.html",
 		"kopfteil.prj",
 		"endeContainer.html",
