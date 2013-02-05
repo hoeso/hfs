@@ -4,62 +4,17 @@
 /* zum Kopieren:
   ""=>"0",
  */
-  "Arbeit"=>"0",
-  "ArbeitMengenPreisNachunternehmer"=>"0",
-  "ArbeitStufenPreisNachunternehmer"=>"0",
-  "ArbeitWohnungsgesellschaft"=>"0",
-  "ArbeitWohnungsgesellschaftStufenPreis"=>"0",
-  "GewerkLV"=>"0",
-  "ModulArbeit"=>"0",
-  "ModulStufenPreis"=>"0",
-  "ModulSockelMengenPreis"=>"0",
-  "Nachunternehmer"=>"0",
-  "NachunternehmerGewerk"=>"0",
-  "Niederlassung"=>"0",
-  "RaumModul"=>"0",
-  "RaumZulage"=>"0",
-  "SonderleistungArbeit"=>"0",
-  "SonderleistungBauherr"=>"0",
-  "SonderleistungStufenPreis"=>"0",
-  "Techniker"=>"0",
-  "Vermieter"=>"0",
-  "Wohnung"=>"0",
-  "Wohnungseinheit"=>"0",
-  "WohnungseinheitStandort"=>"0",
-  "ZulageArbeit"=>"0",
-  "ZulageStufenPreis"=>"0",
+  "Schadenbuero"=>"0",
+  "Versicherer"=>"0",
   );
   if( !isset($AND) )
     $AND="";
-  if( isset($BOGesID) && isset($WoGeID) ) // vorher wird der Vektor eh nicht gebraucht
   $candyURL = array(
 /* zum Kopieren:
   ""=>"",
 */
-  "Arbeit"=>"./eiZu.php?wZu=gruppierendERM&Titel=Erfassen%20der%20Arbeiten%20von%20Gewerken&countRE=1&tableRE1=Gewerk&zielTabelle=Arbeit&gruppenStaerke=1&Action=speicherndERMoI",
-  "ArbeitMengenPreisNachunternehmer"=>"./eiZu.php?wZu=eingebendNachunternehmerPreis",
-  "ArbeitStufenPreisNachunternehmer"=>"./eiZu.php?wZu=eingebendNachunternehmerPreis",
-  "ArbeitWohnungsgesellschaft"=>"./eiZu.php?wZu=gruppierendERM&Titel=Erfassen%20der%20Arbeiten%20einer%20Wohnungsgesellschaft&countMM=1&anzuzeigen=1&tableMM1=WohnungsgesellschaftGewerk&zielTabelle=ArbeitWohnungsgesellschaft&gruppenStaerke=2&Action=speicherndERMoI",
-  "ArbeitWohnungsgesellschaftStufenPreis"=>"./eiZu.php?wZu=eingebendArbeitWohnungsgesellschaftPreis",
-  "GewerkLV"=>"./eiZu.php?wZu=gruppierendERM&Titel=Gewerk-LV%20einer%20Wohnungsgesellschaft&countSL=1&tableSL1=WohnungsgesellschaftGewerk&SL1=SELECT%20ID,%20PosNr,%20LVTitel%20FROM%20WohnungsgesellschaftGewerk%20WHERE%20$WoGeID=WohnungsgesellschaftID&zielTabelle=GewerkLV&gruppenStaerke=1",
-  "ModulArbeit"=>"./eiZu.php?wZu=eingebendModulArbeit",
-  "ModulSockelMengenPreis"=>"./eiZu.php?wZu=eingebendModulPreis",
-  "ModulStufenPreis"=>"./eiZu.php?wZu=eingebendModulPreis",
-  "Nachunternehmer"=>"./eiZu.php?wZu=fuellendRE&table=Nachunternehmer",
-  "NachunternehmerGewerk"=>"./eiZu.php?wZu=MMGruppierungEingebend&Titel=Zuweisen%20eines%20Gewerks%20an%20einen%20Nachunternehmer&tableA=Nachunternehmer&tableM=NachunternehmerGewerk&tableB=Gewerk&gruppenStaerke=1",
-  "Niederlassung"=>"./eiZu.php?wZu=gruppierendERM&Titel=Erfassen%20von%20Niederlassungen&countRE=2&tableRE1=Bundesland&tableRE2=Wohnungsgesellschaft&SL1=select%20ID,%20Abkuerzung%20from%20Wohnungsgesellschaft%20where%20GesellschaftID=$BOGesID%20AND%20Wohnungsgesellschaft.ID=$WoGeID&zielTabelle=Niederlassung&gruppenStaerke=2&Kind=Wohnungseinheit&fPlausi=true&Action=speicherndERMoI",
-  "RaumModul"=>"./eiZu.php?wZu=gruppierendERM&Titel=Zuweisen%20eines%20Moduls%20an%20eine%20Wohnungsgesellschaft&countRE=3&tableRE1=Wohnungsgesellschaft&tableRE2=Raum&tableRE3=Modul&zielTabelle=RaumModul&gruppenStaerke=2",
-  "RaumZulage"=>"./eiZu.php?wZu=gruppierendERM&Titel=Zuweisen%20einer%20Zulage%20an%20eine%20Wohnungsgesellschaft&countRE=3&tableRE1=Wohnungsgesellschaft&tableRE2=Raum&tableRE3=Zulage&zielTabelle=RaumZulage&gruppenStaerke=2",
-  "SonderleistungArbeit"=>"./eiZu.php?wZu=eingebendSonderleistungArbeit",
-  "SonderleistungBauherr"=>"./eiZu.php?wZu=gruppierendERM&Titel=Zuweisen%20einer%20%20Sonderleistung%20an%20eine%20Wohnungsgesellschaft&countRE=2&tableRE1=Wohnungsgesellschaft&tableRE2=Sonderleistung&zielTabelle=SonderleistungBauherr&gruppenStaerke=1",
-  "SonderleistungStufenPreis"=>"./eiZu.php?wZu=eingebendSonderleistungPreis",
-  "Techniker"=>"./eiZu.php?wZu=gruppierendERM&Titel=Erfassen%20von%20Technikern&countSL=1&tableSL1=Niederlassung&SL1=select%20Niederlassung.ID,%20Abkuerzung,%20Bezeichnung%20from%20Niederlassung,%20Wohnungsgesellschaft%20where%20Niederlassung.WohnungsgesellschaftID=$WoGeID%20AND%20Niederlassung.WohnungsgesellschaftID=Wohnungsgesellschaft.ID%20AND%20GesellschaftID=$BOGesID&Action=speicherndERMoI&zielTabelle=Techniker&gruppenStaerke=2",
-  "Vermieter"=>"./eiZu.php?wZu=gruppierendERM&Titel=Erfassen%20von%20Vermietern&countSL=1&tableSL1=Niederlassung&SL1=select%20Niederlassung.ID,%20Abkuerzung,%20Bezeichnung%20from%20Niederlassung,%20Wohnungsgesellschaft%20where%20Niederlassung.WohnungsgesellschaftID=$WoGeID%20AND%20Niederlassung.WohnungsgesellschaftID=Wohnungsgesellschaft.ID%20AND%20GesellschaftID=$BOGesID&Action=speicherndERMoI&zielTabelle=Vermieter&gruppenStaerke=2",
-  "Wohnung"=>"./eiZu.php?wZu=gruppierendERM&Titel=Erfassen%20von%20Wohnungen&countSL=1&tableSL1=WohnungseinheitStandort&SL1=select%20WohnungseinheitStandort.ID,%20Abkuerzung,%20Bezeichnung,%20WohnungseinheitStandort.Strasse,%20Nummer%20from%20Niederlassung,%20Wohnungsgesellschaft,%20Wohnungseinheit,%20WohnungseinheitStandort%20where%20WohnungseinheitStandort.WohnungseinheitID=Wohnungseinheit.ID%20and%20Wohnungseinheit.NiederlassungID=Niederlassung.ID%20and%20Niederlassung.WohnungsgesellschaftID=Wohnungsgesellschaft.ID%20AND%20GesellschaftID=$BOGesID",
-  "Wohnungseinheit"=>"./eiZu.php?wZu=gruppierendERM&Titel=Erfassen%20von%20Wohnungseinheiten&countSL=1&tableSL1=Niederlassung&SL1=select%20Niederlassung.ID,%20Abkuerzung,%20Bezeichnung%20from%20Niederlassung,%20Wohnungsgesellschaft%20where%20Niederlassung.WohnungsgesellschaftID=$WoGeID%20AND%20Niederlassung.WohnungsgesellschaftID=Wohnungsgesellschaft.ID%20AND%20GesellschaftID=$BOGesID$AND&AND=$AND&zielTabelle=Wohnungseinheit&gruppenStaerke=3&Kind=WohnungseinheitStandort&Action=speicherndERMoI",
-  "WohnungseinheitStandort"=>"./eiZu.php?wZu=gruppierendERM&Titel=Erfassen%20der%20Stra%DFen%20von%20Wohnungseinheiten&countSL=1&tableSL1=Wohnungseinheit&SL1=select%20Wohnungseinheit.ID,%20Abkuerzung,%20Bezeichnung,%20Standort,%20Nummer%20from%20Niederlassung,%20Wohnungsgesellschaft,%20Wohnungseinheit%20where%20Wohnungseinheit.NiederlassungID=Niederlassung.ID%20AND%20Niederlassung.WohnungsgesellschaftID=$WoGeID%20AND%20Niederlassung.WohnungsgesellschaftID=Wohnungsgesellschaft.ID%20AND%20GesellschaftID=$BOGesID$AND&AND=$AND&zielTabelle=WohnungseinheitStandort&gruppenStaerke=4&Kind=Wohnung&Action=speicherndERMoI",
-  "ZulageArbeit"=>"./eiZu.php?wZu=eingebendZulageArbeit",
-  "ZulageStufenPreis"=>"./eiZu.php?wZu=eingebendZulagePreis",
+  "Schadenbuero"=>"./mn.php?mn=3655&1=Schadenbuero&n=Versicherer&a=1",
+  "Versicherer"=>"./mn.php?mn=6649&a=Versicherer",
   );
 
 // sind die Candidates bereits Teil der URL?
@@ -78,4 +33,6 @@ else if( isset($tableRE) and isset($ID) )
   if( isset( $_eCandy[$tableRE] ) )
      $_eCandy[$tableRE] = $ID;
 }
+else if( isset($_E['entitaet']) and isset($_E['ID']) )
+  $_eCandy[$_E['entitaet']] = $_E['ID'];
 ?>

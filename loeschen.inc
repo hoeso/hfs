@@ -31,7 +31,7 @@ $bremse = false;
 
 $c=count($arrRefs);
 if( isset($arrRefs[$delTab]) )
-{ // die generierten Abhaengigkeiten ( ~/public_html/db$ mysqldump -d -uregula erica | ./refIntegrity.pl > ../refIntegritaet.prj ) durchlaufen 
+{ // die generierten Abhaengigkeiten ( ~/public_html/db$ mysqldump -d -uregula erica | ./refIntegrity.pl > ../loeschBar.prj ) durchlaufen 
   foreach( $arrRefs[$delTab] as $refTab )
   {
     if( "1-leaf" == $refTab )
@@ -119,8 +119,8 @@ if( !isset($_E['loeschen']) )
     $strbackup="";
 
   unset( $candies );
-  if( isset($globalCandy) )
-    foreach( $globalCandy as $k => $elem )
+  if( isset($_eCandy) )
+    foreach( $_eCandy as $k => $elem )
       if( $elem )
         $candies .= "&$k=$elem";
   if( !isset($candies) )

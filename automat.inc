@@ -172,6 +172,7 @@ $automat = array(
 		"dbConnect.inc",
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"setzenFortsetzung.prj",
 		"updateRE.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
@@ -230,6 +231,7 @@ $automat = array(
 		"pruefenSymbol.prj",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"setzenFortsetzung.prj",
 		"editierenRE.inc",
 		"erlaubenFK.inc",
 		"anbietenFK.inc",
@@ -440,7 +442,7 @@ $automat = array(
 		"transpHeader.html",
 		"ueberschrift.inc",
 		"routinen.inc",
-		"RefIntegrTabelle.inc",
+		"loeschBar.prj",
 		"pruefenKonsistenz.inc"
 	),
 	"kontaktend"=>array(

@@ -33,7 +33,7 @@ function tabelleBeginnen( $caption = "" )
   global $fAnzeigeUnterdruecken;
   if( $fAnzeigeUnterdruecken )
     return;
-  ?><table><caption><?echo $caption;?></caption><?
+  ?><table><caption><?if( isset($caption) and ("ohne submit Knopf" != $caption) ) echo $caption;?></caption><?
   return true;
 }
 function tabelleBeenden()
@@ -667,7 +667,7 @@ function ausgebenAlsTabelleVertikal( $spaltenName, $auchID, &$cSpalten, $sql, $z
     echo_("\n</tr>");
   }
 }
-function ausgebenAlsTabelleZumVertikalenAendern( $spaltenName, $auchID, &$cSpalten, $sql, $zielTabelle, $result, $table, $ID, $ActionSuffix )
+function ausgebenAlsTabelleZumVertikalenAendern( $spaltenName, $auchID, &$cSpalten, $sql, $zielTabelle, $result, $table, $ID, $ActionSuffix="" )
 {
   global $enumListe;
   global  $gruppenStaerke;
@@ -698,8 +698,10 @@ function ausgebenAlsTabelleZumVertikalenAendern( $spaltenName, $auchID, &$cSpalt
     $enumListe["$strKey"]=str_replace( "&ouml;", "ö", $enumListe["$strKey"] );
     $enumListe["$strKey"]=str_replace( "&auml;", "ä", $enumListe["$strKey"] );
   }
-  $str = "./mn.php?mn=7774&a=$table&$proj";
-  $str .= $ActionSuffix;
+  $str = "./mn.php?mn=7774&a=$table";
+  // ActionSuffix nicht, 
+  //$str .= $ActionSuffix;
+//echo "proj : $proj ; ActionSuffix : $ActionSuffix <p>"; exit;
   formularBeginnen($str, "name='frm$table' onSubmit='return pruefenEingaben(this)'");
   $arr = mysql_fetch_row( $result );
   $anz = mysql_num_fields($result);

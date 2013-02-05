@@ -1,8 +1,8 @@
 <?
 unset( $candies );
-if( isset($globalCandy) )
+if( isset($_eCandy) )
 {
-  foreach( $globalCandy as $k => $elem )
+  foreach( $_eCandy as $k => $elem )
     if( $elem )
       $candies .= "&$k=$elem";
 }

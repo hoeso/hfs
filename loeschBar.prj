@@ -1,0 +1,17 @@
+<?
+$arrRefs = array(
+
+  "Bearbeiter"=>array(
+    "1-leaf",
+  ),
+
+  "Schadenbuero"=>array(
+    "Bearbeiter",
+  ),
+
+  "Versicherer"=>array(
+    "Schadenbuero",
+  ),
+
+);
+?>

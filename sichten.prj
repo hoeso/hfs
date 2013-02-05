@@ -67,13 +67,7 @@ $Select=array
 
 $OrderBy=array
 (
-//	"BiergartenBrotzeit"=>" ORDER BY Spezl",
-  	"Biergarten"=>" ORDER BY Ort, Ortsteil, Biergarten",
-	"BiergartenBrotzeit"=>"",
-	"BiergartenEvent"=>" ORDER BY am DESC, Ort",
-	"BrotzeitGewuerz"=>" ORDER BY Brotzeit, Gewuerz",
-
-	"Ortsteil"=>" ORDER BY Ort, Ortsteil",
+  "Schadenbuero"=>" ORDER BY Versicherer, Schadenbuero, PLZ",
 );
 
 $gfaerbteSpoidn = array(

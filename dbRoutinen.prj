@@ -1,0 +1,30 @@
+<?
+/**** reine Entitaeten werden in der Funktion lesenRETabelle() ausgelesen *****
+ **** mit SELECT * FROM TABLE. In diesem Abschnitt kann die projektspezifische
+ **** Sortierung angegeben werden.                                        *****/
+
+$appendix=array(
+  "Versicherer"=>" ORDER BY Versicherer",
+  "Zeitstempel"=>" ORDER BY Datum DESC",
+);
+
+/***
+ * hier werden alle Tabellen angegeben, welche eine bestimmte Sicht
+ * wiedergeben sollen. Beispiel: die Gesellschaften eines Unternehmens
+ * greifen auf jeweils nur auf ihren eigenen Kundenstamm zu
+ * 'Kunde' ist vom Wesen her eine reine Entitaet, erhaelt jedoch durch
+ * diese geforderte Mandantenfaehigkeit einen Foreign Key. Dieser
+ * bedeutet jedoch keine 1:M Beziehung, sondern ist nur ein Filter.
+ * Daher sollen vom Wesen her reine Entitaeten nachwievor als solche
+ * gesehen werden koennen.
+ * Deshalb wird hier der Hash hashMandant eingefuehrt zusammen mit dem
+ * Hash hashMandantenKey. Anhand der beiden Eintraege kann die jeweilige
+ * Mandantensicht der reinen Entitaet gefiltert werden.
+ ***/
+$hashMandant = array (
+  "Bauleiter"=>"GesellschaftID",
+  "Wohnungsgesellschaft"=>"GesellschaftID",
+);
+$hashKey = array (
+  "GesellschaftID"=>$BOGesID );
+?>

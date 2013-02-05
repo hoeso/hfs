@@ -82,66 +82,42 @@ function spaltenNamenHolen( $result, &$spaltenName )
 // Inhalt ausgeben einer Tabelle
 function lesenRETabelle( &$result, $db, $table, $suffix )
 {
-global $BOGesID;
-global $lkid;
-$appendix=array(
-	"Klasse"=>" ORDER BY Jahrgangsstufe, Klasse",
-	"Lehrkraft"=>" ORDER BY Name",
-	"Schulfach"=>" ORDER BY Schulfach",
-	"Zeitstempel"=>" ORDER BY Datum DESC",
-);
-/***
- * hier werden alle Tabellen angegeben, welche eine bestimmte Sicht
- * wiedergeben sollen. Beispiel: die Gesellschaften eines Unternehmens
- * greifen auf jeweils nur auf ihren eigenen Kundenstamm zu
- * 'Kunde' ist vom Wesen her eine reine Entitaet, erhaelt jedoch durch
- * diese geforderte Mandantenfaehigkeit einen Foreign Key. Dieser
- * bedeutet jedoch keine 1:M Beziehung, sondern ist nur ein Filter.
- * Daher sollen vom Wesen her reine Entitaeten nachwievor als solche
- * gesehen werden koennen.
- * Deshalb wird hier der Hash hashMandant eingefuehrt zusammen mit dem
- * Hash hashMandantenKey. Anhand der beiden Eintraege kann die jeweilige
- * Mandantensicht der reinen Entitaet gefiltert werden.
- ***/
-$hashMandant = array (
-	"Bauleiter"=>"GesellschaftID",
-	"Wohnungsgesellschaft"=>"GesellschaftID",
-	);
-$hashKey = array (
-	"GesellschaftID"=>$BOGesID );
-	$sql = "select * from $table ";
-	if( $suffix )
-		$sql .= $suffix;
-	else if( isset($hashMandant[$table]) )
-	{
-	  $mandant = $hashMandant[$table];
-		$result = mysql_db_query( $db, $sql );
-		if(!$result)
-			reagierenAufSQLFehler( $lkid, $sql, $ID );
-		$nFelder = mysql_num_fields( $result );
-		$sql = "SELECT ID";
-		for( $i=1; $i < $nFelder; $i++ )
-		{
-			$feldname = mysql_field_name( $result, $i );
-			if( $mandant == $feldname )
-				continue;// das Filterfeld auslassen
-			$sql .= ", $feldname";
-		}
-		mysql_free_result( $result );
-		$sql .= " FROM $table WHERE $mandant = $hashKey[$mandant]";
-	}
-	if( $suffix and isset($appendix[$table]) )
-	    $sql .= " $appendix[$table]";
-	else if( isset($appendix[$table]) )
-	    $sql .= " $appendix[$table]";
+  global $BOGesID;
+  global $lkid;
+  include "dbRoutinen.prj";
+  $sql = "SELECT * FROM $table ";
+  if( $suffix )
+    $sql .= $suffix;
+  else if( isset($hashMandant[$table]) )
+  {
+    $mandant = $hashMandant[$table];
+    $result = mysql_db_query( $db, $sql );
+    if(!$result)
+      reagierenAufSQLFehler( $lkid, $sql, $ID );
+    $nFelder = mysql_num_fields( $result );
+    $sql = "SELECT ID";
+    for( $i=1; $i < $nFelder; $i++ )
+    {
+      $feldname = mysql_field_name( $result, $i );
+      if( $mandant == $feldname )
+        continue;// das Filterfeld auslassen
+      $sql .= ", $feldname";
+    }
+    mysql_free_result( $result );
+    $sql .= " FROM $table WHERE $mandant = $hashKey[$mandant]";
+  }
+  if( $suffix and isset($appendix[$table]) )
+    $sql .= " $appendix[$table]";
+  else if( isset($appendix[$table]) )
+    $sql .= " $appendix[$table]";
 
-	$result = mysql_db_query( $db, $sql );
-	if(!$result)
-		reagierenAufSQLFehler( $lkid, $sql, $ID );
+  $result = mysql_db_query( $db, $sql );
+  if(!$result)
+    reagierenAufSQLFehler( $lkid, $sql, $ID );
 
-if( "Zeitstempel" == $table )
-  return true;
-return false;
+  if( "Zeitstempel" == $table )
+    return true;
+  return false;
 }
 // gibFeld
 // Input:

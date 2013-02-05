@@ -95,22 +95,15 @@ if( isset($dahin) and $dahin )
 }
 /*** TEST, OB DIESE BENUTZERFUEHRUNG EFFEKTIVER IST:                       ***/
 $anker=0;
-if( isset( $globalCandy ) )
-  foreach( $globalCandy as $k => $elem )
+if( isset( $_eCandy ) )
+  foreach( $_eCandy as $k => $elem )
     if( $elem )
     {
       $dahin = $candyURL[$k];
       $dahin .= "&$k=$elem#$elem";
       $anker="$elem";
     }
-
-if( 0 )
-{
-  echo "\n<center>\n<FORM NAME='frm' ACTION='$dahin' METHOD='POST'>";
-  echo "\n\t\t<INPUT TYPE='SUBMIT' NAME='zurueck' VALUE='fortsetzen:'>";
-  echo "\n</FORM>\n";
-}
-else if( isset( $dahin ) )
+if( isset( $dahin ) )
 {
   echo"\n<A HREF=\"$dahin\"><em>&lt;&lt; fortsetzen</em></A><BR>";
 }

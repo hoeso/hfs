@@ -16,7 +16,7 @@ include("port.prj");
 include("sichten.prj");
 function anzeigen( $db, $sql, $table, $ActionSuffix )
 {
-  global $globalCandy;
+  global $_eCandy;
   global $fSummeBilden;
   global $Summenwert;
   global $gruppenStaerke;
@@ -45,9 +45,9 @@ function anzeigen( $db, $sql, $table, $ActionSuffix )
   $auchIDausgeben = false;
   // ist Zieltabelle Teil der URL?
   $iFarbReihe=0;
-  if( isset($globalCandy) )
+  if( isset($_eCandy) )
   {
-    foreach( $globalCandy as $k => $elem )
+    foreach( $_eCandy as $k => $elem )
       if( $k == $table and isset($_REQUEST["$k"]) )
       {
         $iFarbReihe=$elem;

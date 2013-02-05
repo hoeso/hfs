@@ -34,7 +34,8 @@ $forkAutomat = array(
 		"dbConnect.inc",
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"refIntegritaet.prj",
+		"setzenFortsetzung.prj",
+		"loeschBar.prj",
 		"loeschenVorspiel.prj",
 		"loeschen.inc",
 		"linkFortsetzen.inc",
@@ -579,7 +580,7 @@ $forkAutomat = array(
 	),
 	"loeschend"=>array(
 		"eiZuLoeschend.prj",
-		"RefIntegrTabelle.inc",
+		"loeschBar.prj",
 		"plausiIssetA.inc",
 		"loeschenVorspiel.prj",
 		"loeschen.inc",

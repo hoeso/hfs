@@ -75,14 +75,15 @@ if( $result )
 	     $ActionSuffix .= "&goto=true";
    if( !isset($cSpalten) )
      $cSpalten="";
-if( isset( $globalCandy ) )
-  foreach( $globalCandy as $k => $elem )
+if( isset( $_eCandy ) )
+  foreach( $_eCandy as $k => $elem )
     if( $elem )
     {
-      $ActionSuffix .= $candyURL[$k];
+      // hier fehlt die Zuweisung an eine Variable:
+      //$ActionSuffix .= $candyURL[$k];
       $ActionSuffix .= "&$k=$elem";
     }
-	ausgebenAlsTabelleZumVertikalenAendern( $spaltenName, $auchIDausgeben, $cSpalten, "", "", $result, $_E['entitaet'], $_E['ID'], $ActionSuffix );
+	ausgebenAlsTabelleZumVertikalenAendern( $spaltenName, $auchIDausgeben, $cSpalten, "", "", $result, $_E['entitaet'], $_E['ID']/*, $ActionSuffix*/ );
 	//
 	tabelleBeenden();
 	$succ = mysql_free_result( $result );
