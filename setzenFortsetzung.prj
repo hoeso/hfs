@@ -4,6 +4,7 @@
 /* zum Kopieren:
   ""=>"0",
  */
+  "Bearbeiter"=>"0",
   "Schadenbuero"=>"0",
   "Versicherer"=>"0",
   );
@@ -13,6 +14,7 @@
 /* zum Kopieren:
   ""=>"",
 */
+  "Bearbeiter"=>"./mn.php?mn=6914&1=Bearbeiter&1n=Schadenbuero&x=true&a=4",
   "Schadenbuero"=>"./mn.php?mn=3655&1=Schadenbuero&n=Versicherer&a=1",
   "Versicherer"=>"./mn.php?mn=6649&a=Versicherer",
   );

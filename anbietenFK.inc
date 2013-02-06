@@ -74,9 +74,9 @@ for( $i=1; $i<$c; $i++)
 
   echo"\n<tr>";
 
-  if( isset( $_GET[Action] ) )
+  if( isset( $_GET['Action'] ) )
   {
-    $str = urldecode($_GET[Action]);
+    $str = urldecode($_GET['Action']);
     formularBeginnen( "./eiZu.php?wZu=$str&Titel=$t%20%E4ndern", "NAME='frm'");
   }
   else

@@ -246,16 +246,19 @@ if( !$nTreffer )
 }
 if( $gespeichert )
 {
-echo "\nDer Eintrag wurde gespeichert";
+  echo "\nDer Eintrag wurde gespeichert";
 
-$sql = "SELECT LAST_INSERT_ID() FROM " . $zielTabelle;
-$result = mysql_db_query( $MySQLDb, $sql );
-$arr = mysql_fetch_row( $result );
-if( isset($globalTab) and $table == $globalTab )//nicht, wenn Aufruf aus Administration
-{
-  $globalID=$arr[0];
-}
-$autoID=$arr[0];
-mysql_free_result( $result );
+  if( isset($zielTabelle) )
+  {
+    $sql = "SELECT LAST_INSERT_ID() FROM " . $zielTabelle;
+    $result = mysql_db_query( $MySQLDb, $sql );
+    $arr = mysql_fetch_row( $result );
+    if( isset($globalTab) and $table == $globalTab )//nicht, wenn Aufruf aus Administration
+    {
+      $globalID=$arr[0];
+    }
+    $autoID=$arr[0];
+    mysql_free_result( $result );
+  }
 }
 ?>

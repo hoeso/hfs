@@ -119,12 +119,11 @@ if( !isset($_E['loeschen']) )
     $strbackup="";
 
   unset( $candies );
+  $candies="";
   if( isset($_eCandy) )
     foreach( $_eCandy as $k => $elem )
       if( $elem )
         $candies .= "&$k=$elem";
-  if( !isset($candies) )
-    $candies="";
   formularBeginnen( "./mn.php?mn=1142&a=$delTab&ID={$_E['ID']}$strbackup&force=true&ID1=$ID1$candies", "NAME='frm'");
   if( isset($_REQUEST["preparedocC"]) )
     hiddenFeldSchreiben( "docC", $_REQUEST["preparedocC"] );

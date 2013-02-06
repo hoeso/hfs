@@ -19,6 +19,7 @@ $forkAutomat = array(
 		//"mapSpaltennamen.inc",
 		"ERMListenfuellen.inc",
 		"ERMsubmit.inc",
+		"gibWeiter.inc",
 		"anzeigenZieltabelle.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext

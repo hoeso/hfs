@@ -141,10 +141,12 @@ if( $i < $countSL )
 	$SL1=str_replace( "&uuml;", "ü", $SL1 );
 	if( isset($globalID) )
 	  $SL1=str_replace( "\$globalID", $globalID, $SL1 );
-	$SL1=str_replace( "\$gNLID", $gNLID, $SL1 );
+	if( isset($gNLID) )
+	  $SL1=str_replace( "\$gNLID", $gNLID, $SL1 );
 	if( isset($SELECTSL1) )
 	  $SL1=str_replace( "\$SELECTSL1", $SELECTSL1, $SL1 );
-	$SL1=str_replace( "\$gPaketID", $gPaketID, $SL1 );
+	if( isset($gPaketID) )
+	  $SL1=str_replace( "\$gPaketID", $gPaketID, $SL1 );
 //echo"\n<!-- $SL1 --><br>";
 	$SL[ $i ] = $SL1;
 	$labelSL[ $i++ ] = "SL1";

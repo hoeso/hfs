@@ -17,7 +17,9 @@ body {
 }
 
 /* Seite 92 */
-#hauptteil { height: 1%; overflow: auto; }
+/* overflow: visible sorgt dafür, dass der horizontale Scrollbalken bis zum ***
+ * rechten Rand schieben kann, also nichts abgeschnitten wird               ***/
+#hauptteil { height: 1%; overflow: visible; }
 #hauptteil, #kopfteil, #fussteil { width: 100%; margin: 2%; }
 #haupttext { float: right; width: 80%; }
 #seitenleiste { margin-right: 1%; }
@@ -36,7 +38,11 @@ tfoot th[rowspan]:first-child {
 }
 
 /* navigation Seite 72, 106 */
-.main #nav { display: block; width: 10em; overflow:hidden; }
+/* overflow: auto schneidet zu lange Menuetexte ab */
+.main #nav { display: block; width: 10em; overflow:visible; }
+/* navigation Seite 123     */
+ul { margin-left: 0.5em; padding-left:0; }
+li { /*display:inline;*/ list-style-type: none; }
 
 /* Seite 223 */
 h1 { font-size: xx-large; }

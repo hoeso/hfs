@@ -25,6 +25,11 @@ $automat = array(
 		"dbClose.inc",
 	),
 */
+	"anbietendFKFormular"=>array(
+		"eiZuWrapperFK.inc",
+		"anbietenVerlinkenEntitaet.inc",
+		"liesMich.txt",
+	),
 	"bspAnzeigendTitel"=>array(
 		"kopfteil.html",
 		"kopfteil.prj",
@@ -140,7 +145,7 @@ $automat = array(
 		"eiZuBspVerlinkendEntitaet.inc",
 		"anbietenVerlinkenEntitaet.inc",
 	),
-/*** intern gerufende Automaten: ***********************************************/
+/*** intern gerufene Automaten: ***********************************************/
 	"aenderndRE"=>array(
 		"kopfteil.html",
 		"kopfteil.prj",
@@ -190,6 +195,7 @@ $automat = array(
 		"endeContainer.html",
 		"hauptteil.html",
 		"haupttext.html",
+		"setzenFortsetzung.prj",
 		"containerTitel.php",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext

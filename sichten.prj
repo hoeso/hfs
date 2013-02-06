@@ -14,6 +14,7 @@ mitgezaehlt! ***/
 	"Aktennotiz_2"=>"nein,ja",// gelesen
 	"Aktennotiz_3"=>"nein,ja",// erledigt
 	"ASTAdresse"=>"Herr,Frau,",
+	"Bearbeiter_1"=>"Herr,Frau,",
 	"Spezl"=>"ja,nein",
 );
 
@@ -55,18 +56,22 @@ if( false == isset( $AND ) )
 $Select=array
 (
 /* zum Kopieren:
-	""=>"",
+  ""=>"",
 */
-	"Schadenbuero"=>"SELECT Schadenbuero.ID, Versicherer, Schadenbuero, PLZ, Ort FROM Schadenbuero, Versicherer WHERE Schadenbuero.VersichererID=Versicherer.ID",
+//	"Schadenbuero"=>"SELECT Schadenbuero.ID, Versicherer, Schadenbuero, PLZ, Ort FROM Schadenbuero, Versicherer WHERE Schadenbuero.VersichererID=Versicherer.ID",
+  "Schadenbuero"=>"SELECT Schadenbuero.ID, Versicherer, Schadenbuero, PLZ, Ort FROM Schadenbuero JOIN Versicherer ON (Schadenbuero.VersichererID=Versicherer.ID)",
+//  	"Bearbeiter"=>"SELECT Bearbeiter.ID, Versicherer, Schadenbuero, PLZ, Ort, Name, Telefon, Nebenstelle AS '_', eMail, Fax, PortalUser AS Portal FROM Bearbeiter, Schadenbuero, Versicherer, PortalUser WHERE Bearbeiter.SchadenbueroID=Schadenbuero.ID AND Schadenbuero.VersichererID=Versicherer.ID AND Bearbeiter.PortalUserID=PortalUser.ID",
+  "Bearbeiter"=>"SELECT Bearbeiter.ID, Versicherer, Schadenbuero, PLZ, Ort, Name, Telefon, Nebenstelle AS '_', eMail, Fax, PortalUser AS Portal FROM Bearbeiter JOIN Schadenbuero ON (Bearbeiter.SchadenbueroID=Schadenbuero.ID) JOIN Versicherer ON (Schadenbuero.VersichererID=Versicherer.ID) JOIN PortalUser ON (Bearbeiter.PortalUserID=PortalUser.ID)",
 
 /* zum Kopieren:
- 	""=>"",
+  ""=>"",
 
 */
 );
 
 $OrderBy=array
 (
+  "Bearbeiter"=>" ORDER BY Versicherer, Schadenbuero, Name",
   "Schadenbuero"=>" ORDER BY Versicherer, Schadenbuero, PLZ",
 );
 
