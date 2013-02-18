@@ -15,7 +15,7 @@ mitgezaehlt! ***/
 	"Aktennotiz_3"=>"nein,ja",// erledigt
 	"ASTAdresse"=>"Herr,Frau,",
 	"Bearbeiter_1"=>"Herr,Frau,",
-	"Spezl"=>"ja,nein",
+	"Region"=>"01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99",
 );
 
 $mandantKlausel=array
@@ -58,8 +58,12 @@ $Select=array
 /* zum Kopieren:
   ""=>"",
 */
+//	"Region"=>"SELECT Region.ID, Region, von, bis FROM Region, vonPLZ, bisPLZ WHERE Region.vonPLZID=vonPLZ.ID AND Region.bisPLZID=bisPLZ.ID",
+	"Region"=>"SELECT Region.ID, Region, von, bis FROM Region JOIN vonPLZ ON (Region.vonPLZID=vonPLZ.ID) JOIN bisPLZ ON (Region.bisPLZID=bisPLZ.ID)",
+
 //	"Schadenbuero"=>"SELECT Schadenbuero.ID, Versicherer, Schadenbuero, PLZ, Ort FROM Schadenbuero, Versicherer WHERE Schadenbuero.VersichererID=Versicherer.ID",
   "Schadenbuero"=>"SELECT Schadenbuero.ID, Versicherer, Schadenbuero, PLZ, Ort FROM Schadenbuero JOIN Versicherer ON (Schadenbuero.VersichererID=Versicherer.ID)",
+
 //  	"Bearbeiter"=>"SELECT Bearbeiter.ID, Versicherer, Schadenbuero, PLZ, Ort, Name, Telefon, Nebenstelle AS '_', eMail, Fax, PortalUser AS Portal FROM Bearbeiter, Schadenbuero, Versicherer, PortalUser WHERE Bearbeiter.SchadenbueroID=Schadenbuero.ID AND Schadenbuero.VersichererID=Versicherer.ID AND Bearbeiter.PortalUserID=PortalUser.ID",
   "Bearbeiter"=>"SELECT Bearbeiter.ID, Versicherer, Schadenbuero, PLZ, Ort, Name, Telefon, Nebenstelle AS '_', eMail, Fax, PortalUser AS Portal FROM Bearbeiter JOIN Schadenbuero ON (Bearbeiter.SchadenbueroID=Schadenbuero.ID) JOIN Versicherer ON (Schadenbuero.VersichererID=Versicherer.ID) JOIN PortalUser ON (Bearbeiter.PortalUserID=PortalUser.ID)",
 
