@@ -152,6 +152,12 @@ switch( $_E['mn'] )
     $_eTitel = array( $_REQUEST["a"] );
   break;
   // hier 100 cases bis 1566 freihalten fuer evtl. SL-Faelle. Ist kopierfreundlich.
+  case "3647": // Datei Upload
+    if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "uploadend";
+    $_eTitel = array( "Datei Upload", "f&uuml;r was auch immer" );
+  break;
   case "3655": // bsp1ZuN
     if( !isset($_REQUEST["1"]) or !isset($_REQUEST["n"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
@@ -209,6 +215,18 @@ switch( $_E['mn'] )
     $_E['wZu'] = "bspAnzeigendTitel";
     $_eTitel = array( $_REQUEST["a"], $_REQUEST["b"] );
   break;
+  case "6156":
+    if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "verzeichnisLesend";
+    $_eTitel = array( "Projekt Verzeichnisse per SHA1 &uuml;bergeben", "z.B. f&uuml;r Uploads" );
+  break;
+  case "6157":
+    if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "holendUpload";
+    $_eTitel = array( "Datei Upload", "f&uuml;r was auch immer" );
+  break;
   case "8416":
     $_E['wZu'] = "bspTheoretisierendDB";
     $_E['enableDbg'] = true; // Ausgaben von dbConnect.inc aktivieren
@@ -218,6 +236,11 @@ switch( $_E['mn'] )
     $_E['wZu'] = "bspVerbindendDB";
     $_E['enableDbg'] = true; // Ausgaben von dbConnect.inc aktivieren
     $_eTitel = array( "Live Test: Verbindung aufnehmen mit der Datenbank" );
+  break;
+  case "8418":
+    $_E['wZu'] = "bspSalzend";
+    $_E['enableDbg'] = true; // Ausgaben von dbConnect.inc aktivieren
+    $_eTitel = array( "Das Salz in der Suppe" );
   break;
   case "8546": // bspVerbindendEntitaeten
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"]) ) { echo $exitus; return; }
