@@ -7,6 +7,9 @@ if( 0 )
   echo"\nREQUESTS:<br>";
   foreach( $_REQUEST as $k=>$elem )
     echo"\nk : $k, elem: $elem<br>";
+  echo"\nFILES:<br>";
+  foreach( $_FILES as $k=>$elem )
+    echo"\nk : $k, elem: $elem<br>";
 }
 $_E['mn'] = $_REQUEST["mn"];
 $_E['bodyClass'] = "main";

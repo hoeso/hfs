@@ -553,6 +553,27 @@ $automat = array(
 		"gibVerzeichnis.inc",
 		"frmUpload.inc",
 		"sendenDatei.inc",
+		"frmClose.html",
+		"containerTitel.php",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"naviElemente.html",
+		"endeNavigation.html",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+	),
+	"uploadend"=>array(
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"connect.prj",
+		"gibVerzeichnis.inc",
+		"uploaden.inc",
 		"containerTitel.php",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext

@@ -156,7 +156,7 @@ switch( $_E['mn'] )
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "uploadend";
-    $_eTitel = array( "Datei Upload", "f&uuml;r was auch immer" );
+    $_eTitel = array( "Datei Upload", "kann so erfolgen" );
   break;
   case "3655": // bsp1ZuN
     if( !isset($_REQUEST["1"]) or !isset($_REQUEST["n"]) ) { echo $exitus; return; }
