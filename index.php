@@ -29,7 +29,7 @@ echo $_E['bodyId'];
 <? include("endeContainer.html"); ?>
 <? include("seitenleiste.html"); ?>
 <? include("hauptnavigation.html"); ?>
-<? include("naviElemente.html"); ?>
+<? include("naviUpload.html"); ?>
 <? include("endeNavigation.html"); ?>
 <? include("endeContainer.html"); ?>
 <? include("endeContainer.html");//hauptteil ?>

@@ -559,7 +559,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"naviUpload.html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
@@ -579,7 +579,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"naviUpload.html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
