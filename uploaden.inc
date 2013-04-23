@@ -60,8 +60,14 @@ foreach( $_FILES as $k=>$elem )
   
     /*** Datei                                              speichern ***/
     $dst = $_E['rootDocuments'] . "/" . $name;
-    ?>Die Datei <?echo $dst;?> k&ouml;nnte jetzt gespeichert werden<br>
-    : if( true == move_uploaded_file($tmp_name, $dst) )<br><?
+    if( false == move_uploaded_file($tmp_name, $dst) )
+    {
+      ?>Die Datei <?echo $dst;?> konnte nicht gespeichert werden<br><?
+    }
+    else
+    {
+      echo $dst;?> wurde gespeichert<br><?
+    }
   }
 }
 ?>
