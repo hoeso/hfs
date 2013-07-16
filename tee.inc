@@ -1,4 +1,4 @@
-<?
+<?php
 function echo_( $str )
 {
 	global $fAnzeigeUnterdruecken;

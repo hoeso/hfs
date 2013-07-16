@@ -1,4 +1,4 @@
-<?
+<?php
 switch( $_E['mn'] )
 {
 /* zum Kopieren:
@@ -217,6 +217,7 @@ switch( $_E['mn'] )
   break;
   case "6156":
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
+    $_E['enableDbg'] = true; // Ausgaben von dbConnect.inc aktivieren
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "verzeichnisLesend";
     $_eTitel = array( "Projekt Verzeichnisse per SHA1 &uuml;bergeben", "z.B. f&uuml;r Uploads" );
@@ -322,7 +323,7 @@ switch( $_E['mn'] )
     $_eTitel = array( "in {$_E['entitaet']} speichern ..." );
   break;
   default:
-    ?>you don't exist. Go away!<?
+    ?>you don't exist. Go away!<?php
     return;
 }
 ?>

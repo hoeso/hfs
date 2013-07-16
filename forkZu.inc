@@ -1,4 +1,4 @@
-<?
+<?php
 $wZu = $_E['wZu'];
 switch( $wZu )
 {
@@ -135,7 +135,7 @@ else
 
 if( isset($_REQUEST["forkdocC"]) )
 {
-?><P><?
+?><P><?php
   $href=$DOC_WEBALIAS . "fork" . $docIdx . ".tex";
 ?>
 <table border=1>
@@ -145,18 +145,18 @@ generierte SW-Doku
 </th>
 <tr>
 <td>
-<?
+<?php
   echo"<A HREF=\"$href\">.tex</A>";
 ?>
 </td>
 <td>
-<?
+<?php
       $href=$DOC_ROOT . "fork" . $docIdx . ".tex";
       echo"<A HREF=\"./eiZu.php?wZu=loeschendDatei&file=$href\">l&ouml;schen</A>";
 ?>
 </td>
 </tr>
-<?
+<?php
   if( isset($_REQUEST["fTest"]) )
   {
     $cmd = "/usr/bin/pdflatex -output-directory $DOC_ROOT $datei";
@@ -167,22 +167,22 @@ generierte SW-Doku
 ?>
 <tr>
 <td>
-<?
+<?php
       $href=$DOC_WEBALIAS . "fork" . $docIdx . ".pdf";
       echo"<A HREF=\"$href\">.pdf</A>";
 ?>
 </td>
 </tr>
-<?
+<?php
     }
   }
 ?>
 </table>
-<?
+<?php
 }
 ?>
 </BODY>
 </HTML>
-<?
+<?php
 exit;
 ?>

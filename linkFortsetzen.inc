@@ -1,4 +1,4 @@
-<?
+<?php
 /************ Input *********************************************************
  * $SELECTRE1 :	    die ID des aus der 1. RE-Liste gewaehlten Eintrags.
  * $SELECTEM1 :	    die ID des aus der 1. EM-Liste gewaehlten Eintrags.

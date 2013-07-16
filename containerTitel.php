@@ -1,5 +1,5 @@
 <h2>
-<?
+<?php
 if( isset($_eTitel[0]) )
 {
   echo $_eTitel[0]; // 1. Titel anzeigen

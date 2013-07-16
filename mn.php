@@ -1,4 +1,4 @@
-<?
+<?php
 if( 0 )
 {
   echo"\nPOSTS:<br>";
@@ -27,11 +27,11 @@ include("tee.inc");
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
 </head>
 <link rel="stylesheet" href="./erica.css" media="screen" title="erica Stylesheet" />
-<body class="<?
+<body class="<?php
 echo $_E['bodyClass'];
-?>" id="<?
+?>" id="<?php
 echo $_E['bodyId'];
-?>"><?
+?>"><?php
 function logZustandswechsel( $str )
 {
   echo"\n<!-- Eintreten in Zustand $str ... -->\n";

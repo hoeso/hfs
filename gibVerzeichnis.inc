@@ -1,7 +1,9 @@
-<?
+<?php
 $i = "0";
 $str = $_E['projekt'] . 'Dir';
 
+if( isset($_E['enableDbg']) && $_E['enableDbg'] )
+  echo "<br>--dbg--- " . $str . ", docDir: " . $_SERVER[$str . $i] . " ---dbg--<br>";
 $_E['rootDocuments'] = "";
 while( isset($_SERVER[$str . $i]) )
 {

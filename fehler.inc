@@ -1,4 +1,4 @@
-<?
+<?php
 function reagierenAufSQLFehler( $lkid, $sql, &$PKViolation )
 {
 global $AusgabeUnterdruecken;
@@ -18,7 +18,7 @@ global $AusgabeUnterdruecken;
 <script language=javascript type='text/javascript'>
 location.href = './index.html'
 </script>  
-<?
+<?php
 		     break;
 		default:
 			$fUnbekannterFehler = true;
@@ -28,7 +28,7 @@ location.href = './index.html'
 //<script language=javascript type='text/javascript'>
 //  location.href = '/'
 //</script>
-//<?
+//<?php
 			echo "\nDie Anweisung '$sql' ging schief:<br>";
 			echo "\nFehler Nr. $errno<br>";
 			echo "\nFehlermeldung '$errmsg'";
