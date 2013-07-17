@@ -1,4 +1,4 @@
-<?
+<?php
 /*** zur vorgeschlagenen HTML-Struktur fuer Menue u. Inhalt vergleiche
  *** Henick: Das Beste an HTML & CSS, O'Reilly 2010.
  *** Seite 93

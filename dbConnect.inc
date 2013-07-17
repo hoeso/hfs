@@ -1,4 +1,4 @@
-<?
+<?php
 /************ Input **********************************************************
  *****************************************************************************/
 
@@ -6,7 +6,7 @@ include ("connect.prj");
 include ("verbindenMitMySQL.inc");
 if( isset($_E['enableDbg']) && $_E['enableDbg'] )
 {
-  ?>Trace : DB-Verbindung aufbauen<br>httpd.conf lesen ...<?
+  ?>Trace : DB-Verbindung aufbauen<br>httpd.conf lesen ...<?php
 
 }
 // Verbinden zum MySQL-Server

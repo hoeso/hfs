@@ -1,4 +1,4 @@
-<?
+<?php
 /************ Input **********************************************************
  * $_E['entitaet']	: der Name der Zieltabelle
  * $mapTable	: falls der Name der Zieltabelle leer ist

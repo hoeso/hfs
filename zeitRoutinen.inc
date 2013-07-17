@@ -1,4 +1,4 @@
-<?
+<?php
 function gibTagesDiff( $datum )
 {
    global $MySQLDb;

@@ -1,4 +1,4 @@
-<?
+<?php
 include ("dateiRoutinen.inc");
 include ("anzeigeRoutinen.inc");
 include ("dbRoutinen.inc");

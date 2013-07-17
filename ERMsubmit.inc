@@ -1,4 +1,4 @@
-<?
+<?php
 if( isset($strSubmitLabel) )
     $value=$strSubmitLabel;
 else if( $zielTabelle )
@@ -8,15 +8,15 @@ else
 
 if( !isset($keinInsert) or false == $keinInsert )
 {
-  ?><input type='submit' id='submit' value='<?
+  ?><input type='submit' id='submit' value='<?php
   echo $value;
-  ?>'><?
+  ?>'><?php
 }
 if( isset($fMailenAuftrag) and true == $fMailenAuftrag and "specht" != $user )
 {
 ?>
 <p align=left>
-<?
+<?php
 	$fChecked = true;
  $today = getdate();
  $zeitstempel=$today['year'] . "." . $today['mon'] . "." . $today['mday'] . "." . $today['hours'] . "_" . $today['minutes'] . "_" . $today['seconds'];
@@ -27,7 +27,7 @@ if( isset($fMailenAuftrag) and true == $fMailenAuftrag and "specht" != $user )
 </td>
 </tr>
 </FORM>
-<?
+<?php
 if( !isset($keinInsert) or false == $keinInsert )
 {
   if( $zielTabelle )
@@ -35,13 +35,13 @@ if( !isset($keinInsert) or false == $keinInsert )
 ?>
 <script language=javascript type='text/javascript'>
 <!--
-<?
+<?php
     if( isset($focusName) and $focusName )
 	   echo"\ndocument.frm$zielTabelle.$focusName.focus()\n";
 ?>
 // -->
 </script>
-<?
+<?php
   }
  echo "\n</table>";
 }

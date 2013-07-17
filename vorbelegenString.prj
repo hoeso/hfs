@@ -1,4 +1,4 @@
-<?
+<?php
 if( "Ruecksprache" == $zielTabelle )
   echo"VALUE=$doc";
 ?>

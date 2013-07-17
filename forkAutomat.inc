@@ -1,4 +1,4 @@
-<?
+<?php
 $forkAutomat = array(
 /* zum Kopieren
 	""=>array(

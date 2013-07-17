@@ -1,4 +1,4 @@
-<?
+<?php
 unset( $candies );
 $candies = "";
 if( isset($_eCandy) )

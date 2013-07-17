@@ -1,4 +1,4 @@
-<?
+<?php
 /*****************************************************************************
  * 12.11.2009 : Das SQL-Statement Array $Select wurde in die Datei sichten.prj
  *              ausgelagert.

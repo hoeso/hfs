@@ -1,4 +1,4 @@
-<?
+<?php
 $BERICHTNR_HIGH=18; // hier HIGH + 1 setzen !!
 if( isset( $_SERVER['BerichteRoot'] ) )
   $BERICHT_ROOT=$_SERVER['BerichteRoot'];

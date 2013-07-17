@@ -1,4 +1,4 @@
-<?
+<?php
 include ("fehler.inc");
 
 // Verbinden zum MySQL-Server
@@ -20,7 +20,7 @@ exit;
 <script language=javascript type='text/javascript'>
   location.href = '/'
 </script>
-<?
+<?php
   }
   return $lkid;
 }

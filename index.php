@@ -12,26 +12,25 @@
 </script>
 </head>
 <link rel="stylesheet" href="./erica.css" media="screen" title="erica Stylesheet" />
-<?
+<?php
 $_E['bodyClass'] = "main";
 $_E['bodyId'] = "main";
 ?>
-<body class="<?
+<body class="<?php
 echo $_E['bodyClass'];
-?>" id="<?
+?>" id="<?php
 echo $_E['bodyId'];
 ?>">
-<? include("kopfteil.html"); ?>
-<? include("kopfteil.prj"); ?>
-<? include("endeContainer.html"); ?>
-<? include("hauptteil.html"); ?>
-<? include("haupttext.html"); ?>
-<? include("endeContainer.html"); ?>
-<? include("seitenleiste.html"); ?>
-<? include("hauptnavigation.html"); ?>
-<? include("naviUpload.html"); ?>
-<? include("endeNavigation.html"); ?>
-<? include("endeContainer.html"); ?>
-<? include("endeContainer.html");//hauptteil ?>
+<?php include("kopfteil.prj"); ?>
+<?php include("endeContainer.html"); ?>
+<?php include("hauptteil.html"); ?>
+<?php include("haupttext.html"); ?>
+<?php include("endeContainer.html"); ?>
+<?php include("seitenleiste.html"); ?>
+<?php include("hauptnavigation.html"); ?>
+<?php include("naviElemente.html"); ?>
+<?php include("endeNavigation.html"); ?>
+<?php include("endeContainer.html"); ?>
+<?php include("endeContainer.html");//hauptteil ?>
 </body>
 </html>

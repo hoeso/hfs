@@ -1,4 +1,4 @@
-<?
+<?php
 // Input: 
 // $_E['rootDocuments']
 
@@ -15,7 +15,7 @@ $str = $_E['rootDocuments'];
 <li>
 1. Dr&uuml;cken Sie auf <em>Durchsuchen ...</em> und w&auml;hlen Sie in dem darauf folgenden Dialog ihre Datei aus:
 </li>
-<input type=file name=datei value=<?echo $str;?>? size=80>
+<input type=file name=datei value=<?php echo $str;?>? size=80>
 <li>
 2. Senden Sie Ihre Datei ab:
 <input type=submit value='senden'>

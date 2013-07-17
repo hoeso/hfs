@@ -1,4 +1,4 @@
-<?
+<?php
 /************ Input **********************************************************
  * zielTabelle	    : in die zu speichernde Tabelle
  * keinInsert		 : es wird kein Datensatz angeboten zum Erfassen
@@ -26,7 +26,7 @@ if( isset($debugPK) and $debugPK )
 /*** Tabellenzeile mit den Auswahllisten fuellen ***/
 if( !isset($keinInsert) or false == $keinInsert )
 {
-  ?><tr><?
+  ?><tr><?php
 }
 /***
  * $anzListe wird in ERMsubmit.inc geprueft, ob nur 1 Liste
@@ -46,7 +46,7 @@ for( $j=0; $j<$countMULTISL; $j++ )
 {
   if( !isset($keinInsert) or false == $keinInsert )
   {
-    ?><td><?
+    ?><td><?php
   }
   unset($arrID);
   unset($arrZeilen);
@@ -87,7 +87,7 @@ if( isset($arrSL) )
   {
     if( !isset($keinInsert) or false == $keinInsert )
     {
-      ?><td><?
+      ?><td><?php
     }
     unset($Mid);
     unset($zeilen);
@@ -112,7 +112,7 @@ if( isset($arrRE) )
   {
     if( !isset($keinInsert) or false == $keinInsert )
     {
-      ?><td><?
+      ?><td><?php
     }
     $fDatum = lesenRETabelle( $result, $MySQLDb, $arrRE[$i], "" );
     if( $result )
@@ -122,7 +122,7 @@ if( isset($arrRE) )
       ListeMitID( $result, $labelRE[$i], $arrRE[$i], $fDatum, $anzuzeigen );
       if( !isset($keinInsert) or false == $keinInsert )
       {
-        ?></td><?
+        ?></td><?php
       }
       $anzListeneintrag += mysql_num_rows( $result );
       $succ = mysql_free_result( $result );
@@ -142,7 +142,7 @@ if( isset($arrEM) )
   {
     if( !isset($keinInsert) or false == $keinInsert )
     {
-      ?><td><?
+      ?><td><?php
     }
     $sql = "SELECT * FROM $arrEM[$i]";
   
@@ -183,7 +183,7 @@ if( isset($arrMM) )
   {
     if( !isset($keinInsert) or false == $keinInsert )
     {
-      ?><td><?
+      ?><td><?php
     }
     $sql = "SELECT * FROM $arrMM[$i]";
     if( $debug )
@@ -213,7 +213,7 @@ if( isset($arrMM) )
     }
     if( !isset($keinInsert) or false == $keinInsert )
     {
-      ?></td><?
+      ?></td><?php
     }
 }
 $anzListe += $i;
@@ -223,7 +223,7 @@ if( isset($arrMM) )
   $zielTabelle=$arrMM[$i];
 if( !isset($keinInsert) or false == $keinInsert )
 {
-  ?><td><?// bgcolor='#E8E8E8' align='right' nowrap><font size='-2'>";
+  ?><td><?php // bgcolor='#E8E8E8' align='right' nowrap><font size='-2'>";
 }
 if( $zielTabelle and (!isset($keinInsert) or false == $keinInsert) )
 {
@@ -235,9 +235,9 @@ if( $debug )
 $focusFeld=false;      // Namen des 1. Eingabefeldes speichern in $focusName
 $enumIDX=1;
 echo "\n"; // damit Zeilenumbruch im Quelltext
-?><fieldset><legend><span><? echo $zielTabelle; ?>, neuer Eintrag:</span></legend><?
+?><fieldset><legend><span><?php echo $zielTabelle; ?>, neuer Eintrag:</span></legend><?php
 echo "\n";
-?><ul><?
+?><ul><?php
 echo "\n";
 for( $i=0; $i<$anz; $i++ )
 {
@@ -255,7 +255,7 @@ for( $i=0; $i<$anz; $i++ )
         if( strstr($str, "ID" ) )
           break;
         echo "\n";
-        ?><li><?
+        ?><li><?php
         $fType = true;
         $feld = $elem;
         // siehe Datei mapSpaltennamen.inc:
@@ -346,7 +346,7 @@ for( $i=0; $i<$anz; $i++ )
             case "blob":
               echo " COLS=86 ROWS=3 WRAP=PHYSICAL>";
               include("vorbelegenBlob.prj");
-?></TEXTAREA></LI><?
+?></TEXTAREA></LI><?php
             break;
             default:
               echo " TYPE='TEXT' >\n</li>\n";
@@ -362,12 +362,12 @@ for( $i=0; $i<$anz; $i++ )
 }
 }
 echo "\n";
-?></ul></fieldset><?
+?></ul></fieldset><?php
 if( !isset($keinInsert) or false == $keinInsert )
 {
   if( $zielTabelle )// Speichern-Knopf mittig in unterste Tabellenzeile ausgeben
   {
-     ?></td><?
+     ?></td><?php
      echo "\n\t<tr><td colspan=$anz>";
   }
 }

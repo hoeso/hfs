@@ -1,4 +1,4 @@
-<?
+<?php
 if( isset( $_SERVER['SimPort'] ) )
   $port=$_SERVER['SimPort'];// damit auch ohne Zertifikat am Entwicklungshost getestet werden kann
 else
