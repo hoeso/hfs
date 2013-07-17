@@ -1,4 +1,4 @@
-<?
+<?php
 $arr = explode(",", $enumListe[$strKey]);
 for( $j=0; $j<count($arr); $j++ )
 {

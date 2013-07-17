@@ -1,4 +1,4 @@
-<?
+<?php
 /************ Input **********************************************************
  * zielTabelle	    : in die zu speichernde Tabelle
  * keinInsert	    : es wird kein Datensatz angeboten zum Erfassen
@@ -257,48 +257,48 @@ if( isset($BOGesID) and $BOGesID and isset($keinInsert) and $keinInsert )
 if( !isset($keinInsert) or false == $keinInsert )
 {
   ?><table>
-  <tr><?
+  <tr><?php
   if( isset($arrSL) )
     for( $i=0; $i<count($arrSL); $i++ )
     {
-	  ?><th><?
+	  ?><th><?php
 	  echo $arrSL[$i];
-	  ?></th><?
+	  ?></th><?php
     }
 
   if( isset($arrMULTISL) )
     for( $i=0; $i<count($arrMULTISL); $i++ )
     {
-	  ?><th><?
+	  ?><th><?php
 	  echo $arrMULTISL[$i];
-	  ?></th><?
+	  ?></th><?php
     }
   if( isset($arrRE) )
     for( $i=0; $i<count($arrRE); $i++ )
     {
-	  ?><th><?
+	  ?><th><?php
 	  $str=$arrRE[ $i ];
 	  $str=str_replace( "ae", "&auml;", $str );
 	  echo $str;
-	  ?></th><?
+	  ?></th><?php
     }
   if( isset($arrEM) )
     for( $i=0; $i<count($arrEM); $i++ )
     {
-	  ?><th><?
+	  ?><th><?php
 	  echo $arrEM[$i];
-	  ?></th><?
+	  ?></th><?php
     }
   if( isset($arrMM) )
     for( $i=0; $i<count($arrMM); $i++ )
     {
-	  ?><th><?
+	  ?><th><?php
 	  echo $arrMM[$i];
-	  ?></th><?
+	  ?></th><?php
     }
   if( !$_E['entitaet'] )	// der weiter... - Knopf soll noch rechts der Liste erscheinen
   {
-    ?><th></th><?
+    ?><th></th><?php
   }
   // 29.1.04: Der Speichern-Knopf soll im Fall von $_E['entitaet'] nicht mehr in einer eigenen Spalte hinter den Eingabefelder sein
   echo "\n</tr>";

@@ -1,4 +1,4 @@
-<?
+<?php
 if( strstr( $_SERVER['SERVER_ADMIN'], "nx6310" ) )
   $BERICHT_ROOT="/srv/www/htdocs/rechnungen/";
 else

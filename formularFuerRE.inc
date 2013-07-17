@@ -1,4 +1,4 @@
-<?
+<?php
 $arrNichtAendern=array (
 /* zum Kopieren
 "",
@@ -49,9 +49,9 @@ if( false==isset($keinInsert) )
     ausgebenAlsNeueTabellenzeile( $result, $_E['entitaet'] );
   else
     ausgebenAlsNeueTabellenzeile( $result, $_E['entitaet'], $enumListe[$_E['entitaet']] );
-  ?><td><?
+  ?><td><?php
   formularKnopf("neu anlegen", "");
-  ?></td></form><?
+  ?></td></form><?php
   tabellenZeileBeenden();
 }
 

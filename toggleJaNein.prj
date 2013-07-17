@@ -1,4 +1,4 @@
-<?
+<?php
 /* Toggeln von 'ja'-'nein' enums: das Toggeln wird nur angeboten, wenn der
  * Feldwert als Arraywert vorkommt
  * enum-Feldname_Tabelle=>wert1_wertn

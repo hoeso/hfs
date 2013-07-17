@@ -1,4 +1,4 @@
-<?
+<?php
 /**** reine Entitaeten werden in der Funktion lesenRETabelle() ausgelesen *****
  **** mit SELECT * FROM TABLE. In diesem Abschnitt kann die projektspezifische
  **** Sortierung angegeben werden.                                        *****/

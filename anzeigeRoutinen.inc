@@ -1,4 +1,4 @@
-<?
+<?php
 /******** Formular-Funktionen ************************************************/
 function formularBeginnen($action,$extra)
 {
@@ -33,28 +33,28 @@ function tabelleBeginnen( $caption = "" )
   global $fAnzeigeUnterdruecken;
   if( $fAnzeigeUnterdruecken )
     return;
-  ?><table><caption><?if( isset($caption) and ("ohne submit Knopf" != $caption) ) echo $caption;?></caption><?
+  ?><table><caption><?php if( isset($caption) and ("ohne submit Knopf" != $caption) ) echo $caption;?></caption><?php
   return true;
 }
 function tabelleBeenden()
 {
-  ?></table><?
+  ?></table><?php
 }
 function tabellenZeileBeginnen()
 {
-  ?><tr><?
+  ?><tr><?php
 }
 function tabellenZeileBeenden()
 {
-  ?></tr><?
+  ?></tr><?php
 }
 function tabellenZelleBeginnen()
 {
-  ?><td><?
+  ?><td><?php
 }
 function tabellenZelleBeenden()
 {
-  ?></td><?
+  ?></td><?php
 }
 function zaehlenAttributSpalten( $spaltenName, &$cSpalten )
 {
@@ -75,10 +75,10 @@ function headerFooter( $mark, $spaltenName, $auchID, &$cSpalten, $sql, $zielTabe
   $cSpalten = 0;
   $anz = count( $spaltenName );
   echo "<$mark>";
-  ?><tr><?
+  ?><tr><?php
   if( $auchID )
   {
-    ?><th></th><?
+    ?><th></th><?php
   }
   for( $i=1; $i < $anz; $i++ )
   {
@@ -90,32 +90,32 @@ function headerFooter( $mark, $spaltenName, $auchID, &$cSpalten, $sql, $zielTabe
             $fUnterdruecken=true;
       if( false == $fUnterdruecken )
       {
-        ?><th<?
+        ?><th<?php
         $j=$i-1;
         if( isset( $aColspan[$j] ) and $aColspan[$j] )
            echo_(" colspan=$aColspan[$j]");
-        ?>><?
+        ?>><?php
         if( !isset($Bezug) )
           $bzg = "";
         else
           $bzg = "&Bezug=$Bezug";
         echo_("<A HREF=\"./eiZu.php?wZu=zeigendDruckansicht&zielTabelle=$zielTabelle&sql=$str$bzg&bgcolor=white&gruppenStaerke=$gruppenStaerke&$proj&orderBy=$spaltenName[$i]&desc=false\">$spaltenName[$i]</A>");
-        ?></th><?
+        ?></th><?php
         $cSpalten++;
       }
     }
   }
   if( !$zielTabelle )  // Hier soll keine Druckansicht angeboten werden, z.B. in der Preisansicht
   {
-    ?></tr><?
+    ?></tr><?php
   }
   else if( "ohne submit Knopf" <> $zielTabelle )
   {
     $Bezug="";
-    ?><th><?
+    ?><th><?php
 //    echo_("\n<FORM ACTION=\"./eiZu.php?wZu=zeigendDruckansicht&zielTabelle=$zielTabelle&Bezug=$Bezug&bgcolor=white&gruppenStaerke=$gruppenStaerke&$proj\" METHOD=POST>\n<INPUT TYPE=HIDDEN NAME=sql VALUE=\"$sql\">\n<INPUT TYPE=SUBMIT VALUE=Druckansicht>\n</FORM>");
 //    echo_("\n<A HREF=\"./eiZu.php?wZu=zeigendDruckansicht&zielTabelle=$zielTabelle&sql=$str&Bezug=$Bezug&bgcolor=white&gruppenStaerke=$gruppenStaerke&$proj\">Druckansicht</A>");
-    ?></th></tr><?
+    ?></th></tr><?php
   }
   echo "</$mark>";
 }
@@ -178,27 +178,27 @@ $mapAushang["<="]="qm";
     {
       $fSubmit=false;
       $auchID = false;
-      ?><td><INPUT TYPE='RADIO' NAME='PK' VALUE=<?
+      ?><td><INPUT TYPE='RADIO' NAME='PK' VALUE=<?php
       echo_("'$elem'");
       if( !$fChecked )
       {
         if( !$globalID )
         {
-          ?> CHECKED<?
+          ?> CHECKED<?php
           $fChecked = true;
         }
         if( $globalID == $elem )
         {
-          ?> CHECKED<?
+          ?> CHECKED<?php
           $fChecked = true;
         }
       }
-      ?><img src='images/zwischenPfeil.gif'><?
+      ?><img src='images/zwischenPfeil.gif'><?php
       if( "Paket" != $table )
       {
-        ?><input type=image src='imagesquit.gif'><?
+        ?><input type=image src='imagesquit.gif'><?php
       }
-      ?></td><?
+      ?></td><?php
     }
     if( $istKeineID )
     {
@@ -222,7 +222,7 @@ $mapAushang["<="]="qm";
              $Summenwert += $elem;
              $elem = number_format($elem,'2',',','.');
           }
-          ?><td <?
+          ?><td <?php
           $j=$i-1;
           if( isset( $aColspan[$j] ) )
             echo_(" colspan=$aColspan[$j]");
@@ -259,10 +259,10 @@ $mapAushang["<="]="qm";
   }
   if( $fSubmit )
   {
-    ?><td><?
+    ?><td><?php
     ?><input type=image src='images/del.gif' name='delete'>
     </td>
-    </FORM><?
+    </FORM><?php
   }
   if( !isset($vgl) )
     $vgl="";
@@ -339,22 +339,22 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
     if( $auchID )
     {
       $auchID = false;
-      ?><td><input type='radio' name='PK' value=<?
+      ?><td><input type='radio' name='PK' value=<?php
       echo "'$elem'";
       if( !$fChecked )
       {
         if( !$globalID )
         {
-          ?> checked<?
+          ?> checked<?php
           $fChecked = true;
         }
         if( $globalID == $elem )
         {
-          ?> checked<?
+          ?> checked<?php
           $fChecked = true;
         }
       }
-      ?><img src='images/zwischenPfeil.gif'><input type=image src='images/quit.gif'></td><?
+      ?><img src='images/zwischenPfeil.gif'><input type=image src='images/quit.gif'></td><?php
     }
     if( $istKeineID )
     {
@@ -389,13 +389,13 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
             $farbe = 'red';
         }
       }
-      ?><td<?
+      ?><td<?php
       if( isset($farbe) )
       {
-        ?> bgcolor=<?
+        ?> bgcolor=<?php
         echo $farbe;
       }
-      ?>><?
+      ?>><?php
       $key=$arrFeldName[$i] . "_" . $table;
       if( isset($toggleJaNein["$key"]) && strstr( $arrFeldFlag[$i], 'enum' ) && strstr( $toggleJaNein["$key"], $elem ) )
       {
@@ -420,7 +420,7 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
       }
       if( isset($fAnkern) and true == $fAnkern )
         echo "</A>";
-      ?></td><?
+      ?></td><?php
     }
     else
     {
@@ -443,7 +443,7 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
     $vgl="";
   if( $gruppe <> $vgl )
     $gruppe = $vgl;
-  ?><td><?
+  ?><td><?php
 
   // Bei bereits zugestellter Gewerk-Gutschrift den Insert blocken:
   unset($gutschriftZugestellt);
@@ -453,7 +453,7 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
 
   if( !isset($gutschriftZugestellt) && !$fPopup && !isset($_E['bleistift']) )
   {
-    ?><input type=image src='images/edit.gif' name='update'><?
+    ?><input type=image src='images/edit.gif' name='update'><?php
   }
   $fSubmit = true;
   foreach( $arrNichtLoeschen as $k )
@@ -461,9 +461,9 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
   $fSubmit = false;
   if( $fSubmit && !isset($gutschriftZugestellt) && !$fPopup && !$fKeinDelete )
   {
-    ?><input type=image src='images/del.gif' name='delete'><?
+    ?><input type=image src='images/del.gif' name='delete'><?php
   }
-  ?></td></form><?
+  ?></td></form><?php
 }
 function ausgebenAlsTabelleHorizontal( $spaltenName, $auchID, &$cSpalten, $sql, $zielTabelle, $result, $table, $ID, $ActionSuffix, $arrStyle )
 {
@@ -818,14 +818,14 @@ function ListeMitID( $result, $label, $table, $fDatum, $anzuzeigen )
   $anz = mysql_num_fields($result);
   if( !isset($keinInsert) or false == $keinInsert )
   {
-    ?><input type='hidden' name='Tabelle<?
+    ?><input type='hidden' name='Tabelle<?php
     echo $label;
-    ?>' value='<?
+    ?>' value='<?php
     echo $table;
     ?>'>
-    <select name='SELECT<?
+    <select name='SELECT<?php
     echo $label;
-    ?>'><?
+    ?>'><?php
   }
   $f=false;
 
@@ -838,9 +838,9 @@ function ListeMitID( $result, $label, $table, $fDatum, $anzuzeigen )
       {
         if( !isset($keinInsert) or false == $keinInsert )
         {
-          ?><option value='<?
+          ?><option value='<?php
           echo "$elem";
-          ?>'<?
+          ?>'<?php
         }
         if( isset($IDgewaehlt) and $IDgewaehlt )
         {
@@ -848,7 +848,7 @@ function ListeMitID( $result, $label, $table, $fDatum, $anzuzeigen )
           {
             if( !isset($keinInsert) or false == $keinInsert )
             {
-              ?> SELECTED<?
+              ?> SELECTED<?php
             }
           }
         }
@@ -856,13 +856,13 @@ function ListeMitID( $result, $label, $table, $fDatum, $anzuzeigen )
         {
           if( !isset($keinInsert) or false == $keinInsert )
           {
-            ?> SELECTED<?
+            ?> SELECTED<?php
           }
           $f = true;
         }
         if( !isset($keinInsert) or false == $keinInsert )
         {
-          ?>><?
+          ?>><?php
         }
         $id = false;
       }
@@ -885,14 +885,14 @@ function ListeMitID( $result, $label, $table, $fDatum, $anzuzeigen )
         }
         else
         {
-          ?> <?
+          ?> <?php
         }
       }
     }
   }
   if( !isset($keinInsert) or false == $keinInsert )
   {
-    ?></select><?
+    ?></select><?php
   }
 }
 function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
@@ -927,14 +927,14 @@ function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
   //$size=max($size,1);
   if( !isset($keinInsert) or false == $keinInsert )
   {
-    ?><input type='hidden' name='Tabelle<?
+    ?><input type='hidden' name='Tabelle<?php
     echo $label;
-    ?>' value='<?
+    ?>' value='<?php
     echo $table;
-    ?>'><?
-    ?><select name='SELECT<?
+    ?>'><?php
+    ?><select name='SELECT<?php
     echo "$label";
-    ?>'><?
+    ?>'><?php
   }
   $i=0;
   $record=0;
@@ -947,9 +947,9 @@ function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
       {
         if( !isset($keinInsert) or false == $keinInsert )
         {
-          ?><option value='<?
+          ?><option value='<?php
           echo "$id[$record]";
-          ?>' SELECTED><?
+          ?>' SELECTED><?php
         }
         for( $j=0; $j < $anz; $j++, $i++ )
           if( !isset($keinInsert) or false == $keinInsert )
@@ -966,9 +966,9 @@ function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
     }
     if( !isset($keinInsert) or false == $keinInsert )
     {
-      ?><option value='<?
+      ?><option value='<?php
       echo "$id[$record]";
-      ?>'<?
+      ?>'<?php
     }
     if( isset($IDgewaehlt) and $IDgewaehlt )
     {
@@ -976,7 +976,7 @@ function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
       {
         if( !isset($keinInsert) or false == $keinInsert )
         {
-          ?> SELECTED<?
+          ?> SELECTED<?php
         }
       }
     }
@@ -984,13 +984,13 @@ function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
     {
       if( !isset($keinInsert) or false == $keinInsert )
       {
-        ?> SELECTED<?
+        ?> SELECTED<?php
       }
       $fSelected = true;
     }
     if( !isset($keinInsert) or false == $keinInsert )
     {
-      ?>><?
+      ?>><?php
     }
     $record++;
     for( $j=0; $j < $anz; $j++, $i++ )
@@ -999,16 +999,16 @@ function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
   }
   if( !isset($keinInsert) or false == $keinInsert )
   { 
-    ?></select><?
+    ?></select><?php
   }
 }
 function ergebnisBoxenMitID( $label, $table, $anz, $id, $exclude, $zeilen, $zielTabelle, $anzBoxen )
 {
-  ?><input type='hidden' name='Tabelle<?
+  ?><input type='hidden' name='Tabelle<?php
   echo "$label";
-  ?>' value='<?
+  ?>' value='<?php
   echo "$table";
-  ?>'><?
+  ?>'><?php
   $i=0;
   $record=0;
   $anzBoxen = 0;
@@ -1027,7 +1027,7 @@ function ergebnisBoxenMitID( $label, $table, $anz, $id, $exclude, $zeilen, $ziel
       continue;
     }
     $anzBoxen++;
-    ?><input type checkbox name='CHECKBOX<?
+    ?><input type checkbox name='CHECKBOX<?php
     echo "$label";
     $idx = $letzte+$i;
     if( strstr( $zeilen[$idx], "flaechengestuft" ) )
@@ -1041,10 +1041,10 @@ function ergebnisBoxenMitID( $label, $table, $anz, $id, $exclude, $zeilen, $ziel
     else
       $flag='?';
 
-    ?>_<?
+    ?>_<?php
     if( 10 > $record )
     {
-      ?>0<?
+      ?>0<?php
     }
     echo "$record' value='$id[$record]' onClick=\"triggerCheckbox(this,$record,'$flag','$zielTabelle')\">";
 //    echo "_$record' value='$id[$record]' onClick=\"triggerCheckbox(this,$record,'$zeilen[$idx]')\">";
@@ -1052,7 +1052,7 @@ function ergebnisBoxenMitID( $label, $table, $anz, $id, $exclude, $zeilen, $ziel
     for( $j=0; $j < $anz; $j++, $i++ )
       echo "$zeilen[$i] ";
     echo"&nbsp;(Pos. $record)";
-    ?><p><?
+    ?><p><?php
   }
 }
 function ausgebenAlsNeueTabellenzeile( $result, $table, $enumListe = "" )
@@ -1073,32 +1073,32 @@ function anzeigenTabelle( $tabKopf, $zeilen, $align )
 
   if( !$gfTabelleObenOffen )
   {
-    ?><table><?
+    ?><table><?php
   }
-  ?><tr><?
+  ?><tr><?php
   $anz = count($tabKopf);
   for( $i=0; $i < $anz; $i++ )
   {
-    ?><th><?
+    ?><th><?php
     echo $tabKopf[ $i ];
-    ?></th><?
+    ?></th><?php
   }
-  ?></tr><?
+  ?></tr><?php
 
   for( $i=0; $i < count($zeilen); )
   {
-    ?><tr><?
+    ?><tr><?php
     for( $j=0; $j < $anz; $j++ )
     {
-      ?><td><?
+      ?><td><?php
       echo $zeilen[ $i++ ];
-      ?></td><?
+      ?></td><?php
     }
-    ?></tr><?
+    ?></tr><?php
   }
   if( !$gfTabelleUntenOffen )
   {
-    ?></table><?
+    ?></table><?php
   }
 }
 function anzeigenTabelleMitLink( $tabKopf, $zeilen, $align, $arrID, $arrNLID, $cFeld, $wZu, $dimStatCol, $tmpBGNLSummen )

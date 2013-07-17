@@ -1,4 +1,4 @@
-<?
+<?php
 // enum-Listen der Zieltabellen.
 // Hat eine Zieltabelle mehr als ein enum-Feld, dann gibt es 2 Eintraege
 // wie z.B. bei Tabelle GewerkTaktplan

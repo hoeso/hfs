@@ -1,4 +1,4 @@
-<?
+<?php
 function schreibenInDatei( $datei, $str )
 {
 	$name = "./download/$datei.txt";

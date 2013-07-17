@@ -4,7 +4,7 @@ Hinterlegen von Projekt-Verzeichnissen</e>:
 <ol>
 <li> Im Modul <e>connect.prj</e> den Namen des Projektes setzen (kann z.B. der Name des lokalen Users sein):
 <br> $_E['projekt']="erica";
-<li> In der Konfigurationsdatei /etc/apache2/conf.d/httpd.conf die Variable <e>Dir</e>, gefolgt von einem <e>Index</e> setzen, dabei im Variablennamen mit dem Namen des Projektes beginnen:
+<li> In der Konfigurationsdatei /etc/apache2/conf-enabled/httpd.conf die Variable <e>Dir</e>, gefolgt von einem <e>Index</e> setzen, dabei im Variablennamen mit dem Namen des Projektes beginnen:
 <br> SetEnv ericaDir0   "/var/erica/docs"
 <br> Den Index beim Aufruf als SHA1-Wert &uuml;bergeben
 </ol>

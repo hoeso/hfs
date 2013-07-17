@@ -1,4 +1,4 @@
-<?
+<?php
 /************ Input **********************************************************
  * wird includiert von anzeigeRoutinen.inc
  * table   : Tabellenname

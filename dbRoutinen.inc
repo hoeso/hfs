@@ -1,4 +1,4 @@
-<?
+<?php
 function einfuegenAusschlussKriterium( $db, $lkid, $tabelle, &$sql )
 {
 $ausschliesser = array(

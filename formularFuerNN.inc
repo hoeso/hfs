@@ -1,4 +1,4 @@
-<?
+<?php
 if( !isset($suffixA) )
   $suffixA="";
 $fDatum = lesenRETabelle( $result, $MySQLDb, $_E['entitaetLinks'], $suffixA );
@@ -12,13 +12,13 @@ if( isset($debug) && $debug )
   echo "ausgeben der Tabelle '{$_E['entitaetLinks']}' ...<br>";
 
 ?><table>
-<caption><?echo $_E['entitaet'];?></caption>
+<caption><?php echo $_E['entitaet'];?></caption>
 <thead>
 <tr>
-<th><?
+<th><?php
 echo $_E['entitaetLinks'];
 ?></th>
-<th><?
+<th><?php
 echo $_E['entitaetRechts'];
 ?></th>
 <th></th>
@@ -26,39 +26,39 @@ echo $_E['entitaetRechts'];
 </thead>
 <tfoot>
 <tr>
-<th><?
+<th><?php
 echo $_E['entitaetLinks'];
 ?></th>
-<th><?
+<th><?php
 echo $_E['entitaetRechts'];
 ?></th>
 <th></th>
 </tr>
 </tfoot>
-<?
+<?php
 if( isset($fUpdateB) )
   $str="&fUpdateB=$fUpdateB";
 else
   $str="";
-?><form action="./mn.php?mn=4454<?
+?><form action="./mn.php?mn=4454<?php
 echo $str;
 ?>" method='post'>
-<input type='hidden' name='TabelleM' value='<?
+<input type='hidden' name='TabelleM' value='<?php
 echo $_E['entitaet'];
 ?>'>
 <tbody>
 <tr>
-<td><?
+<td><?php
 ListeMitID( $result, 'A', $_E['entitaetLinks'], $fDatum, isset($anzuzeigen)?$anzuzeigen:"" );
-?></td><?
+?></td><?php
 $succ = mysql_free_result( $result );
 
 $fDatum = lesenRETabelle( $result, $MySQLDb, $_E['entitaetRechts'], "" );
 if( $result )
 {
-  ?><td><?
+  ?><td><?php
   ListeMitID( $result, 'B', $_E['entitaetRechts'], $fDatum, isset($anzuzeigen)?$anzuzeigen:"" );
-  ?></td><?
+  ?></td><?php
   $succ = mysql_free_result( $result );
 }
 ?><td>
@@ -66,7 +66,7 @@ if( $result )
 </td></tr>
 </tbody>
 </form>
-</table><?
+</table><?php
 
 if( isset($Select[$_E['entitaet']]) )
   $sql = $Select[$_E['entitaet']];
