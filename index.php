@@ -10,8 +10,8 @@
     top.location = self.location
   }
 </script>
-</head>
 <link rel="stylesheet" href="./erica.css" media="screen" title="erica Stylesheet" />
+</head>
 <?php
 $_E['bodyClass'] = "main";
 $_E['bodyId'] = "main";
@@ -21,6 +21,7 @@ echo $_E['bodyClass'];
 ?>" id="<?php
 echo $_E['bodyId'];
 ?>">
+<?php include("kopfteil.html"); ?>
 <?php include("kopfteil.prj"); ?>
 <?php include("endeContainer.html"); ?>
 <?php include("hauptteil.html"); ?>

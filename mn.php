@@ -25,8 +25,8 @@ include("tee.inc");
 <title>Ass21
 </title>
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
-</head>
 <link rel="stylesheet" href="./erica.css" media="screen" title="erica Stylesheet" />
+</head>
 <body class="<?php
 echo $_E['bodyClass'];
 ?>" id="<?php
