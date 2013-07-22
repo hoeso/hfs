@@ -1,4 +1,4 @@
-<?
+<?php
 /**********************************************
  * Übergabe einer einmaligen Zuordnung
  * es wird geprüft, ob diese bereits existiert
@@ -12,7 +12,7 @@ if( !isset( $HTTP_POST_VARS ) )
   Verst&auml;ndigen Sie ihren Systemadministrator<br>
   <ul>M&ouml;gliche Fehlerursachen
   <li>Die Formulardaten wurden nicht mit METHOD='POST' gesendet
-  <ul><?
+  <ul><?php
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
@@ -45,9 +45,9 @@ foreach( $HTTP_POST_VARS as $k=>$elem )
 $succ = gibEinmaligenRecord( $MySQLDb, $arr, $sql, $nTreffer );
 if( !$succ )
 {
-  ?>Es ist ein Fehler aufgetreten beim Ueberpr&uuml;fen, ob die Zuordnung in der Tabelle <?
+  ?>Es ist ein Fehler aufgetreten beim Ueberpr&uuml;fen, ob die Zuordnung in der Tabelle <?php
   echo $TabelleM;
-  ?> schon vorhanden ist<?
+  ?> schon vorhanden ist<?php
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
@@ -102,7 +102,7 @@ switch( $TabelleB )
      }
   break;
   default:
-    ?>Die gew&auml;hlte Zuordnung existiert bereits<br><?
+    ?>Die gew&auml;hlte Zuordnung existiert bereits<br><?php
   break;
 }
   anzeigenTabelle( $tabKopf, $zeilen, "center" );

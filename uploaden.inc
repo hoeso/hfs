@@ -1,4 +1,4 @@
-<?
+<?php
 //
 //  Diese Datei wird aufgerufen, NACHDEM das Hochladen der Datei(en)
 //  abgeschlossen ist. $_FILES enthaelt nun die an den Upload uebergebenen Datei(en)
@@ -45,7 +45,7 @@ foreach( $_FILES as $k=>$elem )
           {
             echo "wegen dem technischem Fehler Nr $elem2 konnte die Datei nicht hochgeladen werden.<br>";
 	    echo "Fehlerursache: $fehlergrund[$elem2]<br>";
-            $wZu="anbietendKnopfZurueck";
+            $_E['wZu']="anbietendKnopfZurueck";
             include("forkZu.inc");
           }
         break;
@@ -59,14 +59,16 @@ foreach( $_FILES as $k=>$elem )
     }
   
     /*** Datei                                              speichern ***/
-    $dst = $_E['rootDocuments'] . "/" . $name;
-    if( false == move_uploaded_file($tmp_name, $dst) )
+    $_A['dateiPfad'] = $_E['rootDocuments'] . "/" . $name;
+    if( false == move_uploaded_file($tmp_name, $_A['dateiPfad']) )
     {
-      ?>Die Datei <?echo $dst;?> konnte nicht gespeichert werden<br><?
+      ?>Die Datei <?php echo $_A['dateiPfad'];?> konnte nicht gespeichert werden<br><?php
     }
     else
     {
-      echo $dst;?> wurde gespeichert<br><?
+      echo $_A['dateiPfad'];?> wurde gespeichert<br><?php
+      $_E['wZu']="verarbeitendUpload";
+      include("forkZu.inc");
     }
   }
 }

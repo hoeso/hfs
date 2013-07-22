@@ -49,13 +49,16 @@ $forkAutomat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
-	"abrechnend"=>array(
-		"eiZuAbrechnend.inc",
-		"frmBriefkopf.inc",
-		"frmRechnungFinanzamt.inc",
-		"frmRechnungBetrag.inc",
-		"frmRechnungFuss.inc",
-		"speichernRechnung.inc"
+	"verarbeitendUpload"=>array(
+		"CSV.php",
+		"verarbeitenUpload.prj",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"naviUpload.html",
+		"endeNavigation.html",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
 	),
 	"abrechnendIndividualschaden"=>array(
 //		"eiZuAbrechnendIndividualschaden.inc",

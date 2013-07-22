@@ -1,0 +1,18 @@
+<?php
+/************ Input **********************************************************
+ * _A['dateiPfad']  : zu verarbeitende Datei
+ *                  : 
+ *****************************************************************************/
+$csv = new CSV( $_A['dateiPfad'] );
+if( false == $csv->lesbar )
+  return;
+$row=1;
+while( false <> $a = $csv->gibZeile )
+{
+  $num = count($a);
+  echo "<p> $num Felder in Zeile $row: <br /></p>\n";
+  $row++;
+  for ($c=0; $c < $num; $c++)
+    echo $a[$c] . "<br />\n";
+}
+?>
