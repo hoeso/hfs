@@ -11,6 +11,7 @@ if( 0 )
   foreach( $_FILES as $k=>$elem )
     echo"\nk : $k, elem: $elem<br>";
 }
+global $_E;
 $_E['mn'] = $_REQUEST["mn"];
 $_E['bodyClass'] = "main";
 $_E['bodyId'] = "main";

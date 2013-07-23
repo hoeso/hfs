@@ -3,6 +3,8 @@
  *** Henick: Das Beste an HTML & CSS, O'Reilly 2010.
  *** Seite 93
  ***/
+if( !isset($_E['navi']) )
+  $_E['navi'] = "Elemente";
 $automat = array(
 /* zum Kopieren
 	""=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
@@ -84,7 +86,7 @@ $automat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
-	"bspFuellendRE"=>array( // reine Entitaet
+	"fuellendRE"=>array( // reine Entitaet
 		"kopfteil.html",
 		"kopfteil.prj",
 		"endeContainer.html",
@@ -99,13 +101,13 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
-	"bspVerbindendEntitaeten"=>array(
+	"verbindendEntitaeten"=>array(
 		"kopfteil.html",
 		"kopfteil.prj",
 		"endeContainer.html",
@@ -125,7 +127,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
@@ -262,7 +264,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -305,7 +307,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -559,7 +561,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviUpload.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
@@ -579,7 +581,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviUpload.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil

@@ -243,22 +243,29 @@ switch( $_E['mn'] )
     $_E['enableDbg'] = true; // Ausgaben von dbConnect.inc aktivieren
     $_eTitel = array( "Das Salz in der Suppe" );
   break;
-  case "8546": // bspVerbindendEntitaeten
+  case "3239": // verbindendEntitaeten
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
-    $_E['wZu'] = "bspVerbindendEntitaeten";
+    $_E['wZu'] = "verbindendEntitaeten";
     $_E['entitaetLinks'] = $_REQUEST["a"];
     $_E['entitaetRechts'] = $_REQUEST["b"];
     $_E['entitaet'] = $_REQUEST["c"];
-    $_eTitel = array( $_REQUEST["d"], $_REQUEST["c"] );
+    if( isset($_REQUEST["d"]) )
+      $_eTitel = array( $_REQUEST["d"], $_REQUEST["c"] );
+    else
+      $_eTitel = array( $_REQUEST["c"] );
+    if( isset($_REQUEST["i"]) ) // ident: einruecken, gemappt auf gruppenStaerke
+      $_E['ident'] = $_REQUEST["i"];
+    $_E['navi'] = "Upload";
   break;
-  case "6649": //bspFuellendRE
+  case "6997": //fuellendRE
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
-    $_E['wZu'] = "bspFuellendRE";
+    $_E['wZu'] = "fuellendRE";
     $_E['entitaet'] = $_REQUEST["a"];
     $_eTitel = array( $_REQUEST["a"] );
     if( isset($_REQUEST["b"]) )
       $_E['bleistift'] = $_REQUEST["b"];
+    $_E['navi'] = "Upload";
   break;
 /*** intern gesetzte Links: ***/
   case "1142": // loeschen ja ... nein ...

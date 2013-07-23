@@ -58,15 +58,7 @@ $Select=array
 /* zum Kopieren:
   ""=>"",
 */
-//	"Region"=>"SELECT Region.ID, Region, von, bis FROM Region, vonPLZ, bisPLZ WHERE Region.vonPLZID=vonPLZ.ID AND Region.bisPLZID=bisPLZ.ID",
-	"Region"=>"SELECT Region.ID, Region, von, bis FROM Region JOIN vonPLZ ON (Region.vonPLZID=vonPLZ.ID) JOIN bisPLZ ON (Region.bisPLZID=bisPLZ.ID)",
-
-//	"Schadenbuero"=>"SELECT Schadenbuero.ID, Versicherer, Schadenbuero, PLZ, Ort FROM Schadenbuero, Versicherer WHERE Schadenbuero.VersichererID=Versicherer.ID",
-  "Schadenbuero"=>"SELECT Schadenbuero.ID, Versicherer, Schadenbuero, PLZ, Ort FROM Schadenbuero JOIN Versicherer ON (Schadenbuero.VersichererID=Versicherer.ID)",
-
-//  	"Bearbeiter"=>"SELECT Bearbeiter.ID, Versicherer, Schadenbuero, PLZ, Ort, Name, Telefon, Nebenstelle AS '_', eMail, Fax, PortalUser AS Portal FROM Bearbeiter, Schadenbuero, Versicherer, PortalUser WHERE Bearbeiter.SchadenbueroID=Schadenbuero.ID AND Schadenbuero.VersichererID=Versicherer.ID AND Bearbeiter.PortalUserID=PortalUser.ID",
-  "Bearbeiter"=>"SELECT Bearbeiter.ID, Versicherer, Schadenbuero, PLZ, Ort, Name, Telefon, Nebenstelle AS '_', eMail, Fax, PortalUser AS Portal FROM Bearbeiter JOIN Schadenbuero ON (Bearbeiter.SchadenbueroID=Schadenbuero.ID) JOIN Versicherer ON (Schadenbuero.VersichererID=Versicherer.ID) JOIN PortalUser ON (Bearbeiter.PortalUserID=PortalUser.ID)",
-
+  "TopicToken"=>"SELECT tt.ID, tp.Topic, t.Token FROM TopicToken tt JOIN Topic tp ON (tt.TopicID=tp.ID) JOIN Token t ON (tt.TokenID=t.ID)",
 /* zum Kopieren:
   ""=>"",
 
@@ -75,8 +67,7 @@ $Select=array
 
 $OrderBy=array
 (
-  "Bearbeiter"=>" ORDER BY Versicherer, Schadenbuero, Name",
-  "Schadenbuero"=>" ORDER BY Versicherer, Schadenbuero, PLZ",
+  "TopicToken"=>" ORDER BY Topic, Token",
 );
 
 $gfaerbteSpoidn = array(
