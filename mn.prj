@@ -298,6 +298,8 @@ switch( $_E['mn'] )
     $_E['entitaet'] = $_REQUEST["a"];
     $sql = $_REQUEST["b"];
     $_eTitel = array( $_REQUEST["c"] );
+    if( isset($_REQUEST["navi"]) )
+      $_E['navi'] = $_REQUEST["navi"];
   break;
   case "4454":
     if( !isset($_REQUEST["TabelleM"]) or !isset($_REQUEST["TabelleA"]) or !isset($_REQUEST["SELECTA"]) or !isset($_REQUEST["TabelleB"]) or !isset($_REQUEST["SELECTB"]) ) { echo $exitus; return; }
@@ -312,6 +314,8 @@ switch( $_E['mn'] )
     $_E['wZu'] = "speicherndRE";
     $_E['entitaet'] = $_REQUEST["a"];
     $_eTitel = array( $_REQUEST["b"] );
+    if( isset($_REQUEST["navi"]) )
+      $_E['navi'] = $_REQUEST["navi"];
   break;
   case "3653": // aenderndRE
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["ID"]) ) { echo $exitus; return; }

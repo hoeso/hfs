@@ -74,7 +74,10 @@ if( isset($arrRefs[$delTab]) )
       else
         $fKeinUpdate = $fKeinDelete = '';
       echo"\n<!-- $sql -->";
-      echo"\n<A HREF=\"./mn.php?mn=1433&b=$sql&c=Eintr&auml;ge%20in%20$refTab%20mit%20Bezug%20zu%20$delTab&a=$refTab$strID1&fKeinUpdate=$fKeinUpdate&fKeinDelete=$fKeinDelete\">";
+      echo"\n<A HREF=\"./mn.php?mn=1433&b=$sql&c=Eintr&auml;ge%20in%20$refTab%20mit%20Bezug%20zu%20$delTab&a=$refTab$strID1&fKeinUpdate=$fKeinUpdate&fKeinDelete=$fKeinDelete";
+      if( isset($_REQUEST['navi']) )
+        echo "&navi=" . $_REQUEST['navi'];
+      echo "\">";
       if( isset($Verweis[$refTab]) )
         echo $Verweis[$refTab];
       else
