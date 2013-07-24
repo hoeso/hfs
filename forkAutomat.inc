@@ -52,8 +52,11 @@ $forkAutomat = array(
 		"dbClose.inc",
 	),
 	"verarbeitendUpload"=>array(
-		"CSV.php",
+		"linkFortsetzen.inc",
+		"dbConnect.inc",
+		"LV.php",
 		"verarbeitenUpload.prj",
+		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -62,32 +65,9 @@ $forkAutomat = array(
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
 	),
-	"abrechnendIndividualschaden"=>array(
-//		"eiZuAbrechnendIndividualschaden.inc",
-		"linkFortsetzen.inc",
-	),
-	"aenderndPortal"=>array(
-		"erlaubenFK.inc",
-		"anbietenFK.inc",
-		"linkFortsetzen.inc",
-	),
 	"aenderndPosition"=>array(
 		"eiZuAenderndPosition.inc",
 		"aendernPosition.inc",
-		"linkFortsetzen.inc",
-	),
-	"aenderndSammelrechnung"=>array(
-		"eiZuListendSammelrechnung.inc",
-		"aendernSammelrechnung.inc",
-		"toggelnEnum.inc",
-		"linkFortsetzen.inc",
-	),
-	"aenderndTarif"=>array(
-		"verbindenMitDB.inc",
-		"transpHeader.html",
-		"ueberschrift.inc",
-		"routinen.inc",
-		"aendernFK.inc",  // entspricht aenderndFK
 		"linkFortsetzen.inc",
 	),
 	"anbietendEindeutiges"=>array(

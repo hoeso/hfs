@@ -3,11 +3,19 @@
  * _A['dateiPfad']  : zu verarbeitende Datei
  *                  : 
  *****************************************************************************/
-$csv = new CSV( $_A['dateiPfad'] );
-if( false == $csv->lesbar )
+$lv = new LV( $_A['dateiPfad'] );
+if( false == $lv->lesbar )
   return;
+$lv->debug();
+if( false == $lv->finden() ) // sucht nach bekannten Token
+{
+  $_E['wZu']="anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
+$lv->close();
+$lv->open();
 $row=1;
-while( false <> $a = $csv->gibZeile )
+while( false <> $a = $lv->gibZeile )
 {
   $num = count($a);
   echo "<p> $num Felder in Zeile $row: <br /></p>\n";

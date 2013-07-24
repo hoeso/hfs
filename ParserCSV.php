@@ -1,6 +1,6 @@
 <?php
-require_once("Datei.php");
-class CSV extends Datei
+require_once("CSV.php");
+class ParserCSV extends CSV
 {
   function __construct($d, $mode="r")
   {
@@ -13,9 +13,9 @@ class CSV extends Datei
       case 'lesbar':
         return parent::__get('lesbar');
       case 'gibZeile':
-        return fgetcsv( parent::__get('handle') );
+        return parent::__get('gibZeile');
       default:
-        throw new Exception("CSV hat keine Eigenschaft $var.", 1 );
+        throw new Exception("ParserCSV hat keine Eigenschaft $var.", 1 );
       break;
     }
   }
