@@ -227,6 +227,7 @@ switch( $_E['mn'] )
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "holendUpload";
     $_eTitel = array( "Datei Upload", "f&uuml;r was auch immer" );
+    $_E['navi'] = "Upload";
   break;
   case "8416":
     $_E['wZu'] = "bspTheoretisierendDB";
@@ -243,22 +244,35 @@ switch( $_E['mn'] )
     $_E['enableDbg'] = true; // Ausgaben von dbConnect.inc aktivieren
     $_eTitel = array( "Das Salz in der Suppe" );
   break;
-  case "8546": // bspVerbindendEntitaeten
+  case "3239": // verbindendEntitaeten
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
-    $_E['wZu'] = "bspVerbindendEntitaeten";
+    $_E['wZu'] = "verbindendEntitaeten";
     $_E['entitaetLinks'] = $_REQUEST["a"];
     $_E['entitaetRechts'] = $_REQUEST["b"];
     $_E['entitaet'] = $_REQUEST["c"];
-    $_eTitel = array( $_REQUEST["d"], $_REQUEST["c"] );
+    if( isset($_REQUEST["d"]) )
+      $_eTitel = array( $_REQUEST["d"], $_REQUEST["c"] );
+    else
+      $_eTitel = array( $_REQUEST["c"] );
+    if( isset($_REQUEST["i"]) ) // ident: einruecken, gemappt auf gruppenStaerke
+      $_E['ident'] = $_REQUEST["i"];
+    $_E['navi'] = "Upload";
   break;
-  case "6649": //bspFuellendRE
+  case "6997": //fuellendRE
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
-    $_E['wZu'] = "bspFuellendRE";
+    $_E['wZu'] = "fuellendRE";
     $_E['entitaet'] = $_REQUEST["a"];
     $_eTitel = array( $_REQUEST["a"] );
-    if( isset($_REQUEST["b"]) )
-      $_E['bleistift'] = $_REQUEST["b"];
+    $_E['navi'] = "Upload";
+  break;
+  case "6998": //fuellendRE ohne Aendern
+    if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
+    $_E['wZu'] = "fuellendRE";
+    $_E['entitaet'] = $_REQUEST["a"];
+    $_eTitel = array( $_REQUEST["a"] );
+    $_E['bleistift'] = false;
+    $_E['navi'] = "Upload";
   break;
 /*** intern gesetzte Links: ***/
   case "1142": // loeschen ja ... nein ...
@@ -284,6 +298,8 @@ switch( $_E['mn'] )
     $_E['entitaet'] = $_REQUEST["a"];
     $sql = $_REQUEST["b"];
     $_eTitel = array( $_REQUEST["c"] );
+    if( isset($_REQUEST["navi"]) )
+      $_E['navi'] = $_REQUEST["navi"];
   break;
   case "4454":
     if( !isset($_REQUEST["TabelleM"]) or !isset($_REQUEST["TabelleA"]) or !isset($_REQUEST["SELECTA"]) or !isset($_REQUEST["TabelleB"]) or !isset($_REQUEST["SELECTB"]) ) { echo $exitus; return; }
@@ -298,6 +314,8 @@ switch( $_E['mn'] )
     $_E['wZu'] = "speicherndRE";
     $_E['entitaet'] = $_REQUEST["a"];
     $_eTitel = array( $_REQUEST["b"] );
+    if( isset($_REQUEST["navi"]) )
+      $_E['navi'] = $_REQUEST["navi"];
   break;
   case "3653": // aenderndRE
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["ID"]) ) { echo $exitus; return; }
@@ -306,6 +324,8 @@ switch( $_E['mn'] )
     $_E['entitaet'] = $_REQUEST["a"];
     $_E['ID'] = $_REQUEST["ID"];
     $_eTitel = array( "{$_E['entitaet']} &auml;ndern ..." );
+    if( isset($_REQUEST["navi"]) )
+      $_E['navi'] = $_REQUEST["navi"];
   break;
   case "7774": // aenderungSpeicherndRE
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["ID"]) ) { echo $exitus; return; }
@@ -314,6 +334,8 @@ switch( $_E['mn'] )
     $_E['entitaet'] = $_REQUEST["a"];
     $_E['ID'] = $_REQUEST["ID"];
     $_eTitel = array( "{$_REQUEST["a"]} &Auml;nderung gespeichert." );
+    if( isset($_REQUEST["navi"]) )
+      $_E['navi'] = $_REQUEST["navi"];
   break;
   case "4224": // speichernd1ZuN
     if( !isset($_REQUEST["zielTabelle"]) ) { echo $exitus; return; }
