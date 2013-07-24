@@ -4,6 +4,7 @@ include ("anzeigeRoutinen.inc");
 include ("dbRoutinen.inc");
 include ("zeitRoutinen.inc");
 include ("anzeigenTabelle.inc");// enthaelt das Select-Stmt-Array $Select
+include "entitySQLAbbrev.prj";
 
 function fuellen( $wert, $len, $fuellZ )
 {

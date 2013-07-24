@@ -1,4 +1,4 @@
-<?
+<?php
 if( !strcmp( "Portal", $_E['entitaet'] ) or !strcmp( "Auftrag", $_E['entitaet'] ) )
 {
   $wZu="aenderndPortal";

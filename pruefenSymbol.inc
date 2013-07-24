@@ -1,4 +1,4 @@
-<?
+<?php
 /***
  * Standardverhalten abpruefen + gegebenenfalls ausfuehren:
  ***/

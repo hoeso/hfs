@@ -1,4 +1,4 @@
-<?
+<?php
 /************ Input ****************************************************************
  * $delTab                        : Tabelle, aus der ein Satz geloescht werden soll
  * $_E['ID']                      : Der Primaerschluessel des Datensatzes
@@ -46,8 +46,6 @@ if( isset($arrRefs[$delTab]) )
       echo"\nEs existieren noch $treffer Verweise auf diesen Eintrag unter ";
       echo"\n<!-- Referenz in $refTab -->";
       $bremse = true;
-      //if( (!isset($gPaketID) or "" == $gPaketID ) and "Paket" == $delTab )
-        //$gPaketID=$_E['ID'];
       $sql=$Select["$refTab"];
       if( !$sql )
       {// kann nicht gefischt werden
@@ -58,7 +56,14 @@ if( isset($arrRefs[$delTab]) )
         $sql .= " AND ";
       else
         $sql .= " WHERE ";
-      $sql .= "$refTab.$delTab" . "ID={$_E['ID']}";
+      if( !isset($sqlAbbrev[$refTab]) )
+      {
+        ?><p>... Referenzierung nicht m&ouml;glich.<br>
+        Eintrag f&uuml;r <em><?php echo $refTab;?></em> muss erg&auml;nzt werden in Modul entitySQLAbbrev.prj.<p><?php
+        $_E['wZu']="anbietendKnopfZurueck";
+        include("forkZu.inc");
+      }
+      $sql .= $sqlAbbrev[$refTab] . ".$delTab" . "ID={$_E['ID']}";
       $sql=str_replace( " ", "%20", $sql );
       if( isset($ID1) )
         $strID1="&ID1=$ID1";
@@ -74,7 +79,7 @@ if( isset($arrRefs[$delTab]) )
         echo $Verweis[$refTab];
       else
         echo $refTab;
-      ?></A>.<p><?
+      ?></A>.<p><?php
     }
     $geprueft = true;
   }
@@ -97,12 +102,19 @@ echo"\n<h4>$delTab</h4>";
 
 if( isset($Select[$delTab]) )
 {
+  if( !isset($sqlAbbrev[$delTab]) )
+  {
+    ?><p>... Referenzierung nicht m&ouml;glich.<br>
+    Eintrag f&uuml;r <em><?php echo $delTab;?></em> muss erg&auml;nzt werden in Modul entitySQLAbbrev.prj.<p><?php
+    $_E['wZu']="anbietendKnopfZurueck";
+    include("forkZu.inc");
+  }
   $sql=$Select[$delTab];
   if( strstr( $sql, "WHERE" ) )
     $sql .= " AND ";
   else
     $sql .= " WHERE ";
-  $sql .= $delTab . ".ID={$_E['ID']}";
+  $sql .= $sqlAbbrev[$delTab] . ".ID={$_E['ID']}";
 }
 else
   $sql="SELECT * FROM $delTab WHERE ID={$_E['ID']}";
@@ -134,7 +146,7 @@ if( !isset($_E['loeschen']) )
   if( isset($_REQUEST["fKeinVorspann"]) )
     hiddenFeldSchreiben( "fKeinVorspann", $_REQUEST["fKeinVorspann"] );
   formularKnopf( "ja ...", "delete" );
-  ?>&nbsp;&nbsp;&nbsp;<?
+  ?>&nbsp;&nbsp;&nbsp;<?php
 	formularKnopf( "nein ...", "dont" );
 	formularBeenden();
 ?>
@@ -143,7 +155,7 @@ if( !isset($_E['loeschen']) )
 	document.frm.dont.focus()
 // -->
 </script>
-<?
+<?php
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }

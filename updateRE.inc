@@ -1,4 +1,4 @@
-<?
+<?php
 /************ Input **********************************************************
  * $_POST     	    : NEU seit PHP 5, es gibt kein $HTTP_POST_VARS mehr
  * 
@@ -125,10 +125,22 @@ if( isset( $HTTP_POST_VARS ) )
   }
   else
   {
-    ?>Der Eintrag wurde ge&auml;ndert<br><?
+    ?>Der Eintrag wurde ge&auml;ndert<br><?php
     if( isset($Select[$_E['entitaet']]) )
     {
-      $sql=$Select[$_E['entitaet']] . " AND " . $_E['entitaet'] . ".ID={$_E['ID']}";
+      $sql=$Select[$_E['entitaet']];
+      if( strstr( $sql, "WHERE" ) )
+        $sql .= " AND ";
+      else
+        $sql .= " WHERE ";
+      if( !isset($sqlAbbrev[ $_E['entitaet'] ]) )
+      {
+        ?><p>... Referenzierung nicht m&ouml;glich.<br>
+        Eintrag f&uuml;r <em><?php echo $_E['entitaet'];?></em> muss erg&auml;nzt werden in Modul entitySQLAbbrev.prj.<p><?php
+        $_E['wZu']="anbietendKnopfZurueck";
+        include("forkZu.inc");
+      }
+      $sql .= $sqlAbbrev[ $_E['entitaet'] ] . ".ID={$_E['ID']}";
       anzeigen( $MySQLDb, $sql, "ohne submit Knopf", isset($ActionSuffix)?$ActionSuffix:"" );
     }
   }

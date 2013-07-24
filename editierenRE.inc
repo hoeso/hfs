@@ -1,4 +1,4 @@
-<?
+<?php
 /************ Input ********************
  * $update     : ist gesetzt, wenn der Satz geaendert werden soll
  * $_E['loeschen']     : ist gesetzt, wenn der Satz geloescht werden soll

@@ -2,7 +2,11 @@
 /******** Formular-Funktionen ************************************************/
 function formularBeginnen($action,$extra)
 {
-  echo "\n<FORM $extra ACTION='$action' METHOD='POST'>\n";
+  global $_E;
+  echo "\n<FORM $extra ACTION='$action";
+  if( isset($_E['navi']) )
+    echo "&navi=" . $_E['navi'];
+  echo "' METHOD='POST'>\n";
 }
 function formularKnopf($value,$name='easy')
 {

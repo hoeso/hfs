@@ -1,16 +1,16 @@
-<?
+<?php
 $arrRefs = array(
 
-  "Bearbeiter"=>array(
+  "Token"=>array(
+    "TopicToken",
+  ),
+
+  "Topic"=>array(
+    "TopicToken",
+  ),
+
+  "TopicToken"=>array(
     "1-leaf",
-  ),
-
-  "Schadenbuero"=>array(
-    "Bearbeiter",
-  ),
-
-  "Versicherer"=>array(
-    "Schadenbuero",
   ),
 
 );
