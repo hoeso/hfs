@@ -13,6 +13,6 @@ while( false <> $a = $csv->gibZeile )
   echo "<p> $num Felder in Zeile $row: <br /></p>\n";
   $row++;
   for ($c=0; $c < $num; $c++)
-    echo $a[$c] . "<br />\n";
+    echo utf8_encode($a[$c]) . "<br />\n";
 }
 ?>
