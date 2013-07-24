@@ -1,4 +1,4 @@
-<?
+<?php
 /************ Input ********************
  * $_E['ID']   : Primaerschluessel des Datensatzes
  * $tableRE    : Name der Tabelle mit dem Primaerschluessel
@@ -31,7 +31,7 @@ if( 1 == $nFK )
 }
 ?>
 <hr>
-<?
+<?php
 if($debug)echo"\nAnzahl FK's in Tabelle $tableRE = $nFK<br>";
 $str=$_E['entitaet'];
 $str=str_replace( "ae", "&auml;", $str );
@@ -53,7 +53,7 @@ for( $i=1; $i < $anz; $i++ )
 }
 ?>
 <table border>
-<?
+<?php
 for( $i=1; $i<$c; $i++)
 {// FK-Tabellen nach ihrerseits bestehenden FK ueberpruefen
   $t=$FK['tabelle'][$i];
@@ -152,7 +152,7 @@ for( $i=1; $i<$c; $i++)
 ?>
 <td>
 <SELECT NAME='SELECTFK' SIZE='1'>
-<?
+<?php
   while( $row=mysql_fetch_array( $result, MYSQL_NUM ) )
   {
     $id=true;
@@ -188,7 +188,7 @@ for( $i=1; $i<$c; $i++)
 </SELECT>
 </td>
 <td>
-<?
+<?php
   echo"\n\t<INPUT TYPE='HIDDEN' NAME='Tabelle' VALUE='{$_E['entitaet']}'>";
   echo"\n\t<INPUT TYPE='HIDDEN' NAME='ID' VALUE='{$_E['ID']}'>";
   echo"\n\t<INPUT TYPE='HIDDEN' NAME='FKFeld' VALUE='$t";
@@ -198,7 +198,7 @@ for( $i=1; $i<$c; $i++)
   formularKnopf("Beziehung &uuml;bernehmen", $workflowAenderndFK);
 ?>
 </td>
-<?
+<?php
   formularBeenden();
   echo"\n</tr>";
 }

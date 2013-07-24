@@ -1,0 +1,11 @@
+<?php
+/* diese Abkuerzungen werden fuer die Projekt-Entitaeten in sichten.prj verwendet.
+ * In loeschen.inc muessen diese deshalb auch verwendet werden
+ * weil die Verwendung des Originalnamens der Entitaet in der WHERE-Klausel
+ * einen Fehler erzeugt
+ */
+$sqlAbbrev = array(
+  "Token"=>"t",
+  "TopicToken"=>"tt",
+);
+?>

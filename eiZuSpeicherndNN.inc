@@ -1,4 +1,4 @@
-<?
+<?php
 /** Aufrufendes Skript **** Variable *****************************************
  * formularFuerMM.inc : 
  *                    : tableA

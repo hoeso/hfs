@@ -1,4 +1,4 @@
-<?
+<?php
 /***
  * gedruecktes Symbol pruefen + gegebenenfalls ausfuehren:
  ***/
@@ -24,7 +24,7 @@ if( isset($_E['wZu']) )
   include("forkZu.inc");
 else
 {
-  ?>F&uuml;r dieses Symbol ist kein Verhalten hinterlegt im Modul <em>pruefenSymbol.prj</em><?
+  ?>F&uuml;r dieses Symbol ist kein Verhalten hinterlegt im Modul <em>pruefenSymbol.prj</em><?php
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }

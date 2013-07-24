@@ -2,7 +2,11 @@
 /******** Formular-Funktionen ************************************************/
 function formularBeginnen($action,$extra)
 {
-  echo "\n<FORM $extra ACTION='$action' METHOD='POST'>\n";
+  global $_E;
+  echo "\n<FORM $extra ACTION='$action";
+  if( isset($_E['navi']) )
+    echo "&navi=" . $_E['navi'];
+  echo "' METHOD='POST'>\n";
 }
 function formularKnopf($value,$name='easy')
 {
@@ -67,9 +71,14 @@ function zaehlenAttributSpalten( $spaltenName, &$cSpalten )
 function headerFooter( $mark, $spaltenName, $auchID, &$cSpalten, $sql, $zielTabelle, $aColspan )
 {
   global $unterdrueckteSpalte;
-  global  $gruppenStaerke;
+  global $_E;
   global  $proj;
   global  $pw;
+
+  if( isset($_E['ident']) )
+    $gruppenStaerke = $_E['ident'];
+  else
+    $gruppenStaerke = 1;
   $str=str_replace( " ", "%20", $sql );
   $str=str_replace( "&uuml;", "%FC", $str );
   $cSpalten = 0;
@@ -128,7 +137,7 @@ function ausgebenAlsTabellenzeile( $row, $auchID, &$fChecked, $spalte, $globalID
 {
 global $unterdrueckteSpalte;
 global $gruppe;
-global $gruppenStaerke;
+global $_E;
 global $Summenwert;
 global $ID1;
 global $proj;
@@ -144,6 +153,11 @@ $mapAushang["pro Stück"]="Stück";
 $mapAushang["Sockel plus Menge"]="qm";
 $mapAushang["<"]="qm";
 $mapAushang["<="]="qm";
+
+  if( isset($_E['ident']) )
+    $gruppenStaerke = $_E['ident'];
+  else
+    $gruppenStaerke = 1;
 
   $istKeineID = false;
   $i=0;
@@ -280,7 +294,7 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
   global $WohnungID;
   global $rootTabelle;
   global $gruppe;
-  global $gruppenStaerke;
+  global $_E;
   global $Kind;
   global $MySQLDb;
   global $ID1;
@@ -290,7 +304,11 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
   global $proj;
   global $pw;
   global $gfaerbteSpoidn;
-  global $_E;
+
+  if( isset($_E['ident']) )
+    $gruppenStaerke = $_E['ident'];
+  else
+    $gruppenStaerke = 1;
 
   if( isset( $gfaerbteSpoidn[$table] ) )
   {
@@ -469,12 +487,16 @@ function ausgebenAlsTabelleHorizontal( $spaltenName, $auchID, &$cSpalten, $sql, 
 {
 global $unterdrueckteSpalte;
 global $gruppe;
-global $gruppenStaerke;
+global $_E;
 global $Summenwert;
 global $ID1;
 global $proj;
 global $pw;
 
+  if( isset($_E['ident']) )
+    $gruppenStaerke = $_E['ident'];
+  else
+    $gruppenStaerke = 1;
   $istKeineID = false;
   $i=0;
   foreach( $row as $elem )
@@ -578,10 +600,15 @@ global $pw;
 function ausgebenAlsTabelleVertikal( $spaltenName, $auchID, &$cSpalten, $sql, $zielTabelle, $result, $table, $ID, $ActionSuffix, $arrStyle )
 {
   global $enumListe;
-  global $gruppenStaerke;
+  global $_E;
   global $ID1;
   global $proj;
   global $pw;
+
+  if( isset($_E['ident']) )
+    $gruppenStaerke = $_E['ident'];
+  else
+    $gruppenStaerke = 1;
   $cSpalten = 0;
   $anz = count( $spaltenName );
   echo_("\n\t<tr bgcolor=#D0D0D0>");
@@ -670,10 +697,15 @@ function ausgebenAlsTabelleVertikal( $spaltenName, $auchID, &$cSpalten, $sql, $z
 function ausgebenAlsTabelleZumVertikalenAendern( $spaltenName, $auchID, &$cSpalten, $sql, $zielTabelle, $result, $table, $ID, $ActionSuffix="" )
 {
   global $enumListe;
-  global  $gruppenStaerke;
+  global $_E;
   global $ID1;
   global  $proj;
   global  $pw;
+
+  if( isset($_E['ident']) )
+    $gruppenStaerke = $_E['ident'];
+  else
+    $gruppenStaerke = 1;
   $cSpalten = 0;
   $anz = count( $spaltenName );
   echo_("\n\t<tr>");
