@@ -1,4 +1,4 @@
-<?
+<?php
 /**********************************************
  * Übergabe von Primaerschluesseln aus reinen Entitaeten
  * und JE Tabellen und eigenen Attributen zum
