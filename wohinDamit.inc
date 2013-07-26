@@ -7,7 +7,10 @@ if( isset($_eCandy) )
     if( $elem )
       $candies .= "&$k=$elem";
 }
-echo "\n<form name='frm{$_E['entitaet']}' onSubmit='return pruefenEingaben(this)' action='./mn.php?mn={$_E['recipient']}&zielTabelle={$_E['entitaet']}$candies' method='post'";
+echo "\n<form name='frm{$_E['entitaet']}' onSubmit='return pruefenEingaben(this)' action='./mn.php?mn={$_E['recipient']}&zielTabelle={$_E['entitaet']}$candies";
+if( isset($_E['navi']) )
+  echo "&navi=" . $_E['navi'];
+echo "' method='post'";
 if( isset($upload) )
 {
   $upload=true;

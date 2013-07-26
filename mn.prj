@@ -168,6 +168,7 @@ switch( $_E['mn'] )
       $_E['nSpaltenGruppieren'] = $_REQUEST["a"];
     $_E['recipient'] = 4224; // speichernd1ZuN
     $_eTitel = array( "{$_REQUEST['n']} mit {$_REQUEST['1']}" );
+    $_E['navi'] = "Upload";
   break;
   case "6914": // bsp1Zu1ZuN
     if( !isset($_REQUEST["1"]) or !isset($_REQUEST["1n"]) ) { echo $exitus; return; }
@@ -243,6 +244,20 @@ switch( $_E['mn'] )
     $_E['wZu'] = "bspSalzend";
     $_E['enableDbg'] = true; // Ausgaben von dbConnect.inc aktivieren
     $_eTitel = array( "Das Salz in der Suppe" );
+  break;
+  case "8663": // 1Zu1ZuN
+    if( !isset($_REQUEST["1"]) or !isset($_REQUEST["1n"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "anbietend1Zu1ZuN";
+    $_E['entitaet'] = $_REQUEST["1"];
+    $_E['entitaet1N'] = $_REQUEST["1n"];
+    if( isset($_REQUEST["a"]) )
+      $_E['nSpaltenGruppieren'] = $_REQUEST["a"];
+    if( isset($_REQUEST["x"]) )
+      $_E['nichtEinfuegen'] = $_REQUEST["x"];
+    $_E['recipient'] = 4224; // speichernd1ZuN
+    $_eTitel = array( "{$_REQUEST['1n']} mit {$_REQUEST['1']}" );
+    $_E['navi'] = "Upload";
   break;
   case "3239": // verbindendEntitaeten
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"]) ) { echo $exitus; return; }

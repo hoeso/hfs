@@ -6,7 +6,12 @@ $arrRefs = array(
   ),
 
   "Topic"=>array(
+    "TopicForderung",
     "TopicToken",
+  ),
+
+  "TopicForderung"=>array(
+    "1-leaf",
   ),
 
   "TopicToken"=>array(

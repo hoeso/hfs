@@ -283,7 +283,6 @@ function speichernPKsUndAttr( $lkid, $db, $table, $arrPK, $arrAttr,$UniquePK, &$
 {
   $ID = 0;
   $sql = "INSERT INTO $table (ID";
-$debug=true;
 
   foreach( $arrPK as $k=>$elem )
     $sql .= ", $k";

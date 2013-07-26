@@ -39,6 +39,11 @@ class LV extends ParserCSV
   }
   function finden()
   {
+    /*** Token als einzelnes Wort: Gewichtung = 2.
+     *** Token kommt in Wort vor: Gewichtung = 1.
+     *** Fuer die einzelnen Topics eine Enitaet hinterlegen mit
+     *** einer Mindestgewichtung, z.B. Ueberschrift : 2
+     ***/
     while( false <> $this->z = $this->gibZeile )
     {
       if( false == $this->z && !$this->cZeile )

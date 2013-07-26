@@ -7,6 +7,7 @@
   "Bearbeiter"=>"0",
   "Token"=>"0",
   "Topic"=>"0",
+  "TopicForderung"=>"0",
   "TopicToken"=>"0",
   );
   if( !isset($AND) )
@@ -18,6 +19,7 @@
   "Bearbeiter"=>"./mn.php?mn=6914&1=Bearbeiter&1n=Schadenbuero&x=true&a=4",
   "Token"=>"./mn.php?mn=6998&a=Token",
   "Topic"=>"./mn.php?mn=6997&a=Topic",
+  "TopicForderung"=>"./mn.php?mn=3655&1=TopicForderung&n=Topic&a=1",
   "TopicToken"=>"./mn.php?mn=3239&a=Topic&b=Token&c=TopicToken&i=1",
   );
 

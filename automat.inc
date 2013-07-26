@@ -3,7 +3,9 @@
  *** Henick: Das Beste an HTML & CSS, O'Reilly 2010.
  *** Seite 93
  ***/
-if( !isset($_E['navi']) )
+if( isset($_REQUEST['navi']) )
+  $_E['navi'] = $_REQUEST['navi'];
+else if( !isset($_E['navi']) )
   $_E['navi'] = "Elemente";
 $automat = array(
 /* zum Kopieren
@@ -27,6 +29,34 @@ $automat = array(
 		"dbClose.inc",
 	),
 */
+	"anbietend1Zu1ZuN"=>array(
+		"eiZuBspAnbietend1Zu1ZuN.inc",
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"dbConnect.inc",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"setzenFortsetzung.prj",
+		"wohinDamit.inc",
+		"formularERMintro.inc",
+		//"mapSpaltennamen.inc",
+		"ERMListenfuellen.inc",
+		"ERMsubmit.inc",
+		"gibWeiter.inc",
+		"anzeigenZieltabelle.inc",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",//seitenleiste
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"anbietendFKFormular"=>array(
 		"eiZuWrapperFK.inc",
 		"anbietenVerlinkenEntitaet.inc",
