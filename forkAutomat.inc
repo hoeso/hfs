@@ -76,6 +76,18 @@ $forkAutomat = array(
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
 	),
+	"anbietendUeberschrift"=>array(
+		"routinen.inc",
+ 		"anbietenUeberschrift.prj",
+		"dumpLV.prj",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"naviUpload.html",
+		"endeNavigation.html",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+	),
 	"verarbeitendUpload"=>array(
 		"linkFortsetzen.inc",
 		"dbConnect.inc",

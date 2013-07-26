@@ -9,6 +9,7 @@ class LV extends ParserCSV
   private $cFelder; // Anzahl Felder in der Zeile
   private $nFeld; // n.tes Feld in der Zeile
   private $z; // Felder der naechsten Zeile
+  private $wZu; // Vektor mit Automaten-Schluesseln
   function __construct($d, $mode="r")
   {
     parent::__construct($d, $mode);
@@ -25,6 +26,9 @@ class LV extends ParserCSV
     $this->a[5]=5;// hier Feld 5 rein = Reihenfolge
     $this->dim = count($this->a);
     DB::gibFelderArray( "SELECT t.Token, 0, tp.Rang, tp.Topic, tp.ID, 0 FROM TopicToken tt JOIN Topic tp ON (tt.TopicID=tp.ID) JOIN Token t ON (tt.TokenID=t.ID)", $this->a );
+    $this->wZu = array();
+    $this->wZu[] = "anbietendKnopfZurueck";	 
+    $this->wZu[] = "strukturierendLVTabelle";
   }
   function __get($var)
   {

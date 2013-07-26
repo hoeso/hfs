@@ -1,0 +1,27 @@
+<?php
+unset( $candies );
+$candies="";
+if( isset($_eCandy) )
+  foreach( $_eCandy as $k => $elem )
+    if( $elem )
+      $candies .= "&$k=$elem";
+formularBeginnen( "./mn.php?mn=0000&a=$delTab&ID={$_E['ID']}$strbackup&force=true&ID1=$ID1$candies", "NAME='frm'");
+if( isset($_REQUEST["preparedocC"]) )
+  hiddenFeldSchreiben( "docC", $_REQUEST["preparedocC"] );
+else if( isset($_REQUEST["prepforkdocC"]) )
+  hiddenFeldSchreiben( "forkdocC", $_REQUEST["prepforkdocC"] );
+if( isset($_REQUEST["docZustand"]) )
+  hiddenFeldSchreiben( "docZustand", $_REQUEST["docZustand"] );
+if( isset($_REQUEST["fKeinVorspann"]) )
+  hiddenFeldSchreiben( "fKeinVorspann", $_REQUEST["fKeinVorspann"] );
+formularKnopf( "ja ...", "ueberschriftQuittiert" );
+?>&nbsp;&nbsp;&nbsp;<?php
+formularKnopf( "weiter ...", "findenNaechsteUeberschrift" );
+formularBeenden();
+?>
+<script language=javascript type='text/javascript'>
+<!--
+	document.frm.dont.focus()
+// -->
+</script>
+?>
