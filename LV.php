@@ -44,10 +44,12 @@ class LV extends ParserCSV
      *** Fuer die einzelnen Topics eine Enitaet hinterlegen mit
      *** einer Mindestgewichtung, z.B. Ueberschrift : 2
      ***/
+    $z = array();
     while( false <> $this->z = $this->gibZeile )
     {
       if( false == $this->z && !$this->cZeile )
         return false; // keine einzige Zeile bekommen, da stimmt was nicht
+      $z[] = $this->z;
       $f = false;
       $this->reset(); // loescht alle Token-Treffer
       ++$this->cZeile;
@@ -63,6 +65,16 @@ class LV extends ParserCSV
       if( true == $f )
         $this->debug();
     }
+    $c = count( $z );
+    echo "<p>zeilen : $c<br>";
+    for( $i=0; $i<$c; $i++ )
+    {
+      $f = count($z[$i]);
+      echo "<p>felder z[$i]: $f<br>";
+      for ($k=0; $k < $f; $k++)
+        echo utf8_encode($z[$i][$k]) . "<br />\n";
+    }
+    echo "<p>";
     return true;
   }
   function debug( $w = "range" )
