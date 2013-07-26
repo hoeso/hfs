@@ -1,11 +1,24 @@
 <?php
-if( !isset($_E['navi']) )
+if( isset($_REQUEST['navi']) )
+  $_E['navi'] = $_REQUEST['navi'];
+else if( !isset($_E['navi']) )
   $_E['navi'] = "Elemente";
 $forkAutomat = array(
 /* zum Kopieren
 	""=>array(
 	),
 */
+	"anbietendKnopfZurueck"=>array(
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"anbietendVerlinkenEntitaet"=>array(
 		"kopfteil.html",
 		"kopfteil.prj",
@@ -51,6 +64,18 @@ $forkAutomat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
+	"strukturierendLVTabelle"=>array(
+		"linkFortsetzen.inc",
+ 		"strukturierenLVTabelle.prj",
+		"dumpLV.prj",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"naviUpload.html",
+		"endeNavigation.html",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+	),
 	"verarbeitendUpload"=>array(
 		"linkFortsetzen.inc",
 		"dbConnect.inc",
@@ -80,17 +105,6 @@ $forkAutomat = array(
 		"setzenFocus.inc",
 		"verstecken.inc",
 		"ERMsubmit.inc",
-	),
-	"anbietendKnopfZurueck"=>array(
-		"linkFortsetzen.inc",
-		"endeContainer.html",//haupttext
-		"seitenleiste.html",
-		"hauptnavigation.html",
-		"navi" . $_E['navi'] . ".html",
-		"endeNavigation.html",
-		"endeContainer.html",//seitenleiste
-		"endeContainer.html",//hauptteil
-		"dbClose.inc",
 	),
 	"anbietendSpeichernGutschrift"=>array(
 		"controllingGebuehr.inc",

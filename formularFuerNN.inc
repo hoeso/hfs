@@ -42,6 +42,8 @@ else
   $str="";
 ?><form action="./mn.php?mn=4454<?php
 echo $str;
+if( isset($_E['navi']) )
+  echo "&navi=" . $_E['navi'];
 ?>" method='post'>
 <input type='hidden' name='TabelleM' value='<?php
 echo $_E['entitaet'];
