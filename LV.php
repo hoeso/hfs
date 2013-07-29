@@ -24,8 +24,13 @@ class LV extends ParserCSV
     $this->a[3]=3;// hier Feld 3 rein = Topic
     $this->a[4]=4;// hier Feld 4 rein = TopicID
     $this->a[5]=5;// hier Feld 5 rein = Reihenfolge
+    $this->a[6]=6;// hier Feld 6 rein = TokenID // wg. Pruefung auf [Token]SubToken
     $this->dim = count($this->a);
-    DB::gibFelderArray( "SELECT t.Token, 0, tp.Rang, tp.Topic, tp.ID, 0 FROM TopicToken tt JOIN Topic tp ON (tt.TopicID=tp.ID) JOIN Token t ON (tt.TokenID=t.ID)", $this->a );
+    DB::gibFelderArray( "SELECT t.Token, 0, tp.Rang, tp.Topic, tp.ID, 0, t.ID FROM TopicToken tt JOIN Topic tp ON (tt.TopicID=tp.ID) JOIN Token t ON (tt.TokenID=t.ID) ORDER BY Token DESC", $this->a );
+    /*** DESC, damit die Sub-Token chronologisch nach ihren Besitzern geprueft werden.
+     *** erspart Code, weil nur nach Parent-Token gesucht werden braucht.
+     *** Bei keiner Markierung dort kann selber markiert werden.
+     ***/
     $this->wZu = array();
     $this->wZu[] = "anbietendKnopfZurueck";	 
     $this->wZu[] = "strukturierendLVTabelle";
@@ -53,7 +58,7 @@ class LV extends ParserCSV
   function strukturieren()
   {
     /*** Struktur der Tabellenueberschrift lesen
-     *** [0] Token [1] Gewicht [2] Thema [3] Topic [4] Topic.ID [5] gefunden-Stelle
+     *** [0] Token [1] Gewicht [2] Thema [3] Topic [4] Topic.ID [5] gefunden-Stelle [6] Token.ID
      ***/
     $z = array();
     for( $i=0; $i < count($this->a); $i += $this->dim )
@@ -70,7 +75,7 @@ class LV extends ParserCSV
   function gefunden()
   {
     /*** aktuelles Thema lesen
-     *** [0] Token [1] Gewicht [2] Thema [3] Topic [4] Topic.ID [5] gefunden-Stelle
+     *** [0] Token [1] Gewicht [2] Thema [3] Topic [4] Topic.ID [5] gefunden-Stelle [6] Token.ID
      ***/
     $forderung = 0;
     $weight = 0;
@@ -89,7 +94,7 @@ class LV extends ParserCSV
      *** Token kommt in Wort vor: Gewichtung = 1.
      *** Fuer die einzelnen Topics eine Enitaet hinterlegen mit
      *** einer Mindestgewichtung, z.B. Ueberschrift : 2
-     *** [0] Token [1] Gewicht [2] Thema [3] Topic [4] Topic.ID [5] gefunden-Stelle
+     *** [0] Token [1] Gewicht [2] Thema [3] Topic [4] Topic.ID [5] gefunden-Stelle [6] Token.ID
      ***/
     while( false <> $this->z = $this->gibZeile )
     {
@@ -105,11 +110,17 @@ class LV extends ParserCSV
         $_s = explode( " ", utf8_encode($this->z[$c]) );
         for( $s=0; $s < count($_s); $s++ )
           for( $i=0; $i < count($this->a); $i += $this->dim )
-            if( strstr( $_s[$s], $this->a[$i] ) )
+            if( strstr( $_s[$s], $this->a[$i] ) ) // Token kommt vor
             {
-              ++$this->a[$i+1]; // gefundenen Token markieren
-              $this->a[$i+5] = $n; // das n.te gefundene Token
-              ++$n;
+              //while( gibParentToken( $this->a[$i+6] );
+              if( $token = DB::gibFeld( "SELECT tst. TokenID, t.Token FROM TokenSubToken tst JOIN SubToken st ON (tst. SubTokenID=st.ID) JOIN Token t ON (tst. TokenID=t.ID) WHERE " . $this->a[$i+6] . "=st. TokenID" , 1 ) )
+{ echo "$token : habe ein SubToken!<p>"; /*exit;*/ }
+              if( false == $this->parentTokenMarkiert( $this->a[$i+6] ) )
+              {
+                ++$this->a[$i+1]; // gefundenen Token markieren
+                $this->a[$i+5] = $n; // das n.te gefundene Token
+                ++$n;
+              }
             }
       }
       if( $n > 1 )
@@ -123,6 +134,19 @@ class LV extends ParserCSV
     /***
     ***/
     return true;
+  }
+  function parentTokenMarkiert( $tID )
+  {
+    /*** 
+     *** [0] Token [1] Gewicht [2] Thema [3] Topic [4] Topic.ID [5] gefunden-Stelle [6] Token.ID
+     ***/
+    while( $tID = DB::gibFeld( "SELECT tst. TokenID FROM TokenSubToken tst JOIN SubToken st ON (tst. SubTokenID=st.ID) JOIN Token t ON (tst. TokenID=t.ID) WHERE " . $tID . "=st. TokenID" ) )
+    { // hat irgendein Parent-Token bereits markiert?
+      for( $i=0; $i < count($this->a); $i += $this->dim )
+        if( $this->a[$i+1] ) // markierten Token gefunden
+        return true;
+    }
+    return false;
   }
   function debug( $w = "range" )
   {
