@@ -16,7 +16,7 @@ if( isset($_REQUEST["fKeinVorspann"]) )
   hiddenFeldSchreiben( "fKeinVorspann", $_REQUEST["fKeinVorspann"] );
 formularKnopf( "ja ...", "ueberschriftQuittiert" );
 ?>&nbsp;&nbsp;&nbsp;<?php
-formularKnopf( "weiter ...", "findenNaechsteUeberschrift" );
+formularKnopf( "nein, weitersuchen ...", "findenNaechsteUeberschrift" );
 formularBeenden();
 ?>
 <script language=javascript type='text/javascript'>
