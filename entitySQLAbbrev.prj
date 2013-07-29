@@ -5,7 +5,9 @@
  * einen Fehler erzeugt
  */
 $sqlAbbrev = array(
+  "SubToken"=>"st",
   "Token"=>"t",
+  "TokenSubToken"=>"tst",
   "Topic"=>"tp",
   "TopicForderung"=>"tf",
   "TopicToken"=>"tt",

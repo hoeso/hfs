@@ -4,7 +4,7 @@
 /* zum Kopieren:
   ""=>"0",
  */
-  "Bearbeiter"=>"0",
+  "SubToken"=>"0",
   "Token"=>"0",
   "Topic"=>"0",
   "TopicForderung"=>"0",
@@ -16,7 +16,7 @@
 /* zum Kopieren:
   ""=>"",
 */
-  "Bearbeiter"=>"./mn.php?mn=6914&1=Bearbeiter&1n=Schadenbuero&x=true&a=4",
+  "SubToken"=>"./mn.php?mn=3655&1=SubToken&n=Token&a=1",
   "Token"=>"./mn.php?mn=6998&a=Token",
   "Topic"=>"./mn.php?mn=6997&a=Topic",
   "TopicForderung"=>"./mn.php?mn=3655&1=TopicForderung&n=Topic&a=1",

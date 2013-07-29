@@ -1,4 +1,4 @@
-<?
+<?php
 /************ ERICA MIT mn ***************************************************
  * 
  *****************************************************************************/
@@ -20,6 +20,23 @@ if( isset($_E["re"]) )
       $tableRE4 = $_E["re$i"];
     else if( 5 == $i )
       $tableRE5 = $_E["re$i"];
+  }
+}
+if( isset($_E["1n"]) )
+{
+  $countEM = $_E["1n"];
+  for( $i=1; $i <= $_E['1n'] and $i < 6; $i++ )
+  {
+    if( 1 == $i )
+      $tableEM1 = $_E["1n$i"];
+    else if( 2 == $i )
+      $tableEM2 = $_E["1n$i"];
+    else if( 3 == $i )
+      $tableEM3 = $_E["1n$i"];
+    else if( 4 == $i )
+      $tableEM4 = $_E["1n$i"];
+    else if( 5 == $i )
+      $tableEM5 = $_E["1n$i"];
   }
 }
 if( isset($_E["nn"]) )

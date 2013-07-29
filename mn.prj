@@ -26,6 +26,13 @@ switch( $_E['mn'] )
         if( isset($_REQUEST["re$i"]) )
           $_E["re$i"] = $_REQUEST["re$i"];
     }
+    if( isset($_REQUEST["1n"]) and $_REQUEST["1n"] )
+    {
+      $_E['1n'] = $_REQUEST["1n"];
+      for( $i=1; $i <= $_E['1n'] and $i < 6; $i++ )
+        if( isset($_REQUEST["1n$i"]) )
+          $_E["1n$i"] = $_REQUEST["1n$i"];
+    }
     if( isset($_REQUEST["nn"]) and $_REQUEST["nn"] )
     {
       $_E['nn'] = $_REQUEST["nn"];
