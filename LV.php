@@ -112,9 +112,6 @@ class LV extends ParserCSV
           for( $i=0; $i < count($this->a); $i += $this->dim )
             if( strstr( $_s[$s], $this->a[$i] ) ) // Token kommt vor
             {
-              //while( gibParentToken( $this->a[$i+6] );
-              if( $token = DB::gibFeld( "SELECT tst. TokenID, t.Token FROM TokenSubToken tst JOIN SubToken st ON (tst. SubTokenID=st.ID) JOIN Token t ON (tst. TokenID=t.ID) WHERE " . $this->a[$i+6] . "=st. TokenID" , 1 ) )
-{ echo "$token : habe ein SubToken!<p>"; /*exit;*/ }
               if( false == $this->parentTokenMarkiert( $this->a[$i+6] ) )
               {
                 ++$this->a[$i+1]; // gefundenen Token markieren
