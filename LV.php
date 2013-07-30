@@ -10,6 +10,7 @@ class LV extends ParserCSV
   private $nFeld; // n.tes Feld in der Zeile
   private $z; // Felder der naechsten Zeile
   private $wZu; // Vektor mit Automaten-Schluesseln
+  private $reihe; // Vektor mit einer Reihenfolge. Bedeutung abh. vom Wert in $this->thema
   function __construct($d, $mode="r")
   {
     parent::__construct($d, $mode);
@@ -25,8 +26,9 @@ class LV extends ParserCSV
     $this->a[4]=4;// hier Feld 4 rein = TopicID
     $this->a[5]=5;// hier Feld 5 rein = Reihenfolge
     $this->a[6]=6;// hier Feld 6 rein = TokenID // wg. Pruefung auf [Token]SubToken
+    $this->a[7]=7;// hier Feld 7 rein = TopicTokenID // Wert im Vektor $this->reihe wenn 1 == $this->thema wahr
     $this->dim = count($this->a);
-    DB::gibFelderArray( "SELECT t.Token, 0, tp.Rang, tp.Topic, tp.ID, 0, t.ID FROM TopicToken tt JOIN Topic tp ON (tt.TopicID=tp.ID) JOIN Token t ON (tt.TokenID=t.ID) ORDER BY Token DESC", $this->a );
+    DB::gibFelderArray( "SELECT t.Token, 0, tp.Rang, tp.Topic, tp.ID, 0, t.ID, tt.ID FROM TopicToken tt JOIN Topic tp ON (tt.TopicID=tp.ID) JOIN Token t ON (tt.TokenID=t.ID) ORDER BY Token DESC", $this->a );
     /*** DESC, damit die Sub-Token chronologisch nach ihren Besitzern geprueft werden.
      *** erspart Code, weil nur nach Parent-Token gesucht werden braucht.
      *** Bei keiner Markierung dort kann selber markiert werden.
@@ -41,6 +43,8 @@ class LV extends ParserCSV
     {
       case 'lesbar':
         return parent::__get('lesbar');
+      case 'gibLaengeReihe':
+        return count($this->reihe);
       case 'gibZeile':
         return parent::__get('gibZeile');
       case 'gibZeilenZaehler':
@@ -58,24 +62,27 @@ class LV extends ParserCSV
   function strukturieren()
   {
     /*** Struktur der Tabellenueberschrift lesen
-     *** [0] Token [1] Gewicht [2] Thema [3] Topic [4] Topic.ID [5] gefunden-Stelle [6] Token.ID
+     *** [0] Token [1] Gewicht [2] Thema [3] Topic [4] Topic.ID [5] gefunden-Stelle [6] Token.ID [7] TopicToken.ID
      ***/
+    unset($this->reihe);
+    $this->reihe = array();
     $z = array();
     for( $i=0; $i < count($this->a); $i += $this->dim )
       if( $this->a[$i+5] ) // hier liegt der gefunden-Zaehler
       {
         $iz = $this->a[$i+5] - 1;
         $z[ $iz ] = $this->a[$i];
+        $this->reihe[ $iz ] = $this->a[$i+7]; // Lasst uns die Struktur abspeichern als Freundlichkeit gg.ueber den naechsten Automaten
       }
     for( $i=0; $i < count($z); $i++ )
       echo " | " . $z[$i];
-    echo " : Sind das die Spalten des LV und sind sie in der richtigen Reihenfolge?<br>";
+    echo " |<br>Sind das die Spalten des LV?<br>";
     return true;
   }
   function gefunden()
   {
     /*** aktuelles Thema lesen
-     *** [0] Token [1] Gewicht [2] Thema [3] Topic [4] Topic.ID [5] gefunden-Stelle [6] Token.ID
+     *** [0] Token [1] Gewicht [2] Thema [3] Topic [4] Topic.ID [5] gefunden-Stelle [6] Token.ID [7] TopicToken.ID
      ***/
     $forderung = 0;
     $weight = 0;
@@ -94,7 +101,7 @@ class LV extends ParserCSV
      *** Token kommt in Wort vor: Gewichtung = 1.
      *** Fuer die einzelnen Topics eine Enitaet hinterlegen mit
      *** einer Mindestgewichtung, z.B. Ueberschrift : 2
-     *** [0] Token [1] Gewicht [2] Thema [3] Topic [4] Topic.ID [5] gefunden-Stelle [6] Token.ID
+     *** [0] Token [1] Gewicht [2] Thema [3] Topic [4] Topic.ID [5] gefunden-Stelle [6] Token.ID [7] TopicToken.ID
      ***/
     while( false <> $this->z = $this->gibZeile )
     {
@@ -122,10 +129,12 @@ class LV extends ParserCSV
       }
       if( $n > 1 )
       {
-        $this->debug( "cF" );
-        $this->debug();
         if( true == $this->gefunden() )
+        {
+          $this->debug( "cF" );
+          $this->debug();
           return true;
+        }
       }
     }
     /***
@@ -135,7 +144,7 @@ class LV extends ParserCSV
   function parentTokenMarkiert( $tID )
   {
     /*** 
-     *** [0] Token [1] Gewicht [2] Thema [3] Topic [4] Topic.ID [5] gefunden-Stelle [6] Token.ID
+     *** [0] Token [1] Gewicht [2] Thema [3] Topic [4] Topic.ID [5] gefunden-Stelle [6] Token.ID [7] TopicToken.ID
      ***/
     while( $tID = DB::gibFeld( "SELECT tst. TokenID FROM TokenSubToken tst JOIN SubToken st ON (tst. SubTokenID=st.ID) JOIN Token t ON (tst. TokenID=t.ID) WHERE " . $tID . "=st. TokenID" ) )
     { // hat irgendein Parent-Token bereits markiert?

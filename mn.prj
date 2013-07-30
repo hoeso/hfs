@@ -190,12 +190,19 @@ switch( $_E['mn'] )
     $_E['recipient'] = 4224; // speichernd1ZuN
     $_eTitel = array( "{$_REQUEST['1n']} mit {$_REQUEST['1']}" );
   break;
-  case "6915": // Bearbeiter anlegen
-    if( !isset($_REQUEST["sl"]) or (isset($_REQUEST["sl"]) and !isset($_REQUEST["sl1"])) ) { echo $exitus; return; }
-    if( !isset($_REQUEST["1n"]) or !isset($_REQUEST["1n1"]) ) { echo $exitus; return; }
-    if( !isset($_REQUEST["e"]) ) { echo $exitus; return; }
+  case "6915": // LV Ueberschrift entgegen nehmen
+/*** die zum Einlesen der Tabelleninhalte noetigen Variablen posten
+ *** a : Thema
+ *** a == 1 : Ueberschrift,
+ *** themenbezogene Infos, todo:
+ *** b : wieviele Spalten
+ *** y0 .. yn: die TopicToken.ID der Spalte
+ *** 
+ ***/
+    if( !isset($_REQUEST["a"]) /*or (isset($_REQUEST["sl"]) and !isset($_REQUEST["sl1"]))*/ ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
-    $_E['wZu'] = "anbietendFKFormular";
+    // die folgenden Zeilen sind noch nicht angepasst:
+    $_E['wZu'] = "anbietendKnopfZurueck";
     $_E['entitaet'] = $_REQUEST["e"];
     $_E['1n'] = $_REQUEST["1n"];
     $_E['1n1'] = $_REQUEST["1n1"];
@@ -215,7 +222,8 @@ switch( $_E['mn'] )
     if( isset($_REQUEST["c"]) )
       $_E['habeFertig'] = $_REQUEST["c"]; // Liste nicht anzeigen, da zu lang
     $_E['recipient'] = 4224; // speichernd1ZuN
-    $_eTitel = array( "{$_REQUEST['1n1']} mit {$_REQUEST['e']} als {$_REQUEST['sl1']}" );
+    $_eTitel = array( "Tabelleninhalt lesen ..." );
+    $_E['navi'] = "Upload";
   break;
   case "5413":
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
@@ -406,6 +414,22 @@ switch( $_E['mn'] )
     $_E['wZu'] = "speichernd1ZuN";
     $_E['entitaet'] = $_REQUEST["zielTabelle"];
     $_eTitel = array( "in {$_E['entitaet']} speichern ..." );
+  break;
+  case "7321": // erkannte Tabellenueberschrift abfragen
+    if( isset($_REQUEST["dont"]) )
+    {
+      $_eTitel = array( "... es wurde nichts gel&ouml;scht --)" );
+      $_E['wZu'] = "anbietendKnopfZurueck";
+      break;
+    }
+    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["ID"]) or !isset($_REQUEST["delete"]) ) { echo $exitus; return; }
+    if( isset($_REQUEST["force"]) )
+      $_E['loeschen'] = "ok";
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "pruefendSymbol";
+    $_E['entitaet'] = $_REQUEST["a"];
+    $_E['ID'] = $_REQUEST["ID"];
+    $_eTitel = array( "{$_E['entitaet']} l&ouml;schen ..." );
   break;
   default:
     ?>you don't exist. Go away!<?php

@@ -1,11 +1,27 @@
 <?php
+/************ Input **********************************************************
+ * w  : Vektor mit Namen von Sekundaer-Automaten abh. vom LV::thema
+ *    : gesetzt in verarbeitenUpload.prj (gehoert in Klasse LV als get('Thema')
+ * lv : LV Objekt
+ *    : 
+ *****************************************************************************/
 unset( $candies );
 $candies="";
 if( isset($_eCandy) )
   foreach( $_eCandy as $k => $elem )
     if( $elem )
       $candies .= "&$k=$elem";
-formularBeginnen( "./mn.php?mn=0000&a=$delTab&ID={$_E['ID']}$strbackup&force=true&ID1=$ID1$candies", "NAME='frm'");
+formularBeginnen( "./mn.php?mn=6915$candies", "NAME='frm'");
+/*** die zum Einlesen der Tabelleninhalte noetigen Variablen posten
+ *** a : Thema
+ *** themenbezogene Infos, todo:
+ *** b : wieviele Spalten
+ *** y0 .. yn: die TopicToken.ID der Spalte
+ *** 
+ ***/
+hiddenFeldSchreiben( "a", "$lv->Thema" );
+
+
 if( isset($_REQUEST["preparedocC"]) )
   hiddenFeldSchreiben( "docC", $_REQUEST["preparedocC"] );
 else if( isset($_REQUEST["prepforkdocC"]) )
@@ -21,7 +37,7 @@ formularBeenden();
 ?>
 <script language=javascript type='text/javascript'>
 <!--
-	document.frm.dont.focus()
+	document.frm.ueberschriftQuittiert.focus()
 // -->
 </script>
 ?>

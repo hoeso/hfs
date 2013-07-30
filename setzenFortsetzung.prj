@@ -5,10 +5,12 @@
   ""=>"0",
  */
   "SubToken"=>"0",
+  "Thema"=>"0",
   "Token"=>"0",
   "Topic"=>"0",
   "TopicForderung"=>"0",
   "TopicToken"=>"0",
+  "TopicTokenThema"=>"0",
   );
   if( !isset($AND) )
     $AND="";
@@ -17,10 +19,12 @@
   ""=>"",
 */
   "SubToken"=>"./mn.php?mn=3655&1=SubToken&n=Token&a=1",
+  "Thema"=>"./mn.php?mn=6998&a=Thema",
   "Token"=>"./mn.php?mn=6998&a=Token",
   "Topic"=>"./mn.php?mn=6997&a=Topic",
   "TopicForderung"=>"./mn.php?mn=3655&1=TopicForderung&n=Topic&a=1",
   "TopicToken"=>"./mn.php?mn=3239&a=Topic&b=Token&c=TopicToken&i=1",
+  "TopicTokenThema"=>"./mn.php?mn=7545&re=1&re1=Thema&nn=1&nn1=TopicToken&a=TopicTokenThema",
   );
 
 // sind die Candidates bereits Teil der URL?

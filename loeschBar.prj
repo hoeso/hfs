@@ -1,8 +1,18 @@
 <?php
 $arrRefs = array(
 
+  "SubToken"=>array(
+    "TokenSubToken",
+  ),
+
   "Token"=>array(
+    "SubToken",
+    "TokenSubToken",
     "TopicToken",
+  ),
+
+  "TokenSubToken"=>array(
+    "1-leaf",
   ),
 
   "Topic"=>array(

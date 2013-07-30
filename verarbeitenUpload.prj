@@ -10,9 +10,9 @@ $w[] = "strukturierendLVTabelle";
 $lv = new LV( $_A['dateiPfad'] );
 if( false == $lv->lesbar )
   return;
-$lv->debug();
 if( false == $lv->finden() ) // sucht nach bekannten Token
 {
+  $lv->debug();
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }

@@ -6,10 +6,12 @@
  */
 $sqlAbbrev = array(
   "SubToken"=>"st",
+  "Thema"=>"th",
   "Token"=>"t",
   "TokenSubToken"=>"tst",
   "Topic"=>"tp",
   "TopicForderung"=>"tf",
   "TopicToken"=>"tt",
+  "TopicTokenThema"=>"ttt",
 );
 ?>
