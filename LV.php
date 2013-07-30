@@ -84,7 +84,7 @@ class LV extends ParserCSV
       {
         $weight += $this->a[$i+1]; // hier liegt das Gewicht des gefundenen Token
         if( !$forderung ) // gefordertes Gewicht noch nicht bekannt
-          $forderung = DB::gibFeld( "SELECT Forderung FROM TopicForderung WHERE {$this->a[$i+4]}=TopicID" );
+          $forderung = DB::gibFeld( "SELECT Forderung FROM TopicForderung WHERE " . $this->a[$i+4] . "=TopicID" );
       }
     return !( $weight < $forderung ); // Mindestvorkommen erfuellt?
   }
@@ -161,7 +161,7 @@ class LV extends ParserCSV
   function reset()
   {
     for( $i=0; $i < count($this->a); $i += $this->dim )
-      $this->a[$i+1] = $this->a[$i+4] = $this->a[$i+5] = 0; // loescht die Anzahl der erkannten Token
+      $this->a[$i+1] = $this->a[$i+5] = 0; // loescht die Anzahl der erkannten Token
   }
   function close()
   {
