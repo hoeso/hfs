@@ -90,7 +90,6 @@ $forkAutomat = array(
 	),
 	"verarbeitendUpload"=>array(
 		"linkFortsetzen.inc",
-		"dbConnect.inc",
 		"LV.php",
 		"verarbeitenUpload.prj",
 		"linkFortsetzen.inc",

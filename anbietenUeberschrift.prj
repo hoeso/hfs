@@ -13,14 +13,15 @@ if( isset($_eCandy) )
       $candies .= "&$k=$elem";
 formularBeginnen( "./mn.php?mn=6915$candies", "NAME='frm'");
 /*** die zum Einlesen der Tabelleninhalte noetigen Variablen posten
- *** a : Thema
  *** themenbezogene Infos, todo:
- *** b : wieviele Spalten
+ *** d : wieviele Spalten
  *** y0 .. yn: die TopicToken.ID der Spalte
  *** 
  ***/
 hiddenFeldSchreiben( "a", "$lv->Thema" );
-
+hiddenFeldSchreiben( "b", $_A['dateiPfad'] );
+hiddenFeldSchreiben( "c", "$lv->gibZeilenZaehler" );
+hiddenFeldSchreiben( "d", "$lv->gibLaengeReihe" );
 
 if( isset($_REQUEST["preparedocC"]) )
   hiddenFeldSchreiben( "docC", $_REQUEST["preparedocC"] );
@@ -40,4 +41,3 @@ formularBeenden();
 	document.frm.ueberschriftQuittiert.focus()
 // -->
 </script>
-?>

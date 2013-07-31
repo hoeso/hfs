@@ -11,12 +11,12 @@ class LV extends ParserCSV
   private $z; // Felder der naechsten Zeile
   private $wZu; // Vektor mit Automaten-Schluesseln
   private $reihe; // Vektor mit einer Reihenfolge. Bedeutung abh. vom Wert in $this->thema
-  function __construct($d, $mode="r")
+  function __construct($d, $thema=1, $czeile=0, $mode="r")
   {
     parent::__construct($d, $mode);
-    $this->thema = 1;
+    $this->thema = $thema;
     unset($this->z);
-    $this->cZeile = 0;
+    $this->cZeile = $czeile;
     $this->cFelder = 0;
     $this->nFeld = 0;
     $this->a[0]=0;// hier Feld 0 rein = Token
@@ -103,6 +103,16 @@ class LV extends ParserCSV
      *** einer Mindestgewichtung, z.B. Ueberschrift : 2
      *** [0] Token [1] Gewicht [2] Thema [3] Topic [4] Topic.ID [5] gefunden-Stelle [6] Token.ID [7] TopicToken.ID
      ***/
+    if( $this->cZeile ) // > 0 ? Dann auf diese Zeile positionieren
+    { // Objekt wird nach Zustand Wechsel rekonstruiert
+      $c = 1;
+      while( false <> $this->z = $this->gibZeile )
+      {
+        ++$c;
+        if( $c == $this->cZeile )
+          break; // Bis hier wurde bereits geparst
+      }
+    }
     while( false <> $this->z = $this->gibZeile )
     {
       if( false == $this->z && !$this->cZeile )
@@ -150,7 +160,7 @@ class LV extends ParserCSV
     { // hat irgendein Parent-Token bereits markiert?
       for( $i=0; $i < count($this->a); $i += $this->dim )
         if( $this->a[$i+1] ) // markierten Token gefunden
-        return true;
+          return true;
     }
     return false;
   }

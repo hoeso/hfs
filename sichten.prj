@@ -62,7 +62,7 @@ $Select=array
   "TokenSubToken"=>"SELECT tst.ID, t.Token, t2.Token AS Sub FROM TokenSubToken tst JOIN Token t ON (tst. TokenID=t.ID) JOIN SubToken st ON (tst. SubTokenID=st.ID) JOIN Token t2 ON (st. TokenID=t2.ID)",
   "SubToken"=>"SELECT st.ID, t.Token FROM SubToken st JOIN Token t ON (st. TokenID=t.ID)",
   "TopicForderung"=>"SELECT tf.ID, tp. Topic, tf. Forderung FROM TopicForderung tf JOIN Topic tp ON (tf. TopicID=tp.ID)",
-  "TopicToken"=>"SELECT tt.ID, tp.Topic, t.Token FROM TopicToken tt JOIN Topic tp ON (tt.TopicID=tp.ID) JOIN Token t ON (tt.TokenID=t.ID)",
+  "TopicToken"=>"SELECT tt.ID, tp.Topic, tp.Rang, t.Token FROM TopicToken tt JOIN Topic tp ON (tt.TopicID=tp.ID) JOIN Token t ON (tt.TokenID=t.ID)",
   "TopicTokenThema"=>"SELECT ttt. ID, tp. Topic, t. Token, th. Thema FROM TopicTokenThema ttt JOIN TopicToken tt ON ( ttt. TopicTokenID=tt.ID) JOIN Thema th ON (ttt. ThemaID=th.ID) JOIN Topic tp ON (tt. TopicID=tp.ID) JOIN Token t ON ( tt. TokenID=t.ID)",
 /* zum Kopieren:
   ""=>"",
