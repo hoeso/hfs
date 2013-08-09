@@ -19,6 +19,22 @@ class LV extends ParserCSV
     $this->cZeile = $czeile;
     $this->cFelder = 0;
     $this->nFeld = 0;
+    if( false == parent::__get('lesbar') )
+    {
+      echo "<br>$d unlesbar ...<br>";
+      return;
+    }
+    /*** Objekt rekonstruieren? ***/
+    if( $this->cZeile ) // > 0 ? Dann auf diese Zeile positionieren
+    { // Objekt wird nach Zustand Wechsel rekonstruiert
+      $c = 1;
+      while( false <> $this->z = $this->gibZeile )
+      {
+        ++$c;
+        if( $c == $this->cZeile )
+          break; // Bis hier wurde bereits geparst
+      }
+    }
     $this->a[0]=0;// hier Feld 0 rein = Token
     $this->a[1]=1;// hier Feld 1 rein = Gewicht
     $this->a[2]=2;// hier Feld 2 rein = Rang
@@ -28,7 +44,10 @@ class LV extends ParserCSV
     $this->a[6]=6;// hier Feld 6 rein = TokenID // wg. Pruefung auf [Token]SubToken
     $this->a[7]=7;// hier Feld 7 rein = TopicTokenID // Wert im Vektor $this->reihe wenn 1 == $this->thema wahr
     $this->dim = count($this->a);
-    DB::gibFelderArray( "SELECT t.Token, 0, tp.Rang, tp.Topic, tp.ID, 0, t.ID, tt.ID FROM TopicToken tt JOIN Topic tp ON (tt.TopicID=tp.ID) JOIN Token t ON (tt.TokenID=t.ID) ORDER BY Token DESC", $this->a );
+    /*** where-Klausel mit Thema: WHERE $thema=tp.Rang ***/ 
+    $sl = "SELECT t.Token, 0, tp.Rang, tp.Topic, tp.ID, 0, t.ID, tt.ID FROM TopicToken tt JOIN Topic tp ON (tt.TopicID=tp.ID) JOIN Token t ON (tt.TokenID=t.ID) WHERE $thema=tp.Rang ORDER BY Token DESC";
+    DB::gibFelderArray( $sl, $this->a );
+
     /*** DESC, damit die Sub-Token chronologisch nach ihren Besitzern geprueft werden.
      *** erspart Code, weil nur nach Parent-Token gesucht werden braucht.
      *** Bei keiner Markierung dort kann selber markiert werden.
@@ -45,6 +64,8 @@ class LV extends ParserCSV
         return parent::__get('lesbar');
       case 'gibLaengeReihe':
         return count($this->reihe);
+      case 'gibReihe':
+        return $this->reihe;
       case 'gibZeile':
         return parent::__get('gibZeile');
       case 'gibZeilenZaehler':
@@ -70,9 +91,9 @@ class LV extends ParserCSV
     for( $i=0; $i < count($this->a); $i += $this->dim )
       if( $this->a[$i+5] ) // hier liegt der gefunden-Zaehler
       {
-        $iz = $this->a[$i+5] - 1;
-        $z[ $iz ] = $this->a[$i];
-        $this->reihe[ $iz ] = $this->a[$i+7]; // Lasst uns die Struktur abspeichern als Freundlichkeit gg.ueber den naechsten Automaten
+        $iz = $this->a[$i+5] - 1; // gefunden-Zaehler beginnt bei 1, weil 0 == nicht gefunden
+        $z[ $iz ] = $this->a[$i]; // Der Token
+        $this->reihe[ $iz ] = $this->a[$i+7]; // Struktur abspeichern: Naechster Automat liest diese aus
       }
     for( $i=0; $i < count($z); $i++ )
       echo " | " . $z[$i];
@@ -103,15 +124,14 @@ class LV extends ParserCSV
      *** einer Mindestgewichtung, z.B. Ueberschrift : 2
      *** [0] Token [1] Gewicht [2] Thema [3] Topic [4] Topic.ID [5] gefunden-Stelle [6] Token.ID [7] TopicToken.ID
      ***/
-    if( $this->cZeile ) // > 0 ? Dann auf diese Zeile positionieren
-    { // Objekt wird nach Zustand Wechsel rekonstruiert
-      $c = 1;
-      while( false <> $this->z = $this->gibZeile )
-      {
-        ++$c;
-        if( $c == $this->cZeile )
-          break; // Bis hier wurde bereits geparst
-      }
+/*** FF 2. Bei leerer Treffermenge mit aktuellem Thema in der Token-Liste verzweigen zum TopicTokenThema-Eintrag ***/
+/*** $this->reihe[0] pruefen auf TopicTokenID und damit verzweigen zum TopicTokenThema-Eintrag ***/
+    if( false == habWas( $this->a, 0, 7 ) )
+    {
+      echo "<br>nix gfundn<br>";
+      $this->debug( "cF" );
+      $this->debug();
+      return false;
     }
     while( false <> $this->z = $this->gibZeile )
     {

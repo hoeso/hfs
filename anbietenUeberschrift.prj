@@ -22,6 +22,9 @@ hiddenFeldSchreiben( "a", "$lv->Thema" );
 hiddenFeldSchreiben( "b", $_A['dateiPfad'] );
 hiddenFeldSchreiben( "c", "$lv->gibZeilenZaehler" );
 hiddenFeldSchreiben( "d", "$lv->gibLaengeReihe" );
+$r = $lv->gibReihe; // Die TopicTokenID der Spalten (Position, Bezeichnung, Menge usw.)
+for( $i=0; $i < $lv->gibLaengeReihe; $i++ ) // fuehren zu deren Themen ueber
+  hiddenFeldSchreiben( "y$i", "$r[$i]" );   // TopicTokenThema
 
 if( isset($_REQUEST["preparedocC"]) )
   hiddenFeldSchreiben( "docC", $_REQUEST["preparedocC"] );

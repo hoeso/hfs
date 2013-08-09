@@ -77,7 +77,6 @@ $forkAutomat = array(
 		"endeContainer.html",//hauptteil
 	),
 	"anbietendUeberschrift"=>array(
-		"routinen.inc",
  		"anbietenUeberschrift.prj",
 		"dumpLV.prj",
 		"endeContainer.html",//haupttext
@@ -90,6 +89,7 @@ $forkAutomat = array(
 	),
 	"verarbeitendUpload"=>array(
 		"linkFortsetzen.inc",
+		"routinen.inc",
 		"LV.php",
 		"verarbeitenUpload.prj",
 		"linkFortsetzen.inc",

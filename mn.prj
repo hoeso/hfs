@@ -193,44 +193,37 @@ switch( $_E['mn'] )
   case "6915": // LV Ueberschrift entgegen nehmen
 /*** die zum Einlesen der Tabelleninhalte noetigen Variablen posten
  *** a : Thema
- *** a == 1 : Ueberschrift,
- *** themenbezogene Infos, todo:
- *** b : wieviele Spalten
+ *** a == 1 : Ueberschrift, 2 : Position
+ *** b : Dateipfad
+ *** c : Zeilenpointer // bis hier wurde interpretiert
+ *** d : wieviele Spalten
  *** y0 .. yn: die TopicToken.ID der Spalte
  *** 
  ***/
-    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"]) ) { echo $exitus; return; }
+    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"]) or !isset($_REQUEST["d"]) or !isset($_REQUEST["y0"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
+    if( "1" == $_REQUEST["a"] )
+      $_eTitel = array( "Positionen lesen ..." );
+    else
+      $_eTitel = array( "LV lesen ..." );
     if( isset($_REQUEST["ueberschriftQuittiert"]) )
       ++$_REQUEST["a"]; // zum naechsten Thema weiterschalten
     $_A['iThema'] = $_REQUEST["a"];
     $_A['dateiPfad'] = $_REQUEST["b"];
     $_A['lvZeile'] = $_REQUEST["c"];
-    $_E['wZu'] = "erkennendLV";
-    if( 1 == $_REQUEST["a"] )
-      $_eTitel = array( "Positionen lesen ..." );
-    else
-      $_eTitel = array( "LV lesen ..." );
-    $_E['navi'] = "Upload";
-    /* die folgenden Zeilen sind noch nicht angepasst:
-    $_E['entitaet'] = $_REQUEST["e"];
-    $_E['1n'] = $_REQUEST["1n"];
-    $_E['1n1'] = $_REQUEST["1n1"];
-    $_E['sl'] = $_REQUEST["sl"];
-    $_E['sl1'] = $_REQUEST["sl1"];
-    switch( $_REQUEST["sl1"] )
+    $_A['cSpalten'] = $_REQUEST["d"];
+    // Die TopicTokenID der Spalten (Position, Bezeichnung, Menge usw.)
+    for( $i=0; $i < $_REQUEST["d"]; $i++ ) // fuehren zu deren Themen ueber
     {
-      case "PortalUser":
-        $_E['stm1'] = "SELECT PortalUser.ID, PortalUser, Kennwort FROM PortalUser WHERE NOT EXISTS ( SELECT PortalUserID FROM Bearbeiter WHERE Bearbeiter.PortalUserID = PortalUser.ID ) ORDER BY PortalUser";
-      break;
-      default:
-        $_E['stm1'] = "SELECT 1, 'Fuer Entitaet {$_REQUEST["sl1"]} ist kein SELECT hinterlegt'";
-      break;
+      if( !isset($_REQUEST["y$i"]) )
+      {
+        echo $exitus;
+        return;
+      }
+      $_A["ttID$i"] = $_REQUEST["y$i"];   // TopicTokenID
     }
-    if( isset($_REQUEST["c"]) )
-      $_E['habeFertig'] = $_REQUEST["c"]; // Liste nicht anzeigen, da zu lang
-    $_E['recipient'] = 4224; // speichernd1ZuN
-    */
+    $_E['wZu'] = "erkennendLV";
+    $_E['navi'] = "Upload";
   break;
   case "5413":
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }

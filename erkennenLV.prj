@@ -1,17 +1,19 @@
 <?php
 /************ Input **********************************************************
  * _A['dateiPfad']  : zu verarbeitende Datei
+ * _A['iThema']     : was grad ansteht (Topic.Rang) z.Zt. Ueberschrift:1 Position:2
+ * _A['lvZeile']    : bis zu dieser Zeile ist das Dokument interpretiert
+ * _A['cSpalten']   : Anzahl der Spalten der erkannten Tabelle
+ * _A['ttID0..n']   : Die TopicTokenID 0 .. n-1 der n Spalten der erkannten Tabelle
  *                  : 
  *****************************************************************************/
 $w = array();
 $w[] = "anbietendKnopfZurueck";
 $w[] = "strukturierendLVTabelle";
 
-$lv = new LV( $_A['dateiPfad'] );
-
+$lv = new LV( $_A['dateiPfad'], $_A['iThema'], $_A['lvZeile'] );
 if( false == $lv->lesbar )
   return;
-
 if( false == $lv->finden() ) // sucht nach bekannten Token
 {
   $lv->debug();
@@ -20,6 +22,9 @@ if( false == $lv->finden() ) // sucht nach bekannten Token
 }
 echo "<p>" . $lv->Thema . "<br>";
 $lv->close();
+$_E['wZu']="anbietendKnopfZurueck";
+include("forkZu.inc");
+/***************************************************/
 $_E['wZu'] = $w[ $lv->Thema ];
 include("forkZu.inc");
 $lv->open();
