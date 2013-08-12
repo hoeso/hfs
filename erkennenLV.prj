@@ -14,27 +14,19 @@ $w[] = "strukturierendLVTabelle";
 $lv = new LV( $_A['dateiPfad'], $_A['iThema'], $_A['lvZeile'] );
 if( false == $lv->lesbar )
   return;
-if( false == $lv->finden() ) // sucht nach bekannten Token
-{
-  $lv->debug();
-  $_E['wZu']="anbietendKnopfZurueck";
-  include("forkZu.inc");
-}
-echo "<p>" . $lv->Thema . "<br>";
+// Themen bearbeiten: Themen-Vektor anlegen
+$lv->vorbereitenThemen( $_A['cSpalten'] );
+for( $i=0; $i<$_A['cSpalten']; $i++ )
+  // hinzufuegenThema( $i, $_A["ttID$i"] ); //Objekt-Vektor bauen
+  //$lv->thematisieren(); // arbeitet Objekt-Vektor ab
+  if( false == $lv->findenThema( $i, $_A["ttID$i"] ) )
+  {
+    $lv->debug();
+    $_E['wZu']="anbietendKnopfZurueck";
+    include("forkZu.inc");
+  }
+echo "bis hierher funktionierts schon<br>";
 $lv->close();
 $_E['wZu']="anbietendKnopfZurueck";
 include("forkZu.inc");
-/***************************************************/
-$_E['wZu'] = $w[ $lv->Thema ];
-include("forkZu.inc");
-$lv->open();
-$row=1;
-while( false <> $a = $lv->gibZeile )
-{
-  $num = count($a);
-  echo "<p> $num Felder in Zeile $row: <br /></p>\n";
-  $row++;
-  for ($c=0; $c < $num; $c++)
-    echo utf8_encode($a[$c]) . "<br />\n";
-}
 ?>

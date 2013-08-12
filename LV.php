@@ -11,6 +11,7 @@ class LV extends ParserCSV
   private $z; // Felder der naechsten Zeile
   private $wZu; // Vektor mit Automaten-Schluesseln
   private $reihe; // Vektor mit einer Reihenfolge. Bedeutung abh. vom Wert in $this->thema
+  private $bearbeitenThema; // Vektor mit den "Themen": Gemeint sind die Spalten des LV
   function __construct($d, $thema=1, $czeile=0, $mode="r")
   {
     parent::__construct($d, $mode);
@@ -80,6 +81,60 @@ class LV extends ParserCSV
       break;
     }
   }
+  function findenThemaToken( $aF )
+  {
+    echo "pr&uuml;fen: | ";
+    for( $i=0; $i < count($aF); $i++ )
+      echo $aF[$i] . " | ";
+    echo "<br>";
+    return false;
+  }
+  function findenThema( $i, $t )
+  {
+    /*** FF 2. Bei leerer Treffermenge mit aktuellem Thema in der Token-Liste verzweigen zum TopicTokenThema-Eintrag ***/
+    /*** $this->reihe[0] pruefen auf TopicTokenID und damit verzweigen zum TopicTokenThema-Eintrag ***/
+    $this->bearbeitenThema[$i]="begonnen";
+    if( !$thID = DB::gibFeld( "SELECT ThemaID FROM TopicTokenThema WHERE " . $t . "=TopicTokenID" ) )
+    {
+      echo "SubToken?<br>";
+
+      $a[0]=0;// hier Feld 0 rein = TopicID
+      $a[1]=1;// hier Feld 1 rein = TokenID
+      DB::gibFelderArray( "SELECT TopicID, TokenID FROM TopicToken WHERE " . $t . "=ID", $a );
+      if( !$thID = DB::gibFeld( "SELECT ThemaID FROM TopicTokenThema ttt JOIN TopicToken tt ON (ttt. TopicTokenID=tt.ID) JOIN TokenSubToken tst ON(tt. TokenID=tst.TokenID) JOIN SubToken st ON (tst. SubTokenID=st.ID) WHERE " . $a[1] . "=st. TokenID AND " . $a[0] . "=tt. TopicID" ) )
+      {
+        echo "kein Thema gefunden<br>";
+        return false;
+      }
+      echo "SubToken.<br>";
+    }
+    else
+      echo "Token<br>";
+    $aF = array();
+    DB::gibFeldArray( "SELECT f. Format FROM ThemaFormat thf JOIN Format f ON (thf. FormatID=f.ID) WHERE " . $thID . "=thf.ThemaID ORDER BY Format DESC", 0, $aF );
+    if( !count( $aF ) )
+    {
+      echo "keine Formate zum Thema gefunden<br>";
+      return false;
+    }
+    return $this->findenThemaToken( $aF );
+    while( false <> $this->z = $this->gibZeile )
+    {
+      if( false == $this->z && !$this->cZeile )
+        return false; // sind wir schon fertig?
+      ++$this->cZeile;
+      $this->cFelder = count($this->z); // Anzahl Felder auslesen
+      for ($c=0; $c < $this->cFelder; $c++)
+      {
+        unset($_s);
+        $_s = explode( " ", utf8_encode($this->z[$c]) );
+        for( $s=0; $s < count($_s); $s++ )
+          echo $_s[$s] . ", ";
+        echo "<br>";
+      }
+    }
+    return false;
+  }
   function strukturieren()
   {
     /*** Struktur der Tabellenueberschrift lesen
@@ -124,13 +179,8 @@ class LV extends ParserCSV
      *** einer Mindestgewichtung, z.B. Ueberschrift : 2
      *** [0] Token [1] Gewicht [2] Thema [3] Topic [4] Topic.ID [5] gefunden-Stelle [6] Token.ID [7] TopicToken.ID
      ***/
-/*** FF 2. Bei leerer Treffermenge mit aktuellem Thema in der Token-Liste verzweigen zum TopicTokenThema-Eintrag ***/
-/*** $this->reihe[0] pruefen auf TopicTokenID und damit verzweigen zum TopicTokenThema-Eintrag ***/
     if( false == habWas( $this->a, 0, 7 ) )
-    {
-      echo "<br>nix gfundn<br>";
-      $this->debug( "cF" );
-      $this->debug();
+    { // nix gfundn. Dann geht's vielleicht ums Thema?
       return false;
     }
     while( false <> $this->z = $this->gibZeile )
@@ -163,6 +213,7 @@ class LV extends ParserCSV
         {
           $this->debug( "cF" );
           $this->debug();
+          ++$this->cZeile; // auf Zeile hinter der Ueberschrift positionieren zum Weitermachen
           return true;
         }
       }
@@ -209,5 +260,12 @@ class LV extends ParserCSV
   function open()
   {
     parent::open();
+  }
+  function vorbereitenThemen( $c )
+  {
+    unset( $this->bearbeitenThema );
+    $this->bearbeitenThema = array();
+    for( $i=0; $i<$c; $i++ )
+      $this->bearbeitenThema[$i]="noch nicht";
   }
 }
