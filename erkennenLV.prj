@@ -15,16 +15,10 @@ $lv = new LV( $_A['dateiPfad'], $_A['iThema'], $_A['lvZeile'] );
 if( false == $lv->lesbar )
   return;
 // Themen bearbeiten: Themen-Vektor anlegen
-$lv->vorbereitenThemen( $_A['cSpalten'] );
+$lv->anlegenThemenPool( $_A['cSpalten'] );
 for( $i=0; $i<$_A['cSpalten']; $i++ )
-  // hinzufuegenThema( $i, $_A["ttID$i"] ); //Objekt-Vektor bauen
-  //$lv->thematisieren(); // arbeitet Objekt-Vektor ab
-  if( false == $lv->findenThema( $i, $_A["ttID$i"] ) )
-  {
-    $lv->debug();
-    $_E['wZu']="anbietendKnopfZurueck";
-    include("forkZu.inc");
-  }
+  $lv->hinzufuegenThema( $i, $_A["ttID$i"] ); //Objekt-Vektor bauen
+$lv->thematisieren(); // arbeitet Objekt-Vektor ab
 echo "bis hierher funktionierts schon<br>";
 $lv->close();
 $_E['wZu']="anbietendKnopfZurueck";

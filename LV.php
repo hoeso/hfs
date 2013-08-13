@@ -81,56 +81,118 @@ class LV extends ParserCSV
       break;
     }
   }
-  function findenThemaToken( $aF )
+  function tokenHatDasFormat( $t, $fmt )
   {
-    echo "pr&uuml;fen: | ";
-    for( $i=0; $i < count($aF); $i++ )
-      echo $aF[$i] . " | ";
-    echo "<br>";
+    switch( $fmt )
+    {
+      case "d.": // nachm Punkt darf nix mehr kommen
+        for( $i=0; $i<strlen($t); $i++ )
+          if( '.' == $t[$i] || !is_numeric($t[$i]) )
+            break;
+        if( !isset($t[$i]) || ('.' <> $t[$i]) ) // Punkt kam nicht vor
+          return false;     // o. vor . nicht-num. Char
+        if( isset($t[$i+1]) && ' ' <> $t[$i+1] ) // nach Punkt kommt noch was anderes als ein Blank
+          return false;
+      return true;
+      case "d": // keine Trennzeichen wie . oder ,
+        for( $i=0; $i<strlen($t); $i++ )
+          if( '0' <= $t[$i] && '9' >= $t[$i] )
+            return true;
+      return false;
+      default:
+        echo "unbekanntes Pr&uuml;fformat $fmt ?<br>";
+      return false;
+      /*
+        for( $i=0; $i<strlen($t); $i++ )
+          echo "[" . $t[$i] . "] ";
+        echo " | ";
+       */
+    }
     return false;
   }
-  function findenThema( $i, $t )
+  function findenThemaToken( $aF, $iSpalte )
   {
-    /*** FF 2. Bei leerer Treffermenge mit aktuellem Thema in der Token-Liste verzweigen zum TopicTokenThema-Eintrag ***/
-    /*** $this->reihe[0] pruefen auf TopicTokenID und damit verzweigen zum TopicTokenThema-Eintrag ***/
-    $this->bearbeitenThema[$i]="begonnen";
-    if( !$thID = DB::gibFeld( "SELECT ThemaID FROM TopicTokenThema WHERE " . $t . "=TopicTokenID" ) )
+    /*** jeden Token pruefen, ob er das Format  ***
+     *** bedient                                ***/
+    $this->z = $this->gibZeile;
+    if( false == $this->z && !$this->cZeile )
+      return false; // sind wir schon fertig?
+    ++$this->cZeile;
+    $this->cFelder = count($this->z); // Anzahl Felder auslesen
+    for( $i=0; $i < count($aF); $i++ )
     {
-      echo "SubToken?<br>";
-
-      $a[0]=0;// hier Feld 0 rein = TopicID
-      $a[1]=1;// hier Feld 1 rein = TokenID
-      DB::gibFelderArray( "SELECT TopicID, TokenID FROM TopicToken WHERE " . $t . "=ID", $a );
-      if( !$thID = DB::gibFeld( "SELECT ThemaID FROM TopicTokenThema ttt JOIN TopicToken tt ON (ttt. TopicTokenID=tt.ID) JOIN TokenSubToken tst ON(tt. TokenID=tst.TokenID) JOIN SubToken st ON (tst. SubTokenID=st.ID) WHERE " . $a[1] . "=st. TokenID AND " . $a[0] . "=tt. TopicID" ) )
-      {
-        echo "kein Thema gefunden<br>";
-        return false;
-      }
-      echo "SubToken.<br>";
-    }
-    else
-      echo "Token<br>";
-    $aF = array();
-    DB::gibFeldArray( "SELECT f. Format FROM ThemaFormat thf JOIN Format f ON (thf. FormatID=f.ID) WHERE " . $thID . "=thf.ThemaID ORDER BY Format DESC", 0, $aF );
-    if( !count( $aF ) )
-    {
-      echo "keine Formate zum Thema gefunden<br>";
-      return false;
-    }
-    return $this->findenThemaToken( $aF );
-    while( false <> $this->z = $this->gibZeile )
-    {
-      if( false == $this->z && !$this->cZeile )
-        return false; // sind wir schon fertig?
-      ++$this->cZeile;
-      $this->cFelder = count($this->z); // Anzahl Felder auslesen
       for ($c=0; $c < $this->cFelder; $c++)
       {
         unset($_s);
         $_s = explode( " ", utf8_encode($this->z[$c]) );
+        echo "pr&uuml;fen: | ";
+        echo $aF[$i] . " | ";
         for( $s=0; $s < count($_s); $s++ )
-          echo $_s[$s] . ", ";
-        echo "<br>";
+        {
+          echo "[" . $_s[$s] . "] ";
+          if( true == $this->tokenHatDasFormat( $_s[$s], $aF[$i] ) )
+          {
+            echo $_s[$s] . " wurde erkannt auf Format " . $aF[$i] . "<br>";
+            // Hilfe: Was jetzt? Weiterschalten auf naechstes Thema?
+            // vorher speichern?
+          }
+        }
+      }
+      echo "<br>";
+    }
+    return false;
+  }
+  function thematisieren()
+  {
+    /*** FF 2. Bei leerer Treffermenge mit aktuellem Thema in der Token-Liste verzweigen zum TopicTokenThema-Eintrag ***/
+    /*** $this->reihe[0] pruefen auf TopicTokenID und damit verzweigen zum TopicTokenThema-Eintrag ***/
+    if( !isset($this->bearbeitenThema) )
+      return false;
+    for( $i=0; $i<count($this->bearbeitenThema); $i++ )
+    {
+      if( !isset($this->bearbeitenThema[$i]) )
+        return false;
+
+      if( !$thID = DB::gibFeld( "SELECT ThemaID FROM TopicTokenThema WHERE " . $this->bearbeitenThema[$i] . "=TopicTokenID" ) )
+      {
+        echo "SubToken?<br>";
+    
+        $a[0]=0;// hier Feld 0 rein = TopicID
+        $a[1]=1;// hier Feld 1 rein = TokenID
+        DB::gibFelderArray( "SELECT TopicID, TokenID FROM TopicToken WHERE " . $this->bearbeitenThema[$i] . "=ID", $a );
+        if( !$thID = DB::gibFeld( "SELECT ThemaID FROM TopicTokenThema ttt JOIN TopicToken tt ON (ttt. TopicTokenID=tt.ID) JOIN TokenSubToken tst ON(tt. TokenID=tst.TokenID) JOIN SubToken st ON (tst. SubTokenID=st.ID) WHERE " . $a[1] . "=st. TokenID AND " . $a[0] . "=tt. TopicID" ) )
+        {
+          echo "kein Thema gefunden<br>";
+          return false;
+        }
+        echo "SubToken.<br>";
+      }
+      else
+        echo "Token<br>";
+      $aF = array();
+      DB::gibFeldArray( "SELECT f. Format FROM ThemaFormat thf JOIN Format f ON (thf. FormatID=f.ID) WHERE " . $thID . "=thf.ThemaID ORDER BY Format DESC", 0, $aF );
+      if( !count( $aF ) )
+      {
+        echo "keine Formate zum Thema gefunden<br>";
+        return false;
+      }
+      /*** Thema gefunden, jetzt die Formate dazu ***
+       ***                                        ***/
+      return $this->findenThemaToken( $aF, $i );
+      while( false <> $this->z = $this->gibZeile )
+      {
+        if( false == $this->z && !$this->cZeile )
+          return false; // sind wir schon fertig?
+        ++$this->cZeile;
+        $this->cFelder = count($this->z); // Anzahl Felder auslesen
+        for ($c=0; $c < $this->cFelder; $c++)
+        {
+          unset($_s);
+          $_s = explode( " ", utf8_encode($this->z[$c]) );
+          for( $s=0; $s < count($_s); $s++ )
+            echo $_s[$s] . ", ";
+          echo "<br>";
+        }
       }
     }
     return false;
@@ -261,11 +323,16 @@ class LV extends ParserCSV
   {
     parent::open();
   }
-  function vorbereitenThemen( $c )
+  function anlegenThemenPool( $c )
   {
     unset( $this->bearbeitenThema );
     $this->bearbeitenThema = array();
     for( $i=0; $i<$c; $i++ )
-      $this->bearbeitenThema[$i]="noch nicht";
+      $this->bearbeitenThema[$i]=0;
+  }
+  function hinzufuegenThema( $i, $t )
+  {
+    $this->bearbeitenThema[$i]=$t;
   }
 }
+
