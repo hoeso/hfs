@@ -12,7 +12,10 @@ class LV extends ParserCSV
   private $wZu; // Vektor mit Automaten-Schluesseln
   private $reihe; // Vektor mit einer Reihenfolge. Bedeutung abh. vom Wert in $this->thema
   private $bearbeitenThema; // Vektor mit den "Themen": Gemeint sind die Spalten des LV
-  function __construct($d, $thema=1, $czeile=0, $mode="r")
+  private $fRecord; // Zeilen "mitschneiden" (=speichern)
+  private $iBuf;   // interner Pufferzeiger
+  private $buffer; // interner Puffer fuer die interpretierten Zeilen
+  function __construct($d, $thema=1, $czeile=0, $fRec=0, $mode="r")
   {
     parent::__construct($d, $mode);
     $this->thema = $thema;
@@ -20,6 +23,9 @@ class LV extends ParserCSV
     $this->cZeile = $czeile;
     $this->cFelder = 0;
     $this->nFeld = 0;
+    $this->fRecord = $fRec;
+    if( $fRec )
+      $iBuf=0; // $this->buffer auf Anfang setzen
     if( false == parent::__get('lesbar') )
     {
       echo "<br>$d unlesbar ...<br>";
@@ -95,10 +101,15 @@ class LV extends ParserCSV
           return false;
       return true;
       case "d": // keine Trennzeichen wie . oder ,
+        if( !strlen($t) )
+          return false;
         for( $i=0; $i<strlen($t); $i++ )
-          if( '0' <= $t[$i] && '9' >= $t[$i] )
-            return true;
-      return false;
+        {
+          echo "[" . $t[$i] . "](" . ord($t[$i]) . ")";
+          if( '0' > $t[$i] || '9' < $t[$i] )
+            return false;
+        } 
+      return true;
       default:
         echo "unbekanntes Pr&uuml;fformat $fmt ?<br>";
       return false;
@@ -114,31 +125,45 @@ class LV extends ParserCSV
   {
     /*** jeden Token pruefen, ob er das Format  ***
      *** bedient                                ***/
-    $this->z = $this->gibZeile;
-    if( false == $this->z && !$this->cZeile )
-      return false; // sind wir schon fertig?
-    ++$this->cZeile;
-    $this->cFelder = count($this->z); // Anzahl Felder auslesen
-    for( $i=0; $i < count($aF); $i++ )
+    while( false <> $this->z = $this->gibZeile )
     {
-      for ($c=0; $c < $this->cFelder; $c++)
+      if( false == $this->z && !$this->cZeile )
+        return false; // sind wir schon fertig?
+      ++$this->cZeile;
+if( $this->fRecord ) echo "findenThemaToken(): flag gesetzt.<br>";
+      if( $this->fRecord ) // aufzeichnen!
       {
-        unset($_s);
-        $_s = explode( " ", utf8_encode($this->z[$c]) );
-        echo "pr&uuml;fen: | ";
-        echo $aF[$i] . " | ";
-        for( $s=0; $s < count($_s); $s++ )
+        $this->buffer[ $this->iBuf ] = $this->z;
+        ++$this->iBuf;
+      }
+      $this->cFelder = count($this->z); // Anzahl Felder auslesen
+      for( $i=0; $i < count($aF); $i++ )
+      {
+        for ($c=0; $c < $this->cFelder; $c++)
         {
-          echo "[" . $_s[$s] . "] ";
-          if( true == $this->tokenHatDasFormat( $_s[$s], $aF[$i] ) )
+          unset($_s);
+          $_s = explode( " ", utf8_encode($this->z[$c]) );
+          echo "Format | ";
+          echo $aF[$i] . " |?";
+          for( $s=0; $s < count($_s); $s++ )
           {
-            echo $_s[$s] . " wurde erkannt auf Format " . $aF[$i] . "<br>";
-            // Hilfe: Was jetzt? Weiterschalten auf naechstes Thema?
-            // vorher speichern?
+            echo "<br>[" . $_s[$s] . "] (" . ord($_s[$s]) . ")";
+            if( true == $this->tokenHatDasFormat( $_s[$s], $aF[$i] ) )
+            {
+              echo " -- " . $_s[$s] . " wurde erkannt auf Format " . $aF[$i] . "<br>";
+              // Hilfe: Was jetzt? Weiterschalten auf naechstes Thema?
+              // vorher speichern?
+              /*** naechste Zeile pruefen: Wenn dort erkanntes Format laenger ist, dann
+               *** scheint das hier ein Paragraph zu sein
+               ***/
+              for( $j=0; $j<$this->iBuf; $j++ )
+                echo $this->buffer[$j] . " -;- ";
+              return true;
+            }
           }
         }
+        echo "<br>";
       }
-      echo "<br>";
     }
     return false;
   }
@@ -183,6 +208,11 @@ class LV extends ParserCSV
       {
         if( false == $this->z && !$this->cZeile )
           return false; // sind wir schon fertig?
+        if( $this->fRecord ) // aufzeichnen!
+        {
+          $this->buffer[ $this->iBuf ] = $this->z;
+          ++$this->iBuf;
+        }
         ++$this->cZeile;
         $this->cFelder = count($this->z); // Anzahl Felder auslesen
         for ($c=0; $c < $this->cFelder; $c++)
@@ -335,4 +365,3 @@ class LV extends ParserCSV
     $this->bearbeitenThema[$i]=$t;
   }
 }
-
