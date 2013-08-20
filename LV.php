@@ -130,7 +130,6 @@ class LV extends ParserCSV
       if( false == $this->z && !$this->cZeile )
         return false; // sind wir schon fertig?
       ++$this->cZeile;
-if( $this->fRecord ) echo "findenThemaToken(): flag gesetzt.<br>";
       if( $this->fRecord ) // aufzeichnen!
       {
         $this->buffer[ $this->iBuf ] = $this->z;

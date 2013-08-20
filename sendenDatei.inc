@@ -17,6 +17,7 @@ $str = $_E['rootDocuments'];
 <br>
 <!-- /li -->
 <input type=file name=datei value=<?php echo $str;?>? size=80>
+<br><input type=file name=datei2 value=<?php echo $str;?>? size=80>
 <!-- li-->
 <br>
 2. Senden Sie Ihre Datei ab:
