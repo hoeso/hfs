@@ -65,7 +65,6 @@ $forkAutomat = array(
 		"dbClose.inc",
 	),
 	"strukturierendLVTabelle"=>array(
-		"linkFortsetzen.inc",
  		"strukturierenLVTabelle.prj",
 		"dumpLV.prj",
 		"endeContainer.html",//haupttext
@@ -78,7 +77,8 @@ $forkAutomat = array(
 	),
 	"anbietendUeberschrift"=>array(
  		"anbietenUeberschrift.prj",
-		"dumpLV.prj",
+		//"dumpLV.prj",
+		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -88,11 +88,9 @@ $forkAutomat = array(
 		"endeContainer.html",//hauptteil
 	),
 	"verarbeitendUpload"=>array(
-		"linkFortsetzen.inc",
 		"routinen.inc",
 		"LV.php",
 		"verarbeitenUpload.prj",
-		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",

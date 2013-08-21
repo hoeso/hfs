@@ -20,6 +20,7 @@ for( $i=0; $i<$_A['cSpalten']; $i++ )
   $lv->hinzufuegenThema( $i, $_A["ttID$i"] ); //Objekt-Vektor bauen
 $lv->thematisieren(); // arbeitet Objekt-Vektor ab
 echo "bis hierher funktionierts schon<br>";
+$lv->dumpAufzeichnung(); // aufgezeichneter Dateiinhalt
 $lv->close();
 $_E['wZu']="anbietendKnopfZurueck";
 include("forkZu.inc");

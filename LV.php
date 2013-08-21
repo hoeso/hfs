@@ -15,9 +15,11 @@ class LV extends ParserCSV
   private $fRecord; // Zeilen "mitschneiden" (=speichern)
   private $iBuf;   // interner Pufferzeiger
   private $buffer; // interner Puffer fuer die interpretierten Zeilen
+  private $fDbg; // (de-)aktiviert Debug-Ausgaben
   function __construct($d, $thema=1, $czeile=0, $fRec=0, $mode="r")
   {
     parent::__construct($d, $mode);
+    $this->fDbg = false;
     $this->thema = $thema;
     unset($this->z);
     $this->cZeile = $czeile;
@@ -105,7 +107,7 @@ class LV extends ParserCSV
           return false;
         for( $i=0; $i<strlen($t); $i++ )
         {
-          echo "[" . $t[$i] . "](" . ord($t[$i]) . ")";
+          if( true == $this->fDbg ) echo "[" . $t[$i] . "](" . ord($t[$i]) . ")";
           if( '0' > $t[$i] || '9' < $t[$i] )
             return false;
         } 
@@ -142,30 +144,48 @@ class LV extends ParserCSV
         {
           unset($_s);
           $_s = explode( " ", utf8_encode($this->z[$c]) );
-          echo "Format | ";
-          echo $aF[$i] . " |?";
+          if( true == $this->fDbg )
+          { echo "Format | "; echo $aF[$i] . " |?"; }
           for( $s=0; $s < count($_s); $s++ )
           {
-            echo "<br>[" . $_s[$s] . "] (" . ord($_s[$s]) . ")";
             if( true == $this->tokenHatDasFormat( $_s[$s], $aF[$i] ) )
             {
-              echo " -- " . $_s[$s] . " wurde erkannt auf Format " . $aF[$i] . "<br>";
+              //echo "<br>[" . $_s[$s] . "] (" . ord($_s[$s]) . ")";
+              echo "<br>[" . $_s[$s] . "] (" . ord($_s[$s]) . ")" . " -- " . " wurde erkannt auf Format " . $aF[$i] . "<br>";
               // Hilfe: Was jetzt? Weiterschalten auf naechstes Thema?
               // vorher speichern?
               /*** naechste Zeile pruefen: Wenn dort erkanntes Format laenger ist, dann
                *** scheint das hier ein Paragraph zu sein
                ***/
-              for( $j=0; $j<$this->iBuf; $j++ )
-                echo $this->buffer[$j] . " -;- ";
               return true;
             }
           }
         }
-        echo "<br>";
       }
     }
     return false;
   }
+
+  function dumpAufzeichnung()
+  {
+    if( !$this->fRecord )
+      return;
+    for ($i=0; $i < count($this->buffer); $i++)
+    {
+      echo "\n<br>";
+      if( !isset($this->buffer[$i]) )
+        continue;
+      $cF = count($this->buffer[$i]); // Anzahl Felder auslesen
+      for ($c=0; $c < $cF; $c++)
+      {
+        unset($_s);
+        $_s = explode( " ", utf8_encode($this->buffer[$i][$c]) );
+        for( $s=0; $s < count($_s); $s++ )
+          echo $_s[$s] . " ";
+      }
+    }
+  }
+
   function thematisieren()
   {
     /*** FF 2. Bei leerer Treffermenge mit aktuellem Thema in der Token-Liste verzweigen zum TopicTokenThema-Eintrag ***/
@@ -179,7 +199,7 @@ class LV extends ParserCSV
 
       if( !$thID = DB::gibFeld( "SELECT ThemaID FROM TopicTokenThema WHERE " . $this->bearbeitenThema[$i] . "=TopicTokenID" ) )
       {
-        echo "SubToken?<br>";
+        if( true == $this->fDbg ) echo "SubToken?<br>";
     
         $a[0]=0;// hier Feld 0 rein = TopicID
         $a[1]=1;// hier Feld 1 rein = TokenID
@@ -189,10 +209,10 @@ class LV extends ParserCSV
           echo "kein Thema gefunden<br>";
           return false;
         }
-        echo "SubToken.<br>";
+        if( true == $this->fDbg ) echo "SubToken.<br>";
       }
       else
-        echo "Token<br>";
+        if( true == $this->fDbg ) echo "Token<br>";
       $aF = array();
       DB::gibFeldArray( "SELECT f. Format FROM ThemaFormat thf JOIN Format f ON (thf. FormatID=f.ID) WHERE " . $thID . "=thf.ThemaID ORDER BY Format DESC", 0, $aF );
       if( !count( $aF ) )
@@ -328,11 +348,13 @@ class LV extends ParserCSV
   }
   function debug( $w = "range" )
   {
+    if( false == $this->fDbg )
+      return;
     switch( $w )
     {
       case "range":
         for( $i=0; $i < count($this->a); $i += $this->dim )
-          echo $this->a[$i] . " - " . $this->a[$i+1] . " - " . $this->a[$i+2] . " - " . $this->a[$i+3] . " - " . $this->a[$i+4] . " - " . $this->a[$i+5] . "<br>";
+          echo "\n" . $this->a[$i] . " - " . $this->a[$i+1] . " - " . $this->a[$i+2] . " - " . $this->a[$i+3] . " - " . $this->a[$i+4] . " - " . $this->a[$i+5] . "<br>";
       break;
       case "cF":
         echo "Zeile " . $this->cZeile . ": " . $this->cFelder . "Felder<br>";
