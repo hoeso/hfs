@@ -6,6 +6,7 @@ class LV extends ParserCSV
   private $dim; // TopicToken-Dimension
   private $thema; // Das aktuelle Parse-Thema
   private $cZeile; // Zeilen Counter
+  private $baseLine; // Start Zeile
   private $cFelder; // Anzahl Felder in der Zeile
   private $nFeld; // n.tes Feld in der Zeile
   private $z; // Felder der naechsten Zeile
@@ -22,7 +23,7 @@ class LV extends ParserCSV
     $this->fDbg = false;
     $this->thema = $thema;
     unset($this->z);
-    $this->cZeile = $czeile;
+    $this->baseLine = $this->cZeile = $czeile;
     $this->cFelder = 0;
     $this->nFeld = 0;
     $this->fRecord = $fRec;
@@ -69,6 +70,8 @@ class LV extends ParserCSV
   {
     switch($var)
     {
+      case 'vollTreffer': // vor dem naechsten erkannten Token kamen erst Zeilen mit nicht erkannten Token
+        return ($this->cZeile - $this->baseLine) < 2 ? true : false;
       case 'lesbar':
         return parent::__get('lesbar');
       case 'gibLaengeReihe':
@@ -93,6 +96,25 @@ class LV extends ParserCSV
   {
     switch( $fmt )
     {
+      case "d.d": // vor + nachm Punkt numerisch
+        if( !isset($t[0]) || '.' == $t[0] )
+          return false; // Punkt ist das erste Zeichen
+        $fDot = false;
+        for( $i=0; $i<strlen($t); $i++ )
+        {
+          if( '.' == $t[$i] )
+          {
+            if( !isset($t[$i+1]) )
+              return false; // nachm Punkt kommt nix mehr
+            $fDot = true;
+            continue;
+          }
+          else if( '0' > $t[$i] || '9' < $t[$i] )
+            return false;
+        }
+        if( false == $fDot ) // Punkt kam nicht vor
+          return false;
+      return true;
       case "d.": // nachm Punkt darf nix mehr kommen
         for( $i=0; $i<strlen($t); $i++ )
           if( '.' == $t[$i] || !is_numeric($t[$i]) )
@@ -154,7 +176,13 @@ class LV extends ParserCSV
               echo "<br>[" . $_s[$s] . "] (" . ord($_s[$s]) . ")" . " -- " . " wurde erkannt auf Format " . $aF[$i] . "<br>";
               // Hilfe: Was jetzt? Weiterschalten auf naechstes Thema?
               // vorher speichern?
-              /*** naechste Zeile pruefen: Wenn dort erkanntes Format laenger ist, dann
+              /*** Testen auf bisherige Blindgaenger (Zeilen ohne erkannte Token)
+               *** Erkanntes Token speichern 
+               *** 
+               *** 
+               *** Ggfs. diese ausgeben
+               *** 
+               *** naechste Zeile pruefen: Wenn dort erkanntes Format laenger ist, dann
                *** scheint das hier ein Paragraph zu sein
                ***/
               return true;
@@ -170,6 +198,8 @@ class LV extends ParserCSV
   {
     if( !$this->fRecord )
       return;
+    if( $this->vollTreffer )
+      return; // Token wurde in der 1. Zeile erkannt
     for ($i=0; $i < count($this->buffer); $i++)
     {
       echo "\n<br>";
