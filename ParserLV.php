@@ -88,7 +88,7 @@ class ParserLV extends CSV
             return $this->thema;
         return 0;
       default:
-        throw new Exception("LV hat keine Eigenschaft $var.", 1 );
+        throw new Exception("ParserLV hat keine Eigenschaft $var.", 1 );
       break;
     }
   }

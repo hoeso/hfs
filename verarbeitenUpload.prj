@@ -7,7 +7,7 @@ $w = array();
 $w[] = "anbietendKnopfZurueck";
 $w[] = "strukturierendLVTabelle";
 
-$lv = new ParserLV( $_A['dateiPfad'] );
+$lv = new LV( $_A['dateiPfad'] );
 
 if( false == $lv->lesbar )
   return;
