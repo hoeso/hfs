@@ -1,6 +1,6 @@
 <?php
-require_once("ParserCSV.php");
-class LV extends ParserCSV
+require_once("CSV.php");
+class ParserLV extends CSV
 {
   private $a; // Vektor mit TopicToken-Treffern
   private $dim; // TopicToken-Dimension
@@ -173,7 +173,17 @@ class LV extends ParserCSV
             if( true == $this->tokenHatDasFormat( $_s[$s], $aF[$i] ) )
             {
               //echo "<br>[" . $_s[$s] . "] (" . ord($_s[$s]) . ")";
-              echo "<br>[" . $_s[$s] . "] (" . ord($_s[$s]) . ")" . " -- " . " wurde erkannt auf Format " . $aF[$i] . "<br>";
+              echo "\n<br>[" . $_s[$s] . "] (" . ord($_s[$s]) . ")" . " -- " . " wurde erkannt auf Format " . $aF[$i] . "<br>";
+              echo "\nin Zelle [" . $i . "," .  "<br>";
+              /*** 1. Speichern Zelle bis hierher                                       ***/
+              /*** 2. Rest der Zeile auf Token der Folgespalten pruefen
+               *** a) gefunden? Dann bis zum Token in die naechste Spalte speichern
+               *** b) nicht? Dann den Rest der Zeile in diese Zelle speichern
+               ***    evtl. Abfrage, ob Paragraph (bzw. Symbol anbieten)
+               *** 
+               *** naechste Zeile pruefen: Wenn dort erkanntes Format laenger ist, dann
+               *** scheint das hier ein Paragraph zu sein
+               ***/
               // Hilfe: Was jetzt? Weiterschalten auf naechstes Thema?
               // vorher speichern?
               /*** Testen auf bisherige Blindgaenger (Zeilen ohne erkannte Token)
@@ -252,26 +262,17 @@ class LV extends ParserCSV
       }
       /*** Thema gefunden, jetzt die Formate dazu ***
        ***                                        ***/
-      return $this->findenThemaToken( $aF, $i );
-      while( false <> $this->z = $this->gibZeile )
+      if( true == $this->findenThemaToken( $aF, $i ) )
       {
-        if( false == $this->z && !$this->cZeile )
-          return false; // sind wir schon fertig?
-        if( $this->fRecord ) // aufzeichnen!
-        {
-          $this->buffer[ $this->iBuf ] = $this->z;
-          ++$this->iBuf;
-        }
-        ++$this->cZeile;
-        $this->cFelder = count($this->z); // Anzahl Felder auslesen
-        for ($c=0; $c < $this->cFelder; $c++)
-        {
-          unset($_s);
-          $_s = explode( " ", utf8_encode($this->z[$c]) );
-          for( $s=0; $s < count($_s); $s++ )
-            echo $_s[$s] . ", ";
-          echo "<br>";
-        }
+        /*** 1. Speichern in Zelle bis hierher
+         *** 2. Rest der Zeile auf Token der Folgespalten pruefen
+         *** a) gefunden? Dann bis zum Token in die naechste Spalte speichern
+         *** b) nicht? Dann den Rest der Zeile in diese Zelle speichern
+         ***    evtl. Abfrage, ob Paragraph (bzw. Symbol anbieten)
+         *** 
+         *** naechste Zeile pruefen: Wenn dort erkanntes Format laenger ist, dann
+         *** scheint das hier ein Paragraph zu sein
+         ***/
       }
     }
     return false;

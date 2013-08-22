@@ -11,7 +11,7 @@ $w = array();
 $w[] = "anbietendKnopfZurueck";
 $w[] = "strukturierendLVTabelle";
 
-$lv = new LV( $_A['dateiPfad'], $_A['iThema'], $_A['lvZeile'], 1 );
+$lv = new ParserLV( $_A['dateiPfad'], $_A['iThema'], $_A['lvZeile'], 1 );
 if( false == $lv->lesbar )
   return;
 // Themen bearbeiten: Themen-Vektor anlegen
