@@ -228,6 +228,7 @@ class ParserLV extends CSV
 
   function thematisieren()
   {
+    $this->fDbg = false;
     /*** FF 2. Bei leerer Treffermenge mit aktuellem Thema in der Token-Liste verzweigen zum TopicTokenThema-Eintrag ***/
     /*** $this->reihe[0] pruefen auf TopicTokenID und damit verzweigen zum TopicTokenThema-Eintrag ***/
     if( !isset($this->bearbeitenThema) )
@@ -239,14 +240,15 @@ class ParserLV extends CSV
 
       if( !$thID = DB::gibFeld( "SELECT ThemaID FROM TopicTokenThema WHERE " . $this->bearbeitenThema[$i] . "=TopicTokenID" ) )
       {
-        if( true == $this->fDbg ) echo "SubToken?<br>";
+        if( true == $this->fDbg ) echo "SubToken? (TopicTokenID<>" . $this->bearbeitenThema[$i] . ")<br>";
     
         $a[0]=0;// hier Feld 0 rein = TopicID
         $a[1]=1;// hier Feld 1 rein = TokenID
         DB::gibFelderArray( "SELECT TopicID, TokenID FROM TopicToken WHERE " . $this->bearbeitenThema[$i] . "=ID", $a );
-        if( !$thID = DB::gibFeld( "SELECT ThemaID FROM TopicTokenThema ttt JOIN TopicToken tt ON (ttt. TopicTokenID=tt.ID) JOIN TokenSubToken tst ON(tt. TokenID=tst.TokenID) JOIN SubToken st ON (tst. SubTokenID=st.ID) WHERE " . $a[1] . "=st. TokenID AND " . $a[0] . "=tt. TopicID" ) )
+        $_sql = "SELECT ThemaID FROM TopicTokenThema ttt JOIN TopicToken tt ON (ttt. TopicTokenID=tt.ID) JOIN TokenSubToken tst ON(tt. TokenID=tst.TokenID) JOIN SubToken st ON (tst. SubTokenID=st.ID) WHERE " . $a[1] . "=st. TokenID AND " . $a[0] . "=tt. TopicID";
+        if( !$thID = DB::gibFeld( $_sql ) )
         {
-          echo "kein Thema gefunden<br>";
+          echo "kein Thema gefunden f&uuml;r Spalte " . $i . "<br>";
           return false;
         }
         if( true == $this->fDbg ) echo "SubToken.<br>";
