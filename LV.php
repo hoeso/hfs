@@ -29,4 +29,14 @@ class LV extends ParserLV
       break;
     }
   }
+  function thematisieren()
+  {
+    if( false == parent::thematisieren() )
+    {
+      echo "\n<br>:-(( ";
+      return;
+    }
+    echo "\n<br>:-)! ";
+    $this->dumpFundstelle();
+  }
 }

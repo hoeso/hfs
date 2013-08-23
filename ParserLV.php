@@ -9,7 +9,7 @@ class ParserLV extends CSV
   private $baseLine; // Start Zeile
   private $cFelder; // Anzahl Felder in der Zeile
   private $nFeld; // n.tes Feld in der Zeile
-  private $z; // Felder der naechsten Zeile
+  private $aCSV; // Vektor mit CSV-Feldern einer Zeile
   private $wZu; // Vektor mit Automaten-Schluesseln
   private $reihe; // Vektor mit einer Reihenfolge. Bedeutung abh. vom Wert in $this->thema
   private $bearbeitenThema; // Vektor mit den "Themen": Gemeint sind die Spalten des LV
@@ -17,18 +17,22 @@ class ParserLV extends CSV
   private $iBuf;   // interner Pufferzeiger
   private $buffer; // interner Puffer fuer die interpretierten Zeilen
   private $fDbg; // (de-)aktiviert Debug-Ausgaben
+  // Position des gefundenen Token beschreiben:
+  private $cursor; // Cursor von $buffer
+  private $icsVal;   // Index des comma-separated Value
+  private $iBlVal; // Index der Leerzeichen-getrennten Worte im csVal
   function __construct($d, $thema=1, $czeile=0, $fRec=0, $mode="r")
   {
     parent::__construct($d, $mode);
     $this->fDbg = false;
     $this->thema = $thema;
-    unset($this->z);
+    unset($this->aCSV);
     $this->baseLine = $this->cZeile = $czeile;
     $this->cFelder = 0;
     $this->nFeld = 0;
     $this->fRecord = $fRec;
     if( $fRec )
-      $iBuf=0; // $this->buffer auf Anfang setzen
+      $this->iBuf=0; // $this->buffer auf Anfang setzen
     if( false == parent::__get('lesbar') )
     {
       echo "<br>$d unlesbar ...<br>";
@@ -38,7 +42,7 @@ class ParserLV extends CSV
     if( $this->cZeile ) // > 0 ? Dann auf diese Zeile positionieren
     { // Objekt wird nach Zustand Wechsel rekonstruiert
       $c = 1;
-      while( false <> $this->z = $this->gibZeile )
+      while( false <> $this->aCSV = $this->gibZeile )
       {
         ++$c;
         if( $c == $this->cZeile )
@@ -92,6 +96,55 @@ class ParserLV extends CSV
       break;
     }
   }
+
+  function dumpFundstelle()
+  {
+    if( !$this->fRecord )
+      return;
+    if( !isset($this->buffer[$this->cursor]) )
+    {
+      echo "\n<br>Nil-Cursor!";
+      return;
+    }
+    $cF = count($this->buffer[$this->cursor]); // Anzahl Felder auslesen
+    echo "\n<br>Cursor = " . $this->cursor;
+    for ($c=0; $c < $cF; $c++)
+    {
+      unset($_s);
+      $_s = explode( " ", utf8_encode($this->buffer[$this->cursor][$c]) );
+      if( $c == $this->icsVal )
+        echo ", " . $this->icsVal . ". csv-Feld";
+      for( $s=0; $s < count($_s); $s++ )
+      {
+        if( $c == $this->icsVal && $s == $this->iBlVal )
+          echo ", " . $this->iBlVal . ". blank-sep. Wort: ";
+        echo $_s[$s] . " ";
+      }
+    }
+  }
+
+  function dumpAufzeichnung()
+  {
+    if( !$this->fRecord )
+      return;
+    if( $this->vollTreffer )
+      return; // Token wurde in der 1. Zeile erkannt
+    for ($i=0; $i < count($this->buffer); $i++)
+    {
+      echo "\n<br>";
+      if( !isset($this->buffer[$i]) )
+        continue;
+      $cF = count($this->buffer[$i]); // Anzahl Felder auslesen
+      for ($c=0; $c < $cF; $c++)
+      {
+        unset($_s);
+        $_s = explode( " ", utf8_encode($this->buffer[$i][$c]) );
+        for( $s=0; $s < count($_s); $s++ )
+          echo $_s[$s] . " ";
+      }
+    }
+  }
+
   function tokenHatDasFormat( $t, $fmt )
   {
     switch( $fmt )
@@ -145,33 +198,39 @@ class ParserLV extends CSV
     }
     return false;
   }
+
   function findenThemaToken( $aF, $iSpalte )
   {
     /*** jeden Token pruefen, ob er das Format  ***
      *** bedient                                ***/
-    while( false <> $this->z = $this->gibZeile )
+    while( false <> $this->aCSV = $this->gibZeile )
     {
-      if( false == $this->z && !$this->cZeile )
+      if( false == $this->aCSV && !$this->cZeile )
         return false; // sind wir schon fertig?
       ++$this->cZeile;
       if( $this->fRecord ) // aufzeichnen!
-      {
-        $this->buffer[ $this->iBuf ] = $this->z;
+      {echo "<br>rec " . $this->iBuf . " ...<br>";
+        $this->buffer[ $this->iBuf ] = $this->aCSV;
         ++$this->iBuf;
       }
-      $this->cFelder = count($this->z); // Anzahl Felder auslesen
+      $this->cFelder = count($this->aCSV); // Anzahl Felder auslesen
       for( $i=0; $i < count($aF); $i++ )
       {
         for ($c=0; $c < $this->cFelder; $c++)
         {
           unset($_s);
-          $_s = explode( " ", utf8_encode($this->z[$c]) );
+          $_s = explode( " ", utf8_encode($this->aCSV[$c]) );
           if( true == $this->fDbg )
           { echo "Format | "; echo $aF[$i] . " |?"; }
           for( $s=0; $s < count($_s); $s++ )
           {
             if( true == $this->tokenHatDasFormat( $_s[$s], $aF[$i] ) )
             {
+              // Position des gefundenen Token beschreiben
+              $this->cursor = $this->iBuf -1;
+              $this->icsVal = $c;
+              $this->iBlVal = $s;
+
               //echo "<br>[" . $_s[$s] . "] (" . ord($_s[$s]) . ")";
               echo "\n<br>[" . $_s[$s] . "] (" . ord($_s[$s]) . ")" . " -- " . " wurde erkannt auf Format " . $aF[$i] . "<br>";
               echo "\nin Zelle [" . $i . "," .  "<br>";
@@ -202,28 +261,6 @@ class ParserLV extends CSV
       }
     }
     return false;
-  }
-
-  function dumpAufzeichnung()
-  {
-    if( !$this->fRecord )
-      return;
-    if( $this->vollTreffer )
-      return; // Token wurde in der 1. Zeile erkannt
-    for ($i=0; $i < count($this->buffer); $i++)
-    {
-      echo "\n<br>";
-      if( !isset($this->buffer[$i]) )
-        continue;
-      $cF = count($this->buffer[$i]); // Anzahl Felder auslesen
-      for ($c=0; $c < $cF; $c++)
-      {
-        unset($_s);
-        $_s = explode( " ", utf8_encode($this->buffer[$i][$c]) );
-        for( $s=0; $s < count($_s); $s++ )
-          echo $_s[$s] . " ";
-      }
-    }
   }
 
   function thematisieren()
@@ -275,7 +312,9 @@ class ParserLV extends CSV
          *** naechste Zeile pruefen: Wenn dort erkanntes Format laenger ist, dann
          *** scheint das hier ein Paragraph zu sein
          ***/
+        return true;
       }
+      return false;
     }
     return false;
   }
@@ -327,18 +366,18 @@ class ParserLV extends CSV
     { // nix gfundn. Dann geht's vielleicht ums Thema?
       return false;
     }
-    while( false <> $this->z = $this->gibZeile )
+    while( false <> $this->aCSV = $this->gibZeile )
     {
-      if( false == $this->z && !$this->cZeile )
+      if( false == $this->aCSV && !$this->cZeile )
         return false; // keine einzige Zeile bekommen, da stimmt was nicht
       $n = 1;
       $this->reset(); // loescht alle Token-Treffer
       ++$this->cZeile;
-      $this->cFelder = count($this->z); // Anzahl Felder auslesen
+      $this->cFelder = count($this->aCSV); // Anzahl Felder auslesen
       for ($c=0; $c < $this->cFelder; $c++)
       {
         unset($_s);
-        $_s = explode( " ", utf8_encode($this->z[$c]) );
+        $_s = explode( " ", utf8_encode($this->aCSV[$c]) );
         for( $s=0; $s < count($_s); $s++ )
           for( $i=0; $i < count($this->a); $i += $this->dim )
             if( strstr( $_s[$s], $this->a[$i] ) ) // Token kommt vor
