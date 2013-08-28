@@ -2,6 +2,13 @@
 require_once("CSV.php");
 class ParserLV extends CSV
 {
+  protected $fRecord; // Zeilen "mitschneiden" (=speichern)
+  protected $buffer; // interner Puffer fuer die interpretierten Zeilen
+  // Position des gefundenen Token beschreiben:
+  protected $cursor; // Cursor von $buffer
+  protected $icsVal;   // Index des comma-separated Value
+  protected $iBlVal; // Index der Leerzeichen-getrennten Worte im csVal
+
   private $a; // Vektor mit TopicToken-Treffern
   private $dim; // TopicToken-Dimension
   private $thema; // Das aktuelle Parse-Thema
@@ -13,14 +20,8 @@ class ParserLV extends CSV
   private $wZu; // Vektor mit Automaten-Schluesseln
   private $reihe; // Vektor mit einer Reihenfolge. Bedeutung abh. vom Wert in $this->thema
   private $bearbeitenThema; // Vektor mit den "Themen": Gemeint sind die Spalten des LV
-  private $fRecord; // Zeilen "mitschneiden" (=speichern)
   private $iBuf;   // interner Pufferzeiger
-  private $buffer; // interner Puffer fuer die interpretierten Zeilen
   private $fDbg; // (de-)aktiviert Debug-Ausgaben
-  // Position des gefundenen Token beschreiben:
-  private $cursor; // Cursor von $buffer
-  private $icsVal;   // Index des comma-separated Value
-  private $iBlVal; // Index der Leerzeichen-getrennten Worte im csVal
   function __construct($d, $thema=1, $czeile=0, $fRec=0, $mode="r")
   {
     parent::__construct($d, $mode);
@@ -80,6 +81,8 @@ class ParserLV extends CSV
         return parent::__get('lesbar');
       case 'gibLaengeReihe':
         return count($this->reihe);
+      case 'gibPfad':
+        return parent::__get('gibPfad');
       case 'gibReihe':
         return $this->reihe;
       case 'gibZeile':
@@ -94,32 +97,6 @@ class ParserLV extends CSV
       default:
         throw new Exception("ParserLV hat keine Eigenschaft $var.", 1 );
       break;
-    }
-  }
-
-  function dumpFundstelle()
-  {
-    if( !$this->fRecord )
-      return;
-    if( !isset($this->buffer[$this->cursor]) )
-    {
-      echo "\n<br>Nil-Cursor!";
-      return;
-    }
-    $cF = count($this->buffer[$this->cursor]); // Anzahl Felder auslesen
-    echo "\n<br>Cursor = " . $this->cursor;
-    for ($c=0; $c < $cF; $c++)
-    {
-      unset($_s);
-      $_s = explode( " ", utf8_encode($this->buffer[$this->cursor][$c]) );
-      if( $c == $this->icsVal )
-        echo ", " . $this->icsVal . ". csv-Feld";
-      for( $s=0; $s < count($_s); $s++ )
-      {
-        if( $c == $this->icsVal && $s == $this->iBlVal )
-          echo ", " . $this->iBlVal . ". blank-sep. Wort: ";
-        echo $_s[$s] . " ";
-      }
     }
   }
 

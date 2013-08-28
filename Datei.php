@@ -18,6 +18,8 @@ class Datei
         return $this->fp;
       case 'lesbar':
         return $this->fp <> 0;
+      case 'gibPfad':
+        return $this->pfad;
       default:
         throw new Exception("Datei hat keine Eigenschaft $var.", 1 );
       break;
