@@ -18,6 +18,36 @@ class Db
   private function __construct(){}
   private function __clone(){}
 
+  static public function insert( $str, &$key=0 )
+  {
+    $a = explode( " ", $str );
+    $entity = "";
+    for( $s=0; $s < count($a); $s++ )
+      if( "INTO" == strtoupper($a[$s] )
+      {
+        $entity = $a[$s];
+        break;
+      }
+    if( !$entity )
+      throw new Exception("FEHLER: INSERT enthaelt keine Tabellenangabe.", 2 );
+    $result = mysql_db_query( self::$instance->db, $str );
+    if(!$result)
+      throw new Exception("FEHLER: $str<br>.", 1 );
+
+    $result = mysql_db_query( $MySQLDb, "SELECT LAST_INSERT_ID() FROM " . $entity );
+    $a_ = mysql_fetch_row( $result );
+    mysql_free_result( $result );
+
+    $key = $a_[0];
+  }
+
+  static public function insertOnly( $str )
+  {
+    $result = mysql_db_query( self::$instance->db, $str );
+    if(!$result)
+      throw new Exception("FEHLER: $str<br>.", 1 );
+  }
+
   // gibFeld
   // Input:
   //	$sql: Select

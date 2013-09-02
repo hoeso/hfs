@@ -1,6 +1,6 @@
 <?php
 require_once("CSV.php");
-class ParserLV extends CSV
+class LVParser extends CSV
 {
   protected $fRecord; // Zeilen "mitschneiden" (=speichern)
   protected $buffer; // interner Puffer fuer die interpretierten Zeilen
@@ -95,7 +95,7 @@ class ParserLV extends CSV
             return $this->thema;
         return 0;
       default:
-        throw new Exception("ParserLV hat keine Eigenschaft $var.", 1 );
+        throw new Exception("LVParser hat keine Eigenschaft $var.", 1 );
       break;
     }
   }
@@ -240,9 +240,10 @@ class ParserLV extends CSV
     return false;
   }
 
-  function thematisieren()
+  function thematisieren( &$thema )
   {
     $this->fDbg = false;
+    $thema = -1;
     /*** FF 2. Bei leerer Treffermenge mit aktuellem Thema in der Token-Liste verzweigen zum TopicTokenThema-Eintrag ***/
     /*** $this->reihe[0] pruefen auf TopicTokenID und damit verzweigen zum TopicTokenThema-Eintrag ***/
     if( !isset($this->bearbeitenThema) )
@@ -289,6 +290,7 @@ class ParserLV extends CSV
          *** naechste Zeile pruefen: Wenn dort erkanntes Format laenger ist, dann
          *** scheint das hier ein Paragraph zu sein
          ***/
+        $thema = $i;
         return true;
       }
       return false;

@@ -1,10 +1,15 @@
 <?php
-require_once("ParserLV.php");
-class LV extends ParserLV
+require_once("LVParser.php");
+class LVModel extends LVParser
 {
+  protected $fSimpleMode; // einfacher oder komplexer Versuch der Erkennung
+  protected $LVID;        // prim. key der LV - Instanz
+
   function __construct($d, $thema=1, $czeile=0, $fRec=0, $mode="r")
   {
     parent::__construct($d, $thema, $czeile, $fRec, $mode);
+    $this->fSimpleMode = true;
+    $this->LVID = 1; // hart verdrahtet, solange noch kein GUI
   }
   function __get($var)
   {
@@ -27,22 +32,48 @@ class LV extends ParserLV
       case 'Thema':
         return parent::__get('Thema');
       default:
-        throw new Exception("LV hat keine Eigenschaft $var.", 1 );
+        throw new Exception("LVModel hat keine Eigenschaft $var.", 1 );
       break;
     }
   }
-  function thematisieren()
+  function thematisieren( &$thema )
   {
     echo "\n" . $this->gibPfad . " mit Thema " . $this->Thema . "<br>";
-    if( false == parent::thematisieren() )
+    if( false == parent::thematisieren( $thema ) )
     {
       echo "\n<br>:-(( ";
       return;
     }
     echo "\n<br>:-)! ";
     $this->dumpFundstelle();
+    if( true == $this->fSimpleMode )
+      $this->storeSimple( $thema );
   }
 
+  function storeSimple( $thema )
+  {
+    if( !$this->fRecord )
+      return;
+    if( !isset($this->buffer[$this->cursor]) )
+    {
+      echo "\n<br>Nil-Cursor!";
+      return;
+    }
+    // gibt's schon was?
+    if( !DB::gibFeld( "SELECT COUNT(*) FROM Zeile WHERE " . $this->LVID . "=LVID" ) )
+    { // no nix passiert: Spalte fuer Positionen anlegen
+      Db::insert( "INSERT INTO Spalte VALUES ( null, " . $this->LVID . ", 0, " . "'Pos' )" );
+      for ($i=0; $i <= $this->cursor; $i++)
+      {
+        Db::insert( "INSERT INTO Zeile VALUES ( null, " . $this->LVID . ", " . $i . ", " . "'Pos' )" );
+      }
+    }
+    if( 2 == $this->Thema )
+    {
+    }
+    echo "\n Thema: " . $this->Thema . "<br>";
+    return true;
+  }
   function dumpFundstelle()
   {
     if( !$this->fRecord )

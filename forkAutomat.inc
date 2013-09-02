@@ -89,7 +89,7 @@ $forkAutomat = array(
 	),
 	"verarbeitendUpload"=>array(
 		"routinen.inc",
-		"LV.php",
+		"LVModel.php",
 		"verarbeitenUpload.prj",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
