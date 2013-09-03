@@ -204,7 +204,7 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
-		"LVModel.php",
+		"LVView.php",
 		"erkennenLV.prj",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext

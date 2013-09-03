@@ -62,10 +62,12 @@ class LVModel extends LVParser
     // gibt's schon was?
     if( !DB::gibFeld( "SELECT COUNT(*) FROM Zeile WHERE " . $this->LVID . "=LVID" ) )
     { // no nix passiert: Spalte fuer Positionen anlegen
-      Db::insert( "INSERT INTO Spalte VALUES ( null, " . $this->LVID . ", 0, " . "'Pos' )" );
+      Db::insert( "INSERT INTO Spalte VALUES ( null, " . $this->LVID . ", 0, " . "'Pos' )", $sID );
       for ($i=0; $i <= $this->cursor; $i++)
       {
-        Db::insert( "INSERT INTO Zeile VALUES ( null, " . $this->LVID . ", " . $i . ", " . "'Pos' )" );
+        Db::insert( "INSERT INTO Zeile VALUES ( null, " . $this->LVID . ", " . $i . " )", $zID );
+        $subPos = $i + 1;
+        Db::insert( "INSERT INTO Zelle VALUES ( null, " . $sID . ", " . $zID . ", '1.$subPos' )");
       }
     }
     if( 2 == $this->Thema )

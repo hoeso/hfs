@@ -23,18 +23,22 @@ class Db
     $a = explode( " ", $str );
     $entity = "";
     for( $s=0; $s < count($a); $s++ )
-      if( "INTO" == strtoupper($a[$s] )
+      if( "INTO" == strtoupper($a[$s]) )
       {
-        $entity = $a[$s];
+        $entity = $a[$s+1];
         break;
       }
     if( !$entity )
-      throw new Exception("FEHLER: INSERT enthaelt keine Tabellenangabe.", 2 );
+    {
+      throw new Exception("FEHLER: $str enthaelt keine Tabellenangabe.", 2 );
+    }
     $result = mysql_db_query( self::$instance->db, $str );
     if(!$result)
       throw new Exception("FEHLER: $str<br>.", 1 );
 
-    $result = mysql_db_query( $MySQLDb, "SELECT LAST_INSERT_ID() FROM " . $entity );
+    $result = mysql_db_query( self::$instance->db, "SELECT LAST_INSERT_ID() FROM " . $entity, self::$instance->link );
+    if(!$result)
+      throw new Exception("FEHLER: $entity<br>.", 2 );
     $a_ = mysql_fetch_row( $result );
     mysql_free_result( $result );
 
