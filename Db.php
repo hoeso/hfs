@@ -67,6 +67,13 @@ class Db
     return $arr[ $iFeld ];	
   }
 
+  static public function delete( $str )
+  {
+   $result = mysql_db_query( self::$instance->db, $str );
+    if(!$result)
+      throw new Exception("FEHLER beim Delete: $str<br>.", 1 );
+  }
+
   // gibFelderArray
   // Input:
   //	$sql: Select

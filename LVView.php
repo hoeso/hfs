@@ -8,6 +8,13 @@ class LVView extends LVModel
   {
     $this->lvID = $lvID;
     parent::__construct($d, $thema, $czeile, $fRec, $mode);
+
+    /*** erst mal aufraeumen ***/
+    Db::delete( "DELETE FROM Spalte WHERE " . $lvID . "=LVID" );
+    Db::delete( "DELETE FROM Zeile  WHERE " . $lvID . "=LVID" );
+    Db::gibFeldArray( "SELECT ID FROM Zelle WHERE NOT EXISTS (SELECT SpalteID FROM Zelle c JOIN Spalte s ON (c. SpalteID=s.ID))", 0, $aCell );
+    for( $i=0; $i < count($aCell); $i++ )
+      Db::delete( "DELETE FROM Zelle WHERE " . $aCell[$i] . "=ID" );
   }
   function __get($var)
   {
