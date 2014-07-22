@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
-<title>ASS21</title>
+<title>Sahara</title>
 <script language=javascript type='text/javascript'>
   if( top.location != self.location )
   {
@@ -29,7 +29,7 @@ echo $_E['bodyId'];
 <?php include("endeContainer.html"); ?>
 <?php include("seitenleiste.html"); ?>
 <?php include("hauptnavigation.html"); ?>
-<?php include("naviUpload.html"); ?>
+<?php include("naviGoogle.html"); ?>
 <?php include("endeNavigation.html"); ?>
 <?php include("endeContainer.html"); ?>
 <?php include("endeContainer.html");//hauptteil ?>
