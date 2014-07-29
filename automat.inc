@@ -3,6 +3,10 @@
  *** Henick: Das Beste an HTML & CSS, O'Reilly 2010.
  *** Seite 93
  ***/
+if( isset($_REQUEST['navi']) )
+  $_E['navi'] = $_REQUEST['navi'];
+else if( !isset($__E['navi']) )
+  $_E['navi'] = "Elemente";
 $automat = array(
 /* zum Kopieren
 	""=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
@@ -18,7 +22,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -42,7 +46,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
@@ -58,7 +62,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
@@ -78,7 +82,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
@@ -99,7 +103,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
@@ -125,7 +129,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
@@ -152,7 +156,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
@@ -161,6 +165,29 @@ $automat = array(
 	"bspVerlinkendEntitaet"=>array(
 		"eiZuBspVerlinkendEntitaet.inc",
 		"anbietenVerlinkenEntitaet.inc",
+	),
+	"listend"=>array(
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"dbConnect.inc",
+		"containerTitel.php",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"eiZuWrapperListend.inc",
+		"linkFortsetzen.inc",
+		"anzeigenZieltabelle.inc",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
 	),
 /*** intern gerufene Automaten: ***********************************************/
 	"aenderndRE"=>array(
@@ -179,7 +206,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
@@ -200,7 +227,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -218,7 +245,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -238,7 +265,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -262,7 +289,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -285,7 +312,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -305,7 +332,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -331,7 +358,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -353,7 +380,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
@@ -599,7 +626,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviElemente.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil

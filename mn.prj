@@ -1,4 +1,11 @@
 <?php
+$_a = array
+(
+/* zum Kopieren:
+	""=>"",
+*/
+	"3761"=>"Auftraege",
+);
 switch( $_E['mn'] )
 {
 /* zum Kopieren:
@@ -152,6 +159,10 @@ switch( $_E['mn'] )
     $_eTitel = array( $_REQUEST["a"] );
   break;
   // hier 100 cases bis 1566 freihalten fuer evtl. SL-Faelle. Ist kopierfreundlich.
+  case "3561": // fortsetzen ohne gesetztes Navi
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "anbietendKnopfZurueck";
+  break;
   case "3647": // Datei Upload
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
@@ -168,6 +179,16 @@ switch( $_E['mn'] )
       $_E['nSpaltenGruppieren'] = $_REQUEST["a"];
     $_E['recipient'] = 4224; // speichernd1ZuN
     $_eTitel = array( "{$_REQUEST['n']} mit {$_REQUEST['1']}" );
+  break;
+  case "4737":
+    if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
+    $i = $_REQUEST["a"];
+    if( !isset($_a[ $_REQUEST["a"] ]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "listend";
+    $_E['lView'] = $_a[ $_REQUEST["a"] ];
+    $_E['entitaet'] = $_a[ $_REQUEST["a"] ];
+    $_eTitel = array( str_replace("ae", "&auml;", $_a[ $_REQUEST["a"] ]) );
   break;
   case "6914": // bsp1Zu1ZuN
     if( !isset($_REQUEST["1"]) or !isset($_REQUEST["1n"]) ) { echo $exitus; return; }
@@ -274,7 +295,7 @@ switch( $_E['mn'] )
     $_E['bleistift'] = false;
     $_E['navi'] = "Upload";
   break;
-/*** intern gesetzte Links: ***/
+/*#### intern gesetzte Links: ####*/
   case "1142": // loeschen ja ... nein ...
     if( isset($_REQUEST["dont"]) )
     {

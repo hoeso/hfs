@@ -21,7 +21,7 @@ body {
  * rechten Rand schieben kann, also nichts abgeschnitten wird               ***/
 #hauptteil { height: 1%; overflow: visible; }
 #hauptteil, #kopfteil, #fussteil { width: 100%; margin: 2%; }
-#haupttext { float: right; width: 80%; }
+#haupttext { float: right; width: 87%; }
 #seitenleiste { margin-right: 1%; }
 
 /* basis elemente */

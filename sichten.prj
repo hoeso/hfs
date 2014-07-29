@@ -58,13 +58,12 @@ $Select=array
 /* zum Kopieren:
   ""=>"",
 */
-//	"Region"=>"SELECT Region.ID, Region, von, bis FROM Region, vonPLZ, bisPLZ WHERE Region.vonPLZID=vonPLZ.ID AND Region.bisPLZID=bisPLZ.ID",
-	"Region"=>"SELECT Region.ID, Region, von, bis FROM Region JOIN vonPLZ ON (Region.vonPLZID=vonPLZ.ID) JOIN bisPLZ ON (Region.bisPLZID=bisPLZ.ID)",
+  "Auftraege"=>"SELECT a.ID, CONCAT(v. Versicherer,' ', sb. Schadenbuero,': ', b. Anrede,' ',b. Name) AS VR, DATE_FORMAT( p.commit,'%d.%m.%Y' ) AS am, CONCAT( c.Kuerzel, DATE_FORMAT( p.commit,'%y' ), a.Nr ) AS Nr, p.vnName, CONCAT( c.Kuerzel, DATE_FORMAT( p.commit,'%y' ), a.Nr ) AS Nr, CONCAT(p.vnName,' T. ',p.Telefon)AS VN, CONCAT(p.PLZ,' ',p.Besichtigungsort,', ',p.Strasse) AS Adr FROM Portal p JOIN Auftrag a ON (p.ID=a. PortalID) JOIN Bearbeiter b ON (p. BearbeiterID=b.ID) JOIN Schadenbuero sb ON (b. SchadenbueroID=sb.ID) JOIN Versicherer v ON (sb. VersichererID=v.ID) JOIN Center c ON (p. CenterID=c.ID) WHERE '2014'=YEAR(p.commit) AND 'nein'=a. abgeschlossen",
 
-//	"Schadenbuero"=>"SELECT Schadenbuero.ID, Versicherer, Schadenbuero, PLZ, Ort FROM Schadenbuero, Versicherer WHERE Schadenbuero.VersichererID=Versicherer.ID",
+  "Region"=>"SELECT Region.ID, Region, von, bis FROM Region JOIN vonPLZ ON (Region.vonPLZID=vonPLZ.ID) JOIN bisPLZ ON (Region.bisPLZID=bisPLZ.ID)",
+
   "Schadenbuero"=>"SELECT Schadenbuero.ID, Versicherer, Schadenbuero, PLZ, Ort FROM Schadenbuero JOIN Versicherer ON (Schadenbuero.VersichererID=Versicherer.ID)",
 
-//  	"Bearbeiter"=>"SELECT Bearbeiter.ID, Versicherer, Schadenbuero, PLZ, Ort, Name, Telefon, Nebenstelle AS '_', eMail, Fax, PortalUser AS Portal FROM Bearbeiter, Schadenbuero, Versicherer, PortalUser WHERE Bearbeiter.SchadenbueroID=Schadenbuero.ID AND Schadenbuero.VersichererID=Versicherer.ID AND Bearbeiter.PortalUserID=PortalUser.ID",
   "Bearbeiter"=>"SELECT Bearbeiter.ID, Versicherer, Schadenbuero, PLZ, Ort, Name, Telefon, Nebenstelle AS '_', eMail, Fax, PortalUser AS Portal FROM Bearbeiter JOIN Schadenbuero ON (Bearbeiter.SchadenbueroID=Schadenbuero.ID) JOIN Versicherer ON (Schadenbuero.VersichererID=Versicherer.ID) JOIN PortalUser ON (Bearbeiter.PortalUserID=PortalUser.ID)",
 
 /* zum Kopieren:
