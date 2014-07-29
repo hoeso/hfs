@@ -9,6 +9,7 @@
   "Topic"=>"0",
   "TopicForderung"=>"0",
   "TopicToken"=>"0",
+  "TopicTokenThema"=>"0",
   );
   if( !isset($AND) )
     $AND="";

@@ -16,7 +16,7 @@ foreach (@t)
 }
 
 # Vektor eroeffnen ...
-print "<?\n\$arrRefs = array(\n";
+print "<?php\n\$arrRefs = array(\n";
 foreach (@a)
 {
   if ( /DROP TABLE IF EXISTS `(.*)`/ )

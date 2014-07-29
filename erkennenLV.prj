@@ -1,0 +1,30 @@
+<?php
+/************ Input **********************************************************
+ * _A['dateiPfad']  : zu verarbeitende Datei
+ * _A['iThema']     : was grad ansteht (Topic.Rang) z.Zt. Ueberschrift:1 Position:2
+ * _A['lvZeile']    : bis zu dieser Zeile ist das Dokument interpretiert
+ * _A['cSpalten']   : Anzahl der Spalten der erkannten Tabelle
+ * _A['ttID0..n']   : Die TopicTokenID 0 .. n-1 der n Spalten der erkannten Tabelle
+ *                  : 
+ *****************************************************************************/
+$w = array();
+$w[] = "anbietendKnopfZurueck";
+$w[] = "strukturierendLVTabelle";
+
+$lvid = 1; // noch ist es hart-codiert
+$lv = new LVView( $lvid, $_A['dateiPfad'], $_A['iThema'], $_A['lvZeile'], 1 );
+if( false == $lv->lesbar )
+  return;
+// Themen bearbeiten: Themen-Vektor anlegen
+$lv->anlegenThemenPool( $_A['cSpalten'] );
+for( $i=0; $i<$_A['cSpalten']; $i++ )
+  $lv->hinzufuegenThema( $i, $_A["ttID$i"] ); //Objekt-Vektor bauen
+$lv->thematisieren( $thema ); // arbeitet Objekt-Vektor ab
+
+$lv->dumpAufzeichnung(); // aufgezeichneter Dateiinhalt
+$lv->close();
+
+$lv->display();
+$_E['wZu']="anbietendKnopfZurueck";
+include("forkZu.inc");
+?>

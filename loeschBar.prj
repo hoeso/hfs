@@ -1,12 +1,27 @@
 <?php
 $arrRefs = array(
 
+  "SubToken"=>array(
+    "TokenSubToken",
+  ),
+
   "Token"=>array(
+    "SubToken",
+    "TokenSubToken",
     "TopicToken",
   ),
 
+  "TokenSubToken"=>array(
+    "1-leaf",
+  ),
+
   "Topic"=>array(
+    "TopicForderung",
     "TopicToken",
+  ),
+
+  "TopicForderung"=>array(
+    "1-leaf",
   ),
 
   "TopicToken"=>array(

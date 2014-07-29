@@ -5,7 +5,11 @@
  ***/
 if( isset($_REQUEST['navi']) )
   $_E['navi'] = $_REQUEST['navi'];
+<<<<<<< HEAD
 else if( !isset($__E['navi']) )
+=======
+else if( !isset($_E['navi']) )
+>>>>>>> 5d0b4875f810a08c89f752a922aca4a13cea6daa
   $_E['navi'] = "Elemente";
 $automat = array(
 /* zum Kopieren
@@ -29,6 +33,34 @@ $automat = array(
 		"dbClose.inc",
 	),
 */
+	"anbietend1Zu1ZuN"=>array(
+		"eiZuBspAnbietend1Zu1ZuN.inc",
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"dbConnect.inc",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"setzenFortsetzung.prj",
+		"wohinDamit.inc",
+		"formularERMintro.inc",
+		//"mapSpaltennamen.inc",
+		"ERMListenfuellen.inc",
+		"ERMsubmit.inc",
+		"gibWeiter.inc",
+		"anzeigenZieltabelle.inc",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",//seitenleiste
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"anbietendFKFormular"=>array(
 		"eiZuWrapperFK.inc",
 		"anbietenVerlinkenEntitaet.inc",
@@ -88,7 +120,7 @@ $automat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
-	"bspFuellendRE"=>array( // reine Entitaet
+	"fuellendRE"=>array( // reine Entitaet
 		"kopfteil.html",
 		"kopfteil.prj",
 		"endeContainer.html",
@@ -109,7 +141,7 @@ $automat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
-	"bspVerbindendEntitaeten"=>array(
+	"verbindendEntitaeten"=>array(
 		"kopfteil.html",
 		"kopfteil.prj",
 		"endeContainer.html",
@@ -166,7 +198,11 @@ $automat = array(
 		"eiZuBspVerlinkendEntitaet.inc",
 		"anbietenVerlinkenEntitaet.inc",
 	),
+<<<<<<< HEAD
 	"listend"=>array(
+=======
+	"erkennendLV"=>array(
+>>>>>>> 5d0b4875f810a08c89f752a922aca4a13cea6daa
 		"kopfteil.html",
 		"kopfteil.prj",
 		"endeContainer.html",
@@ -174,20 +210,32 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
+<<<<<<< HEAD
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"eiZuWrapperListend.inc",
 		"linkFortsetzen.inc",
 		"anzeigenZieltabelle.inc",
+=======
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"setzenFortsetzung.prj",
+		"LVView.php",
+		"erkennenLV.prj",
+>>>>>>> 5d0b4875f810a08c89f752a922aca4a13cea6daa
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
 		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
+<<<<<<< HEAD
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
+=======
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+>>>>>>> 5d0b4875f810a08c89f752a922aca4a13cea6daa
 	),
 /*** intern gerufene Automaten: ***********************************************/
 	"aenderndRE"=>array(
@@ -586,7 +634,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviUpload.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
@@ -600,13 +648,14 @@ $automat = array(
 		"containerTitel.php",
 		"connect.prj",
 		"gibVerzeichnis.inc",
+		"dbConnect.inc",
 		"uploaden.inc",
 		"containerTitel.php",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
-		"naviUpload.html",
+		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil

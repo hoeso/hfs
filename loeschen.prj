@@ -1,4 +1,4 @@
-<?
+<?php
 /** INPUT ********************************************************************
  * delTab  : der Name der Entitaet, in der geloescht werden soll
  *         : 

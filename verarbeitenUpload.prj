@@ -3,14 +3,31 @@
  * _A['dateiPfad']  : zu verarbeitende Datei
  *                  : 
  *****************************************************************************/
-$csv = new CSV( $_A['dateiPfad'] );
-if( false == $csv->lesbar )
+$w = array();
+$w[] = "anbietendKnopfZurueck";
+$w[] = "strukturierendLVTabelle";
+
+$lv = new LVModel( $_A['dateiPfad'] );
+
+if( false == $lv->lesbar )
   return;
+
+if( false == $lv->finden() ) // sucht nach bekannten Token
+{
+  $lv->debug();
+  $_E['wZu']="anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
+if( isset($fDbg) ) echo "\n<p>\n" . $lv->Thema . "<br>";
+$lv->close();
+$_E['wZu'] = $w[ $lv->Thema ];
+include("forkZu.inc");
+$lv->open();
 $row=1;
-while( false <> $a = $csv->gibZeile )
+while( false <> $a = $lv->gibZeile )
 {
   $num = count($a);
-  echo "<p> $num Felder in Zeile $row: <br /></p>\n";
+  echo "\n<p> $num Felder in Zeile $row: <br /></p>\n";
   $row++;
   for ($c=0; $c < $num; $c++)
     echo utf8_encode($a[$c]) . "<br />\n";

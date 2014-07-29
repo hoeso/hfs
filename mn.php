@@ -7,10 +7,14 @@ if( 0 )
   echo"\nREQUESTS:<br>";
   foreach( $_REQUEST as $k=>$elem )
     echo"\nk : $k, elem: $elem<br>";
-  echo"\nFILES:<br>";
-  foreach( $_FILES as $k=>$elem )
-    echo"\nk : $k, elem: $elem<br>";
+  if( 0/*isset($_FILES)*/ )
+  {
+    echo"\nFILES:<br>";
+    foreach( $_FILES as $k=>$elem )
+      echo"\nk : $k, elem: $elem<br>";
+  }
 }
+global $_E;
 $_E['mn'] = $_REQUEST["mn"];
 $_E['bodyClass'] = "main";
 $_E['bodyId'] = "main";

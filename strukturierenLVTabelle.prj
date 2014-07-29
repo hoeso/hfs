@@ -1,0 +1,24 @@
+<?php
+/************ Input **********************************************************
+ * w  : Vektor mit Namen von Sekundaer-Automaten abh. vom LV::thema
+ *    : gesetzt in verarbeitenUpload.prj (gehoert in Klasse LV als get('Thema')
+ * lv : LV Objekt
+ *    : 
+ *****************************************************************************/
+$w = array();
+$w[] = "anbietendKnopfZurueck";
+$w[] = "strukturierendLVTabelle";
+
+if( false == $lv->strukturieren() ) // erfraegt die Tabellen-Struktur
+{
+  $_E['wZu']="anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
+$_E['wZu'] = "anbietendUeberschrift";
+include("forkZu.inc");
+echo "<p>" . $lv->Thema . "<br>";
+return; // damit es im Automaten weitergeht mit dumpLV.prj
+$lv->close();
+$_E['wZu'] = $w[ $lv->Thema ];
+include("forkZu.inc");
+?>

@@ -1,11 +1,24 @@
 <?php
-if( !isset($_E['navi']) )
+if( isset($_REQUEST['navi']) )
+  $_E['navi'] = $_REQUEST['navi'];
+else if( !isset($_E['navi']) )
   $_E['navi'] = "Elemente";
 $forkAutomat = array(
 /* zum Kopieren
 	""=>array(
 	),
 */
+	"anbietendKnopfZurueck"=>array(
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"anbietendVerlinkenEntitaet"=>array(
 		"kopfteil.html",
 		"kopfteil.prj",
@@ -51,8 +64,32 @@ $forkAutomat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
+	"strukturierendLVTabelle"=>array(
+ 		"strukturierenLVTabelle.prj",
+		"dumpLV.prj",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"naviUpload.html",
+		"endeNavigation.html",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+	),
+	"anbietendUeberschrift"=>array(
+ 		"anbietenUeberschrift.prj",
+		//"dumpLV.prj",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"naviUpload.html",
+		"endeNavigation.html",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+	),
 	"verarbeitendUpload"=>array(
-		"CSV.php",
+		"routinen.inc",
+		"LVModel.php",
 		"verarbeitenUpload.prj",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -62,32 +99,9 @@ $forkAutomat = array(
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
 	),
-	"abrechnendIndividualschaden"=>array(
-//		"eiZuAbrechnendIndividualschaden.inc",
-		"linkFortsetzen.inc",
-	),
-	"aenderndPortal"=>array(
-		"erlaubenFK.inc",
-		"anbietenFK.inc",
-		"linkFortsetzen.inc",
-	),
 	"aenderndPosition"=>array(
 		"eiZuAenderndPosition.inc",
 		"aendernPosition.inc",
-		"linkFortsetzen.inc",
-	),
-	"aenderndSammelrechnung"=>array(
-		"eiZuListendSammelrechnung.inc",
-		"aendernSammelrechnung.inc",
-		"toggelnEnum.inc",
-		"linkFortsetzen.inc",
-	),
-	"aenderndTarif"=>array(
-		"verbindenMitDB.inc",
-		"transpHeader.html",
-		"ueberschrift.inc",
-		"routinen.inc",
-		"aendernFK.inc",  // entspricht aenderndFK
 		"linkFortsetzen.inc",
 	),
 	"anbietendEindeutiges"=>array(
