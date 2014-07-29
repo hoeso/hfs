@@ -5,11 +5,7 @@
  ***/
 if( isset($_REQUEST['navi']) )
   $_E['navi'] = $_REQUEST['navi'];
-<<<<<<< HEAD
-else if( !isset($__E['navi']) )
-=======
 else if( !isset($_E['navi']) )
->>>>>>> 5d0b4875f810a08c89f752a922aca4a13cea6daa
   $_E['navi'] = "Elemente";
 $automat = array(
 /* zum Kopieren
@@ -198,11 +194,7 @@ $automat = array(
 		"eiZuBspVerlinkendEntitaet.inc",
 		"anbietenVerlinkenEntitaet.inc",
 	),
-<<<<<<< HEAD
 	"listend"=>array(
-=======
-	"erkennendLV"=>array(
->>>>>>> 5d0b4875f810a08c89f752a922aca4a13cea6daa
 		"kopfteil.html",
 		"kopfteil.prj",
 		"endeContainer.html",
@@ -210,32 +202,20 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-<<<<<<< HEAD
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"eiZuWrapperListend.inc",
 		"linkFortsetzen.inc",
 		"anzeigenZieltabelle.inc",
-=======
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"setzenFortsetzung.prj",
-		"LVView.php",
-		"erkennenLV.prj",
->>>>>>> 5d0b4875f810a08c89f752a922aca4a13cea6daa
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
 		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
-<<<<<<< HEAD
 		"endeContainer.html",//seitenleiste
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
-=======
-		"endeContainer.html",
-		"endeContainer.html",//hauptteil
->>>>>>> 5d0b4875f810a08c89f752a922aca4a13cea6daa
 	),
 /*** intern gerufene Automaten: ***********************************************/
 	"aenderndRE"=>array(
