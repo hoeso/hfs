@@ -195,7 +195,7 @@ switch( $_E['mn'] )
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "listend";
     $_E['lView'] = $_a[ $_REQUEST["a"] ];
-    $_E['entitaet'] = $_a[ $_REQUEST["a"] ];
+    $_E['entitaet'] = "Auftrag";
     $_eTitel = array( str_replace("ae", "&auml;", $_a[ $_REQUEST["a"] ]) );
   break;
   case "6914": // bsp1Zu1ZuN

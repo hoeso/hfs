@@ -59,7 +59,7 @@ $Select=array
 /* zum Kopieren:
   ""=>"",
 */
-  "Auftraege"=>"SELECT a.ID, CONCAT(v. Versicherer,' ', sb. Schadenbuero,': ', b. Anrede,' ',b. Name) AS VR, DATE_FORMAT( p.commit,'%d.%m.%Y' ) AS am, CONCAT( c.Kuerzel, DATE_FORMAT( p.commit,'%y' ), a.Nr ) AS Nr, p.vnName, CONCAT( c.Kuerzel, DATE_FORMAT( p.commit,'%y' ), a.Nr ) AS Nr, CONCAT(p.vnName,' T. ',p.Telefon)AS VN, CONCAT(p.PLZ,' ',p.Besichtigungsort,', ',p.Strasse) AS Adr FROM Portal p JOIN Auftrag a ON (p.ID=a. PortalID) JOIN Bearbeiter b ON (p. BearbeiterID=b.ID) JOIN Schadenbuero sb ON (b. SchadenbueroID=sb.ID) JOIN Versicherer v ON (sb. VersichererID=v.ID) JOIN Center c ON (p. CenterID=c.ID) WHERE '2014'=YEAR(p.commit) AND 'nein'=a. abgeschlossen",
+  "Auftraege"=>"SELECT a.ID, CONCAT(v. Versicherer,' ', sb. Schadenbuero,': ', b. Anrede,' ',b. Name) AS VR, DATE_FORMAT( p.commit,'%d.%m.%Y' ) AS am, CONCAT( c.Kuerzel, DATE_FORMAT( p.commit,'%y' ), a.Nr ) AS Nr, p.vnName, CONCAT( c.Kuerzel, DATE_FORMAT( p.commit,'%y' ), a.Nr ) AS Nr, CONCAT(p.vnName,' T. ',p.Telefon)AS VN, CONCAT(p.PLZ,' ',p.Besichtigungsort,', ',p.Strasse) AS Adr FROM Portal p JOIN Auftrag a ON (p.ID=a. PortalID) JOIN Bearbeiter b ON (p. BearbeiterID=b.ID) JOIN Schadenbuero sb ON (b. SchadenbueroID=sb.ID) JOIN Versicherer v ON (sb. VersichererID=v.ID) JOIN Center c ON (p. CenterID=c.ID) WHERE '2014'=YEAR(p.commit) AND WEEKOFYEAR(p.commit) > (WEEKOFYEAR(DATE(NOW()))-4) AND 'nein'=a. abgeschlossen",
 
   "Region"=>"SELECT Region.ID, Region, von, bis FROM Region JOIN vonPLZ ON (Region.vonPLZID=vonPLZ.ID) JOIN bisPLZ ON (Region.bisPLZID=bisPLZ.ID)",
 
