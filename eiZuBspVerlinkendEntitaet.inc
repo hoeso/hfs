@@ -56,4 +56,7 @@ if( isset($_E["nn"]) )
       $tableMM5 = $_E["nn$i"];
   }
 }
+
+if( isset($_E['nichtEinfuegen']) )
+  $keinInsert = $_E['nichtEinfuegen'];
 ?>
