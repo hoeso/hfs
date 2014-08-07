@@ -41,6 +41,11 @@ function logZustandswechsel( $str )
   echo"\n<!-- Eintreten in Zustand $str ... -->\n";
 }
 
-logZustandswechsel($_E['wZu']);
+if( isset($_E['wZu']) )
+  logZustandswechsel($_E['wZu']);
+else if( isset($wZu) )
+  logZustandswechsel($wZu);
+else
+  logZustandswechsel('kein Zustand gesetzt?!');
 include("wZu.inc");
 ?>
