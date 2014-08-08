@@ -5,7 +5,7 @@ for( $j=0; $j<count($arr); $j++ )
   echo "<OPTION VALUE='$arr[$j]'";
   if( "Angebot" == $zielTabelle && "Position" == $feld )
   {
-    $pos = gibFeld($MySQLDb, "SELECT MAX(LPAD(Position,3,'0')) FROM Angebot WHERE $ID=EDVID", 0 );//Auffuellen mit 0 3-stellig muss sein, weil sonst MAX den Wert 9 liefert
+    $pos = gibFeld($MySQLDb, "SELECT MAX(LPAD(Position,3,'0')) FROM Angebot WHERE {$_REQUEST['ID']}=EDVID", 0 );//Auffuellen mit 0 3-stellig muss sein, weil sonst MAX den Wert 9 liefert
     $c=0;
     while( '0' == $pos[$c] && $c < strlen($pos) )
     {

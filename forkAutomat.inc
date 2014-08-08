@@ -337,17 +337,16 @@ $forkAutomat = array(
 	"editierendAngebot"=>array(
 		"eiZuEintretendRechnung.inc",// setzt Pfad zu den Rechnungen
 		"eiZuEditierendAngebot.inc",
-		"speichernAction.inc",// entnommen von gruppierendERM
+		"wohinDamit.inc",
 		"formularERMintro.inc",
-		"mapSpaltennamen.inc",
+		//"mapSpaltennamen.inc",
 		"ERMListenfuellen.inc",
 		"ERMsubmit.inc",
-		"hr.html",
-		"linkFortsetzen.inc",
+		"gibWeiter.inc",
 		"anzeigenZieltabelle.inc",
 		"schreibenAngebot.inc",
 		"konvertierenAngebot.prj",
-		"textBausteine.prj",
+		"textBausteine.html",
 		"linkFortsetzen.inc",
 	),
 	"eingebendAufwand"=>array(

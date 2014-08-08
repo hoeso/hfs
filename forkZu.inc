@@ -1,5 +1,6 @@
 <?php
-$wZu = $_E['wZu'];
+if( isset($_E['wZu']) ) // in FBS1-Modulen ist meistens noch $wZu direkt gesetzt
+  $wZu = $_E['wZu'];
 switch( $wZu )
 {
   case "dokumentierend":

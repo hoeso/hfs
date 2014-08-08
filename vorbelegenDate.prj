@@ -1,0 +1,14 @@
+<?php
+if( "Aktennotiz" == $zielTabelle && "zuErledigenBis" == $feld )
+  echo gibFeld( $MySQLDb, "SELECT DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 3 DAY),'%d.%m.%Y')", 0 );
+else if( "EDV" == $zielTabelle )
+  echo"";
+else if( "anlegendKumul" == $wZu && "Portal" == $zielTabelle && "Schadentag" == $feld )
+  //echo gibFeld( $MySQLDb, "SELECT DATE(DATE_SUB(NOW(), INTERVAL 7 DAY))", 0 );
+  echo "2013-08-10";
+
+else if( "anlegendKumul" == $wZu && "Portal" == $zielTabelle && ("Beginn" == $feld or "commit" == $feld) )
+  echo gibFeld( $MySQLDb, "SELECT NOW()", 0 );
+else
+  echo date ("d.m.Y");
+?>
