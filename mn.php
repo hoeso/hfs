@@ -1,5 +1,5 @@
 <?php
-if( 1 )
+if( 0 )
 {
   echo"\nPOSTS:<br>";
   foreach( $_POST as $k=>$elem )

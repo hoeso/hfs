@@ -325,6 +325,7 @@ switch( $_E['mn'] )
     $_E['entitaet'] = $_REQUEST["a"];
     $_eTitel = array( $_REQUEST["a"] );
     $_E['bleistift'] = false;
+    $_E['navi'] = "Google";
   break;
   case "7545": // bspVerlinkendEntitaet
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }

@@ -320,7 +320,7 @@ $forkAutomat = array(
 		"linkFortsetzen.inc",
 	),
 	"dokumentierend"=>array(
-		"eiZuEintretendRechnung.inc",// setzt Pfad zu den Rechnungen
+		"eiZuEintretendDoku.inc",// setzt Pfad zu Angeboten+Dokus
 		"eiZuDokumentierend.inc",
 		"speichernAction.inc",// entnommen von gruppierendERM
 		"formularERMintro.inc",
@@ -335,7 +335,7 @@ $forkAutomat = array(
 		"linkFortsetzen.inc",
 	),
 	"editierendAngebot"=>array(
-		"eiZuEintretendRechnung.inc",// setzt Pfad zu den Rechnungen
+		"eiZuEintretendDoku.inc",// setzt Pfad zu Angeboten+Dokus
 		"eiZuEditierendAngebot.inc",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
