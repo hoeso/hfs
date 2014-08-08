@@ -17,7 +17,7 @@ if( isset($_REQUEST[""]) )
   $ = $_REQUEST[""];
 */
 $_E['entitaet']="Angebot";
-$_E['recipient']=9422; // speicherndRE
+$_E['recipient']=4224; // speichernd1ZuN
 $countSL=1;
 $tableSL1="EDV";
 $SL1="SELECT ID, Projekt FROM EDV WHERE ID={$_REQUEST['ID']}";
