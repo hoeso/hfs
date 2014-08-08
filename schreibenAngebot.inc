@@ -184,9 +184,9 @@ else
   $euro=gibFeld( $MySQLDb, "SELECT Stundensatz FROM EDV, Zeitstempel, Stundensatz WHERE EDV.ID={$_REQUEST['ID']} AND versandtAm >= Zeitstempel.Datum AND Zeitstempel.ID=Stundensatz.ZeitstempelID ORDER BY Datum DESC", 0 );
   $euro = $euro * $h;
   $sum=number_format($euro,'2',',','.');
-  anhaengenAnDatei( $datei, "\\\\Angebot : $sum \euro\ netto zzgl. gesetzlicher MWSt.\\\\\n" );
+  anhaengenAnDatei( $datei, "\\\\Angebot : $sum \\euro\ netto zzgl. gesetzlicher MWSt.\\\\\n" );
   $sum=number_format($s,'2',',','.');
-  anhaengenAnDatei( $datei, "\\\\Spende Open Source: $sum \euro\\\\\n" );
+  anhaengenAnDatei( $datei, "\\\\Spende Open Source: $sum \\euro\\\\\n" );
 }
-anhaengenAnDatei( $datei, "\end{document}\n" );
+anhaengenAnDatei( $datei, "\\end{document}\n" );
 ?>
