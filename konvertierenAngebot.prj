@@ -1,11 +1,18 @@
 <?php
+$pthPdfL = '/usr/bin/pdflatex';
+if( false == @stat($pthPdfL) )
+{
+  echo "<h4>" . $pthPdfL . " wird vermisst. Ist das Paket 'texlive-latex-recommended' installiert?</h4>";
+  $_E['wZu']="anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
 $cmd = "/usr/bin/pdflatex -output-directory $BERICHT_ROOT $datei";
 $str = exec($cmd);
 $freigegeben = str_replace( "tex", "pdf", $datei );
 if( false == ($arrInfo = stat( $freigegeben) ) )
 {
   echo"do is wos schiafganga ( $freigegeben )<br>";
-  $wZu="anbietendKnopfZurueck";
+  $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
 ?><P><?php
