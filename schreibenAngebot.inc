@@ -8,7 +8,7 @@ if( false == habWas( $arr, 0, 1 ) )
 {
   mysql_close( $lkid );
   echo "kein Zugriff auf Elemente Relation <b>EDV</b>";
-  $wZu="anbietendKnopfZurueck";
+  $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
 dtUmlaute2Tex( $arr[1] );
@@ -51,7 +51,7 @@ gibFelderArray( $MySQLDb, "SELECT Section, Details, realisierungsStunden, ID, Fe
 if( false == habWas( $arrA, 0, $dim ) )
 {
   anhaengenAnDatei( $datei, "\end{document}\n" );
-  $wZu="anbietendKnopfZurueck";
+  $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
 //anhaengenAnDatei( $datei, "\newcounter{section}[chapter]\n" );
