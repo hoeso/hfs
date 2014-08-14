@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style type="text/css">
+#wr123 {
+background-color:#FFF3CC;
+border:#DFBC6A 1px solid;
+width:40px;
+height:16px;
+padding:8px;
+font-size:10px;
+text-align:center;
+float:left;
+}
+#wr456 {
+background-color:#FFF3CC;
+border:#DFBC6A 1px solid;
+width:40px;
+height:16px;
+padding:8px;
+font-size:10px;
+text-align:center;
+float:left;
+}
+#module_1N1 {
+background-color:#CCC;
+width:60px;
+height:60px;
+padding:8px;
+border:1px solid gray;
+font-size:10px;
+text-align:center;
+float:left;
+}
+#module_1N2 {
+background-color:#CCC;
+width:60px;
+height:60px;
+padding:8px;
+border:1px solid gray;
+font-size:10px;
+text-align:center;
+float:left;
+}
+#module_2N1 {
+background-color:#CCC;
+width:60px;
+height:60px;
+padding:8px;
+border:1px solid gray;
+font-size:10px;
+text-align:center;
+float:left;
+}
+#module_2N2 {
+background-color:#CCC;
+width:60px;
+height:60px;
+padding:8px;
+border:1px solid gray;
+font-size:10px;
+text-align:center;
+float:left;
+}
+</style>
+<script type="text/javascript">
+var isRecycled = false;
+function appStatus(msg){
+    document.getElementById('app_status').innerHTML = msg;
+}
+// "e" represents the drag event in question for each drag function
+function drag_start(e) {
+    appStatus("Dragging the "+e.target.getAttribute('id'));
+    e.dataTransfer.dropEffect='move';
+    e.dataTransfer.setData("text/plain", e.target.getAttribute('id'));
+}
+function drag_enter(e) {
+    appStatus("You are dragging over the "+e.target.getAttribute('id'));
+}
+function drag_leave(e) {
+    appStatus("You left the "+e.target.getAttribute('id'));
+}
+function drag_drop(e) {
+    var element = e.dataTransfer.getData("Text");
+    var answer = confirm("Drop "+element+" into the "+e.target.getAttribute('id')+"?")
+    if (answer){
+      //some code
+      appStatus("Dropped "+element+" into the "+e.target.getAttribute('id'));
+      e.target.appendChild(document.getElementById(element));
+      isRecycled = true;
+      document.getElementById(element).removeAttribute("draggable");
+    }
+    else{
+        //some code
+    }
+}
+function drag_end(e) {
+    var status = document.getElementById('app_status');
+    if(isRecycled == false){
+        appStatus("You let the "+e.target.getAttribute('id')+" go.");
+    }
+}
+</script>
+<title>
+DnD-H5-PHP
+</title>
+</head>
+<body>
+<h2>DevelopPHP.com</h2>
+<div id="app_status">App status area ready...</div>
+<div id="wr123" draggable="true" ondragstart="drag_start(event)"><!-- ondragend="drag_end(event)"-->
+WR342
+</div>
+<div id="wr456" draggable="true" ondragstart="drag_start(event)"><!-- ondragend="drag_end(event)"-->
+WR343
+</div>
+</div>
+<!-- clear hebt das float:left auf = CR -->
+<div style="clear:both;"></div>
+<hr />
+<form action="./dbgPost.php">
+<div id="module_1N1" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" >
+Modul-1N1
+<input type="checkbox" name="1N1" value="1" id="10">
+</div>
+<div id="module_1N2" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" >
+Modul-1N2
+<input type="checkbox" name="1N2" value="1" id="11">
+</div>
+<div style="clear:both;"></div>
+<div id="module_2N1" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" >
+Modul-2N1
+<input type="checkbox" name="2N1" value="1" id="12">
+</div>
+<div id="module_2N2" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" >
+Modul-2N2
+<input type="checkbox" name="2N2" value="1" id="13">
+</div>
+<input type="submit" value="String">
+</form>
+</body>
+</html>
