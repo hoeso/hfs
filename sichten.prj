@@ -80,6 +80,8 @@ $Select=array
 
   "Schadenbuero"=>"SELECT Schadenbuero.ID, Versicherer, Schadenbuero, PLZ, Ort FROM Schadenbuero JOIN Versicherer ON (Schadenbuero.VersichererID=Versicherer.ID)",
 
+  "Stundensatz"=>"SELECT ss.ID, Stundensatz, Datum FROM Stundensatz ss JOIN Zeitstempel z ON (ss.ZeitstempelID=z.ID)",
+
   "Bearbeiter"=>"SELECT Bearbeiter.ID, Versicherer, Schadenbuero, PLZ, Ort, Name, Telefon, Nebenstelle AS '_', eMail, Fax, PortalUser AS Portal FROM Bearbeiter JOIN Schadenbuero ON (Bearbeiter.SchadenbueroID=Schadenbuero.ID) JOIN Versicherer ON (Schadenbuero.VersichererID=Versicherer.ID) JOIN PortalUser ON (Bearbeiter.PortalUserID=PortalUser.ID)",
 
 /* zum Kopieren:
@@ -93,12 +95,7 @@ $OrderBy=array
   "Angebot"=>" ORDER BY Position",
   "EDV"=>" ORDER BY ID DESC",
   "EDVAngebot"=>" ORDER BY ID DESC",
-  "ThemaFormat"=>" ORDER BY Thema, Format",
-  "SubToken"=>" ORDER BY Token",
-  "TokenSubToken"=>" ORDER BY t.Token, Sub",
-  "TopicForderung"=>" ORDER BY Topic",
-  "TopicToken"=>" ORDER BY Topic, Token",
-  "TopicTokenThema"=>" ORDER BY Topic, Token, Thema",
+  "Stundensatz"=>" ORDER BY Datum DESC",
 );
 
 $gfaerbteSpoidn = array(
