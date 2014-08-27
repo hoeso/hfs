@@ -1,16 +1,28 @@
 <?php
+/***
+ *** Angebot oder Protokoll:
+ *** Das Feld PDF wird verwendet, um statt eines Angebots
+ *** ein Protokoll zu verfassen.
+ *** Beim Protokoll wird die Beschreibung weggelassen und ebenso die Aufwände
+ ***/
 unset($arr);
 $arr[0]=0;// hier Feld 0 rein = Projekt
 $arr[1]=1;// hier Feld 1 rein = Beschreibung
+$arr[2]=2;// hier Feld 2 rein = PDF
 $dim=count($arr);
-gibFelderArray( $MySQLDb, "SELECT Projekt, Beschreibung FROM EDV WHERE ID={$_REQUEST['ID']}", $arr );
-if( false == habWas( $arr, 0, 1 ) )
+gibFelderArray( $MySQLDb, "SELECT Projekt, Beschreibung, PDF FROM EDV WHERE ID={$_REQUEST['ID']}", $arr );
+if( false == habWas( $arr, 0, 2 ) )
 {
   mysql_close( $lkid );
   echo "kein Zugriff auf Elemente Relation <b>EDV</b>";
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
+if( 'ja' == $arr[2] )
+  $topic = "Protokoll";
+else
+  $topic = "Angebot";
+
 dtUmlaute2Tex( $arr[1] );
 entwertenSonderzeichenTex( $arr[1] );
 
@@ -30,7 +42,7 @@ anhaengenAnDatei( $datei, "\author{H\"ormann Solutions}\n" );
 anhaengenAnDatei( $datei, "\pagestyle{empty}\n" );
 dtUmlaute2Tex( $arr[0] );
 entwertenSonderzeichenTex( $arr[0] );
-anhaengenAnDatei( $datei, "\\title{Angebot zum EDV-Projekt Nummer {$_REQUEST['ID']}: $arr[0]}\n" );
+anhaengenAnDatei( $datei, "\\title{" . $topic . " zum EDV-Projekt Nummer {$_REQUEST['ID']}: $arr[0]}\n" );
 anhaengenAnDatei( $datei, "\begin{document}\n" );
 anhaengenAnDatei( $datei, "\maketitle\n" );
 //anhaengenAnDatei( $datei, "\\tableofcontents\n" );
@@ -38,7 +50,8 @@ anhaengenAnDatei( $datei, "\setcounter{chapter}{" );
 anhaengenAnDatei( $datei, "{$_REQUEST['ID']}}\n" );
 anhaengenAnDatei( $datei, "\chapter*{" );
 anhaengenAnDatei( $datei, "$arr[0]}\n" );
-anhaengenAnDatei( $datei, "$arr[1]\n" );
+if( $topic <> "Protokoll" )
+  anhaengenAnDatei( $datei, "$arr[1]\n" );
 
 $arrA[0]=0;// hier Feld 0 rein = Section
 $arrA[1]=1;// hier Feld 1 rein = Details
@@ -104,6 +117,11 @@ for( $i=0; $i<count($arrA); $i += $dim )
   }
 }
 
+if( $topic == "Protokoll" )
+{
+  anhaengenAnDatei( $datei, "\\end{document}\n" );
+  return;
+}
 anhaengenAnDatei( $datei, "\section{Zusammenfassung}" );
 $section=1;
 $h=0;
