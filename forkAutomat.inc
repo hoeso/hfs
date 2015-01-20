@@ -100,9 +100,20 @@ $forkAutomat = array(
 		"endeContainer.html",//hauptteil
 	),
 	"aenderndPosition"=>array(
-		"eiZuAenderndPosition.inc",
+		"dbConnect.inc",
+		"containerTitel.php",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"setzenFortsetzung.prj",
 		"aendernPosition.inc",
 		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
 	),
 	"anbietendEindeutiges"=>array(
 		"eiZuAnbietendEindeutiges.inc",
