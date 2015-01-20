@@ -23,6 +23,7 @@ switch( $_E['mn'] )
     if( isset($_REQUEST["1n"]) and !isset($_REQUEST["1n1"]) ) { echo $exitus; return; }
     if( isset($_REQUEST["nn"]) and !isset($_REQUEST["nn1"]) ) { echo $exitus; return; }
     if( isset($_REQUEST["sl"]) ) { echo $exitus; return; }
+    //$_E['enableDbg'] = true; // Ausgaben von dbConnect.inc aktivieren
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "bspVerlinkendEntitaet";
     $_E['entitaet'] = $_REQUEST["a"];
