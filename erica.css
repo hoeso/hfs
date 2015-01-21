@@ -21,7 +21,8 @@ body {
 /* overflow: visible sorgt dafür, dass der horizontale Scrollbalken bis zum ***
  * rechten Rand schieben kann, also nichts abgeschnitten wird               ***/
 #hauptteil { height: 1%; overflow: visible; }
-#hauptteil, #kopfteil, #fussteil { width: 100%; margin: 2%; }
+/* width + margin sollen nicht groesser als 100% sein, ansonsten horiz. Scrolling */
+#hauptteil, #kopfteil, #fussteil { width: 96%; margin: 2%; }
 #haupttext { float: right; width: 87%; }
 #seitenleiste { margin-right: 1%; }
 
