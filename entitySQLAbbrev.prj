@@ -5,6 +5,7 @@
  * einen Fehler erzeugt
  */
 $sqlAbbrev = array(
+  "Angebot"=>"Angebot",
   "Format"=>"f",
   "SubToken"=>"st",
   "Thema"=>"th",
