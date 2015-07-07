@@ -1,4 +1,8 @@
 <?php
+function logForkedModul( $str )
+{
+  echo"\n<!-- Modul $str: -->\n";
+}
 $wZu = $_E['wZu'];
 switch( $wZu )
 {
@@ -129,7 +133,7 @@ if( ( isset( $_REQUEST["docZustand"] ) and $wZu == $_REQUEST["docZustand"] ) or(
 else
   foreach( $forkAutomat[$wZu] as $include )
   {
-    logModul($include);
+    logForkedModul($include);
     include($include);
   }
 
