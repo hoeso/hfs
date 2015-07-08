@@ -7,7 +7,7 @@
  * $ID']         : Primaerschluessel des Datensatzes
  * $tableRE    : Name der Tabelle mit dem Primaerschluessel
  ***************************************/
-$fDebug=false;
+$fDebug=true;
 
 
 if( isset($delTab) )
@@ -17,7 +17,7 @@ if( isset($delTab) )
 }
 if( isset($richtung) )
 {
-	$wZu="aenderndPosition";
+	$_E['wZu']="aenderndPosition";
 	include("forkZu.inc");
 }
 
@@ -31,7 +31,7 @@ if( isset($richtung) )
 if( isset($zoom) )
 {
 	$Titel=$zoom;
-	$wZu="anzeigendKinder";
+	$_E['wZu']="anzeigendKinder";
 	include("forkZu.inc");
 }
 if( isset($rauf_x) )
@@ -40,7 +40,7 @@ else if( isset($runter_x) )
 	$richtung="groesser";
 if( isset($richtung) )
 {
-	$wZu="aenderndPosition";
+	$_E['wZu']="aenderndPosition";
 	include("forkZu.inc");
 }
 if( isset($debug) && $debug )

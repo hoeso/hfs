@@ -29,7 +29,7 @@ if( false == isset( $_FILES ) )
 {
   echo"du muassd scho was ogehm!"; exit;
 }
-
+$f = false;
 foreach( $_FILES as $k=>$elem )
 {
   $feldname = $k;
@@ -59,17 +59,28 @@ foreach( $_FILES as $k=>$elem )
     }
   
     /*** Datei                                              speichern ***/
-    $_A['dateiPfad'] = $_E['rootDocuments'] . "/" . $name;
-    if( false == move_uploaded_file($tmp_name, $_A['dateiPfad']) )
+    $dstDatei = $_E['rootDocuments'] . "/" . $name;
+    if( false == move_uploaded_file($tmp_name, $dstDatei) )
     {
-      ?>Die Datei <?php echo $_A['dateiPfad'];?> konnte nicht gespeichert werden<br><?php
+      ?>Die Datei <?php echo $dstDatei;?> konnte nicht gespeichert werden<br><?php
     }
     else
     {
-      echo $_A['dateiPfad'];?> wurde gespeichert<br><?php
-      $_E['wZu']="verarbeitendUpload";
-      include("forkZu.inc");
+      $_a = explode(".", $name);
+      if( "csv" == $_a[ count($_a)-1 ] ) // das zu interpretierende Format
+      {
+        echo $dstDatei;?> wurde gespeichert<br><?php
+        $_A['dateiPfad'] = $_E['rootDocuments'] . "/" . $name;
+      }
+      else
+      { // Das PDF zum Oeffnen anbieten
+        echo strtoupper( $_a[ count($_a)-1 ] );?> zur Ansicht: <a href="/lv/<?php echo $name;?>"><?php echo $name;?></a><br><?php
+      }
     }
   }
 }
+if( !isset($_A['dateiPfad']) )
+  return;
+$_E['wZu']="verarbeitendUpload";
+include("forkZu.inc");
 ?>

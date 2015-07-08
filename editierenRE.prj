@@ -1,7 +1,7 @@
 <?php
 if( !strcmp( "Portal", $_E['entitaet'] ) or !strcmp( "Auftrag", $_E['entitaet'] ) )
 {
-  $wZu="aenderndPortal";
+  $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
 else if( !strcmp( "PortalAttribute", $_E['entitaet'] ) )
@@ -22,13 +22,13 @@ else if( !strcmp( "Rechnung", $_E['entitaet'] ) )
   if( "ja" == $fZugestellt )
   {
     echo"<h4>Die Rechnung wurde bereits zugestellt und kann deshalb nicht mehr ge&auml;ndert werden</h4>";
-    $wZu="anbietendKnopfZurueck";
+    $_E['wZu']="anbietendKnopfZurueck";
     include("forkZu.inc");
   }
 }
 else if( !strcmp( "EDVAngebot", $_E['entitaet'] ) )
 {
-    $wZu="editierendAngebot";
+    $_E['wZu']="editierendAngebot";
     include("forkZu.inc");
 }
 ?>

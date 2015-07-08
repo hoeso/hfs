@@ -4,7 +4,9 @@
  **** Sortierung angegeben werden.                                        *****/
 
 $appendix=array(
-  "Versicherer"=>" ORDER BY Versicherer",
+  "Thema"=>" ORDER BY Thema",
+  "Token"=>" ORDER BY Token",
+  "Topic"=>" ORDER BY Topic",
   "Zeitstempel"=>" ORDER BY Datum DESC",
 );
 

@@ -97,7 +97,7 @@ if( isset($dahin) and $dahin )
 $anker=0;
 if( isset( $_eCandy ) )
   foreach( $_eCandy as $k => $elem )
-    if( $elem )
+    if( $elem && isset($candyURL)  && isset($candyURL[$k]) )
     {
       $dahin = $candyURL[$k];
       $dahin .= "&$k=$elem#$elem";

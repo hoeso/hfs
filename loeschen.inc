@@ -94,7 +94,7 @@ if( $bremse )
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
-if( !$geprueft )
+if( !isset($geprueft) || !$geprueft )
 {
   echo"\n<p>Das L&ouml;schen dieser Eintr&auml;ge wird noch nicht verifiziert und deshalb wird es vorerst noch blockiert.<br>";
   echo"\n<!-- Tabelle $delTab -->";

@@ -19,7 +19,7 @@ else
 <?php
 $ex="";
 if( isset($_REQUEST["a"]) )
-  $ex = " -e exitus";
+  $ex = " -e exitus -e\#\#\#\#";
 $str = shell_exec( "/bin/grep -e case" . $ex . " -e wZu mn.prj" );
 echo $str;
 ?>

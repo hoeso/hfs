@@ -56,4 +56,8 @@ if( isset($_E['enableDbg']) && $_E['enableDbg'] )
  *
  *
  ***************************************/
+include "Db.php";
+$Db = Db::getInstance();
+$Db->link = $lkid;
+$Db->db = $MySQLDb;
 ?>

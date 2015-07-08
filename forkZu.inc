@@ -1,4 +1,6 @@
 <?php
+if( isset($_E['wZu']) ) // in FBS1-Modulen ist meistens noch $wZu direkt gesetzt
+  $wZu = $_E['wZu'];
 function logForkedModul( $str )
 {
   echo"\n<!-- Modul $str: -->\n";
@@ -130,13 +132,18 @@ if( ( isset( $_REQUEST["docZustand"] ) and $wZu == $_REQUEST["docZustand"] ) or(
     anhaengenAnDatei( $datei, "\end{document}\n" );
   anhaengenAnDatei( $datei, "\n" );
 }
-else
+else if( isset($forkAutomat[$wZu]) )
+{
   foreach( $forkAutomat[$wZu] as $include )
   {
     logForkedModul($include);
     include($include);
   }
-
+}
+else
+{
+  ?>Zustand '<?php echo $wZu;?>' unbekannt.<?php
+}
 if( isset($_REQUEST["forkdocC"]) )
 {
 ?><P><?php

@@ -5,7 +5,16 @@
  * einen Fehler erzeugt
  */
 $sqlAbbrev = array(
+  "Angebot"=>"Angebot",
+  "Format"=>"f",
+  "SubToken"=>"st",
+  "Thema"=>"th",
+  "ThemaFormat"=>"thf",
   "Token"=>"t",
+  "TokenSubToken"=>"tst",
+  "Topic"=>"tp",
+  "TopicForderung"=>"tof",
   "TopicToken"=>"tt",
+  "TopicTokenThema"=>"ttt",
 );
 ?>

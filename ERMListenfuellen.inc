@@ -304,8 +304,8 @@ for( $i=0; $i<$anz; $i++ )
           switch( $elem )
           {// switch
             case "date":
-              echo " TYPE='TEXT' SIZE=10 VALUE='";
-	      include("eingabeFuellenDatum.prj");
+              echo " TYPE='DATE' SIZE=10 VALUE='";
+	      include("vorbelegenDate.prj");
               echo "'></li>";
             break;
             case "real":

@@ -1,11 +1,24 @@
 <?php
-if( !isset($_E['navi']) )
+if( isset($_REQUEST['navi']) )
+  $_E['navi'] = $_REQUEST['navi'];
+else if( !isset($_E['navi']) )
   $_E['navi'] = "Elemente";
 $forkAutomat = array(
 /* zum Kopieren
 	""=>array(
 	),
 */
+	"anbietendKnopfZurueck"=>array(
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"anbietendVerlinkenEntitaet"=>array(
 		"kopfteil.html",
 		"kopfteil.prj",
@@ -51,6 +64,10 @@ $forkAutomat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
+	"strukturierendLVTabelle"=>array(
+ 		"strukturierenLVTabelle.prj",
+		"dumpLV.prj",
+	),
 	"inBetriebnehmend"=>array(
 		"kopfteil.html",
 		"kopfteil.prj",
@@ -72,33 +89,45 @@ $forkAutomat = array(
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
 	),
-	"abrechnendIndividualschaden"=>array(
-//		"eiZuAbrechnendIndividualschaden.inc",
+	"anbietendUeberschrift"=>array(
+ 		"anbietenUeberschrift.prj",
+		//"dumpLV.prj",
 		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"naviUpload.html",
+		"endeNavigation.html",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
 	),
-	"aenderndPortal"=>array(
-		"erlaubenFK.inc",
-		"anbietenFK.inc",
-		"linkFortsetzen.inc",
+	"verarbeitendUpload"=>array(
+		"routinen.inc",
+		"LVModel.php",
+		"verarbeitenUpload.prj",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"naviUpload.html",
+		"endeNavigation.html",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
 	),
 	"aenderndPosition"=>array(
-		"eiZuAenderndPosition.inc",
+		"dbConnect.inc",
+		"containerTitel.php",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"setzenFortsetzung.prj",
 		"aendernPosition.inc",
 		"linkFortsetzen.inc",
-	),
-	"aenderndSammelrechnung"=>array(
-		"eiZuListendSammelrechnung.inc",
-		"aendernSammelrechnung.inc",
-		"toggelnEnum.inc",
-		"linkFortsetzen.inc",
-	),
-	"aenderndTarif"=>array(
-		"verbindenMitDB.inc",
-		"transpHeader.html",
-		"ueberschrift.inc",
-		"routinen.inc",
-		"aendernFK.inc",  // entspricht aenderndFK
-		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
 	),
 	"anbietendEindeutiges"=>array(
 		"eiZuAnbietendEindeutiges.inc",
@@ -316,7 +345,7 @@ $forkAutomat = array(
 		"linkFortsetzen.inc",
 	),
 	"dokumentierend"=>array(
-		"eiZuEintretendRechnung.inc",// setzt Pfad zu den Rechnungen
+		"eiZuEintretendDoku.inc",// setzt Pfad zu Angeboten+Dokus
 		"eiZuDokumentierend.inc",
 		"speichernAction.inc",// entnommen von gruppierendERM
 		"formularERMintro.inc",
@@ -331,19 +360,18 @@ $forkAutomat = array(
 		"linkFortsetzen.inc",
 	),
 	"editierendAngebot"=>array(
-		"eiZuEintretendRechnung.inc",// setzt Pfad zu den Rechnungen
+		"eiZuEintretendDoku.inc",// setzt Pfad zu Angeboten+Dokus
 		"eiZuEditierendAngebot.inc",
-		"speichernAction.inc",// entnommen von gruppierendERM
+		"wohinDamit.inc",
 		"formularERMintro.inc",
-		"mapSpaltennamen.inc",
+		//"mapSpaltennamen.inc",
 		"ERMListenfuellen.inc",
 		"ERMsubmit.inc",
-		"hr.html",
-		"linkFortsetzen.inc",
+		"gibWeiter.inc",
 		"anzeigenZieltabelle.inc",
 		"schreibenAngebot.inc",
 		"konvertierenAngebot.prj",
-		"textBausteine.prj",
+		"textBausteine.html",
 		"linkFortsetzen.inc",
 	),
 	"eingebendAufwand"=>array(

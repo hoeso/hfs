@@ -1,16 +1,29 @@
 <?php
 $arrRefs = array(
 
-  "Token"=>array(
-    "TopicToken",
+  "Angebot"=>array(
+    "Beistellung",
   ),
 
-  "Topic"=>array(
-    "TopicToken",
-  ),
-
-  "TopicToken"=>array(
+  "Beistellung"=>array(
     "1-leaf",
+  ),
+
+  "Diskussion"=>array(
+    "1-leaf",
+  ),
+
+  "EDV"=>array(
+    "Angebot",
+    "Diskussion",
+  ),
+
+  "Stundensatz"=>array(
+    "1-leaf",
+  ),
+
+  "Zeitstempel"=>array(
+    "Stundensatz",
   ),
 
 );

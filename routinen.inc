@@ -24,10 +24,14 @@ function fuellen( $wert, $len, $fuellZ )
 // wenn Inhalt ungleich dem Index, dann wurde gefuellt
 function habWas( $arr, $start, $ende )
 {
-	for( $i=$start; $i<=$ende; $i++ )
-	     if( $arr[$i] != $i )
-	         return true;
-	return false;
+  for( $i=$start; $i<=$ende; $i++ )
+  {
+    if( !isset($arr[$i]) )
+      break;
+    if( $arr[$i] != $i )
+      return true;
+  }
+  return false;
 }
 
 function istForeignKeyName( $feld )

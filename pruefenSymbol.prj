@@ -19,6 +19,16 @@ else if( isset($_REQUEST["delete"]) )
 }
 else if( isset($_REQUEST["symbol_x"]) )
   $_E['wZu']="anbietendKnopfZurueck";
+else if( isset($_REQUEST["rauf_x"]) )
+{
+  $_E['wZu']="aenderndPosition";
+  $_A['Richtung'] = "kleiner";
+}
+else if( isset($_REQUEST["runter_x"]) )
+{
+  $_E['wZu']="aenderndPosition";
+  $_A['Richtung'] = "groesser";
+}
 
 if( isset($_E['wZu']) )
   include("forkZu.inc");

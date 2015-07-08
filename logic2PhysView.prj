@@ -1,0 +1,8 @@
+<?php
+/** Includiertes, projektspezifisches Skript *********************************
+ * $_E['entitaet']    :  Name der logischen Liste
+ * 
+ *****************************************************************************/
+if( "Eingang" == $tableRE )
+  $tableRE = "Portal";
+?>

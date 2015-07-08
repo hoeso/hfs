@@ -12,11 +12,21 @@ class CSV extends Datei
     {
       case 'lesbar':
         return parent::__get('lesbar');
+      case 'gibPfad':
+        return parent::__get('gibPfad');
       case 'gibZeile':
         return fgetcsv( parent::__get('handle') );
       default:
         throw new Exception("CSV hat keine Eigenschaft $var.", 1 );
       break;
     }
+  }
+  function reset()
+  {
+    parent::reset();
+  }
+  function open()
+  {
+    parent::open();
   }
 }

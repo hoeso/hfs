@@ -6,16 +6,26 @@ $enumListe=array
 (
 /*** Achtung! enum-Felder, welche in CONCAT Anweisungen stehen, werden nicht
 mitgezaehlt! ***/
-	"Abzug_1"=>"0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120",
-	"Abzug_2"=>"0%,1%,2%,3%,4%,5%,6%,7%,8%,9%,10%,11%,12%,13%,14%,15%,16%,17%,18%,19%,20%,21%,22%,23%,24%,25%,26%,27%,28%,29%,30%,31%,32%,33%,34%,35%,36%,37%,38%,39%,40%,41%,42%,43%,44%,45%,46%,47%,48%,49%,50%,51%,52%,53%,54%,55%,56%,57%,58%,59%,60%,61%,62%,63%,64%,65%,66%,67%,68%,69%,70%,71%,72%,73%,74%,75%,76%,77%,78%,79%,80%,81%,82%,83%,84%,85%,86%,87%,88%,89%,90%,91%,92%,93%,94%,95%,96%,97%,98%,99%,100%",
-	"Angebot_1"=>"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62",
-	"Angebot_2"=>"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,parken",
-	"Aktennotiz_1"=>"CL,R", // an
-	"Aktennotiz_2"=>"nein,ja",// gelesen
-	"Aktennotiz_3"=>"nein,ja",// erledigt
-	"ASTAdresse"=>"Herr,Frau,",
-	"Bearbeiter_1"=>"Herr,Frau,",
-	"Region"=>"01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99",
+  "Abzug_1"=>"0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120",
+  "Abzug_2"=>"0%,1%,2%,3%,4%,5%,6%,7%,8%,9%,10%,11%,12%,13%,14%,15%,16%,17%,18%,19%,20%,21%,22%,23%,24%,25%,26%,27%,28%,29%,30%,31%,32%,33%,34%,35%,36%,37%,38%,39%,40%,41%,42%,43%,44%,45%,46%,47%,48%,49%,50%,51%,52%,53%,54%,55%,56%,57%,58%,59%,60%,61%,62%,63%,64%,65%,66%,67%,68%,69%,70%,71%,72%,73%,74%,75%,76%,77%,78%,79%,80%,81%,82%,83%,84%,85%,86%,87%,88%,89%,90%,91%,92%,93%,94%,95%,96%,97%,98%,99%,100%",
+  "Angebot_1"=>"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62",
+  "Angebot_2"=>"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,parken",
+  "Aktennotiz_1"=>"CL,R", // an
+  "Aktennotiz_2"=>"nein,ja",// gelesen
+  "Aktennotiz_3"=>"nein,ja",// erledigt
+  "Angebot_1"=>"0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62",
+  "Angebot_2"=>"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,parken",
+  "EDV_1"=>"nein,ja", // Einwand
+  "EDV_2"=>"einfach,maximal,wichtig,niedrig",
+  "EDV_3"=>"nein,ja", // akzeptiert
+  "EDV_4"=>"nein,ja", // abgenommen
+  "EDV_5"=>"nein,ja", // PDF
+  "EDVAngebot_1"=>"nein,ja",
+  "EDVAngebot_2"=>"nein,ja",// erledigt
+  "Topic"=>"1,2,3,4,5,6,7,8,9,10",
+  "TopicForderung"=>"2,1",
+  "Bearbeiter_1"=>"Herr,Frau,",
+  "Region"=>"01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99",
 );
 
 $mandantKlausel=array
@@ -58,13 +68,20 @@ $Select=array
 /* zum Kopieren:
   ""=>"",
 */
-//	"Region"=>"SELECT Region.ID, Region, von, bis FROM Region, vonPLZ, bisPLZ WHERE Region.vonPLZID=vonPLZ.ID AND Region.bisPLZID=bisPLZ.ID",
-	"Region"=>"SELECT Region.ID, Region, von, bis FROM Region JOIN vonPLZ ON (Region.vonPLZID=vonPLZ.ID) JOIN bisPLZ ON (Region.bisPLZID=bisPLZ.ID)",
+  "Angebot"=>"SELECT Angebot.ID, EDV.ID AS Nr, EDV.Projekt, EDV.Prioritaet, Angebot.Position as Pos, Angebot.Section, Angebot.Details, Angebot.realisierungsStunden AS h FROM Angebot, EDV WHERE Angebot.EDVID=EDV.ID",
 
-//	"Schadenbuero"=>"SELECT Schadenbuero.ID, Versicherer, Schadenbuero, PLZ, Ort FROM Schadenbuero, Versicherer WHERE Schadenbuero.VersichererID=Versicherer.ID",
+  "Auftraege"=>"SELECT a.ID, CONCAT(v. Versicherer,' ', sb. Schadenbuero,': ', b. Anrede,' ',b. Name) AS VR, DATE_FORMAT( p.commit,'%d.%m.%Y' ) AS am, CONCAT( c.Kuerzel, DATE_FORMAT( p.commit,'%y' ), a.Nr ) AS Nr, p.vnName, CONCAT( c.Kuerzel, DATE_FORMAT( p.commit,'%y' ), a.Nr ) AS Nr, CONCAT(p.vnName,' T. ',p.Telefon)AS VN, CONCAT(p.PLZ,' ',p.Besichtigungsort,', ',p.Strasse) AS Adr FROM Portal p JOIN Auftrag a ON (p.ID=a. PortalID) JOIN Bearbeiter b ON (p. BearbeiterID=b.ID) JOIN Schadenbuero sb ON (b. SchadenbueroID=sb.ID) JOIN Versicherer v ON (sb. VersichererID=v.ID) JOIN Center c ON (p. CenterID=c.ID) WHERE '2014'=YEAR(p.commit) AND WEEKOFYEAR(p.commit) > (WEEKOFYEAR(DATE(NOW()))-4) AND 'nein'=a. abgeschlossen",
+
+  "EDV"=>"SELECT ID, Projekt, ID AS Nr, Beschreibung, Prioritaet, versandtAm, geprueftAm, Einwand, akzeptiert FROM EDV WHERE ID=ID",
+
+  "EDVAngebot"=>"SELECT ID, Projekt, ID AS Nr, Beschreibung, Prioritaet, akzeptiert, akzeptiertAm, installiertAm, PDF FROM EDV",
+
+  "Region"=>"SELECT Region.ID, Region, von, bis FROM Region JOIN vonPLZ ON (Region.vonPLZID=vonPLZ.ID) JOIN bisPLZ ON (Region.bisPLZID=bisPLZ.ID)",
+
   "Schadenbuero"=>"SELECT Schadenbuero.ID, Versicherer, Schadenbuero, PLZ, Ort FROM Schadenbuero JOIN Versicherer ON (Schadenbuero.VersichererID=Versicherer.ID)",
 
-//  	"Bearbeiter"=>"SELECT Bearbeiter.ID, Versicherer, Schadenbuero, PLZ, Ort, Name, Telefon, Nebenstelle AS '_', eMail, Fax, PortalUser AS Portal FROM Bearbeiter, Schadenbuero, Versicherer, PortalUser WHERE Bearbeiter.SchadenbueroID=Schadenbuero.ID AND Schadenbuero.VersichererID=Versicherer.ID AND Bearbeiter.PortalUserID=PortalUser.ID",
+  "Stundensatz"=>"SELECT ss.ID, Stundensatz, Datum FROM Stundensatz ss JOIN Zeitstempel z ON (ss.ZeitstempelID=z.ID)",
+
   "Bearbeiter"=>"SELECT Bearbeiter.ID, Versicherer, Schadenbuero, PLZ, Ort, Name, Telefon, Nebenstelle AS '_', eMail, Fax, PortalUser AS Portal FROM Bearbeiter JOIN Schadenbuero ON (Bearbeiter.SchadenbueroID=Schadenbuero.ID) JOIN Versicherer ON (Schadenbuero.VersichererID=Versicherer.ID) JOIN PortalUser ON (Bearbeiter.PortalUserID=PortalUser.ID)",
 
 /* zum Kopieren:
@@ -75,8 +92,10 @@ $Select=array
 
 $OrderBy=array
 (
-  "Bearbeiter"=>" ORDER BY Versicherer, Schadenbuero, Name",
-  "Schadenbuero"=>" ORDER BY Versicherer, Schadenbuero, PLZ",
+  "Angebot"=>" ORDER BY Position",
+  "EDV"=>" ORDER BY ID DESC",
+  "EDVAngebot"=>" ORDER BY ID DESC",
+  "Stundensatz"=>" ORDER BY Datum DESC",
 );
 
 $gfaerbteSpoidn = array(
