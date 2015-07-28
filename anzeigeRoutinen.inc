@@ -390,7 +390,7 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
       if( isset( $fTooltip ) )
         ;// $farbe ist bereits gesetzt
       else if( isset( $fAnmalen ) )
-        $farbe = 'burlywood';
+        $farbe = 'lightblue';
       else if( $zuFaerbendeCols && $zuFaerbendeCols >= $i )
         $farbe = $faerbung;
 //    else if( false == isset( $zuFaerbendeCols ) || $zuFaerbendeCols < $i )
