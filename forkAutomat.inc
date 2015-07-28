@@ -67,6 +67,20 @@ $forkAutomat = array(
 	"strukturierendLVTabelle"=>array(
  		"strukturierenLVTabelle.prj",
 		"dumpLV.prj",
+	),
+	"inBetriebnehmend"=>array(
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"inBetriebnahme.html",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+	),
+	"verarbeitendUpload"=>array(
+		"CSV.php",
+		"verarbeitenUpload.prj",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",

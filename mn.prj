@@ -314,6 +314,12 @@ switch( $_E['mn'] )
       $_E['ident'] = $_REQUEST["i"];
     $_E['navi'] = "Upload";
   break;
+  case "5323": //Navigationsmenue wechseln
+    if( !isset($_REQUEST["n"]) ) { echo $exitus; return; }
+    $_E['wZu'] = "fuellendRE";
+    $_E['entitaet'] = $_REQUEST["a"];
+    $_eTitel = array( $_REQUEST["a"] );
+  break;
   case "6997": //fuellendRE
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
     $_E['wZu'] = "fuellendRE";
