@@ -1,5 +1,5 @@
 <?php
-$debug=1;
+$debug=0;
 if( isset($backupSELECTSL1) and $backupSELECTSL1 )
   $ActionSuffix = "&TabelleSL1=$TabelleSL1&backupSELECTSL1=$backupSELECTSL1";
 $HTTP_POST_VARS = $_POST;

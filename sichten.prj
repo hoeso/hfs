@@ -25,7 +25,7 @@ mitgezaehlt! ***/
   "Topic"=>"1,2,3,4,5,6,7,8,9,10",
   "TopicForderung"=>"2,1",
   "Bearbeiter_1"=>"Herr,Frau,",
-  "Region"=>"01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99",
+  "Region"=>"0,1,2,3,4,5,6,7,8,9",
 );
 
 $mandantKlausel=array
@@ -76,13 +76,13 @@ $Select=array
 
   "EDVAngebot"=>"SELECT ID, Projekt, ID AS Nr, Beschreibung, Prioritaet, akzeptiert, akzeptiertAm, installiertAm, PDF FROM EDV",
 
-  "Region"=>"SELECT Region.ID, Region, von, bis FROM Region JOIN vonPLZ ON (Region.vonPLZID=vonPLZ.ID) JOIN bisPLZ ON (Region.bisPLZID=bisPLZ.ID)",
+  "Region"=>"SELECT r.ID, r.Region, r.Buero, r.KostentraegerNr FROM Region r WHERE r.ID=r.ID",
 
   "Schadenbuero"=>"SELECT Schadenbuero.ID, Versicherer, Schadenbuero, PLZ, Ort FROM Schadenbuero JOIN Versicherer ON (Schadenbuero.VersichererID=Versicherer.ID)",
 
   "Stundensatz"=>"SELECT ss.ID, Stundensatz, Datum FROM Stundensatz ss JOIN Zeitstempel z ON (ss.ZeitstempelID=z.ID)",
 
-  "Bearbeiter"=>"SELECT Bearbeiter.ID, Versicherer, Schadenbuero, PLZ, Ort, Name, Telefon, Nebenstelle AS '_', eMail, Fax, PortalUser AS Portal FROM Bearbeiter JOIN Schadenbuero ON (Bearbeiter.SchadenbueroID=Schadenbuero.ID) JOIN Versicherer ON (Schadenbuero.VersichererID=Versicherer.ID) JOIN PortalUser ON (Bearbeiter.PortalUserID=PortalUser.ID)",
+  "MitarbeiterTaetigkeit"=>"SELECT mt.ID, CONCAT(m. Name,' ',m. Vorname) AS MA, m. PersonalNr, t. Taetigkeit FROM MitarbeiterTaetigkeit mt JOIN Mitarbeiter m ON (mt. MitarbeiterID=m.ID) JOIN Taetigkeit t ON (mt. TaetigkeitID=t.ID)",
 
 /* zum Kopieren:
   ""=>"",
@@ -95,6 +95,7 @@ $OrderBy=array
   "Angebot"=>" ORDER BY Position",
   "EDV"=>" ORDER BY ID DESC",
   "EDVAngebot"=>" ORDER BY ID DESC",
+  "MitarbeiterTaetigkeit"=>" ORDER BY Name, Vorname, PersonalNr, Taetigkeit",
   "Stundensatz"=>" ORDER BY Datum DESC",
 );
 

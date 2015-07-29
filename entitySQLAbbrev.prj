@@ -7,7 +7,7 @@
 $sqlAbbrev = array(
   "Angebot"=>"Angebot",
   "EDV"=>"EDV",
-  "Format"=>"f",
+  "Region"=>"r",
   "SubToken"=>"st",
   "Thema"=>"th",
   "ThemaFormat"=>"thf",

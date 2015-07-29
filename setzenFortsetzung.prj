@@ -6,6 +6,7 @@
  */
   "Angebot"=>"0",
   "EDVAngebot"=>"0",
+  "Rolle"=>"0",
   );
   if( !isset($AND) )
     $AND="";
@@ -15,6 +16,7 @@
 */
   "Angebot"=>"./mn.php?mn=1466&a=EDVAngebot&x=1",
   "EDVAngebot"=>"./mn.php?mn=1466&a=EDVAngebot&x=1",
+  "Taetigkeit"=>"./mn.php?mn=pe&a=Taetigkeit&x=1",
   );
 
 // sind die Candidates bereits Teil der URL?
