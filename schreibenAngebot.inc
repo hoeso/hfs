@@ -150,7 +150,7 @@ for( $i=0; $i<count($arrA); $i += $dim )
 }
 
 $section=1;
-$f=0;
+$fest = $f=0;
 $fBeistellung=false;
 
 for( $i=0; $i<count($arrA); $i += $dim )
@@ -170,7 +170,7 @@ for( $i=0; $i<count($arrA); $i += $dim )
   {
     $a = explode(".", $arrA[$i4]);
     anhaengenAnDatei( $datei, "Absatz {$_REQUEST['ID']}.$section : $a[0],- Festpreis\\\\\n" );
-    $f += $arrA[$i4];
+    $fest += $arrA[$i4];
   }
   ++$section;
 }
@@ -200,7 +200,7 @@ else
 {
   anhaengenAnDatei( $datei, "Realisierungsaufwand : $h Stunden\\\\\n" );
   $euro=gibFeld( $MySQLDb, "SELECT Stundensatz FROM EDV, Zeitstempel, Stundensatz WHERE EDV.ID={$_REQUEST['ID']} AND versandtAm >= Zeitstempel.Datum AND Zeitstempel.ID=Stundensatz.ZeitstempelID ORDER BY Datum DESC", 0 );
-  $euro = $euro * $h;
+  $euro = $euro * $h + $fest;
   $sum=number_format($euro,'2',',','.');
   anhaengenAnDatei( $datei, "\\\\Angebot : $sum \\euro\ netto zzgl. gesetzlicher MWSt.\\\\\n" );
   $sum=number_format($s,'2',',','.');
