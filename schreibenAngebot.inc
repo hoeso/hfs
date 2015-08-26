@@ -203,8 +203,11 @@ else
   $euro = $euro * $h + $fest;
   $sum=number_format($euro,'2',',','.');
   anhaengenAnDatei( $datei, "\\\\Angebot : $sum \\euro\ netto zzgl. gesetzlicher MWSt.\\\\\n" );
-  $sum=number_format($s,'2',',','.');
-  anhaengenAnDatei( $datei, "\\\\Spende Open Source: $sum \\euro\\\\\n" );
+  if( $s )
+  {
+    $sum=number_format($s,'2',',','.');
+    anhaengenAnDatei( $datei, "\\\\Freiwillige Spende f\"ur Open Source: $sum \\euro\\\\\n" );
+  }
 }
 anhaengenAnDatei( $datei, "\\end{document}\n" );
 ?>
