@@ -5,7 +5,7 @@
  */
 $toggleJaNein = array(
   "erfolgt_Beistellung"=>"ja_nein",
-  "Einwand_EDV"=>"ja_nein",
+  "anzeigeSTD_EDV"=>"ja_nein",
   "akzeptiert_EDV"=>"ja_nein",
   "abgeschlossen_Auftrag"=>"ja_nein",
   "abgeschlossen_ArchivCenter"=>"ja_nein",

@@ -37,7 +37,8 @@ echo"<A HREF=\"$href\">ansehen</A>";
 </td>
 <td>
 <?php
-$wert=gibFeld( $MySQLDb, "SELECT PDF FROM EDV WHERE ID={$_REQUEST['ID']}", 0 );
+//$wert=gibFeld( $MySQLDb, "SELECT PDF FROM EDV WHERE ID={$_REQUEST['ID']}", 0 );
+$wert='nein';
 echo"<A HREF=\"./eiZu.php?wZu=toggelndEnum&ID={$_REQUEST['ID']}&feld=PDF&wert=$wert&table=EDV$candies\">";
 if( "ja" == $wert )
   $text="sperren";

@@ -23,6 +23,6 @@ $tableSL1="EDV";
 $SL1="SELECT ID, Projekt FROM EDV WHERE ID={$_REQUEST['ID']}";
 $gruppenStaerke=3;
 $Select['Angebot'] .= " AND Angebot.EDVID={$_REQUEST['ID']}";
-if( 'ja' == gibFeld( $MySQLDb, "SELECT PDF FROM EDV WHERE ID={$_REQUEST['ID']}", 0 ) )
-  $fKeinUpdate = $fKeinDelete = true;
+//if( 'ja' == gibFeld( $MySQLDb, "SELECT PDF FROM EDV WHERE ID={$_REQUEST['ID']}", 0 ) )
+  //$fKeinUpdate = $fKeinDelete = true;
 ?>

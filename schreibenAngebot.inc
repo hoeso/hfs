@@ -1,16 +1,16 @@
 <?php
 /***
  *** Angebot oder Protokoll:
- *** Das Feld PDF wird verwendet, um statt eines Angebots
+ *** Das Feld Protokoll wird verwendet, um statt eines Angebots
  *** ein Protokoll zu verfassen.
  *** Beim Protokoll wird die Beschreibung weggelassen und ebenso die Aufwände
  ***/
 unset($arr);
 $arr[0]=0;// hier Feld 0 rein = Projekt
 $arr[1]=1;// hier Feld 1 rein = Beschreibung
-$arr[2]=2;// hier Feld 2 rein = PDF
+$arr[2]=2;// hier Feld 2 rein = Protokoll
 $dim=count($arr);
-gibFelderArray( $MySQLDb, "SELECT Projekt, Beschreibung, PDF FROM EDV WHERE ID={$_REQUEST['ID']}", $arr );
+gibFelderArray( $MySQLDb, "SELECT Projekt, Beschreibung, Protokoll FROM EDV WHERE ID={$_REQUEST['ID']}", $arr );
 if( false == habWas( $arr, 0, 2 ) )
 {
   mysql_close( $lkid );
@@ -69,6 +69,9 @@ if( false == habWas( $arrA, 0, $dim ) )
 }
 //anhaengenAnDatei( $datei, "\newcounter{section}[chapter]\n" );
 
+$fDetails=gibFeld( $MySQLDb, "SELECT anzeigeSTD FROM EDV WHERE ID={$_REQUEST['ID']} AND 'ja' = anzeigeSTD", 0 );
+
+
 for( $i=0; $i<count($arrA); $i += $dim )
 {
   $i1 = $i+1;
@@ -85,7 +88,7 @@ for( $i=0; $i<count($arrA); $i += $dim )
   anhaengenAnDatei( $datei, "$arrA[$i1]\n" );
   unset($arrB);
   gibFeldArray( $MySQLDb, "SELECT Beistellung FROM Beistellung WHERE AngebotID=$arrA[$i3] AND 'nein' = erfolgt", 0, $arrB );
-  if( !count( $arrB ) )
+  if( !count( $arrB ) and $fDetails )
   {
     if( $arrA[$i2] )
     {
@@ -122,7 +125,9 @@ if( $topic == "Protokoll" )
   anhaengenAnDatei( $datei, "\\end{document}\n" );
   return;
 }
-anhaengenAnDatei( $datei, "\section{Zusammenfassung}" );
+
+if( $fDetails )
+  anhaengenAnDatei( $datei, "\section{Zusammenfassung}" );
 $section=1;
 $h=0;
 $fBeistellung=false;
@@ -143,7 +148,8 @@ for( $i=0; $i<count($arrA); $i += $dim )
     dtUmlaute2Tex( $str );
     entwertenSonderzeichenTex( $str );
     $section = sprintf( "%02d", $section );
-    anhaengenAnDatei( $datei, "Absatz {$_REQUEST['ID']}.$section : $str Stunden\\\\\n" );
+    if( $fDetails )
+      anhaengenAnDatei( $datei, "Absatz {$_REQUEST['ID']}.$section : $str Stunden\\\\\n" );
     $h += $arrA[$i2];
   }
   ++$section;
@@ -169,13 +175,15 @@ for( $i=0; $i<count($arrA); $i += $dim )
   else if( 0 < $arrA[$i4] )
   {
     $a = explode(".", $arrA[$i4]);
-    anhaengenAnDatei( $datei, "Absatz {$_REQUEST['ID']}.$section : $a[0],- Festpreis\\\\\n" );
+    if( $fDetails )
+      anhaengenAnDatei( $datei, "Absatz {$_REQUEST['ID']}.$section : $a[0],- Festpreis\\\\\n" );
     $fest += $arrA[$i4];
   }
   ++$section;
 }
 $section=1;
 $s=0;
+
 
 for( $i=0; $i<count($arrA); $i += $dim )
 {
@@ -187,7 +195,8 @@ for( $i=0; $i<count($arrA); $i += $dim )
   if( 0 < $arrA[$i5] )
   {
     $a = explode(".", $arrA[$i5]);
-    anhaengenAnDatei( $datei, "Absatz {$_REQUEST['ID']}.$section : $a[0],- Open Source Spende\\\\\n" );
+    if( $fDetails )
+      anhaengenAnDatei( $datei, "Absatz {$_REQUEST['ID']}.$section : $a[0],- Open Source Spende\\\\\n" );
     $s += $arrA[$i5];
   }
   ++$section;
@@ -198,12 +207,13 @@ if( true == $fBeistellung )
   anhaengenAnDatei( $datei, "Ein Angebot kann erst nach dem Erbringen der Beistellungen abgegeben werden\\\\\n" );
 else
 {
-  anhaengenAnDatei( $datei, "Realisierungsaufwand : $h Stunden\\\\\n" );
+  if( $fDetails )
+    anhaengenAnDatei( $datei, "Realisierungsaufwand : $h Stunden\\\\\n\\\\" );
   $euro=gibFeld( $MySQLDb, "SELECT Stundensatz FROM EDV, Zeitstempel, Stundensatz WHERE EDV.ID={$_REQUEST['ID']} AND versandtAm >= Zeitstempel.Datum AND Zeitstempel.ID=Stundensatz.ZeitstempelID ORDER BY Datum DESC", 0 );
   $euro = $euro * $h + $fest;
   $sum=number_format($euro,'2',',','.');
-  anhaengenAnDatei( $datei, "\\\\Angebot : $sum \\euro\ netto zzgl. gesetzlicher MWSt.\\\\\n" );
-  if( $s )
+  anhaengenAnDatei( $datei, "Angebot : $sum \\euro\ netto zzgl. gesetzlicher MWSt.\\\\\n" );
+  if( $s and $fDetails )
   {
     $sum=number_format($s,'2',',','.');
     anhaengenAnDatei( $datei, "\\\\Freiwillige Spende f\"ur Open Source: $sum \\euro\\\\\n" );
