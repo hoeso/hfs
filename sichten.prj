@@ -74,6 +74,8 @@ $Select=array
 
   "Person"=>"SELECT p.ID, c.Name, c.Vorname, c.geborenAm, p.Name, p.Vorname, p.Telefon FROM Person p JOIN Client c ON (p.ClientID=c.ID) JOIN Beziehung b ON (p.BeziehungID=b.ID)",
 
+  "PersonRecht"=>"SELECT pr.ID, c.Name, c.Vorname, r.Recht, b.Beziehung, p.Name, p.Vorname FROM PersonRecht pr JOIN Person p ON (pr. PersonID=p.ID) JOIN Recht r ON (pr. RechtID=r.ID) JOIN Client c ON (p.ClientID=c.ID) JOIN Beziehung b ON (p.BeziehungID=b.ID)",
+
 "Angebot"=>"SELECT Angebot.ID, EDV.ID AS Nr, EDV.Projekt, EDV.Prioritaet, Angebot.Position as Pos, Angebot.Section, Angebot.Details, Angebot.realisierungsStunden AS h FROM Angebot, EDV WHERE Angebot.EDVID=EDV.ID",
 
   "Auftraege"=>"SELECT a.ID, CONCAT(v. Versicherer,' ', sb. Schadenbuero,': ', b. Anrede,' ',b. Name) AS VR, DATE_FORMAT( p.commit,'%d.%m.%Y' ) AS am, CONCAT( c.Kuerzel, DATE_FORMAT( p.commit,'%y' ), a.Nr ) AS Nr, p.vnName, CONCAT( c.Kuerzel, DATE_FORMAT( p.commit,'%y' ), a.Nr ) AS Nr, CONCAT(p.vnName,' T. ',p.Telefon)AS VN, CONCAT(p.PLZ,' ',p.Besichtigungsort,', ',p.Strasse) AS Adr FROM Portal p JOIN Auftrag a ON (p.ID=a. PortalID) JOIN Bearbeiter b ON (p. BearbeiterID=b.ID) JOIN Schadenbuero sb ON (b. SchadenbueroID=sb.ID) JOIN Versicherer v ON (sb. VersichererID=v.ID) JOIN Center c ON (p. CenterID=c.ID) WHERE '2014'=YEAR(p.commit) AND WEEKOFYEAR(p.commit) > (WEEKOFYEAR(DATE(NOW()))-4) AND 'nein'=a. abgeschlossen",

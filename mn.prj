@@ -46,6 +46,8 @@ switch( $_E['mn'] )
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "bspVerlinkendEntitaet";
     $_E['entitaet'] = $_REQUEST["a"];
+    if( isset($_REQUEST["i"]) ) // ident: einruecken, gemappt auf gruppenStaerke
+      $_E['ident'] = $_REQUEST["i"];
     if( isset($_REQUEST["re"]) and $_REQUEST["re"] )
     {
       $_E['re'] = $_REQUEST["re"];
@@ -65,6 +67,9 @@ switch( $_E['mn'] )
     {
       case "Client":
         $_E['stm1'] = "SELECT ID, Name, Vorname, DATE_FORMAT( geborenAm,'%d.%m.%Y' ) FROM Client";
+      break;
+      case "Person":
+        $_E['stm1'] = "SELECT p.ID, c.Name, c.Vorname, b.Beziehung, p.Name, p.Vorname FROM Person p JOIN Client c ON (p.ClientID=c.ID) JOIN Beziehung b ON (p.BeziehungID=b.ID)";
       break;
       default:
         $_E['stm1'] = "SELECT 1, 'Fuer Entitaet {$_REQUEST["sl1"]} ist kein SELECT hinterlegt'";
