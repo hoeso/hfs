@@ -46,7 +46,7 @@ echo $_E['bodyId'];
 <?php //include("naviGoogle.html"); ?>
 <?php //include("naviElemente.html"); ?>
 <?php //include("naviEDV.sql"); ?>
-<?php include("naviCFS.sql"); ?>
+<?php include("naviCFS.html"); ?>
 <?php include("endeNavigation.html"); ?>
 <?php include("endeContainer.html"); ?>
 <?php include("endeContainer.html");//hauptteil ?>

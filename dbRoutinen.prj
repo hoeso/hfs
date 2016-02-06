@@ -4,7 +4,7 @@
  **** Sortierung angegeben werden.                                        *****/
 
 $appendix=array(
-  "Thema"=>" ORDER BY Thema",
+  "Beziehung"=>" ORDER BY Beziehung DESC",
   "Token"=>" ORDER BY Token",
   "Topic"=>" ORDER BY Topic",
   "Zeitstempel"=>" ORDER BY Datum DESC",

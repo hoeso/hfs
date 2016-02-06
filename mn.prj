@@ -39,6 +39,38 @@ switch( $_E['mn'] )
     }
     $_E['recipient'] = 4224; // speichernd1ZuN
   break;
+  case "sl_pe": // FK mit Filter-SELECT und FK zu pure entities
+    if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
+    if( isset($_REQUEST["re"]) and !isset($_REQUEST["re1"]) ) { echo $exitus; return; }
+    if( isset($_REQUEST["sl"]) and !isset($_REQUEST["sl1"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "bspVerlinkendEntitaet";
+    $_E['entitaet'] = $_REQUEST["a"];
+    if( isset($_REQUEST["re"]) and $_REQUEST["re"] )
+    {
+      $_E['re'] = $_REQUEST["re"];
+      for( $i=1; $i <= $_E['re'] and $i < 6; $i++ )
+        if( isset($_REQUEST["re$i"]) )
+          $_E["re$i"] = $_REQUEST["re$i"];
+    }
+    $_E['recipient'] = 4224; // speichernd1ZuN
+    if( isset($_REQUEST["sl"]) and $_REQUEST["sl"] )
+    {
+      $_E['sl'] = $_REQUEST["sl"];
+      for( $i=1; $i <= $_E['sl'] and $i < 6; $i++ )
+        if( isset($_REQUEST["sl$i"]) )
+          $_E["sl$i"] = $_REQUEST["sl$i"];
+    }
+    switch( $_REQUEST["sl1"] )
+    {
+      case "Client":
+        $_E['stm1'] = "SELECT ID, Name, Vorname, DATE_FORMAT( geborenAm,'%d.%m.%Y' ) FROM Client";
+      break;
+      default:
+        $_E['stm1'] = "SELECT 1, 'Fuer Entitaet {$_REQUEST["sl1"]} ist kein SELECT hinterlegt'";
+      break;
+    }
+  break;
   case "1n": // 1 FK als 1:n Verknuepfung
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
     if( isset($_REQUEST["1n"]) and !isset($_REQUEST["1n1"]) ) { echo $exitus; return; }
