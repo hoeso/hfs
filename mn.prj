@@ -60,20 +60,22 @@ switch( $_E['mn'] )
     {
       $_E['sl'] = $_REQUEST["sl"];
       for( $i=1; $i <= $_E['sl'] and $i < 6; $i++ )
+      {
         if( isset($_REQUEST["sl$i"]) )
           $_E["sl$i"] = $_REQUEST["sl$i"];
-    }
-    switch( $_REQUEST["sl1"] )
-    {
-      case "Client":
-        $_E['stm1'] = "SELECT ID, Name, Vorname, DATE_FORMAT( geborenAm,'%d.%m.%Y' ) FROM Client";
-      break;
-      case "Person":
-        $_E['stm1'] = "SELECT p.ID, c.Name, c.Vorname, b.Beziehung, p.Name, p.Vorname FROM Person p JOIN Client c ON (p.ClientID=c.ID) JOIN Beziehung b ON (p.BeziehungID=b.ID)";
-      break;
-      default:
-        $_E['stm1'] = "SELECT 1, 'Fuer Entitaet {$_REQUEST["sl1"]} ist kein SELECT hinterlegt'";
-      break;
+        switch( $_REQUEST["sl$i"] )
+        {
+          case "Client":
+            $_E["stm$i"] = "SELECT ID, Name, Vorname, DATE_FORMAT( geborenAm,'%d.%m.%Y' ) FROM Client";
+          break;
+          case "Person":
+            $_E["stm$i"] = "SELECT p.ID, p.Name, p.Vorname, p.Telefon FROM Person p";
+          break;
+          default:
+            $_E["stm$i"] = "SELECT 1, 'Fuer Entitaet {$_REQUEST["sl$i"]} ist kein SELECT hinterlegt'";
+          break;
+        }  
+      }
     }
   break;
   case "1n": // 1 FK als 1:n Verknuepfung
