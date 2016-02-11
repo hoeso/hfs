@@ -1,29 +1,37 @@
 <?php
 $arrRefs = array(
 
-  "Angebot"=>array(
-    "Beistellung",
+  "Beziehung"=>array(
+    "PersonClient",
   ),
 
-  "Beistellung"=>array(
+  "Client"=>array(
+    "ClientAdresse",
+    "PersonClient",
+  ),
+
+  "ClientAdresse"=>array(
     "1-leaf",
   ),
 
-  "Diskussion"=>array(
+  "ClientBeziehung"=>array(
     "1-leaf",
   ),
 
-  "EDV"=>array(
-    "Angebot",
-    "Diskussion",
+  "Person"=>array(
+    "PersonClient",
   ),
 
-  "Stundensatz"=>array(
+  "PersonClient"=>array(
     "1-leaf",
+  ),
+
+  "Recht"=>array(
+    "PersonClient",
   ),
 
   "Zeitstempel"=>array(
-    "Stundensatz",
+    "ClientAdresse",
   ),
 
 );
