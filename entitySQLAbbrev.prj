@@ -5,6 +5,10 @@
  * einen Fehler erzeugt
  */
 $sqlAbbrev = array(
+/* zum Kopieren:
+  ""=>"",
+*/
+  "ClientVS"=>"cv",
   "PersonClient"=>"pc",
   "EDV"=>"EDV",
   "Region"=>"r",

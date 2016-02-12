@@ -7,6 +7,7 @@ $arrRefs = array(
 
   "Client"=>array(
     "ClientAdresse",
+    "ClientVS",
     "PersonClient",
   ),
 
@@ -15,6 +16,10 @@ $arrRefs = array(
   ),
 
   "ClientBeziehung"=>array(
+    "1-leaf",
+  ),
+
+  "ClientVS"=>array(
     "1-leaf",
   ),
 
@@ -28,6 +33,14 @@ $arrRefs = array(
 
   "Recht"=>array(
     "PersonClient",
+  ),
+
+  "Tag"=>array(
+    "ClientVS",
+  ),
+
+  "VS"=>array(
+    "ClientVS",
   ),
 
   "Zeitstempel"=>array(
