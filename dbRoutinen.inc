@@ -351,7 +351,7 @@ function speichernPKsUndAttr( $lkid, $db, $table, $arrPK, $arrAttr,$UniquePK, &$
 
 	if( isset($debug) )
 		echo "\n$sql<br>";
-	include("insertERM.prj");
+	include("beforeInsertERM.prj");
 	$result = mysql_db_query( $db, $sql );
 	if($result)
 		return true;
