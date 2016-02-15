@@ -69,10 +69,13 @@ switch( $_E['mn'] )
             $_E["stm$i"] = "SELECT ID, Name, Vorname, DATE_FORMAT( geborenAm,'%d.%m.%Y' ) FROM Client";
           break;
           case "ClientVS":
-            $_E["stm$i"] = "SELECT cv.ID, c.Name, c.Vorname, c.geborenAm, t.Tag, TIME_FORMAT(v.Quart,'%H:%i') AS Start, ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')) AS Ende, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i') AS Dauer FROM ClientVS cv JOIN Client c ON (cv.ClientID=c.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID)";
+            $_E["stm$i"] = "SELECT cv.ID, c.Name, c.Vorname, c.geborenAm, t.Tag, TIME_FORMAT(v.Quart,'%H:%i') AS Start, ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')) AS Ende, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i') AS Dauer FROM ClientVS cv JOIN Client c ON (cv.ClientID=c.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID) AND NOT EXISTS (SELECT ClientVSID FROM MAClientVS WHERE MAClientVS.ClientVSID=cv.ID)";
           break;
           case "MA":
             $_E["stm$i"] = "SELECT m.ID, m.Name, m.Vorname FROM MA m ORDER BY Name, Vorname";
+          break;
+          case "MAClient":
+            $_E["stm$i"] = "SELECT mc.ID, c.Name, m.Name, m.Vorname, e. Engagement FROM MAClient mc JOIN Client c ON (mc.ClientID=c.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Engagement e ON (mc. EngagementID=e.ID)";
           break;
           case "Person":
             $_E["stm$i"] = "SELECT p.ID, p.Name, p.Vorname, p.Telefon FROM Person p";

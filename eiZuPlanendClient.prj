@@ -30,4 +30,6 @@ noch $_E[stmtX-filter] setzen, um in mn.prj zu filtern.
  ******/
 if( isset($_REQUEST["ID"]) )
   $_E["stm1-filter"]=" AND $_REQUEST[ID]=c.ID";
+// i Spalten einruecken
+$_REQUEST["i"]=6;
 ?>

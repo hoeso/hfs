@@ -61,15 +61,15 @@ function zeilenSortieren( $zc, $nSpalten, &$zeilen, &$Mid )
 		{
 			$zeilen[$i] = $azz;
 			if( 1 < $nSpalten )// Gruppierung zeigen
-			    $zeilen[$i] .= ">";
+			    $zeilen[$i] .= "â€¢";
 			$i++;
 		}
 		$i--;
 		$Mid[$a]=$zeilen[$i];
-		$Mid[$a] = str_replace(">","",$Mid[$a]);// letztes > Zeichen entfernen
+		$Mid[$a] = str_replace("â€¢","",$Mid[$a]);// letztes > Zeichen entfernen
 		$a++;
 		unset($zeilen[$i]);// diese Variable enthielt noch die ID
-		$zeilen[$i-1] = str_replace(">","",$zeilen[$i-1]);// letztes > Zeichen entfernen
+		$zeilen[$i-1] = str_replace("â€¢","",$zeilen[$i-1]);// letztes > Zeichen entfernen
 	}
 }
 
@@ -122,7 +122,7 @@ function lesenRETabelle( &$result, $db, $table, $suffix )
 // gibFeld
 // Input:
 //	$sql: Select
-//	$iFeld: das iFeld.te Feld soll zurückgegeben werden
+//	$iFeld: das iFeld.te Feld soll zurÃ¼ckgegeben werden
 //
 function gibFeld( $db, $sql, $iFeld )
 {
@@ -213,7 +213,7 @@ function lesenTabelleMitID( $db, $sql, &$nSpalten, &$Mid, &$zeilen )
 	$result = mysql_db_query( $db, $sql );
 	if(!$result)
 	{
-		echo "Fehler beim Ausführen von '$sql'<br>";
+		echo "Fehler beim AusfÃ¼hren von '$sql'<br>";
 		return;
 	}
 
@@ -421,21 +421,21 @@ function gibEinmaligenRecord( $db, $arr, &$sql, &$nTreffer )
 }
 /**********************************
  * uebergeben wird ein Select-Statement auf eine junction entity
- * , also auf eine Verbindungsentität zweier Tabellen
- * so wird eine M:M-Beziehung aufgelöst
+ * , also auf eine VerbindungsentitÃ¤t zweier Tabellen
+ * so wird eine M:M-Beziehung aufgelÃ¶st
  * ------------------------------------------
  * Der erhaltene Datensatz wird analysiert:
  * Die ID der je wird ignoriert
  * Aus den folgenden Feldern wird vom Feldnamen
- * der Name der verknüpften Tabellen ausgelesen nach $tabKopf[]
+ * der Name der verknÃ¼pften Tabellen ausgelesen nach $tabKopf[]
  * (Das geht so, weil der verknuepfte Feldname besteht aus dem Namen
  * der Tabelle, deren Primaerschluessel das Feldattribut ist, und
  * der Endung "ID")
  * und ein Select-Statement auf diese Tabelle gebastelt mit dem
- * verknüpften Primaerschluessel.
+ * verknÃ¼pften Primaerschluessel.
  * Die Statements werden in das Array $arr[] gestellt
  * -------------------------------------------
- * in einer 2. Schleife werden die Statements ausgeführt und
+ * in einer 2. Schleife werden die Statements ausgefÃ¼hrt und
  * der Wert des 2. Feldes des erhaltenen Datensatzes in das
  * Array $zeilen[] gestellt
  * Schliesslich wird die Tabellenfunktion zur Anzeige aufgerufen
@@ -447,7 +447,7 @@ function auslesenZuordnung( $db, $sql, &$tabKopf, &$JEid, &$zeilen )
 	{
 		return false;
 	}
-	// 1. Schritt: Tabellenkopf ermitteln + 1. Verknüpfung auslesen
+	// 1. Schritt: Tabellenkopf ermitteln + 1. VerknÃ¼pfung auslesen
 	$row=mysql_fetch_array( $result, MYSQL_ASSOC );
 	$id = true;   // Option Value ist die ID
 	$i = 0;

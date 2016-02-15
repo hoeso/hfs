@@ -8,6 +8,8 @@ $arrRefs = array(
   "Client"=>array(
     "ClientAdresse",
     "ClientVS",
+    "MAClient",
+    "MAClientVS",
     "PersonClient",
   ),
 
@@ -20,6 +22,22 @@ $arrRefs = array(
   ),
 
   "ClientVS"=>array(
+    "MAClientVS",
+  ),
+
+  "Engagement"=>array(
+    "MAClient",
+  ),
+
+  "MA"=>array(
+    "MAClient",
+  ),
+
+  "MAClient"=>array(
+    "MAClientVS",
+  ),
+
+  "MAClientVS"=>array(
     "1-leaf",
   ),
 
@@ -41,6 +59,7 @@ $arrRefs = array(
 
   "VS"=>array(
     "ClientVS",
+    "MAClientVS",
   ),
 
   "Zeitstempel"=>array(
