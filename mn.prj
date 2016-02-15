@@ -81,6 +81,8 @@ switch( $_E['mn'] )
             $_E["stm$i"] = "SELECT 1, 'Fuer Entitaet {$_REQUEST["sl$i"]} ist kein SELECT hinterlegt'";
           break;
         }  
+        if( isset($_E["stm$i-filter"]) && isset($_E["stm$i"]) )
+          $_E["stm$i"] .= $_E["stm$i-filter"];
       }
     }
   break;
