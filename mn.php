@@ -14,6 +14,14 @@ if( 0 )
       echo"\nk : $k, elem: $elem<br>";
   }
 }
+function logModul( $str )
+{
+  echo"\n<!-- Modul $str: -->\n";
+}
+function logForkedModul( $str )
+{
+  echo"\n<!-- Modul $str: -->\n";
+}
 global $_E;
 $_E['mn'] = $_REQUEST["mn"];
 $_E['bodyClass'] = "main";

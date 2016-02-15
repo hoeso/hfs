@@ -163,7 +163,8 @@ if( $i < $countSL )
 	  $SL2=str_replace( "\$globalID", $globalID, $SL2 );
 	if( isset($SELECTSL1) )
 	  $SL2=str_replace( "\$SELECTSL1", $SELECTSL1, $SL2 );
-	$SL2=str_replace( "\$gPaketID", $gPaketID, $SL2 );
+	if( isset($gPaketID) )
+	  $SL2=str_replace( "\$gPaketID", $gPaketID, $SL2 );
 	$SL[ $i ] = $SL2;
 	$labelSL[ $i++ ] = "SL2";
 	if( $debug )

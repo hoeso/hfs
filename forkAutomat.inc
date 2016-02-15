@@ -46,6 +46,27 @@ $forkAutomat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
+	"forkendVerlinkenEntitaet"=>array(
+		"dbConnect.inc",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"setzenFortsetzung.prj",
+		"wohinDamit.inc",
+		"formularERMintro.inc",
+		//"mapSpaltennamen.inc",
+		"ERMListenfuellen.inc",
+		"ERMsubmit.inc",
+		"gibWeiter.inc",
+		"anzeigenZieltabelle.inc",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",//seitenleiste
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"fragendLoeschen"=>array(
 		"dbConnect.inc",
 		"containerTitel.php",
@@ -684,6 +705,11 @@ $forkAutomat = array(
 		"hr.html",
 		"linkFortsetzen.inc",
 		"anzeigenZieltabelle.inc",
+	),
+	"planendClient"=>array( // CFS
+		"eiZuPlanendClient.prj",
+		"mn.prj",
+		"automatReloaded.inc",
 	),
 	"pruefendVerzug"=>array(
                 "bezug.inc",

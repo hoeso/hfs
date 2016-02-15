@@ -1,10 +1,6 @@
 <?php
 if( isset($_E['wZu']) ) // in FBS1-Modulen ist meistens noch $wZu direkt gesetzt
   $wZu = $_E['wZu'];
-function logForkedModul( $str )
-{
-  echo"\n<!-- Modul $str: -->\n";
-}
 $wZu = $_E['wZu'];
 switch( $wZu )
 {
@@ -136,7 +132,7 @@ else if( isset($forkAutomat[$wZu]) )
 {
   foreach( $forkAutomat[$wZu] as $include )
   {
-    logForkedModul($include);
+    logModul($include);
     include($include);
   }
 }

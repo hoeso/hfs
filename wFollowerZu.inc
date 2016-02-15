@@ -1,5 +1,5 @@
 <?php
-include("automat.inc");
+include("follower.inc");
 
 if( isset($_E['wZu']) && isset($automat[$_E['wZu']]) )
   foreach( $automat[$_E['wZu']] as $include )

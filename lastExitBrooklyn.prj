@@ -7,7 +7,14 @@
 include("eiZuEintretendBericht.inc");
 $fDebug=0;
 if( $fDebug ) echo "table: $table. recID : $recID";
-if( $table=="AuftragPort" or $table=="AuftragEingang" && $recID )
+if( $table=="Client" && $recID )
+{
+?>
+  <INPUT TYPE=image src='images/empty-calendar-24px.png' NAME='planungClient'>
+  <INPUT TYPE=image src='images/erstkontakt.gif' NAME='erstkontakt'>
+<?php
+}
+else if( $table=="AuftragPort" or $table=="AuftragEingang" && $recID )
 {
   // do deaf ea oiwei neischaugn:
   $unterlage = $BERICHT_ROOT . $recID . "/ul/[^\.]*";// damit . und .. nicht dabei sind
