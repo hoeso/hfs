@@ -711,6 +711,11 @@ $forkAutomat = array(
 		"mn.prj",
 		"automatReloaded.inc",
 	),
+	"planendMA"=>array( // CFS
+		"eiZuPlanendMA.prj",
+		"mn.prj",
+		"automatReloaded.inc",
+	),
 	"pruefendVerzug"=>array(
                 "bezug.inc",
 		"p.html",

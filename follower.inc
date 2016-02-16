@@ -279,12 +279,6 @@ $automat = array(
 		"endeContainer.html",//hauptteil
 	),
 	"anzeigendEntitaet"=>array(
-		"kopfteil.html",
-		"kopfteil.prj",
-		"endeContainer.html",
-		"hauptteil.html",
-		"haupttext.html",
-		"containerTitel.php",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",

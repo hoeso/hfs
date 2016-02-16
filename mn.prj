@@ -463,6 +463,14 @@ switch( $_E['mn'] )
     $_E['bleistift'] = false;
     $_E['navi'] = "Upload";
   break;
+  case "1432": // 
+    if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "anzeigendEntitaet";
+    $_E['entitaet'] = $_REQUEST["a"];
+    if( isset($_REQUEST["navi"]) )
+      $_E['navi'] = $_REQUEST["navi"];
+  break;
 /*#### intern gesetzte Links: ####*/
   case "1142": // loeschen ja ... nein ...
     if( isset($_REQUEST["dont"]) )

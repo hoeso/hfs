@@ -34,6 +34,10 @@ else if( isset($_REQUEST["planungClient_x"]) )
 {
   $_E['wZu']="planendClient";
 }
+else if( isset($_REQUEST["planungMA_x"]) )
+{
+  $_E['wZu']="planendMA";
+}
 if( isset($_E['wZu']) )
   include("forkZu.inc");
 else

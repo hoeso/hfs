@@ -14,6 +14,12 @@ if( $table=="Client" && $recID )
   <INPUT TYPE=image src='images/empty-calendar-24px.png' NAME='planungClient'>
 <?php
 }
+else if( $table=="MA" && $recID )
+{
+?>
+  <INPUT TYPE=image src='images/empty-calendar-24px.png' NAME='planungMA'>
+<?php
+}
 else if( $table=="AuftragPort" or $table=="AuftragEingang" && $recID )
 {
   // do deaf ea oiwei neischaugn:

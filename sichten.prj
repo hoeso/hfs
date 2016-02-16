@@ -75,6 +75,8 @@ $Select=array
 
   "ClientVS"=>"SELECT cv.ID, c.Name, c.Vorname, c.geborenAm, t.Tag, TIME_FORMAT(v.Quart,'%H:%i') AS Start, ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')) AS Ende, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i') AS Dauer, cv.Menge FROM ClientVS cv JOIN Client c ON (cv.ClientID=c.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID)",
   
+  "MA-Einsatz"=>"SELECT mcv.ID, m.Name, m.Vorname, c.Name, c.Vorname, c.geborenAm, t.Tag, TIME_FORMAT(v.Quart,'%H:%i') AS Start, ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')) AS Ende, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge),'%H:%i') AS Dauer FROM MAClientVS mcv JOIN MAClient mc ON (mcv.MAClientID=mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Engagement e ON (mc.EngagementID=e.ID) JOIN ClientVS cv ON (mcv.ClientVSID=cv.ID) JOIN Client c ON (cv.ClientID=c.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID)",
+  
   "MAClient"=>"SELECT mc.ID, c.Name, c.Vorname, c.geborenAm, m.Name, m.Vorname, e.Engagement FROM MAClient mc JOIN Client c ON (mc.ClientID=c.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Engagement e ON (mc.EngagementID=e.ID)",
   
   "MAClientVS"=>"SELECT mcv.ID, c.Name, c.Vorname, c.geborenAm, m.Name, m.Vorname, e.Engagement, t.Tag, TIME_FORMAT(v.Quart,'%H:%i') AS Start, ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')) AS Ende, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge),'%H:%i') AS Dauer FROM MAClientVS mcv JOIN MAClient mc ON (mcv.MAClientID=mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Engagement e ON (mc.EngagementID=e.ID) JOIN ClientVS cv ON (mcv.ClientVSID=cv.ID) JOIN Client c ON (cv.ClientID=c.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID)",
@@ -92,10 +94,6 @@ $Select=array
 
   "EDVAngebot"=>"SELECT ID, Projekt, ID AS Nr, Beschreibung, Prioritaet, akzeptiert, akzeptiertAm, installiertAm, anzeigeSTD FROM EDV",
 
-  "Region"=>"SELECT r.ID, r.Region, r.Buero, r.KostentraegerNr FROM Region r WHERE r.ID=r.ID",
-
-  "Schadenbuero"=>"SELECT Schadenbuero.ID, Versicherer, Schadenbuero, PLZ, Ort FROM Schadenbuero JOIN Versicherer ON (Schadenbuero.VersichererID=Versicherer.ID)",
-
   "Stundensatz"=>"SELECT ss.ID, Stundensatz, Datum FROM Stundensatz ss JOIN Zeitstempel z ON (ss.ZeitstempelID=z.ID)",
 
   "MitarbeiterFunktion"=>"SELECT mt.ID, CONCAT(m. Name,' ',m. Vorname) AS MA, m. PersonalNr, f. Funktion FROM MitarbeiterFunktion mt JOIN Mitarbeiter m ON (mt. MitarbeiterID=m.ID) JOIN Funktion f ON (mt. FunktionID=f.ID)",
@@ -108,9 +106,14 @@ $Select=array
 
 $OrderBy=array
 (
+/* zum Kopieren:
+  ""=>"",
+*/
   "Angebot"=>" ORDER BY Position",
   "EDV"=>" ORDER BY ID DESC",
   "EDVAngebot"=>" ORDER BY ID DESC",
+  "MA-Einsatz"=>" ORDER BY t.ID, v.Quart",
+  "MAClientVS"=>" ORDER BY c.Name, c.Vorname, c.geborenAm, t.ID, v.Quart",
   "MitarbeiterFunktion"=>" ORDER BY Name, Vorname, PersonalNr, Funktion",
   "Stundensatz"=>" ORDER BY Datum DESC",
 );
