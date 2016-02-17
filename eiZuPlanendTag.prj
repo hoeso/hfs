@@ -1,7 +1,7 @@
 <?php
 /** Aufrufendes Skript **** Variable *****************************************
- * naviCFS.html/Mitarbeiter*in, planendMA-Symbol :
- *                                               : 
+ * naviCFS.html/Client, planendTag-Symbol :
+ *                                           : 
  *****************************************************************************/
 if( 0 )
 {
@@ -17,14 +17,28 @@ exit;
 if( isset($_REQUEST[""]) )
   $ = $_REQUEST[""];
 */
-$_REQUEST["a"]="MA-Einsatz";
-$_E['mn']="1432";
+$_REQUEST["sl"]=1;
+// Der zu planende Client:
+$_REQUEST["sl1"]="Client";
 
+$_REQUEST["re"]=2;
+$_REQUEST["re1"]="Tag";
+$_REQUEST["re2"]="VS";
+
+$_REQUEST["a"]="ClientVS";
 /******
 noch $_E[filter] setzen, um sichten.prj zu filtern.
  ******/
 if( isset($_REQUEST["ID"]) )
-  $_E["filter"]=" AND $_REQUEST[ID]=m.ID";
+  $_E["filter"]=" AND $_REQUEST[ID]=c.ID";
+
+$_E['mn']="sl_pe";
+
+/******
+noch $_E[stmtX-filter] setzen, um in mn.prj zu filtern.
+ ******/
+if( isset($_REQUEST["ID"]) )
+  $_E["stm1-filter"]=" WHERE $_REQUEST[ID]=ID";
 // i Spalten einruecken
-$_E['ident']=5;
+$_REQUEST["i"]=3;
 ?>

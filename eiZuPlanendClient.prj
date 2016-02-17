@@ -22,7 +22,14 @@ $_REQUEST["sl"]=2;
 $_REQUEST["sl1"]="ClientVS";
 // Die zugeordneten MA
 $_REQUEST["sl2"]="MAClient";
+
 $_REQUEST["a"]="MAClientVS";
+/******
+noch $_E[filter] setzen, um sichten.prj zu filtern.
+ ******/
+if( isset($_REQUEST["ID"]) )
+  $_E["filter"]=" AND $_REQUEST[ID]=c.ID";
+
 $_E['mn']="sl_pe";
 
 /******

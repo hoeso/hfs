@@ -23,10 +23,6 @@ if( false == isset($ActionSuffix) )
 if( !isset($sql) and isset($_E['entitaet']) and isset($Select[$_E['entitaet']]) )
   {
     $sql = $Select[$_E['entitaet']];
-    if ( isset($_E['filter']) )
-    {
-      $sql .= $_E['filter'];
-    }
     if ( isset($OrderBy[$_E['entitaet']]))
     {
       $sql .= $OrderBy[$_E['entitaet']];

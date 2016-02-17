@@ -10,14 +10,14 @@ if( $fDebug ) echo "table: $table. recID : $recID";
 if( $table=="Client" && $recID )
 {
 ?>
-  <INPUT TYPE=image src='images/threepeople-27px.png' NAME='planungClient'>
-  <INPUT TYPE=image src='images/empty-calendar-24px.png' NAME='planungClient'>
+  <INPUT TYPE=image src='images/threepeople-18px.png' NAME='planungClient'>
+  <INPUT TYPE=image src='images/empty-calendar-18px.png' NAME='planungTag'>
 <?php
 }
 else if( $table=="MA" && $recID )
 {
 ?>
-  <INPUT TYPE=image src='images/empty-calendar-24px.png' NAME='planungMA'>
+  <INPUT TYPE=image src='images/empty-calendar-18px.png' NAME='planungMA'>
 <?php
 }
 else if( $table=="AuftragPort" or $table=="AuftragEingang" && $recID )

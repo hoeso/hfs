@@ -38,6 +38,10 @@ else if( isset($_REQUEST["planungMA_x"]) )
 {
   $_E['wZu']="planendMA";
 }
+else if( isset($_REQUEST["planungTag_x"]) )
+{
+  $_E['wZu']="planendTag";
+}
 if( isset($_E['wZu']) )
   include("forkZu.inc");
 else
