@@ -73,7 +73,8 @@ switch( $_E['mn'] )
             //$_E["stm$i-order"] = " ORDER BY t.ID, Start"; ohne Wirkung?! 
           break;
           case "MA":
-            $_E["stm$i"] = "SELECT m.ID, m.Name, m.Vorname FROM MA m ORDER BY Name, Vorname";
+            $_E["stm$i"] = "SELECT m.ID, m.Name, m.Vorname FROM MA m";
+            $_E["stm$i-order"] = " ORDER BY Name, Vorname";
           break;
           case "MAClient":
             $_E["stm$i"] = "SELECT mc.ID, c.Name, m.Name, m.Vorname, e. Engagement FROM MAClient mc JOIN Client c ON (mc.ClientID=c.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Engagement e ON (mc. EngagementID=e.ID)";

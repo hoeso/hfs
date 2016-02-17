@@ -1,0 +1,50 @@
+<?php
+/** Aufrufendes Skript **** Variable *****************************************
+ * naviCFS.html/Client, bevormundend-Symbol :
+ *                                           : 
+ *****************************************************************************/
+if( 0 )
+{
+echo"\nPOST Variablen:<br>";
+  foreach( $_POST as $k=>$elem )
+    echo"\nk : $k, elem: $elem<br>";
+echo"\nREQUEST Variablen:<br>";
+  foreach( $_REQUEST as $k=>$elem )
+    echo"\nk : $k, elem: $elem<br>";
+exit;
+}
+/* zum Kopieren:
+if( isset($_REQUEST[""]) )
+  $ = $_REQUEST[""];
+*/
+$_REQUEST["sl"]=2;
+// Der Client:
+$_REQUEST["sl1"]="Client";
+// Alle moeglichen Personen:
+$_REQUEST["sl2"]="Person";
+
+$_REQUEST["re"]=2;
+// Sohn, Tochter etc.
+$_REQUEST["re1"]="Beziehung";
+// Entbindung Schweigepflicht etc.
+$_REQUEST["re2"]="Recht";
+
+$_REQUEST["a"]="PersonClient";
+/******
+noch $_E[filter] setzen, um sichten.prj zu filtern.
+ ******/
+if( isset($_REQUEST["ID"]) )
+  $_E["filter"]=" AND $_REQUEST[ID]=c.ID";
+
+$_E['mn']="sl_pe";
+
+/******
+noch $_E[stmtX-filter] setzen, um in mn.prj zu filtern.
+ ******/
+if( isset($_REQUEST["ID"]) )
+{
+  $_E["stm1-filter"]=" WHERE $_REQUEST[ID]=ID";
+}
+// i Spalten einruecken
+$_REQUEST["i"]=3;
+?>

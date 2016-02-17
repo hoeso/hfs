@@ -46,6 +46,16 @@ $forkAutomat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
+	"betreuend"=>array( // CFS
+		"eiZuBetreuend.prj",
+		"mn.prj",
+		"automatReloaded.inc",
+	),
+	"bevormundend"=>array( // CFS
+		"eiZuBevormundend.prj",
+		"mn.prj",
+		"automatReloaded.inc",
+	),
 	"forkendVerlinkenEntitaet"=>array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
@@ -851,6 +861,11 @@ $forkAutomat = array(
 		"ueberschrift.inc",
 		"anzeigenZieltabelle.inc",
 		"linkFortsetzen.inc",
+	),
+	"wohnend"=>array( // CFS
+		"eiZuWohnend.prj",
+		"mn.prj",
+		"automatReloaded.inc",
 	),
 	"zeigendDokument"=>array(
 		"eiZuEintretendRechnung.inc",

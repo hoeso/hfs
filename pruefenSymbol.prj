@@ -42,6 +42,18 @@ else if( isset($_REQUEST["planungTag_x"]) )
 {
   $_E['wZu']="planendTag";
 }
+else if( isset($_REQUEST["client_x"]) )
+{
+  $_E['wZu']="betreuend";
+}
+else if( isset($_REQUEST["wohnhaft_x"]) )
+{
+  $_E['wZu']="wohnend";
+}
+else if( isset($_REQUEST["bevormundung_x"]) )
+{
+  $_E['wZu']="bevormundend";
+}
 if( isset($_E['wZu']) )
   include("forkZu.inc");
 else
