@@ -26,5 +26,5 @@ noch $_E[filter] setzen, um sichten.prj zu filtern.
 if( isset($_REQUEST["ID"]) )
   $_E["filter"]=" AND $_REQUEST[ID]=m.ID";
 // i Spalten einruecken
-$_E['ident']=5;
+$_E['ident']=2;
 ?>

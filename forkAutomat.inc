@@ -82,6 +82,7 @@ $forkAutomat = array(
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"logic2PhysView.prj",
 		"loeschBar.prj",
 		"loeschenVorspiel.prj",
 		"loeschen.inc",

@@ -52,6 +52,18 @@ li { /*display:inline;*/ list-style-type: none; }
 /* A, Seite 223 */
 h1 { font-size: xx-large; }
 
+/* http://www.w3schools.com/tags/tag_hn.asp */
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+    font-size: normal;
+}
+
 /* A, Formular-Layout Seite 259 - 260 */
 
 form, form ul, form li, fieldset, textarea { margin: 0; padding: 0; }

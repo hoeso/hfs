@@ -526,7 +526,7 @@ switch( $_E['mn'] )
     $_E['wZu'] = "pruefendSymbol";
     $_E['entitaet'] = $_REQUEST["a"];
     $_E['ID'] = $_REQUEST["ID"];
-    $_eTitel = array( "{$_E['entitaet']} &auml;ndern ..." );
+    $_eTitel = array( "{$_E['entitaet']}" );
     if( isset($_REQUEST["navi"]) )
       $_E['navi'] = $_REQUEST["navi"];
   break;
