@@ -7,8 +7,8 @@ switch( $_E['navi'] )
 */
   case "CFS":
   {
-    ?><a href="./mn.php?1=1">Link 1</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./mn.php?1=1">Link 2</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./mn.php?1=1">Link 3</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./mn.php?1=1">Link 4</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./mn.php?1=1">Link 5</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./mn.php?1=1">Link 6</a>&nbsp;&nbsp;<?php
-    ?><!--a href="./mn.php?1=1">Link 1</a>&nbsp;&nbsp;-->
+    ?><a href="./index.php?1=1">Link 1</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 2</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 3</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 4</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 5</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 6</a>&nbsp;&nbsp;<?php
+    ?>
   <?php
   }
   break;
