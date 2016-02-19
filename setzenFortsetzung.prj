@@ -7,6 +7,8 @@
   "Angebot"=>"0",
   "Client"=>"0",
   "EDVAngebot"=>"0",
+  "MA"=>"0",
+  "MA-Einsatz"=>"0",
   "Rolle"=>"0",
   );
   if( !isset($AND) )
@@ -16,22 +18,13 @@
   ""=>"",
 */
   "Angebot"=>"./mn.php?mn=1466&a=EDVAngebot&x=1",
-  "Client"=>"./mn.php?mn=1466&a=EDVAngebot&x=1",
+  "Client"=>"./mn.php?mn=pe&a=Client",
   "EDVAngebot"=>"./mn.php?mn=1466&a=EDVAngebot&x=1",
+  "MA"=>"./mn.php?mn=pe&a=MA",
+  "MA-Einsatz"=>"./mn.php?mn=pe&a=MA",
   "Taetigkeit"=>"./mn.php?mn=pe&a=Taetigkeit&x=1",
   );
 
-$a_ = explode( "/", __file__ );
-$b_ = $a_[count($a_)-1];
-dEcho( $b_, "Vektor eCandy iterieren(m&uumlsste alles 0 sein):" );
-if( isset( $_eCandy ) )
-  foreach( $_eCandy as $k => $elem )
-    if( isset($_REQUEST['d']) )
-    {
-      $a_ = explode( "/", __file__ );
-      $b_ = $a_[count($a_)-1];
-      dEcho( $b_, $k . "=" . $_elem );
-    }
 // sind die Candidates bereits Teil der URL?
 /*** hier geht es darum, dass wenn ein Candidate bereits ***
  *** mit ein name-value Paar mit dem Primaerschluessel   ***
@@ -55,16 +48,4 @@ else if( isset($tableRE) and isset($ID) )
 }
 else if( isset($_E['entitaet']) and isset($_E['ID']) )
   $_eCandy[$_E['entitaet']] = $_E['ID'];
-
-dEcho( $b_, $_E['entitaet'] . "=" . $_eCandy[$_E['entitaet']] );
-
-dEcho( $b_, "Vektor eCandy pr&uuml;fen" );
-if( isset( $_eCandy ) )
-  foreach( $_eCandy as $k => $elem )
-    if( isset($_REQUEST['d']) )
-    {
-      $a_ = explode( "/", __file__ );
-      $b_ = $a_[count($a_)-1];
-      dEcho( $b_, $k . "=" . $_elem );
-    }
 ?>

@@ -95,20 +95,17 @@ if( isset($dahin) and $dahin )
 }
 /*** TEST, OB DIESE BENUTZERFUEHRUNG EFFEKTIVER IST:                       ***/
 $anker=0;
+$a_ = explode( "/", __file__ );
+$b_ = $a_[count($a_)-1];
 if( isset( $_eCandy ) )
   foreach( $_eCandy as $k => $elem )
-    if( isset($_REQUEST['d']) )
-    {
-      $a_ = explode( "/", __file__ );
-      $b_ = $a_[count($a_)-1];
-      dEcho( $b_, $k . "=" . $_elem );
-    }
+    dEcho( $b_, $k . "=" . $elem );
     
 if( isset( $_eCandy ) )
   foreach( $_eCandy as $k => $elem )
-    if( $elem && isset($CandyURL)  && isset($CandyURL[$k]) )
+    if( $elem && isset($candyURL)  && isset($candyURL[$k]) )
     {
-      $dahin = $CandyURL[$k];
+      $dahin = $candyURL[$k];
       $dahin .= "&$k=$elem#$elem";
       $anker="$elem";
     }
