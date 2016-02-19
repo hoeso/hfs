@@ -7,9 +7,15 @@
  * $ID']         : Primaerschluessel des Datensatzes
  * $tableRE    : Name der Tabelle mit dem Primaerschluessel
  ***************************************/
-$fDebug=true;
 
-
+if( isset( $_eCandy ) )
+  foreach( $_eCandy as $k => $elem )
+    if( isset($_REQUEST['d']) )
+    {
+      $a_ = explode( "/", __file__ );
+      $b_ = $a_[count($a_)-1];
+      dEcho( $b_, $k . "=" . $_elem );
+    }
 if( isset($delTab) )
 {
 	echo"\n$delTab<br>";

@@ -264,7 +264,9 @@ $mapAushang["<="]="qm";
       formularBeginnen($str, "");
       hiddenFeldSchreiben( "ID", $elem );
       if( $ID1 )
-         hiddenFeldSchreiben( "ID1", $ID1 );
+        hiddenFeldSchreiben( "ID1", $ID1 );
+      if( !isset($_REQUEST['d']) )
+        hiddenFeldSchreiben( "d", 1 );
       }
     }
     if( 0 == $i )
@@ -453,6 +455,8 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
       $fragment=$elem;
       if( $ID1 )
         hiddenFeldSchreiben( "ID1", $ID1 );
+      if( !isset($_REQUEST['d']) )
+        hiddenFeldSchreiben( "d", 1 );
       $recID=$elem;
     }
     $i++;
@@ -576,6 +580,8 @@ global $pw;
           hiddenFeldSchreiben( "ID", $elem );
           if( $ID1 )
             hiddenFeldSchreiben( "ID1", $ID1 );
+          if( !isset($_REQUEST['d']) )
+            hiddenFeldSchreiben( "d", 1 );
         }
       }
       if( 0 == $i )
@@ -671,6 +677,8 @@ function ausgebenAlsTabelleVertikal( $spaltenName, $auchID, &$cSpalten, $sql, $z
   hiddenFeldSchreiben( "ID", $ID );
   if( $ID1 )
     hiddenFeldSchreiben( "ID1", $ID1 );
+  if( !isset($_REQUEST['d']) )
+    hiddenFeldSchreiben( "d", 1 );
   echo "<td colspan=2 align=center>";
   formularKnopf("&auml;ndern", "");
   echo "</td>";
@@ -770,6 +778,8 @@ function ausgebenAlsTabelleZumVertikalenAendern( $spaltenName, $auchID, &$cSpalt
   hiddenFeldSchreiben( "ID", $ID );
   if( $ID1 )
     hiddenFeldSchreiben( "ID1", $ID1 );
+  if( !isset($_REQUEST['d']) )
+    hiddenFeldSchreiben( "d", 1 );
   echo "<td colspan=2 align=center>";
   formularKnopf("&Auml;nderung &uuml;bernehmen", "");
   echo "</td>";
@@ -812,6 +822,8 @@ function ausgebenAlsAenderbareTabellenzeile( $result ,$table, $ID, $enumListe, $
   hiddenFeldSchreiben( "ID", $ID );
   if( $ID1 )
     hiddenFeldSchreiben( "ID1", $ID1 );
+  if( !isset($_REQUEST['d']) )
+    hiddenFeldSchreiben( "d", 1 );
   echo "<td>";
   formularKnopf("&Auml;nderung &uuml;bernehmen", "");
   echo "</td>";

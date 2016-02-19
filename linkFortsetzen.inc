@@ -97,6 +97,15 @@ if( isset($dahin) and $dahin )
 $anker=0;
 if( isset( $_eCandy ) )
   foreach( $_eCandy as $k => $elem )
+    if( isset($_REQUEST['d']) )
+    {
+      $a_ = explode( "/", __file__ );
+      $b_ = $a_[count($a_)-1];
+      dEcho( $b_, $k . "=" . $_elem );
+    }
+    
+if( isset( $_eCandy ) )
+  foreach( $_eCandy as $k => $elem )
     if( $elem && isset($CandyURL)  && isset($CandyURL[$k]) )
     {
       $dahin = $CandyURL[$k];

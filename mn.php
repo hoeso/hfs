@@ -1,10 +1,18 @@
 <?php
-if( 0 )
+function dEcho( $file, $str )
 {
-  echo"\nPOSTS:<br>";
+  if( !isset($_REQUEST['d']) )
+    return;
+  echo"\n" . $file . " -- $str<br>\n";
+}
+if( isset($_REQUEST['d']) )
+{
+  $a_ = explode( "/", __file__ );
+  $b_ = $a_[count($a_)-1];
+  echo"\n" . $b_ . " -- POSTS:<br>";
   foreach( $_POST as $k=>$elem )
     echo"\nk : $k, elem: $elem<br>";
-  echo"\nREQUESTS:<br>";
+  echo"\n" . $b_ . " -- REQUESTS:<br>";
   foreach( $_REQUEST as $k=>$elem )
     echo"\nk : $k, elem: $elem<br>";
   if( 0/*isset($_FILES)*/ )

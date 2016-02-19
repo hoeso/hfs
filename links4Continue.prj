@@ -4,6 +4,7 @@
 /* zum Kopieren:
   ""=>"0",
  */
+  "Client"=>"0",
   "EDV"=>"0",
   "EDVAngebot"=>"0",
   );
@@ -14,6 +15,7 @@
  *** Deshalb werden schliessende Klammern gemangeled mit %27       ***
  ***/
   $candyURL = array(
+  "Client"=>"",
   "EDV"=>"./eiZu.php?wZu=gruppierendERM&Titel=EDV&zielTabelle=EDV&fPlausi=true&Titel=Die%20Angebotspreise%20sind%20Netto-Betr&auml;ge&AND=%20AND%20(%20installiertAm%20IS%20NULL%20OR%20%270000-00-00%27%20=%20installiertAm%20)&fKeinDelete=true&fKeinUpdate=true",
   "EDVAngebot"=>"./eiZu.php?wZu=gruppierendERM&zielTabelle=EDVAngebot&fPlausi=true&Titel=Details%20der%20Angebote&AND=%20WHERE%20(%20installiertAm%20IS%20NULL%20OR%20%270000-00-00%27%20=%20installiertAm%20)&fKeinDelete=true&keinInsert=true",
   );

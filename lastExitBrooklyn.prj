@@ -7,6 +7,8 @@
 include("eiZuEintretendBericht.inc");
 $fDebug=0;
 if( $fDebug ) echo "table: $table. recID : $recID";
+if( isset($_REQUEST['d']) )
+  hiddenFeldSchreiben( "d", 1 );
 if( $table=="Client" && $recID )
 {
 ?>
