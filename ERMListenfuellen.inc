@@ -18,6 +18,8 @@ if( isset($speichernID) and $speichernID )// es ist eine Referenz auf die global
 	echo "\n\t<INPUT TYPE='HIDDEN' NAME='TabelleID' VALUE='$globalTab'>";
 	echo "\n\t<INPUT TYPE='HIDDEN' NAME='ID' VALUE='$globalID'>";
 }
+if( isset($_REQUEST['d']) )
+  hiddenFeldSchreiben( "d", 1 );
 if( isset($debugPK) and $debugPK )
 {
 	echo "\n$PKTabelle<br>";

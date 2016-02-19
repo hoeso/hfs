@@ -6,17 +6,24 @@
  */
   "Angebot"=>"0",
   "Client"=>"0",
+  "ClientAdresse"=>"0",
+  "ClientVS"=>"0",
   "EDVAngebot"=>"0",
   "MA"=>"0",
   "MAClient"=>"0",
   "MAClientVS"=>"0",
   "MA-Einsatz"=>"0",
+  "Person"=>"0",
+  "PersonClient"=>"0",
   "Rolle"=>"0",
   );
   $_eOverlay = array(
+  "ClientAdresse"=>"Client",
+  "ClientVS"=>"Client",
   "MA-Einsatz"=>"MA",
   "MAClient"=>"MA",
-  //"MAClientVS"=>Client",
+  "MAClientVS"=>"Client",
+  "PersonClient"=>"Client",
   );
   if( !isset($AND) )
     $AND="";
@@ -28,7 +35,7 @@
   "Client"=>"./mn.php?mn=pe&a=Client",
   "EDVAngebot"=>"./mn.php?mn=1466&a=EDVAngebot&x=1",
   "MA"=>"./mn.php?mn=pe&a=MA",
-  //"MA-Einsatz"=>"./mn.php?mn=pe&a=MA",
+  "Person"=>"mn.php?mn=pe&a=Person",
   "Taetigkeit"=>"./mn.php?mn=pe&a=Taetigkeit&x=1",
   );
 if( isset($_REQUEST['d']) )

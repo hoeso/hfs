@@ -45,6 +45,14 @@ reset( $HTTP_POST_VARS );
 
 unset( $arrPK );
 
+if( isset($_REQUEST["d"]) )
+{
+  $a_ = explode( "/", __file__ );
+  $b_ = $a_[count($a_)-1];
+}
+if( isset($_REQUEST["d"]) )
+  foreach( $HTTP_POST_VARS as $k=>$elem )
+    dEcho( $b_, $k . " -- " . $elem );
 foreach( $HTTP_POST_VARS as $k=>$elem )
 {
   switch( $k )
@@ -63,9 +71,13 @@ foreach( $HTTP_POST_VARS as $k=>$elem )
     break;
     case "TabelleSL1":
       $keySL1 = $elem . "ID";
+      if( isset($_E['entitaet']) and !isset($_E['ID']) and $_E['entitaet'] = $k )
+        $fOverlaySL1 = true;
     break;
     case "SELECTSL1":
       $arrPK[ $keySL1 ] = $elem;
+      if( isset($fOverlaySL1) )
+        $_E['ID'] = $elem;
     break;
     case "TabelleSL2":
       $keySL2 = $elem . "ID";
@@ -150,6 +162,9 @@ foreach( $HTTP_POST_VARS as $k=>$elem )
     break;
     case "SELECTMM3":
       $arrPK[ $keyMM3 ] = $elem;
+    break;
+    case "d":
+      // Debug-Flag ignorieren
     break;
     case "UniquePK":
       // Das Flag ignorieren

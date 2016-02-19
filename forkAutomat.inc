@@ -9,6 +9,7 @@ $forkAutomat = array(
 	),
 */
 	"anbietendKnopfZurueck"=>array(
+		"setzenFortsetzung.prj",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",

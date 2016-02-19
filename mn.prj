@@ -6,6 +6,13 @@ $_a = array
 */
 	"3761"=>"Auftraege",
 );
+if( isset($_REQUEST["d"]) )
+{
+  $a_ = explode( "/", __file__ );
+  $b_ = $a_[count($a_)-1];
+}
+if( isset($_REQUEST["d"]) )
+  dEcho( $b_, "wZu: " . $_E['mn'] );
 switch( $_E['mn'] )
 {
 /* zum Kopieren:
@@ -546,6 +553,8 @@ switch( $_E['mn'] )
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "speichernd1ZuN";
     $_E['entitaet'] = $_REQUEST["a"];
+    if( isset($_REQUEST["d"]) )
+      dEcho( $b_, "speichernd1ZuN in " . $_E['entitaet'] );
     //$_E['entitaet'] = $_REQUEST["zielTabelle"];
     //$_eTitel = array( "in {$_E['entitaet']} speichern ..." );
     $_eTitel = array( $_REQUEST["b"] );

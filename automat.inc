@@ -404,7 +404,7 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"insertERM.inc",
-		"links4Continue.prj",
+		"setzenFortsetzung.prj",
 		"linkFortsetzen.inc",
 		"nachSpeichernAnzeigen.inc",
 		"endeContainer.html",//haupttext
