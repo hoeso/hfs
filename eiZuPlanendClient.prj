@@ -41,5 +41,5 @@ if( isset($_REQUEST["ID"]) )
   $_E["stm2-filter"]=" AND $_REQUEST[ID]=c.ID";
 }
 // i Spalten einruecken
-$_REQUEST["i"]=6;
+$_REQUEST["i"]=3;
 ?>

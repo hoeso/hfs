@@ -119,6 +119,7 @@ $automat = array(
 	"fuellendRE"=>array( // reine Entitaet
 		"kopfteil.html",
 		"kopfteil.prj",
+		"naviSymbols.prj",
 		"endeContainer.html",
 		"hauptteil.html",
 		"haupttext.html",
@@ -302,7 +303,6 @@ $automat = array(
 	"pruefendSymbol"=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
 		"kopfteil.html",
 		"kopfteil.prj",
-		"naviSymbols.prj",
 		"endeContainer.html",
 		"hauptteil.html",
 		"haupttext.html",

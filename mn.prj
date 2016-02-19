@@ -73,7 +73,19 @@ switch( $_E['mn'] )
         switch( $_REQUEST["sl$i"] )
         {
           case "Client":
-            $_E["stm$i"] = "SELECT ID, Name, Vorname, DATE_FORMAT( geborenAm,'%d.%m.%Y' ) FROM Client";
+            //$_E["stm$i"] = "SELECT c.ID, CONCAT(c.Name,' ', c.Vorname), DATE_FORMAT( c.geborenAm,'%d.%m.%Y' ) FROM Client c";
+            switch( $_E['entitaet'] )
+            {
+              /***
+              case "MAClient":
+                if( isset($_REQUEST["ID"]) )
+                  $_E["stm$i"] = "SELECT DISTINCT ClientID, Client.Name FROM MAClient JOIN Client ON (MAClient.ClientID=Client.ID) WHERE ClientID NOT IN ( SELECT DISTINCT MAID FROM MAClient WHERE $_REQUEST[ID]<>MAID )";
+              break;
+               ***/
+              default:
+                $_E["stm$i"] = "SELECT c.ID, CONCAT(c.Name,' ', c.Vorname), DATE_FORMAT( c.geborenAm,'%d.%m.%Y' ) FROM Client c";
+              break;
+            }
           break;
           case "ClientVS":
             $_E["stm$i"] = "SELECT cv.ID, CONCAT(c.Name,' ', c.Vorname), YEAR(NOW())-YEAR(c.geborenAm), t.Tag, TIME_FORMAT(v.Quart,'%H:%i') AS Start, ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')) AS Ende, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i') AS Dauer FROM ClientVS cv JOIN Client c ON (cv.ClientID=c.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID) AND NOT EXISTS (SELECT ClientVSID FROM MAClientVS WHERE MAClientVS.ClientVSID=cv.ID)";
