@@ -8,8 +8,15 @@
   "Client"=>"0",
   "EDVAngebot"=>"0",
   "MA"=>"0",
+  "MAClient"=>"0",
+  "MAClientVS"=>"0",
   "MA-Einsatz"=>"0",
   "Rolle"=>"0",
+  );
+  $_eOverlay = array(
+  "MA-Einsatz"=>"MA",
+  "MAClient"=>"MA",
+  //"MAClientVS"=>Client",
   );
   if( !isset($AND) )
     $AND="";
@@ -21,10 +28,12 @@
   "Client"=>"./mn.php?mn=pe&a=Client",
   "EDVAngebot"=>"./mn.php?mn=1466&a=EDVAngebot&x=1",
   "MA"=>"./mn.php?mn=pe&a=MA",
-  "MA-Einsatz"=>"./mn.php?mn=pe&a=MA",
+  //"MA-Einsatz"=>"./mn.php?mn=pe&a=MA",
   "Taetigkeit"=>"./mn.php?mn=pe&a=Taetigkeit&x=1",
   );
-
+if( isset($_REQUEST['d']) )
+  foreach( $candyURL as $k => $elem )
+    $candyURL[$k] .= "&d";
 // sind die Candidates bereits Teil der URL?
 /*** hier geht es darum, dass wenn ein Candidate bereits ***
  *** mit ein name-value Paar mit dem Primaerschluessel   ***
@@ -48,4 +57,17 @@ else if( isset($tableRE) and isset($ID) )
 }
 else if( isset($_E['entitaet']) and isset($_E['ID']) )
   $_eCandy[$_E['entitaet']] = $_E['ID'];
+
+$a_ = explode( "/", __file__ );
+$b_ = $a_[count($a_)-1];
+foreach( $_eOverlay as $k => $elem )
+{
+  if( isset($_REQUEST["d"]) )
+    dEcho( $b_, $k . "=" . $elem );
+  if( isset($_eOverlay[$_E['entitaet']]) && $_E['entitaet'] == $k )
+  {
+    $_eCandy[$elem]=$_eCandy[$k];
+    $_eCandy[$k]=0;
+  }
+}
 ?>

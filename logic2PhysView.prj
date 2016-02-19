@@ -7,4 +7,6 @@ if( "Eingang" == $tableRE )
   $tableRE = "Portal";
 else if( "MA-Einsatz" == $_E['entitaet'] ) // funktioniert nicht
   $_E['entitaet'] = "MAClientVS";
+else if( "MA-Einsatz" == $table ) // funktioniert nicht
+  $table = "MAClientVS";
 ?>

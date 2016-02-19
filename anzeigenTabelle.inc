@@ -55,6 +55,8 @@ function anzeigen( $db, $sql, $table, $ActionSuffix )
       }
   }
   tabelleBeginnen( $table );
+  include("logic2PhysView.prj");
+  dEcho( "anzeigenTabelle.inc", $table );
   ausgebenAlsTabellenkopf( $spaltenName, $auchIDausgeben, $cSpalten, $sql, $table, "" );
   //
 
