@@ -37,6 +37,7 @@ echo $_E['bodyId'];
 ?>">
 <?php include("kopfteil.html"); ?>
 <?php include("kopfteil.prj"); ?>
+<?php include("naviSymbols.prj"); ?>
 <?php include("endeContainer.html"); ?>
 <?php include("hauptteil.html"); ?>
 <?php include("haupttext.html"); ?>
