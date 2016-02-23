@@ -54,6 +54,10 @@ else if( isset($_REQUEST["bevormundung_x"]) )
 {
   $_E['wZu']="bevormundend";
 }
+else if( isset($_REQUEST["maWohnhaft_x"]) )
+{
+  $_E['wZu']="maWohnend";
+}
 if( isset($_E['wZu']) )
   include("forkZu.inc");
 else
