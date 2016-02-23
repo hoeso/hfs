@@ -23,6 +23,7 @@ else if( $table=="MA" && $recID )
 ?>
   <INPUT TYPE=image src='images/empty-calendar-18px.png' NAME='planungMA' title='Eins&auml;tze'>
   <INPUT TYPE=image src='images/grandma-penguin-18px.png' NAME='client' title='Client&#042;innen'>
+  <INPUT TYPE=image src='images/Anonymous-my-house-18px.png' NAME='maWohnhaft' title='Adresse'>
 <?php
 }
 else if( $table=="AuftragPort" or $table=="AuftragEingang" && $recID )

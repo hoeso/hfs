@@ -21,6 +21,7 @@
   "ClientAdresse"=>"Client",
   "ClientVS"=>"Client",
   "MA-Einsatz"=>"MA",
+  "MAAdresse"=>"MA",
   "MAClient"=>"MA",
   "MAClientVS"=>"Client",
   "PersonClient"=>"Client",
