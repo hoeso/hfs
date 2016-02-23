@@ -24,6 +24,12 @@ switch( $_E['mn'] )
     $_e = array( $_REQUEST[""], $_REQUEST[""] );
   break;
 */
+  case "goto":
+    if( !isset($_REQUEST["navi"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "wechselndMenue";
+    $_E['navi'] = $_REQUEST["navi"];
+  break;
   case "pe": // pure entity
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";

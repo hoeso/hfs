@@ -174,13 +174,13 @@ $automat = array(
 		"anbietenVerlinkenEntitaet.inc",
 		"liesMich.txt",
 	),
-	"bspSalzend"=>array(
+	"wechselndMenue"=>array(
 		"kopfteil.html",
 		"kopfteil.prj",
+		"naviSymbols.prj",
 		"endeContainer.html",
 		"hauptteil.html",
 		"haupttext.html",
-		"tutorialSalt.html",
 		"containerTitel.php",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",

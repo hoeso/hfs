@@ -120,6 +120,7 @@ $OrderBy=array
   "EDV"=>" ORDER BY ID DESC",
   "EDVAngebot"=>" ORDER BY ID DESC",
   "MA-Einsatz"=>" ORDER BY t.ID, v.Quart",
+  "MAClient"=>" ORDER BY c.Name, c.Vorname, c.geborenAm, e.Engagement DESC",
   "MAClientVS"=>" ORDER BY c.Name, c.Vorname, c.geborenAm, t.ID, v.Quart",
   "MitarbeiterFunktion"=>" ORDER BY Name, Vorname, PersonalNr, Funktion",
   "Stundensatz"=>" ORDER BY Datum DESC",
