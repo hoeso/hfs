@@ -3,6 +3,11 @@
  * $_E['ID']   : Primaerschluessel des Datensatzes
  * $tableRE    : Name der Tabelle mit dem Primaerschluessel
  ***************************************/
+if( isset($_REQUEST["d"]) )
+{
+  $a_ = explode( "/", __file__ );
+  $b_ = $a_[count($a_)-1];
+}
 $debug=0;
 if( !isset($arrFK[$_E['entitaet']]) )
  return;
@@ -74,13 +79,16 @@ for( $i=1; $i<$c; $i++)
 
   echo"\n<tr>";
 
+  $actLike = "./mn.php?mn=6325&Titel=$t%20%E4ndern";
+  if( isset($_REQUEST["d"]) )
+    $actLike .= "&d";
   if( isset( $_GET['Action'] ) )
   {
     $str = urldecode($_GET['Action']);
     formularBeginnen( "./eiZu.php?wZu=$str&Titel=$t%20%E4ndern", "NAME='frm'");
   }
   else
-    formularBeginnen( "./eiZu.php?wZu=aenderndFK&Titel=$t%20%E4ndern", "NAME='frm'");
+    formularBeginnen( $actLike, "NAME='frm'");
   echo"<th>$t</th>";
   /*** Seinerseits jetzt die FK-Tabelle auslesen ***/
   lesenRETabelle( $result, $MySQLDb, $t, " WHERE ID=$w" );

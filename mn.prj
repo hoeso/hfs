@@ -102,7 +102,7 @@ switch( $_E['mn'] )
             $_E["stm$i-order"] = " ORDER BY Name, Vorname";
           break;
           case "MAClient":
-            $_E["stm$i"] = "SELECT mc.ID, CONCAT(m.Name,' ', m.Vorname), e. Engagement FROM MAClient mc JOIN Client c ON (mc.ClientID=c.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Engagement e ON (mc. EngagementID=e.ID)";
+            $_E["stm$i"] = "SELECT mc.ID, CONCAT(m.Name,' ', m.Vorname) FROM MAClient mc JOIN Client c ON (mc.ClientID=c.ID) JOIN MA m ON (mc.MAID=m.ID)";
           break;
           case "Person":
             $_E["stm$i"] = "SELECT p.ID, p.Name, p.Vorname, p.Telefon FROM Person p";
@@ -114,6 +114,8 @@ switch( $_E['mn'] )
         if( isset($_E["stm$i-filter"]) && isset($_E["stm$i"]) )
         {
           $_E["stm$i"] .= $_E["stm$i-filter"];
+          if( isset($_REQUEST["d"]) )
+            dEcho( $b_, $_E["stm$i"] );
           //if( isset($_E["stm$i-order"]) )
             //$_E["stm$i"] .= $_E["stm$i-order"]; ohne Wirkung?! 
         }
@@ -552,6 +554,16 @@ switch( $_E['mn'] )
     $_E['entitaet'] = $_REQUEST["a"];
     $_E['ID'] = $_REQUEST["ID"];
     $_eTitel = array( "{$_E['entitaet']}" );
+    if( isset($_REQUEST["navi"]) )
+      $_E['navi'] = $_REQUEST["navi"];
+  break;
+  case "6325": // aenderungSpeicherndFK
+    if( !isset($_REQUEST["Tabelle"]) or !isset($_REQUEST["ID"]) or !isset($_REQUEST["FKFeld"]) or !isset($_REQUEST["SELECTFK"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "aenderungSpeicherndFK";
+    $_E['entitaet'] = $_REQUEST["a"];
+    $_E['ID'] = $_REQUEST["ID"];
+    $_eTitel = array( "{$_REQUEST["a"]} &Auml;nderung gespeichert." );
     if( isset($_REQUEST["navi"]) )
       $_E['navi'] = $_REQUEST["navi"];
   break;

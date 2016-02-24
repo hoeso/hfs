@@ -11,8 +11,11 @@ if( isset($_REQUEST['d']) )
   hiddenFeldSchreiben( "d", 1 );
 if( $table=="Client" && $recID )
 {
-?>
-  <INPUT TYPE=image src='images/threepeople-18px.png' NAME='planungClient' title='Einsatzplan'>
+  if( gibFeld( $MySQLDb, "SELECT ID FROM ClientVS WHERE ClientID=$recID LIMIT 1", 0 ) )
+  {?>
+    <INPUT TYPE=image src='images/threepeople-18px.png' NAME='planungClient' title='Einsatzplan'>
+  <?php
+  }?>
   <INPUT TYPE=image src='images/empty-calendar-18px.png' NAME='planungTag' title='Wochenplan'>
   <INPUT TYPE=image src='images/Anonymous-my-house-18px.png' NAME='wohnhaft' title='Adresse'>
   <INPUT TYPE=image src='images/1400527615-18px.png' NAME='bevormundung' title='Vormund'>
@@ -20,8 +23,13 @@ if( $table=="Client" && $recID )
 }
 else if( $table=="MA" && $recID )
 {
-?>
-  <INPUT TYPE=image src='images/empty-calendar-18px.png' NAME='planungMA' title='Eins&auml;tze'>
+  if( gibFeld( $MySQLDb, "SELECT ID FROM Kontingent WHERE MAID=$recID LIMIT 1", 0 ) and
+      gibFeld( $MySQLDb, "SELECT mcv.ID FROM MAClientVS mcv JOIN MAClient mc ON (mcv.MAClientID=mc.ID) WHERE mc.MAID=$recID LIMIT 1", 0 ) )
+  {?>
+    <INPUT TYPE=image src='images/empty-calendar-18px.png' NAME='planungMA' title='Eins&auml;tze'>
+  <?php
+  }?>
+  <INPUT TYPE=image src='images/signal-working-18px.png' NAME='kontingentMA' title='Wochenkontingent'>
   <INPUT TYPE=image src='images/grandma-penguin-18px.png' NAME='client' title='Client&#042;innen'>
   <INPUT TYPE=image src='images/Anonymous-my-house-18px.png' NAME='maWohnhaft' title='Adresse'>
 <?php

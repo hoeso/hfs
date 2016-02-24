@@ -21,7 +21,7 @@ switch( $sw )
   break;
   case "CFS":
   {
-    ?><a href="./mn.php?mn=goto&navi=Begriffe<?php echo $str;?>">Begriffe</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 2</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 3</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 4</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 5</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 6</a>&nbsp;&nbsp;<?php
+    ?><a href="./mn.php?mn=goto&navi=Begriffe<?php echo $str;?>">Begriffe</a><!--&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 2</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 3</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 4</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 5</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 6</a>&nbsp;&nbsp;--><?php
     ?>
   <?php
   }

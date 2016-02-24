@@ -719,6 +719,11 @@ $forkAutomat = array(
 		"linkFortsetzen.inc",
 		"anzeigenZieltabelle.inc",
 	),
+	"kontingierendMA"=>array( // CFS
+		"eiZuKontingierendMA.prj",
+		"mn.prj",
+		"automatReloaded.inc",
+	),
 	"planendClient"=>array( // CFS
 		"eiZuPlanendClient.prj",
 		"mn.prj",

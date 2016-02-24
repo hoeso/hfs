@@ -20,6 +20,7 @@
   $_eOverlay = array(
   "ClientAdresse"=>"Client",
   "ClientVS"=>"Client",
+  "Kontingent"=>"MA",
   "MA-Einsatz"=>"MA",
   "MAAdresse"=>"MA",
   "MAClient"=>"MA",

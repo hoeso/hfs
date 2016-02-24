@@ -50,6 +50,10 @@ else if( isset($_REQUEST["wohnhaft_x"]) )
 {
   $_E['wZu']="wohnend";
 }
+else if( isset($_REQUEST["kontingentMA_x"]) )
+{
+  $_E['wZu']="kontingierendMA";
+}
 else if( isset($_REQUEST["bevormundung_x"]) )
 {
   $_E['wZu']="bevormundend";
