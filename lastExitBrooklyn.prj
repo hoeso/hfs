@@ -11,27 +11,66 @@ if( isset($_REQUEST['d']) )
   hiddenFeldSchreiben( "d", 1 );
 if( $table=="Client" && $recID )
 {
+  // wenn noch nichts hinterlegt ist, werden diese Icons in Graustufen ausgegeben
+  $sw = 'sw-';
   if( gibFeld( $MySQLDb, "SELECT ID FROM ClientVS WHERE ClientID=$recID LIMIT 1", 0 ) )
   {?>
     <INPUT TYPE=image src='images/threepeople-18px.png' NAME='planungClient' title='Einsatzplan'>
   <?php
+  }
+  $img = 'empty-calendar-18px.png';
+  if( !gibFeld( $MySQLDb, "SELECT ClientID FROM ClientVS WHERE ClientID=$recID LIMIT 1", 0 ) )
+  {
+    $img = $sw . $img;
   }?>
-  <INPUT TYPE=image src='images/empty-calendar-18px.png' NAME='planungTag' title='Wochenplan'>
-  <INPUT TYPE=image src='images/Anonymous-my-house-18px.png' NAME='wohnhaft' title='Adresse'>
-  <INPUT TYPE=image src='images/1400527615-18px.png' NAME='bevormundung' title='Vormund'>
+  <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='planungTag' title='Wochenschema'>
+  <?php
+  $img = 'Anonymous-my-house-18px.png';
+  if( !gibFeld( $MySQLDb, "SELECT ID FROM ClientAdresse WHERE ClientID=$recID LIMIT 1", 0 ) )
+  {
+    $img = $sw . $img;
+  }?>
+  <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='wohnhaft' title='Adresse'>
+  <?php
+  $img = '1400527615-18px.png';
+  if( !gibFeld( $MySQLDb, "SELECT ClientID FROM PersonClient WHERE ClientID=$recID LIMIT 1", 0 ) )
+  {
+    $img = $sw . $img;
+  }?>
+  <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='bevormundung' title='Vormund'>
 <?php
 }
 else if( $table=="MA" && $recID )
 {
+  // wenn noch nichts hinterlegt ist, werden diese Icons in Graustufen ausgegeben
+  $sw = 'sw-';
   if( gibFeld( $MySQLDb, "SELECT ID FROM Kontingent WHERE MAID=$recID LIMIT 1", 0 ) and
       gibFeld( $MySQLDb, "SELECT mcv.ID FROM MAClientVS mcv JOIN MAClient mc ON (mcv.MAClientID=mc.ID) WHERE mc.MAID=$recID LIMIT 1", 0 ) )
   {?>
     <INPUT TYPE=image src='images/empty-calendar-18px.png' NAME='planungMA' title='Eins&auml;tze'>
   <?php
   }?>
-  <INPUT TYPE=image src='images/signal-working-18px.png' NAME='kontingentMA' title='Wochenkontingent'>
-  <INPUT TYPE=image src='images/grandma-penguin-18px.png' NAME='client' title='Client&#042;innen'>
-  <INPUT TYPE=image src='images/Anonymous-my-house-18px.png' NAME='maWohnhaft' title='Adresse'>
+  <?php
+  $img = 'signal-working-18px.png';
+  if( !gibFeld( $MySQLDb, "SELECT MAID FROM Kontingent WHERE MAID=$recID LIMIT 1", 0 ) )
+  {
+    $img = $sw . $img;
+  }?>
+  <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='kontingentMA' title='Wochenkontingent'>
+  <?php
+  $img = 'grandma-penguin-18px.png';
+  if( !gibFeld( $MySQLDb, "SELECT MAID FROM MAClient WHERE MAID=$recID LIMIT 1", 0 ) )
+  {
+    $img = $sw . $img;
+  }?>
+  <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='client' title='Client&#042;innen'>
+  <?php
+  $img = 'Anonymous-my-house-18px.png';
+  if( !gibFeld( $MySQLDb, "SELECT ID FROM MAAdresse WHERE MAID=$recID LIMIT 1", 0 ) )
+  {
+    $img = $sw . $img;
+  }?>
+  <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='maWohnhaft' title='Adresse'>
 <?php
 }
 else if( $table=="AuftragPort" or $table=="AuftragEingang" && $recID )
