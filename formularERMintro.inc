@@ -4,6 +4,11 @@
  * keinInsert	    : es wird kein Datensatz angeboten zum Erfassen
  * $_POST     	    : NEU seit PHP 5, es gibt kein $HTTP_POST_VARS mehr
  *****************************************************************************/
+if( isset($_REQUEST["d"]) )
+{
+  $a_ = explode( "/", __file__ );
+  $b_ = $a_[count($a_)-1];
+}
 $debug = false;
 $HTTP_POST_VARS = $_POST;
 reset( $HTTP_POST_VARS );
@@ -152,6 +157,8 @@ if( $i < $countSL )
 	$labelSL[ $i++ ] = "SL1";
 	if( $debug )
 	    echo "\ntableSL1 : $tableSL1; SL1 : $SL1<br>";
+	if( isset($_REQUEST["d"]) )
+  	  dEcho( $b_, "SL1: " . $SL1 );
 }
 if( $i < $countSL )
 {

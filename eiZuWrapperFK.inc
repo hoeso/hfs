@@ -2,6 +2,11 @@
 /************ ERICA MIT mn ***************************************************
  * 
  *****************************************************************************/
+if( isset($_REQUEST["d"]) )
+{
+  $a_ = explode( "/", __file__ );
+  $b_ = $a_[count($a_)-1];
+}
 if( isset($_E['entitaet']) )
   $zielTabelle = $_E['entitaet'];
 
@@ -86,6 +91,8 @@ if( isset($_E["sl"]) )
       $tableSL5 = $_E["sl$i"];
       $SL5 = $_E["stm$i"];
     }
+    if( isset($_REQUEST["d"]) )
+      dEcho( $b_, "SL$i: " . $_E["stm$i"] );
   }
 }
 ?>

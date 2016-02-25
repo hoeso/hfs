@@ -27,50 +27,50 @@ $ausschliesser = array(
   }
 }
 
-function zeilenSortieren( $zc, $nSpalten, &$zeilen, &$Mid )
+function zeilenSortieren( $zc, $nSpalten, &$zeilen, &$Mid, $sort=true )
 {
-	if( !$zc )
-	    return;
-	$a=0;
-	for( $i=0; $i < $zc; )
-	{
-		if( isset($aZeile[$a]) )
-		{
-		  unset($aZeile[$a]);
+  if( !$zc )
+    return;
+  $a=0;
+  for( $i=0; $i < $zc; )
+  {
+    if( isset($aZeile[$a]) )
+    {
+      unset($aZeile[$a]);
       $aZeile[$a]='';
-		}
-	  for( $j=0; $j < $nSpalten; $j++, $i++ )
-	  {
-			if( !isset($aZeile[$a]) )
-			  $aZeile[$a]="";
-		  $aZeile[$a] .= $zeilen[$i];  
-		  $aZeile[$a] .="|";// als Delimiter verwenden
-		}
-		$aZeile[$a] = trim($aZeile[$a]);// Leerzeichen vorne und hinten entfernen
-		$aZeile[$a] .="$Mid[$a]";
-		$a++;
-
-	}
-	sort($aZeile);
-	$i=0;
-	$a=0;
-	foreach( $aZeile as $az )
-	{
-		$arr = explode( "|", $az );// 
-		foreach( $arr as $azz )
-		{
-			$zeilen[$i] = $azz;
-			if( 1 < $nSpalten )// Gruppierung zeigen
-			    $zeilen[$i] .= "•";
-			$i++;
-		}
-		$i--;
-		$Mid[$a]=$zeilen[$i];
-		$Mid[$a] = str_replace("•","",$Mid[$a]);// letztes > Zeichen entfernen
-		$a++;
-		unset($zeilen[$i]);// diese Variable enthielt noch die ID
-		$zeilen[$i-1] = str_replace("•","",$zeilen[$i-1]);// letztes > Zeichen entfernen
-	}
+    }
+    for( $j=0; $j < $nSpalten; $j++, $i++ )
+    {
+      if( !isset($aZeile[$a]) )
+        $aZeile[$a]="";
+      $aZeile[$a] .= $zeilen[$i];  
+      $aZeile[$a] .="|";// als Delimiter verwenden
+    }
+    $aZeile[$a] = trim($aZeile[$a]);// Leerzeichen vorne und hinten entfernen
+    $aZeile[$a] .="$Mid[$a]";
+    $a++;
+  }
+  if( true == $sort )
+    sort($aZeile);
+  $i=0;
+  $a=0;
+  foreach( $aZeile as $az )
+  {
+    $arr = explode( "|", $az );// 
+    foreach( $arr as $azz )
+    {
+      $zeilen[$i] = $azz;
+      if( 1 < $nSpalten )// Gruppierung zeigen
+        $zeilen[$i] .= "•";
+      $i++;
+    }
+    $i--;
+    $Mid[$a]=$zeilen[$i];
+    $Mid[$a] = str_replace("•","",$Mid[$a]);// letztes > Zeichen entfernen
+    $a++;
+    unset($zeilen[$i]);// diese Variable enthielt noch die ID
+    $zeilen[$i-1] = str_replace("•","",$zeilen[$i-1]);// letztes > Zeichen entfernen
+  }
 }
 
 function spaltenNamenHolen( $result, &$spaltenName )
@@ -240,8 +240,10 @@ function lesenTabelleMitID( $db, $sql, &$nSpalten, &$Mid, &$zeilen )
 	}
 	if( isset($debug) and $debug )
 	    echo"\nSpalten : $nSpalten; Treffer : $nTreffer; zeilen : $zc<br>";
-
-	zeilenSortieren( $zc, $nSpalten, $zeilen, $Mid );
+	$doSort = true;
+	if( stristr( $sql, "ORDER BY" ) )
+	  $doSort = false;
+	zeilenSortieren( $zc, $nSpalten, $zeilen, $Mid, $sort );
 
 	$succ = mysql_free_result( $result );
 }

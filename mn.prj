@@ -95,7 +95,7 @@ switch( $_E['mn'] )
           break;
           case "ClientVS":
             $_E["stm$i"] = "SELECT cv.ID, CONCAT(c.Name,' ', c.Vorname), YEAR(NOW())-YEAR(c.geborenAm), t.Tag, TIME_FORMAT(v.Quart,'%H:%i') AS Start, ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')) AS Ende, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i') AS Dauer FROM ClientVS cv JOIN Client c ON (cv.ClientID=c.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID) AND NOT EXISTS (SELECT ClientVSID FROM MAClientVS WHERE MAClientVS.ClientVSID=cv.ID)";
-            //$_E["stm$i-order"] = " ORDER BY t.ID, Start"; ohne Wirkung?! 
+            $_E["stm$i-order"] = " ORDER BY t.ID, Start";
           break;
           case "MA":
             $_E["stm$i"] = "SELECT m.ID, m.Name, m.Vorname FROM MA m";
@@ -114,10 +114,10 @@ switch( $_E['mn'] )
         if( isset($_E["stm$i-filter"]) && isset($_E["stm$i"]) )
         {
           $_E["stm$i"] .= $_E["stm$i-filter"];
+          if( isset($_E["stm$i-order"]) )
+            $_E["stm$i"] .= $_E["stm$i-order"];
           if( isset($_REQUEST["d"]) )
             dEcho( $b_, $_E["stm$i"] );
-          //if( isset($_E["stm$i-order"]) )
-            //$_E["stm$i"] .= $_E["stm$i-order"]; ohne Wirkung?! 
         }
       }
     }
