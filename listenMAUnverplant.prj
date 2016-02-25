@@ -1,0 +1,62 @@
+<?php
+/** Aufrufendes Skript **** Variable *****************************************
+ * planendClient-Automat :
+ *                    ID : Client.ID
+ *                       : 
+ *****************************************************************************/
+if( isset($_REQUEST["d"]) )
+{
+  $a_ = explode( "/", __file__ );
+  $b_ = $a_[count($a_)-1];
+}
+if( isset($_REQUEST["d"]) and isset($_REQUEST["ID"]) )
+  dEcho( $b_, "Client #" . $_REQUEST["ID"] );
+/* zum Kopieren:
+if( isset($_REQUEST[""]) )
+  $ = $_REQUEST[""];
+*/
+
+if( !isset($_E['ID']/*$_REQUEST["ID"]*/) )
+{
+  dEcho( $b_, "ohne ID unterwegs?" );
+  $_E['wZu']="anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
+unset($a_);
+$a_[0]=0;// hier Feld 0 rein = m.ID
+$a_[1]=1;// hier Feld 1 rein = m.Name, m.Vorname
+$dim_ =count($a_);
+gibFelderArray( $MySQLDb, "SELECT m.ID, CONCAT(m.Name,' ',m.Vorname) FROM MAClient mc JOIN MA m ON (mc. MAID=m.ID) WHERE $_E[ID]=mc.ClientID ORDER BY m.Name, m.Vorname", $a_ );
+if( true == habWas( $a_, 0, $dim_-1 ) )
+  for( $i=0; $i<count($a_); $i += $dim_ )
+  {
+    if( isset($_REQUEST["d"]) )
+      dEcho( $b_, "$a_[$i] {$a_[$i+1]}" );
+  }
+$_REQUEST["wZu"]="verlinkendEntitaetJmpFw";
+$_REQUEST["sl"]=2;
+// Die geplanten Quarts:
+$_REQUEST["sl1"]="ClientVS";
+// Die zugeordneten MA
+$_REQUEST["sl2"]="MAClient";
+
+$_REQUEST["a"]="MAClientVS";
+/******
+noch $_E[filter] setzen, um sichten.prj zu filtern.
+ ******/
+if( isset($_REQUEST["ID"]) )
+  $_E["filter"]=" AND $_REQUEST[ID]=c.ID";
+
+$_E['mn']="sl_pe";
+
+/******
+noch $_E[stmtX-filter] setzen, um in mn.prj zu filtern.
+ ******/
+if( isset($_REQUEST["ID"]) )
+{
+  $_E["stm1-filter"]=" AND $_REQUEST[ID]=c.ID";
+  $_E["stm2-filter"]=" AND $_REQUEST[ID]=c.ID";
+}
+// i Spalten einruecken
+$_REQUEST["i"]=3;
+?>

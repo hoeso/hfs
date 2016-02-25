@@ -635,6 +635,10 @@ $automat = array(
 		"endeContainer.html",
 		"endeContainer.html",//hauptteil
 	),
+	"verlinkendEntitaetJmpFw"=>array( // CFS
+		"eiZuWrapperFK.inc",
+		"forkenVerlinkenEntitaetJmpFw.inc",
+	),
 	"verzeichnisLesend"=>array(
 		"kopfteil.html",
 		"kopfteil.prj",
