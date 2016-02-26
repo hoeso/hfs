@@ -97,8 +97,8 @@ switch( $_E['mn'] )
             }
           break;
           case "ClientVS":
-            $_E["stm$i"] = "SELECT cv.ID, CONCAT(c.Name,' ', c.Vorname), YEAR(NOW())-YEAR(c.geborenAm), t.Tag, TIME_FORMAT(v.Quart,'%H:%i') AS Start, ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')) AS Ende, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i') AS Dauer FROM ClientVS cv JOIN Client c ON (cv.ClientID=c.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID) AND NOT EXISTS (SELECT ClientVSID FROM MAClientVS WHERE MAClientVS.ClientVSID=cv.ID)";
-            $_E["stm$i-order"] = " ORDER BY t.ID, Start";
+            $_E["stm$i"] = "SELECT cv.ID, CONCAT(c.Name,' ', c.Vorname), YEAR(NOW())-YEAR(c.geborenAm), t.Tag, CONCAT(TIME_FORMAT(v.Quart,'%H:%i'),'-', TIME_FORMAT(ADDTIME(v.Quart, SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge)), '%H:%i')), TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%k:%i') FROM ClientVS cv JOIN Client c ON (cv.ClientID=c.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID) AND NOT EXISTS (SELECT ClientVSID FROM MAClientVS WHERE MAClientVS.ClientVSID=cv.ID)";
+            $_E["stm$i-order"] = " ORDER BY t.ID, v.ID";
           break;
           case "MA":
             $_E["stm$i"] = "SELECT m.ID, m.Name, m.Vorname FROM MA m";
