@@ -1,4 +1,9 @@
 <?php
+if( isset($_REQUEST["d"]) )
+{
+  $a_ = explode( "/", __file__ );
+  $b_ = $a_[count($a_)-1];
+}
 // enum-Listen der Zieltabellen.
 // Hat eine Zieltabelle mehr als ein enum-Feld, dann gibt es 2 Eintraege
 // wie z.B. bei Tabelle GewerkTaktplan
@@ -108,8 +113,12 @@ $Select=array
 */
 );
 
-if( isset($_E["filter"]) and isset($_E['entitaet']) )
+if( isset($_E["filter"]) and isset($_E['entitaet']) and isset($Select[ $_E['entitaet'] ]) )
+{
   $Select[ $_E['entitaet'] ] .= $_E["filter"];
+  if( isset($_REQUEST["d"]) )
+    dEcho( $b_, "Select[entitaet]: " . $Select[ $_E['entitaet'] ] );
+}
 
 $OrderBy=array
 (
