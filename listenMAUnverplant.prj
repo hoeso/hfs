@@ -70,11 +70,13 @@ $_REQUEST["a"]="MAClientVS";
 noch $_E[filter] setzen, um sichten.prj zu filtern.
  ******/
 $filter = " AND $_REQUEST[ID]=c.ID";
-if( isset($Select) && isset($_E['entitaet']) && isset($Select[ $_E['entitaet'] ]) && isset($_REQUEST["ID"]) )
-  $Select[ $_E['entitaet'] ] .= $filter;
+//if( isset($Select) && isset($_E['entitaet']) && isset($Select[ $_E['entitaet'] ]) && isset($_REQUEST["ID"]) )
+  //$Select[ $_E['entitaet'] ] .= $filter;
+if( isset($Select) && isset($Select[ $_REQUEST["a"] ]) && isset($_REQUEST["ID"]) )
+  $Select[ $_REQUEST["a"] ] .= $filter;
 else if( isset($_REQUEST["ID"]) )
   $_E["filter"]=$filter;
-if( isset($_E["filter"]) and isset($_E['entitaet']) )
+//if( isset($_E["filter"]) and isset($_E['entitaet']) )
 
 $_E['mn']="sl_pe";
 
