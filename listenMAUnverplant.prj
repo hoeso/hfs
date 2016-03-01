@@ -25,15 +25,21 @@ if( !isset($_E['ID']/*$_REQUEST["ID"]*/) )
 unset($m_);
 $m_[0]=0;// hier Feld 0 rein = m.ID
 $m_[1]=1;// hier Feld 1 rein = m.Name, m.Vorname
-$dim_ =count($m_);
-gibFelderArray( $MySQLDb, "SELECT m.ID, CONCAT(m.Name,' ',m.Vorname) FROM MAClient mc JOIN MA m ON (mc. MAID=m.ID) WHERE $_E[ID]=mc.ClientID ORDER BY m.Name, m.Vorname", $m_ );
-$cMA = count($m_)/$dim_;
-if( true == habWas( $m_, 0, $dim_-1 ) )
+$m_[2]=2;// hier Feld 2 rein = Platzhalter fuer k.Wochenstunden
+$m_[3]=3;// hier Feld 3 rein = Platzhalter fuer gebuchte Stunden
+$dim_m =count($m_);
+gibFelderArray( $MySQLDb, "SELECT m.ID, CONCAT(m.Name,' ',m.Vorname), '0' FROM MAClient mc JOIN MA m ON (mc. MAID=m.ID) WHERE $_E[ID]=mc.ClientID ORDER BY m.Name, m.Vorname", $m_ );
+$cMA = count($m_)/$dim_m;
+if( true == habWas( $m_, 0, $dim_m-1 ) )
 {
   if( isset($_REQUEST["d"]) )
     dEcho( $b_, $cMA . " Treffer:" );
-  for( $i=0; $i<count($m_); $i += $dim_ )
+  for( $i=0; $i<count($m_); $i += $dim_m )
   {
+    $m_[$i+2] = gibFeld( $MySQLDb, "SELECT k. Wochenstunden FROM Kontingent k JOIN Zeitstempel z ON (z.ID=k. ZeitstempelID) WHERE z.Datum <= DATE(NOW()) AND $m_[$i]=k.MAID ORDER BY z.Datum DESC LIMIT 1", 0 );
+    $m_[$i+3] = gibFeld( $MySQLDb, "SELECT SUM(cv.Menge)/4 FROM ClientVS cv JOIN MAClientVS mcv ON (cv.ID=mcv. ClientVSID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) WHERE $m_[$i]=mc.MAID", 0 );
+    if( 0 > $m_[$i+3] )
+      $m_[$i+3] = 0;
     if( isset($_REQUEST["d"]) )
       dEcho( $b_, "$m_[$i] {$m_[$i+1]}" );
   }
@@ -43,13 +49,15 @@ $c_[0]=0;// hier Feld 0 rein = m.Name, m.Vorname
 $c_[1]=1;// hier Feld 1 rein = die unbelegten Termine
 $dim_ =count($c_);
 gibFelderArray( $MySQLDb, "SELECT CONCAT(c.Name,' ', c.Vorname), TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*SUM(cv.Menge)), '%k:%i') FROM ClientVS cv JOIN Client c ON (cv.ClientID=c.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID) AND NOT EXISTS (SELECT ClientVSID FROM MAClientVS WHERE MAClientVS.ClientVSID=cv.ID) AND $_E[ID]=c.ID", $c_ );
+$f = false;
 if( true == habWas( $c_, 0, $dim_-1 ) )
   for( $i=0; $i<count($c_); $i += $dim_ )
   {
     if( isset($_REQUEST["d"]) )
       dEcho( $b_, "$c_[$i] {$c_[$i+1]}" );
   }
-
+else
+  $f = true;
 $_REQUEST["wZu"]="verlinkendEntitaetJmpFw";
 $_REQUEST["sl"]=2;
 // Die geplanten Quarts:
@@ -81,6 +89,8 @@ if( isset($_REQUEST["ID"]) )
 // i Spalten einruecken
 $_REQUEST["i"]=3;
 
+if( true == $f )
+  return; // alles durchgeplant
 /*** Infos ueber unverplante Zeiten tabellarisch anzeigen ***/
 ?>
 <table>
@@ -95,14 +105,23 @@ $_REQUEST["i"]=3;
 <?php echo $c_[0];?>
 </td>
 <td rowspan=<?php echo $cMA;?>>
-<?php echo $c_[1] . "&nbsp;h";?>
+<?php
+if( !$c_[1] )
+  echo " - ";
+else
+  echo $c_[1] . "&nbsp;h";?>
 </td>
 <?php
-if( true == habWas( $m_, 0, $dim_-1 ) )
-  for( $i=0; $i<count($m_); $i += $dim_ )
+if( true == habWas( $m_, 0, $dim_m-1 ) )
+  for( $i=0; $i<count($m_); $i += $dim_m )
   {?>
     <td align=right>
-    <?php echo "to do " . $m_[$i] . "&nbsp;h";?>
+    <?php
+    if( !$m_[$i+2] )
+      echo "<a href=\"./mn.php?mn=3653&a=MA&navi=CFS&ID=$m_[$i]&kontingentMA_x\">Kontingent</a>";
+    else
+      echo $m_[$i+2]-$m_[$i+3] . "&nbsp;h";
+    ?>
     </td>
     <td>
     <?php echo $m_[$i+1];?>
