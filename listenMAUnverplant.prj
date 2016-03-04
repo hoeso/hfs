@@ -91,8 +91,6 @@ if( isset($_REQUEST["ID"]) )
 // i Spalten einruecken
 $_REQUEST["i"]=3;
 
-if( true == $f )
-  return; // alles durchgeplant
 /*** Infos ueber unverplante Zeiten tabellarisch anzeigen ***/
 ?>
 <table>
@@ -109,7 +107,7 @@ if( true == $f )
 <td rowspan=<?php echo $cMA;?>>
 <?php
 if( !$c_[1] )
-  echo " - ";
+  echo " --- ";
 else
   echo $c_[1] . "&nbsp;h";?>
 </td>
