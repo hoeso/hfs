@@ -13,18 +13,30 @@ switch( $sw )
   case "":
   break;
 */
+  case "KW":
+  {
+    ?><img src="images/empty-calendar-18px.png" alt="zum Wochenplan" usemap="#wochenschema">&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/Anonymous-my-house-18px.png" alt="zum Stammblatt" usemap="#stammblatt">
+  <?php
+  }
+  break;
   case "Stammblatt":
   {
-    ?><a href="./mn.php?mn=goto&navi=CFS<?php echo $str;?>">Wochenplan</a>
+    ?><a href="./mn.php?mn=goto&navi=KW<?php echo $str;?>">KW</a>&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/empty-calendar-18px.png" alt="zum Wochenplan" usemap="#wochenschema">
   <?php
   }
   break;
   case "CFS":
   {
-    ?><a href="./mn.php?mn=goto&navi=Stammblatt<?php echo $str;?>">Stammblatt</a><!--&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 2</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 3</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 4</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 5</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 6</a>&nbsp;&nbsp;--><?php
+    ?><a href="./mn.php?mn=goto&navi=KW<?php echo $str;?>">KW</a>&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/Anonymous-my-house-18px.png" alt="zum Stammblatt" usemap="#stammblatt"><!--&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 3</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 4</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 5</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./index.php?1=1">Link 6</a>&nbsp;&nbsp;--><?php
     ?>
   <?php
   }
   break;
 }
 ?>
+<map name="stammblatt">
+<area shape=rect coords="0,0,18,18" title='zum Stammblatt' href="./mn.php?mn=goto&navi=Stammblatt<?php echo $str;?>">
+</map>
+<map name="wochenschema">
+<area shape=rect coords="0,0,18,18" title='zum Wochenplan' href="./mn.php?mn=goto&navi=CFS<?php echo $str;?>">
+</map>

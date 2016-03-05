@@ -30,6 +30,13 @@ switch( $_E['mn'] )
     $_E['wZu'] = "wechselndMenue";
     $_E['navi'] = $_REQUEST["navi"];
   break;
+  case "kw":
+    if( !isset($_REQUEST["k"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "zeigendKW";
+    $_E['kw-NOW'] = $_REQUEST["k"];
+    $_e = array( "1", "2" );
+  break;
   case "pe": // pure entity
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";

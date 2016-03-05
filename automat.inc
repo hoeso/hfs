@@ -786,6 +786,24 @@ $automat = array(
 		"fotoStrecke.inc",
 		"schliessenDIV.html",
 	),
+	"zeigendKW"=>array(
+		"kopfteil.html",
+		"kopfteil.prj",
+		"naviSymbols.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"KW.prj",
+		"containerTitel.php",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"zeigendImpressum"=>array(
 		"eiZuEintretend.inc",
 		"row01.inc",

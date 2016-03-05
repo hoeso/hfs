@@ -1,0 +1,16 @@
+<?php
+require_once("KW.php");
+if( isset($_REQUEST["d"]) )
+{
+  $a_ = explode( "/", __file__ );
+  $b_ = $a_[count($a_)-1];
+}
+if( !isset($_E['kw-NOW']) )
+{
+  dEcho( $b_, "Kein time() Wert?" );
+  $_E['wZu']="anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
+$kw = new KW( $_E['kw-NOW'] );
+echo $kw->Kalenderwoche;
+?>
