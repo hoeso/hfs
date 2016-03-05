@@ -1,4 +1,11 @@
 <?php
+if( isset($_REQUEST["d"]) )
+{
+  $a_ = explode( "/", __file__ );
+  $b_ = $a_[count($a_)-1];
+}
+if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
+  dEcho( $b_, "navi: " . $_REQUEST["navi"] );
 /*** global Candidates                                                     ***/
   $_eCandy = array(
 /* zum Kopieren:
@@ -43,6 +50,9 @@
 if( isset($_REQUEST['d']) )
   foreach( $candyURL as $k => $elem )
     $candyURL[$k] .= "&d";
+if( isset($_REQUEST["navi"]) )
+  foreach( $candyURL as $k => $elem )
+    $candyURL[$k] .= "&navi=" . $_REQUEST["navi"];
 // sind die Candidates bereits Teil der URL?
 /*** hier geht es darum, dass wenn ein Candidate bereits ***
  *** mit ein name-value Paar mit dem Primaerschluessel   ***
