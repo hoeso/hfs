@@ -12,5 +12,5 @@ if( !isset($_E['kw-NOW']) )
   include("forkZu.inc");
 }
 $kw = new KW( $_E['kw-NOW'] );
-echo $kw->Kalenderwoche;
+echo "[" . $kw->Kalenderwoche . "] " . $kw->Wochentag . " " . $kw->Datum;
 ?>
