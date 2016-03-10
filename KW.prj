@@ -11,6 +11,5 @@ if( !isset($_E['kw-NOW']) )
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
-$kw = new KW( $_E['kw-NOW'] );
-echo "[" . $kw->Kalenderwoche . "] " . $kw->Wochentag . " " . $kw->Datum;
+$kw = new KW( /*$_E['kw-NOW']*/ );
 ?>
