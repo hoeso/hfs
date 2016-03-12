@@ -22,10 +22,7 @@ class KW
       "So" => "",
     );
     $this->datum = new DateTime(date( $strDate ));
-    //var_dump($this->tag); echo "\n<br>";
-    //$this->KW = date( "W" );
     $this->KW = $this->datum->format( "W" );
-    //$this->wochenTag = date( "w" );
     $this->wochenTag = $this->datum->format( "w" );
     $c = 0;
     unset($this->tagVorKW);
@@ -56,9 +53,6 @@ class KW
       }
       ++$c;
     }
-    var_dump($this->tag); echo "\n<br>";
-    foreach ($this->tag as $key => &$value)
-      echo $key . " " . $value . "    ";
   }
   function __get($var)
   {

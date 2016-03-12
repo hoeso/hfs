@@ -793,6 +793,7 @@ $automat = array(
 		"endeContainer.html",
 		"hauptteil.html",
 		"haupttext.html",
+		"KWview.php",
 		"KW.prj",
 		"containerTitel.php",
 		"endeContainer.html",//haupttext

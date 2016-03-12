@@ -1,5 +1,4 @@
 <?php
-require_once("KW.php");
 if( isset($_REQUEST["d"]) )
 {
   $a_ = explode( "/", __file__ );
@@ -11,6 +10,6 @@ if( !isset($_E['date']) )
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
-$kw = new KW( $_E['date'] );
-echo "<p>--" . $kw->Kalenderwoche . "-- " . $kw->KWzurueck . "[" . $kw->Datum . "]" . $kw->KWweiter . "<br>";
+$kw = new KWview( $_E['date'] );
+echo "[" . $kw->Kalenderwoche . "] " . $kw->show()/* . $kw->KWzurueck . "[" . $kw->Datum . "]" . $kw->KWweiter . "<br>"*/;
 ?>
