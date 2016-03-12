@@ -34,7 +34,7 @@ switch( $_E['mn'] )
     if( !isset($_REQUEST["k"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "zeigendKW";
-    $_E['kw-NOW'] = $_REQUEST["k"];
+    $_E['date'] = $_REQUEST["k"];
     $_e = array( "1", "2" );
   break;
   case "pe": // pure entity

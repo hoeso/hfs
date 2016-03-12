@@ -1,47 +1,62 @@
 <?php
 class KW
 {
-  private $KW;
-  private $wochenTag;
-  private $tag;
+  protected $tag;
+  private   $datum;
+  private   $KW;
+  private   $wochenTag;
+  private   $tagNachKW;
+  private   $tagVorKW;
 
-  function __construct()
+  function __construct($strDate)
   {
     date_default_timezone_set('Europe/Berlin');
     $this->tag = array (
-      "So" => "",
+      "--" => "",
       "Mo" => "",
       "Di" => "",
       "Mi" => "",
       "Do" => "",
       "Fr" => "",
-      "Sa" => ""
+      "Sa" => "",
+      "So" => "",
     );
+    $this->datum = new DateTime(date( $strDate ));
     //var_dump($this->tag); echo "\n<br>";
-    $this->KW = date( "W" );
-    $this->wochenTag = date( "w" );
+    //$this->KW = date( "W" );
+    $this->KW = $this->datum->format( "W" );
+    //$this->wochenTag = date( "w" );
+    $this->wochenTag = $this->datum->format( "w" );
     $c = 0;
+    unset($this->tagVorKW);
     foreach ($this->tag as $key => &$value)
     {
-      $datum = new DateTime(date( "Y-m-d" ));
+      //$datum = new DateTime(date( "Y-m-d" ));
+      $datum = new DateTime($this->datum->format( "Y-m-d" ));
       if( $c == $this->wochenTag )
       {
         $value = $datum->format("j.n.");
+	if( !$c )
+	  $this->tagVorKW = date_sub($datum,date_interval_create_from_date_string( "1 days" ));
       }
       else if( $c < $this->wochenTag )
       {
         
         date_sub($datum,date_interval_create_from_date_string( $this->wochenTag - $c . " days" ));
-        $value = $datum->format("j.n."); 
+        $value = $datum->format("j.n.");
+	if( !isset($this->tagVorKW) )
+          $this->tagVorKW = date_sub($datum,date_interval_create_from_date_string( "1 days" ));
       }
       else if( $c > $this->wochenTag )
       {
         
         date_add($datum,date_interval_create_from_date_string( $c - $this->wochenTag . " days" ));
         $value = $datum->format("j.n."); 
+        $this->tagNachKW = date_add($datum,date_interval_create_from_date_string( "1 days" ));
       }
       ++$c;
     }
+    var_dump($this->tag); echo "\n<br>";
     foreach ($this->tag as $key => &$value)
       echo $key . " " . $value . "    ";
   }
@@ -49,8 +64,14 @@ class KW
   {
     switch($var)
     {
+      case 'Datum':
+        return $this->datum->format("Y-m-d");
       case 'Kalenderwoche':
         return $this->KW;
+      case 'KWweiter':
+        return $this->tagNachKW->format("Y-m-d");
+      case 'KWzurueck':
+        return $this->tagVorKW->format("Y-m-d");
       case 'Wochentag':
         return $this->tag[$this->wochenTag];
       case 'eilt':
