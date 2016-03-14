@@ -5,6 +5,9 @@ $arrFK = array(
 		"",// ich bin ein Fremdschluessel
 	),
 */
+	"ClientVS"=>array(
+		"VS",
+	),
 	"MAClientVS"=>array(
 		"MAClient",
 	),

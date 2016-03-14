@@ -65,11 +65,61 @@ class KWview extends KWmodel
 	  continue;
         }?>
         <td><?php
-        echo $key;
+        unset($a);
+        $a[0]=0;// hier Feld 0 rein = Menge
+        $a[1]=1;// hier Feld 1 rein = Initialen
+        $a[2]=2;// hier Feld 2 rein = Name, Vorname
+	$dim=3;
+        DB::gibFelderArray( "SELECT cv.Menge, CONCAT(LEFT(c.Name,1),LEFT(c.Vorname,1)) AS sc, CONCAT(c.Name,' ',c.Vorname) FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE '$key'=t.SC AND $row=v.ID ORDER BY sc", $a );
+        if( $a[0]==0 && $a[1]==1 && $a[2]==2 )
+	{?>
+	  <?php
+	}
+        else
+	{
+	  for( $k=0; $k < count($a); $k += $dim )
+	  {
+	    $clutch = $key . $a[$k+1];
+	    if ( !isset($aSC) or isset($aSC) and !isset($aSC[$clutch]) )
+	    {
+	      $aSC[$clutch] = $a[$k];
+	    }
+	  }
+	}
+	if( isset($aSC) )
+          foreach ($aSC as $sc => &$counter)
+	  {
+	    if( substr($sc,0,2) == $key )
+	    { // sind wir im richtigen Wochentag(=Spalte)?
+	      echo substr($sc,2,2) . " "; // nur die Initialen
+	      if( $counter )
+	        --$counter;
+	      if( !$counter )
+	        unset($aSC[$sc]);
+            }	
+	  }
         ?></td><?php
         ++$i;
       }?>
       </tr><tr><?php
+      if( !($row % 20) )
+      {
+        $j=0;
+        foreach ($this->tag as $cltch => $datm)
+        {
+          if( !$j )
+          {?>
+            <td><a href="">-----</a></td><?php
+            ++$j;
+        	continue;
+          }?>
+          <td><?php
+          echo $cltch . " " . $datm . "    ";
+          ?></td><?php
+          ++$j;
+        }?>
+        </tr><tr><?php
+      }
       ++$row;
     }?>
     </tr></table><?php
