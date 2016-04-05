@@ -34,11 +34,11 @@ class KWview extends KWmodel
   function show()
   {
     global $quart;
-if( isset($_REQUEST["d"]) )
-{
-  $a_ = explode( "/", __file__ );
-  $b_ = $a_[count($a_)-1];
-}
+    if( isset($_REQUEST["d"]) )
+    {
+      $a_ = explode( "/", __file__ );
+      $b_ = $a_[count($a_)-1];
+    }
     ?><table><tr><?php
     /*** 1. Header ausgeben           ***/
     $i=0;
