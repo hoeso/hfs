@@ -3,18 +3,18 @@ global $kw;
 if( isset($kw) )
 {?>
   <li>
-    <a href="./mn.php?mn=kw&a=MAClientVS&k=<?php echo $kw->KWzurueck;?>&navi=KW">KW <?php echo $kw->Kalenderwoche - 1;?></a>
+    <a href="./mn.php?mn=kw&a=MAClientVS&k=<?php echo $kw->KWzurueck;?>&navi=KW&u=KW">KW <?php echo $kw->Kalenderwoche - 1;?></a>
   </li><?php
 }
 ?>
 <li>
-<a href="./mn.php?mn=kw&a=MAClientVS&k=Y-m-d&navi=KW">Heute</a>
+<a href="./mn.php?mn=kw&a=MAClientVS&k=Y-m-d&navi=KW&u=KW">Heute</a>
 </li>
 <?php
 if( isset($kw) )
 {?>
   <li>
-    <a href="./mn.php?mn=kw&a=MAClientVS&k=<?php echo $kw->KWweiter;?>&navi=KW">KW <?php echo $kw->Kalenderwoche + 1;?></a>
+    <a href="./mn.php?mn=kw&a=MAClientVS&k=<?php echo $kw->KWweiter;?>&navi=KW&u=KW">KW <?php echo $kw->Kalenderwoche + 1;?></a>
   </li><?php
 }
 ?>

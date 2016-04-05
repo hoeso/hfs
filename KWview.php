@@ -85,7 +85,7 @@ if( isset($_REQUEST["d"]) )
 	{ // Treffer, hier ist ein Client zu besuchen:
 	  for( $k=0; $k < count($a); $k += $dim )
 	  {
-	    $clutch = $key . $a[$k+1] . "|" . $a[$k+2]. "|" . $a[$k+3];
+	    $clutch = $key . $a[$k+1] . $quart[$row] . "|" . $a[$k+2]. "|" . $a[$k+3];
 	    if ( !isset($aSC) or isset($aSC) and !isset($aSC[$clutch]) )
 	    { // Zelle assoziativ belegen: "Wochentag . Client-Initialen" = Menge
 	      $aSC[$clutch] = $a[$k];
@@ -100,7 +100,7 @@ if( isset($_REQUEST["d"]) )
 	    if( substr($sc,0,2) == $key )
 	    { // wir sind im richtigen Wochentag(=Spalte)
               $a__ = explode( "|", $sc );
-              ?><a href="mn.php?mn=3653&a=Client&navi=CFS&ID=<?php echo $a__[2];?>&planungTag_x" target="_blank" title=<?php echo /*substr($sc,4,strlen($sc)-3)*/$a__[1] . ">"; // title: voller Name
+              ?><a href="mn.php?mn=3653&a=Client&navi=CFS&ID=<?php echo $a__[2];?>&u=<?php echo substr($sc,2,2);?>&planungTag_x" target="_blank" title=<?php echo /*substr($sc,4,strlen($sc)-3)*/$a__[1] . ">"; // title: voller Name
 	      echo substr($sc,2,2) . " "; // nur die Initialen
               ?></a><?php
 	      if( $counter )
