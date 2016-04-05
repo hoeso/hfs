@@ -34,14 +34,19 @@ class KWview extends KWmodel
   function show()
   {
     global $quart;
+if( isset($_REQUEST["d"]) )
+{
+  $a_ = explode( "/", __file__ );
+  $b_ = $a_[count($a_)-1];
+}
     ?><table><tr><?php
     /*** 1. Header ausgeben           ***/
     $i=0;
     foreach ($this->tag as $key => $value)
-    {
+    { // Spalten-Ueberschriften anzeigen
       if( !$i )
-      {?>
-        <th><a href="">-----</a></th><?php
+      { // Hier mal Pics der Umschalter Client o. MA
+        ?><th><a href="">-----</a></th><?php
         ++$i;
 	continue;
       }?>
@@ -59,8 +64,8 @@ class KWview extends KWmodel
       foreach ($this->tag as $key => $value)
       {
         if( !$i )
-        {?>
-          <td><?php echo $quart[$row];?></td><?php
+        { // Zeile mit Uhrzeit beginnen
+          ?><td><?php echo $quart[$row];?></td><?php
           ++$i;
 	  continue;
         }?>
@@ -69,19 +74,20 @@ class KWview extends KWmodel
         $a[0]=0;// hier Feld 0 rein = Menge
         $a[1]=1;// hier Feld 1 rein = Initialen
         $a[2]=2;// hier Feld 2 rein = Name, Vorname
-	$dim=3;
-        DB::gibFelderArray( "SELECT cv.Menge, CONCAT(LEFT(c.Name,1),LEFT(c.Vorname,1)) AS sc, CONCAT(c.Name,' ',c.Vorname) FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE '$key'=t.SC AND $row=v.ID ORDER BY sc", $a );
+        $a[3]=3;// hier Feld 3 rein = Client.ID
+	$dim=count($a);
+        DB::gibFelderArray( "SELECT cv.Menge, CONCAT(LEFT(c.Name,1),LEFT(c.Vorname,1)) AS sc, CONCAT(c.Name,',',c.Vorname), c.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE '$key'=t.SC AND $row=v.ID ORDER BY sc", $a );
         if( $a[0]==0 && $a[1]==1 && $a[2]==2 )
-	{?>
-	  <?php
+	{ // nix gfundn worn :-(
+          ?><?php
 	}
         else
-	{
+	{ // Treffer, hier ist ein Client zu besuchen:
 	  for( $k=0; $k < count($a); $k += $dim )
 	  {
-	    $clutch = $key . $a[$k+1];
+	    $clutch = $key . $a[$k+1] . "|" . $a[$k+2]. "|" . $a[$k+3];
 	    if ( !isset($aSC) or isset($aSC) and !isset($aSC[$clutch]) )
-	    {
+	    { // Zelle assoziativ belegen: "Wochentag . Client-Initialen" = Menge
 	      $aSC[$clutch] = $a[$k];
 	    }
 	  }
@@ -89,9 +95,14 @@ class KWview extends KWmodel
 	if( isset($aSC) )
           foreach ($aSC as $sc => &$counter)
 	  {
+            if( isset($_REQUEST["d"]) )
+              dEcho( $b_, $sc );
 	    if( substr($sc,0,2) == $key )
-	    { // sind wir im richtigen Wochentag(=Spalte)?
+	    { // wir sind im richtigen Wochentag(=Spalte)
+              $a__ = explode( "|", $sc );
+              ?><a href="mn.php?mn=3653&a=Client&navi=CFS&ID=<?php echo $a__[2];?>&planungTag_x" target="_blank" title=<?php echo /*substr($sc,4,strlen($sc)-3)*/$a__[1] . ">"; // title: voller Name
 	      echo substr($sc,2,2) . " "; // nur die Initialen
+              ?></a><?php
 	      if( $counter )
 	        --$counter;
 	      if( !$counter )
