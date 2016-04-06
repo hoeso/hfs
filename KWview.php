@@ -31,7 +31,7 @@ class KWview extends KWmodel
       break;
     }
   }
-  function show()
+  function show( $what )
   {
     global $quart;
     if( isset($_REQUEST["d"]) )
@@ -39,19 +39,30 @@ class KWview extends KWmodel
       $a_ = explode( "/", __file__ );
       $b_ = $a_[count($a_)-1];
     }
+    if( 'client' <> $what and 'mitarbeiter' <> $what )
+    {
+      dEcho( $b_, "KWview::show( [client|mitarbeiter] )" );
+      return;
+    }
+    if( 'client' == $what )
+      $img = 'threepeople-18px.png';
+    else
+      $img = 'grandma-penguin-18px.png';
     ?><table><tr><?php
     /*** 1. Header ausgeben           ***/
     $i=0;
-    foreach ($this->tag as $key => $value)
+    foreach ($this->tag as $dayofweek => $value)
     { // Spalten-Ueberschriften anzeigen
       if( !$i )
-      { // Hier mal Pics der Umschalter Client o. MA
-        ?><th><a href="">-----</a></th><?php
+      { // Pics der Umschalter Client o. MA
+        ?><th>
+	<img src="images/<?php echo $img;?>" alt="zum Wochenplan" usemap="#maorcl">
+        </th><?php
         ++$i;
 	continue;
       }?>
       <th><?php
-      echo $key . " " . $value . "    ";
+      echo $dayofweek . " " . $value . "    ";
       ?></th><?php
       ++$i;
     }?>
@@ -61,7 +72,7 @@ class KWview extends KWmodel
     while( $row < $this->Stop )
     {
       $i=0;
-      foreach ($this->tag as $key => $value)
+      foreach ($this->tag as $dayofweek => $value)
       {
         if( !$i )
         { // Zeile mit Uhrzeit beginnen
@@ -74,20 +85,24 @@ class KWview extends KWmodel
         $a[0]=0;// hier Feld 0 rein = Menge
         $a[1]=1;// hier Feld 1 rein = Initialen
         $a[2]=2;// hier Feld 2 rein = Name, Vorname
-        $a[3]=3;// hier Feld 3 rein = Client.ID
+        $a[3]=3;// hier Feld 3 rein = [Client|MA].ID
 	$dim=count($a);
-        DB::gibFelderArray( "SELECT cv.Menge, CONCAT(LEFT(c.Name,1),LEFT(c.Vorname,1)) AS sc, CONCAT(c.Name,',',c.Vorname), c.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE '$key'=t.SC AND $row=v.ID ORDER BY sc", $a );
+        if( 'client' == $what )
+	  $sql = "SELECT cv.Menge, CONCAT(LEFT(c.Name,1),LEFT(c.Vorname,1)) AS sc, CONCAT(c.Name,',',c.Vorname), c.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE '$dayofweek'=t.SC AND $row=v.ID ORDER BY sc";
+	else
+	  $sql = "SELECT cv.Menge, CONCAT(LEFT(m.Name,1),LEFT(m.Vorname,1)) AS sc, CONCAT(m.Name,',',m.Vorname), m.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE mc.ClientID=cv.ClientID AND '$dayofweek'=t.SC AND $row=v.ID ORDER BY sc";
+        DB::gibFelderArray( $sql, $a );
         if( $a[0]==0 && $a[1]==1 && $a[2]==2 )
 	{ // nix gfundn worn :-(
           ?><?php
 	}
         else
-	{ // Treffer, hier ist ein Client zu besuchen:
+	{ // Treffer, hier findet ein Client|MA Besuch statt:
 	  for( $k=0; $k < count($a); $k += $dim )
 	  {
-	    $clutch = $key . $a[$k+1] . $quart[$row] . "|" . $a[$k+2]. "|" . $a[$k+3];
+	    $clutch = $dayofweek . $a[$k+1] . $quart[$row] . "|" . $a[$k+2]. "|" . $a[$k+3];
 	    if ( !isset($aSC) or isset($aSC) and !isset($aSC[$clutch]) )
-	    { // Zelle assoziativ belegen: "Wochentag . Client-Initialen" = Menge
+	    { // Zelle assoziativ belegen: "Wochentag . [MA|Client]-Initialen" = Menge
 	      $aSC[$clutch] = $a[$k];
 	    }
 	  }
@@ -97,7 +112,7 @@ class KWview extends KWmodel
 	  {
             if( isset($_REQUEST["d"]) )
               dEcho( $b_, $sc );
-	    if( substr($sc,0,2) == $key )
+	    if( substr($sc,0,2) == $dayofweek )
 	    { // wir sind im richtigen Wochentag(=Spalte)
               $a__ = explode( "|", $sc );
               ?><a href="mn.php?mn=3653&a=Client&navi=CFS&ID=<?php echo $a__[2];?>&u=<?php echo substr($sc,2,2);?>&planungTag_x" target="_blank" title=<?php echo /*substr($sc,4,strlen($sc)-3)*/$a__[1] . ">"; // title: voller Name
@@ -134,5 +149,18 @@ class KWview extends KWmodel
       ++$row;
     }?>
     </tr></table><?php
+    if( 'client' == $what )
+    {
+      $title = 'Mitarbeiter';
+      $maORcl = "d"; // alles was nicht c ist, ist MA
+    }
+    else
+    {
+      $title = 'Clienten';
+      $maORcl = "c";
+    }
+    ?><map name="maorcl">
+    <area shape=rect coords="0,0,18,18" title='<?php echo $title;?>' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=KW">
+    </map><?php
   }
 }

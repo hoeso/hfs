@@ -32,10 +32,19 @@ switch( $_E['mn'] )
     $_E['navi'] = $_REQUEST["navi"];
   break;
   case "kw":
-    if( !isset($_REQUEST["k"]) ) { echo $exitus; return; }
+    if( !isset($_REQUEST["k"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "zeigendKW";
     $_E['date'] = $_REQUEST["k"];
+    switch( $_REQUEST["b"] )
+    {
+      case 'c':
+        $_A['what'] = 'client';
+      break;
+      default:
+        $_A['what'] = 'mitarbeiter';
+      break;
+    }
     $_e = array( "1", "2" );
   break;
   case "pe": // pure entity

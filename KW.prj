@@ -11,5 +11,5 @@ if( !isset($_E['date']) )
   include("forkZu.inc");
 }
 $kw = new KWview( $_E['date'] );
-echo "[KW " . $kw->Kalenderwoche . "] " . $kw->show()/* . $kw->KWzurueck . "[" . $kw->Datum . "]" . $kw->KWweiter . "<br>"*/;
+echo "[KW " . $kw->Kalenderwoche . "] " . $kw->show($_A['what'])/* . $kw->KWzurueck . "[" . $kw->Datum . "]" . $kw->KWweiter . "<br>"*/;
 ?>
