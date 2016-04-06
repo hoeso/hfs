@@ -135,9 +135,10 @@ class KWview extends KWmodel
         {
           if( !$j )
           {?>
-            <td><a href="">-----</a></td><?php
+            <td><img src="images/<?php echo $img;?>" alt="zum Wochenplan" usemap="#maorcl">
+            </td><?php
             ++$j;
-        	continue;
+            continue;
           }?>
           <td><?php
           echo $cltch . " " . $datm . "    ";
