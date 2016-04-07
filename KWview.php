@@ -45,18 +45,33 @@ class KWview extends KWmodel
       return;
     }
     if( 'client' == $what )
+    {
+      $title = 'Mitarbeiter';
+      $maORcl = "d"; // alles was nicht c ist, ist MA
+    }
+    else
+    {
+      $title = 'Clienten';
+      $maORcl = "c";
+    }    if( 'client' == $what )
       $img = 'threepeople-18px.png';
     else
       $img = 'grandma-penguin-18px.png';
     ?><table><tr><?php
     /*** 1. Header ausgeben           ***/
     $i=0;
+    $ancor=0;
     foreach ($this->tag as $dayofweek => $value)
     { // Spalten-Ueberschriften anzeigen
       if( !$i )
       { // Pics der Umschalter Client o. MA
+        ++$ancor;
         ?><th>
-	<img src="images/<?php echo $img;?>" alt="zum Wochenplan" usemap="#maorcl">
+	<img src="images/<?php echo $img;?>" alt="zum Wochenplan" usemap="#maorcl<?php echo $ancor;?>">
+	<a name='<?php echo $ancor;?>'></a>
+        <map name="maorcl<?php echo $ancor;?>">
+        <area shape=rect coords="0,0,18,18" title='<?php echo $title;?>' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=KW#<?php echo $ancor;?>">
+        </map>
         </th><?php
         ++$i;
 	continue;
@@ -76,7 +91,7 @@ class KWview extends KWmodel
       {
         if( !$i )
         { // Zeile mit Uhrzeit beginnen
-          ?><td><?php echo $quart[$row];?></td><?php
+          ?><td><?php echo "\n" . $quart[$row];?></td><?php
           ++$i;
 	  continue;
         }?>
@@ -134,8 +149,13 @@ class KWview extends KWmodel
         foreach ($this->tag as $cltch => $datm)
         {
           if( !$j )
-          {?>
-            <td><img src="images/<?php echo $img;?>" alt="zum Wochenplan" usemap="#maorcl">
+          {
+            ++$ancor;
+	    ?><td><img src="images/<?php echo $img;?>" alt="zum Wochenplan" usemap="#maorcl<?php echo $ancor;?>">
+            <a name='<?php echo $ancor;?>'></a>
+            <map name="maorcl<?php echo $ancor;?>">
+            <area shape=rect coords="0,0,18,18" title='<?php echo $title;?>' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=KW#<?php echo $ancor;?>">
+            </map>
             </td><?php
             ++$j;
             continue;
@@ -150,18 +170,5 @@ class KWview extends KWmodel
       ++$row;
     }?>
     </tr></table><?php
-    if( 'client' == $what )
-    {
-      $title = 'Mitarbeiter';
-      $maORcl = "d"; // alles was nicht c ist, ist MA
-    }
-    else
-    {
-      $title = 'Clienten';
-      $maORcl = "c";
-    }
-    ?><map name="maorcl">
-    <area shape=rect coords="0,0,18,18" title='<?php echo $title;?>' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=KW">
-    </map><?php
   }
 }
