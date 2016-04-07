@@ -54,9 +54,9 @@ class KWview extends KWmodel
       $title = 'Clienten';
       $maORcl = "c";
     }    if( 'client' == $what )
-      $img = 'threepeople-18px.png';
+      $img = 'threepeople-24px.png';
     else
-      $img = 'grandma-penguin-18px.png';
+      $img = 'grandma-penguin-24px.png';
     ?><table><tr><?php
     /*** 1. Header ausgeben           ***/
     $i=0;
@@ -66,11 +66,21 @@ class KWview extends KWmodel
       if( !$i )
       { // Pics der Umschalter Client o. MA
         ++$ancor;
+        $kw = $this->Kalenderwoche;
+        if( 'c' == $maORcl )
+	  $kw .= " Client";
+	else
+	  $kw .= " MA";
         ?><th>
 	<img src="images/<?php echo $img;?>" alt="zum Wochenplan" usemap="#maorcl<?php echo $ancor;?>">
 	<a name='<?php echo $ancor;?>'></a>
         <map name="maorcl<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,18,18" title='<?php echo $title;?>' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=KW#<?php echo $ancor;?>">
+        <area shape=rect coords="0,0,18,18" title='<?php echo $title;?>' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $kw;?>#<?php echo $ancor;?>">
+        </map>
+	&nbsp;&nbsp;
+	<img src="images/guardar-18px.png" alt="KW speichern" usemap="#insertKW<?php echo $ancor;?>">
+        <map name="insertKW<?php echo $ancor;?>">
+        <area shape=rect coords="0,0,18,18" title='Plan f&uuml;r KW<?php echo $this->Kalenderwoche;?> speichern' href="./mn.php?mn=insertKW&a=MAClientVSKW&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $kw;?>#<?php echo $ancor;?>">
         </map>
         </th><?php
         ++$i;
@@ -151,10 +161,19 @@ class KWview extends KWmodel
           if( !$j )
           {
             ++$ancor;
+	    $kw = $this->Kalenderwoche;
+            if( 'c' == $maORcl )
+              $kw .= " Client";
+            else
+              $kw .= " MA";
 	    ?><td><img src="images/<?php echo $img;?>" alt="zum Wochenplan" usemap="#maorcl<?php echo $ancor;?>">
             <a name='<?php echo $ancor;?>'></a>
             <map name="maorcl<?php echo $ancor;?>">
-            <area shape=rect coords="0,0,18,18" title='<?php echo $title;?>' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=KW#<?php echo $ancor;?>">
+            <area shape=rect coords="0,0,18,18" title='<?php echo $title;?>' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $kw;?>#<?php echo $ancor;?>">
+&nbsp;&nbsp;
+            <img src="images/guardar-18px.png" alt="KW speichern" usemap="#insertKW<?php echo $ancor;?>">
+            <map name="insertKW<?php echo $ancor;?>">
+            <area shape=rect coords="0,0,18,18" title='Plan f&uuml;r KW<?php echo $this->Kalenderwoche;?> speichern' href="./mn.php?mn=insertKW&a=MAClientVSKW&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $kw;?>#<?php echo $ancor;?>">
             </map>
             </td><?php
             ++$j;
