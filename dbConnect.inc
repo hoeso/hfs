@@ -1,14 +1,17 @@
 <?php
 /************ Input **********************************************************
  *****************************************************************************/
-
-include ("connect.prj");
-include ("verbindenMitMySQL.inc");
-if( isset($_E['enableDbg']) && $_E['enableDbg'] )
+if( isset($_REQUEST['d']) )
 {
-  ?>Trace : DB-Verbindung aufbauen<br>httpd.conf lesen ...<?php
-
+  $a_ = explode( "/", __file__ );
+  $b_ = $a_[count($a_)-1];
 }
+include ("connect.prj");
+if( isset($_REQUEST["d"]) )
+  dEcho( $b_, "connect request --> db" );
+include ("verbindenMitMySQL.inc");
+if( isset($_REQUEST["d"]) )
+  dEcho( $b_, "DB-Verbindung aufbauen<br>httpd.conf lesen ..." );
 // Verbinden zum MySQL-Server
 $str = $_E['projekt'] . 'Host';
 $host = $_SERVER[$str];
