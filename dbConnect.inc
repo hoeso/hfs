@@ -32,8 +32,6 @@ if( isset($_E['enableDbg']) && $_E['enableDbg'] )
 if( isset($_REQUEST["d"]) )
   dEcho( $b_, "connect request --> mysql-db" );
 verbindenMitMySQLServer( $lkid, $host, $user, $pw );
-if( isset($_REQUEST["d"]) )
-  dEcho( $b_, "connect request beendet." );
 if( !$lkid )
 {
   echo"\nkeine Verbindung zu MySQL m&ouml;glich($user).<br>";

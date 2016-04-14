@@ -1,10 +1,19 @@
 <?php
 include ("fehler.inc");
 
+if( isset($_REQUEST['d']) )
+{
+  $a_ = explode( "/", __file__ );
+  $b_ = $a_[count($a_)-1];
+}
 // Verbinden zum MySQL-Server
 function verbindenMitMySQLServer( &$lkid, $host, $user, $pw )
 {
+  if( isset($_REQUEST["d"]) )
+    dEcho( $b_, "connect request --> mysql-db" );
   $lkid = mysql_connect( $host, $user, $pw );
+  if( isset($_REQUEST["d"]) )
+    dEcho( $b_, "connect request beendet." );
   if( !$lkid )
   {?>
     <h4>Datenbank ist nicht erreichbar?</h4>
@@ -48,5 +57,4 @@ function verbindenMitMySQLDB( &$succ, $db, $lkid )
 
   return $succ;
 }
-
 ?>
