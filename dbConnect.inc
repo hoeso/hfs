@@ -7,11 +7,9 @@ if( isset($_REQUEST['d']) )
   $b_ = $a_[count($a_)-1];
 }
 include ("connect.prj");
-if( isset($_REQUEST["d"]) )
-  dEcho( $b_, "connect request --> db" );
 include ("verbindenMitMySQL.inc");
 if( isset($_REQUEST["d"]) )
-  dEcho( $b_, "DB-Verbindung aufbauen<br>httpd.conf lesen ..." );
+  dEcho( $b_, "httpd.conf lesen ..." );
 // Verbinden zum MySQL-Server
 $str = $_E['projekt'] . 'Host';
 $host = $_SERVER[$str];
@@ -31,7 +29,11 @@ if( isset($_E['enableDbg']) && $_E['enableDbg'] )
 if( isset($_E['enableDbg']) && $_E['enableDbg'] )
   echo "\n<br>jetzt verbinden ...<br>";
 
+if( isset($_REQUEST["d"]) )
+  dEcho( $b_, "connect request --> mysql-db" );
 verbindenMitMySQLServer( $lkid, $host, $user, $pw );
+if( isset($_REQUEST["d"]) )
+  dEcho( $b_, "connect request beendet." );
 if( !$lkid )
 {
   echo"\nkeine Verbindung zu MySQL m&ouml;glich($user).<br>";
