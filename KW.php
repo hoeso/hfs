@@ -4,6 +4,7 @@ class KW
   protected $tag;
   private   $datum;
   private   $KW;
+  private   $jahr;
   private   $wochenTag;
   private   $tagNachKW;
   private   $tagVorKW;
@@ -23,6 +24,7 @@ class KW
     );
     $this->datum = new DateTime(date( $strDate ));
     $this->KW = $this->datum->format( "W" );
+    $this->jahr = $this->datum->format( "y" );
     $this->wochenTag = $this->datum->format( "w" );
     $c = 0;
     unset($this->tagVorKW);
@@ -60,6 +62,8 @@ class KW
         return $this->datum->format("Y-m-d");
       case 'DatumEU':
         return $this->datum->format("d.m.Y");
+      case 'Jahr':
+        return $this->jahr;
       case 'Kalenderwoche':
         return $this->KW;
       case 'KWweiter':
