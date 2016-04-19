@@ -58,6 +58,8 @@ class KW
     {
       case 'Datum':
         return $this->datum->format("Y-m-d");
+      case 'DatumEU':
+        return $this->datum->format("d.m.Y");
       case 'Kalenderwoche':
         return $this->KW;
       case 'KWweiter':

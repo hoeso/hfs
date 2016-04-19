@@ -16,6 +16,8 @@ class KWview extends KWmodel
     {
       case 'Datum':
         return parent::__get('Datum');
+      case 'DatumEU':
+        return parent::__get('DatumEU');
       case 'Go':
         return parent::__get('Go');
       case 'Kalenderwoche':
@@ -31,7 +33,7 @@ class KWview extends KWmodel
       break;
     }
   }
-  function show( $what )
+  function show( $what, $how='initialen' )
   {
     global $quart;
     if( isset($_REQUEST["d"]) )
@@ -60,6 +62,30 @@ class KWview extends KWmodel
     else
       $img = 'grandma-penguin-24px.png';
     ?><table><tr><?php
+    if( 'initialen' == $how )
+    {
+      $text='n';
+      if( 'client' == $what )
+      {
+        $concat = "CONCAT(LEFT(c.Name,1),LEFT(c.Vorname,1))";
+      }
+      else
+      {
+        $concat = "CONCAT(LEFT(m.Name,1),LEFT(m.Vorname,1))";
+      }
+    }
+    else
+    {
+      $text='i';
+      if( 'client' == $what )
+      {
+        $concat = "CONCAT(c.Name,' ',c.Vorname)";
+      }
+      else
+      {
+        $concat = "CONCAT(m.Name,' ',m.Vorname)";
+      }
+    }
     /*** 1. Header ausgeben           ***/
     $i=0;
     $ancor=0;
@@ -85,20 +111,28 @@ class KWview extends KWmodel
         <map name="maorcl<?php echo $ancor;?>">
         <area shape=rect coords="0,0,18,18" title='<?php echo $title;?>' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $kw;?>#<?php echo $ancor;?>">
         </map>
-	&nbsp;&nbsp;
 	<img src="images/guardar-18px.png" alt="KW speichern" usemap="#insertKW<?php echo $ancor;?>">
         <map name="insertKW<?php echo $ancor;?>">
         <area shape=rect coords="0,0,18,18" title='Plan f&uuml;r KW<?php echo $this->Kalenderwoche;?> speichern' href="./mn.php?mn=insertKW&a=MAClientVSKW&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $kw;?>#<?php echo $ancor;?>">
         </map>
-&nbsp;&nbsp;
-            <img src="images/jean-victor-balin-arki-arrow-left-18px.png" alt="zur&uuml;ck" usemap="#zurueck<?php echo $ancor;?>">
-            <map name="zurueck<?php echo $ancor;?>">
-            <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche - 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWzurueck;?>&navi=KW&u=<?php echo $kw - 1 . " " . $NOTkw;?>#<?php echo $ancor;?>">
-            </map>
-            <img src="images/jean-victor-balin-arki-arrow-right-18px.png" alt="weiter" usemap="#weiter<?php echo $ancor;?>">
-            <map name="weiter<?php echo $ancor;?>">
-            <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche + 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWweiter;?>&navi=KW&u=<?php echo $kw + 1 . " " . $NOTkw;?>#<?php echo $ancor;?>">
-            </map>
+        <a href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $NOTmaORcl;?>&k=Y-m-d&navi=KW&u=<?php echo $this->DatumEU . " " . $NOTkw;?>#<?php echo $ancor;?>">Heute</a>
+        <img src="images/jean-victor-balin-arki-arrow-left-18px.png" alt="zur&uuml;ck" usemap="#zurueck<?php echo $ancor;?>">
+        <map name="zurueck<?php echo $ancor;?>">
+        <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche - 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWzurueck;?>&navi=KW&u=<?php echo $kw - 1 . " " . $NOTkw;?>#<?php echo $ancor;?>">
+        </map>
+        <img src="images/jean-victor-balin-arki-arrow-right-18px.png" alt="weiter" usemap="#weiter<?php echo $ancor;?>">
+        <map name="weiter<?php echo $ancor;?>">
+        <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche + 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWweiter;?>&navi=KW&u=<?php echo $kw + 1 . " " . $NOTkw;?>#<?php echo $ancor;?>">
+        </map><?php
+        if( 'initialen' == $how )
+          $img2 = "1430954247-18px.png";
+        else
+          $img2 = "matt-icons_emblem-minus-18px.png";?>
+	<img src="images/<?php echo $img2;?>" alt="Darstellung" usemap="#initialen<?php echo $ancor;?>">
+	<a name='<?php echo $ancor;?>'></a>
+        <map name="initialen<?php echo $ancor;?>">
+        <area shape=rect coords="0,0,18,18" title='Darstellung' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->Datum;?>&c=<?php echo $text;?>&navi=KW&u=<?php echo $this->Kalenderwoche . " " . $NOTkw;?>#<?php echo $ancor;?>">
+        </map>
         </th><?php
         ++$i;
 	continue;
@@ -130,9 +164,13 @@ class KWview extends KWmodel
         $a[3]=3;// hier Feld 3 rein = [Client|MA].ID
 	$dim=count($a);
         if( 'client' == $what )
-	  $sql = "SELECT cv.Menge, CONCAT(LEFT(c.Name,1),LEFT(c.Vorname,1)) AS sc, CONCAT(c.Name,',',c.Vorname), c.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE '$dayofweek'=t.SC AND $row=v.ID ORDER BY sc";
+        {
+	  $sql = "SELECT cv.Menge, " . $concat . " AS sc, CONCAT(c.Name,',',c.Vorname), c.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE '$dayofweek'=t.SC AND $row=v.ID ORDER BY sc";
+        }
 	else
+        {
 	  $sql = "SELECT cv.Menge, CONCAT(LEFT(m.Name,1),LEFT(m.Vorname,1)) AS sc, CONCAT(m.Name,',',m.Vorname), m.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE mc.ClientID=cv.ClientID AND '$dayofweek'=t.SC AND $row=v.ID ORDER BY sc";
+        }
         DB::gibFelderArray( $sql, $a );
         if( $a[0]==0 && $a[1]==1 && $a[2]==2 )
 	{ // nix gfundn worn :-(
@@ -158,7 +196,10 @@ class KWview extends KWmodel
 	    { // wir sind im richtigen Wochentag(=Spalte)
               $a__ = explode( "|", $sc );
               ?><a href="mn.php?mn=3653&a=Client&navi=CFS&ID=<?php echo $a__[2];?>&u=<?php echo substr($sc,2,2);?>&planungTag_x" target="_blank" title=<?php echo /*substr($sc,4,strlen($sc)-3)*/$a__[1] . ">"; // title: voller Name
-	      echo substr($sc,2,2) . " "; // nur die Initialen
+              if( 'initialen' == $how )
+	        echo substr($sc,2,2) . " "; // nur die Initialen
+              else
+	        echo substr($a__[1],0,12) . " "; // Name Vorname
               ?></a><?php
 	      if( $counter )
 	        --$counter;
@@ -193,12 +234,11 @@ class KWview extends KWmodel
             <a name='<?php echo $ancor;?>'></a>
             <map name="maorcl<?php echo $ancor;?>">
             <area shape=rect coords="0,0,18,18" title='<?php echo $title;?>' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $kw;?>#<?php echo $ancor;?>">
-&nbsp;&nbsp;
             <img src="images/guardar-18px.png" alt="KW speichern" usemap="#insertKW<?php echo $ancor;?>">
             <map name="insertKW<?php echo $ancor;?>">
             <area shape=rect coords="0,0,18,18" title='Plan f&uuml;r KW<?php echo $this->Kalenderwoche;?> speichern' href="./mn.php?mn=insertKW&a=MAClientVSKW&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $kw . " " . $kw;?>#<?php echo $ancor;?>">
             </map>
-&nbsp;&nbsp;
+            <a href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $NOTmaORcl;?>&k=Y-m-d&navi=KW&u=<?php echo $this->DatumEU . " " . $NOTkw;?>#<?php echo $ancor;?>">Heute</a>
             <img src="images/jean-victor-balin-arki-arrow-left-18px.png" alt="zur&uuml;ck" usemap="#zurueck<?php echo $ancor;?>">
             <map name="zurueck<?php echo $ancor;?>">
             <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche - 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWzurueck;?>&navi=KW&u=<?php echo $kw - 1 . " " . $NOTkw;?>#<?php echo $ancor;?>">
@@ -206,6 +246,11 @@ class KWview extends KWmodel
             <img src="images/jean-victor-balin-arki-arrow-right-18px.png" alt="weiter" usemap="#weiter<?php echo $ancor;?>">
             <map name="weiter<?php echo $ancor;?>">
             <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche + 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWweiter;?>&navi=KW&u=<?php echo $kw + 1 . " " . $NOTkw;?>#<?php echo $ancor;?>">
+            </map>
+    	    <img src="images/<?php echo $img2;?>" alt="Darstellung" usemap="#initialen<?php echo $ancor;?>">
+    	    <a name='<?php echo $ancor;?>'></a>
+            <map name="initialen<?php echo $ancor;?>">
+            <area shape=rect coords="0,0,18,18" title='Darstellung' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->Datum;?>&c=<?php echo $text;?>&navi=KW&u=<?php echo $this->Kalenderwoche . " " . $NOTkw;?>#<?php echo $ancor;?>">
             </map>
             </td><?php
             ++$j;

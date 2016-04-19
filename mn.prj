@@ -45,6 +45,18 @@ switch( $_E['mn'] )
         $_A['what'] = 'mitarbeiter';
       break;
     }
+    if( isset($_REQUEST["c"]) )
+      switch( $_REQUEST["c"] )
+      {
+        case 'i':
+          $_A['how'] = 'initialen';
+        break;
+        default:
+          $_A['how'] = 'name';
+        break;
+      }
+    else
+      $_A['how'] = 'initialen';
     $_e = array( "1", "2" );
   break;
   case "pe": // pure entity

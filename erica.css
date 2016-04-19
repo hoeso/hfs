@@ -19,6 +19,10 @@ body {
 	line-height: 1.923em;
 }
 
+a {
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-size: small;
+}
 /* A, Seite 92 */
 /* overflow: visible sorgt dafür, dass der horizontale Scrollbalken bis zum ***
  * rechten Rand schieben kann, also nichts abgeschnitten wird               ***/

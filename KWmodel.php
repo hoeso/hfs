@@ -24,6 +24,8 @@ class KWmodel extends KW
     {
       case 'Datum':
         return parent::__get('Datum');
+      case 'DatumEU':
+        return parent::__get('DatumEU');
       case 'Go':
         return $this->go;
       case 'Kalenderwoche':
