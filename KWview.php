@@ -48,11 +48,13 @@ class KWview extends KWmodel
     {
       $title = 'Mitarbeiter';
       $maORcl = "d"; // alles was nicht c ist, ist MA
+      $NOTmaORcl = "c"; // alles was nicht c ist, ist MA
     }
     else
     {
       $title = 'Clienten';
       $maORcl = "c";
+      $NOTmaORcl = "d"; // alles was nicht c ist, ist MA
     }    if( 'client' == $what )
       $img = 'threepeople-24px.png';
     else
@@ -68,9 +70,15 @@ class KWview extends KWmodel
         ++$ancor;
         $kw = $this->Kalenderwoche;
         if( 'c' == $maORcl )
-	  $kw .= " Client";
+        {
+	  $kw .= " Klient";
+	  $NOTkw = " MA";
+        }
 	else
+        {
 	  $kw .= " MA";
+	  $NOTkw = " Klient";
+        }
         ?><th>
 	<img src="images/<?php echo $img;?>" alt="zum Wochenplan" usemap="#maorcl<?php echo $ancor;?>">
 	<a name='<?php echo $ancor;?>'></a>
@@ -82,6 +90,15 @@ class KWview extends KWmodel
         <map name="insertKW<?php echo $ancor;?>">
         <area shape=rect coords="0,0,18,18" title='Plan f&uuml;r KW<?php echo $this->Kalenderwoche;?> speichern' href="./mn.php?mn=insertKW&a=MAClientVSKW&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $kw;?>#<?php echo $ancor;?>">
         </map>
+&nbsp;&nbsp;
+            <img src="images/jean-victor-balin-arki-arrow-left-18px.png" alt="zur&uuml;ck" usemap="#zurueck<?php echo $ancor;?>">
+            <map name="zurueck<?php echo $ancor;?>">
+            <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche - 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWzurueck;?>&navi=KW&u=<?php echo $kw - 1 . " " . $NOTkw;?>#<?php echo $ancor;?>">
+            </map>
+            <img src="images/jean-victor-balin-arki-arrow-right-18px.png" alt="weiter" usemap="#weiter<?php echo $ancor;?>">
+            <map name="weiter<?php echo $ancor;?>">
+            <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche + 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWweiter;?>&navi=KW&u=<?php echo $kw + 1 . " " . $NOTkw;?>#<?php echo $ancor;?>">
+            </map>
         </th><?php
         ++$i;
 	continue;
@@ -163,9 +180,15 @@ class KWview extends KWmodel
             ++$ancor;
 	    $kw = $this->Kalenderwoche;
             if( 'c' == $maORcl )
-              $kw .= " Client";
-            else
-              $kw .= " MA";
+            {
+	      $kw .= " Klient";
+	      $NOTkw = " MA";
+            }
+	    else
+            {
+	      $kw .= " MA";
+	      $NOTkw = " Klient";
+            }
 	    ?><td><img src="images/<?php echo $img;?>" alt="zum Wochenplan" usemap="#maorcl<?php echo $ancor;?>">
             <a name='<?php echo $ancor;?>'></a>
             <map name="maorcl<?php echo $ancor;?>">
@@ -173,7 +196,16 @@ class KWview extends KWmodel
 &nbsp;&nbsp;
             <img src="images/guardar-18px.png" alt="KW speichern" usemap="#insertKW<?php echo $ancor;?>">
             <map name="insertKW<?php echo $ancor;?>">
-            <area shape=rect coords="0,0,18,18" title='Plan f&uuml;r KW<?php echo $this->Kalenderwoche;?> speichern' href="./mn.php?mn=insertKW&a=MAClientVSKW&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $kw;?>#<?php echo $ancor;?>">
+            <area shape=rect coords="0,0,18,18" title='Plan f&uuml;r KW<?php echo $this->Kalenderwoche;?> speichern' href="./mn.php?mn=insertKW&a=MAClientVSKW&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $kw . " " . $kw;?>#<?php echo $ancor;?>">
+            </map>
+&nbsp;&nbsp;
+            <img src="images/jean-victor-balin-arki-arrow-left-18px.png" alt="zur&uuml;ck" usemap="#zurueck<?php echo $ancor;?>">
+            <map name="zurueck<?php echo $ancor;?>">
+            <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche - 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWzurueck;?>&navi=KW&u=<?php echo $kw - 1 . " " . $NOTkw;?>#<?php echo $ancor;?>">
+            </map>
+            <img src="images/jean-victor-balin-arki-arrow-right-18px.png" alt="weiter" usemap="#weiter<?php echo $ancor;?>">
+            <map name="weiter<?php echo $ancor;?>">
+            <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche + 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWweiter;?>&navi=KW&u=<?php echo $kw + 1 . " " . $NOTkw;?>#<?php echo $ancor;?>">
             </map>
             </td><?php
             ++$j;

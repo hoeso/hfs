@@ -325,6 +325,7 @@ $automat = array(
 	"pruefendSymbol"=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
 		"kopfteil.html",
 		"kopfteil.prj",
+		"naviSymbols.prj",
 		"endeContainer.html",
 		"hauptteil.html",
 		"haupttext.html",
