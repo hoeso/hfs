@@ -48,7 +48,7 @@ if( $table=="Client" && $recID )
   }
   if( true == $f )
   {?>
-    <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='bevormundung' title='Vormund'>
+    <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='bevormundung' title='wichtige Person'>
   <?php
   }
 }
