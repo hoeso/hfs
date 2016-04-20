@@ -56,7 +56,7 @@ class KWview extends KWmodel
     }
     else
     {
-      $title = 'Clienten';
+      $title = 'Klient&#042;innen';
       $maORcl = "c";
       $NOTmaORcl = "d"; // alles was nicht c ist, ist MA
     }    if( 'client' == $what )
