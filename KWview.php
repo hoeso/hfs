@@ -176,7 +176,7 @@ class KWview extends KWmodel
         DB::gibFelderArray( $sql, $a );
         if( $a[0]==0 && $a[1]==1 && $a[2]==2 )
 	{ // nix gfundn worn :-(
-          ?><?php
+          ?><a href="" title="<?php echo $dayofweek . " " . $quart[$row];?>">&nbsp;</a><?php
 	}
         else
 	{ // Treffer, hier findet ein Client|MA Besuch statt:
