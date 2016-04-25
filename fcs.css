@@ -94,3 +94,6 @@ label, form li span { float: left; width: 9em; padding-right: 1em; }
 /* Mehrspaltige Anordnung von Paaren aus label- und Formularelementen */
 //form { height: 1%; overflow: auto; }
 //form ul { float: left; width: 75%; margin-right: 5%; }
+/* Klassen */
+/* http://www.ohne-css.gehts-gar.net/0004.php: */
+.img18 { float: left; margin-right: 10px; }

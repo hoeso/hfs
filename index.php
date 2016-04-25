@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
-<title>Flex Business Suite</title>
+<title>Flex Care Suite</title>
 <script language=javascript type='text/javascript'>
   if( top.location != self.location )
   {
@@ -35,22 +35,14 @@ echo $_E['bodyClass'];
 ?>" id="<?php
 echo $_E['bodyId'];
 ?>">
-<?php include("kopfteil.html"); ?>
-<?php include("kopfteil.prj"); ?>
-<?php include("naviSymbols.prj"); ?>
-<?php include("endeContainer.html"); ?>
-<?php include("hauptteil.html"); ?>
-<?php include("haupttext.html"); ?>
-<?php include("endeContainer.html"); ?>
-<?php include("seitenleiste.html"); ?>
-<?php include("hauptnavigation.html"); ?>
-<?php //include("naviGoogle.html"); ?>
-<?php //include("naviElemente.html"); ?>
-<?php //include("naviEDV.sql"); ?>
-<?php //include("naviUpload.html"); ?>
-<?php include("naviCFS.html"); ?>
-<?php include("endeNavigation.html"); ?>
-<?php include("endeContainer.html"); ?>
-<?php include("endeContainer.html");//hauptteil ?>
+<?php
+$_REQUEST['mn'] = "kw";
+$_REQUEST["a"] = "MAClientVS";
+$_REQUEST["b"] = "d";
+$_REQUEST["k"] = "Y-m-d";
+$_REQUEST["navi"] = "KW";
+$_REQUEST["u"] = "KW";
+include("mn.php"); 
+?>
 </body>
 </html>
