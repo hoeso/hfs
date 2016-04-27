@@ -20,11 +20,21 @@ if( isset($_REQUEST[""]) )
 
 $_REQUEST["sl"]=1;
 $_REQUEST["sl1"]="Client";
-$_REQUEST["re"]=2;
-$_REQUEST["re1"]="Tag";
-$SELECTRE1=$_REQUEST["sl3"];
-$_REQUEST["re2"]="VS";
-$SELECTRE2=$_REQUEST["sl2"];
+if( !isset($_REQUEST["j"]) or !isset($_REQUEST["k"]) )
+{
+  ?>kein Jahr oder keine KW &uuml;bergeben!?<br><?php
+  $_E['wZu']="anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
+$_REQUEST["re"]=4;
+$_REQUEST["re1"]="Jahr";
+$SELECTRE1=$_REQUEST["j"];
+$_REQUEST["re2"]="KW";
+$SELECTRE2=$_REQUEST["k"];
+$_REQUEST["re3"]="Tag";
+$SELECTRE3=$_REQUEST["sl3"];
+$_REQUEST["re4"]="VS";
+$SELECTRE4=$_REQUEST["sl2"];
 
 $_REQUEST["a"]="ClientVS";
 /******
