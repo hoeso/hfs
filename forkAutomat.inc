@@ -31,6 +31,7 @@ $forkAutomat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
 		//"mapSpaltennamen.inc",
@@ -62,6 +63,7 @@ $forkAutomat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
 		//"mapSpaltennamen.inc",
@@ -81,6 +83,7 @@ $forkAutomat = array(
 	),
 	"forkendVerlinkenEntitaetJmpFw"=>array(
 		"setzenFortsetzung.prj",
+		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
 		//"mapSpaltennamen.inc",
@@ -415,6 +418,7 @@ $forkAutomat = array(
 	"editierendAngebot"=>array(
 		"eiZuEintretendDoku.inc",// setzt Pfad zu Angeboten+Dokus
 		"eiZuEditierendAngebot.inc",
+		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
 		//"mapSpaltennamen.inc",

@@ -26,7 +26,7 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   );
   $_eOverlay = array(
   "ClientAdresse"=>"Client",
-  "ClientVS"=>"Client",
+  //"ClientVS"=>"Client",
   "Kontingent"=>"MA",
   "MA-Einsatz"=>"MA",
   "MAAdresse"=>"MA",
@@ -42,6 +42,7 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
 */
   "Angebot"=>"./mn.php?mn=1466&a=EDVAngebot&x=1",
   "Client"=>"./mn.php?mn=pe&a=Client",
+  "ClientVS"=>"./mn.php?mn=sl_pe&a=ClientVS&sl=1&sl1=Client&navi=Plan&re=4&re1=Jahr&re1=Tag&re2=KW&re3=Tag&re4=VS",
   "EDVAngebot"=>"./mn.php?mn=1466&a=EDVAngebot&x=1",
   "MA"=>"./mn.php?mn=pe&a=MA",
   "Person"=>"mn.php?mn=pe&a=Person",

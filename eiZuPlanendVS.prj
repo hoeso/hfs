@@ -52,4 +52,13 @@ if( isset($_REQUEST["ID"]) )
   $_E["stm1-filter"]=" WHERE $_REQUEST[ID]=ID";
 // i Spalten einruecken
 $_REQUEST["i"]=3;
+/******
+Anzeige auf KW beschraenken:
+ ******/
+if( isset($_REQUEST["k"]) ) // Kalenderwoche
+  $_E['where_and']="WHERE $_REQUEST[k]=k.ID";
+/******
+Damit fortsetzen-Link auf ClientVS zeigt:
+ ******/
+$_E['ID']=-1;
 ?>

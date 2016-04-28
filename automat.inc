@@ -40,6 +40,7 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
 		//"mapSpaltennamen.inc",
@@ -427,6 +428,7 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"insertERM.inc",
+		"nachInsertERM.prj",
 		"setzenFortsetzung.prj",
 		"linkFortsetzen.inc",
 		"nachSpeichernAnzeigen.inc",

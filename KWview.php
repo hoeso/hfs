@@ -177,7 +177,11 @@ class KWview extends KWmodel
         DB::gibFelderArray( $sql, $a );
         if( $a[0]==0 && $a[1]==1 && $a[2]==2 )
 	{ // nix gfundn worn :-(
-          ?><a href="mn.php?mn=planend&a=ClientVS&sl=3&sl1=Client&sl2=<?php echo $row;?>&sl3=<?php echo $i;?>&navi=CFS&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr;?>&planungVS_x" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">&nbsp;</a><?php
+	  if( isset($_REQUEST['d']) )
+	    $d="&d";
+	  else
+	    $d="";
+          ?><a href="mn.php?mn=planend&a=ClientVS&sl=3&sl1=Client&sl2=<?php echo $row;?>&sl3=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">&nbsp;</a><?php
 	}
         else
 	{ // Treffer, hier findet ein Client|MA Besuch statt:
