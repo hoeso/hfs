@@ -40,6 +40,7 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
@@ -128,6 +129,7 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"formularFuerRE.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
@@ -149,6 +151,7 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"formularFuerNN.inc",
 		"linkFortsetzen.inc",
 		"containerTitel.php",
@@ -253,6 +256,7 @@ $automat = array(
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"aendernFK.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
@@ -274,6 +278,7 @@ $automat = array(
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"updateRE.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
@@ -292,6 +297,7 @@ $automat = array(
 		"hauptteil.html",
 		"haupttext.html",
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"containerTitel.php",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
@@ -312,6 +318,7 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"anzeigenZieltabelle.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
@@ -335,6 +342,7 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"editierenRE.inc",
 		"erlaubenFK.inc",
 		"anbietenFK.inc",
@@ -430,6 +438,7 @@ $automat = array(
 		"insertERM.inc",
 		"nachInsertERM.prj",
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"linkFortsetzen.inc",
 		"nachSpeichernAnzeigen.inc",
 		"endeContainer.html",//haupttext

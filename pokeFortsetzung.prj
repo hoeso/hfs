@@ -1,0 +1,13 @@
+<?php
+if( isset($candyURL['ClientVS']) ) // Planung
+{
+  if( isset($_REQUEST["j"]) )
+    $candyURL['ClientVS'] .= "&SELECTRE1=$_REQUEST[j]"; // Jahr
+  if( isset($_REQUEST["k"]) )
+    $candyURL['ClientVS'] .= "&SELECTRE2=$_REQUEST[k]"; // KW
+  if( isset($_REQUEST["sl3"]) )
+    $candyURL['ClientVS'] .= "&SELECTRE3=$_REQUEST[sl3]"; // Tag
+  if( isset($_REQUEST["sl2"]) )
+    $candyURL['ClientVS'] .= "&SELECTRE4=$_REQUEST[sl2]"; // VS
+}
+?>

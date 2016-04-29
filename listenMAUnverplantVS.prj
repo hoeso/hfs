@@ -1,7 +1,7 @@
 <?php
 /** Aufrufendes Skript **** Variable *****************************************
  * planendClient-Automat :
- *                    ID : Client.ID
+ *                    ID : ClientVS.ID
  *                       : 
  *****************************************************************************/
 if( isset($_REQUEST["d"]) )
@@ -22,13 +22,14 @@ if( !isset($_E['ID']/*$_REQUEST["ID"]*/) )
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
+$clID=gibFeld( $MySQLDb, "SELECT ClientID FROM ClientVS WHERE $_E[ID]=ID", 0 );
 unset($m_);
 $m_[0]=0;// hier Feld 0 rein = m.ID
 $m_[1]=1;// hier Feld 1 rein = m.Name, m.Vorname
 $m_[2]=2;// hier Feld 2 rein = Platzhalter fuer k.Wochenstunden
 $m_[3]=3;// hier Feld 3 rein = Platzhalter fuer gebuchte Stunden
 $dim_m =count($m_);
-gibFelderArray( $MySQLDb, "SELECT m.ID, CONCAT(m.Name,' ',m.Vorname), '0' FROM MAClient mc JOIN MA m ON (mc. MAID=m.ID) WHERE $_E[ID]=mc.ClientID ORDER BY m.Name, m.Vorname", $m_ );
+gibFelderArray( $MySQLDb, "SELECT m.ID, CONCAT(m.Name,' ',m.Vorname), '0' FROM MAClient mc JOIN MA m ON (mc. MAID=m.ID) WHERE $clID=mc.ClientID ORDER BY m.Name, m.Vorname", $m_ );
 $cMA = count($m_)/$dim_m;
 if( true == habWas( $m_, 0, $dim_m-1 ) )
 {
@@ -48,7 +49,7 @@ unset($c_);
 $c_[0]=0;// hier Feld 0 rein = m.Name, m.Vorname
 $c_[1]=1;// hier Feld 1 rein = die unbelegten Termine
 $dim_ =count($c_);
-gibFelderArray( $MySQLDb, "SELECT CONCAT(c.Name,' ', c.Vorname), TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*SUM(cv.Menge)), '%k:%i') FROM ClientVS cv JOIN Client c ON (cv.ClientID=c.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID) AND NOT EXISTS (SELECT ClientVSID FROM MAClientVS WHERE MAClientVS.ClientVSID=cv.ID) AND $_E[ID]=c.ID", $c_ );
+gibFelderArray( $MySQLDb, "SELECT CONCAT(c.Name,' ', c.Vorname), TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*SUM(cv.Menge)), '%k:%i') FROM ClientVS cv JOIN Client c ON (cv.ClientID=c.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID) AND NOT EXISTS (SELECT ClientVSID FROM MAClientVS WHERE MAClientVS.ClientVSID=cv.ID) AND $clID=c.ID", $c_ );
 $f = false;
 if( true == habWas( $c_, 0, $dim_-1 ) )
   for( $i=0; $i<count($c_); $i += $dim_ )
@@ -70,6 +71,7 @@ $_REQUEST["a"]="MAClientVS";
 noch $_E[filter] setzen, um sichten.prj zu filtern.
  ******/
 $filter = " AND $_REQUEST[ID]=c.ID";
+$filter = " AND $_REQUEST[ID]=cv.ID";
 //if( isset($Select) && isset($_E['entitaet']) && isset($Select[ $_E['entitaet'] ]) && isset($_REQUEST["ID"]) )
   //$Select[ $_E['entitaet'] ] .= $filter;
 if( isset($Select) && isset($Select[ $_REQUEST["a"] ]) && isset($_REQUEST["ID"]) )
@@ -83,10 +85,10 @@ $_E['mn']="sl_pe";
 /******
 noch $_E[stmtX-filter] setzen, um in mn.prj zu filtern.
  ******/
-if( isset($_REQUEST["ID"]) )
+if( isset($clID) )
 {
-  $_E["stm1-filter"]=" AND $_REQUEST[ID]=c.ID";
-  $_E["stm2-filter"]=" AND $_REQUEST[ID]=c.ID";
+  $_E["stm1-filter"]=" AND $clID=c.ID";
+  $_E["stm2-filter"]=" AND $clID=c.ID";
 }
 // i Spalten einruecken
 $_REQUEST["i"]=3;

@@ -56,11 +56,11 @@ else if( $table=="ClientVS" && $recID )
 {
   // wenn noch nichts hinterlegt ist, werden diese Icons in Graustufen ausgegeben
   $sw = 'sw-';
-  $img = 'empty-calendar-18px.png';
+  $img = 'threepeople-18px.png';
   if( !gibFeld( $MySQLDb, "SELECT ID FROM MAClientVS WHERE $recID=ClientVSID", 0 ) )
   {
     $img = $sw . $img;
-    ?><INPUT TYPE=image src='images/threepeople-18px.png' NAME='planungClient' title='Einsatzplan'><?php
+    ?><INPUT TYPE=image src='images/<?php echo $img;?>' NAME='planungClientVS' title='MA-Einsatz'><?php
   }
 }
 else if( $table=="MA" && $recID )

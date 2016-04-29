@@ -1,0 +1,45 @@
+<?php
+/** Aufrufendes Skript **** Variable *****************************************
+ * naviCFS.html/Client, planendClient-Symbol :
+ *                                           : 
+ *****************************************************************************/
+if( 0 )
+{
+echo"\nPOST Variablen:<br>";
+  foreach( $_POST as $k=>$elem )
+    echo"\nk : $k, elem: $elem<br>";
+echo"\nREQUEST Variablen:<br>";
+  foreach( $_REQUEST as $k=>$elem )
+    echo"\nk : $k, elem: $elem<br>";
+exit;
+}
+/* zum Kopieren:
+if( isset($_REQUEST[""]) )
+  $ = $_REQUEST[""];
+*/
+$_REQUEST["sl"]=2;
+// Die geplanten Quarts:
+$_REQUEST["sl1"]="ClientVS";
+// Die zugeordneten MA
+$_REQUEST["sl2"]="MAClient";
+
+$_REQUEST["a"]="MAClientVS";
+/******
+noch $_E[filter] setzen, um sichten.prj zu filtern.
+ ******/
+if( isset($_REQUEST["ID"]) )
+  $_E["filter"]=" AND $_REQUEST[ID]=cv.ID";
+
+$_E['mn']="sl_pe";
+
+/******
+noch $_E[stmtX-filter] setzen, um in mn.prj zu filtern.
+ ******/
+if( isset($_REQUEST["ID"]) )
+{
+  $_E["stm1-filter"]=" AND $_REQUEST[ID]=cv.ID";
+  $_E["stm2-filter"]=" AND $_REQUEST[ID]=c.ID";
+}
+// i Spalten einruecken
+$_REQUEST["i"]=3;
+?>

@@ -10,6 +10,7 @@ $forkAutomat = array(
 */
 	"anbietendKnopfZurueck"=>array(
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -31,6 +32,7 @@ $forkAutomat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
@@ -63,6 +65,7 @@ $forkAutomat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
@@ -83,6 +86,7 @@ $forkAutomat = array(
 	),
 	"forkendVerlinkenEntitaetJmpFw"=>array(
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
@@ -106,6 +110,7 @@ $forkAutomat = array(
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"logic2PhysView.prj",
 		"loeschBar.prj",
 		"loeschenVorspiel.prj",
@@ -174,6 +179,7 @@ $forkAutomat = array(
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"aendernPosition.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
@@ -752,6 +758,14 @@ $forkAutomat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"listenMAUnverplant.prj",
+		"mn.prj",
+		"automatReloaded.inc",
+	),
+	"planendClientVS"=>array( // CFS
+		"eiZuPlanendClientVS.prj",
+		"dbConnect.inc",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"listenMAUnverplantVS.prj",
 		"mn.prj",
 		"automatReloaded.inc",
 	),

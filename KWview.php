@@ -168,11 +168,11 @@ class KWview extends KWmodel
 	$dim=count($a);
         if( 'client' == $what )
         {
-	  $sql = "SELECT cv.Menge, " . $concat . " AS sc, CONCAT(c.Name,',',c.Vorname), c.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE '$dayofweek'=t.SC AND $row=v.ID ORDER BY sc";
+	  $sql = "SELECT cv.Menge, " . $concat . " AS sc, CONCAT(c.Name,',',c.Vorname), c.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID ORDER BY sc";
         }
 	else
         {
-	  $sql = "SELECT cv.Menge, CONCAT(LEFT(m.Name,1),LEFT(m.Vorname,1)) AS sc, CONCAT(m.Name,',',m.Vorname), m.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE mc.ClientID=cv.ClientID AND '$dayofweek'=t.SC AND $row=v.ID ORDER BY sc";
+	  $sql = "SELECT cv.Menge, CONCAT(LEFT(m.Name,1),LEFT(m.Vorname,1)) AS sc, CONCAT(m.Name,',',m.Vorname), m.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE mc.ClientID=cv.ClientID AND $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID ORDER BY sc";
         }
         DB::gibFelderArray( $sql, $a );
         if( $a[0]==0 && $a[1]==1 && $a[2]==2 )

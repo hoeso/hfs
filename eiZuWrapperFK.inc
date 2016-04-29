@@ -95,4 +95,13 @@ if( isset($_E["sl"]) )
       dEcho( $b_, "SL$i: " . $_E["stm$i"] );
   }
 }
+// planend
+if( isset($_REQUEST["SELECTRE1"]) )
+  $SELECTRE1=$_REQUEST["SELECTRE1"];
+if( isset($_REQUEST["SELECTRE2"]) )
+  $SELECTRE2=$_REQUEST["SELECTRE2"];
+if( isset($_REQUEST["SELECTRE3"]) )
+  $SELECTRE3=$_REQUEST["SELECTRE3"];
+if( isset($_REQUEST["SELECTRE4"]) )
+  $SELECTRE4=$_REQUEST["SELECTRE4"];
 ?>
