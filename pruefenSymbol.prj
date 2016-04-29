@@ -30,6 +30,10 @@ else if( isset($_REQUEST["runter_x"]) )
   $_A['Richtung'] = "groesser";
 }
 /*********** CFS *********************/
+else if( isset($_REQUEST["kopierenKW_x"]) )
+{
+  $_E['wZu']="kopierendKW";
+}
 else if( isset($_REQUEST["planungClient_x"]) )
 {
   $_E['wZu']="planendClient";

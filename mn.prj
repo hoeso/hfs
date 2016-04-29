@@ -31,6 +31,16 @@ switch( $_E['mn'] )
     $_E['wZu'] = "wechselndMenue";
     $_E['navi'] = $_REQUEST["navi"];
   break;
+  case "kopierenKW":
+    if( !isset($_REQUEST["j"]) or !isset($_REQUEST["k"]) or !isset($_REQUEST["a"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "pruefendSymbol";
+    $_E['entitaet'] = $_REQUEST["a"];
+    $_eTitel = array( "{$_E['entitaet']}" );
+    if( isset($_REQUEST["navi"]) )
+      $_E['navi'] = $_REQUEST["navi"];
+    //if( !isset($_REQUEST["navi"]) ) { echo $exitus; return; }
+  break;
   case "kw":
     if( !isset($_REQUEST["k"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
