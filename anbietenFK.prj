@@ -1,0 +1,14 @@
+<?php
+$arrFKMM = array(
+	"MAClient-"=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
+		"MA",
+		"Client",
+	),
+);
+$_A['MM'] = array(
+	"MAClient"=>array( // junction entity: 
+		"SELECT  mc.ID, m.Name, m.Vorname, c.Name, c.Vorname, DATE_FORMAT(c.geborenAm, '%d.%m.%Y') FROM MAClient mc JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (mc.ClientID=c.ID) WHERE mc.ClientID = ( SELECT ClientID FROM MAClient WHERE ID=", // Kriterium fuer Tausch
+		" )",
+	),
+);
+?>

@@ -107,6 +107,10 @@ class KWview extends KWmodel
 	  $kw .= " MA";
 	  $NOTkw = " Klient";
         }
+	if( isset($_REQUEST['d']) )
+	  $d="&d";
+	else
+	  $d="";
         ?><td colspan=7>
 	<img class="img18" src="images/<?php echo $img;?>" alt="zum Wochenplan" usemap="#maorcl<?php echo $ancor;?>">
 	<a name='<?php echo $ancor;?>'></a>
@@ -115,7 +119,7 @@ class KWview extends KWmodel
         </map>
 	<img class="img18" src="images/Copy-18px.png" alt="KW kopieren" usemap="#kopierenKW<?php echo $ancor;?>">
         <map name="kopierenKW<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,18,18" title='KW<?php echo $this->Kalenderwoche;?> kopieren' href="./mn.php?mn=kopierenKW&a=ClientVS&b=<?php echo $maORcl;?>&j=<?php echo $this->Jahr . $d;?>&k=<?php echo $this->Kalenderwoche;?>&navi=KW&u=<?php echo $kw;?>&kopierenKW_x#<?php echo $ancor;?>">
+        <area shape=rect coords="0,0,18,18" target="_blank" title='KW<?php echo $this->Kalenderwoche;?> kopieren' href="./mn.php?mn=kopierenKW&a=Kalenderwoche&sl=4&sl1=Jahr-%3E&sl2=KW-%3E&sl3=Jahr&sl4=KW&b=<?php echo $maORcl;?>&j=<?php echo $this->Jahr . $d;?>&k=<?php echo $this->Kalenderwoche;?>&navi=KW&u=<?php echo $this->Kalenderwoche;?>%20-&gt;%3F&kopierenKW_x#<?php echo $ancor;?>">
         </map>
         <a class="img18" href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $NOTmaORcl;?>&k=Y-m-d&navi=KW&u=<?php echo $this->DatumEU . " " . $NOTkw;?>#<?php echo $ancor;?>">Heute</a>
         <img class="img18" src="images/jean-victor-balin-arki-arrow-left-18px.png" alt="zur&uuml;ck" usemap="#zurueck<?php echo $ancor;?>">
@@ -175,7 +179,7 @@ class KWview extends KWmodel
 	{ // Treffer, hier findet ein Client|MA Besuch statt:
 	  for( $k=0; $k < count($a); $k += $dim )
 	  {
-	    $clutch = $dayofweek . $a[$k+1] . $quart[$row] . "|" . $a[$k+2]. "|" . $a[$k+3];
+	    $clutch = $dayofweek . $a[$k+1] . $quart[$row] . "|" . $a[$k+2] . "|" . $a[$k+3] . "|" . $a[$k+4];
 	    if ( !isset($aSC) or isset($aSC) and !isset($aSC[$clutch]) )
 	    { // Zelle assoziativ belegen: "Wochentag . [MA|Client]-Initialen" = Menge
 	      $aSC[$clutch] = $a[$k];
@@ -194,7 +198,7 @@ class KWview extends KWmodel
                 $str="&a=Client&planungTag_x";
               else
                 $str="&a=MA&planungMA_x";
-              ?><a href="mn.php?mn=3653&navi=Plan&ID=<?php echo $a__[2];?>&u=<?php echo substr($sc,2,2) . $str;?>" target="_blank" title=<?php echo $a__[1] . ">"; // title: voller Name
+              ?><a href="mn.php?mn=3653&navi=Plan&ID=<?php echo $a__[2];?>&u=<?php echo substr($sc,2,2) . $str;?>&MAClientVS=<?php echo $a__[3];?>#<?php echo $a__[3];?>" target="_blank" title=<?php echo $a__[1] . ">"; // title: voller Name
               if( 'initialen' == $how )
 	        echo substr($sc,2,2) . " "; // nur die Initialen
               else
@@ -235,7 +239,7 @@ class KWview extends KWmodel
             <area shape=rect coords="0,0,18,18" title='<?php echo $title;?>' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $kw;?>#<?php echo $ancor;?>">
             <img class="img18" src="images/Copy-18px.png" alt="KW kopieren" usemap="#kopierenKW<?php echo $ancor;?>">
             <map name="kopierenKW<?php echo $ancor;?>">
-            <area shape=rect coords="0,0,18,18" title='Plan f&uuml;r KW<?php echo $this->Kalenderwoche;?> speichern' href="./mn.php?mn=kopierenKW&a=MAClientVSKW&b=<?php echo $maORcl;?>&k=<?php echo $this->Kalenderwoche;?>&navi=KW&u=<?php echo $kw . " " . $kw;?>#<?php echo $ancor;?>">
+            <area shape=rect coords="0,0,18,18" target="_blank" title='KW<?php echo $this->Kalenderwoche;?> kopieren' href="./mn.php?mn=kopierenKW&a=Kalenderwoche&sl=4&sl1=Jahr-%3E&sl2=KW-%3E&sl3=Jahr&sl4=KW&b=<?php echo $maORcl;?>&j=<?php echo $this->Jahr . $d;?>&k=<?php echo $this->Kalenderwoche;?>&navi=KW&u=<?php echo $this->Kalenderwoche;?>%20-&gt;%3F&kopierenKW_x#<?php echo $ancor;?>">
             </map>
             <a class="img18" href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $NOTmaORcl;?>&k=Y-m-d&navi=KW&u=<?php echo $this->DatumEU . " " . $NOTkw;?>#<?php echo $ancor;?>">Heute</a>
             <img class="img18" src="images/jean-victor-balin-arki-arrow-left-18px.png" alt="zur&uuml;ck" usemap="#zurueck<?php echo $ancor;?>">

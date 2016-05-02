@@ -128,12 +128,21 @@ for( $i=1; $i<$c; $i++)
         $FKFKSpalte = $spaltenName[$j];
         $arr = mysql_fetch_row( $result );
         $FKFKWert=$arr[1];
+        if( isset($_REQUEST["d"]) )
+          dEcho( $b_, $FKFKWert . " = *" . $FKFKSpalte );
       }
     }
   }
   if( 1 == $nFK )
   {//FK-Tabelle hat nur Attribute, also alle Datensaetze anbieten
     lesenRETabelle( $result, $MySQLDb, $t, "" );
+  }
+  else if( isset($_A['MM'][$t]) )
+  { // hier wird der Tausch eines FK einer Junction Entity angeboten:
+    $sql = $_A['MM'][$t][0] . $w . $_A['MM'][$t][1];
+    if( isset($_REQUEST["d"]) )
+      dEcho( $b_, $sql );
+    $result = mysql_db_query( $MySQLDb, $sql );
   }
   else if( isset($arrFKMM[$t]) and $arrFKMM[$t] )
   {
@@ -144,6 +153,8 @@ for( $i=1; $i<$c; $i++)
     $sql = "SELECT $t.ID, $str0.$str0 FROM $t, $str0, $str1 WHERE $str0id=$str0.ID AND $str1id=$str1.ID";
     $sql = "SELECT $t.ID, $str0.$str0, $str1.$str1 FROM $t, $str0, $str1 WHERE $str0id=$str0.ID AND $str1id=$str1.ID";
     if($debug){echo"\nMMFK = $t mit FKs $str0 $str1<br>$sql<br>";}
+    if( isset($_REQUEST["d"]) )
+      dEcho( $b_, $sql );
     $result = mysql_db_query( $MySQLDb, $sql );
   }
   else
@@ -151,7 +162,9 @@ for( $i=1; $i<$c; $i++)
 	 if( $debug )
 		 echo "<td>nur Attribute auflisten mit WHERE $FKFKSpalte=$FKFKWert</td>";
     lesenRETabelle( $result, $MySQLDb, $t, " WHERE $FKFKSpalte=$FKFKWert" );
-  }
+     if( isset($_REQUEST["d"]) )
+        dEcho( $b_, "peek in: $t WHERE $FKFKSpalte = $FKFKWert" );
+   }
   if( !$result )
   {
     $_E['wZu']="anbietendKnopfZurueck";

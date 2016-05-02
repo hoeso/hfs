@@ -345,6 +345,7 @@ $automat = array(
 		"pokeFortsetzung.prj",
 		"editierenRE.inc",
 		"erlaubenFK.inc",
+		"anbietenFK.prj",
 		"anbietenFK.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext

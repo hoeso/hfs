@@ -952,6 +952,8 @@ function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
   global $SELECTEM1;  // im Falle von 'zurueck zum Neuanlegen'
   global $SELECTMM1;  // im Falle von 'zurueck zum Neuanlegen'
   global $SELECTSL1;  // im Falle von 'zurueck zum Neuanlegen'
+  global $SELECTSL3;  
+  global $SELECTSL4;  
   global $SELECT0;  // im Falle von 'EMspazierend'
   global $exclusiv0;  // im Falle von 'EMspazierend'
   global $keinInsert;
@@ -973,6 +975,14 @@ function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
   else if( "SL1" == $label )
   {
     $IDgewaehlt=$SELECTSL1;
+  }
+  else if( "SL3" == $label )
+  {
+    $IDgewaehlt=$SELECTSL3;
+  }
+  else if( "SL4" == $label )
+  {
+    $IDgewaehlt=$SELECTSL4;
   }
   //$reihen=count($zeilen) / $anz;
   //$size=min($reihen,15);

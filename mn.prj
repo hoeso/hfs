@@ -34,12 +34,43 @@ switch( $_E['mn'] )
   case "kopierenKW":
     if( !isset($_REQUEST["j"]) or !isset($_REQUEST["k"]) or !isset($_REQUEST["a"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
-    $_E['wZu'] = "pruefendSymbol";
+    if( isset($_REQUEST["wZu"]) )
+      $_E['wZu'] = $_REQUEST["wZu"];
+    else
+      $_E['wZu'] = "bspVerlinkendEntitaet";
+    $_E['recipient'] = speichernKW;
     $_E['entitaet'] = $_REQUEST["a"];
-    $_eTitel = array( "{$_E['entitaet']}" );
+    $_eTitel = array( "KW kopieren" );
     if( isset($_REQUEST["navi"]) )
       $_E['navi'] = $_REQUEST["navi"];
+    $_E['sl'] = $_REQUEST["sl"];
+    for( $i=1; $i <= $_E['sl'] and $i < 6; $i++ )
+    {
+      if( isset($_REQUEST["sl$i"]) )
+        $_E["sl$i"] = $_REQUEST["sl$i"];
+      switch( $_REQUEST["sl$i"] )
+      {
+        case "Jahr":
+          $_E["stm$i"] = "SELECT ID, Jahr FROM Jahr";
+	  $_E["slct$i"] = $_REQUEST['j'];
+	break;
+        case "Jahr->":
+          $_E["stm$i"] = "SELECT ID, Jahr FROM Jahr WHERE ID=$_REQUEST[j]";
+	break;
+        case "KW":
+          $_E["stm$i"] = "SELECT ID, KW FROM KW";
+	  $_E["slct$i"] = $_REQUEST['k']+1;
+	break;
+        case "KW->":
+          $_E["stm$i"] = "SELECT ID, KW FROM KW WHERE ID=$_REQUEST[k]";
+	break;
+      }
+    }
     //if( !isset($_REQUEST["navi"]) ) { echo $exitus; return; }
+  break;
+  case "speichernKW":
+    $_E['wZu'] = "pruefendSymbol";
+    $_REQUEST['kopierenKW_x']=true;
   break;
   case "kw":
     if( !isset($_REQUEST["k"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }

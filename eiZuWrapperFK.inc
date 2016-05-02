@@ -70,26 +70,31 @@ if( isset($_E["sl"]) )
     {
       $tableSL1 = $_E["sl$i"];
       $SL1 = $_E["stm$i"];
+      $SELECTSL1=$_E["slct$i"];
     }
     else if( 2 == $i )
     {
       $tableSL2 = $_E["sl$i"];
       $SL2 = $_E["stm$i"];
+      $SELECTSL2=$_E["slct$i"];
     }
     else if( 3 == $i )
     {
       $tableSL3 = $_E["sl$i"];
       $SL3 = $_E["stm$i"];
+      $SELECTSL3=$_E["slct$i"];
     }
     else if( 4 == $i )
     {
       $tableSL4 = $_E["sl$i"];
       $SL4 = $_E["stm$i"];
+      $SELECTSL4=$_E["slct$i"];
     }
     else if( 5 == $i )
     {
       $tableSL5 = $_E["sl$i"];
       $SL5 = $_E["stm$i"];
+      $SELECTSL5=$_E["slct$i"];
     }
     if( isset($_REQUEST["d"]) )
       dEcho( $b_, "SL$i: " . $_E["stm$i"] );
