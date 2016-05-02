@@ -8,6 +8,9 @@ $arrFK = array(
 	"ClientVS"=>array(
 		"VS",
 	),
+	"MAClient"=>array(
+		"MA",
+	),
 	"MAClientVS"=>array(
 		"MAClient",
 	),

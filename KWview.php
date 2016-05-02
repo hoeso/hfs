@@ -160,21 +160,9 @@ class KWview extends KWmodel
 	  continue;
         }?>
         <td><?php
+        $dim=0;
         unset($a);
-        $a[0]=0;// hier Feld 0 rein = Menge
-        $a[1]=1;// hier Feld 1 rein = Initialen
-        $a[2]=2;// hier Feld 2 rein = Name, Vorname
-        $a[3]=3;// hier Feld 3 rein = [Client|MA].ID
-	$dim=count($a);
-        if( 'client' == $what )
-        {
-	  $sql = "SELECT cv.Menge, " . $concat . " AS sc, CONCAT(c.Name,',',c.Vorname), c.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID ORDER BY sc";
-        }
-	else
-        {
-	  $sql = "SELECT cv.Menge, CONCAT(LEFT(m.Name,1),LEFT(m.Vorname,1)) AS sc, CONCAT(m.Name,',',m.Vorname), m.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE mc.ClientID=cv.ClientID AND $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID ORDER BY sc";
-        }
-        DB::gibFelderArray( $sql, $a );
+        $this->gibTermine( $a, $dim, $what, $concat, $dayofweek, $row );
         if( $a[0]==0 && $a[1]==1 && $a[2]==2 )
 	{ // nix gfundn worn :-(
 	  if( isset($_REQUEST['d']) )
@@ -202,7 +190,11 @@ class KWview extends KWmodel
 	    if( substr($sc,0,2) == $dayofweek )
 	    { // wir sind im richtigen Wochentag(=Spalte)
               $a__ = explode( "|", $sc );
-              ?><a href="mn.php?mn=3653&a=Client&navi=CFS&ID=<?php echo $a__[2];?>&u=<?php echo substr($sc,2,2);?>&planungTag_x" target="_blank" title=<?php echo /*substr($sc,4,strlen($sc)-3)*/$a__[1] . ">"; // title: voller Name
+              if( 'client' == $what )
+                $str="&a=Client&planungTag_x";
+              else
+                $str="&a=MA&planungMA_x";
+              ?><a href="mn.php?mn=3653&navi=Plan&ID=<?php echo $a__[2];?>&u=<?php echo substr($sc,2,2) . $str;?>" target="_blank" title=<?php echo $a__[1] . ">"; // title: voller Name
               if( 'initialen' == $how )
 	        echo substr($sc,2,2) . " "; // nur die Initialen
               else
