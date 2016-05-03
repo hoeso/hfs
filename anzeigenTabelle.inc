@@ -26,6 +26,11 @@ function anzeigen( $db, $sql, $table, $ActionSuffix )
     "",
   */
   );
+if( isset($_REQUEST["d"]) )
+{
+  $a_ = explode( "/", __file__ );
+  $b_ = $a_[count($a_)-1];
+}
   if( isset($debug) and $debug )
     echo "$sql<br>";
   $result = mysql_db_query( $db, $sql );
@@ -48,11 +53,20 @@ function anzeigen( $db, $sql, $table, $ActionSuffix )
   if( isset($_eCandy) )
   {
     foreach( $_eCandy as $k => $elem )
+    {
+      if( isset($_REQUEST["d"]) and isset($_REQUEST["$k"]) )
+        dEcho( $b_, $k . " == " . $table . "?" );
       if( $k == $table and isset($_REQUEST["$k"]) )
       {
         $iFarbReihe=$elem;
         break;
       }
+      else if( ($k == "MAClientVS" or $k == "ClientVS") and isset($_REQUEST["$k"]) )
+      { // dirty hack, allerdings markiert er die gewaehlte Tag/Uhrzeit-Zeile aus der KW-Uebersicht
+        $iFarbReihe=$elem;
+        break;
+      }
+    }
   }
   tabelleBeginnen( $table );
   include("logic2PhysView.prj");
