@@ -40,7 +40,8 @@ for( $i=0; $i<count($arr); $i += $dim )
   $sql = "SELECT LAST_INSERT_ID() FROM ClientVS";
   $result = mysql_db_query( $MySQLDb, $sql );
   $a__ = mysql_fetch_row( $result );
-  $autoID=$a__[0];
+  if( !$a__[0] )
+    continue; // Termin offenbar schon belegt
   mysql_free_result( $result );
   $sql = "INSERT INTO MAClientVS VALUES ( null, $arr[$i], $a__[0] )";
   if( isset($_REQUEST["d"]) )
