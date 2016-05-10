@@ -10,7 +10,13 @@ if( isset($_REQUEST["d"]) )
 }
 $debug=0;
 if( !isset($arrFK[$_E['entitaet']]) )
- return;
+  return;
+if( isset($_REQUEST["d"]) )
+{
+  dEcho( $b_, "geht um: " . $_E['entitaet'] );
+  foreach( $arrFK[$_E['entitaet']] as $key )
+    dEcho( $b_, "&auml;nderbar: $key" );
+}
 lesenRETabelle( $result, $MySQLDb, $_E['entitaet'], " WHERE ID=" . $_E['ID'] );
 if( !$result )
 {
@@ -26,8 +32,9 @@ $nFK=0;
 for( $i=0; $i<$n; $i++)
   if( true == istForeignKeyName( $spaltenName[$i] ) )
   {
-	 ++$nFK;
-    if($debug)echo"\nFK-Name $spaltenName[$i]<br>";
+    ++$nFK;
+    if( isset($_REQUEST["d"]) )
+      dEcho( $b_, "FK: " . $spaltenName[$i] );
   }
 if( 1 == $nFK )
 {// das war ja wohl nur der eigene Primaerschluessel 'ID'
@@ -40,20 +47,25 @@ if( 1 == $nFK )
 if($debug)echo"\nAnzahl FK's in Tabelle $tableRE = $nFK<br>";
 $str=$_E['entitaet'];
 $str=str_replace( "ae", "&auml;", $str );
-echo "\n<H3>eine Beziehung von $str &auml;ndern ?</H3>";
+echo "\n<H3>... oder eine Beziehung von $str &auml;ndern ?</H3>";
 
 $c=0;
 for( $i=0; $i<$n; $i++)
-	if( true == istForeignKeyName( $spaltenName[$i] ) )
-		$FK['tabelle'][$c++] = str_replace( "ID", "", $spaltenName[$i] );
+  if( true == istForeignKeyName( $spaltenName[$i] ) )
+  {
+    $FK['tabelle'][$c++] = str_replace( "ID", "", $spaltenName[$i] );
+    if( isset($_REQUEST["d"]) )
+      dEcho( $b_, "peek in: " . $FK['tabelle'][$c-1] . "?" );
+  }
 $arr = mysql_fetch_row( $result );
 $anz = mysql_num_fields($result);
 for( $i=1; $i < $anz; $i++ )
 {
   if( isset($FK['tabelle'][$i]) and $FK['tabelle'][$i] )
   {
-	 $FK['wert'][$i]=$arr[$i];
-    if($debug){$str=$FK[tabelle][$i];echo"\nFK $str zeigt auf $arr[$i]<br>";}
+    $FK['wert'][$i]=$arr[$i];
+    if( isset($_REQUEST["d"]) )
+      dEcho( $b_, $FK['wert'][$i] . " = *" . $FK[tabelle][$i] );
   }
 }
 ?>
@@ -70,6 +82,8 @@ for( $i=1; $i<$c; $i++)
     {
       if( $key == $t )
       {/*** bestaetigen, dass dieser FK zum Aendern freigegeben ist ***/
+        if( isset($_REQUEST["d"]) )
+          dEcho( $b_, "&auml;nderbar: $t" );
         $duDarfst=true;
         break;
     }
@@ -106,20 +120,29 @@ for( $i=1; $i<$c; $i++)
   unset($FKFKWert);
   for( $j=0; $j<$n; $j++)
   {
-	 if( true == istForeignKeyName( $spaltenName[$j] ) )
-	 {
+    if( true == istForeignKeyName( $spaltenName[$j] ) )
+    {
       ++$nFK;
-		if( 2 == $nFK )
-		{
-		  $FKFKSpalte = $spaltenName[$j];
-		  $arr = mysql_fetch_row( $result );
-		  $FKFKWert=$arr[1];
-		}
+      if( 2 == $nFK )
+      {
+        $FKFKSpalte = $spaltenName[$j];
+        $arr = mysql_fetch_row( $result );
+        $FKFKWert=$arr[1];
+        if( isset($_REQUEST["d"]) )
+          dEcho( $b_, $FKFKWert . " = *" . $FKFKSpalte );
+      }
     }
   }
   if( 1 == $nFK )
   {//FK-Tabelle hat nur Attribute, also alle Datensaetze anbieten
-	 lesenRETabelle( $result, $MySQLDb, $t, "" );
+    lesenRETabelle( $result, $MySQLDb, $t, "" );
+  }
+  else if( isset($_A['MM'][$t]) )
+  { // hier wird der Tausch eines FK einer Junction Entity angeboten:
+    $sql = $_A['MM'][$t][0] . $w . $_A['MM'][$t][1];
+    if( isset($_REQUEST["d"]) )
+      dEcho( $b_, $sql );
+    $result = mysql_db_query( $MySQLDb, $sql );
   }
   else if( isset($arrFKMM[$t]) and $arrFKMM[$t] )
   {
@@ -130,6 +153,8 @@ for( $i=1; $i<$c; $i++)
     $sql = "SELECT $t.ID, $str0.$str0 FROM $t, $str0, $str1 WHERE $str0id=$str0.ID AND $str1id=$str1.ID";
     $sql = "SELECT $t.ID, $str0.$str0, $str1.$str1 FROM $t, $str0, $str1 WHERE $str0id=$str0.ID AND $str1id=$str1.ID";
     if($debug){echo"\nMMFK = $t mit FKs $str0 $str1<br>$sql<br>";}
+    if( isset($_REQUEST["d"]) )
+      dEcho( $b_, $sql );
     $result = mysql_db_query( $MySQLDb, $sql );
   }
   else
@@ -137,7 +162,9 @@ for( $i=1; $i<$c; $i++)
 	 if( $debug )
 		 echo "<td>nur Attribute auflisten mit WHERE $FKFKSpalte=$FKFKWert</td>";
     lesenRETabelle( $result, $MySQLDb, $t, " WHERE $FKFKSpalte=$FKFKWert" );
-  }
+     if( isset($_REQUEST["d"]) )
+        dEcho( $b_, "peek in: $t WHERE $FKFKSpalte = $FKFKWert" );
+   }
   if( !$result )
   {
     $_E['wZu']="anbietendKnopfZurueck";

@@ -1,0 +1,23 @@
+<?php
+if( isset($_REQUEST["k"]) )
+  $k = "&k=" . $_REQUEST["k"];
+else
+  $k = "";
+$clickIst="&re=4&re1=Jahr&re2=KW&re3=Tag&re4=VS";
+if( isset($_REQUEST["j"]) && isset($_REQUEST["k"]) && isset($_REQUEST["sl3"]) && isset($_REQUEST["sl2"]) )
+  $clickIst .= "&SELECTRE1=$_REQUEST[j]&SELECTRE2=$_REQUEST[k]&SELECTRE3=$_REQUESTsl3]&SELECTRE4=$_REQUEST[sl2]";
+?>
+<li>
+<a href="./mn.php?mn=sl_pe&a=ClientVS&sl=1&sl1=Client&navi=Plan<?php echo $clickIst;?>&i=3">Planung
+<?php
+if( isset($_REQUEST["k"]) )
+  echo " KW $_REQUEST[k]";
+?>
+</a>
+</li>
+<li>
+<a href="./mn.php?mn=pe&a=MA<?php echo $k;?>&navi=Plan">Mitarbeiter&#042;in</a>
+</li>
+<li>
+<a href="./mn.php?mn=sl_pe&a=MAClient&sl=2&sl1=Client&sl2=MA<?php echo $k;?>&navi=Plan&i=3">Engagement</a>
+</li>

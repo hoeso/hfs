@@ -30,13 +30,25 @@ else if( isset($_REQUEST["runter_x"]) )
   $_A['Richtung'] = "groesser";
 }
 /*********** CFS *********************/
+else if( isset($_REQUEST["kopierenKW_x"]) )
+{
+  $_E['wZu']="kopierendKW";
+}
 else if( isset($_REQUEST["planungClient_x"]) )
 {
   $_E['wZu']="planendClient";
 }
+else if( isset($_REQUEST["planungClientVS_x"]) )
+{
+  $_E['wZu']="planendClientVS";
+}
 else if( isset($_REQUEST["planungMA_x"]) )
 {
   $_E['wZu']="planendMA";
+}
+else if( isset($_REQUEST["planungVS_x"]) )
+{
+  $_E['wZu']="planendVS";
 }
 else if( isset($_REQUEST["planungTag_x"]) )
 {

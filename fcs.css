@@ -1,0 +1,99 @@
+/* A := nach Ben Henick: Das Beste an HTML & CSS, O'Reilly 2010 */
+/* B := Eric A. Meyer: CSS Das umfassende Handbuch, O'Reilly 2007 */
+/* A, Seite 85 */
+html, body {
+	margin: 0;
+	padding: 0;
+}
+/* A, Seite ? */
+body {
+//	background-image: url(/images/bg_site.jpg);
+	background-attachment: fixed;
+	background-position: 100% 100%;
+	background-repeat: no-repeat;
+	color: rgb(64,64,64);
+//	font-family: Georgia,Palatino,'Times New Roman',serif;
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-size: small;
+//	font-size: normal;
+	line-height: 1.923em;
+}
+
+a {
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-size: small;
+}
+/* A, Seite 92 */
+/* overflow: visible sorgt dafür, dass der horizontale Scrollbalken bis zum ***
+ * rechten Rand schieben kann, also nichts abgeschnitten wird               ***/
+#hauptteil { height: 1%; overflow: visible; }
+/* width + margin sollen nicht groesser als 100% sein, ansonsten horiz. Scrolling */
+#hauptteil, #kopfteil, #fussteil { width: 96%; margin: 2%; }
+#haupttext { float: right; width: 87%; }
+#seitenleiste { margin-right: 1%; }
+
+/* basis elemente */
+table  { margin-left: 1px; border: 1px solid #000; }
+td, th { padding: 5px; }
+/* B, Seite 390. Bezeichnung 'border-bottom' war geraten */
+td { border-bottom: 1px solid grey; padding: 5px; }
+/* http://www.tiptom.ch/homepage/faq.html?q=zellelink */
+td a {display:block; text-align:center;}
+/* 
+tbody th { text-align: right; }
+thead th { vertical-align: bottom; }
+tfoot th { vertical-align: top; }
+thead th, tfoot th { text-align: left; }
+
+thead th[rowspan]:first-child,
+tfoot th[rowspan]:first-child {
+  text-align: right;
+}
+
+/* A, navigation Seite 72, 106 */
+/* overflow: auto schneidet zu lange Menuetexte ab */
+.main #nav { display: block; width: 10em; overflow:visible; }
+/* navigation A, Seite 123     */
+ul { margin-left: 0.5em; padding-left:0; }
+li { /*display:inline;*/ list-style-type: none; }
+
+/* A, Seite 223 */
+h1 { font-size: xx-large; }
+
+/* http://www.w3schools.com/tags/tag_hn.asp */
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+    font-size: normal;
+}
+
+/* A, Formular-Layout Seite 259 - 260 */
+
+form, form ul, form li, fieldset, textarea { margin: 0; padding: 0; }
+//label, input, select, textarea, form li span { display: block; }
+form ul, form li { list-style-type: none; }
+form li { clear: both; height: 1%; overflow: auto; }
+//fieldset { border: 0; }
+
+/* Beschriftungen links neben den Formularfeldern */
+label, form li span { float: left; width: 9em; padding-right: 1em; }
+#submit { float: right; margin-left: 10em; }
+//input, select, textarea { float: right; margin-left: 10em; }
+//fieldset label, fieldset input { float: left; }
+//fieldset label { clear: left; width: 4.25em; padding-right: .75em; }
+//fieldset input { margin-left: 5em; margin-right: 1.5em; }
+
+/* Beschriftungen und Formularfelder zusätzlich an einer gemeinsamen Achse ausrichten */
+//label, form li span { text-align: right; }
+
+/* Mehrspaltige Anordnung von Paaren aus label- und Formularelementen */
+//form { height: 1%; overflow: auto; }
+//form ul { float: left; width: 75%; margin-right: 5%; }
+/* Klassen */
+/* http://www.ohne-css.gehts-gar.net/0004.php: */
+.img18 { float: left; margin-right: 10px; }

@@ -40,6 +40,8 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
+		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
 		//"mapSpaltennamen.inc",
@@ -127,6 +129,7 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"formularFuerRE.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
@@ -148,6 +151,7 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"formularFuerNN.inc",
 		"linkFortsetzen.inc",
 		"containerTitel.php",
@@ -252,6 +256,7 @@ $automat = array(
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"aendernFK.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
@@ -273,6 +278,7 @@ $automat = array(
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"updateRE.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
@@ -291,6 +297,7 @@ $automat = array(
 		"hauptteil.html",
 		"haupttext.html",
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"containerTitel.php",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
@@ -311,6 +318,7 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"anzeigenZieltabelle.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
@@ -334,8 +342,10 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"editierenRE.inc",
 		"erlaubenFK.inc",
+		"anbietenFK.prj",
 		"anbietenFK.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
@@ -427,7 +437,9 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"insertERM.inc",
+		"nachInsertERM.prj",
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"linkFortsetzen.inc",
 		"nachSpeichernAnzeigen.inc",
 		"endeContainer.html",//haupttext
@@ -788,10 +800,10 @@ $automat = array(
 		"schliessenDIV.html",
 	),
 	"zeigendKW"=>array(
-		"kopfteil.html",
-		"kopfteil.prj",
-		"naviSymbols.prj",
-		"endeContainer.html",
+		//"kopfteil.html",
+		//"kopfteil.prj",
+		//"naviSymbols.prj",
+		//"endeContainer.html",
 		"hauptteil.html",
 		"haupttext.html",
 		"dbConnect.inc",
@@ -799,11 +811,11 @@ $automat = array(
 		"KW.prj",
 		"containerTitel.php",
 		"endeContainer.html",//haupttext
-		"seitenleiste.html",
-		"hauptnavigation.html",
-		"navi" . $_E['navi'] . ".html",
-		"endeNavigation.html",
-		"endeContainer.html",
+		//"seitenleiste.html",
+		//"hauptnavigation.html",
+		//"navi" . $_E['navi'] . ".html",
+		//"endeNavigation.html",
+		//"endeContainer.html",
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),

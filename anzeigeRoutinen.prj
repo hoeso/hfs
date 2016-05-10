@@ -1,0 +1,6 @@
+<?php
+if( isset($elem) )
+  ;
+if( isset( $spalte[$i] ) )
+  ;
+?>

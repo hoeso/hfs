@@ -261,7 +261,7 @@ if( !$nTreffer )
 }
 if( $gespeichert )
 {
-  echo "\nDer Eintrag wurde gespeichert";
+  echo "\nDer Eintrag wurde gespeichert<br>";
 
   if( isset($zielTabelle) )
   {

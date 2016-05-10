@@ -1,0 +1,15 @@
+<?php
+/*
+$_A['form_send']=""; // PHP Warning vermeiden
+if( isset($_REQUEST['']) )
+  $_A['form_send'] .= isset($_REQUEST[''];
+*/
+/*** oft benutzte Variable:             ***/
+if( isset($_REQUEST['u']) ) // Ueberschrift
+  $_A['form_send'] .= "&u=$_REQUEST[u]";
+/*** mn=planend                         ***/
+if( isset($_REQUEST['j']) ) // Jahr
+  $_A['form_send'] .= "&j=$_REQUEST[j]";
+if( isset($_REQUEST['k']) ) // Kalenderwoche
+  $_A['form_send'] .= "&k=$_REQUEST[k]";
+?>

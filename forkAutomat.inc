@@ -10,6 +10,7 @@ $forkAutomat = array(
 */
 	"anbietendKnopfZurueck"=>array(
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -31,6 +32,8 @@ $forkAutomat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
+		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
 		//"mapSpaltennamen.inc",
@@ -62,6 +65,8 @@ $forkAutomat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
+		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
 		//"mapSpaltennamen.inc",
@@ -81,6 +86,8 @@ $forkAutomat = array(
 	),
 	"forkendVerlinkenEntitaetJmpFw"=>array(
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
+		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
 		//"mapSpaltennamen.inc",
@@ -103,6 +110,7 @@ $forkAutomat = array(
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"logic2PhysView.prj",
 		"loeschBar.prj",
 		"loeschenVorspiel.prj",
@@ -171,6 +179,7 @@ $forkAutomat = array(
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
 		"aendernPosition.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
@@ -415,6 +424,7 @@ $forkAutomat = array(
 	"editierendAngebot"=>array(
 		"eiZuEintretendDoku.inc",// setzt Pfad zu Angeboten+Dokus
 		"eiZuEditierendAngebot.inc",
+		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
 		//"mapSpaltennamen.inc",
@@ -743,11 +753,36 @@ $forkAutomat = array(
 		"mn.prj",
 		"automatReloaded.inc",
 	),
+	"kopierendKW"=>array( // CFS
+		"eiZuKopierendKW.prj",
+		"dbConnect.inc",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"kopierenKW.prj",
+		//"mn.prj",
+		//"automatReloaded.inc",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",//seitenleiste
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"planendClient"=>array( // CFS
 		"eiZuPlanendClient.prj",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"listenMAUnverplant.prj",
+		"mn.prj",
+		"automatReloaded.inc",
+	),
+	"planendClientVS"=>array( // CFS
+		"eiZuPlanendClientVS.prj",
+		"dbConnect.inc",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"listenMAUnverplantVS.prj",
 		"mn.prj",
 		"automatReloaded.inc",
 	),
@@ -758,6 +793,11 @@ $forkAutomat = array(
 	),
 	"planendTag"=>array( // CFS
 		"eiZuPlanendTag.prj",
+		"mn.prj",
+		"automatReloaded.inc",
+	),
+	"planendVS"=>array( // CFS
+		"eiZuPlanendVS.prj",
 		"mn.prj",
 		"automatReloaded.inc",
 	),

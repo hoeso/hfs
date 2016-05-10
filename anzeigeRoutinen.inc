@@ -389,6 +389,7 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
         $arr = explode( ":", $elem );
         $elem = "$arr[0]:$arr[1]";
       }
+      include("anzeigeRoutinen.prj");
       if( isset( $fTooltip ) )
         ;// $farbe ist bereits gesetzt
       else if( isset( $fAnmalen ) )
@@ -554,6 +555,7 @@ global $pw;
               $Summenwert += $elem;
               $elem = number_format($elem,'2',',','.');
             }
+            include("anzeigeRoutinen.prj");
             echo_("\n\t\t<td bgcolor='#E8E8E8' ");
             $j=$i-1;
             if( isset( $aColspan[$j] ) )//{echo"> $j : $aColspan[$j]</tr></table>";exit;}
@@ -843,6 +845,7 @@ function ListeMitID( $result, $label, $table, $fDatum, $anzuzeigen )
   global $SELECTRE1;  // im Falle von 'zurueck zum Neuanlegen'
   global $SELECTRE2;  // im Falle von 'zurueck zum Neuanlegen'
   global $SELECTRE3;  // im Falle von 'zurueck zum Neuanlegen'
+  global $SELECTRE4;  // im Falle von 'zurueck zum Neuanlegen'
   $tiefe=0;
   if( "RE1" == $label )
   {
@@ -855,9 +858,14 @@ function ListeMitID( $result, $label, $table, $fDatum, $anzuzeigen )
     echo"\n<!-- SELECTRE2 = $SELECTRE2 -->";
   }
   else if( "RE3" == $label )
- {
+  {
     $IDgewaehlt=$SELECTRE3;
     echo"\n<!-- SELECTRE3 = $SELECTRE3 -->";
+  }
+  else if( "RE4" == $label )
+  {
+    $IDgewaehlt=$SELECTRE4;
+    echo"\n<!-- SELECTRE4 = $SELECTRE4 -->";
   }
   $anz = mysql_num_fields($result);
   if( !isset($keinInsert) or false == $keinInsert )
@@ -944,6 +952,8 @@ function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
   global $SELECTEM1;  // im Falle von 'zurueck zum Neuanlegen'
   global $SELECTMM1;  // im Falle von 'zurueck zum Neuanlegen'
   global $SELECTSL1;  // im Falle von 'zurueck zum Neuanlegen'
+  global $SELECTSL3;  
+  global $SELECTSL4;  
   global $SELECT0;  // im Falle von 'EMspazierend'
   global $exclusiv0;  // im Falle von 'EMspazierend'
   global $keinInsert;
@@ -965,6 +975,14 @@ function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
   else if( "SL1" == $label )
   {
     $IDgewaehlt=$SELECTSL1;
+  }
+  else if( "SL3" == $label )
+  {
+    $IDgewaehlt=$SELECTSL3;
+  }
+  else if( "SL4" == $label )
+  {
+    $IDgewaehlt=$SELECTSL4;
   }
   //$reihen=count($zeilen) / $anz;
   //$size=min($reihen,15);
