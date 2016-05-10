@@ -101,11 +101,13 @@ class KWview extends KWmodel
         {
 	  $kw .= " Klient";
 	  $NOTkw .= " MA";
+	  $kwTitel  = " MA";
         }
 	else
         {
 	  $kw .= " MA";
 	  $NOTkw .= " Klient";
+	  $kwTitel  = " Klient";
         }
 	if( isset($_REQUEST['d']) )
 	  $d="&d";
@@ -129,12 +131,12 @@ class KWview extends KWmodel
         <a class="img18" href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $NOTmaORcl;?>&k=Y-m-d&navi=KW&u=<?php echo $this->DatumEU . " " . $NOTkw;?>#<?php echo $ancor;?>">Heute</a>
         <img class="img18" src="images/jean-victor-balin-arki-arrow-left-18px.png" alt="zur&uuml;ck" usemap="#zurueck<?php echo $ancor;?>">
         <map name="zurueck<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche - 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWzurueck;?>&navi=KW&u=<?php echo $kw - 1 . " " . $NOTkw;?>#<?php echo $ancor;?>">
+        <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche - 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWzurueck;?>&navi=KW&u=<?php echo $kw - 1 . " " . $kwTitel;?>#<?php echo $ancor;?>">
         </map>
         <em class="img18">KW<?php echo $this->Kalenderwoche;?></em>
         <img class="img18" src="images/jean-victor-balin-arki-arrow-right-18px.png" alt="weiter" usemap="#weiter<?php echo $ancor;?>">
         <map name="weiter<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche + 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWweiter;?>&navi=KW&u=<?php echo $kw + 1 . " " . $NOTkw;?>#<?php echo $ancor;?>">
+        <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche + 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWweiter;?>&navi=KW&u=<?php echo $kw + 1 . " " . $kwTitel;?>#<?php echo $ancor;?>">
         </map><?php
         if( 'initialen' == $how )
           $img2 = "1430954247-18px.png";
@@ -232,11 +234,13 @@ class KWview extends KWmodel
             {
 	      $kw .= " Klient";
 	      $NOTkw .= " MA";
+	      $kwTitel  = " MA";
             }
 	    else
             {
 	      $kw .= " MA";
 	      $NOTkw .= " Klient";
+	      $kwTitel  = " Klient";
             }
 	    ?><td colspan=7>
 	    <img class="img18" src="images/punaise-18px.png" alt="diese Uhrzeit" usemap="#pinnen<?php echo $ancor;?>">
@@ -255,12 +259,12 @@ class KWview extends KWmodel
             <a class="img18" href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $NOTmaORcl;?>&k=Y-m-d&navi=KW&u=<?php echo $this->DatumEU . " " . $NOTkw;?>#<?php echo $ancor;?>">Heute</a>
             <img class="img18" src="images/jean-victor-balin-arki-arrow-left-18px.png" alt="zur&uuml;ck" usemap="#zurueck<?php echo $ancor;?>">
             <map name="zurueck<?php echo $ancor;?>">
-            <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche - 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWzurueck;?>&navi=KW&u=<?php echo $kw - 1 . " " . $NOTkw;?>#<?php echo $ancor;?>">
+            <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche - 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWzurueck;?>&navi=KW&u=<?php echo $kw - 1 . " " . $kwTitel;?>#<?php echo $ancor;?>">
             </map>
             <em class="img18">KW<?php echo $this->Kalenderwoche;?></em>
             <img class="img18" src="images/jean-victor-balin-arki-arrow-right-18px.png" alt="weiter" usemap="#weiter<?php echo $ancor;?>">
             <map name="weiter<?php echo $ancor;?>">
-            <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche + 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWweiter;?>&navi=KW&u=<?php echo $kw + 1 . " " . $NOTkw;?>#<?php echo $ancor;?>">
+            <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche + 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWweiter;?>&navi=KW&u=<?php echo $kw + 1 . " " . $kwTitel;?>#<?php echo $ancor;?>">
             </map>
     	    <img class="img18" src="images/<?php echo $img2;?>" alt="Darstellung" usemap="#initialen<?php echo $ancor;?>">
     	    <a name='<?php echo $ancor;?>'></a>
