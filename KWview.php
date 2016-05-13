@@ -186,7 +186,7 @@ class KWview extends KWmodel
 	{ // Treffer, hier findet ein Client|MA Besuch statt:
 	  for( $k=0; $k < count($a); $k += $dim )
 	  {
-	    $clutch = $dayofweek . $a[$k+1] . $quart[$row] . "|" . $a[$k+2] . "|" . $a[$k+3] . "|" . $a[$k+4];
+	    $clutch = $dayofweek . $a[$k+1] . $quart[$row] . "|" . $a[$k+2] . "|" . $a[$k+3] . "|" . $a[$k+4]. "|" . $a[$k+5];
 	    if ( !isset($aSC) or isset($aSC) and !isset($aSC[$clutch]) )
 	    { // Zelle assoziativ belegen: "Wochentag . [MA|Client]-Initialen" = Menge
 	      $aSC[$clutch] = $a[$k];
@@ -209,7 +209,7 @@ class KWview extends KWmodel
               if( 'initialen' == $how )
 	        echo substr($sc,2,2) . " "; // nur die Initialen
               else
-	        echo substr($a__[1],0,12) . " "; // Name Vorname
+	        echo substr($a__[1],0,12) . "[" . $a__[5] . "] "; // Name Vorname
               ?></a><?php
 	      if( $counter )
 	        --$counter;
