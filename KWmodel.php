@@ -45,6 +45,11 @@ class KWmodel extends KW
   }
   function gibTermine( &$a, &$dim, $what, $concat, $dayofweek, $row )
   {
+    if( isset($_REQUEST["d"]) )
+    {
+      $a_ = explode( "/", __file__ );
+      $b_ = $a_[count($a_)-1];
+    }
     $a[0]=0;// hier Feld 0 rein = Menge
     $a[1]=1;// hier Feld 1 rein = Initialen
     $a[2]=2;// hier Feld 2 rein = Name, Vorname
@@ -60,5 +65,7 @@ class KWmodel extends KW
       $sql = "SELECT cv.Menge, CONCAT(LEFT(m.Name,1),LEFT(m.Vorname,1)) AS sc, CONCAT(m.Name,',',m.Vorname), m.ID, mcv.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE mc.ClientID=cv.ClientID AND $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID ORDER BY sc";
     }
     DB::gibFelderArray( $sql, $a );
+    if( isset($_REQUEST["d"]) )
+      dEcho( $b_, $sql );
   }
 }
