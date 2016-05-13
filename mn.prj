@@ -72,6 +72,34 @@ switch( $_E['mn'] )
     $_E['wZu'] = "pruefendSymbol";
     $_REQUEST['kopierenKW_x']=true;
   break;
+  case "blatt":
+    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["c"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "zeigendPlan";
+    $_E['date'] = $_REQUEST["k"];
+    switch( $_REQUEST["b"] )
+    {
+      case 'c':
+        $_A['what'] = 'client';
+      break;
+      default:
+        $_A['what'] = 'mitarbeiter';
+      break;
+    }
+    if( isset($_REQUEST["c"]) )
+      switch( $_REQUEST["c"] )
+      {
+        case 'i':
+          $_A['how'] = 'initialen';
+        break;
+        default:
+          $_A['how'] = 'name';
+        break;
+      }
+    else
+      $_A['how'] = 'initialen';
+    $_e = array( "1", "2" );
+  break;
   case "kw":
     if( !isset($_REQUEST["k"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";

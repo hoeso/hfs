@@ -147,6 +147,16 @@ class KWview extends KWmodel
         <map name="initialen<?php echo $ancor;?>">
         <area shape=rect coords="0,0,18,18" title='Darstellung' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->Datum;?>&c=<?php echo $text;?>&navi=KW&u=<?php echo $this->Kalenderwoche . " " . $kwTitel;?>#<?php echo $ancor;?>">
         </map>
+	<img class="img18" src="images/kalender-18px.png" alt="Wochen&uuml;bersicht" usemap="#woche<?php echo $ancor;?>">
+	<a name='<?php echo $ancor;?>'></a>
+        <map name="woche<?php echo $ancor;?>">
+        <area shape=rect coords="0,0,18,18" target="_blank" title='Wochen&uuml;bersicht' href="./mn.php?mn=blatt&navi=KW&a=<?php echo $this->Kalenderwoche;?>&c=k&u=<?php echo $this->Kalenderwoche . " " . $kwTitel;?>#<?php echo $ancor;?>">
+        </map>
+	<img class="img18" src="images/calendar2-18px.png" alt="Monats&uuml;bersicht" usemap="#monat<?php echo $ancor;?>">
+	<a name='<?php echo $ancor;?>'></a>
+        <map name="monat<?php echo $ancor;?>">
+        <area shape=rect coords="0,0,18,18" target="_blank" title='Monats&uuml;bersicht' href="./mn.php?mn=blatt&navi=KW&a=<?php echo $this->Kalenderwoche;?>&c=m&u=<?php echo $this->Kalenderwoche . " " . $kwTitel;?>#<?php echo $ancor;?>">
+        </map>
         </td></tr><tr><td></td><?php
         ++$i;
 	continue;
