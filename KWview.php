@@ -145,7 +145,7 @@ class KWview extends KWmodel
 	<img class="img18" src="images/<?php echo $img2;?>" alt="Darstellung" usemap="#initialen<?php echo $ancor;?>">
 	<a name='<?php echo $ancor;?>'></a>
         <map name="initialen<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,18,18" title='Darstellung' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->Datum;?>&c=<?php echo $text;?>&navi=KW&u=<?php echo $this->Kalenderwoche . " " . $NOTkw;?>#<?php echo $ancor;?>">
+        <area shape=rect coords="0,0,18,18" title='Darstellung' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->Datum;?>&c=<?php echo $text;?>&navi=KW&u=<?php echo $this->Kalenderwoche . " " . $kwTitel;?>#<?php echo $ancor;?>">
         </map>
         </td></tr><tr><td></td><?php
         ++$i;
@@ -186,7 +186,7 @@ class KWview extends KWmodel
 	{ // Treffer, hier findet ein Client|MA Besuch statt:
 	  for( $k=0; $k < count($a); $k += $dim )
 	  {
-	    $clutch = $dayofweek . $a[$k+1] . $quart[$row] . "|" . $a[$k+2] . "|" . $a[$k+3] . "|" . $a[$k+4]. "|" . $a[$k+5];
+	    $clutch = $dayofweek . $a[$k+1] . $quart[$row] . "|" . $a[$k+2] . "|" . $a[$k+3] . "|" . $a[$k+4] . "|" . $a[$k+5] . "|" . $a[$k+6];
 	    if ( !isset($aSC) or isset($aSC) and !isset($aSC[$clutch]) )
 	    { // Zelle assoziativ belegen: "Wochentag . [MA|Client]-Initialen" = Menge
 	      $aSC[$clutch] = $a[$k];
@@ -202,14 +202,20 @@ class KWview extends KWmodel
 	    { // wir sind im richtigen Wochentag(=Spalte)
               $a__ = explode( "|", $sc );
               if( 'client' == $what )
+	      {
+	        $ent=$a__[5];
                 $str="&a=Client&planungTag_x";
+	      }
               else
+	      {
+	        $ent=$a__[3];
                 $str="&a=MA&planungMA_x";
-              ?><a href="mn.php?mn=3653&navi=Plan&ID=<?php echo $a__[2];?>&u=<?php echo substr($sc,2,2) . $str;?>&MAClientVS=<?php echo $a__[3];?>#<?php echo $a__[3];?>" target="_blank" title=<?php echo $a__[1] . ">"; // title: voller Name
+	      }
+              ?><a href="mn.php?mn=3653&navi=Plan&ID=<?php echo $a__[2];?>&u=<?php echo substr($sc,2,2) . $str;?>&MAClientVS=<?php echo $ent;?>#<?php echo $ent;?>" target="_blank" title=<?php echo $a__[1] . ">"; // title: voller Name
               if( 'initialen' == $how )
 	        echo substr($sc,2,2) . " "; // nur die Initialen
               else
-	        echo substr($a__[1],0,12) . "[" . $a__[5] . "] "; // Name Vorname
+	        echo substr($a__[1],0,12) . "[" . $a__[4] . "] "; // Name Vorname
               ?></a><?php
 	      if( $counter )
 	        --$counter;
@@ -269,7 +275,7 @@ class KWview extends KWmodel
     	    <img class="img18" src="images/<?php echo $img2;?>" alt="Darstellung" usemap="#initialen<?php echo $ancor;?>">
     	    <a name='<?php echo $ancor;?>'></a>
             <map name="initialen<?php echo $ancor;?>">
-            <area shape=rect coords="0,0,18,18" title='Darstellung' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->Datum;?>&c=<?php echo $text;?>&navi=KW&u=<?php echo $this->Kalenderwoche . " " . $NOTkw;?>#<?php echo $ancor;?>">
+            <area shape=rect coords="0,0,18,18" title='Darstellung' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->Datum;?>&c=<?php echo $text;?>&navi=KW&u=<?php echo $this->Kalenderwoche . " " . $kwTitel;?>#<?php echo $ancor;?>">
             </map>
             </td></tr><tr><td></td><?php
             ++$j;
