@@ -5,6 +5,7 @@ class KW
   private   $datum;
   private   $KW;
   private   $jahr;
+  private   $montag;
   private   $wochenTag;
   private   $tagNachKW;
   private   $tagVorKW;
@@ -53,6 +54,8 @@ class KW
       }
       ++$c;
     }
+    $datum = new DateTime($this->tagVorKW->format( "Y-m-d" ));
+    $this->montag = date_add($datum,date_interval_create_from_date_string( "2 days" ));
   }
   function __get($var)
   {
@@ -70,6 +73,8 @@ class KW
         return $this->tagNachKW->format("Y-m-d");
       case 'KWzurueck':
         return $this->tagVorKW->format("Y-m-d");
+      case 'Montag':
+        return $this->montag->format("d");
       case 'Wochentag':
         return $this->tag[$this->wochenTag];
       case 'eilt':

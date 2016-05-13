@@ -77,27 +77,7 @@ switch( $_E['mn'] )
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "zeigendPlan";
     $_E['date'] = $_REQUEST["k"];
-    switch( $_REQUEST["b"] )
-    {
-      case 'c':
-        $_A['what'] = 'client';
-      break;
-      default:
-        $_A['what'] = 'mitarbeiter';
-      break;
-    }
-    if( isset($_REQUEST["c"]) )
-      switch( $_REQUEST["c"] )
-      {
-        case 'i':
-          $_A['how'] = 'initialen';
-        break;
-        default:
-          $_A['how'] = 'name';
-        break;
-      }
-    else
-      $_A['how'] = 'initialen';
+    $_A['how'] = 'ungenutzt';
     $_e = array( "1", "2" );
   break;
   case "kw":

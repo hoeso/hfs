@@ -1,7 +1,7 @@
 <?php
 require_once("KWmodel.php");
 include("vektorQuart.prj"); // $quart
-class KWview extends KWmodel
+class Plan extends KWmodel
 {
   protected $tag;
 
@@ -30,8 +30,10 @@ class KWview extends KWmodel
         return parent::__get('KWzurueck');
       case 'Stop':
         return parent::__get('Stop');
+      case 'Montag':
+        return parent::__get('Montag');
       default:
-        throw new Exception("KWview hat keine Eigenschaft $var.", 1 );
+        throw new Exception("Plan hat keine Eigenschaft $var.", 1 );
       break;
     }
   }
@@ -43,130 +45,81 @@ class KWview extends KWmodel
       $a_ = explode( "/", __file__ );
       $b_ = $a_[count($a_)-1];
     }
-    if( 'client' <> $what and 'mitarbeiter' <> $what )
+    if( 'k' <> $what and 'm' <> $what )
     {
-      dEcho( $b_, "KWview::show( [client|mitarbeiter] )" );
+      dEcho( $b_, "Plan::show( [client|mitarbeiter] )" );
       return;
     }
-    if( 'client' == $what )
+    if( 'k' == $what )
     {
-      $title = 'Mitarbeiter';
-      $maORcl = "d"; // alles was nicht c ist, ist MA
-      $NOTmaORcl = "c"; // alles was nicht c ist, ist MA
     }
     else
     {
-      $title = 'Klient&#042;innen';
-      $maORcl = "c";
-      $NOTmaORcl = "d"; // alles was nicht c ist, ist MA
-    }    if( 'client' == $what )
-      $img = 'threepeople-24px.png';
-    else
-      $img = 'grandma-penguin-24px.png';
-    ?><table><tr><?php
-    if( 'initialen' == $how )
-    {
-      $text='n';
-      if( 'client' == $what )
-      {
-        $concat = "CONCAT(LEFT(c.Name,1),LEFT(c.Vorname,1))";
-      }
-      else
-      {
-        $concat = "CONCAT(LEFT(m.Name,1),LEFT(m.Vorname,1))";
-      }
     }
-    else
-    {
-      $text='i';
-      if( 'client' == $what )
-      {
-        $concat = "CONCAT(c.Name,' ',c.Vorname)";
-      }
-      else
-      {
-        $concat = "CONCAT(m.Name,' ',m.Vorname)";
-      }
-    }
-    /*** 1. Header ausgeben           ***/
+    ?><table><tr><th>Datum</th><th>Name Kunde</th><th>Morgens</th><th>Mittags</th><th>Nachmittags</th><th>Abends</th><th>Sonstiges</th></tr>
+    <?php
     $i=0;
-    $ancor=0;
+    $vgl = "";
     foreach ($this->tag as $dayofweek => $value)
-    { // Spalten-Ueberschriften anzeigen
-      if( !$i )
-      { // Pics der Umschalter Client o. MA
-        ++$ancor;
-        $NOTkw = $kw = $this->Kalenderwoche;
-        if( 'c' == $maORcl )
-        {
-	  $kw .= " Klient";
-	  $NOTkw .= " MA";
-	  $kwTitel  = " MA";
-        }
-	else
-        {
-	  $kw .= " MA";
-	  $NOTkw .= " Klient";
-	  $kwTitel  = " Klient";
-        }
-	if( isset($_REQUEST['d']) )
-	  $d="&d";
-	else
-	  $d="";
-        ?><td colspan=7>
-	<img class="img18" src="images/punaise-18px.png" alt="diese Uhrzeit" usemap="#pinnen<?php echo $ancor;?>">
-	<a name='<?php echo $ancor;?>'></a>
-        <map name="pinnen<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,18,18" title='diese Uhrzeit pinnen' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $NOTkw;?>#<?php echo $ancor;?>">
-        </map>
-	<img class="img18" src="images/<?php echo $img;?>" alt="zum Wochenplan" usemap="#maorcl<?php echo $ancor;?>">
-	<a name='<?php echo $ancor;?>'></a>
-        <map name="maorcl<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,18,18" title='<?php echo $title;?>' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $kw;?>#<?php echo $ancor;?>">
-        </map>
-	<img class="img18" src="images/Copy-18px.png" alt="KW kopieren" usemap="#kopierenKW<?php echo $ancor;?>">
-        <map name="kopierenKW<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,18,18" target="_blank" title='KW<?php echo $this->Kalenderwoche;?> kopieren' href="./mn.php?mn=kopierenKW&a=Kalenderwoche&sl=4&sl1=Jahr-%3E&sl2=KW-%3E&sl3=Jahr&sl4=KW&b=<?php echo $maORcl;?>&j=<?php echo $this->Jahr . $d;?>&k=<?php echo $this->Kalenderwoche;?>&navi=KW&u=<?php echo $this->Kalenderwoche;?>%20-&gt;KW%3F&kopierenKW_x#<?php echo $ancor;?>">
-        </map>
-        <a class="img18" href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $NOTmaORcl;?>&k=Y-m-d&navi=KW&u=<?php echo $this->DatumEU . " " . $NOTkw;?>#<?php echo $ancor;?>">Heute</a>
-        <img class="img18" src="images/jean-victor-balin-arki-arrow-left-18px.png" alt="zur&uuml;ck" usemap="#zurueck<?php echo $ancor;?>">
-        <map name="zurueck<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche - 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWzurueck;?>&navi=KW&u=<?php echo $kw - 1 . " " . $kwTitel;?>#<?php echo $ancor;?>">
-        </map>
-        <em class="img18">KW<?php echo $this->Kalenderwoche;?></em>
-        <img class="img18" src="images/jean-victor-balin-arki-arrow-right-18px.png" alt="weiter" usemap="#weiter<?php echo $ancor;?>">
-        <map name="weiter<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche + 1;?>' href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->KWweiter;?>&navi=KW&u=<?php echo $kw + 1 . " " . $kwTitel;?>#<?php echo $ancor;?>">
-        </map><?php
-        if( 'initialen' == $how )
-          $img2 = "1430954247-18px.png";
-        else
-          $img2 = "matt-icons_emblem-minus-18px.png";?>
-	<img class="img18" src="images/<?php echo $img2;?>" alt="Darstellung" usemap="#initialen<?php echo $ancor;?>">
-	<a name='<?php echo $ancor;?>'></a>
-        <map name="initialen<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,18,18" title='Darstellung' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->Datum;?>&c=<?php echo $text;?>&navi=KW&u=<?php echo $this->Kalenderwoche . " " . $kwTitel;?>#<?php echo $ancor;?>">
-        </map>
-	<img class="img18" src="images/kalender-18px.png" alt="Wochen&uuml;bersicht" usemap="#woche<?php echo $ancor;?>">
-	<a name='<?php echo $ancor;?>'></a>
-        <map name="woche<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,18,18" target="_blank" title='Wochen&uuml;bersicht' href="./mn.php?mn=blatt&navi=KW&a=<?php echo $this->Kalenderwoche;?>&c=k&k=<?php echo $this->Datum;?>&u=KW<?php echo $this->Kalenderwoche;?>#<?php echo $ancor;?>">
-        </map>
-	<img class="img18" src="images/calendar2-18px.png" alt="Monats&uuml;bersicht" usemap="#monat<?php echo $ancor;?>">
-	<a name='<?php echo $ancor;?>'></a>
-        <map name="monat<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,18,18" target="_blank" title='Monats&uuml;bersicht' href="./mn.php?mn=blatt&navi=KW&a=<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Datum;?>&c=m&u=KW<?php echo $this->Kalenderwoche;?>#<?php echo $ancor;?>">
-        </map>
-        </td></tr><tr><td></td><?php
-        ++$i;
-	continue;
-      }?>
-      <td><?php
+    {
+      ++$i;
+      if( 1 == $i )
+        continue;
+      /*** Spalte 'Datum'            ***/
+      ?><tr><td><?php
       echo $dayofweek . " " . $value . "    ";
       ?></td><?php
-      ++$i;
+      /*** Spalte 'Name Kunde'            ***/
+      unset($k);
+      $a = explode( " ", $value );
+      $a_ = explode( ".", $a[0] );
+      unset($a);
+      $this->gibKlient( $a, $dim, $this->Jahr, $this->Kalenderwoche, $i-1 );
+      if( !$a[0] )
+      { // nix gfundn worn :-(
+        ?><td><?php echo "--";
+        ?></td></tr><?php
+        continue;
+      }
+      for( $k=0; $k < count($a); $k += $dim )
+      {
+        if( "" == $vgl )
+        {
+          $vgl = $a[$k];
+          $printName = true;
+        }
+        else if( $vgl <> $a[$k] )
+        {
+          $vgl = $a[$k];
+          $printName = true;
+        }
+        else
+          $printName = false;
+        if( true == $printName )
+        {
+          ?><td><?php echo $a[$k];?></td><?php
+          $printName = false;
+        }
+        else
+        {
+          ?><td></td><?php
+        }
+        ?></td><?php
+        /*** Spalte 'Morgens'            ***/
+        ?><td><?php
+        echo $this->Kalenderwoche;
+        ?></td><?php
+        /*** Spalte 'Mittags'            ***/
+        ?><td><?php
+        ?></td><?php
+        ?></tr><tr><td></td><?php
+      }
     }?>
-    </tr><tr><?php
+    </tr>
+    </table>
+    <?php
+    return;?>
+    <tr><?php
     /*** 2. Quart-Zeilen ausgeben     ***/
     $row = $this->Go;
     while( $row < $this->Stop )
