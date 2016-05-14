@@ -41,7 +41,7 @@ $_REQUEST["a"] = "MAClientVS";
 $_REQUEST["b"] = "d";
 $_REQUEST["k"] = "Y-m-d";
 $_REQUEST["navi"] = "KW";
-$_REQUEST["u"] = "KW";
+$_REQUEST["u"] = "KW#1";
 include("mn.php"); 
 ?>
 </body>

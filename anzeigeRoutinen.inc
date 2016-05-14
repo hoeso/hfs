@@ -1499,4 +1499,8 @@ function formularAttribut( $table, $result, $i, $attr, $enumListe, $laengeBeiTex
   }
   echo "></td>";
 }
+function lfSeitenquelltext()
+{
+  echo "\n";
+}
 ?>

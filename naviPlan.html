@@ -8,6 +8,9 @@ if( isset($_REQUEST["j"]) && isset($_REQUEST["k"]) && isset($_REQUEST["sl3"]) &&
   $clickIst .= "&SELECTRE1=$_REQUEST[j]&SELECTRE2=$_REQUEST[k]&SELECTRE3=$_REQUESTsl3]&SELECTRE4=$_REQUEST[sl2]";
 ?>
 <li>
+<a href="./mn.php?mn=pe&a=Client">Klient&#042;in</a>
+</li>
+<li>
 <a href="./mn.php?mn=sl_pe&a=ClientVS&sl=1&sl1=Client&navi=Plan<?php echo $clickIst;?>&i=3">Planung
 <?php
 if( isset($_REQUEST["k"]) )

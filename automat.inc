@@ -819,6 +819,23 @@ $automat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
+	"zeigendPlan"=>array(
+		"hauptteil.html",
+		"haupttext.html",
+		"dbConnect.inc",
+		"anzeigeRoutinen.inc",
+		"Plan.php",
+		"Plan.prj",
+		"containerTitel.php",
+		"endeContainer.html",//haupttext
+		//"seitenleiste.html",
+		//"hauptnavigation.html",
+		//"navi" . $_E['navi'] . ".html",
+		//"endeNavigation.html",
+		//"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"zeigendImpressum"=>array(
 		"eiZuEintretend.inc",
 		"row01.inc",
