@@ -59,10 +59,11 @@ class KWview extends KWmodel
       $title = 'Klient&#042;innen';
       $maORcl = "c";
       $NOTmaORcl = "d"; // alles was nicht c ist, ist MA
-    }    if( 'client' == $what )
-      $img = 'threepeople-24px.png';
+    }
+    if( 'client' == $what )
+      $img = 'grandma-penguin-18px.png';
     else
-      $img = 'grandma-penguin-24px.png';
+      $img = 'threepeople-18px.png';
     ?><table><tr><?php
     if( 'initialen' == $how )
     {

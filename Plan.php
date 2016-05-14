@@ -56,7 +56,7 @@ class Plan extends KWmodel
     else
     {
     }
-    ?><table><tr><th>Datum</th><th>Name Kunde</th><th>Morgens</th><th>Mittags</th><th>Nachmittags</th><th>Abends</th><th>Sonstiges</th></tr>
+    ?><table><tr><th><img class="img19" src="images/kalender-18px.png"></th><th><img class="img19" src="images/grandma-penguin-18px.png"></th><th>Morgens</th><th>Mittags</th><th>Nachmittags</th><th>Abends</th><th>Sonstiges</th></tr>
     <?php
     $i=0;
     $vgl = "";
@@ -66,6 +66,7 @@ class Plan extends KWmodel
       if( 1 == $i )
         continue;
       /*** Spalte 'Datum'            ***/
+      lfSeitenquelltext();
       ?><tr><td><?php
       echo $dayofweek . " " . $value . "    ";
       ?></td><?php
@@ -112,7 +113,12 @@ class Plan extends KWmodel
         /*** Spalte 'Mittags'            ***/
         ?><td><?php
         ?></td><?php
-        ?></tr><tr><td></td><?php
+        ?></tr><?php
+        if( $k < (count($a)-1) )
+        { // vorletzter Klient dieses Tages
+        lfSeitenquelltext();
+	?><tr><td></td><?php
+        }
       }
     }?>
     </tr>

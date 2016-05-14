@@ -823,6 +823,7 @@ $automat = array(
 		"hauptteil.html",
 		"haupttext.html",
 		"dbConnect.inc",
+		"anzeigeRoutinen.inc",
 		"Plan.php",
 		"Plan.prj",
 		"containerTitel.php",
