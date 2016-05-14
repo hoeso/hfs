@@ -103,21 +103,87 @@ class Plan extends KWmodel
         }
         else
         {
-          ?><td></td><?php
+//          ?><td></td><?php
         }
-        ?></td><?php
         /*** Spalte 'Morgens'            ***/
         ?><td><?php
-        echo $this->Kalenderwoche;
+        unset($m);
+        $this->gibTerminMA( $m, $dimM, $this->Jahr, $this->Kalenderwoche, $i-1, $a[$k+1], 'morgens' ); // a k+1 : c.ID
+        if( !$m[0] )
+        { // nix gfundn worn :-(
+        }
+        else
+        {
+          for( $l=0; $l < count($m); $l += $dimM )
+          {
+            /*** Spalte 'Morgens'            ***/
+            if( $l+1 > $dimM )
+              echo "<br>";
+            echo $m[$l] . "<br>" . $m[$l+1] . " - " . $m[$l+2];
+          }
+        }
         ?></td><?php
         /*** Spalte 'Mittags'            ***/
         ?><td><?php
+        unset($m);
+        $this->gibTerminMA( $m, $dimM, $this->Jahr, $this->Kalenderwoche, $i-1, $a[$k+1], 'mittags' ); // a k+1 : c.ID
+        if( !$m[0] )
+        { // nix gfundn worn :-(
+        }
+        else
+        {
+          for( $l=0; $l < count($m); $l += $dimM )
+          {
+            /*** Spalte 'Mittags'            ***/
+            if( $l+1 > $dimM )
+              echo "<br>";
+            echo $m[$l] . "<br>" . $m[$l+1] . " - " . $m[$l+2];
+          }
+        }
         ?></td><?php
+        /*** Spalte 'Nachmittags'            ***/
+        ?><td><?php
+        unset($m);
+        $this->gibTerminMA( $m, $dimM, $this->Jahr, $this->Kalenderwoche, $i-1, $a[$k+1], 'nachmittags' ); // a k+1 : c.ID
+        if( !$m[0] )
+        { // nix gfundn worn :-(
+        }
+        else
+        {
+          for( $l=0; $l < count($m); $l += $dimM )
+          {
+            /*** Nachmittags'            ***/
+            if( $l+1 > $dimM )
+              echo "<br>";
+            echo $m[$l] . "<br>" . $m[$l+1] . " - " . $m[$l+2];
+          }
+        }
+        ?></td><?php
+        /*** Spalte 'Abends'            ***/
+        ?><td><?php
+        unset($m);
+        $this->gibTerminMA( $m, $dimM, $this->Jahr, $this->Kalenderwoche, $i-1, $a[$k+1], 'abends' ); // a k+1 : c.ID
+        if( !$m[0] )
+        { // nix gfundn worn :-(
+        }
+        else
+        {
+          for( $l=0; $l < count($m); $l += $dimM )
+          {
+            /*** 'Abends'            ***/
+            if( $l+1 > $dimM )
+              echo "<br>";
+            echo $m[$l] . "<br>" . $m[$l+1] . " - " . $m[$l+2];
+          }
+        }
+        ?></td>
+        <td></td><?php // Sonstiges
+        /*** das war die letzte Zelle    ***/
         ?></tr><?php
-        if( $k < (count($a)-1) )
+        if( $k < (count($a)-2) )
         { // vorletzter Klient dieses Tages
-        lfSeitenquelltext();
-	?><tr><td></td><?php
+          lfSeitenquelltext();
+	  ?><tr><td></td><?php
         }
       }
     }?>

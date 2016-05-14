@@ -80,8 +80,33 @@ class KWmodel extends KW
       $b_ = $a_[count($a_)-1];
     }
     $a[0]=0;// hier Feld 0 rein = c.Name, c.Vorname
+    $a[1]=1;// hier Feld 1 rein = c.ID
     $dim=count($a);
-    $sql = "SELECT DISTINCT CONCAT(c.Name,',',c.Vorname) AS Klient FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE $j=j.ID AND $kw=k.ID AND $t=t.ID ORDER BY v.ID";
+    $sql = "SELECT DISTINCT CONCAT(c.Name,',',c.Vorname) AS Klient, c.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE $j=j.ID AND $kw=k.ID AND $t=t.ID ORDER BY v.ID";
+    DB::gibFelderArray( $sql, $a );
+    if( isset($_REQUEST["d"]) )
+      dEcho( $b_, $sql );
+  }
+  function gibTerminMA( &$a, &$dim, $j, $kw, $t, $cID, $tagesZeit )
+  {
+    if( isset($_REQUEST["d"]) )
+    {
+      $a_ = explode( "/", __file__ );
+      $b_ = $a_[count($a_)-1];
+    }
+    if( 'morgens' == $tagesZeit )
+      $spot = "AND v.ID < 49";
+    else if( 'mittags' == $tagesZeit )
+      $spot = "AND v.ID > 48 AND v.ID < 61";
+    else if( 'nachmittags' == $tagesZeit )
+      $spot = "AND v.ID > 60 AND v.ID < 73";
+    else if( 'abends' == $tagesZeit )
+      $spot = "AND v.ID > 72 AND v.ID < 97";
+    $a[0]=0;// hier Feld 0 rein = m.Name, m.Vorname
+    $a[1]=1;// hier Feld 1 rein = v.Quart (Start)
+    $a[2]=2;// hier Feld 2 rein = v.Menge (Ende)
+    $dim=count($a);
+    $sql = "SELECT DISTINCT CONCAT(m.Name,',',m.Vorname), TIME_FORMAT(v.Quart,'%H:%i'), TIME_FORMAT(ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')),'%H:%i') FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE $j=j.ID AND $kw=k.ID AND $t=t.ID AND $cID=c.ID $spot ORDER BY v.ID";
     DB::gibFelderArray( $sql, $a );
     if( isset($_REQUEST["d"]) )
       dEcho( $b_, $sql );
