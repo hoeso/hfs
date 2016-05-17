@@ -42,6 +42,10 @@ else if( isset($_REQUEST["planungClientVS_x"]) )
 {
   $_E['wZu']="planendClientVS";
 }
+else if( isset($_REQUEST["kwWaehlendMA_x"]) )
+{
+  $_E['wZu']="kwWaehlendMA";
+}
 else if( isset($_REQUEST["planungMA_x"]) )
 {
   $_E['wZu']="planendMA";

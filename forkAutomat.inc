@@ -770,6 +770,11 @@ $forkAutomat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
+	"kwWaehlendMA"=>array( // CFS
+		"eiZuKWwaehlendMA.prj",
+		"mn.prj",
+		"automatReloaded.inc",
+	),
 	"planendClient"=>array( // CFS
 		"eiZuPlanendClient.prj",
 		"dbConnect.inc",
