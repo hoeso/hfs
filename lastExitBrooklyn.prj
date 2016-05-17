@@ -74,6 +74,8 @@ else if( $table=="MA-KW" && $recID )
   $timestamp_montag = strtotime("{$recID}"); 
   $k = date("Y-m-d", $timestamp_montag);
   hiddenFeldSchreiben( "k", "$k" );//
+  if( isset($_REQUEST['maID']) )
+    hiddenFeldSchreiben( "filterMA", " AND $_REQUEST[maID]=m.ID" );//
 }
 else if( $table=="MA" && $recID )
 {

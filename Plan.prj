@@ -10,6 +10,9 @@ if( !isset($_E['date']) )
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
-$plan = new Plan( $_E['date'] );
+$f="";
+if( isset($_REQUEST['filterMA']) )
+  $f=$_REQUEST['filterMA'];
+$plan = new Plan( $_E['date'], $f );
 echo "[KW " . $plan->Kalenderwoche . "] " . $plan->show($_REQUEST['c'],$_A['how']) . "20" . $plan->Jahr;
 ?>

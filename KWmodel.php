@@ -7,9 +7,11 @@ class KWmodel extends KW
   protected $tag;
   private   $go;   // fruehester Betreuungsbeginn
   private   $stop; // spaetestes Betreuungsende
+  private   $filterMA;
 
-  function __construct($strDate)
+  function __construct($strDate, $filterMA)
   {
+    $this->filterMA = $filterMA;
     $this->db = Db::getInstance();
     // Start-Quart am Morgen:
     $this->go = DB::gibFeld( "SELECT IF(4 < MIN(v.ID), MIN(v.ID)-4, 1) FROM VS v JOIN ClientVS cv ON (v.ID=cv.VSID) JOIN MAClientVS mcv ON (cv.ID=mcv.ClientVSID)", 0 );
@@ -82,7 +84,7 @@ class KWmodel extends KW
     $a[0]=0;// hier Feld 0 rein = c.Name, c.Vorname
     $a[1]=1;// hier Feld 1 rein = c.ID
     $dim=count($a);
-    $sql = "SELECT DISTINCT CONCAT(c.Name,',',c.Vorname) AS Klient, c.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE $j=j.ID AND $kw=k.ID AND $t=t.ID ORDER BY v.ID";
+    $sql = "SELECT DISTINCT CONCAT(c.Name,',',c.Vorname) AS Klient, c.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE $j=j.ID AND $kw=k.ID AND $t=t.ID $this->filterMA ORDER BY v.ID";
     DB::gibFelderArray( $sql, $a );
     if( isset($_REQUEST["d"]) )
       dEcho( $b_, $sql );

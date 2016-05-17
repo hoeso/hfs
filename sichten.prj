@@ -137,6 +137,7 @@ $OrderBy=array
   "EDV"=>" ORDER BY ID DESC",
   "EDVAngebot"=>" ORDER BY ID DESC",
   "MA-Einsatz"=>" ORDER BY j.ID, k.ID, t.ID, v.Quart",
+  "MA-KW"=>" ORDER BY j.ID DESC, k.ID DESC, t.ID, v.Quart",
   "MAClient"=>" ORDER BY c.Name, c.Vorname, c.geborenAm",
   "MAClientVS"=>" ORDER BY c.Name, c.Vorname, c.geborenAm, j.ID, k.ID, t.ID, v.Quart",
   "MitarbeiterFunktion"=>" ORDER BY Name, Vorname, PersonalNr, Funktion",

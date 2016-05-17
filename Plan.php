@@ -5,9 +5,9 @@ class Plan extends KWmodel
 {
   protected $tag;
 
-  function __construct($strDate)
+  function __construct($strDate, $filter="" )
   {
-    parent::__construct($strDate);
+    parent::__construct($strDate, $filter);
     //var_dump($this->tag); echo "\n<br>";
   }
   function __get($var)
