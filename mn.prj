@@ -105,7 +105,7 @@ switch( $_E['mn'] )
         break;
       }
     else
-      $_A['how'] = 'initialen';
+      $_A['how'] = 'name';
     $_e = array( "1", "2" );
   break;
   case "pe": // pure entity

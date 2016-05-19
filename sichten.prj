@@ -133,7 +133,7 @@ $OrderBy=array
 */
   "Angebot"=>" ORDER BY Position",
   "ClientAdresse"=>" ORDER BY c.Name, c.Vorname, c.geborenAm, z.Datum DESC",
-  "ClientVS"=>" ORDER BY c.Name, c.Vorname, c.geborenAm, j.ID, k.ID, t.ID",
+  "ClientVS"=>" ORDER BY c.Name, c.Vorname, c.geborenAm, j.ID, k.ID, t.ID, v.ID",
   "EDV"=>" ORDER BY ID DESC",
   "EDVAngebot"=>" ORDER BY ID DESC",
   "MA-Einsatz"=>" ORDER BY j.ID, k.ID, t.ID, v.Quart",
