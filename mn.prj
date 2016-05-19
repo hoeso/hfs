@@ -204,6 +204,8 @@ switch( $_E['mn'] )
         }  
         if( isset($_E["stm$i-filter"]) && isset($_E["stm$i"]) )
         {
+          if( isset($_REQUEST["d"]) )
+            dEcho( $b_, "i: $i -- filter: " . $_E["stm$i-filter"] );
           $_E["stm$i"] .= $_E["stm$i-filter"];
           if( isset($_E["stm$i-order"]) )
             $_E["stm$i"] .= $_E["stm$i-order"];

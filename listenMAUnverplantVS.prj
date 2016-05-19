@@ -87,7 +87,8 @@ noch $_E[stmtX-filter] setzen, um in mn.prj zu filtern.
  ******/
 if( isset($clID) )
 {
-  $_E["stm1-filter"]=" AND $clID=c.ID";
+  if( !isset($_E["stm1-filter"]) ) // wurde bisher ueberschrieben
+    $_E["stm1-filter"]=" AND $clID=c.ID";
   $_E["stm2-filter"]=" AND $clID=c.ID";
 }
 // i Spalten einruecken

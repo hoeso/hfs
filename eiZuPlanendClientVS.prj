@@ -3,15 +3,10 @@
  * naviCFS.html/Client, planendClient-Symbol :
  *                                           : 
  *****************************************************************************/
-if( 0 )
+if( isset($_REQUEST["d"]) )
 {
-echo"\nPOST Variablen:<br>";
-  foreach( $_POST as $k=>$elem )
-    echo"\nk : $k, elem: $elem<br>";
-echo"\nREQUEST Variablen:<br>";
-  foreach( $_REQUEST as $k=>$elem )
-    echo"\nk : $k, elem: $elem<br>";
-exit;
+  $a_ = explode( "/", __file__ );
+  $b_ = $a_[count($a_)-1];
 }
 /* zum Kopieren:
 if( isset($_REQUEST[""]) )
@@ -42,4 +37,8 @@ if( isset($_REQUEST["ID"]) )
 }
 // i Spalten einruecken
 $_REQUEST["i"]=3;
+for( $i=1; $i < 6; $i++ )
+  if( isset($_E["stm$i-filter"]) )
+    if( isset($_REQUEST["d"]) )
+      dEcho( $b_, "i: $i -- filter: " . $_E["stm$i-filter"] );
 ?>
