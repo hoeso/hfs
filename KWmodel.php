@@ -76,7 +76,7 @@ class KWmodel extends KW
     $dim=count($a);
     if( 'client' == $what )
     {
-      $sql = "SELECT cv.Menge, " . $concat . " AS sc, CONCAT(c.Name,',',c.Vorname), c.ID, mcv.ID, CONCAT(LEFT(m.Name,1),LEFT(m.Vorname,1)), cv.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID ORDER BY sc";
+      $sql = "SELECT cv.Menge, " . $concat . " AS sc, CONCAT(c.Name,',',c.Vorname), c.ID, mcv.ID, CONCAT(LEFT(m.Name,1),LEFT(m.Vorname,1)), cv.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID $this->filter ORDER BY sc";
     }
     else
     {
