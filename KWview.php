@@ -192,6 +192,16 @@ class KWview extends KWmodel
 	  else
 	    $d="";
           ?><a href="mn.php?mn=planend&a=ClientVS&sl=3&sl1=Client&sl2=<?php echo $row;?>&sl3=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">&nbsp;</a><?php
+          if( isset($clutch) )
+          {
+            $c_ = explode( "|", $clutch );
+            ?> 
+            <img class="img18" src="images/Copy-18px.png" alt="Vorg&auml;nger kopieren" usemap="#kopierenVorgaenger<?php echo $maclientvsID;?>">
+            <map name="kopierenVorgaenger<?php echo $maclientvsID;?>">
+            <area shape=rect coords="0,0,18,18" target="_blank" title='<?php echo $maclientvsID . "(1)-" . $clutch;?> kopieren' href="./mn.php?mn=kopierenVorgaenger&a=MAClient vs&b=<?php echo $clutch;?>&sl=4&sl1=Jahr-%3E&sl2=KW-%3E&sl3=Jahr&sl4=KW&b=<?php echo $maORcl;?>&j=<?php echo $this->Jahr . $d;?>&k=<?php echo $this->Kalenderwoche;?>&navi=KW&u=<?php echo $this->Kalenderwoche;?>%20-&gt;KW%3F&kopierenKW_x#<?php echo $ancor;?>">
+            </map><?php
+          }
+          unset($clutch);
 	}
         else
 	{ // Treffer, hier findet ein Client|MA Besuch statt:
@@ -203,6 +213,7 @@ class KWview extends KWmodel
           ?><a href="mn.php?mn=planend&a=ClientVS&sl=3&sl1=Client&sl2=<?php echo $row;?>&sl3=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">&nbsp;</a><?php
 	  for( $k=0; $k < count($a); $k += $dim )
 	  {
+            $maclientvsID=$a[$k+4];
 	    $clutch = $dayofweek . $a[$k+1] . $quart[$row] . "|" . $a[$k+2] . "|" . $a[$k+3] . "|" . $a[$k+4] . "|" . $a[$k+5] . "|" . $a[$k+6];
 	    if ( !isset($aSC) or isset($aSC) and !isset($aSC[$clutch]) )
 	    { // Zelle assoziativ belegen: "Wochentag . [MA|Client]-Initialen" = Menge
@@ -238,12 +249,13 @@ class KWview extends KWmodel
 	        --$counter;
 	      if( !$counter )
 	        unset($aSC[$sc]);
-            }	
+            }
 	  }
         ?></td><?php
         ++$i;
       }?>
       </tr><tr><?php
+      /*** alle 20 Zeilen Header wieder einfuegen ***/
       if( !($row % 20) )
       {
         $j=0;
@@ -294,11 +306,11 @@ class KWview extends KWmodel
             <map name="initialen<?php echo $ancor;?>">
             <area shape=rect coords="0,0,18,18" title='Darstellung' href="./mn.php?mn=kw&a=MAClientVS&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->Datum;?>&c=<?php echo $text;?>&navi=KW&u=<?php echo $this->Kalenderwoche . " " . $kwTitel;?>#<?php echo $ancor;?>">
             </map>
-	<img class="img18" src="images/kalender-18px.png" alt="Wochen&uuml;bersicht" usemap="#woche<?php echo $ancor;?>">
-	<a name='<?php echo $ancor;?>'></a>
-        <map name="woche<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,18,18" target="_blank" title='Wochen&uuml;bersicht' href="./mn.php?mn=blatt&navi=KW&a=<?php echo $this->Kalenderwoche;?>&c=k&k=<?php echo $this->Datum;?>&u=KW<?php echo $this->Kalenderwoche;?>#<?php echo $ancor;?>">
-        </map>
+	    <img class="img18" src="images/kalender-18px.png" alt="Wochen&uuml;bersicht" usemap="#woche<?php echo $ancor;?>">
+	    <a name='<?php echo $ancor;?>'></a>
+            <map name="woche<?php echo $ancor;?>">
+            <area shape=rect coords="0,0,18,18" target="_blank" title='Wochen&uuml;bersicht' href="./mn.php?mn=blatt&navi=KW&a=<?php echo $this->Kalenderwoche;?>&c=k&k=<?php echo $this->Datum;?>&u=KW<?php echo $this->Kalenderwoche;?>#<?php echo $ancor;?>">
+            </map>
             </td></tr><tr><td></td><?php
             ++$j;
             continue;
