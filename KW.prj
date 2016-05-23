@@ -10,6 +10,9 @@ if( !isset($_E['date']) )
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
-$kw = new KWview( $_E['date'] );
+$f="";
+if( isset($_REQUEST['f']) )
+  $f=" AND $_REQUEST[f]=c.ID";
+$kw = new KWview( $_E['date'], $f );
 echo "[KW " . $kw->Kalenderwoche . "] " . $kw->show($_A['what'],$_A['how']) . "20" . $kw->Jahr/* . $kw->KWzurueck . "[" . $kw->Datum . "]" . $kw->KWweiter . "<br>"*/;
 ?>
