@@ -779,7 +779,7 @@ $forkAutomat = array(
 		"eiZuPlanendClient.prj",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"listenMAUnverplant.prj",
+		"listenKWunverplantMA.prj",
 		"mn.prj",
 		"automatReloaded.inc",
 	),
