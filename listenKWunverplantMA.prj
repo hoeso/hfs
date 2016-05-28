@@ -102,7 +102,7 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
       $ko = gibFeld( $MySQLDb, "SELECT k. Wochenstunden FROM Kontingent k JOIN Zeitstempel z ON (z.ID=k. ZeitstempelID) WHERE z.Datum <= DATE(NOW()) AND {$kw_[$m+2]}=k.MAID ORDER BY z.Datum DESC LIMIT 1", 0 );
       $rest = gibFeld( $MySQLDb, "SELECT SUM(cv.Menge)/4 FROM ClientVS cv JOIN MAClientVS mcv ON (cv.ID=mcv. ClientVSID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) WHERE {$kw_[$m+1]}=cv.KWID AND {$kw_[$m+2]}=mc.MAID", 0 );
       if( !$ko )
-        echo "<a href=\"./mn.php?mn=3653&a=MA&navi=CFS&ID=$m_[$i]&kontingentMA_x\">Kontingent</a>";
+        echo "<a href=\"./mn.php?mn=3653&a=MA&navi=CFS&ID={$kw_[$m+2]}&kontingentMA_x\">Kontingent</a>";
       else
         echo $ko - $rest . "&nbsp;h";?>
       </td>
