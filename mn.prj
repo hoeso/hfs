@@ -87,7 +87,7 @@ switch( $_E['mn'] )
     $_e = array( "1", "2" );
   break;
   case "speichernVorgaenger":
-    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"]) or !isset($_REQUEST["d"]) or !isset($_REQUEST["e"]) or !isset($_REQUEST["t"]) ) { echo $exitus; return; }
+    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"]) or !isset($_REQUEST["e"]) or !isset($_REQUEST["t"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "speicherndVorgaenger";
     $_e = array( "1", "2" );
