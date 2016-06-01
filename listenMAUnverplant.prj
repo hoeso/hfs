@@ -41,7 +41,10 @@ if( true == habWas( $m_, 0, $dim_m-1 ) )
     if( 0 > $m_[$i+3] )
       $m_[$i+3] = 0;
     if( isset($_REQUEST["d"]) )
+    {
       dEcho( $b_, "$m_[$i] {$m_[$i+1]}" );
+      dEcho( $b_, "SELECT SUM(cv.Menge)/4 FROM ClientVS cv JOIN MAClientVS mcv ON (cv.ID=mcv. ClientVSID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) WHERE $m_[$i]=mc.MAID" );
+    }
   }
 }
 unset($c_);
@@ -55,6 +58,7 @@ if( true == habWas( $c_, 0, $dim_-1 ) )
   {
     if( isset($_REQUEST["d"]) )
       dEcho( $b_, "$c_[$i] {$c_[$i+1]}" );
+      dEcho( $b_, "SELECT CONCAT(c.Name,' ', c.Vorname), TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*SUM(cv.Menge)), '%k:%i') FROM ClientVS cv JOIN Client c ON (cv.ClientID=c.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID) AND NOT EXISTS (SELECT ClientVSID FROM MAClientVS WHERE MAClientVS.ClientVSID=cv.ID) AND $_E[ID]=c.ID" );
   }
 else
   $f = true;
