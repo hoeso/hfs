@@ -21,9 +21,17 @@ $_REQUEST["sl"]=1;
 // Der zu planende Client:
 $_REQUEST["sl1"]="Client";
 
-$_REQUEST["re"]=2;
-$_REQUEST["re1"]="Tag";
-$_REQUEST["re2"]="VS";
+$_REQUEST["re"]=4;
+$_REQUEST["re1"]="Jahr";
+$_REQUEST["SELECTRE1"] = date("y");
+$_REQUEST["re2"]="KW";
+$kw_ = date("W");
+if( 52 > $kw_ )
+  ++$kw_;
+$_REQUEST["SELECTRE2"] = $kw_; // naechste KW
+$_REQUEST["re3"]="Tag";
+$_REQUEST["re4"]="VS";
+$_REQUEST["SELECTRE4"] = 37; // 9:00 Uhr
 
 $_REQUEST["a"]="ClientVS";
 /******

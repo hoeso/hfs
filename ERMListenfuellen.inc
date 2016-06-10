@@ -77,7 +77,7 @@ for( $j=0; $j<$countMULTISL; $j++ )
   {
     ergebnisListeMitID( $labelMULTI1SL[$j][$i-1], $arrMULTI1SL[$j][$i-1], $nSpalten, $arrID, $arrZeilen );
     if( !isset($keinInsert) or false == $keinInsert )
-      echo "\n\t</font></td>";
+      echo "\n\t</td>";
   }
   $anzListe += $i;
   $i=0;
@@ -100,7 +100,7 @@ if( isset($arrSL) )
     {
       ergebnisListeMitID( $labelSL[$i], $arrSL[$i], $nSpalten, $Mid, $zeilen );
       if( !isset($keinInsert) or false == $keinInsert )
-        echo "\n\t</font></td>";
+        echo "\n\t</td>";
     }
     $anzListeneintrag += count($Mid);
   }
@@ -173,7 +173,7 @@ if( isset($arrEM) )
     $anzListeneintrag += count($Mid);
   }
   if( !isset($keinInsert) or false == $keinInsert )
-    echo "\n\t</font></td>";
+    echo "\n\t</td>";
 }
 $anzListe += $i;
 $i=0;
@@ -225,7 +225,7 @@ if( isset($arrMM) )
   $zielTabelle=$arrMM[$i];
 if( !isset($keinInsert) or false == $keinInsert )
 {
-  ?><td><?php // bgcolor='#E8E8E8' align='right' nowrap><font size='-2'>";
+  ?><td><?php // bgcolor='#E8E8E8' align='right' nowrap>";
 }
 if( $zielTabelle and (!isset($keinInsert) or false == $keinInsert) )
 {

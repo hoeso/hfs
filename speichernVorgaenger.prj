@@ -7,7 +7,6 @@ if( isset($_REQUEST["d"]) )
 
 foreach( $_REQUEST['t'] as $i=>$t )
 {
-  echo $i . " = " . $t . "<br>";
   /*** 1. Termin kopieren               ***/
   $sql = "INSERT IGNORE INTO ClientVS SELECT null, ClientID, JahrID, KWID, $t, VSID, Menge FROM ClientVS WHERE $_REQUEST[c]=ID";
   if( isset($_REQUEST["d"]) )

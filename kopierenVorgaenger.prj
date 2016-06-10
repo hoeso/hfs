@@ -34,7 +34,7 @@ if( false == habWas( $aT, 0, 1 ) )
 <INPUT TYPE=HIDDEN NAME='a' VALUE='MAClientVS'>
 <INPUT TYPE=HIDDEN NAME='b' VALUE='<?php echo $_REQUEST['b'];?>'>
 <INPUT TYPE=HIDDEN NAME='c' VALUE='<?php echo $arr[1];?>'>
-<INPUT TYPE=HIDDEN NAME='d' VALUE='<?php echo $aT[1];?>'>
+<INPUT TYPE=HIDDEN NAME='f' VALUE='<?php echo $aT[1];?>'>
 <INPUT TYPE=HIDDEN NAME='e' VALUE='<?php echo $arr[0];?>'>
 <INPUT TYPE=HIDDEN NAME='u' VALUE='Termin speichern'>
   <!--INPUT TYPE=HIDDEN NAME='d' VALUE=''-->

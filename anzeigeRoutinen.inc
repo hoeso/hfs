@@ -847,7 +847,7 @@ function ListeMitID( $result, $label, $table, $fDatum, $anzuzeigen )
   global $SELECTRE3;  // im Falle von 'zurueck zum Neuanlegen'
   global $SELECTRE4;  // im Falle von 'zurueck zum Neuanlegen'
   $tiefe=0;
-  if( "RE1" == $label )
+  if( "RE1" == $label && isset($SELECTRE1) )
   {
     $IDgewaehlt=$SELECTRE1;
     echo"\n<!-- SELECTRE1 = $SELECTRE1 -->";
@@ -870,6 +870,7 @@ function ListeMitID( $result, $label, $table, $fDatum, $anzuzeigen )
   $anz = mysql_num_fields($result);
   if( !isset($keinInsert) or false == $keinInsert )
   {
+    echo "\n";
     ?><input type='hidden' name='Tabelle<?php
     echo $label;
     ?>' value='<?php
@@ -886,6 +887,7 @@ function ListeMitID( $result, $label, $table, $fDatum, $anzuzeigen )
     $id = true;   // Option Value ist die ID
     foreach( $row as $elem )
     {
+      echo "\n";
       if( $id )
       {
         if( !isset($keinInsert) or false == $keinInsert )
@@ -900,7 +902,7 @@ function ListeMitID( $result, $label, $table, $fDatum, $anzuzeigen )
           {
             if( !isset($keinInsert) or false == $keinInsert )
             {
-              ?> SELECTED<?php
+              ?> selected<?php
             }
           }
         }
@@ -908,7 +910,7 @@ function ListeMitID( $result, $label, $table, $fDatum, $anzuzeigen )
         {
           if( !isset($keinInsert) or false == $keinInsert )
           {
-            ?> SELECTED<?php
+            ?> selected<?php
           }
           $f = true;
         }
@@ -1003,6 +1005,7 @@ function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
   $fSelected = false;
   while( $i<count($zeilen) )
   {
+    echo "\n";
     if( $exclusiv0 )
     {
       if( $id[$record]==$IDgewaehlt )
