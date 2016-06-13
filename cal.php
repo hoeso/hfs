@@ -38,8 +38,7 @@ $exitus="you don't exist. Go away!";
 include("mn.prj");
 include("tee.inc");
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-"http://www.w3.org/TR/html4/DTD/strict.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <title><?php
@@ -61,7 +60,7 @@ CFS<?php
 echo $_E['bodyClass'];
 ?>" id="<?php
 echo $_E['bodyId'];
-?>" onLoad="cal.select(document.forms['example'].date1,'anchor1','MM/dd/yyyy');
+?>" onLoad="var rc = cal.select(document.forms['example'].date1,'anchor1','MM/dd/yyyy');
 //      cal.setMonthNames('Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember');
   //    cal.setDayHeaders('S','M','D','M','D','F','S');
       cal.setWeekStartDay(1);
@@ -69,16 +68,12 @@ echo $_E['bodyId'];
       return false;">
 <FORM NAME="example">
 (View Source of this page to see the example code)<br>
-<INPUT TYPE="text" NAME="date1" VALUE="" SIZE=25>
+<INPUT TYPE="text" NAME="date1" VALUE="" SIZE=25 onKeyPress=alert('geaendert') >
 <A HREF="#"
    NAME="anchor1" ID="anchor1"
    onChange="this.form.submit()"
 >
 </A>
-<script>
-var element = document.getElementById("header");
-element.innerHTML = "New Header";
-</script>
 </FORM>
 <?php
 function logZustandswechsel( $str )
