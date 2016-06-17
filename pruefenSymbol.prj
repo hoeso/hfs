@@ -34,6 +34,10 @@ else if( isset($_REQUEST["kopierenKW_x"]) )
 {
   $_E['wZu']="kopierendKW";
 }
+else if( isset($_REQUEST["kopierenSchicht_x"]) )
+{
+  $_E['wZu']="kopierendSchicht";
+}
 else if( isset($_REQUEST["planungClient_x"]) )
 {
   $_E['wZu']="planendClient";

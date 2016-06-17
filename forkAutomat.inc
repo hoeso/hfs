@@ -770,6 +770,23 @@ $forkAutomat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
+	"kopierendSchicht"=>array( // CFS
+		//"eiZuKopierendKW.prj",
+		"dbConnect.inc",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"kopierenSchicht.prj",
+		//"mn.prj",
+		//"automatReloaded.inc",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",//seitenleiste
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"kwWaehlendMA"=>array( // CFS
 		"eiZuKWwaehlendMA.prj",
 		"mn.prj",

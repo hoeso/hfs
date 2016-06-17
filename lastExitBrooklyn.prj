@@ -57,10 +57,16 @@ else if( $table=="ClientVS" && $recID )
   // wenn noch nichts hinterlegt ist, werden diese Icons in Graustufen ausgegeben
   $sw = 'sw-';
   $img = 'threepeople-18px.png';
-  if( !gibFeld( $MySQLDb, "SELECT ID FROM MAClientVS WHERE $recID=ClientVSID", 0 ) )
+  $mcvID=gibFeld( $MySQLDb, "SELECT ID FROM MAClientVS WHERE $recID=ClientVSID", 0 );
+  if( !$mcvID )
   {
     $img = $sw . $img;
     ?><INPUT TYPE=image src='images/<?php echo $img;?>' NAME='planungClientVS' title='MA-Einsatz'><?php
+  }
+  else
+  {
+    ?><INPUT TYPE=image src='images/Copy-18px.png' NAME='kopierenSchicht' title='Schicht kopieren'><?php
+    hiddenFeldSchreiben( "m", "$mcvID" );//
   }
 }
 else if( $table=="MA-KW" && $recID )
