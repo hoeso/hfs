@@ -7,7 +7,7 @@ if( isset($_REQUEST["d"]) )
 $arr[0]=0;// hier Feld 0 rein = MAClient.ID : verknuepfte Betreuung
 $arr[1]=1;// hier Feld 1 rein = ClientVS.ID
 $dim=count($arr);
-$sql = "SELECT MAClientID, ClientVSID FROM MAClientVS WHERE $_REQUEST[b]=ID";
+$sql = "SELECT MAClientID, ClientVSID FROM MAClientVS WHERE $_REQUEST[ID]=ID";
 if( isset($_REQUEST["d"]) )
   dEcho( $b_, $sql );
 gibFelderArray( $MySQLDb, $sql, $arr );
@@ -18,18 +18,20 @@ if( false == habWas( $arr, 0, 1 ) )
   $wZu="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
-$aT[0]=0;// hier Feld 0 rein = MAClient.ID : verknuepfte Betreuung
-$aT[1]=1;// hier Feld 1 rein = ClientVS.ID
+$aT[0]=0;// hier Feld 0 rein = Tag
+$aT[1]=1;// hier Feld 1 rein = Quart
+$aT[2]=2;// hier Feld 2 rein = Client.Name
+$aT[3]=3;// hier Feld 3 rein = MA.Name
 $dim=count($aT);
-$tag = gibFelderArray( $MySQLDb, "SELECT t.ID, t.Tag FROM ClientVS cv JOIN Tag t ON (cv.TagID<=t.ID) WHERE $arr[1]=cv.ID", $aT );
-if( false == habWas( $aT, 0, 1 ) )
+gibFelderArray( $MySQLDb, "SELECT t.Tag, TIME_FORMAT(v.Quart,'%H:%i'), c.Name, m.Name FROM MAClientVS mcv JOIN ClientVS cv ON ( mcv. ClientVSID=cv.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv. VSID =v.ID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) JOIN Client c ON (mc. ClientID=c.ID) JOIN MA m ON (mc. MAID =m.ID) WHERE $_REQUEST[ID]=mcv.ID", $aT );
+if( false == habWas( $aT, 0, 3 ) )
 {
   mysql_close( $lkid );
   return;
 }
 ?>
 <form action=./mn.php>
-<INPUT TYPE=HIDDEN NAME='mn' VALUE='speichernVorgaenger'>
+<INPUT TYPE=HIDDEN NAME='mn' VALUE='speichernSchicht'>
 <INPUT TYPE=HIDDEN NAME='navi' VALUE='KW'>
 <INPUT TYPE=HIDDEN NAME='a' VALUE='MAClientVS'>
 <INPUT TYPE=HIDDEN NAME='b' VALUE='<?php echo $_REQUEST['b'];?>'>
@@ -38,7 +40,7 @@ if( false == habWas( $aT, 0, 1 ) )
 <INPUT TYPE=HIDDEN NAME='e' VALUE='<?php echo $arr[0];?>'>
 <INPUT TYPE=HIDDEN NAME='u' VALUE='Termin speichern'>
   <!--INPUT TYPE=HIDDEN NAME='d' VALUE=''-->
-<h2><?php echo $aT[1]?>-Termin &uuml;bernehmen f&uuml;r</h2>
+<h2><?php echo "$aT[0] $aT[1]";?>-Schicht <?php echo "$aT[2][$aT[3]]";?> &uuml;bernehmen in KW ...</h2>
 <fieldset><?php
 for( $i=2; $i<count($aT); $i += $dim )
 {
