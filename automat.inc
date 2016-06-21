@@ -223,6 +223,30 @@ $automat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
+	"speicherndSchicht"=>array( // CFS
+		"kopfteil.html",
+		"kopfteil.prj",
+		"naviSymbols.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"containerTitel.php",
+		//"eiZuKopierendKW.prj",
+		"dbConnect.inc",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"speichernSchicht.prj",
+		//"mn.prj",
+		//"automatReloaded.inc",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",//seitenleiste
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"speicherndVorgaenger"=>array( // CFS
 		"kopfteil.html",
 		"kopfteil.prj",

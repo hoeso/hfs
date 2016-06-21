@@ -774,6 +774,7 @@ $forkAutomat = array(
 		//"eiZuKopierendKW.prj",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"checkboxenAnwaehlen.js",
 		"kopierenSchicht.prj",
 		//"mn.prj",
 		//"automatReloaded.inc",

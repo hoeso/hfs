@@ -36,30 +36,37 @@ $kw=$aT[4];
 ++$kw;
 $schichtTag = date( "d.m.Y", strtotime("20".$aT[5]."W".sprintf("%02u",$i+$kw).$aT[6]) );
 ?>
-<h2><?php echo "KW $aT[4] $aT[0] $aT[1]";?>-Schicht <?php echo "$aT[2][$aT[3]]";?> &uuml;bernehmen ...</h2>
+<h2><?php echo "($arr[1])KW $aT[4] $aT[0] $aT[1]";?>-Schicht <?php echo "$aT[2][$aT[3]]";?> &uuml;bernehmen ...</h2>
 <form action=./mn.php>
 <INPUT TYPE=HIDDEN NAME='mn' VALUE='speichernSchicht'>
 <INPUT TYPE=HIDDEN NAME='navi' VALUE='KW'>
 <INPUT TYPE=HIDDEN NAME='a' VALUE='MAClientVS'>
 <INPUT TYPE=HIDDEN NAME='b' VALUE='<?php echo $_REQUEST['b'];?>'>
 <INPUT TYPE=HIDDEN NAME='c' VALUE='<?php echo $arr[1];?>'>
-<INPUT TYPE=HIDDEN NAME='f' VALUE='<?php echo $aT[1];?>'>
+<INPUT TYPE=HIDDEN NAME='j' VALUE='<?php echo $aT[5];?>'>
 <INPUT TYPE=HIDDEN NAME='e' VALUE='<?php echo $arr[0];?>'>
-<INPUT TYPE=HIDDEN NAME='u' VALUE='Termin speichern'>
+<INPUT TYPE=HIDDEN NAME='u' VALUE='Schicht speichern'>
   <!--INPUT TYPE=HIDDEN NAME='d' VALUE=''-->
+<input type="button" value="ein/aus" onclick="oiss(this,this.form)">
+alle <input type="button" value="2" onclick="alle2(this,this.form)"><input type="button" value="3" onclick="alle3(this,this.form)"><input type="button" value="4" onclick="alle4(this,this.form)"> Wochen
 <fieldset><?php
 for( $i=0; $i+$kw<54; $i++ )
 {?>
   <ul>
   <li>
   <label><?php
-  $schichtTag = date( "d.m.y", strtotime("20".$aT[5]."W".sprintf("%02u",$i+$kw).$aT[6]) );?>
-  <input type="checkbox" name="k[]" value="<?php echo $i+$kw;?>" checked> <?php echo " $schichtTag"; echo " ["; echo $i+$kw; echo "]";?>
+  $schichtTag = date( "d.m.y", strtotime("20".$aT[5]."W".sprintf("%02u",$i+$kw).$aT[6]) );
+  $schichtJahr = date( "y", strtotime("20".$aT[5]."W".sprintf("%02u",$i+$kw).$aT[6]) );
+  if( $aT[5]<>$schichtJahr )
+    break; // nur das selbe Jahr anbieten
+  ?>
+  <input type="checkbox" name="k[]" value="<?php echo $i+$kw;?>" checked> <?php echo " $schichtTag ["; echo $i+$kw; echo "]";?>
   </label>
   </li>
   </ul>
   <?php
 }?>
+<br>
 <INPUT TYPE=SUBMIT VALUE='kopieren!'>
 </fieldset>
 </FORM>
