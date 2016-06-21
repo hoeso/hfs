@@ -36,7 +36,7 @@ $kw=$aT[4];
 ++$kw;
 $schichtTag = date( "d.m.Y", strtotime("20".$aT[5]."W".sprintf("%02u",$i+$kw).$aT[6]) );
 ?>
-<h2><?php echo "($arr[1])KW $aT[4] $aT[0] $aT[1]";?>-Schicht <?php echo "$aT[2][$aT[3]]";?> &uuml;bernehmen ...</h2>
+<h2><?php echo "KW $aT[4] $aT[0] $aT[1]";?>-Schicht <?php echo "$aT[2][$aT[3]]";?> &uuml;bernehmen ...</h2>
 <form action=./mn.php>
 <INPUT TYPE=HIDDEN NAME='mn' VALUE='speichernSchicht'>
 <INPUT TYPE=HIDDEN NAME='navi' VALUE='KW'>
