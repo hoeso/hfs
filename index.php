@@ -9,7 +9,7 @@
     top.location = self.location
   }
 </script>
-<link rel="stylesheet" href="./erica.css" media="screen" title="erica Stylesheet" />
+<!--link rel="stylesheet" href="./erica.css" media="screen" title="erica Stylesheet" /-->
 </head>
 <?php
 if( 0 )
