@@ -73,6 +73,7 @@ if( false == isset( $AND ) )
   $AND="";
 if( false == isset( $_E['where_and'] ) )
 { // nicht mehr als 5 Wochen aus der Vergangenheit anzeigen
+  date_default_timezone_set('Europe/Berlin');
   $datum = new DateTime(date( "Y-m-d" ));
   $kwNow = $datum->format( "W" );
   if( $kwNow < 5 )

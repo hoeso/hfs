@@ -3,10 +3,10 @@
  * $_E['entitaet']    :  Name der logischen Liste
  * 
  *****************************************************************************/
-if( "Eingang" == $tableRE )
+if( isset($tableRE) && "Eingang" == $tableRE )
   $tableRE = "Portal";
-else if( "MA-Einsatz" == $_E['entitaet'] ) // funktioniert nicht
+else if( isset($_E) && isset($_E['entitaet']) && "MA-Einsatz" == $_E['entitaet'] ) // funktioniert nicht
   $_E['entitaet'] = "MAClientVS";
-else if( "MA-Einsatz" == $table ) // funktioniert nicht
+else if( isset($table) && "MA-Einsatz" == $table ) // funktioniert nicht
   $table = "MAClientVS";
 ?>
