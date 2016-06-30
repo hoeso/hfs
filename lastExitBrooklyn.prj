@@ -115,6 +115,7 @@ else if( $table=="MA" && $recID )
     $img = $sw . $img;
   }?>
   <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='maWohnhaft' title='Adresse'>
+  <INPUT TYPE=image src='images/havaianas07-18px.png' NAME='abwesendMA' title='Urlaub oder krank?'>
 <?php
 }
 else if( ( $table=="EDV" ) && $recID )

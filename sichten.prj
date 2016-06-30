@@ -32,7 +32,7 @@ mitgezaehlt! ***/
   "EDVAngebot_2"=>"nein,ja",// erledigt
   "Topic"=>"1,2,3,4,5,6,7,8,9,10",
   "TopicForderung"=>"2,1",
-  "Bearbeiter_1"=>"Herr,Frau,",
+  "MAAbwesenheit"=>"krank,Urlaub",
   "Region"=>"0,1,2,3,4,5,6,7,8,9",
 );
 
@@ -98,7 +98,9 @@ $Select=array
   
   "MA-KW"=>"SELECT DISTINCT CONCAT(j.Jahr,'-W',k.ID), m.Name, m.Vorname, CONCAT(IF(YEAR(NOW())=j.Jahr,'',DATE_FORMAT(j.Jahr,'%Y-')),k.KW) AS KW FROM MAClientVS mcv JOIN MAClient mc ON (mcv.MAClientID=mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN ClientVS cv ON (mcv.ClientVSID=cv.ID) JOIN Client c ON (cv.ClientID=c.ID) JOIN Jahr j on (cv.JahrID=j.ID) JOIN KW k ON (cv.KWID=k.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID)",
   
-  "MAAdresse"=>"SELECT ma.ID, m.Name, m.Vorname, z.Datum, ma.Telefon, ma.PLZ, ma.Ort, ma.Strasse FROM MAAdresse ma JOIN MA m ON (m.ID=ma.MAID) JOIN Zeitstempel z ON (ma.ZeitstempelID=z.ID)",
+  "MAAbwesenheit"=>"SELECT a.ID, CONCAT(m.Name,' ',m.Vorname) AS MA, a.Beginn, a.Ende, a.Grund FROM MAAbwesenheit a JOIN MA m ON (a. MAID=m.ID)",
+
+"MAAdresse"=>"SELECT ma.ID, m.Name, m.Vorname, z.Datum, ma.Telefon, ma.PLZ, ma.Ort, ma.Strasse FROM MAAdresse ma JOIN MA m ON (m.ID=ma.MAID) JOIN Zeitstempel z ON (ma.ZeitstempelID=z.ID)",
 
   "MAClient"=>"SELECT mc.ID, c.Name, c.Vorname, c.geborenAm, m.Name, m.Vorname FROM MAClient mc JOIN Client c ON (mc.ClientID=c.ID) JOIN MA m ON (mc.MAID=m.ID)",
   
@@ -144,6 +146,7 @@ $OrderBy=array
   "ClientVS"=>" ORDER BY c.Name, c.Vorname, c.geborenAm, j.ID, k.ID, t.ID, v.ID",
   "EDV"=>" ORDER BY ID DESC",
   "EDVAngebot"=>" ORDER BY ID DESC",
+  "MAAbwesenheit"=>" ORDER BY a.Beginn DESC",
   "MA-Einsatz"=>" ORDER BY j.ID, k.ID, t.ID, v.Quart",
   "MA-KW"=>" ORDER BY j.ID DESC, k.ID DESC, t.ID, v.Quart",
   "MAClient"=>" ORDER BY c.Name, c.Vorname, c.geborenAm",

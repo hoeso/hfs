@@ -955,6 +955,11 @@ $forkAutomat = array(
 		"anzeigenZieltabelle.inc",
 		"linkFortsetzen.inc",
 	),
+	"maAbwesend"=>array( // CFS
+		"eiZuMAabwesend.prj",
+		"mn.prj",
+		"automatReloaded.inc",
+	),
 	"maWohnend"=>array( // CFS
 		"eiZuMAWohnend.prj",
 		"mn.prj",
