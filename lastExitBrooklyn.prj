@@ -16,11 +16,11 @@ if( $table=="Client" && $recID )
     $f = true; // Stammblatt
   // wenn noch nichts hinterlegt ist, werden diese Icons in Graustufen ausgegeben
   $sw = 'sw-';
-  if( false == $f && gibFeld( $MySQLDb, "SELECT ID FROM ClientVS WHERE ClientID=$recID LIMIT 1", 0 ) )
+  /*if( false == $f && gibFeld( $MySQLDb, "SELECT ID FROM ClientVS WHERE ClientID=$recID LIMIT 1", 0 ) )
   {?>
     <INPUT TYPE=image src='images/threepeople-18px.png' NAME='planungClient' title='Einsatzplan'>
   <?php
-  }
+  }*/
   $img = 'empty-calendar-18px.png';
   if( !gibFeld( $MySQLDb, "SELECT ClientID FROM ClientVS WHERE ClientID=$recID LIMIT 1", 0 ) )
   {
