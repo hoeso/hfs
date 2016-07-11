@@ -80,7 +80,7 @@ class KWmodel extends KW
     }
     else
     {
-      $sql = "SELECT cv.Menge, CONCAT(LEFT(m.Name,1),LEFT(m.Vorname,1)), CONCAT(m.Name,',',m.Vorname), m.ID, mcv.ID, CONCAT(LEFT(c.Name,1),LEFT(c.Vorname,1)), cv.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE mc.ClientID=cv.ClientID AND $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID ORDER BY sc";
+      $sql = "SELECT cv.Menge, CONCAT(LEFT(m.Name,1),LEFT(m.Vorname,1)), CONCAT(m.Name,',',m.Vorname), m.ID, mcv.ID, CONCAT(LEFT(c.Name,1),LEFT(c.Vorname,1)), cv.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE mc.ClientID=cv.ClientID AND $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID $this->filter ORDER BY sc";
     }
     DB::gibFelderArray( $sql, $a );
     if( isset($_REQUEST["d"]) )
@@ -136,6 +136,21 @@ class KWmodel extends KW
     $a[1]=1;// hier Feld 1 rein = c.Name, c.Vorname
     $dim=count($a);
     $sql = "SELECT DISTINCT c.ID, CONCAT (c.Name,' ',c.Vorname,', ',YEAR(NOW())-YEAR(c.geborenAm)) FROM MAClientVS mcv JOIN MAClient mc ON (mcv. MAClientID=mc.ID) JOIN Client c ON (mc.ClientID=c.ID) ORDER BY Name, Vorname";
+    DB::gibFelderArray( $sql, $a );
+    if( isset($_REQUEST["d"]) )
+      dEcho( $b_, $sql );
+  }
+  function gibMAs( &$a, &$dim )
+  {
+    if( isset($_REQUEST["d"]) )
+    {
+      $a_ = explode( "/", __file__ );
+      $b_ = $a_[count($a_)-1];
+    }
+    $a[0]=0;// hier Feld 0 rein = m.ID
+    $a[1]=1;// hier Feld 1 rein = m.Name, m.Vorname
+    $dim=count($a);
+    $sql = "SELECT DISTINCT m.ID, CONCAT (m.Name,' ',m.Vorname) FROM MAClientVS mcv JOIN MAClient mc ON (mcv. MAClientID=mc.ID) JOIN MA m ON (mc.MAID=m.ID) ORDER BY Name, Vorname";
     DB::gibFelderArray( $sql, $a );
     if( isset($_REQUEST["d"]) )
       dEcho( $b_, $sql );
