@@ -178,80 +178,44 @@ class KWview extends KWmodel
         <map name="monat<?php echo $ancor;?>">
         <area shape=rect coords="0,0,18,18" target="_blank" title='Monats&uuml;bersicht' href="./mn.php?mn=blatt&navi=KW&a=<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Datum;?>&c=m&u=KW<?php echo $this->Kalenderwoche; echo $f;?>#<?php echo $ancor;?>">
         </map><?php
+	$js_str="onchange=\"javascript:self.location='./mn.php?mn=kw&navi=KW&a=MAClientVS&b=" . $NOTmaORcl . "&k=" . $this->Datum . "&u=" . $NOTkw . "&fKeinUpdate=true&f=' + this.options[this.selectedIndex].value; return true;\"";
+        $dim=0;
+        unset($a);
         if( 'client' == $what )
-        {
-          $dim=0;
-          unset($a);
           $this->gibClients( $a, $dim );
-          if( $a[0]==0 && $a[1]==1 ){}
-          else
-          {?>
-            <FORM ACTION='./mn.php'>
-            <INPUT TYPE=HIDDEN NAME='mn' VALUE='kw'>
-            <INPUT TYPE=HIDDEN NAME='navi' VALUE='KW'>
-            <INPUT TYPE=HIDDEN NAME='a' VALUE='MAClientVS'>
-            <INPUT TYPE=HIDDEN NAME='b' VALUE='<?php echo $NOTmaORcl;?>'>
-            <INPUT TYPE=HIDDEN NAME='k' VALUE='<?php echo $this->Datum;?>'>
-            <INPUT TYPE=HIDDEN NAME='u' VALUE='<?php echo $NOTkw;?>'>
-            <INPUT TYPE=HIDDEN NAME='fKeinUpdate' VALUE='true'>
-            <!--INPUT TYPE=HIDDEN NAME='docC' VALUE='57.8.1'-->
-            <SELECT NAME='f' SIZE='1'>
-      		  <OPTION VALUE='0'>-- alle --
-            <?php
-              for( $i=0; $i<count($a); $i += $dim )
-              {
-                $i1 = $i+1;
-                echo"\n<OPTION VALUE='$a[$i]'";
-      		      if( $a[$i] == $_REQUEST['f'] )
-      		        echo " SELECTED";
-      		      echo">$a[$i1]";
-              }
-            ?></SELECT><?php
-            if( isset($_REQUEST["d"]) )
-            {?>
-              <INPUT TYPE=HIDDEN NAME='d'><?php
-            }
-          }?>
-          <INPUT TYPE=SUBMIT VALUE='go!'>
-          </FORM><?php
-	}
         else
-        { // Mitarbeiter
-          $dim=0;
-          unset($a);
           $this->gibMAs( $a, $dim );
-          if( $a[0]==0 && $a[1]==1 ){}
-          else
-          {?>
-            <FORM ACTION='./mn.php'>
-            <INPUT TYPE=HIDDEN NAME='mn' VALUE='kw'>
-            <INPUT TYPE=HIDDEN NAME='navi' VALUE='KW'>
-            <INPUT TYPE=HIDDEN NAME='a' VALUE='MAClientVS'>
-            <INPUT TYPE=HIDDEN NAME='b' VALUE='<?php echo $NOTmaORcl;?>'>
-            <INPUT TYPE=HIDDEN NAME='k' VALUE='<?php echo $this->Datum;?>'>
-            <INPUT TYPE=HIDDEN NAME='u' VALUE='<?php echo $NOTkw;?>'>
-            <INPUT TYPE=HIDDEN NAME='fKeinUpdate' VALUE='true'>
-            <!--INPUT TYPE=HIDDEN NAME='docC' VALUE='57.8.1'-->
-            <SELECT NAME='f' SIZE='1'>
+        if( $a[0]==0 && $a[1]==1 ){}
+        else
+        {?>
+          <FORM ACTION='./mn.php'>
+          <INPUT TYPE=HIDDEN NAME='mn' VALUE='kw'>
+          <INPUT TYPE=HIDDEN NAME='navi' VALUE='KW'>
+          <INPUT TYPE=HIDDEN NAME='a' VALUE='MAClientVS'>
+          <INPUT TYPE=HIDDEN NAME='b' VALUE='<?php echo $NOTmaORcl;?>'>
+          <INPUT TYPE=HIDDEN NAME='k' VALUE='<?php echo $this->Datum;?>'>
+          <INPUT TYPE=HIDDEN NAME='u' VALUE='<?php echo $NOTkw;?>'>
+          <INPUT TYPE=HIDDEN NAME='fKeinUpdate' VALUE='true'>
+          <!--INPUT TYPE=HIDDEN NAME='docC' VALUE='57.8.1'-->
+          <SELECT NAME='f' <?php echo $js_str;?> SIZE='1'>
       		  <OPTION VALUE='0'>-- alle --
-            <?php
-              for( $i=0; $i<count($a); $i += $dim )
-              {
-                $i1 = $i+1;
-                echo"\n<OPTION VALUE='$a[$i]'";
-      		      if( $a[$i] == $_REQUEST['f'] )
-      		        echo " SELECTED";
-      		      echo">$a[$i1]";
-              }
-            ?></SELECT><?php
-            if( isset($_REQUEST["d"]) )
-            {?>
-              <INPUT TYPE=HIDDEN NAME='d'><?php
-            }
-          }?>
+          <?php
+          for( $i=0; $i<count($a); $i += $dim )
+          {
+            $i1 = $i+1;
+            echo"\n<OPTION VALUE='$a[$i]'";
+      	    if( $a[$i] == $_REQUEST['f'] )
+      	      echo " SELECTED";
+      	    echo">$a[$i1]";
+          }
+          ?></SELECT><?php
+          if( isset($_REQUEST["d"]) )
+          {?>
+            <INPUT TYPE=HIDDEN NAME='d'><?php
+          }/*?>
           <INPUT TYPE=SUBMIT VALUE='go!'>
-          </FORM><?php
-	}?>
+          </FORM><?php*/
+        }?>
         </td></tr><tr><td></td><?php
         ++$i;
 	continue;
@@ -286,7 +250,7 @@ class KWview extends KWmodel
 	  else
 	    $d="";
           ?><a href="mn.php?mn=planend&a=ClientVS&sl=3&sl1=Client&sl2=<?php echo $row;?>&sl3=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">&nbsp;</a><?php
-          if( isset($clutch) )
+          if( isset($clutch) && 1 < $i ) // 1 < $i: Vorgaenger 'Sonntag' weglassen
           {
             $c_ = explode( "|", $clutch );
             ?> 
