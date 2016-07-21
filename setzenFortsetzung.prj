@@ -26,7 +26,7 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   );
   $_eOverlay = array(
   "ClientAdresse"=>"Client",
-  //"ClientVS"=>"Client",
+  
   "Kontingent"=>"MA",
   "MA-Einsatz"=>"MA",
   "MAAdresse"=>"MA",
@@ -34,6 +34,12 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "MAClientVS"=>"Client",
   "PersonClient"=>"Client",
   );
+  /*** kontext-abhaengige Overlays:
+   ***/
+  if( isset($_REQUEST["k"]) )
+    if( 'c' == $_REQUEST["k"] )
+      $_eOverlay['ClientVS']="Client";
+
   if( !isset($AND) )
     $AND="";
   $candyURL = array(

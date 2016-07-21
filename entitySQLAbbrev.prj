@@ -10,6 +10,7 @@ $sqlAbbrev = array(
 */
   "ClientAdresse"=>"ca",
   "ClientVS"=>"cv",
+  "Kontingent"=>"k",
   "MAClient"=>"mc",
   "MAClientVS"=>"mcv",
   "Person"=>"p",

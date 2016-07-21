@@ -206,7 +206,12 @@ class KWview extends KWmodel
             echo"\n<OPTION VALUE='$a[$i]'";
       	    if( $a[$i] == $_REQUEST['f'] )
       	      echo " SELECTED";
-      	    echo">$a[$i1]";
+	    ?>><?php
+            if( 'client' <> $what )
+	    { // MA KW-Restkontigent berechnen
+	      echo $this->Jahr . "[" . $this->Kalenderwoche . "] " . $this->gibKontingent( $a[$i] ) - $this->gibKontingentKW( $a[$i], $this->Jahr, $this->Kalenderwoche ) . " - ";
+	    }
+      	    echo"$a[$i1]";
           }
           ?></SELECT><?php
           if( isset($_REQUEST["d"]) )
@@ -290,7 +295,7 @@ class KWview extends KWmodel
               if( 'client' == $what )
 	      {
 	        $ent=$a__[5];
-                $str="&a=Client&planungTag_x";
+                $str="&a=Client&planungTag_x&k=c"; // k=c: eOverlay-Kontext --> ClientVS=Client
 	      }
               else
 	      {
