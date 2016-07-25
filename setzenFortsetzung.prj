@@ -29,9 +29,10 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   
   "Kontingent"=>"MA",
   "MA-Einsatz"=>"MA",
+  "MAAbwesenheit"=>"MA",
   "MAAdresse"=>"MA",
   "MAClient"=>"MA",
-  "MAClientVS"=>"Client",
+  //"MAClientVS"=>"Client",
   "PersonClient"=>"Client",
   );
   /*** kontext-abhaengige Overlays:
