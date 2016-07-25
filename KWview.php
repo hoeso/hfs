@@ -209,7 +209,7 @@ class KWview extends KWmodel
 	    ?>><?php
             if( 'client' <> $what )
 	    { // MA KW-Restkontigent berechnen
-	      echo $this->gibKontingent( $a[$i] ) - $this->gibKontingentKW( $a[$i], $this->Jahr, $this->Kalenderwoche ) . " - ";
+	      echo $this->gibKontingent( $a[$i], $this->Datum ) - $this->gibKontingentKW( $a[$i], $this->Jahr, $this->Kalenderwoche ) . " - ";
 	    }
       	    echo"$a[$i1]";
           }

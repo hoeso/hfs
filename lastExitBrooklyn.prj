@@ -96,11 +96,18 @@ else if( $table=="MA" && $recID )
   }?>
   <?php
   $img = 'signal-working-18px.png';
+  $konti = 0; // Kontingent
   if( !gibFeld( $MySQLDb, "SELECT MAID FROM Kontingent WHERE MAID=$recID LIMIT 1", 0 ) )
   {
     $img = $sw . $img;
-  }?>
-  <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='kontingentMA' title='Wochenkontingent'>
+  }
+  else
+  {
+    $konti = gibFeld( $MySQLDb, "SELECT Wochenstunden FROM Kontingent k JOIN Zeitstempel z ON (k. ZeitstempelID =z.ID) WHERE $recID=k.MAID AND DATE(NOW()) >= z.Datum ORDER BY z.Datum DESC LIMIT 1", 0 );
+  }
+  $titel =  "Wochenkontingent " . $konti . " Std";
+  ?>
+  <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='kontingentMA' title='<?php echo $titel;?>'>
   <?php
   $img = 'grandma-penguin-18px.png';
   if( !gibFeld( $MySQLDb, "SELECT MAID FROM MAClient WHERE MAID=$recID LIMIT 1", 0 ) )

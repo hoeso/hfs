@@ -155,9 +155,9 @@ class KWmodel extends KW
     if( isset($_REQUEST["d"]) )
       dEcho( $b_, $sql );
   }
-  function gibKontingent( $maID )
+  function gibKontingent( $maID, $datum )
   {
-    $sql = "SELECT k. Wochenstunden FROM Kontingent k JOIN Zeitstempel z ON (z.ID=k. ZeitstempelID) WHERE z.Datum <= DATE(NOW()) AND $maID=k.MAID ORDER BY z.Datum DESC LIMIT 1";
+    $sql = "SELECT k. Wochenstunden FROM Kontingent k JOIN Zeitstempel z ON (z.ID=k. ZeitstempelID) WHERE z.Datum <= '" . $datum . "' AND $maID=k.MAID ORDER BY z.Datum DESC LIMIT 1";
     return DB::gibFeld( $sql, 0 );
   }
   function gibKontingentKW( $maID, $jahrID, $kwID )
