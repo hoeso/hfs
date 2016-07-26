@@ -241,6 +241,7 @@ echo "\n"; // damit Zeilenumbruch im Quelltext
 echo "\n";
 ?><ul><?php
 echo "\n";
+$iDatepicker=1;
 for( $i=0; $i<$anz; $i++ )
 {
   $obj = mysql_fetch_field( $result, $i );
@@ -268,14 +269,16 @@ for( $i=0; $i<$anz; $i++ )
           if( $elem==$str )
           {
             if( $map[$SpaltenAlias] )
-              echo "\n<label for=\"$map[$SpaltenAlias]\">$map[$SpaltenAlias]:</label><";
+              echo "\n<label for=\"$map[$SpaltenAlias]\">$map[$SpaltenAlias]:</label>";
             else
-              echo "\n<label for=\"$elem\">$elem:</label><";
+              echo "\n<label for=\"$elem\">$elem:</label>";
           }
           else
-            echo "\n<label for=\"$elem\">$elem:</label><";
+            echo "\n<label for=\"$elem\">$elem:</label>";
           $strId = $elem;
         }
+        ?>
+        <<?php
         $feldFlag = mysql_field_flags( $result, $i );
         if( !isset($keinInsert) or false == $keinInsert )
         {
@@ -308,7 +311,8 @@ for( $i=0; $i<$anz; $i++ )
             case "date":
               echo " TYPE='DATE' SIZE=10 VALUE='";
 	      include("vorbelegenDate.prj");
-              echo "'></li>";
+              echo "' id='datepicker$iDatepicker'></li>";
+	      $iDatepicker++; // Funktion in jquery.html
             break;
             case "real":
               echo " TYPE='TEXT' SIZE=8 VALUE='";

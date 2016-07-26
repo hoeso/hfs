@@ -26,11 +26,34 @@ $arrRefs = array(
   ),
 
   "Engagement"=>array(
-    "MAClient",
+    "1-leaf",
+  ),
+
+  "Jahr"=>array(
+    "ClientVS",
+  ),
+
+  "KW"=>array(
+    "ClientVS",
+  ),
+
+  "Kontingent"=>array(
+    "1-leaf",
   ),
 
   "MA"=>array(
+    "Kontingent",
+    "MAAbwesenheit",
+    "MAAdresse",
     "MAClient",
+  ),
+
+  "MAAbwesenheit"=>array(
+    "1-leaf",
+  ),
+
+  "MAAdresse"=>array(
+    "1-leaf",
   ),
 
   "MAClient"=>array(
@@ -64,6 +87,8 @@ $arrRefs = array(
 
   "Zeitstempel"=>array(
     "ClientAdresse",
+    "Kontingent",
+    "MAAdresse",
   ),
 
 );

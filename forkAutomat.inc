@@ -956,6 +956,7 @@ $forkAutomat = array(
 		"linkFortsetzen.inc",
 	),
 	"maAbwesend"=>array( // CFS
+		"jquery.html",
 		"eiZuMAabwesend.prj",
 		"mn.prj",
 		"automatReloaded.inc",
