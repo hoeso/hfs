@@ -805,6 +805,7 @@ $forkAutomat = array(
 		"eiZuPlanendClientVS.prj",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"KWgap.php",
 		"listenMAUnverplantVS.prj",
 		"mn.prj",
 		"automatReloaded.inc",

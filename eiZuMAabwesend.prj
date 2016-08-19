@@ -38,5 +38,5 @@ if( isset($_REQUEST["ID"]) )
   $_E["stm1-filter"]=" WHERE $_REQUEST[ID]=ID";
 }
 // i Spalten einruecken
-$_REQUEST["i"]=3;
+$_REQUEST["i"]=1;
 ?>

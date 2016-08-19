@@ -4,15 +4,22 @@ if( isset($_REQUEST["d"]) )
   $a_ = explode( "/", __file__ );
   $b_ = $a_[count($a_)-1];
 }
-if( $gespeichert && isset($table) )
+if( !$gespeichert or !isset($table) )
+  return;
+$sql = "SELECT LAST_INSERT_ID() FROM " . $table;
+$result = mysql_db_query( $MySQLDb, $sql );
+$arr = mysql_fetch_row( $result );
+$_E['ID']=$arr[0];
+$_E['entitaet']=$table;
+mysql_free_result( $result );
+if( isset($_REQUEST["d"]) )
+  dEcho( $b_, "in $table als " . $arr[0] . ". Instanz eingefuegt" );
+switch( $table )
 {
-  $sql = "SELECT LAST_INSERT_ID() FROM " . $table;
-  $result = mysql_db_query( $MySQLDb, $sql );
-  $arr = mysql_fetch_row( $result );
-  $_E['ID']=$arr[0];
-  $_E['entitaet']=$table;
-  mysql_free_result( $result );
+  case 'MAAbwesenheit':
   if( isset($_REQUEST["d"]) )
-    dEcho( $b_, "in $table als " . $arr[0] . ". Instanz eingefuegt" );
+    dEcho( $b_, "$table: Meta-Daten noch einfuegen!" );
+  include "metaMAAbwesenheit.prj";
+  break;
 }
 ?>

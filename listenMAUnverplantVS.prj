@@ -182,7 +182,7 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
         echo $ko - $rest . "&nbsp;h";?>
       </td>
       <td><?php
-      echo $kw_[$m+3];?>
+      echo $kw_[$m+3] . " [" . $ups_[$i+1] . "]";?>
       </td>
       </tr><?php
       if( ($m + $dim_kw) < $stop )
