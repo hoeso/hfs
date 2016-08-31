@@ -182,6 +182,7 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
         echo $ko - $rest . "&nbsp;h";?>
       </td>
       <td><?php
+      //$maOff = new KWgap(
       echo $kw_[$m+3] . " [" . $ups_[$i+1] . "]";?>
       </td>
       </tr><?php

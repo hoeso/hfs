@@ -4,6 +4,20 @@ if( isset($_REQUEST["d"]) )
   $a_ = explode( "/", __file__ );
   $b_ = $a_[count($a_)-1];
 }
+if( !isset($_REQUEST["MAAbwesenheit_date_Beginn"]) or !isset($_REQUEST["MAAbwesenheit_date_Ende"]) )
+  return;
+if( isset($_REQUEST["d"]) )
+{
+  dEcho( $b_, "MAAbwesenheit_date_Beginn: " . $_REQUEST["MAAbwesenheit_date_Beginn"] );
+  dEcho( $b_, "MAAbwesenheit_date_Ende: " . $_REQUEST["MAAbwesenheit_date_Ende"] );
+}
 if( isset($_REQUEST["d"]) )
   dEcho( $b_, "$table: Meta-Daten koennen eingefuegt werden!" );
+$b = explode( ".", $_REQUEST["MAAbwesenheit_date_Beginn"] );
+$e = explode( ".", $_REQUEST["MAAbwesenheit_date_Ende"] );
+if( isset($_REQUEST["d"]) )
+{
+  dEcho( $b_, "$b[2]-$b[1]-$b[0]" );
+  dEcho( $b_, "$e[2]-$e[1]-$e[0]" );
+}
 ?>

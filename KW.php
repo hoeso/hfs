@@ -10,7 +10,7 @@ class KW
   private   $tagNachKW;
   private   $tagVorKW;
 
-  function __construct($strDate)
+  function __construct($strDate) // Format 'yyyy-mm-dd'
   {
     date_default_timezone_set('Europe/Berlin');
     $this->tag = array (
