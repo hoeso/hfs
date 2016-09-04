@@ -1,4 +1,5 @@
 <?php
+require_once("KW.php");
 if( isset($_REQUEST["d"]) )
 {
   $a_ = explode( "/", __file__ );
@@ -19,5 +20,14 @@ if( isset($_REQUEST["d"]) )
 {
   dEcho( $b_, "$b[2]-$b[1]-$b[0]" );
   dEcho( $b_, "$e[2]-$e[1]-$e[0]" );
+}
+$b0 = new KW( "$b[2]-$b[1]-$b[0]" );
+
+$j0 = $b[2] - 2000;
+$k0 = $b0->Kalenderwoche;
+$t0 = $b0->Wochentag;
+if( isset($_REQUEST["d"]) )
+{
+  dEcho( $b_, "$j0,$k0,$t0" );
 }
 ?>
