@@ -1,5 +1,5 @@
 <?php
-include("KW.php");
+require_once("KW.php");
 if( isset($_REQUEST["d"]) )
 {
   $a_ = explode( "/", __file__ );
@@ -33,4 +33,5 @@ if(!$result)
 {
   reagierenAufSQLFehler( $lkid, $sql, $ID );
 }
+$j0 = $b[2] - 2000;
 ?>
