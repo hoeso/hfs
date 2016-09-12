@@ -182,7 +182,8 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
         echo $ko - $rest . "&nbsp;h";?>
       </td>
       <td><?php
-      //$maOff = new KWgap(
+      $j = gibFeld( $MySQLDb, "SELECT JahrID FROM ClientVS WHERE ID=$_E[ID]", 0 );
+      $maOff = new KWgap( $kw_[$m+2], $j, $kw_[$m+1] );
       echo $kw_[$m+3] . " [" . $ups_[$i+1] . "]";?>
       </td>
       </tr><?php

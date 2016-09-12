@@ -7,7 +7,7 @@ class KWgap extends KW
   protected $tag;
   private $kw;
 
-  function __construct($mID, $kw)
+  function __construct($mID, $jahrID, $kw)
   {
     if( isset($_REQUEST["d"]) )
     {
@@ -20,7 +20,7 @@ class KWgap extends KW
     //$this->go = DB::gibFeld( "SELECT IF(4 < MIN(v.ID), MIN(v.ID)-4, 1) FROM VS v JOIN ClientVS cv ON (v.ID=cv.VSID) JOIN MAClientVS mcv ON (cv.ID=mcv.ClientVSID)", 0 );
     //var_dump($this->tag); echo "\n<br>";
     if( isset($_REQUEST["d"]) )
-      ;//dEcho( $b_, "go: " . $this->go . " -- stop: " . $this->stop );
+      dEcho( $b_, "mID: " . $mID . ", jahrID: " . $jahrID . ", kw: " . $kw );
   }
   function __get($var)
   {

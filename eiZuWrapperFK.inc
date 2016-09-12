@@ -66,31 +66,31 @@ if( isset($_E["sl"]) )
   $countSL = $_E["sl"];
   for( $i=1; $i <= $_E['sl'] and $i < 6; $i++ )
   {
-    if( 1 == $i )
+    if( 1 == $i && isset($_E["sl$i"]) )
     {
       $tableSL1 = $_E["sl$i"];
       $SL1 = $_E["stm$i"];
       $SELECTSL1=$_E["slct$i"];
     }
-    else if( 2 == $i )
+    else if( 2 == $i && isset($_E["sl$i"]) )
     {
       $tableSL2 = $_E["sl$i"];
       $SL2 = $_E["stm$i"];
       $SELECTSL2=$_E["slct$i"];
     }
-    else if( 3 == $i )
+    else if( 3 == $i && isset($_E["sl$i"]) )
     {
       $tableSL3 = $_E["sl$i"];
       $SL3 = $_E["stm$i"];
       $SELECTSL3=$_E["slct$i"];
     }
-    else if( 4 == $i )
+    else if( 4 == $i && isset($_E["sl$i"]) )
     {
       $tableSL4 = $_E["sl$i"];
       $SL4 = $_E["stm$i"];
       $SELECTSL4=$_E["slct$i"];
     }
-    else if( 5 == $i )
+    else if( 5 == $i && isset($_E["sl$i"]) )
     {
       $tableSL5 = $_E["sl$i"];
       $SL5 = $_E["stm$i"];

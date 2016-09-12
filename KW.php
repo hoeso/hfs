@@ -77,6 +77,8 @@ class KW
         return $this->montag->format("d");
       case 'Wochentag':
         return $this->tag[$this->wochenTag];
+      case 'WochentagNumerisch':
+        return $this->wochenTag;
       case 'eilt':
         //return parent::__get('eilt');
       default:

@@ -1,4 +1,5 @@
 <?php
+include("KW.php");
 if( isset($_REQUEST["d"]) )
 {
   $a_ = explode( "/", __file__ );
@@ -19,5 +20,17 @@ if( isset($_REQUEST["d"]) )
 {
   dEcho( $b_, "$b[2]-$b[1]-$b[0]" );
   dEcho( $b_, "$e[2]-$e[1]-$e[0]" );
+}
+$go = new KW( "$b[2]-$b[1]-$b[0]" );
+$stop = new KW( "$e[2]-$e[1]-$e[0]" );
+$sql = "INSERT INTO metaMAAbwesenheit VALUES ( null, $_E[ID], " . substr( $b[2], 2 ) . ", " . substr( $e[2], 2 ) . ", " . $go->Kalenderwoche . ", " . $stop->Kalenderwoche . ", " . $go->WochentagNumerisch . ", " . $stop->WochentagNumerisch . " )";
+if( isset($_REQUEST["d"]) )
+{
+  dEcho( $b_, $sql );
+}
+$result = mysql_db_query( $MySQLDb, $sql );
+if(!$result)
+{
+  reagierenAufSQLFehler( $lkid, $sql, $ID );
 }
 ?>
