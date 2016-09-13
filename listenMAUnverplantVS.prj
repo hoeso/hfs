@@ -182,9 +182,61 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
         echo $ko - $rest . "&nbsp;h";?>
       </td>
       <td><?php
-      $j = gibFeld( $MySQLDb, "SELECT JahrID FROM ClientVS WHERE ID=$_E[ID]", 0 );
-      $maOff = new KWgap( $kw_[$m+2], $j, $kw_[$m+1] );
-      echo $kw_[$m+3] . " [" . $ups_[$i+1] . "]";?>
+      /*** aus den 3 Feldern Datum 'Y-m-d' bilden
+       ***/
+      $a_[0]=0;// hier Feld 0 rein = JahrID
+      $a_[1]=1;// hier Feld 1 rein = KWID
+      $a_[2]=2;// hier Feld 2 rein = TagID
+      gibFelderArray( $MySQLDb, "SELECT JahrID, KWID, TagID FROM ClientVS WHERE ID=$_E[ID]", $a_ );
+      if( false == habWas( $a_, 0, 2 ) )
+        continue; // vertan, sprach der Hahn
+      if( $ups_[$i+1] == $a_[1] ) // die zu planende KW
+      {
+        $a_[0] += 2000;
+        /*** nachgebildet von:
+         *** https://www.tutorials.de/threads/timestamp-aus-kw-wochentag-und-jahr-bilden.297102/
+         ***/
+	$zuPlanen = date('Y-m-d', strtotime($cfsWochentag[$a_[2]], kalenderwoche($a_[1], $a_[0])));
+	unset($abwesenheitsGrund);
+        if( isset($_REQUEST["d"]) )
+	  dEcho( $b_, $zuPlanen );
+	unset($d_);
+        $d_[0]=0;// hier Feld 0 rein = Beginn (der Abwesenheit)
+        $d_[1]=1;// hier Feld 1 rein = Ende      ./.
+        $d_[2]=2;// hier Feld 2 rein = Grund     ./.
+        $d_dim=count($d_);
+	$sql_ = "SELECT Beginn, Ende, Grund FROM MAAbwesenheit WHERE " . $kw_[$m+2] . "=MAID AND ((YEAR(Beginn) = '" . $a_[0] . "' AND YEAR(Ende) >= '" . $a_[0] . "') OR (YEAR(Beginn) <= '" . $a_[0] . "' AND YEAR(Ende) = '" . $a_[0] . "'))";
+        gibFelderArray( $MySQLDb, $sql_, $d_ );
+        if( true == habWas( $d_, 0, 2 ) )
+	{
+          if( isset($_REQUEST["d"]) )
+   	    dEcho( $b_, $sql_ );
+	  /*** faellt das zu planende Datum in eine Abwesenheit?
+	   ***/
+	  for( $j=0; $j<count($d_); $j += $d_dim )
+	  {
+            if( isset($_REQUEST["d"]) )
+  	      dEcho( $b_, $d_[$j] . " - " . $d_[$j+1] . ": " . $d_[$j+2] );
+	    if( $d_[$j] <= $zuPlanen && $zuPlanen <= $d_[$j+1] )
+	    {
+	      $abwesenheitsGrund = $d_[$j+2];
+              $v = explode( "-", $d_[$j] );   // von, Format 'd.m.'
+              $b = explode( "-", $d_[$j+1] ); // bis,     ./.
+	    }
+ 	  }	
+	}
+      }
+      echo $kw_[$m+3];
+      if( isset($abwesenheitsGrund) )
+      {
+        ?>&nbsp;&nbsp;<img title="<?php echo "$v[2].$v[1]. - $b[2].$b[1].";?>" src="images/<?php
+        if( "krank" == $abwesenheitsGrund )
+          echo "krank";
+	else
+          echo "havaianas07";
+        ?>-18px.png"><?php
+      }
+      ?>
       </td>
       </tr><?php
       if( ($m + $dim_kw) < $stop )

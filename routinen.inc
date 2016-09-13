@@ -118,4 +118,28 @@ function entwertenSonderzeichenTex( &$strSonderzeichen )
   $strSonderzeichen=str_replace( "%", "\\%", $strSonderzeichen );
   $strSonderzeichen=str_replace( "&", "\\&", $strSonderzeichen );
 }
+/*** diese Funktion stammt von:
+ *** https://www.tutorials.de/threads/timestamp-aus-kw-wochentag-und-jahr-bilden.297102/
+ ***/
+function kalenderwoche($kw, $year) {
+    $time = strtotime("4 January " . $year);
+    if (date('w', $time) != 1)
+        $time = strtotime("last Monday", $time);
+    $time = strtotime("+" . ($kw - 1) . " weeks", $time);
+   
+    return $time;
+}
+/*** Ausdruecke fuer strtotime():
+ ***/
+$cfsWochentag = array
+( // Index korrespondiert mit Entitaet 'Tag'
+  "",
+  /*1*/"next monday",
+  /*2*/"next tuesday",
+  /*3*/"next wednesday",
+  /*4*/"next thursday",
+  /*5*/"next friday",
+  /*6*/"next saturday",
+  /*7*/"next sunday"
+);
 ?>
