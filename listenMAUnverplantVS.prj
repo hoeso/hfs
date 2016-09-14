@@ -236,6 +236,7 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
           echo "havaianas07";
         ?>-18px.png"><?php
       }
+      unset($abwesenheitsGrund);
       ?>
       </td>
       </tr><?php

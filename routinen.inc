@@ -134,12 +134,12 @@ function kalenderwoche($kw, $year) {
 $cfsWochentag = array
 ( // Index korrespondiert mit Entitaet 'Tag'
   "",
-  /*1*/"next monday",
-  /*2*/"next tuesday",
-  /*3*/"next wednesday",
-  /*4*/"next thursday",
-  /*5*/"next friday",
-  /*6*/"next saturday",
-  /*7*/"next sunday"
+  /*1*/"monday",
+  /*2*/"tuesday",
+  /*3*/"wednesday",
+  /*4*/"thursday",
+  /*5*/"friday",
+  /*6*/"saturday",
+  /*7*/"sunday"
 );
 ?>
