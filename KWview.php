@@ -149,7 +149,7 @@ class KWview extends KWmodel
 	    $kw_ = new KW( "Y-m-d", $f );
 	    for( $wk=$kw_->Kalenderwoche; $wk < 54; $wk++ )
 	    {
-              ?><a href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $kw_->Datum;?>&navi=KW&u=<?php echo $wk + 1 . " " . $kwTitel; echo $f;?>#<?php echo $ancor;?>"><?php echo $kw_->DatumEU . "  [$wk]";?></a><?php
+              ?><a href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $kw_->Datum;?>&navi=KW&u=<?php echo $wk . " " . $kwTitel; echo $f;?>#<?php echo $ancor;?>"><?php echo $kw_->DatumEU . "  [$wk]";?></a><?php
 	      $kw_ = new KW( $kw_->KWweiter, $f );
 	    }?>
           </div>
@@ -371,7 +371,7 @@ class KWview extends KWmodel
       	      $kw_ = new KW( "Y-m-d", $f );
       	      for( $wk=$kw_->Kalenderwoche; $wk < 54; $wk++ )
       	      {
-                ?><a href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $kw_->Datum;?>&navi=KW&u=<?php echo $wk + 1 . " " . $kwTitel; echo $f;?>#<?php echo $ancor;?>"><?php echo $kw_->DatumEU . "  [$wk]";?></a><?php
+                ?><a href="./mn.php?mn=kw&a=MAClientVSKW&b=<?php echo $NOTmaORcl;?>&k=<?php echo $kw_->Datum;?>&navi=KW&u=<?php echo $wk . " " . $kwTitel; echo $f;?>#<?php echo $ancor;?>"><?php echo $kw_->DatumEU . "  [$wk]";?></a><?php
       	        $kw_ = new KW( $kw_->KWweiter, $f );
       	      }?>
               </div>
