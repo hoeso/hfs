@@ -22,6 +22,31 @@ if( !isset($_E['ID']/*$_REQUEST["ID"]*/) )
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
+/***
+ *** alle Eintraege finden, welche mit Client-Planung belegt sind
+ ***
+ ***/
+$vs_[0]=0;// hier Feld 0 rein = JahrID
+$vs_[1]=1;// hier Feld 1 rein = KWID
+$vs_[2]=2;// hier Feld 2 rein = TagID
+$vs_[3]=3;// hier Feld 3 rein = VSID
+$vs_[4]=4;// hier Feld 4 rein = Menge
+$dim_vs =count($vs_);
+gibFelderArray( $MySQLDb, "SELECT JahrID, KWID, TagID, VSID, Menge FROM ClientVS WHERE $_E[ID]=ID", $vs_ );
+$sql_ = "SELECT ID FROM ClientVS WHERE $vs_[0]=JahrID AND $vs_[1]=KWID AND $vs_[2]=TagID AND ($vs_[3]=VSID";
+$inc = $vs_[3]; // Start-VS
+for( $i=1; $i<$vs_[4]; $i++ )
+{ // ClientVS-Instanzen fuer Startzeit plus Menge suchen, also alle Ueberschneidungen
+  $inc++;
+  $sql_ .= " OR $inc=VSID"; 
+}
+$sql_ .= ")";
+unset($cv_);
+gibFeldArray( $MySQLDb, $sql_, 0, $cv_ );
+/***
+ *** in MA-Schleife dann iterieren, ob MA schon auf anderem Client verplant
+ ***/
+ 
 $clID=gibFeld( $MySQLDb, "SELECT ClientID FROM ClientVS WHERE $_E[ID]=ID", 0 );
 unset($m_);
 $m_[0]=0;// hier Feld 0 rein = m.ID
@@ -237,6 +262,15 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
         ?>-18px.png"><?php
       }
       unset($abwesenheitsGrund);
+      for( $c=0; $c<count($cv_); $c++ )
+      {
+        $sql_ = "SELECT CONCAT(c.Name,' ',c.Vorname,' ',TIME_FORMAT(v.Quart,'%H:%i'),'-',TIME_FORMAT(ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')),'%H:%i')) AS gebucht FROM MAClient mc JOIN Client c ON (mc. ClientID =c.ID) JOIN MAClientVS mcv ON (mc.ID=mcv. MAClientID) JOIN ClientVS cv ON (mcv. ClientVSID=cv.ID) JOIN VS v ON (cv.VSID=v.ID) WHERE $cv_[$c]=cv.ID AND {$kw_[$m+2]}=mc.MAID";
+        $booked = gibFeld( $MySQLDb, $sql_, 0 );
+	if( $booked )
+	{?>
+	  &nbsp;&nbsp;<img title="<?php echo $booked;?>" src="images/grandma-penguin-18px.png"<?php
+	}
+      }
       ?>
       </td>
       </tr><?php
