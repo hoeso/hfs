@@ -96,7 +96,10 @@ class KWview extends KWmodel
     if( isset($_REQUEST["f"]) ) // Filter auf Klient*in
       $f = "&f=" . $_REQUEST["f"];
     foreach ($this->tag as $dayofweek => $value)
-    { // Spalten-Ueberschriften anzeigen
+    {
+      /***
+       *** if-Block gibt die Symbole aus ueber der Wochentag-Zeile
+       ***/
       if( !$i )
       { // Pics der Umschalter Client o. MA
         ++$ancor;
@@ -229,6 +232,9 @@ class KWview extends KWmodel
       echo $dayofweek . " " . $value . "    ";
       ?></td><?php
       ++$i;
+      /***
+       *** Ende der Symbol-Anzeige ueber der Wochentag-Zeile
+       ***/
     }?>
     </tr><tr><?php
     /*** 2. Quart-Zeilen ausgeben     ***/
@@ -307,6 +313,8 @@ class KWview extends KWmodel
 	        echo substr($sc,2,2) . " "; // nur die Initialen
               else
 	        echo substr($a__[1],0,12) . "[" . $a__[4] . "] "; // Name Vorname
+              if( 'mitarbeiter' == $what )
+	        echo "-$a__[2]- (20$this->Jahr)";
               ?></a><?php
 	      if( $counter )
 	        --$counter;

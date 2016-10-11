@@ -222,9 +222,11 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
          *** https://www.tutorials.de/threads/timestamp-aus-kw-wochentag-und-jahr-bilden.297102/
          ***/
 	$zuPlanen = date('Y-m-d', strtotime($cfsWochentag[$a_[2]], kalenderwoche($a_[1], $a_[0])));
+        $maAbwesend = new MAAbwesenheit( $a_[0], $zuPlanen, $kw_[$m+2] );
+	
 	unset($abwesenheitsGrund);
         if( isset($_REQUEST["d"]) )
-	  dEcho( $b_, $zuPlanen );
+	  dEcho( $b_, "zuPlanenderTag: " . $zuPlanen );
 	unset($d_);
         $d_[0]=0;// hier Feld 0 rein = Beginn (der Abwesenheit)
         $d_[1]=1;// hier Feld 1 rein = Ende      ./.
