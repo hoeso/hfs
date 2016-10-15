@@ -54,6 +54,8 @@ class KWmodel extends KW
         return $this->stop;
       case 'Montag':
         return parent::__get('Montag');
+      case 'WochentagNumerisch':
+        return parent::__get('WochentagNumerisch');
       default:
         throw new Exception("KWmodel hat keine Eigenschaft $var.", 1 );
       break;

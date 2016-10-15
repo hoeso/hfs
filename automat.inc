@@ -879,6 +879,8 @@ $automat = array(
 		"hauptteil.html",
 		"haupttext.html",
 		"dbConnect.inc",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"MAAbwesenheit.php",
 		"KWview.php",
 		"KW.prj",
 		"containerTitel.php",

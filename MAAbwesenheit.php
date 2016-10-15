@@ -6,6 +6,8 @@ class MAAbwesenheit
   private   $ymd;
   private   $maID;
   private   $abwesenheitsGrund;
+  private   $von;
+  private   $bis;
   function __construct($jahr, $tag, $MAID)
   {
     if( isset($_REQUEST["d"]) )
@@ -16,6 +18,8 @@ class MAAbwesenheit
     $this->jahr = $jahr;
     $this->ymd = $tag;
     $this->maID = $MAID;
+    $this->von = $this->bis = '00.00';
+    
     if( isset($_REQUEST["d"]) )
       dEcho( $b_, "$jahr - $tag - $MAID" );
     $d_[0]=0;// hier Feld 0 rein = Beginn (der Abwesenheit)
@@ -35,12 +39,12 @@ class MAAbwesenheit
       for( $j=0; $j<count($d_); $j += $d_dim )
       {
         if( isset($_REQUEST["d"]) )
-          dEcho( $b_, $d_[$j] . " - " . $d_[$j+1] . ": " . $d_[$j+2] );
+          dEcho( $b_, $d_[$j] . " + " . $d_[$j+1] . ": " . $d_[$j+2] );
         if( $d_[$j] <= $this->ymd && $this->ymd <= $d_[$j+1] )
         {
           $this->abwesenheitsGrund = $d_[$j+2];
-          $v = explode( "-", $d_[$j] );   // von, Format 'd.m.'
-          $b = explode( "-", $d_[$j+1] ); // bis,     ./.
+          $this->von = $d_[$j];   // von, Format 'd.m.'
+          $this->bis = $d_[$j+1]; // bis,     ./.
         }
       }	
     }
@@ -49,8 +53,16 @@ class MAAbwesenheit
   {
     switch($var)
     {
-      case 'Jahr':
-        return $this->jahr;
+      case 'Status':
+        return $this->abwesenheitsGrund;
+      case 'abwesend':
+        if( '00.00' == $this->von )
+	  return false;
+	return true;
+      case 'vonBis':
+        $v = explode( "-", $this->von );   // von, Format 'd.m.'
+        $b = explode( "-", $this->bis );   // bis, Format 'd.m.'
+	return "$v[2].$v[1]. - $b[2].$b[1].";
       default:
         throw new Exception("MAAbwesenheit hat keine Eigenschaft $var.", 1 );
       break;

@@ -17,9 +17,6 @@ if( isset($_REQUEST["d"]) )
 switch( $table )
 {
   case 'MAAbwesenheit':
-  if( isset($_REQUEST["d"]) )
-    dEcho( $b_, "$table: Meta-Daten noch einfuegen!" );
-  include "metaMAAbwesenheit.prj";
   break;
 }
 ?>

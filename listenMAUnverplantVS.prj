@@ -222,48 +222,22 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
          *** https://www.tutorials.de/threads/timestamp-aus-kw-wochentag-und-jahr-bilden.297102/
          ***/
 	$zuPlanen = date('Y-m-d', strtotime($cfsWochentag[$a_[2]], kalenderwoche($a_[1], $a_[0])));
-        $maAbwesend = new MAAbwesenheit( $a_[0], $zuPlanen, $kw_[$m+2] );
+        $maPraesenz = new MAAbwesenheit( $a_[0], $zuPlanen, $kw_[$m+2] );
 	
-	unset($abwesenheitsGrund);
         if( isset($_REQUEST["d"]) )
 	  dEcho( $b_, "zuPlanenderTag: " . $zuPlanen );
-	unset($d_);
-        $d_[0]=0;// hier Feld 0 rein = Beginn (der Abwesenheit)
-        $d_[1]=1;// hier Feld 1 rein = Ende      ./.
-        $d_[2]=2;// hier Feld 2 rein = Grund     ./.
-        $d_dim=count($d_);
-	$sql_ = "SELECT Beginn, Ende, Grund FROM MAAbwesenheit WHERE " . $kw_[$m+2] . "=MAID AND ((YEAR(Beginn) = '" . $a_[0] . "' AND YEAR(Ende) >= '" . $a_[0] . "') OR (YEAR(Beginn) <= '" . $a_[0] . "' AND YEAR(Ende) = '" . $a_[0] . "'))";
-        gibFelderArray( $MySQLDb, $sql_, $d_ );
-        if( true == habWas( $d_, 0, 2 ) )
-	{
-          if( isset($_REQUEST["d"]) )
-   	    dEcho( $b_, $sql_ );
-	  /*** faellt das zu planende Datum in eine Abwesenheit?
-	   ***/
-	  for( $j=0; $j<count($d_); $j += $d_dim )
-	  {
-            if( isset($_REQUEST["d"]) )
-  	      dEcho( $b_, $d_[$j] . " - " . $d_[$j+1] . ": " . $d_[$j+2] );
-	    if( $d_[$j] <= $zuPlanen && $zuPlanen <= $d_[$j+1] )
-	    {
-	      $abwesenheitsGrund = $d_[$j+2];
-              $v = explode( "-", $d_[$j] );   // von, Format 'd.m.'
-              $b = explode( "-", $d_[$j+1] ); // bis,     ./.
-	    }
- 	  }	
-	}
       }
       echo $kw_[$m+3];
-      if( isset($abwesenheitsGrund) )
+      if( true == $maPraesenz->abwesend )
       {
-        ?>&nbsp;&nbsp;<img title="<?php echo "$v[2].$v[1]. - $b[2].$b[1].";?>" src="images/<?php
-        if( "krank" == $abwesenheitsGrund )
+        ?>&nbsp;&nbsp;<img title="<?php echo $maPraesenz->vonBis;?>" src="images/<?php
+        if( "krank" == $maPraesenz->Status )
           echo "krank";
 	else
           echo "havaianas07";
         ?>-18px.png"><?php
       }
-      unset($abwesenheitsGrund);
+      unset($maPraesenz);
       for( $c=0; $c<count($cv_); $c++ )
       {
         $sql_ = "SELECT CONCAT(c.Name,' ',c.Vorname,' ',TIME_FORMAT(v.Quart,'%H:%i'),'-',TIME_FORMAT(ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')),'%H:%i')) AS gebucht FROM MAClient mc JOIN Client c ON (mc. ClientID =c.ID) JOIN MAClientVS mcv ON (mc.ID=mcv. MAClientID) JOIN ClientVS cv ON (mcv. ClientVSID=cv.ID) JOIN VS v ON (cv.VSID=v.ID) WHERE $cv_[$c]=cv.ID AND {$kw_[$m+2]}=mc.MAID";

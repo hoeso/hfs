@@ -30,6 +30,8 @@ class KWview extends KWmodel
         return parent::__get('KWzurueck');
       case 'Stop':
         return parent::__get('Stop');
+      case 'WochentagNumerisch':
+        return parent::__get('WochentagNumerisch');
       default:
         throw new Exception("KWview hat keine Eigenschaft $var.", 1 );
       break;
@@ -249,7 +251,8 @@ class KWview extends KWmodel
           ?><td><?php echo "\n" . $quart[$row];?></td><?php
           ++$i;
 	  continue;
-        }?>
+        }
+	?>
         <td><?php
         $dim=0;
         unset($a);
@@ -303,7 +306,7 @@ class KWview extends KWmodel
 	        $ent=$a__[5];
                 $str="&a=Client&planungTag_x&k=c"; // k=c: eOverlay-Kontext --> ClientVS=Client
 	      }
-              else
+              else                
 	      {
 	        $ent=$a__[3];
                 $str="&a=MA&planungMA_x";
@@ -314,7 +317,21 @@ class KWview extends KWmodel
               else
 	        echo substr($a__[1],0,12) . "[" . $a__[4] . "] "; // Name Vorname
               if( 'mitarbeiter' == $what )
-	        echo "-$a__[2]- (20$this->Jahr)";
+	      {
+	        $md_ = explode( ".", $value );
+	        //echo "-$a__[2] + 20$this->Jahr-$md_[1]-$md_[0]";
+		$maPraesenz = new MAAbwesenheit( "20$this->Jahr", "20$this->Jahr-$md_[1]-$md_[0]", $a__[2] );
+                if( true == $maPraesenz->abwesend )
+                {
+                  ?>&nbsp;&nbsp;<img title="<?php echo $maPraesenz->vonBis;?>" src="images/<?php
+                  if( "krank" == $maPraesenz->Status )
+                    echo "krank";
+          	  else
+                    echo "havaianas07";
+                  ?>-18px.png"><?php
+                }
+                unset($maPraesenz);
+	      }
               ?></a><?php
 	      if( $counter )
 	        --$counter;
@@ -425,7 +442,7 @@ class KWview extends KWmodel
               {
                 $i1 = $i+1;
                 echo"\n<OPTION VALUE='$a[$i]'";
-      	        if( $a[$i] == $_REQUEST['f'] )
+      	        if( isset($_REQUEST['f']) and $a[$i] == $_REQUEST['f'] )
       	        echo " SELECTED";
 	        ?>><?php
                 if( 'client' <> $what )

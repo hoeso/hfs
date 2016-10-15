@@ -2,7 +2,7 @@
 class KW
 {
   protected $tag;
-  private   $datum;
+  protected $datum;
   private   $KW;
   private   $jahr;
   private   $montag;
