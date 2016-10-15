@@ -319,6 +319,9 @@ class KWview extends KWmodel
               if( 'mitarbeiter' == $what )
 	      {
 	        $md_ = explode( ".", $value );
+		for( $n=0; $n < 2; $n++ ) // fuer fuehrende Null sorgen:
+  		  if( 1 == strlen($md_[$n]) )
+		    $md_[$n] = "0$md_[$n]";
 	        //echo "-$a__[2] + 20$this->Jahr-$md_[1]-$md_[0]";
 		$maPraesenz = new MAAbwesenheit( "20$this->Jahr", "20$this->Jahr-$md_[1]-$md_[0]", $a__[2] );
                 if( true == $maPraesenz->abwesend )
