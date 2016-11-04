@@ -241,6 +241,8 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
       for( $c=0; $c<count($cv_); $c++ )
       {
         $sql_ = "SELECT CONCAT(c.Name,' ',c.Vorname,' ',TIME_FORMAT(v.Quart,'%H:%i'),'-',TIME_FORMAT(ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')),'%H:%i')) AS gebucht FROM MAClient mc JOIN Client c ON (mc. ClientID =c.ID) JOIN MAClientVS mcv ON (mc.ID=mcv. MAClientID) JOIN ClientVS cv ON (mcv. ClientVSID=cv.ID) JOIN VS v ON (cv.VSID=v.ID) WHERE $cv_[$c]=cv.ID AND {$kw_[$m+2]}=mc.MAID";
+        if( isset($_REQUEST["d"]) )
+	  dEcho( $b_, $sql_ );
         $booked = gibFeld( $MySQLDb, $sql_, 0 );
 	if( $booked )
 	{?>

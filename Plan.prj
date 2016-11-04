@@ -16,3 +16,7 @@ if( isset($_REQUEST['filterMA']) )
 $plan = new Plan( $_E['date'], $f );
 echo "[KW " . $plan->Kalenderwoche . "] " . $plan->show($_REQUEST['c'],$_A['how']) . "20" . $plan->Jahr;
 ?>
+<img class="img20" src='images/rg1024-yellow-mail-18px.png' usemap="#mailMA">
+<map name="mailMA">
+<area shape=rect coords="0,0,18,18" title='Wochenplan senden an MA' href="./mn.php?mn=kwMailMA&a=MAClientVS&b=c&k=2016-11-07&navi=KW&u=45 Klient#1">
+</map>

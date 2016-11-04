@@ -98,6 +98,7 @@ label, form li span { float: left; width: 9em; padding-right: 1em; }
 /* http://www.ohne-css.gehts-gar.net/0004.php: */
 .img18 { float: left; margin-right: 10px; }
 .img19 { margin-right: 10px; }
+.img20 { margin-top: 3px; margin-left: 10px; }
 
 /* http://www.w3schools.com/css/tryit.asp?filename=trycss_dropdown_button */
 .dropbtn {
