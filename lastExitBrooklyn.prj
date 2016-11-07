@@ -81,7 +81,12 @@ else if( $table=="MA-KW" && $recID )
   $k = date("Y-m-d", $timestamp_montag);
   hiddenFeldSchreiben( "k", "$k" );//
   if( isset($_REQUEST['maID']) )
+  {
     hiddenFeldSchreiben( "filterMA", " AND $_REQUEST[maID]=m.ID" );//
+    hiddenFeldSchreiben( "m", $_REQUEST['maID'] );//
+  }
+  if( isset($_REQUEST['u']) )
+    hiddenFeldSchreiben( "u", "$_REQUEST[u]" );//
 }
 else if( $table=="MA" && $recID )
 {
@@ -93,6 +98,8 @@ else if( $table=="MA" && $recID )
     <INPUT TYPE=image src='images/empty-calendar-18px.png' NAME='planungMA' title='Einsatz tauschen'>
     <INPUT TYPE=image src='images/kalender-18px.png' NAME='kwWaehlendMA' title='Wochen&uuml;bersicht'><?php
     hiddenFeldSchreiben( "maID", "$recID" );//
+    if( isset($_REQUEST['u']) )
+      hiddenFeldSchreiben( "u", "$_REQUEST[u]" );//
   }?>
   <?php
   $img = 'signal-working-18px.png';

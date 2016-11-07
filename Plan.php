@@ -62,10 +62,23 @@ class Plan extends KWmodel
     ?><table><tr><th><?php echo "[KW" . $this->Kalenderwoche . "] ";?></th><th>
     <?php
     if( isset($_REQUEST['k']) )
-    {?>
-      <img class="img20" src='images/rg1024-yellow-mail-18px.png' usemap="#mailMA">
+    {
+      $j = "&j=" . $this->Jahr;
+      $kw = "&kw=" . $this->Kalenderwoche;
+      $u = "&u=Mail";
+      if( isset($_REQUEST['u']) and !strstr($_REQUEST['u'], " an ") )
+        $u .= " an " . $_REQUEST['u'];
+      else
+        $u = "&u=" . $_REQUEST['u'];
+      $d="";
+      $m="";
+      if( isset($_REQUEST['m']) )
+        $m = "&m=" . $_REQUEST['m'];
+      if( isset($_REQUEST["d"]) )
+        $d="&d";
+      ?><img class="img20" src='images/rg1024-yellow-mail-18px.png' usemap="#mailMA">
       <map name="mailMA">
-      <area shape=rect coords="0,0,18,18" title='Wochenplan senden an MA' href="./mn.php?mn=kw_tex&a=MAClientVS&c=<?php echo $what;?>&k=<?php echo $_REQUEST['k']; echo $str;?>&navi=KW&u=45 Klient#1">
+      <area shape=rect coords="0,0,18,18" title='Wochenplan senden an MA' href="./mn.php?mn=kw_text&a=kwMailMA&sl=3&sl1=MA&sl2=Jahr&sl3=KW&c=<?php echo $what;?>&k=<?php echo $_REQUEST['k'] . $j . $kw . $str . $d . $u . $m;?>">
       </map>
       <!-- img class="img19" src="images/grandma-penguin-18px.png" --><?php
     }?>

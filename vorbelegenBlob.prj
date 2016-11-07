@@ -1,6 +1,6 @@
 <?php
-if( 'Ruecksprache' == $zielTabelle )
+if( 'kwMailMA' == $zielTabelle )
 {
-?>Mitteilung an den Regulierer:<?php
+  ?>Liebe Ilsemarie,<?php echo "\n\n";?>Deine Termine in der KW <?php
 }
 ?>
