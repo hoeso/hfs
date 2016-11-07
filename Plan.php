@@ -50,13 +50,26 @@ class Plan extends KWmodel
       dEcho( $b_, "Plan::show( [client|mitarbeiter] )" );
       return;
     }
+    $str = "";
     if( 'k' == $what )
     {
     }
     else
-    {
+    { // mit ID des MA filtern
+      if( isset($_REQUEST['filterMA']) )
+        $str = "&filterMA=" . $_REQUEST['filterMA'];
     }
-    ?><table><tr><th><!-- img class="img19" src="images/kalender-18px.png" --><?php echo "[KW" . $this->Kalenderwoche . "] ";?></th><th><img class="img19" src="images/grandma-penguin-18px.png"></th><th>Morgens</th><th>Mittags</th><th>Nachmittags</th><th>Abends</th><th>Sonstiges</th></tr>
+    ?><table><tr><th><?php echo "[KW" . $this->Kalenderwoche . "] ";?></th><th>
+    <?php
+    if( isset($_REQUEST['k']) )
+    {?>
+      <img class="img20" src='images/rg1024-yellow-mail-18px.png' usemap="#mailMA">
+      <map name="mailMA">
+      <area shape=rect coords="0,0,18,18" title='Wochenplan senden an MA' href="./mn.php?mn=kw_tex&a=MAClientVS&c=<?php echo $what;?>&k=<?php echo $_REQUEST['k']; echo $str;?>&navi=KW&u=45 Klient#1">
+      </map>
+      <!-- img class="img19" src="images/grandma-penguin-18px.png" --><?php
+    }?>
+    </th><th>Morgens</th><th>Mittags</th><th>Nachmittags</th><th>Abends</th><th>Sonstiges</th></tr>
     <?php
     $i=0;
     $vgl = "";

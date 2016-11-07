@@ -74,7 +74,7 @@ else if( $table=="MA-KW" && $recID )
   ?><INPUT TYPE=image src='images/kalender-18px.png' NAME='kwWaehlendMA' title='Wochen&uuml;bersicht'><?php
   hiddenFeldSchreiben( "mn", "blatt" );//da geht's weiter
   hiddenFeldSchreiben( "navi", "KW" );//
-  hiddenFeldSchreiben( "c", "k" );//
+  hiddenFeldSchreiben( "c", "m" );//
   $a_ = explode( "W", $recID );// $recID kommt als YYYY-W<kw>
   hiddenFeldSchreiben( "a", "$a_[1]" );//
   $timestamp_montag = strtotime("{$recID}"); 

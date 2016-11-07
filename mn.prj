@@ -86,6 +86,14 @@ switch( $_E['mn'] )
     $_E['wZu'] = "kopierendVorgaenger";
     $_e = array( "1", "2" );
   break;
+  case "kw_tex":
+    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["c"]) or !isset($_REQUEST["k"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "latexendPlan";
+    $_E['date'] = $_REQUEST["k"];
+    $_A['how'] = 'ungenutzt';
+    $_e = array( "1", "2" );
+  break;
   case "speichernSchicht":
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"])/* or !isset($_REQUEST["e"]) or !isset($_REQUEST["t"])*/ ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";

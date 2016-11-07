@@ -209,7 +209,7 @@ class KWview extends KWmodel
           {
             $i1 = $i+1;
             echo"\n<OPTION VALUE='$a[$i]'";
-      	    if( $a[$i] == $_REQUEST['f'] )
+      	    if( isset($_REQUEST['f']) and $a[$i] == $_REQUEST['f'] )
       	      echo " SELECTED";
 	    ?>><?php
             if( 'client' <> $what )
