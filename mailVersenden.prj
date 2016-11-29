@@ -1,0 +1,69 @@
+<?php
+function mail_att($to,$subject,$message,$attachments)
+{
+  $absender = "Planung";
+  $absender_mail = $reply = imap_utf8("no_reply@faber.fcares.de");
+ 
+  $mime_boundary = "-----=" . md5(uniqid(mt_rand(), 1));
+ 
+  $header  = "From: " . $absender . "<".$absender_mail.">\n";
+  $header .= "Reply-To: ".$reply."\n";
+ 
+  $header.= "MIME-Version: 1.0\r\n";
+  $header.= "Content-Type: multipart/mixed;\r\n";
+  $header.= " boundary=\"".$mime_boundary."\"\r\n";
+ 
+  $content = "This is a multi-part message in MIME format.\r\n\r\n";
+  $content.= "--".$mime_boundary."\r\n";
+  //$content.= "Content-Type: text/html charset=\"iso-8859-1\"\r\n";
+  $content.= "Content-Type: text/plain; charset=\"utf-8\"\r\n";
+  $content.= "Content-Transfer-Encoding: 8bit\r\n\r\n";
+  $content.= $message."\r\n";
+ 
+  //$anhang ist ein Mehrdimensionals Array
+  //$anhang enthält mehrere Dateien
+  if(is_array($attachments) AND is_array(current($attachments)))
+     {
+     foreach($attachments AS $dat)
+        {
+        $data = chunk_split(base64_encode($dat['data']));
+        $content.= "--".$mime_boundary."\r\n";
+        $content.= "Content-Disposition: attachment;\r\n";
+        $content.= "\tfilename=\"".$dat['name']."\";\r\n";
+        $content.= "Content-Length: .".$dat['size'].";\r\n";
+        $content.= "Content-Type: ".$dat['type']."; name=\"".$dat['name']."\"\r\n";
+        $content.= "Content-Transfer-Encoding: base64\r\n\r\n";
+        $content.= $data."\r\n";
+        }
+     $content .= "--".$mime_boundary."--"; 
+     }
+  else //Nur 1 Datei als Anhang
+     {
+     $data = chunk_split(base64_encode($attachments['data']));
+     $content.= "--".$mime_boundary."\r\n";
+     $content.= "Content-Disposition: attachment;\r\n";
+     $content.= "\tfilename=\"".$attachments['name']."\";\r\n";
+     $content.= "Content-Length: .".$attachments['size'].";\r\n";
+     $content.= "Content-Type: ".$attachments['type']."; name=\"".$attachments['name']."\"\r\n";
+     $content.= "Content-Transfer-Encoding: base64\r\n\r\n";
+     $content.= $data."\r\n";
+     } 
+     
+  if(@mail($to, $subject, $content, $header)) return true;
+  else return false;
+}
+
+$attachments = array();
+unset($attachments);
+
+if( isset($_A['Anschreiben']) and isset($_A['Betreff']) )
+{
+  if( isset($_A['attachments']) )
+    $attachments = $_A['attachments'];
+//  if( false == mail_att("support@hans-hoermann.de","Test utf-8 Mailing",$_A['Anschreiben'],$attachments) )
+  if( false == mail_att("hoehans@gmx.net",$_A['Betreff'],$_A['Anschreiben'],$attachments) )
+    echo "Mailen funktioniert noch nicht";
+}
+else
+    echo "Mailen funktioniert nicht ohne Text!?!!";
+?>

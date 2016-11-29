@@ -87,6 +87,7 @@ switch( $_E['mn'] )
     $_e = array( "1", "2" );
   break;
   case "kw_text":
+    // Merkmal zu setzen: Empfaenger=[MA|Klient]
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["c"]) or !isset($_REQUEST["k"]) or !isset($_REQUEST["kw"]) or !isset($_REQUEST["j"]) or !isset($_REQUEST["m"]) ) { echo $exitus; return; }
     if( isset($_REQUEST["sl"]) and !isset($_REQUEST["sl1"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
@@ -131,6 +132,22 @@ switch( $_E['mn'] )
         }
       }
     }
+  $_E['recipient'] = 'sm'; // speichernd1ZuN + Mail versenden
+  break;
+  case "sm": // speichernd1ZuN + Mail versenden
+    // Merkmal auszuwerten: Empfaenger=[MA|Klient]
+    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
+    //if( !isset($_REQUEST["zielTabelle"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "versendendMail";
+    $_E['entitaet'] = $_REQUEST["a"];
+    if( isset($_REQUEST["d"]) )
+      dEcho( $b_, "versendendMail in " . $_E['entitaet'] );
+    //$_E['entitaet'] = $_REQUEST["zielTabelle"];
+    //$_eTitel = array( "in {$_E['entitaet']} speichern ..." );
+    $_eTitel = array( $_REQUEST["b"] );
+    if( isset($_REQUEST["navi"]) )
+      $_E['navi'] = $_REQUEST["navi"];
   break;
   case "speichernSchicht":
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"])/* or !isset($_REQUEST["e"]) or !isset($_REQUEST["t"])*/ ) { echo $exitus; return; }
