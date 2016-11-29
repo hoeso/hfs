@@ -1,6 +1,16 @@
 <?php
 if( 'kwMailMA' == $zielTabelle )
 {
-  ?>Liebe Ilsemarie,<?php echo "\n\n";?>Deine Termine in der KW <?php
+  if( isset($_REQUEST['m']) )
+    $du = gibFeld( $MySQLDb, "SELECT CONCAT( IF('weiblich'=Geschlecht,'','r'),' ', Vorname ) FROM MA WHERE $_REQUEST[m]=ID", 0 );
+  else
+    $du = "i kenndi ned?";
+  if( isset($_REQUEST['kw']) )
+    $wann = $_REQUEST['kw'];
+  else
+    $wann = "??";
+  ?>Liebe <?php echo $du;?>,<?php echo "\n\n";?>das sind Deine Termine in der KW <?php echo "$wann:\n\n";
+  $plan = new Plan( $_E['date'], $f );
+  echo $plan->plainText($_REQUEST['c'],$_A['how']);
 }
 ?>

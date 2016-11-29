@@ -6,8 +6,8 @@ if( isset($_REQUEST['kwMailMA_blob_Text']) )
 else
   $_A['Anschreiben']='hob nix kriagt?';
 
-if( isset($_REQUEST['SELECTSL2']) )
-  $_A['Betreff']=$_REQUEST['SELECTSL2'];
+if( isset($_REQUEST['SELECTSL3']) )
+  $_A['Betreff']="KW $_REQUEST[SELECTSL3]";
 else
   $_A['Betreff']='hob nix kriagt?';
 ?>
