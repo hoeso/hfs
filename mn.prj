@@ -92,6 +92,7 @@ switch( $_E['mn'] )
     if( isset($_REQUEST["sl"]) and !isset($_REQUEST["sl1"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
     $_E['entitaet'] = $_REQUEST["a"];
+    $_E['Label'] = "versenden"; // Beschriftung submit-Knopf
     if( isset($_REQUEST["re1ID"]) )
       $_REQUEST["SELECTRE1"] = $_REQUEST["re1ID"];
     $_E['wZu'] = "textendPlan";

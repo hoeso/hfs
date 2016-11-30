@@ -1,7 +1,7 @@
 <?php
 function mail_att($to,$subject,$message,$attachments)
 {
-  $absender = "Planung";
+  $absender = "Seniorendienst Faber";
   $absender_mail = $reply = imap_utf8("no_reply@faber.fcares.de");
  
   $mime_boundary = "-----=" . md5(uniqid(mt_rand(), 1));

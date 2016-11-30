@@ -269,6 +269,8 @@ class Plan extends KWmodel
       /*** 'Datum'            ***/
       echo "\n" . $dayofweek . " " . $value;
       echo "\n---------";
+      if( isset($printName) and false == $printName )
+        echo "\n"; // Klient hat sich tagesuebergreifend nicht geaendert
       /*** Spalte 'Name Kunde'            ***/
       unset($k);
       $a = explode( " ", $value );
