@@ -9,8 +9,9 @@ if( 'kwMailMA' == $zielTabelle )
     $wann = $_REQUEST['kw'];
   else
     $wann = "??";
-  ?>Liebe <?php echo $du;?>,<?php echo "\n\n";?>das sind Deine Termine in der KW <?php echo "$wann:\n\n";
+  ?>Liebe <?php echo $du;?>,<?php echo "\n\n";?>das sind Deine Termine in der KW <?php echo "$wann:\n";
   $plan = new Plan( $_E['date'], $f );
+  //echo $plan->plainTextTabellarisch($_REQUEST['c'],$_A['how']);
   echo $plan->plainText($_REQUEST['c'],$_A['how']);
 }
 ?>

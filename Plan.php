@@ -219,9 +219,185 @@ class Plan extends KWmodel
   }
 
   /***
-   *** plainText() bereitet KW-Plan als Mail auf
+   *** plainText() bereitet KW-Plan als Text-Mail auf
    ***/
   function plainText( $what, $how='initialen' )
+  {
+    global $quart;
+    if( isset($_REQUEST["d"]) )
+    {
+      $a_ = explode( "/", __file__ );
+      $b_ = $a_[count($a_)-1];
+    }
+    if( 'k' <> $what and 'm' <> $what )
+    {
+      dEcho( $b_, "Plan::show( [client|mitarbeiter] )" );
+      return;
+    }
+    $str = "";
+    if( 'k' == $what )
+    {
+    }
+    else
+    { // mit ID des MA filtern
+      if( isset($_REQUEST['filterMA']) )
+        $str = "&filterMA=" . $_REQUEST['filterMA'];
+    }
+    if( isset($_REQUEST['k']) )
+    {
+      $j = "&j=" . $this->Jahr;
+      $kw = "&kw=" . $this->Kalenderwoche;
+      $u = "&u=Mail";
+      if( isset($_REQUEST['u']) and !strstr($_REQUEST['u'], " an ") )
+        $u .= " an " . $_REQUEST['u'];
+      else
+        $u = "&u=" . $_REQUEST['u'];
+      $d="";
+      $m="";
+      if( isset($_REQUEST['m']) )
+        $m = "&m=" . $_REQUEST['m'];
+      if( isset($_REQUEST["d"]) )
+        $d="&d";
+    }
+    $i=0;
+    $vgl = "";
+    foreach ($this->tag as $dayofweek => $value)
+    {
+      ++$i;
+      if( 1 == $i )
+        continue;
+      /*** 'Datum'            ***/
+      echo "\n" . $dayofweek . " " . $value;
+      echo "\n---------";
+      /*** Spalte 'Name Kunde'            ***/
+      unset($k);
+      $a = explode( " ", $value );
+      $a_ = explode( ".", $a[0] );
+      unset($a);
+      $this->gibKlient( $a, $dim, $this->Jahr, $this->Kalenderwoche, $i-1 );
+      if( !$a[0] )
+      { // nix gfundn worn :-(
+        echo "\n";
+        continue;
+      }
+      for( $k=0; $k < count($a); $k += $dim )
+      {
+        if( "" == $vgl )
+        {
+          $vgl = $a[$k];
+          $printName = true;
+        }
+        else if( $vgl <> $a[$k] )
+        {
+          $vgl = $a[$k];
+          $printName = true;
+        }
+        else
+          $printName = false;
+        if( true == $printName )
+        {
+          echo "\n$a[$k]\n";
+          $printName = false;
+        }
+        if( 0 ) echo "\n";
+        /***  'Morgens'            ***/
+        unset($m);
+        $this->gibTerminMA( $m, $dimM, $this->Jahr, $this->Kalenderwoche, $i-1, $a[$k+1], 'morgens' ); // a k+1 : c.ID
+        if( !$m[0] )
+        { // nix gfundn worn :-(
+          if(0) echo "             6"; // 14 Blanks
+        }
+        else
+        {
+          for( $l=0; $l < count($m); $l += $dimM )
+          {
+            /*** Uhrzeit 'Morgens'           ***/
+            if( $l+1 > $dimM )
+              if(0) echo "\n";
+            echo $m[$l+1] . "-" . $m[$l+2] . " ";
+            if( isset($_REQUEST['m']) && $_REQUEST['m'] == $m[$l+3] )
+              echo "\n"; // eigene Schicht des MA, also keinen Namen anzeigen
+                         // stattdessen: Link 'geht nicht!' anbieten
+            else
+              echo $m[$l] . "\n";
+          }
+        }
+        /*** 'Mittags'            ***/
+        unset($m);
+        $this->gibTerminMA( $m, $dimM, $this->Jahr, $this->Kalenderwoche, $i-1, $a[$k+1], 'mittags' ); // a k+1 : c.ID
+        if( !$m[0] )
+        { // nix gfundn worn :-(
+            if(0) echo "                                       "; // 39 Blanks bis: Mittags
+        }
+        else
+        {
+          for( $l=0; $l < count($m); $l += $dimM )
+          {
+            /*** Uhrzeit 'Mittags'            ***/
+            if( $l+1 > $dimM )
+              if(0) echo "\n";
+            echo $m[$l+1] . "-" . $m[$l+2] . " ";
+            if( isset($_REQUEST['m']) && $_REQUEST['m'] == $m[$l+3] )
+              echo "\n"; // eigene Schicht des MA, also keinen Namen anzeigen
+                         // stattdessen: Link 'geht nicht!' anbieten
+            else
+              echo $m[$l] . "\n";
+          }
+        }
+        /*** 'Nachmittags'            ***/
+        unset($m);
+        $this->gibTerminMA( $m, $dimM, $this->Jahr, $this->Kalenderwoche, $i-1, $a[$k+1], 'nachmittags' ); // a k+1 : c.ID
+        if( !$m[0] )
+        { // nix gfundn worn :-(
+        }
+        else
+        {
+          for( $l=0; $l < count($m); $l += $dimM )
+          {
+            /*** Uhrzeit Nachmittags'            ***/
+            if( $l+1 > $dimM )
+              if(0) echo "\n";
+            echo $m[$l+1] . "-" . $m[$l+2] . " ";
+            if( isset($_REQUEST['m']) && $_REQUEST['m'] == $m[$l+3] )
+              echo "\n"; // eigene Schicht des MA, also keinen Namen anzeigen
+                         // stattdessen: Link 'geht nicht!' anbieten
+            else
+              echo $m[$l] . "\n";
+          }
+        }
+        /*** 'Abends'            ***/
+        unset($m);
+        $this->gibTerminMA( $m, $dimM, $this->Jahr, $this->Kalenderwoche, $i-1, $a[$k+1], 'abends' ); // a k+1 : c.ID
+        if( !$m[0] )
+        { // nix gfundn worn :-(
+        }
+        else
+        {
+          for( $l=0; $l < count($m); $l += $dimM )
+          {
+            /*** Uhrzeit 'Abends'            ***/
+            if( $l+1 > $dimM )
+              if(0) echo "\n";
+            echo $m[$l+1] . "-" . $m[$l+2] . " ";
+            if( isset($_REQUEST['m']) && $_REQUEST['m'] == $m[$l+3] )
+              echo "\n"; // eigene Schicht des MA, also keinen Namen anzeigen
+                         // stattdessen: Link 'geht nicht!' anbieten
+            else
+              echo $m[$l] . "\n";
+          }
+        }
+        // Sonstiges
+        if( $k < (count($a)-2) )
+        { // vorletzter Klient dieses Tages
+        }
+      }
+    }
+  }
+
+  /***
+   *** plainText() bereitet KW-Plan tabellarisch als Mail auf
+   ***/
+  function plainTextTabellarisch( $what, $how='initialen' )
   {
     global $quart;
     if( isset($_REQUEST["d"]) )
@@ -279,7 +455,7 @@ class Plan extends KWmodel
       $this->gibKlient( $a, $dim, $this->Jahr, $this->Kalenderwoche, $i-1 );
       if( !$a[0] )
       { // nix gfundn worn :-(
-        echo "--3\n";
+        echo "\n";
         continue;
       }
       for( $k=0; $k < count($a); $k += $dim )
