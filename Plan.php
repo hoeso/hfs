@@ -241,7 +241,10 @@ class Plan extends KWmodel
     else
     { // mit ID des MA filtern
       if( isset($_REQUEST['filterMA']) )
+      {
         $str = "&filterMA=" . $_REQUEST['filterMA'];
+        $fMA = $_REQUEST['filterMA'];
+      }
     }
     if( isset($_REQUEST['k']) )
     {
@@ -276,7 +279,7 @@ class Plan extends KWmodel
       $a = explode( " ", $value );
       $a_ = explode( ".", $a[0] );
       unset($a);
-      $this->gibKlient( $a, $dim, $this->Jahr, $this->Kalenderwoche, $i-1 );
+      $this->gibKlient( $a, $dim, $this->Jahr, $this->Kalenderwoche, $i-1, $fMA );
       if( !$a[0] )
       { // nix gfundn worn :-(
         echo "\n";
@@ -413,13 +416,17 @@ class Plan extends KWmodel
       return;
     }
     $str = "";
+    $fMA = "";
     if( 'k' == $what )
     {
     }
     else
     { // mit ID des MA filtern
       if( isset($_REQUEST['filterMA']) )
+      {
         $str = "&filterMA=" . $_REQUEST['filterMA'];
+        $fMA = $_REQUEST['filterMA'];
+      }
     }
     if( isset($_REQUEST['k']) )
     {
@@ -454,7 +461,7 @@ class Plan extends KWmodel
       $a = explode( " ", $value );
       $a_ = explode( ".", $a[0] );
       unset($a);
-      $this->gibKlient( $a, $dim, $this->Jahr, $this->Kalenderwoche, $i-1 );
+      $this->gibKlient( $a, $dim, $this->Jahr, $this->Kalenderwoche, $i-1, $fMA );
       if( !$a[0] )
       { // nix gfundn worn :-(
         echo "\n";

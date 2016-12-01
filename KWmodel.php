@@ -88,7 +88,10 @@ class KWmodel extends KW
     if( isset($_REQUEST["d"]) )
       dEcho( $b_, $sql );
   }
-  function gibKlient( &$a, &$dim, $j, $kw, $t )
+  /***
+   *** fMA : filter MA
+   ***/
+  function gibKlient( &$a, &$dim, $j, $kw, $t, $fMA = "" )
   {
     if( isset($_REQUEST["d"]) )
     {
@@ -98,7 +101,7 @@ class KWmodel extends KW
     $a[0]=0;// hier Feld 0 rein = c.Name, c.Vorname
     $a[1]=1;// hier Feld 1 rein = c.ID
     $dim=count($a);
-    $sql = "SELECT DISTINCT CONCAT(c.Name,',',c.Vorname) AS Klient, c.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE $j=j.ID AND $kw=k.ID AND $t=t.ID $this->filter ORDER BY v.ID";
+    $sql = "SELECT DISTINCT CONCAT(c.Name,',',c.Vorname) AS Klient, c.ID FROM MAClientVS mcv JOIN ClientVS cv ON (mcv. ClientVSID =cv.ID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (cv. ClientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE $j=j.ID $fMA AND $kw=k.ID AND $t=t.ID $this->filter ORDER BY v.ID";
     DB::gibFelderArray( $sql, $a );
     if( isset($_REQUEST["d"]) )
       dEcho( $b_, $sql );
