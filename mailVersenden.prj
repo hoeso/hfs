@@ -56,14 +56,22 @@ function mail_att($to,$subject,$message,$attachments)
 $attachments = array();
 unset($attachments);
 
-if( isset($_A['Anschreiben']) and isset($_A['Betreff']) )
+if( isset($_A['Anschreiben']) and isset($_A['Betreff']) and isset($_REQUEST['SELECTSL1']) )
 {
   if( isset($_A['attachments']) )
     $attachments = $_A['attachments'];
 //  if( false == mail_att("support@hans-hoermann.de","Test utf-8 Mailing",$_A['Anschreiben'],$attachments) )
-  if( false == mail_att("hoehans@gmx.net",$_A['Betreff'],$_A['Anschreiben'],$attachments) )
+  $recpt = gibFeld( $MySQLDb, "SELECT eMail FROM MA WHERE $_REQUEST[SELECTSL1]=ID", 0 );
+  if( !$recpt )
+  {
+    echo "\n<h4>ist f&uuml;r den Mitarbeiter*in eine eMail-Adresse hinterlegt?</h4>";
+    // gespeicherte Mail wieder loeschen in kwMailMA
+    $_E['wZu']="anbietendKnopfZurueck";
+    include("forkZu.inc");
+  }
+  if( false == mail_att($recpt,$_A['Betreff'],$_A['Anschreiben'],$attachments) )
     echo "Mailen funktioniert noch nicht";
 }
 else
-    echo "Mailen funktioniert nicht ohne Text!?!!";
+    echo "Mailen funktioniert nicht ohne Text|Betreff|Absender!?!!";
 ?>
