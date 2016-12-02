@@ -9,6 +9,8 @@ if( isset($_REQUEST["d"]) )
 }
 if( isset($_E['entitaet']) )
   $zielTabelle = $_E['entitaet'];
+if( isset($_E['Label']) )
+  $strSubmitLabel = $_E['Label'];
 
 if( isset($_E["re"]) )
 {

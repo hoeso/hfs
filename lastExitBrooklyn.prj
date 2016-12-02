@@ -7,6 +7,11 @@
 include("eiZuEintretendBericht.inc");
 $fDebug=0;
 if( $fDebug ) echo "table: $table. recID : $recID";
+if( isset($_REQUEST["d"]) )
+{
+  $a_ = explode( "/", __file__ );
+  $b_ = $a_[count($a_)-1];
+}
 if( isset($_REQUEST['d']) )
   hiddenFeldSchreiben( "d", 1 );
 if( $table=="Client" && $recID )
@@ -84,6 +89,15 @@ else if( $table=="MA-KW" && $recID )
   {
     hiddenFeldSchreiben( "filterMA", " AND $_REQUEST[maID]=m.ID" );//
     hiddenFeldSchreiben( "m", $_REQUEST['maID'] );//
+    $c_ = explode( "-", $a_[0] );
+    $c_[0] -= 2000;
+    if( isset($_REQUEST["d"]) )
+      dEcho( $b_, $c_[0] . " " . $a_[1] . " " . $_REQUEST['maID'] );
+    $title = gibFeld( $MySQLDb, "SELECT Text FROM kwMailMA WHERE $_REQUEST[maID]=MAID AND $a_[1]=KWID AND $c_[0]=JahrID ORDER BY ID DESC LIMIT 1", 0 );
+    if( $title )
+    {?>
+      <img class="img20" src='images/rg1024-grey-mail-18px.png' title='<?php echo $title;?>'><?php
+    }
   }
   if( isset($_REQUEST['u']) )
     hiddenFeldSchreiben( "u", "$_REQUEST[u]" );//
