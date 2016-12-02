@@ -1,5 +1,17 @@
 <?php
 if( 'kwMailMA' == $zielTabelle )
 {
+  if( isset($_REQUEST['m']) )
+  {
+    $a__[0]=0;// hier Feld 0 rein = Begruessung
+    $a__[1]=1;// hier Feld 1 rein = MA Vorname
+    $anrede = gibFeld( $MySQLDb, "SELECT CONCAT(IF('maennlich' = Geschlecht, 'r', ''),' ', Vorname) FROM MA WHERE $_REQUEST[m]=ID", 0 );
+    if( false == $anrede )
+      return;
+    ?>Liebe <?php
+    echo "$anrede";
+    echo ",\n\n";
+    ?>das sind Deine Termine in der KW:<?php
+  }
 }
 ?>
