@@ -3,16 +3,16 @@ if( 'kwMailMA' == $zielTabelle )
 {
 // hier geandert, damit das nicht geloescht wird vom git pull
   if( isset($_REQUEST['m']) )
-  {
-    $a__[0]=0;// hier Feld 0 rein = Begruessung
-    $a__[1]=1;// hier Feld 1 rein = MA Vorname
-    $anrede = gibFeld( $MySQLDb, "SELECT CONCAT(IF('maennlich' = Geschlecht, 'r', ''),' ', Vorname) FROM MA WHERE $_REQUEST[m]=ID", 0 );
-    if( false == $anrede )
-      return;
-    ?>Liebe <?php
-    echo "$anrede";
-    echo ",\n\n";
-    ?>das sind Deine Termine in der KW:<?php
-  }
+    $du = gibFeld( $MySQLDb, "SELECT CONCAT( IF('weiblich'=Geschlecht,'','r'),' ', Vorname ) FROM MA WHERE $_REQUEST[m]=ID", 0 );
+  else
+    $du = "i kenndi ned?";
+  if( isset($_REQUEST['kw']) )
+    $wann = $_REQUEST['kw'];
+  else
+    $wann = "??";
+  ?>Liebe <?php echo $du;?>,<?php echo "\n\n";?>das sind Deine Termine in der KW <?php echo "$wann:\n";
+  $plan = new Plan( $_E['date'], $f );
+  //echo $plan->plainTextTabellarisch($_REQUEST['c'],$_A['how']);
+  echo $plan->plainText($_REQUEST['c'],$_A['how']);
 }
 ?>
