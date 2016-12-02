@@ -1,6 +1,7 @@
 <?php
 if( 'kwMailMA' == $zielTabelle )
 {
+// hier geandert, damit das nicht geloescht wird vom git pull
   if( isset($_REQUEST['m']) )
     $du = gibFeld( $MySQLDb, "SELECT CONCAT( IF('weiblich'=Geschlecht,'','r'),' ', Vorname ) FROM MA WHERE $_REQUEST[m]=ID", 0 );
   else
