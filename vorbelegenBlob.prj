@@ -1,6 +1,7 @@
 <?php
 if( 'kwMailMA' == $zielTabelle )
 {
+// hier geandert, damit das nicht geloescht wird vom git pull
   if( isset($_REQUEST['m']) )
   {
     $a__[0]=0;// hier Feld 0 rein = Begruessung

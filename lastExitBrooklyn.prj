@@ -104,9 +104,13 @@ else if( $table=="MA-KW" && $recID )
 }
 else if( $table=="MA" && $recID )
 {
+  $f = false;
+  if( isset($_REQUEST['navi']) && 'Stammblatt' == $_REQUEST['navi'] )
+    $f = true; // Stammblatt
   // wenn noch nichts hinterlegt ist, werden diese Icons in Graustufen ausgegeben
   $sw = 'sw-';
   if( /*gibFeld( $MySQLDb, "SELECT ID FROM Kontingent WHERE MAID=$recID LIMIT 1", 0 ) and*/ // es wird auch ohne Kontigent geplant
+      false == $f and
       gibFeld( $MySQLDb, "SELECT mcv.ID FROM MAClientVS mcv JOIN MAClient mc ON (mcv.MAClientID=mc.ID) WHERE mc.MAID=$recID LIMIT 1", 0 ) )
   {?>
     <INPUT TYPE=image src='images/empty-calendar-18px.png' NAME='planungMA' title='Einsatz tauschen'>
@@ -114,6 +118,11 @@ else if( $table=="MA" && $recID )
     hiddenFeldSchreiben( "maID", "$recID" );//
     if( isset($_REQUEST['u']) )
       hiddenFeldSchreiben( "u", "$_REQUEST[u]" );//
+  }
+  if( false == $f )
+  {?>
+  <INPUT TYPE=image src='images/havaianas07-18px.png' NAME='abwesendMA' title='Urlaub oder krank?'>
+    <?php
   }?>
   <?php
   $img = 'signal-working-18px.png';
@@ -141,9 +150,12 @@ else if( $table=="MA" && $recID )
   if( !gibFeld( $MySQLDb, "SELECT ID FROM MAAdresse WHERE MAID=$recID LIMIT 1", 0 ) )
   {
     $img = $sw . $img;
+  }
+  if( true == $f )
+  {?>
+    <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='maWohnhaft' title='Adresse'>
+    <?php
   }?>
-  <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='maWohnhaft' title='Adresse'>
-  <INPUT TYPE=image src='images/havaianas07-18px.png' NAME='abwesendMA' title='Urlaub oder krank?'>
 <?php
 }
 else if( ( $table=="EDV" ) && $recID )
