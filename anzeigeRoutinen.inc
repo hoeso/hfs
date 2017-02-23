@@ -757,7 +757,7 @@ function ausgebenAlsTabelleZumVertikalenAendern( $spaltenName, $auchID, &$cSpalt
       echo_("\n\t</th>");
 
       if( isset($enumListe["$strKey"]) )
-        formularAttribut( $table, $result, $i, $arr[$i], $enumListe["$strKey"], 80, $fEnum );
+        formularAttribut( $table, $result, $i, $arr[$i], $enumListe["$strKey"], 80, $fEnum, $strKey );
       else
         formularAttribut( $table, $result, $i, $arr[$i], "", 80, $fEnum );//fEnum = true, wenn es ein enum-Feld war
       if( $fEnum )
@@ -1122,10 +1122,29 @@ function ergebnisBoxenMitID( $label, $table, $anz, $id, $exclude, $zeilen, $ziel
 }
 function ausgebenAlsNeueTabellenzeile( $result, $table, $enumListe = "" )
 {
+  global $enumListe;
+  /***
+   *** geht bisher nur mit enumListe-Schluessel[$table]
+   *** es gibt allerdings auch enumListe-Schluessel[$table . "_1"] und hoeher
+   ***
+   ***/
+  if( isset($enumListe[$table . "_1"]) )
+  {
+    $c=1;
+    $eL = $enumListe[$table . "_" . $c];
+  }
+  else
+    $eL = $enumListe;
   $anz = mysql_num_fields($result);
   for( $i=1; $i < $anz; $i++ )
   {
-    formularAttribut( $table, $result, $i, "", $enumListe, 0, $fEnum );
+    formularAttribut( $table, $result, $i, "", $eL, 0, $fEnum );
+    if( isset($c) and true == $fEnum )
+    {
+      ++$c;
+      unset($eL);
+      $eL = $enumListe[$table . "_" . $c];
+    }
   }
 }
 /*************************************
@@ -1409,8 +1428,9 @@ function ausgebenInZelle( $table, $result, $i, $attr, $enumListe, $laengeBeiText
   }
   echo "</font></td>";
 }
-function formularAttribut( $table, $result, $i, $attr, $enumListe, $laengeBeiText, &$fEnum )
+function formularAttribut( $table, $result, $i, $attr, $enumListe, $laengeBeiText, &$fEnum, $clutch="" )
 {
+  global $enumOVL;
   $feldName = mysql_field_name( $result, $i );
   $feldTyp = mysql_field_type( $result, $i );
   $feldFlag = mysql_field_flags( $result, $i );
@@ -1440,6 +1460,8 @@ function formularAttribut( $table, $result, $i, $attr, $enumListe, $laengeBeiTex
   {
     echo " SIZE='1'>";
     $arr = explode(",", $enumListe);
+    if( isset($enumOVL[$clutch]) )
+      $aOVL = explode(",", $enumOVL[$clutch]);
     $idx=0;
     for( $j=0; $j<count($arr); $j++ )
     {
@@ -1454,6 +1476,10 @@ function formularAttribut( $table, $result, $i, $attr, $enumListe, $laengeBeiTex
         echo " SELECTED>";
       else
         echo ">";
+      
+    if( isset($aOVL) )
+      echo $aOVL[$j];
+    else
       echo $arr[$j];
     }
     echo "\n\t\t</select";

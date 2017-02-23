@@ -31,10 +31,14 @@ $arrRefs = array(
 
   "Jahr"=>array(
     "ClientVS",
+    "kwMailMA",
+    "metaMAAbwesenheit",
   ),
 
   "KW"=>array(
     "ClientVS",
+    "kwMailMA",
+    "metaMAAbwesenheit",
   ),
 
   "Kontingent"=>array(
@@ -46,10 +50,11 @@ $arrRefs = array(
     "MAAbwesenheit",
     "MAAdresse",
     "MAClient",
+    "kwMailMA",
   ),
 
   "MAAbwesenheit"=>array(
-    "1-leaf",
+    "metaMAAbwesenheit",
   ),
 
   "MAAdresse"=>array(
@@ -78,6 +83,7 @@ $arrRefs = array(
 
   "Tag"=>array(
     "ClientVS",
+    "metaMAAbwesenheit",
   ),
 
   "VS"=>array(
@@ -89,6 +95,14 @@ $arrRefs = array(
     "ClientAdresse",
     "Kontingent",
     "MAAdresse",
+  ),
+
+  "kwMailMA"=>array(
+    "1-leaf",
+  ),
+
+  "metaMAAbwesenheit"=>array(
+    "1-leaf",
   ),
 
 );

@@ -45,7 +45,7 @@ if( false==isset($keinInsert) )
   tabellenZeileBeginnen();
   formularBeginnen("./mn.php?mn=9422&a={$_E['entitaet']}&b={$_E['entitaet']}%20wird%20gespeichert%20...", "name=frm" . $_E['entitaet'] . " onSubmit='return pruefenEingaben(this)'");
   hiddenFeldSchreiben( "Tabelle", $_E['entitaet'] );
-  if( !isset($enumListe[$_E['entitaet']]) )
+  if( !isset($enumListe[$_E['entitaet']]) and !isset($enumListe[$_E['entitaet'] . "_1"]) )
     ausgebenAlsNeueTabellenzeile( $result, $_E['entitaet'] );
   else
     ausgebenAlsNeueTabellenzeile( $result, $_E['entitaet'], $enumListe[$_E['entitaet']] );

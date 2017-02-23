@@ -262,7 +262,7 @@ switch( $_E['mn'] )
               break;
                ***/
               default:
-                $_E["stm$i"] = "SELECT c.ID, CONCAT(c.Name,' ', c.Vorname), DATE_FORMAT( c.geborenAm,'%d.%m.%Y' ) FROM Client c";
+                $_E["stm$i"] = "SELECT c.ID, CONCAT(c.Name,' ', c.Vorname), DATE_FORMAT( c.geborenAm,'%d.%m.%Y' ) FROM Client c WHERE 'ja'=c.planen"; // Planungs-Filter setzen
               break;
             }
           break;
@@ -275,7 +275,7 @@ switch( $_E['mn'] )
             $_E["stm$i-order"] = " ORDER BY Name, Vorname";
           break;
           case "MAClient":
-            $_E["stm$i"] = "SELECT mc.ID, CONCAT(m.Name,' ', m.Vorname) FROM MAClient mc JOIN Client c ON (mc.ClientID=c.ID) JOIN MA m ON (mc.MAID=m.ID)";
+            $_E["stm$i"] = "SELECT mc.ID, CONCAT(m.Name,' ', m.Vorname) FROM MAClient mc JOIN Client c ON (mc.ClientID=c.ID) JOIN MA m ON (mc.MAID=m.ID) WHERE 'ja'=m.planen";
           break;
           case "Person":
             $_E["stm$i"] = "SELECT p.ID, p.Name, p.Vorname, p.Telefon FROM Person p";
