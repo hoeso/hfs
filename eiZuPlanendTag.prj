@@ -46,7 +46,7 @@ $_E['mn']="sl_pe";
 noch $_E[stmtX-filter] setzen, um in mn.prj zu filtern.
  ******/
 if( isset($_REQUEST["ID"]) )
-  $_E["stm1-filter"]=" WHERE $_REQUEST[ID]=ID";
+  $_E["stm1-filter"]=" AND $_REQUEST[ID]=ID"; // WHERE Klausel mit: 'ja'=planen
 // i Spalten einruecken
 $_REQUEST["i"]=3;
 ?>
