@@ -160,7 +160,12 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
   $ups_[1]=1;// hier Feld 1 rein = KW
   $ups_[2]=2;// hier Feld 2 rein = unverplante Zeit
   $dim_ups =count($ups_);
-  gibFelderArray( $MySQLDb, "SELECT DISTINCT CONCAT(c.Name,' ', c.Vorname) AS Klient, k.KW, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*SUM(cv.Menge)/(SELECT COUNT(*) FROM MAClient WHERE $clID=ClientID)), '%k:%i') AS unverplant FROM MAClient mc JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (mc.ClientID=c.ID) JOIN ClientVS cv ON (cv. ClientID =mc. ClientID ) JOIN KW k ON (cv.KWID=k.ID) AND NOT EXISTS (SELECT ClientVSID FROM MAClientVS WHERE MAClientVS.ClientVSID =cv.ID) AND $clID=c.ID GROUP BY KW ORDER BY Klient, k.KW", $ups_ );
+/***
+ *** wo kann man hier das aktuelle Jahr rausfiltern?
+ ***  AND (YEAR(NOW())-2000)=JahrID
+ ***/
+  
+  gibFelderArray( $MySQLDb, "SELECT DISTINCT CONCAT(c.Name,' ', c.Vorname) AS Klient, k.KW, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*SUM(cv.Menge)/(SELECT COUNT(*) FROM MAClient WHERE $clID=ClientID)), '%k:%i') AS unverplant FROM MAClient mc JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (mc.ClientID=c.ID) JOIN ClientVS cv ON (cv. ClientID =mc. ClientID ) JOIN KW k ON (cv.KWID=k.ID) AND NOT EXISTS (SELECT ClientVSID FROM MAClientVS WHERE MAClientVS.ClientVSID =cv.ID) AND (YEAR(NOW())-2000)=cv.JahrID AND $clID=c.ID GROUP BY KW ORDER BY Klient, k.KW", $ups_ );
   /*** rowspan = MA pro KW / Anzahl KW (== Anzahl MA)     ***/
   $rowspan2 = (count($kw_)/$dim_kw)/(count($ups_)/$dim_ups); // Anzahl Engagements
   //$rowspan1 = count($kw_)/(count($ups_)/$dim_ups); // Anzahl Reihen
