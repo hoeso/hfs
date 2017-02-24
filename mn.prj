@@ -706,6 +706,20 @@ switch( $_E['mn'] )
     if( isset($_REQUEST["navi"]) )
       $_E['navi'] = $_REQUEST["navi"];
   break;
+  case "3151": // toggelnd
+    if( !isset($_REQUEST["ID"]) or !isset($_REQUEST["feld"]) or !isset($_REQUEST["wert"]) or !isset($_REQUEST["table"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "toggelndEnum";
+    // fuer setzenFortsetzung.prj:
+    $_E['entitaet'] = $_REQUEST["table"];
+    $_E['ID'] = $_REQUEST["ID"];
+    /*
+    $_E['column'] = $_REQUEST["feld"];
+    $_E['value'] = $_REQUEST["wert"];
+    */
+    if( isset($_REQUEST["navi"]) )
+      $_E['navi'] = $_REQUEST["navi"];
+  break;
   case "4454":
     if( !isset($_REQUEST["TabelleM"]) or !isset($_REQUEST["TabelleA"]) or !isset($_REQUEST["SELECTA"]) or !isset($_REQUEST["TabelleB"]) or !isset($_REQUEST["SELECTB"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";

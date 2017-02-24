@@ -755,8 +755,8 @@ $automat = array(
 	),
 	"toggelndEnum"=>array(
 		"eiZuToggelndEnum.inc",
-		"verbindenMitDB.inc",
-		"transpHeader.html",
+		"setzenFortsetzung.prj",
+		"dbConnect.inc",
 		"routinen.inc",
 		"toggelnEnum.inc",
 		"linkFortsetzen.inc",

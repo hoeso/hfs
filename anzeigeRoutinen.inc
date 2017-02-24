@@ -420,7 +420,7 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
       $key=$arrFeldName[$i] . "_" . $table;
       if( isset($toggleJaNein["$key"]) && strstr( $arrFeldFlag[$i], 'enum' ) && strstr( $toggleJaNein["$key"], $elem ) )
       {
-        echo"<A HREF=\"./eiZu.php?wZu=toggelndEnum&ID=$ident&feld=$arrFeldName[$i]&wert=$elem&table=$table&$proj\">";
+        echo"<A HREF=\"./mn.php?mn=3151&ID=$ident&feld=$arrFeldName[$i]&wert=$elem&table=$table&$proj\">";
         $fAnkern=true;
       }
       if( !isset($vgl) )
