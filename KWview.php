@@ -305,11 +305,13 @@ class KWview extends KWmodel
 	      {
 	        $ent=$a__[5];
                 $str="&a=Client&planungTag_x&k=c"; // k=c: eOverlay-Kontext --> ClientVS=Client
+                $str.="&l=zum%20Klient&#42;in";
 	      }
               else                
 	      {
 	        $ent=$a__[3];
                 $str="&a=MA&planungMA_x";
+                $str.="&l=zum%20MA&#42;in";
 	      }
               ?><a href="mn.php?mn=3653&navi=Plan&ID=<?php echo $a__[2];?>&u=<?php echo substr($sc,2,2) . $str;?>&MAClientVS=<?php echo $ent;?>#<?php echo $ent;?>" target="_blank" title=<?php echo $a__[1] . ">"; // title: voller Name
               if( 'initialen' == $how )

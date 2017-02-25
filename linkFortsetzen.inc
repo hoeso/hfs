@@ -113,7 +113,12 @@ if( isset( $_eCandy ) )
     }
 if( isset( $dahin ) )
 {
-  echo"\n<A HREF=\"$dahin\"><em>&lt;&lt; fortsetzen</em></A>\n";?>
+  echo"\n<A HREF=\"$dahin\"><em>&lt;&lt; ";
+  if( isset($_E['label']) )
+    echo $_E['label'];
+  else
+    echo "fortsetzen";
+  echo"</em></A>\n";?>
   <form name='frm' action=""><input type="button" value="schliessen" name="schlie" onclick="self.close()"></form>
   <script language=javascript type='text/javascript'>
   <!--
