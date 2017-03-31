@@ -50,18 +50,20 @@ class KWview extends KWmodel
       dEcho( $b_, "KWview::show( [client|mitarbeiter] )" );
       return;
     }
+    $title = "zur ";
     if( 'client' == $what )
     {
-      $title = 'Mitarbeiter';
+      $title .= 'Mitarbeiter&#042;innen';
       $maORcl = "d"; // alles was nicht c ist, ist MA
       $NOTmaORcl = "c"; // alles was nicht c ist, ist MA
     }
     else
     {
-      $title = 'Klient&#042;innen';
+      $title .= 'Klient&#042;innen';
       $maORcl = "c";
       $NOTmaORcl = "d"; // alles was nicht c ist, ist MA
     }
+    $title .= " Ansicht wechseln";
     if( 'client' == $what )
       $img = 'grandma-penguin-18px.png';
     else

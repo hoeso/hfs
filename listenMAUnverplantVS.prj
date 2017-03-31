@@ -146,7 +146,7 @@ $cKW_MA = count($kw_)/$dim_kw;
 if( true == habWas( $kw_, 0, $dim_kw-1 ) )
 {
   if( isset($_REQUEST["d"]) )
-    dEcho( $b_, " KWs mal Engagement: $cKW_MA" );
+    dEcho( $b_, " KWs mal Betreuung: $cKW_MA" );
   /*** unverplante Zeiten pro KW auslesen        ***
    +-------------+------+------------+
    | Klient      | KW   | unverplant |
@@ -167,11 +167,11 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
   
   gibFelderArray( $MySQLDb, "SELECT DISTINCT CONCAT(c.Name,' ', c.Vorname) AS Klient, k.KW, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*SUM(cv.Menge)/(SELECT COUNT(*) FROM MAClient WHERE $clID=ClientID)), '%k:%i') AS unverplant FROM MAClient mc JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (mc.ClientID=c.ID) JOIN ClientVS cv ON (cv. ClientID =mc. ClientID ) JOIN KW k ON (cv.KWID=k.ID) AND NOT EXISTS (SELECT ClientVSID FROM MAClientVS WHERE MAClientVS.ClientVSID =cv.ID) AND (YEAR(NOW())-2000)=cv.JahrID AND $clID=c.ID GROUP BY KW ORDER BY Klient, k.KW", $ups_ );
   /*** rowspan = MA pro KW / Anzahl KW (== Anzahl MA)     ***/
-  $rowspan2 = (count($kw_)/$dim_kw)/(count($ups_)/$dim_ups); // Anzahl Engagements
+  $rowspan2 = (count($kw_)/$dim_kw)/(count($ups_)/$dim_ups); // Anzahl Betreuungen
   //$rowspan1 = count($kw_)/(count($ups_)/$dim_ups); // Anzahl Reihen
   $rowspan1 = count($kw_)/$dim_kw; // Anzahl Reihen
   if( isset($_REQUEST["d"]) )
-    dEcho( $b_, " $rowspan-er Engagement f&uuml;r $ups_[0]" );
+    dEcho( $b_, " $rowspan-er Betreuung f&uuml;r $ups_[0]" );
 
   ?>
   <table>
