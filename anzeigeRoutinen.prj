@@ -1,6 +1,62 @@
 <?php
+require_once "KW.php";
 if( isset($elem) )
-  ;
+;
 if( isset( $spalte[$i] ) )
-  ;
+;
+if( isset( $table ) )
+{
+  switch( $table )
+  {
+    case "ClientVS":
+      if( isset( $arrFeldName[$i] ) )
+      {
+        switch( $arrFeldName[$i] )
+        {
+          case "KW":
+	    $_A['kwNr'] = $elem;
+	    $_A['kw'] = new KW( "Y-m-d", "" );
+            while( $_A['kw']->Kalenderwoche <> $elem && $_A['kw']->Kalenderwoche < 54 )
+	      $_A['kw'] = new KW( $_A['kw']->KWweiter, "" );
+	  break;
+          case "Tag":
+	    $datum = new DateTime($_A['kw']->Datum);
+	    $c=0;
+	    switch( $elem )
+	    {
+	      case "Dienstag":
+	        $c=1;
+	    	break;
+	      case "Mittwoch":
+	        $c=2;
+	    	break;
+	      case "Donnerstag":
+	        $c=3;
+	    	break;
+	      case "Freitag":
+	        $c=4;
+	    	break;
+	      case "Samstag":
+	        $c=5;
+	    	break;
+	      case "Sonntag":
+	        $c=6;
+	    	break;
+	    }
+	    if( 1 == $_A['kw']->WochentagNumerisch )
+	    {
+	      $elem = $datum->format("d.m.") . " " . $elem;
+	      $datum = date_add($datum,date_interval_create_from_date_string( $c . " days" ));
+	    }
+	      
+            if( isset($_REQUEST["d"]) )
+            {
+              dEcho( $b_, $_A['kwNr'] . ":[" . $_A['kw']->WochentagNumerisch . "] " . $elem . "; " . $_A['kw']->Datum . "; " . $_A['kw']->Montag . " -- " . $datum->format("d.m.") );
+            }
+          break;
+        }
+      }
+    break;
+  }
+}
 ?>
