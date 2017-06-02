@@ -29,6 +29,7 @@ $toggleJaNein = array(
   "Controlling_AuftragRegulierer"=>"ja_nein",
   "planen_Client"=>"ja_nein",
   "planen_MA"=>"ja_nein",
+  "planen_MAClient"=>"ja_nein",
   "Umsatz_TarifIndividualposten"=>"ja_nein",
   "zugestellt_Einzelrechnung"=>"ja_nein",
   "zugestellt_Deckblatt"=>"ja_nein",
