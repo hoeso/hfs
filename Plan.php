@@ -313,7 +313,7 @@ class Plan extends KWmodel
           if(0) echo "             6"; // 14 Blanks
         }
         else
-        {
+        { $kontakt = $a[$k+1];
           for( $l=0; $l < count($m); $l += $dimM )
           {
             /*** Uhrzeit 'Morgens'           ***/
@@ -397,6 +397,7 @@ class Plan extends KWmodel
         }
       }
     }
+    echo "\nHier sind noch die Kontaktdaten (zB von $kontakt) zu generieren.\n";
   }
 
   /***
