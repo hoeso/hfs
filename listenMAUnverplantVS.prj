@@ -34,12 +34,26 @@ $vs_[4]=4;// hier Feld 4 rein = Menge
 $dim_vs =count($vs_);
 gibFelderArray( $MySQLDb, "SELECT JahrID, KWID, TagID, VSID, Menge FROM ClientVS WHERE $_E[ID]=ID", $vs_ );
 $sql_ = "SELECT ID FROM ClientVS WHERE $vs_[0]=JahrID AND $vs_[1]=KWID AND $vs_[2]=TagID AND ($vs_[3]=VSID";
+// Das funktioniert, wenn die neue Schicht vor und zeitgleich mit der geplanten Schicht beginnt
 $inc = $vs_[3]; // Start-VS
 for( $i=1; $i<$vs_[4]; $i++ )
 { // ClientVS-Instanzen fuer Startzeit plus Menge suchen, also alle Ueberschneidungen
   $inc++;
   $sql_ .= " OR $inc=VSID"; 
 }
+
+// Versuch, auch Ueberschneidungen zu finden, wenn neue Schicht waehrend der geplanten Schicht beginnt
+// ( - funktioniert noch nicht - )
+// es wird mit der Laenge der neuen Schicht geprueft, muesste allerdings mit der Laenge der bereits geplanten
+// Schicht erfolgen
+$inc = $vs_[3]; // Start-VS
+for( $i=1; $i<$vs_[4]; $i++ )
+{ // ClientVS-Instanzen fuer Startzeit minus Menge suchen, also alle Ueberschneidungen
+  $inc--;
+  $sql_ .= " OR $inc=VSID"; 
+}
+
+
 $sql_ .= ")";
 unset($cv_);
 gibFeldArray( $MySQLDb, $sql_, 0, $cv_ );
@@ -245,6 +259,7 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
       unset($maPraesenz);
       for( $c=0; $c<count($cv_); $c++ )
       {
+        // Test, ob frueherer o. gleichzeitiger Termin in evtl. vorhandene Schicht hineinreicht
         $sql_ = "SELECT CONCAT(c.Name,' ',c.Vorname,' ',TIME_FORMAT(v.Quart,'%H:%i'),'-',TIME_FORMAT(ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')),'%H:%i')) AS gebucht FROM MAClient mc JOIN Client c ON (mc. ClientID =c.ID) JOIN MAClientVS mcv ON (mc.ID=mcv. MAClientID) JOIN ClientVS cv ON (mcv. ClientVSID=cv.ID) JOIN VS v ON (cv.VSID=v.ID) WHERE $cv_[$c]=cv.ID AND {$kw_[$m+2]}=mc.MAID";
         if( isset($_REQUEST["d"]) )
 	  dEcho( $b_, $sql_ );
