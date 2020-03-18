@@ -1,6 +1,6 @@
 <?php
 $str="";
-$sw="CFS";
+$sw="Zahnrad";
 if( isset($_REQUEST['d']) )
   $str = "&d";
 if( isset($_E['navi']) )
@@ -33,11 +33,29 @@ switch( $sw )
   <?php
   }
   break;
+  case "Verknuepfen":
+  {
+    ?><img src="images/iconmonstr-process-2-32.png" alt="zum Getriebe" usemap="#zahnrad">
+  <?php
+  }
+  break;
+  case "Zahnrad":
+  {
+    ?><img src="images/iconmonstr-link-thin-32.png" alt="zum Verkn&uuml;pfen" usemap="#verknuepfen">
+  <?php
+  }
+  break;
 }
 ?>
 <map name="stammblatt">
 <area shape=rect coords="0,0,18,18" title='zum Stammblatt' href="./mn.php?mn=goto&navi=Stammblatt<?php echo $str;?>">
 </map>
 <map name="wochenschema">
-<area shape=rect coords="0,0,18,18" title='zum Wochenplan' href="./mn.php?mn=goto&navi=CFS<?php echo $str;?>">
+<area shape=rect coords="0,0,18,18" title='zum Wochenplan' href="./mn.php?mn=goto&navi=Zahnrad<?php echo $str;?>">
+</map>
+<map name="verknuepfen">
+<area shape=rect coords="0,0,32,32" title='zum Verkn&uuml;pfen' href="./mn.php?mn=goto&navi=Verknuepfen<?php echo $str;?>">
+</map>
+<map name="zahnrad">
+<area shape=rect coords="0,0,32,32" title='zum Getriebe' href="./mn.php?mn=goto&navi=Zahnrad<?php echo $str;?>">
 </map>

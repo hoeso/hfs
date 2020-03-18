@@ -13,7 +13,8 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
  */
   "Angebot"=>"0",
   "Behoerde"=>"0",
-  "Behoerde"=>"0",
+  "Bundesland"=>"0",
+  "Dauer"=>"0",
   "Klient"=>"0",
   "KlientAdresse"=>"0",
   "KlientVS"=>"0",
@@ -51,7 +52,8 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
 */
   "Angebot"=>"./mn.php?mn=1466&a=EDVAngebot&x=1",
   "Behoerde"=>"mn.php?mn=pe&a=Behoerde",
-  "Behoerde"=>"mn.php?mn=pe&a=Behoerde",
+  "Bundesland"=>"mn.php?mn=pe&a=Bundesland",
+  "Dauer"=>"mn.php?mn=pe_pe&a=Dauer&re=1&re1=Kurs",
   "Klient"=>"./mn.php?mn=pe&a=Klient",
   "KlientVS"=>"./mn.php?mn=sl_pe&a=KlientVS&sl=1&sl1=Klient&navi=Plan&re=4&re1=Jahr&re2=KW&re3=Tag&re4=VS",
   "EDVAngebot"=>"./mn.php?mn=1466&a=EDVAngebot&x=1",

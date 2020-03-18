@@ -59,6 +59,7 @@ if( isset( $HTTP_POST_VARS ) )
       case "int":
         $sql .= "$elem";
       break;
+      case "decimal":
       case "real":
         unset( $aDP );
         $aDP = explode( ",", $elem );
@@ -66,6 +67,7 @@ if( isset( $HTTP_POST_VARS ) )
           $elem = "$aDP[0].$aDP[1]";
         $sql .= "'$elem'";
       break;
+      case "enum":
       case "string":
         $sql .= "'$elem'";
       break;

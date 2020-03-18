@@ -1,16 +1,51 @@
 <?php
 $arrRefs = array(
 
+  "Behoerde"=>array(
+    "1-leaf",
+  ),
+
   "Beziehung"=>array(
+    "PersonClient",
     "PersonKlient",
+  ),
+
+  "Bundesland"=>array(
+    "BundeslandTrainer",
+  ),
+
+  "BundeslandTrainer"=>array(
+    "1-leaf",
+  ),
+
+  "ClientBeziehung"=>array(
+    "1-leaf",
+  ),
+
+  "Dauer"=>array(
+    "1-leaf",
+  ),
+
+  "Engagement"=>array(
+    "1-leaf",
+  ),
+
+  "Jahr"=>array(
+    "KlientVS",
+  ),
+
+  "KW"=>array(
+    "KlientVS",
   ),
 
   "Klient"=>array(
     "KlientAdresse",
+    "KlientKurs",
     "KlientVS",
     "MAKlient",
     "MAKlientVS",
     "PersonKlient",
+    "TelKlient",
   ),
 
   "KlientAdresse"=>array(
@@ -21,43 +56,40 @@ $arrRefs = array(
     "1-leaf",
   ),
 
-  "KlientVS"=>array(
-    "MAKlientVS",
-  ),
-
-  "Betreuung"=>array(
+  "KlientKurs"=>array(
     "1-leaf",
   ),
 
-  "Jahr"=>array(
-    "KlientVS",
-    "kwMailMA",
-    "metaMAAbwesenheit",
-  ),
-
-  "KW"=>array(
-    "KlientVS",
-    "kwMailMA",
-    "metaMAAbwesenheit",
+  "KlientVS"=>array(
+    "MAKlientVS",
   ),
 
   "Kontingent"=>array(
     "1-leaf",
   ),
 
-  "MA"=>array(
-    "Kontingent",
-    "MAAbwesenheit",
-    "MAAdresse",
-    "MAKlient",
-    "kwMailMA",
+  "Kurs"=>array(
+    "Dauer",
+    "KlientKurs",
+    "KursTrainer",
   ),
 
-  "MAAbwesenheit"=>array(
-    "metaMAAbwesenheit",
+  "KursTrainer"=>array(
+    "1-leaf",
+  ),
+
+  "MA"=>array(
+    "Kontingent",
+    "MAAdresse",
+    "MAClient",
+    "MAKlient",
   ),
 
   "MAAdresse"=>array(
+    "1-leaf",
+  ),
+
+  "MAClient"=>array(
     "1-leaf",
   ),
 
@@ -70,7 +102,12 @@ $arrRefs = array(
   ),
 
   "Person"=>array(
+    "PersonClient",
     "PersonKlient",
+  ),
+
+  "PersonClient"=>array(
+    "1-leaf",
   ),
 
   "PersonKlient"=>array(
@@ -78,12 +115,25 @@ $arrRefs = array(
   ),
 
   "Recht"=>array(
+    "PersonClient",
     "PersonKlient",
   ),
 
   "Tag"=>array(
     "KlientVS",
-    "metaMAAbwesenheit",
+  ),
+
+  "Tel"=>array(
+    "TelKlient",
+  ),
+
+  "TelKlient"=>array(
+    "1-leaf",
+  ),
+
+  "Trainer"=>array(
+    "BundeslandTrainer",
+    "KursTrainer",
   ),
 
   "VS"=>array(
@@ -95,14 +145,6 @@ $arrRefs = array(
     "KlientAdresse",
     "Kontingent",
     "MAAdresse",
-  ),
-
-  "kwMailMA"=>array(
-    "1-leaf",
-  ),
-
-  "metaMAAbwesenheit"=>array(
-    "1-leaf",
   ),
 
 );

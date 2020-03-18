@@ -1,32 +1,43 @@
-/* nach Ben Henick:Das Beste an HTML & CSS, O'Reilly 2010 */
-/* Seite 85 */
+/* A := nach Ben Henick: Das Beste an HTML & CSS, O'Reilly 2010 */
+/* B := Eric A. Meyer: CSS Das umfassende Handbuch, O'Reilly 2007 */
+/* A, Seite 85 */
 html, body {
 	margin: 0;
 	padding: 0;
 }
-/* Seite ? */
+/* A, Seite ? */
 body {
 //	background-image: url(/images/bg_site.jpg);
 	background-attachment: fixed;
 	background-position: 100% 100%;
 	background-repeat: no-repeat;
 	color: rgb(64,64,64);
-	font-family: Georgia,Palatino,'Times New Roman',serif;
+//	font-family: Georgia,Palatino,'Times New Roman',serif;
+	font-family: Verdana,Arial,Helvetica,sans-serif;
 	font-size: small;
+//	font-size: normal;
 	line-height: 1.923em;
 }
 
-/* Seite 92 */
+a {
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-size: small;
+}
+/* A, Seite 92 */
 /* overflow: visible sorgt dafür, dass der horizontale Scrollbalken bis zum ***
  * rechten Rand schieben kann, also nichts abgeschnitten wird               ***/
 #hauptteil { height: 1%; overflow: visible; }
-#hauptteil, #kopfteil, #fussteil { width: 100%; margin: 2%; }
-#haupttext { float: right; width: 80%; }
+/* width + margin sollen nicht groesser als 100% sein, ansonsten horiz. Scrolling */
+#hauptteil, #kopfteil, #fussteil { width: 96%; margin: 2%; }
+#haupttext { float: right; width: 87%; }
 #seitenleiste { margin-right: 1%; }
 
 /* basis elemente */
 table  { margin-left: 1px; border: 1px solid #000; }
 td, th { padding: 5px; }
+/* B, Seite 390. Bezeichnung 'border-bottom' war geraten */
+td { border-bottom: 1px solid grey; padding: 5px; }
+/* 
 tbody th { text-align: right; }
 thead th { vertical-align: bottom; }
 tfoot th { vertical-align: top; }
@@ -37,26 +48,29 @@ tfoot th[rowspan]:first-child {
   text-align: right;
 }
 
-/* navigation Seite 72, 106 */
+/* A, navigation Seite 72, 106 */
 /* overflow: auto schneidet zu lange Menuetexte ab */
 .main #nav { display: block; width: 10em; overflow:visible; }
-/* navigation Seite 123     */
+/* navigation A, Seite 123     */
 ul { margin-left: 0.5em; padding-left:0; }
 li { /*display:inline;*/ list-style-type: none; }
 
-/* https://www.w3schools.com/css/tryit.asp?filename=trycss_link_advanced */
-a { text-decoration: none; }
-/*a:visited { text-decoration: none; }*/
-a:hover, a:active {
-    background-color: lightblue;
+/* A, Seite 223 */
+h1 { font-size: xx-large; }
+
+/* http://www.w3schools.com/tags/tag_hn.asp */
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+    font-size: normal;
 }
 
-
-/* Seite 223 */
-h1 { font-size: xx-large; }
-h2 { font-size:    large; }
-
-/* Formular-Layout Seite 259 - 260 */
+/* A, Formular-Layout Seite 259 - 260 */
 
 form, form ul, form li, fieldset, textarea { margin: 0; padding: 0; }
 //label, input, select, textarea, form li span { display: block; }
@@ -78,30 +92,3 @@ label, form li span { float: left; width: 9em; padding-right: 1em; }
 /* Mehrspaltige Anordnung von Paaren aus label- und Formularelementen */
 //form { height: 1%; overflow: auto; }
 //form ul { float: left; width: 75%; margin-right: 5%; }
-
-
-
-
-a:hover {
-    text-decoration: underline;
-}
-
-a:active {
-    text-decoration: underline;
-}
-/*
-a:link, a:visited {
-    background-color: lightblue;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-}
-
-*/
-
-/* https://www.mediaevent.de/css/background.html */
-.animebox { 
-	 background-color: honeydew;
-	  transition:background 1s 
-  }

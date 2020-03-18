@@ -189,6 +189,7 @@ $automat = array(
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
+		"setzenFortsetzung.prj",
 		"navi" . $_E['navi'] . ".html",
 		"endeNavigation.html",
 		"endeContainer.html",
@@ -196,7 +197,8 @@ $automat = array(
 		"dbClose.inc",
 	),
 	"bspVerlinkendEntitaet"=>array(
-		"eiZuWrapperFK.inc",
+		//"eiZuWrapperFK.inc",
+		"wrapperFBS10.inc",
 		"anbietenVerlinkenEntitaet.inc",
 	),
 	"kopierendVorgaenger"=>array( // CFS
