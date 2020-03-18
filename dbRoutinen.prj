@@ -5,7 +5,7 @@
 
 $appendix=array(
   "Beziehung"=>" ORDER BY Beziehung DESC",
-  "Client"=>" ORDER BY planen, Name, Vorname",
+  "Klient"=>" ORDER BY planen, Name, Vorname",
   "MA"=>" ORDER BY planen, Name, Vorname",
   "Topic"=>" ORDER BY Topic",
   "Zeitstempel"=>" ORDER BY Datum DESC",

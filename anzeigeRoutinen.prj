@@ -8,7 +8,7 @@ if( isset( $table ) )
 {
   switch( $table )
   {
-    case "ClientVS":
+    case "KlientVS":
       if( isset( $arrFeldName[$i] ) )
       {
         switch( $arrFeldName[$i] )

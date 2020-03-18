@@ -1,6 +1,6 @@
 <?php
 /** Aufrufendes Skript **** Variable *****************************************
- * naviCFS.html/Client, planendTag-Symbol :
+ * naviCFS.html/Klient, planendTag-Symbol :
  *                                           : 
  *****************************************************************************/
 if( 0 )
@@ -18,8 +18,8 @@ if( isset($_REQUEST[""]) )
   $ = $_REQUEST[""];
 */
 $_REQUEST["sl"]=1;
-// Der zu planende Client:
-$_REQUEST["sl1"]="Client";
+// Der zu planende Klient:
+$_REQUEST["sl1"]="Klient";
 
 $_REQUEST["re"]=4;
 $_REQUEST["re1"]="Jahr";
@@ -33,7 +33,7 @@ $_REQUEST["re3"]="Tag";
 $_REQUEST["re4"]="VS";
 $_REQUEST["SELECTRE4"] = 37; // 9:00 Uhr
 
-$_REQUEST["a"]="ClientVS";
+$_REQUEST["a"]="KlientVS";
 /******
 noch $_E[filter] setzen, um sichten.prj zu filtern.
  ******/

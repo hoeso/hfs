@@ -18,7 +18,7 @@ if( isset($_REQUEST[""]) )
   $ = $_REQUEST[""];
 */
 $_REQUEST["sl"]=1;
-// Der Client:
+// Der Klient:
 $_REQUEST["sl1"]="MA";
 
 $_REQUEST["re"]=1;

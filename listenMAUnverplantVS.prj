@@ -1,7 +1,7 @@
 <?php
 /** Aufrufendes Skript **** Variable *****************************************
- * planendClient-Automat :
- *                    ID : ClientVS.ID
+ * planendKlient-Automat :
+ *                    ID : KlientVS.ID
  *                       : 
  *****************************************************************************/
 if( isset($_REQUEST["d"]) )
@@ -10,7 +10,7 @@ if( isset($_REQUEST["d"]) )
   $b_ = $a_[count($a_)-1];
 }
 if( isset($_REQUEST["d"]) and isset($_REQUEST["ID"]) )
-  dEcho( $b_, "Client #" . $_REQUEST["ID"] );
+  dEcho( $b_, "Klient #" . $_REQUEST["ID"] );
 /* zum Kopieren:
 if( isset($_REQUEST[""]) )
   $ = $_REQUEST[""];
@@ -23,7 +23,7 @@ if( !isset($_E['ID']/*$_REQUEST["ID"]*/) )
   include("forkZu.inc");
 }
 /***
- *** alle Eintraege finden, welche mit Client-Planung belegt sind
+ *** alle Eintraege finden, welche mit Klient-Planung belegt sind
  ***
  ***/
 $vs_[0]=0;// hier Feld 0 rein = JahrID
@@ -32,12 +32,12 @@ $vs_[2]=2;// hier Feld 2 rein = TagID
 $vs_[3]=3;// hier Feld 3 rein = VSID
 $vs_[4]=4;// hier Feld 4 rein = Menge
 $dim_vs =count($vs_);
-gibFelderArray( $MySQLDb, "SELECT JahrID, KWID, TagID, VSID, Menge FROM ClientVS WHERE $_E[ID]=ID", $vs_ );
-$sql_ = "SELECT ID FROM ClientVS WHERE $vs_[0]=JahrID AND $vs_[1]=KWID AND $vs_[2]=TagID AND ($vs_[3]=VSID";
+gibFelderArray( $MySQLDb, "SELECT JahrID, KWID, TagID, VSID, Menge FROM KlientVS WHERE $_E[ID]=ID", $vs_ );
+$sql_ = "SELECT ID FROM KlientVS WHERE $vs_[0]=JahrID AND $vs_[1]=KWID AND $vs_[2]=TagID AND ($vs_[3]=VSID";
 // Das funktioniert, wenn die neue Schicht vor und zeitgleich mit der geplanten Schicht beginnt
 $inc = $vs_[3]; // Start-VS
 for( $i=1; $i<$vs_[4]; $i++ )
-{ // ClientVS-Instanzen fuer Startzeit plus Menge suchen, also alle Ueberschneidungen
+{ // KlientVS-Instanzen fuer Startzeit plus Menge suchen, also alle Ueberschneidungen
   $inc++;
   $sql_ .= " OR $inc=VSID"; 
 }
@@ -48,7 +48,7 @@ for( $i=1; $i<$vs_[4]; $i++ )
 // Schicht erfolgen
 $inc = $vs_[3]; // Start-VS
 for( $i=1; $i<$vs_[4]; $i++ )
-{ // ClientVS-Instanzen fuer Startzeit minus Menge suchen, also alle Ueberschneidungen
+{ // KlientVS-Instanzen fuer Startzeit minus Menge suchen, also alle Ueberschneidungen
   $inc--;
   $sql_ .= " OR $inc=VSID"; 
 }
@@ -58,17 +58,17 @@ $sql_ .= ")";
 unset($cv_);
 gibFeldArray( $MySQLDb, $sql_, 0, $cv_ );
 /***
- *** in MA-Schleife dann iterieren, ob MA schon auf anderem Client verplant
+ *** in MA-Schleife dann iterieren, ob MA schon auf anderem Klient verplant
  ***/
  
-$clID=gibFeld( $MySQLDb, "SELECT ClientID FROM ClientVS WHERE $_E[ID]=ID", 0 );
+$clID=gibFeld( $MySQLDb, "SELECT KlientID FROM KlientVS WHERE $_E[ID]=ID", 0 );
 unset($m_);
 $m_[0]=0;// hier Feld 0 rein = m.ID
 $m_[1]=1;// hier Feld 1 rein = m.Name, m.Vorname
 $m_[2]=2;// hier Feld 2 rein = Platzhalter fuer k.Wochenstunden
 $m_[3]=3;// hier Feld 3 rein = Platzhalter fuer gebuchte Stunden
 $dim_m =count($m_);
-gibFelderArray( $MySQLDb, "SELECT m.ID, CONCAT(m.Name,' ',m.Vorname), '0' FROM MAClient mc JOIN MA m ON (mc. MAID=m.ID) WHERE $clID=mc.ClientID ORDER BY m.Name, m.Vorname", $m_ );
+gibFelderArray( $MySQLDb, "SELECT m.ID, CONCAT(m.Name,' ',m.Vorname), '0' FROM MAKlient mc JOIN MA m ON (mc. MAID=m.ID) WHERE $clID=mc.KlientID ORDER BY m.Name, m.Vorname", $m_ );
 $cMA = count($m_)/$dim_m;
 if( true == habWas( $m_, 0, $dim_m-1 ) )
 {
@@ -77,7 +77,7 @@ if( true == habWas( $m_, 0, $dim_m-1 ) )
   for( $i=0; $i<count($m_); $i += $dim_m )
   {
     $m_[$i+2] = gibFeld( $MySQLDb, "SELECT k. Wochenstunden FROM Kontingent k JOIN Zeitstempel z ON (z.ID=k. ZeitstempelID) WHERE z.Datum <= DATE(NOW()) AND $m_[$i]=k.MAID ORDER BY z.Datum DESC LIMIT 1", 0 );
-    $m_[$i+3] = gibFeld( $MySQLDb, "SELECT SUM(cv.Menge)/4 FROM ClientVS cv JOIN MAClientVS mcv ON (cv.ID=mcv. ClientVSID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) WHERE $m_[$i]=mc.MAID", 0 );
+    $m_[$i+3] = gibFeld( $MySQLDb, "SELECT SUM(cv.Menge)/4 FROM KlientVS cv JOIN MAKlientVS mcv ON (cv.ID=mcv. KlientVSID) JOIN MAKlient mc ON (mcv. MAKlientID =mc.ID) WHERE $m_[$i]=mc.MAID", 0 );
     if( 0 > $m_[$i+3] )
       $m_[$i+3] = 0;
     if( isset($_REQUEST["d"]) )
@@ -88,7 +88,7 @@ unset($c_);
 $c_[0]=0;// hier Feld 0 rein = m.Name, m.Vorname
 $c_[1]=1;// hier Feld 1 rein = die unbelegten Termine
 $dim_ =count($c_);
-gibFelderArray( $MySQLDb, "SELECT CONCAT(c.Name,' ', c.Vorname), TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*SUM(cv.Menge)), '%k:%i') FROM ClientVS cv JOIN Client c ON (cv.ClientID=c.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID) AND NOT EXISTS (SELECT ClientVSID FROM MAClientVS WHERE MAClientVS.ClientVSID=cv.ID) AND $clID=c.ID", $c_ );
+gibFelderArray( $MySQLDb, "SELECT CONCAT(c.Name,' ', c.Vorname), TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*SUM(cv.Menge)), '%k:%i') FROM KlientVS cv JOIN Klient c ON (cv.KlientID=c.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID) AND NOT EXISTS (SELECT KlientVSID FROM MAKlientVS WHERE MAKlientVS.KlientVSID=cv.ID) AND $clID=c.ID", $c_ );
 $f = false;
 if( true == habWas( $c_, 0, $dim_-1 ) )
   for( $i=0; $i<count($c_); $i += $dim_ )
@@ -101,11 +101,11 @@ else
 $_REQUEST["wZu"]="verlinkendEntitaetJmpFw";
 $_REQUEST["sl"]=2;
 // Die geplanten Quarts:
-$_REQUEST["sl1"]="ClientVS";
+$_REQUEST["sl1"]="KlientVS";
 // Die zugeordneten MA
-$_REQUEST["sl2"]="MAClient";
+$_REQUEST["sl2"]="MAKlient";
 
-$_REQUEST["a"]="MAClientVS";
+$_REQUEST["a"]="MAKlientVS";
 /******
 noch $_E[filter] setzen, um sichten.prj zu filtern.
  ******/
@@ -154,7 +154,7 @@ $kw_[1]=1;// hier Feld 1 rein = k.KW (= k.ID)
 $kw_[2]=2;// hier Feld 2 rein = m.ID
 $kw_[3]=3;// hier Feld 3 rein = m.(Name Vorname)
 $dim_kw =count($kw_);
-$sql="SELECT DISTINCT CONCAT(c.Name,' ', c.Vorname) AS Klient, k.KW, m.ID, CONCAT(m.Name,' ',m.Vorname) AS ma FROM MAClient mc JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (mc.ClientID=c.ID) JOIN ClientVS cv ON (cv. ClientID =mc. ClientID ) JOIN KW k ON (cv.KWID=k.ID) AND NOT EXISTS (SELECT ClientVSID FROM MAClientVS WHERE MAClientVS.ClientVSID =cv.ID) AND $clID=c.ID ORDER BY Klient, k.KW, ma";
+$sql="SELECT DISTINCT CONCAT(c.Name,' ', c.Vorname) AS Klient, k.KW, m.ID, CONCAT(m.Name,' ',m.Vorname) AS ma FROM MAKlient mc JOIN MA m ON (mc.MAID=m.ID) JOIN Klient c ON (mc.KlientID=c.ID) JOIN KlientVS cv ON (cv. KlientID =mc. KlientID ) JOIN KW k ON (cv.KWID=k.ID) AND NOT EXISTS (SELECT KlientVSID FROM MAKlientVS WHERE MAKlientVS.KlientVSID =cv.ID) AND $clID=c.ID ORDER BY Klient, k.KW, ma";
 gibFelderArray( $MySQLDb, $sql, $kw_ );
 $cKW_MA = count($kw_)/$dim_kw;
 if( true == habWas( $kw_, 0, $dim_kw-1 ) )
@@ -179,7 +179,7 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
  ***  AND (YEAR(NOW())-2000)=JahrID
  ***/
   
-  gibFelderArray( $MySQLDb, "SELECT DISTINCT CONCAT(c.Name,' ', c.Vorname) AS Klient, k.KW, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*SUM(cv.Menge)/(SELECT COUNT(*) FROM MAClient WHERE $clID=ClientID)), '%k:%i') AS unverplant FROM MAClient mc JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (mc.ClientID=c.ID) JOIN ClientVS cv ON (cv. ClientID =mc. ClientID ) JOIN KW k ON (cv.KWID=k.ID) AND NOT EXISTS (SELECT ClientVSID FROM MAClientVS WHERE MAClientVS.ClientVSID =cv.ID) AND (YEAR(NOW())-2000)=cv.JahrID AND $clID=c.ID GROUP BY KW ORDER BY Klient, k.KW", $ups_ );
+  gibFelderArray( $MySQLDb, "SELECT DISTINCT CONCAT(c.Name,' ', c.Vorname) AS Klient, k.KW, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*SUM(cv.Menge)/(SELECT COUNT(*) FROM MAKlient WHERE $clID=KlientID)), '%k:%i') AS unverplant FROM MAKlient mc JOIN MA m ON (mc.MAID=m.ID) JOIN Klient c ON (mc.KlientID=c.ID) JOIN KlientVS cv ON (cv. KlientID =mc. KlientID ) JOIN KW k ON (cv.KWID=k.ID) AND NOT EXISTS (SELECT KlientVSID FROM MAKlientVS WHERE MAKlientVS.KlientVSID =cv.ID) AND (YEAR(NOW())-2000)=cv.JahrID AND $clID=c.ID GROUP BY KW ORDER BY Klient, k.KW", $ups_ );
   /*** rowspan = MA pro KW / Anzahl KW (== Anzahl MA)     ***/
   $rowspan2 = (count($kw_)/$dim_kw)/(count($ups_)/$dim_ups); // Anzahl Betreuungen
   //$rowspan1 = count($kw_)/(count($ups_)/$dim_ups); // Anzahl Reihen
@@ -219,7 +219,7 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
     {?>
       <td align=right><?php
       $ko = gibFeld( $MySQLDb, "SELECT k. Wochenstunden FROM Kontingent k JOIN Zeitstempel z ON (z.ID=k. ZeitstempelID) WHERE z.Datum <= DATE(NOW()) AND {$kw_[$m+2]}=k.MAID ORDER BY z.Datum DESC LIMIT 1", 0 );
-      $rest = gibFeld( $MySQLDb, "SELECT SUM(cv.Menge)/4 FROM ClientVS cv JOIN MAClientVS mcv ON (cv.ID=mcv. ClientVSID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) WHERE {$kw_[$m+1]}=cv.KWID AND {$kw_[$m+2]}=mc.MAID", 0 );
+      $rest = gibFeld( $MySQLDb, "SELECT SUM(cv.Menge)/4 FROM KlientVS cv JOIN MAKlientVS mcv ON (cv.ID=mcv. KlientVSID) JOIN MAKlient mc ON (mcv. MAKlientID =mc.ID) WHERE {$kw_[$m+1]}=cv.KWID AND {$kw_[$m+2]}=mc.MAID", 0 );
       if( !$ko )
         echo "<a href=\"./mn.php?mn=3653&a=MA&navi=CFS&ID={$kw_[$m+2]}&kontingentMA_x\">Kontingent</a>";
       else
@@ -231,7 +231,7 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
       $a_[0]=0;// hier Feld 0 rein = JahrID
       $a_[1]=1;// hier Feld 1 rein = KWID
       $a_[2]=2;// hier Feld 2 rein = TagID
-      gibFelderArray( $MySQLDb, "SELECT JahrID, KWID, TagID FROM ClientVS WHERE ID=$_E[ID]", $a_ );
+      gibFelderArray( $MySQLDb, "SELECT JahrID, KWID, TagID FROM KlientVS WHERE ID=$_E[ID]", $a_ );
       if( false == habWas( $a_, 0, 2 ) )
         continue; // vertan, sprach der Hahn
       if( $ups_[$i+1] == $a_[1] ) // die zu planende KW
@@ -260,7 +260,7 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
       for( $c=0; $c<count($cv_); $c++ )
       {
         // Test, ob frueherer o. gleichzeitiger Termin in evtl. vorhandene Schicht hineinreicht
-        $sql_ = "SELECT CONCAT(c.Name,' ',c.Vorname,' ',TIME_FORMAT(v.Quart,'%H:%i'),'-',TIME_FORMAT(ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')),'%H:%i')) AS gebucht FROM MAClient mc JOIN Client c ON (mc. ClientID =c.ID) JOIN MAClientVS mcv ON (mc.ID=mcv. MAClientID) JOIN ClientVS cv ON (mcv. ClientVSID=cv.ID) JOIN VS v ON (cv.VSID=v.ID) WHERE $cv_[$c]=cv.ID AND {$kw_[$m+2]}=mc.MAID";
+        $sql_ = "SELECT CONCAT(c.Name,' ',c.Vorname,' ',TIME_FORMAT(v.Quart,'%H:%i'),'-',TIME_FORMAT(ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')),'%H:%i')) AS gebucht FROM MAKlient mc JOIN Klient c ON (mc. KlientID =c.ID) JOIN MAKlientVS mcv ON (mc.ID=mcv. MAKlientID) JOIN KlientVS cv ON (mcv. KlientVSID=cv.ID) JOIN VS v ON (cv.VSID=v.ID) WHERE $cv_[$c]=cv.ID AND {$kw_[$m+2]}=mc.MAID";
         if( isset($_REQUEST["d"]) )
 	  dEcho( $b_, $sql_ );
         $booked = gibFeld( $MySQLDb, $sql_, 0 );

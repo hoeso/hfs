@@ -1,6 +1,6 @@
 <?php
 /** Aufrufendes Skript **** Variable *****************************************
- * naviCFS.html/Client, planendClient-Symbol :
+ * naviCFS.html/Klient, planendKlient-Symbol :
  *                                           : 
  *****************************************************************************/
 if( isset($_REQUEST["d"]) )
@@ -14,11 +14,11 @@ if( isset($_REQUEST[""]) )
 */
 $_REQUEST["sl"]=2;
 // Die geplanten Quarts:
-$_REQUEST["sl1"]="ClientVS";
+$_REQUEST["sl1"]="KlientVS";
 // Die zugeordneten MA
-$_REQUEST["sl2"]="MAClient";
+$_REQUEST["sl2"]="MAKlient";
 
-$_REQUEST["a"]="MAClientVS";
+$_REQUEST["a"]="MAKlientVS";
 /******
 noch $_E[filter] setzen, um sichten.prj zu filtern.
  ******/

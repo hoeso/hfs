@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
-<title>Flex Care Suite</title>
+<title>Flex VPI Suite</title>
 <script language=javascript type='text/javascript'>
   if( top.location != self.location )
   {
@@ -36,11 +36,18 @@ echo $_E['bodyId'];
 ?>">
 <?php
 $_REQUEST['mn'] = "kw";
-$_REQUEST["a"] = "MAClientVS";
+$_REQUEST["a"] = "MAKlientVS";
 $_REQUEST["b"] = "d";
 $_REQUEST["k"] = "Y-m-d";
 $_REQUEST["navi"] = "KW";
 $_REQUEST["u"] = "KW#1";
+/***
+ *** VPI, Schritt 0:
+ *** Eingabe der fixen Stammdaten
+ ***/
+$_REQUEST['mn'] = "pe";
+$_REQUEST["navi"] = "Zahnrad";
+$_REQUEST["a"] = "Kurs";
 include("mn.php"); 
 ?>
 </body>

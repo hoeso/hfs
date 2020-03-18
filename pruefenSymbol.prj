@@ -42,13 +42,13 @@ else if( isset($_REQUEST["kopierenSchicht_x"]) )
 {
   $_E['wZu']="kopierendSchicht";
 }
-else if( isset($_REQUEST["planungClient_x"]) )
+else if( isset($_REQUEST["planungKlient_x"]) )
 {
-  $_E['wZu']="planendClient";
+  $_E['wZu']="planendKlient";
 }
-else if( isset($_REQUEST["planungClientVS_x"]) )
+else if( isset($_REQUEST["planungKlientVS_x"]) )
 {
-  $_E['wZu']="planendClientVS";
+  $_E['wZu']="planendKlientVS";
 }
 else if( isset($_REQUEST["kwWaehlendMA_x"]) )
 {

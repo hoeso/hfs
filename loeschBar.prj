@@ -2,27 +2,27 @@
 $arrRefs = array(
 
   "Beziehung"=>array(
-    "PersonClient",
+    "PersonKlient",
   ),
 
-  "Client"=>array(
-    "ClientAdresse",
-    "ClientVS",
-    "MAClient",
-    "MAClientVS",
-    "PersonClient",
+  "Klient"=>array(
+    "KlientAdresse",
+    "KlientVS",
+    "MAKlient",
+    "MAKlientVS",
+    "PersonKlient",
   ),
 
-  "ClientAdresse"=>array(
+  "KlientAdresse"=>array(
     "1-leaf",
   ),
 
-  "ClientBeziehung"=>array(
+  "KlientBeziehung"=>array(
     "1-leaf",
   ),
 
-  "ClientVS"=>array(
-    "MAClientVS",
+  "KlientVS"=>array(
+    "MAKlientVS",
   ),
 
   "Betreuung"=>array(
@@ -30,13 +30,13 @@ $arrRefs = array(
   ),
 
   "Jahr"=>array(
-    "ClientVS",
+    "KlientVS",
     "kwMailMA",
     "metaMAAbwesenheit",
   ),
 
   "KW"=>array(
-    "ClientVS",
+    "KlientVS",
     "kwMailMA",
     "metaMAAbwesenheit",
   ),
@@ -49,7 +49,7 @@ $arrRefs = array(
     "Kontingent",
     "MAAbwesenheit",
     "MAAdresse",
-    "MAClient",
+    "MAKlient",
     "kwMailMA",
   ),
 
@@ -61,38 +61,38 @@ $arrRefs = array(
     "1-leaf",
   ),
 
-  "MAClient"=>array(
-    "MAClientVS",
+  "MAKlient"=>array(
+    "MAKlientVS",
   ),
 
-  "MAClientVS"=>array(
+  "MAKlientVS"=>array(
     "1-leaf",
   ),
 
   "Person"=>array(
-    "PersonClient",
+    "PersonKlient",
   ),
 
-  "PersonClient"=>array(
+  "PersonKlient"=>array(
     "1-leaf",
   ),
 
   "Recht"=>array(
-    "PersonClient",
+    "PersonKlient",
   ),
 
   "Tag"=>array(
-    "ClientVS",
+    "KlientVS",
     "metaMAAbwesenheit",
   ),
 
   "VS"=>array(
-    "ClientVS",
-    "MAClientVS",
+    "KlientVS",
+    "MAKlientVS",
   ),
 
   "Zeitstempel"=>array(
-    "ClientAdresse",
+    "KlientAdresse",
     "Kontingent",
     "MAAdresse",
   ),

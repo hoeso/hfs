@@ -1,6 +1,6 @@
 <?php
 /** Aufrufendes Skript **** Variable *****************************************
- * naviCFS.html/Client, wohnend-Symbol :
+ * naviCFS.html/Klient, wohnend-Symbol :
  *                                           : 
  *****************************************************************************/
 if( 0 )
@@ -18,14 +18,14 @@ if( isset($_REQUEST[""]) )
   $ = $_REQUEST[""];
 */
 $_REQUEST["sl"]=1;
-// Der Client:
-$_REQUEST["sl1"]="Client";
+// Der Klient:
+$_REQUEST["sl1"]="Klient";
 
 $_REQUEST["re"]=1;
 // wohnhaft seit:
 $_REQUEST["re1"]="Zeitstempel";
 
-$_REQUEST["a"]="ClientAdresse";
+$_REQUEST["a"]="KlientAdresse";
 /******
 noch $_E[filter] setzen, um sichten.prj zu filtern.
  ******/

@@ -1,6 +1,6 @@
 <?php
 /** Aufrufendes Skript **** Variable *****************************************
- * naviCFS.html/Client, planendTag-Symbol :
+ * naviCFS.html/Klient, planendTag-Symbol :
  *                                           : 
  *****************************************************************************/
 if( 0 )
@@ -19,7 +19,7 @@ if( isset($_REQUEST[""]) )
 */
 
 $_REQUEST["sl"]=1;
-$_REQUEST["sl1"]="Client";
+$_REQUEST["sl1"]="Klient";
 if( !isset($_REQUEST["j"]) or !isset($_REQUEST["k"]) )
 {
   ?>kein Jahr oder keine KW &uuml;bergeben!?<br><?php
@@ -36,7 +36,7 @@ $SELECTRE3=$_REQUEST["sl3"];
 $_REQUEST["re4"]="VS";
 $SELECTRE4=$_REQUEST["sl2"];
 
-$_REQUEST["a"]="ClientVS";
+$_REQUEST["a"]="KlientVS";
 /******
 noch $_E[filter] setzen, um sichten.prj zu filtern.
  ******/
@@ -58,7 +58,7 @@ Anzeige auf KW beschraenken:
 if( isset($_REQUEST["k"]) ) // Kalenderwoche
   $_E['where_and']="WHERE $_REQUEST[k]=k.ID";
 /******
-Damit fortsetzen-Link auf ClientVS zeigt:
+Damit fortsetzen-Link auf KlientVS zeigt:
  ******/
 $_E['ID']=-1;
 ?>

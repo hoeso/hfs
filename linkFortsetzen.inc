@@ -12,7 +12,7 @@ if( isset($_COOKIE["dahinNachSpeichern"]) )
 }
 
 if( !isset( $dahin ) )
-  $dahin="index.php?navi=CFS";//mit Fragezeichen evtl. &-Anhaengsel eroeffnen. Ein beginnendes & wuerde zum Dateinamen gerechnet werden
+  $dahin="index.php?navi=Zahnrad";//mit Fragezeichen evtl. &-Anhaengsel eroeffnen. Ein beginnendes & wuerde zum Dateinamen gerechnet werden
 
 
 if( isset($dahin) and $dahin )
@@ -119,6 +119,7 @@ if( isset( $dahin ) )
   else
     echo "fortsetzen";
   echo"</em></A>\n";?>
+  <p>
   <form name='frm' action=""><input type="button" value="schliessen" name="schlie" onclick="self.close()"></form>
   <script language=javascript type='text/javascript'>
   <!--

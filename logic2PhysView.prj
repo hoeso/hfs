@@ -6,7 +6,7 @@
 if( isset($tableRE) && "Eingang" == $tableRE )
   $tableRE = "Portal";
 else if( isset($_E) && isset($_E['entitaet']) && "MA-Einsatz" == $_E['entitaet'] ) // funktioniert nicht
-  $_E['entitaet'] = "MAClientVS";
+  $_E['entitaet'] = "MAKlientVS";
 else if( isset($table) && "MA-Einsatz" == $table ) // funktioniert nicht
-  $table = "MAClientVS";
+  $table = "MAKlientVS";
 ?>

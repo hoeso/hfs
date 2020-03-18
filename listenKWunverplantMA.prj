@@ -1,7 +1,7 @@
 <?php
 /** Aufrufendes Skript **** Variable *****************************************
- * planendClient-Automat :
- *                    ID : Client.ID
+ * planendKlient-Automat :
+ *                    ID : Klient.ID
  *                       : 
  *****************************************************************************/
 if( isset($_REQUEST["d"]) )
@@ -10,7 +10,7 @@ if( isset($_REQUEST["d"]) )
   $b_ = $a_[count($a_)-1];
 }
 if( isset($_REQUEST["d"]) and isset($_REQUEST["ID"]) )
-  dEcho( $b_, "Client #" . $_REQUEST["ID"] );
+  dEcho( $b_, "Klient #" . $_REQUEST["ID"] );
 /* zum Kopieren:
 if( isset($_REQUEST[""]) )
   $ = $_REQUEST[""];
@@ -41,7 +41,7 @@ $kw_[1]=1;// hier Feld 1 rein = k.KW (= k.ID)
 $kw_[2]=2;// hier Feld 2 rein = m.ID
 $kw_[3]=3;// hier Feld 3 rein = m.(Name Vorname)
 $dim_kw =count($kw_);
-$sql="SELECT DISTINCT CONCAT(c.Name,' ', c.Vorname) AS Klient, k.KW, m.ID, CONCAT(m.Name,' ',m.Vorname) AS ma FROM MAClient mc JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (mc.ClientID=c.ID) JOIN ClientVS cv ON (cv. ClientID =mc. ClientID ) JOIN KW k ON (cv.KWID=k.ID) AND NOT EXISTS (SELECT ClientVSID FROM MAClientVS WHERE MAClientVS.ClientVSID =cv.ID) AND $_E[ID]=c.ID ORDER BY Klient, k.KW, ma";
+$sql="SELECT DISTINCT CONCAT(c.Name,' ', c.Vorname) AS Klient, k.KW, m.ID, CONCAT(m.Name,' ',m.Vorname) AS ma FROM MAKlient mc JOIN MA m ON (mc.MAID=m.ID) JOIN Klient c ON (mc.KlientID=c.ID) JOIN KlientVS cv ON (cv. KlientID =mc. KlientID ) JOIN KW k ON (cv.KWID=k.ID) AND NOT EXISTS (SELECT KlientVSID FROM MAKlientVS WHERE MAKlientVS.KlientVSID =cv.ID) AND $_E[ID]=c.ID ORDER BY Klient, k.KW, ma";
 gibFelderArray( $MySQLDb, $sql, $kw_ );
 $cKW_MA = count($kw_)/$dim_kw;
 if( true == habWas( $kw_, 0, $dim_kw-1 ) )
@@ -61,7 +61,7 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
   $ups_[1]=1;// hier Feld 1 rein = KW
   $ups_[2]=2;// hier Feld 2 rein = unverplante Zeit
   $dim_ups =count($ups_);
-  gibFelderArray( $MySQLDb, "SELECT DISTINCT CONCAT(c.Name,' ', c.Vorname) AS Klient, k.KW, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*SUM(cv.Menge)/(SELECT COUNT(*) FROM MAClient WHERE $_E[ID]=ClientID)), '%k:%i') AS unverplant FROM MAClient mc JOIN MA m ON (mc.MAID=m.ID) JOIN Client c ON (mc.ClientID=c.ID) JOIN ClientVS cv ON (cv. ClientID =mc. ClientID ) JOIN KW k ON (cv.KWID=k.ID) AND NOT EXISTS (SELECT ClientVSID FROM MAClientVS WHERE MAClientVS.ClientVSID =cv.ID) AND $_E[ID]=c.ID GROUP BY KW ORDER BY Klient, k.KW", $ups_ );
+  gibFelderArray( $MySQLDb, "SELECT DISTINCT CONCAT(c.Name,' ', c.Vorname) AS Klient, k.KW, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*SUM(cv.Menge)/(SELECT COUNT(*) FROM MAKlient WHERE $_E[ID]=KlientID)), '%k:%i') AS unverplant FROM MAKlient mc JOIN MA m ON (mc.MAID=m.ID) JOIN Klient c ON (mc.KlientID=c.ID) JOIN KlientVS cv ON (cv. KlientID =mc. KlientID ) JOIN KW k ON (cv.KWID=k.ID) AND NOT EXISTS (SELECT KlientVSID FROM MAKlientVS WHERE MAKlientVS.KlientVSID =cv.ID) AND $_E[ID]=c.ID GROUP BY KW ORDER BY Klient, k.KW", $ups_ );
   /*** rowspan = MA pro KW / Anzahl KW (== Anzahl MA)     ***/
   $rowspan2 = (count($kw_)/$dim_kw)/(count($ups_)/$dim_ups); // Anzahl Betreuungen
   //$rowspan1 = count($kw_)/(count($ups_)/$dim_ups); // Anzahl Reihen
@@ -100,7 +100,7 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
     {?>
       <td align=right><?php
       $ko = gibFeld( $MySQLDb, "SELECT k. Wochenstunden FROM Kontingent k JOIN Zeitstempel z ON (z.ID=k. ZeitstempelID) WHERE z.Datum <= DATE(NOW()) AND {$kw_[$m+2]}=k.MAID ORDER BY z.Datum DESC LIMIT 1", 0 );
-      $rest = gibFeld( $MySQLDb, "SELECT SUM(cv.Menge)/4 FROM ClientVS cv JOIN MAClientVS mcv ON (cv.ID=mcv. ClientVSID) JOIN MAClient mc ON (mcv. MAClientID =mc.ID) WHERE {$kw_[$m+1]}=cv.KWID AND {$kw_[$m+2]}=mc.MAID", 0 );
+      $rest = gibFeld( $MySQLDb, "SELECT SUM(cv.Menge)/4 FROM KlientVS cv JOIN MAKlientVS mcv ON (cv.ID=mcv. KlientVSID) JOIN MAKlient mc ON (mcv. MAKlientID =mc.ID) WHERE {$kw_[$m+1]}=cv.KWID AND {$kw_[$m+2]}=mc.MAID", 0 );
       if( !$ko )
         echo "<a href=\"./mn.php?mn=3653&a=MA&navi=CFS&ID={$kw_[$m+2]}&kontingentMA_x\">Kontingent</a>";
       else
@@ -128,11 +128,11 @@ if( true == habWas( $kw_, 0, $dim_kw-1 ) )
 $_REQUEST["wZu"]="verlinkendEntitaetJmpFw";
 $_REQUEST["sl"]=2;
 // Die geplanten Quarts:
-$_REQUEST["sl1"]="ClientVS";
+$_REQUEST["sl1"]="KlientVS";
 // Die zugeordneten MA
-$_REQUEST["sl2"]="MAClient";
+$_REQUEST["sl2"]="MAKlient";
 
-$_REQUEST["a"]="MAClientVS";
+$_REQUEST["a"]="MAKlientVS";
 /******
 noch $_E[filter] setzen, um sichten.prj zu filtern.
  ******/

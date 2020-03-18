@@ -1,18 +1,14 @@
 <?php
 include ("fehler.inc");
 
+$versionPHP = explode( ".", phpversion() ); 
+if( "5" < $versionPHP[0] )
+  include ("mysql_.inc");
+
 // Verbinden zum MySQL-Server
 function verbindenMitMySQLServer( &$lkid, $host, $user, $pw )
 {
   $lkid = mysql_connect( $host, $user, $pw );
-  if( !$lkid )
-  {?>
-    <h4>Datenbank ist nicht erreichbar?</h4>
-    <ol>
-      <li>Ist das Paket <em>php5-mysql</em> installiert?
-    </ol>
-    <?php
-  }
   if( isset( $debug ) && $debug )
   {
     if( !$lkid )

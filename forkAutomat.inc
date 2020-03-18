@@ -793,16 +793,16 @@ $forkAutomat = array(
 		"mn.prj",
 		"automatReloaded.inc",
 	),
-	"planendClient"=>array( // CFS
-		"eiZuPlanendClient.prj",
+	"planendKlient"=>array( // CFS
+		"eiZuPlanendKlient.prj",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"listenKWunverplantMA.prj",
 		"mn.prj",
 		"automatReloaded.inc",
 	),
-	"planendClientVS"=>array( // CFS
-		"eiZuPlanendClientVS.prj",
+	"planendKlientVS"=>array( // CFS
+		"eiZuPlanendKlientVS.prj",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"MAAbwesenheit.php",

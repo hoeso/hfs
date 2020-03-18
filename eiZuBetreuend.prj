@@ -1,6 +1,6 @@
 <?php
 /** Aufrufendes Skript **** Variable *****************************************
- * naviCFS.html/Mitarbeiter*in, Client-Symbol :
+ * naviCFS.html/Mitarbeiter*in, Klient-Symbol :
  *                                           : 
  *****************************************************************************/
 if( 0 )
@@ -18,12 +18,12 @@ if( isset($_REQUEST[""]) )
   $ = $_REQUEST[""];
 */
 $_REQUEST["sl"]=2;
-// Alle Clienten:
-$_REQUEST["sl1"]="Client";
+// Alle Klienten:
+$_REQUEST["sl1"]="Klient";
 // Der MA
 $_REQUEST["sl2"]="MA";
 
-$_REQUEST["a"]="MAClient";
+$_REQUEST["a"]="MAKlient";
 /******
 noch $_E[filter] setzen, um sichten.prj zu filtern.
  ******/

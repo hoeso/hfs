@@ -8,14 +8,14 @@ $sqlAbbrev = array(
 /* zum Kopieren:
   ""=>"",
 */
-  "ClientAdresse"=>"ca",
-  "ClientVS"=>"cv",
+  "KlientAdresse"=>"ca",
+  "KlientVS"=>"cv",
   "Kontingent"=>"k",
   "MAAbwesenheit"=>"a",
-  "MAClient"=>"mc",
-  "MAClientVS"=>"mcv",
+  "MAKlient"=>"mc",
+  "MAKlientVS"=>"mcv",
   "Person"=>"p",
-  "PersonClient"=>"pc",
+  "PersonKlient"=>"pc",
   "EDV"=>"EDV",
   "Region"=>"r",
 );

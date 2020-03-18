@@ -6,7 +6,7 @@
 if( isset($_REQUEST['navi']) )
   $_E['navi'] = $_REQUEST['navi'];
 else if( !isset($_E['navi']) )
-  $_E['navi'] = "CFS";
+  $_E['navi'] = "Zahnrad";
 $automat = array(
 /* zum Kopieren
 	""=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
@@ -346,7 +346,7 @@ $automat = array(
 		"nachInsertERM.prj",
 		"setzenFortsetzung.prj",
 		"pokeFortsetzung.prj",
-		"mail2MAoClient.prj",
+		"mail2MAoKlient.prj",
 		"mailVersenden.prj",
 		"linkFortsetzen.inc",
 		//"nachSpeichernAnzeigen.inc",

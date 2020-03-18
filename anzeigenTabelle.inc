@@ -61,7 +61,7 @@ if( isset($_REQUEST["d"]) )
         $iFarbReihe=$elem;
         break;
       }
-      else if( ($k == "MAClientVS" or $k == "ClientVS") and isset($_REQUEST["$k"]) )
+      else if( ($k == "MAKlientVS" or $k == "KlientVS") and isset($_REQUEST["$k"]) )
       { // dirty hack, allerdings markiert er die gewaehlte Tag/Uhrzeit-Zeile aus der KW-Uebersicht
         $iFarbReihe=$elem;
         break;

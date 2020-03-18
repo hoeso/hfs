@@ -5,14 +5,14 @@ $arrFK = array(
 		"",// ich bin ein Fremdschluessel
 	),
 */
-	"ClientVS"=>array(
+	"KlientVS"=>array(
 		"VS",
 	),
-	"MAClient"=>array(
+	"MAKlient"=>array(
 		"MA",
 	),
-	"MAClientVS"=>array(
-		"MAClient",
+	"MAKlientVS"=>array(
+		"MAKlient",
 	),
 );
 ?>

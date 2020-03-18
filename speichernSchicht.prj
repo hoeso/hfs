@@ -9,7 +9,7 @@ if( isset($_REQUEST["d"]) )
 foreach( $_REQUEST['k'] as $i=>$t )
 {
   /*** 1. Termin kopieren               ***/
-  $sql = "INSERT IGNORE INTO ClientVS SELECT null, ClientID, JahrID, $t, TagID, VSID, Menge FROM ClientVS WHERE $_REQUEST[c]=ID";
+  $sql = "INSERT IGNORE INTO KlientVS SELECT null, KlientID, JahrID, $t, TagID, VSID, Menge FROM KlientVS WHERE $_REQUEST[c]=ID";
   if( isset($_REQUEST["d"]) )
     dEcho( $b_, $sql );
   $result = mysql_db_query( $MySQLDb, $sql );
@@ -20,13 +20,13 @@ foreach( $_REQUEST['k'] as $i=>$t )
     include("forkZu.inc");
   }
   /*** 2. Betreuer*innen verknuepfen   *****/
-  $sql = "SELECT LAST_INSERT_ID() FROM ClientVS LIMIT 1";
+  $sql = "SELECT LAST_INSERT_ID() FROM KlientVS LIMIT 1";
   $result = mysql_db_query( $MySQLDb, $sql );
   $a__ = mysql_fetch_row( $result );
   if( !$a__[0] )
     continue; // Termin offenbar schon belegt
   mysql_free_result( $result );
-  $sql = "INSERT INTO MAClientVS VALUES ( null, $_REQUEST[e], $a__[0] )";
+  $sql = "INSERT INTO MAKlientVS VALUES ( null, $_REQUEST[e], $a__[0] )";
   if( isset($_REQUEST["d"]) )
     dEcho( $b_, $sql );
   $result = mysql_db_query( $MySQLDb, $sql );

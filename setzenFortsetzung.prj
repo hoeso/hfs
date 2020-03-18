@@ -12,34 +12,36 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   ""=>"0",
  */
   "Angebot"=>"0",
-  "Client"=>"0",
-  "ClientAdresse"=>"0",
-  "ClientVS"=>"0",
+  "Behoerde"=>"0",
+  "Behoerde"=>"0",
+  "Klient"=>"0",
+  "KlientAdresse"=>"0",
+  "KlientVS"=>"0",
+  "Kurs"=>"0",
   "EDVAngebot"=>"0",
-  "MA"=>"0",
-  "MAClient"=>"0",
-  "MAClientVS"=>"0",
+  "Trainer"=>"0",
+  "MAKlient"=>"0",
+  "MAKlientVS"=>"0",
   "MA-Einsatz"=>"0",
-  "Person"=>"0",
-  "PersonClient"=>"0",
+  "PersonKlient"=>"0",
   "Rolle"=>"0",
   );
   $_eOverlay = array(
-  "ClientAdresse"=>"Client",
+  "KlientAdresse"=>"Klient",
   
   "Kontingent"=>"MA",
   "MA-Einsatz"=>"MA",
   "MAAbwesenheit"=>"MA",
   "MAAdresse"=>"MA",
-  "MAClient"=>"MA",
-  //"MAClientVS"=>"Client",
-  "PersonClient"=>"Client",
+  "MAKlient"=>"MA",
+  //"MAKlientVS"=>"Klient",
+  "PersonKlient"=>"Klient",
   );
   /*** kontext-abhaengige Overlays:
    ***/
   if( isset($_REQUEST["k"]) )
     if( 'c' == $_REQUEST["k"] )
-      $_eOverlay['ClientVS']="Client";
+      $_eOverlay['KlientVS']="Klient";
 
   if( !isset($AND) )
     $AND="";
@@ -48,11 +50,13 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   ""=>"",
 */
   "Angebot"=>"./mn.php?mn=1466&a=EDVAngebot&x=1",
-  "Client"=>"./mn.php?mn=pe&a=Client",
-  "ClientVS"=>"./mn.php?mn=sl_pe&a=ClientVS&sl=1&sl1=Client&navi=Plan&re=4&re1=Jahr&re2=KW&re3=Tag&re4=VS",
+  "Behoerde"=>"mn.php?mn=pe&a=Behoerde",
+  "Behoerde"=>"mn.php?mn=pe&a=Behoerde",
+  "Klient"=>"./mn.php?mn=pe&a=Klient",
+  "KlientVS"=>"./mn.php?mn=sl_pe&a=KlientVS&sl=1&sl1=Klient&navi=Plan&re=4&re1=Jahr&re2=KW&re3=Tag&re4=VS",
   "EDVAngebot"=>"./mn.php?mn=1466&a=EDVAngebot&x=1",
-  "MA"=>"./mn.php?mn=pe&a=MA",
-  "Person"=>"mn.php?mn=pe&a=Person",
+  "Trainer"=>"./mn.php?mn=pe&a=Trainer",
+  "Kurs"=>"mn.php?mn=pe&a=Kurs",
   "Taetigkeit"=>"./mn.php?mn=pe&a=Taetigkeit&x=1",
   );
 if( isset($_REQUEST['d']) )

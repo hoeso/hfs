@@ -4,29 +4,29 @@ if( isset($_REQUEST["d"]) )
   $a_ = explode( "/", __file__ );
   $b_ = $a_[count($a_)-1];
 }
-$arr[0]=0;// hier Feld 0 rein = MAClientVS.ID : verknuepfte Betreuung
-$arr[1]=1;// hier Feld 1 rein = ClientID
+$arr[0]=0;// hier Feld 0 rein = MAKlientVS.ID : verknuepfte Betreuung
+$arr[1]=1;// hier Feld 1 rein = KlientID
 $arr[2]=2;// hier Feld 2 rein = Ziel-Jahr
 $arr[3]=3;// hier Feld 3 rein = Ziel-KW
 $arr[4]=4;// hier Feld 4 rein = TagID
 $arr[5]=5;// hier Feld 5 rein = VSID
 $arr[6]=6;// hier Feld 6 rein = Menge
 $dim=count($arr);
-$sql = "SELECT mcv.MAClientID, ClientID, $_REQUEST[SELECTSL3], $_REQUEST[SELECTSL4], TagID, VSID, Menge FROM ClientVS cv JOIN MAClientVS mcv ON (cv.ID=mcv. ClientVSID) WHERE $_REQUEST[SELECTSL1]=JahrID AND $_REQUEST[SELECTSL2]=KWID";
+$sql = "SELECT mcv.MAKlientID, KlientID, $_REQUEST[SELECTSL3], $_REQUEST[SELECTSL4], TagID, VSID, Menge FROM KlientVS cv JOIN MAKlientVS mcv ON (cv.ID=mcv. KlientVSID) WHERE $_REQUEST[SELECTSL1]=JahrID AND $_REQUEST[SELECTSL2]=KWID";
 if( isset($_REQUEST["d"]) )
   dEcho( $b_, $sql );
 gibFelderArray( $MySQLDb, $sql, $arr );
 if( false == habWas( $arr, 0, 6 ) )
 {
   mysql_close( $lkid );
-  echo "kein Zugriff auf <b>ClientVS</b>";
+  echo "kein Zugriff auf <b>KlientVS</b>";
   $wZu="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
 for( $i=0; $i<count($arr); $i += $dim )
 {
   /*** 1. Termine kopieren               ***/
-  $sql = "INSERT IGNORE INTO ClientVS VALUES ( null, {$arr[$i+1]}, {$arr[$i+2]}, {$arr[$i+3]}, {$arr[$i+4]}, {$arr[$i+5]}, {$arr[$i+6]} )";
+  $sql = "INSERT IGNORE INTO KlientVS VALUES ( null, {$arr[$i+1]}, {$arr[$i+2]}, {$arr[$i+3]}, {$arr[$i+4]}, {$arr[$i+5]}, {$arr[$i+6]} )";
   if( isset($_REQUEST["d"]) )
     dEcho( $b_, $sql );
   $result = mysql_db_query( $MySQLDb, $sql );
@@ -37,13 +37,13 @@ for( $i=0; $i<count($arr); $i += $dim )
     include("forkZu.inc");
   }
   /*** 2. Betreuer*innen kopieren      *****/
-  $sql = "SELECT LAST_INSERT_ID() FROM ClientVS";
+  $sql = "SELECT LAST_INSERT_ID() FROM KlientVS";
   $result = mysql_db_query( $MySQLDb, $sql );
   $a__ = mysql_fetch_row( $result );
   if( !$a__[0] )
     continue; // Termin offenbar schon belegt
   mysql_free_result( $result );
-  $sql = "INSERT INTO MAClientVS VALUES ( null, $arr[$i], $a__[0] )";
+  $sql = "INSERT INTO MAKlientVS VALUES ( null, $arr[$i], $a__[0] )";
   if( isset($_REQUEST["d"]) )
     dEcho( $b_, $sql );
   $result = mysql_db_query( $MySQLDb, $sql );

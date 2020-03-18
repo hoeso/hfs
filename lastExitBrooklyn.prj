@@ -14,20 +14,20 @@ if( isset($_REQUEST["d"]) )
 }
 if( isset($_REQUEST['d']) )
   hiddenFeldSchreiben( "d", 1 );
-if( $table=="Client" && $recID )
+if( $table=="Klient" && $recID )
 {
   $f = false;
   if( isset($_REQUEST['navi']) && 'Stammblatt' == $_REQUEST['navi'] )
     $f = true; // Stammblatt
   // wenn noch nichts hinterlegt ist, werden diese Icons in Graustufen ausgegeben
   $sw = 'sw-';
-  /*if( false == $f && gibFeld( $MySQLDb, "SELECT ID FROM ClientVS WHERE ClientID=$recID LIMIT 1", 0 ) )
+  /*if( false == $f && gibFeld( $MySQLDb, "SELECT ID FROM KlientVS WHERE KlientID=$recID LIMIT 1", 0 ) )
   {?>
-    <INPUT TYPE=image src='images/threepeople-18px.png' NAME='planungClient' title='Einsatzplan'>
+    <INPUT TYPE=image src='images/threepeople-18px.png' NAME='planungKlient' title='Einsatzplan'>
   <?php
   }*/
   $img = 'empty-calendar-18px.png';
-  if( !gibFeld( $MySQLDb, "SELECT ClientID FROM ClientVS WHERE ClientID=$recID LIMIT 1", 0 ) )
+  if( !gibFeld( $MySQLDb, "SELECT KlientID FROM KlientVS WHERE KlientID=$recID LIMIT 1", 0 ) )
   {
     $img = $sw . $img;
   }
@@ -37,7 +37,7 @@ if( $table=="Client" && $recID )
     <?php
   }
   $img = 'Anonymous-my-house-18px.png';
-  if( !gibFeld( $MySQLDb, "SELECT ID FROM ClientAdresse WHERE ClientID=$recID LIMIT 1", 0 ) )
+  if( !gibFeld( $MySQLDb, "SELECT ID FROM KlientAdresse WHERE KlientID=$recID LIMIT 1", 0 ) )
   {
     $img = $sw . $img;
   }
@@ -47,7 +47,7 @@ if( $table=="Client" && $recID )
     <?php
   }
   $img = '1400527615-18px.png';
-  if( !gibFeld( $MySQLDb, "SELECT ClientID FROM PersonClient WHERE ClientID=$recID LIMIT 1", 0 ) )
+  if( !gibFeld( $MySQLDb, "SELECT KlientID FROM PersonKlient WHERE KlientID=$recID LIMIT 1", 0 ) )
   {
     $img = $sw . $img;
   }
@@ -57,16 +57,16 @@ if( $table=="Client" && $recID )
   <?php
   }
 }
-else if( $table=="ClientVS" && $recID )
+else if( $table=="KlientVS" && $recID )
 {
   // wenn noch nichts hinterlegt ist, werden diese Icons in Graustufen ausgegeben
   $sw = 'sw-';
   $img = 'threepeople-18px.png';
-  $mcvID=gibFeld( $MySQLDb, "SELECT ID FROM MAClientVS WHERE $recID=ClientVSID", 0 );
+  $mcvID=gibFeld( $MySQLDb, "SELECT ID FROM MAKlientVS WHERE $recID=KlientVSID", 0 );
   if( !$mcvID )
   {
     $img = $sw . $img;
-    ?><INPUT TYPE=image src='images/<?php echo $img;?>' NAME='planungClientVS' title='MA-Einsatz'><?php
+    ?><INPUT TYPE=image src='images/<?php echo $img;?>' NAME='planungKlientVS' title='MA-Einsatz'><?php
   }
   else
   {
@@ -111,7 +111,7 @@ else if( $table=="MA" && $recID )
   $sw = 'sw-';
   if( /*gibFeld( $MySQLDb, "SELECT ID FROM Kontingent WHERE MAID=$recID LIMIT 1", 0 ) and*/ // es wird auch ohne Kontigent geplant
       false == $f and
-      gibFeld( $MySQLDb, "SELECT mcv.ID FROM MAClientVS mcv JOIN MAClient mc ON (mcv.MAClientID=mc.ID) WHERE mc.MAID=$recID LIMIT 1", 0 ) )
+      gibFeld( $MySQLDb, "SELECT mcv.ID FROM MAKlientVS mcv JOIN MAKlient mc ON (mcv.MAKlientID=mc.ID) WHERE mc.MAID=$recID LIMIT 1", 0 ) )
   {?>
     <INPUT TYPE=image src='images/empty-calendar-18px.png' NAME='planungMA' title='Einsatz tauschen'>
     <INPUT TYPE=image src='images/kalender-18px.png' NAME='kwWaehlendMA' title='Wochen&uuml;bersicht'><?php
@@ -140,11 +140,11 @@ else if( $table=="MA" && $recID )
   <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='kontingentMA' title='<?php echo $titel;?>'>
   <?php
   $img = 'grandma-penguin-18px.png';
-  if( !gibFeld( $MySQLDb, "SELECT MAID FROM MAClient WHERE MAID=$recID LIMIT 1", 0 ) )
+  if( !gibFeld( $MySQLDb, "SELECT MAID FROM MAKlient WHERE MAID=$recID LIMIT 1", 0 ) )
   {
     $img = $sw . $img;
   }?>
-  <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='client' title='Client&#042;innen'>
+  <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='client' title='Klient&#042;innen'>
   <?php
   $img = 'Anonymous-my-house-18px.png';
   if( !gibFeld( $MySQLDb, "SELECT ID FROM MAAdresse WHERE MAID=$recID LIMIT 1", 0 ) )
