@@ -156,7 +156,7 @@ if( isset($arrEM) )
     unset($zeilen);
     auslesenEMKette( $MySQLDb, $arrEM[$i], $tabKopf, $Mid, $zeilen, $dummy, $dummy );
     if( count($tabKopf) )
-    {
+    {//$debug=1;
       if( $debug )
       {
         $anz = count($Mid);
@@ -170,7 +170,7 @@ if( isset($arrEM) )
           for( $z=0; $z < count($tabKopf); $z++, $y++ )
             echo "zeilen[$y] = $zeilen[$y], ";
           echo "<br>";
-        }
+        }//unset($debug);
     }
     ergebnisListeMitID( $labelEM[$i], $arrEM[$i], count($tabKopf), $Mid, $zeilen );
     $anzListeneintrag += count($Mid);

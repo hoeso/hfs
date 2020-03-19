@@ -47,7 +47,7 @@ $_REQUEST["u"] = "KW#1";
  ***/
 $_REQUEST['mn'] = "pe";
 $_REQUEST["navi"] = "Zahnrad";
-$_REQUEST["a"] = "Kurs";
+$_REQUEST["a"] = "Kursart";
 include("mn.php"); 
 ?>
 </body>
