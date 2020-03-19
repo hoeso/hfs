@@ -19,17 +19,13 @@ body {
 	line-height: 1.923em;
 }
 
-a {
-	font-family: Verdana,Arial,Helvetica,sans-serif;
-	font-size: small;
-}
 /* A, Seite 92 */
 /* overflow: visible sorgt dafür, dass der horizontale Scrollbalken bis zum ***
  * rechten Rand schieben kann, also nichts abgeschnitten wird               ***/
 #hauptteil { height: 1%; overflow: visible; }
 /* width + margin sollen nicht groesser als 100% sein, ansonsten horiz. Scrolling */
 #hauptteil, #kopfteil, #fussteil { width: 96%; margin: 2%; }
-#haupttext { float: right; width: 87%; }
+#haupttext { float: right; width: 80%; }
 #seitenleiste { margin-right: 1%; }
 
 /* basis elemente */
@@ -54,6 +50,13 @@ tfoot th[rowspan]:first-child {
 /* navigation A, Seite 123     */
 ul { margin-left: 0.5em; padding-left:0; }
 li { /*display:inline;*/ list-style-type: none; }
+
+/* https://www.w3schools.com/css/tryit.asp?filename=trycss_link_advanced */
+a { text-decoration: none; }
+/*a:visited { text-decoration: none; }*/
+a:hover, a:active {
+    background-color: lightblue;
+}
 
 /* A, Seite 223 */
 h1 { font-size: xx-large; }
@@ -92,3 +95,30 @@ label, form li span { float: left; width: 9em; padding-right: 1em; }
 /* Mehrspaltige Anordnung von Paaren aus label- und Formularelementen */
 //form { height: 1%; overflow: auto; }
 //form ul { float: left; width: 75%; margin-right: 5%; }
+
+
+
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
+}
+/*
+a:link, a:visited {
+    background-color: lightblue;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+*/
+
+/* https://www.mediaevent.de/css/background.html */
+.animebox { 
+	 background-color: honeydew;
+	  transition:background 1s 
+  }

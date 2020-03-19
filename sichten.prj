@@ -135,6 +135,8 @@ $Select=array
 
   "EDVAngebot"=>"SELECT ID, Projekt, ID AS Nr, Beschreibung, Prioritaet, akzeptiert, akzeptiertAm, installiertAm, anzeigeSTD FROM EDV",
 
+  "Ort"=>"SELECT o.ID, b.Bundesland, o.Kursort, CONCAT(o.PLZ,' ',o.Ortschaft,', ',o.Strasse) AS Adresse FROM Ort o JOIN Bundesland b ON o. BundeslandID=b.ID",
+  
   "Stundensatz"=>"SELECT ss.ID, Stundensatz, Datum FROM Stundensatz ss JOIN Zeitstempel z ON (ss.ZeitstempelID=z.ID)",
 
   "MitarbeiterFunktion"=>"SELECT mt.ID, CONCAT(m. Name,' ',m. Vorname) AS MA, m. PersonalNr, f. Funktion FROM MitarbeiterFunktion mt JOIN Mitarbeiter m ON (mt. MitarbeiterID=m.ID) JOIN Funktion f ON (mt. FunktionID=f.ID)",
@@ -169,6 +171,7 @@ $OrderBy=array
   "MAKlient"=>" ORDER BY c.Name, c.Vorname, c.geborenAm",
   "MAKlientVS"=>" ORDER BY c.Name, c.Vorname, c.geborenAm, j.ID, k.ID, t.ID, v.Quart",
   "MitarbeiterFunktion"=>" ORDER BY Name, Vorname, PersonalNr, Funktion",
+  "Ort"=>" ORDER BY Bundesland, Kursort",
   "Stundensatz"=>" ORDER BY Datum DESC",
 );
 

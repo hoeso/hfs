@@ -24,6 +24,7 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "MAKlient"=>"0",
   "MAKlientVS"=>"0",
   "MA-Einsatz"=>"0",
+  "Ort"=>"0",
   "PersonKlient"=>"0",
   "Rolle"=>"0",
   );
@@ -59,6 +60,7 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "EDVAngebot"=>"./mn.php?mn=1466&a=EDVAngebot&x=1",
   "Trainer"=>"./mn.php?mn=pe&a=Trainer",
   "Kurs"=>"mn.php?mn=pe&a=Kurs",
+  "Ort"=>"mn.php?mn=pe_pe&a=Ort&re=1&re1=Bundesland",
   "Taetigkeit"=>"./mn.php?mn=pe&a=Taetigkeit&x=1",
   );
 if( isset($_REQUEST['d']) )
