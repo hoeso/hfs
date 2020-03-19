@@ -150,7 +150,8 @@ function mysql_field_flags( $result, $i )
     case MYSQLI_TYPE_VAR_STRING:
     return "string";
     case MYSQLI_TYPE_STRING:
-      if( 256 == $finfo->flags || 257 == $finfo->flags )
+      //if( 256 == $finfo->flags || 257 == $finfo->flags )
+      if( ($finfo->flags | 256) || ($finfo->flags | 257) )
         return "enum";
       else
         return "string";
