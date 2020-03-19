@@ -12,6 +12,7 @@ $arrRefs = array(
 
   "Bundesland"=>array(
     "BundeslandTrainer",
+    "Ort",
   ),
 
   "BundeslandTrainer"=>array(
@@ -23,7 +24,7 @@ $arrRefs = array(
   ),
 
   "Dauer"=>array(
-    "1-leaf",
+    "Kurs",
   ),
 
   "Engagement"=>array(
@@ -69,13 +70,17 @@ $arrRefs = array(
   ),
 
   "Kurs"=>array(
-    "Dauer",
-    "KlientKurs",
-    "KursTrainer",
+    "1-leaf",
   ),
 
   "KursTrainer"=>array(
     "1-leaf",
+  ),
+
+  "Kursart"=>array(
+    "Dauer",
+    "KlientKurs",
+    "KursTrainer",
   ),
 
   "MA"=>array(
@@ -99,6 +104,10 @@ $arrRefs = array(
 
   "MAKlientVS"=>array(
     "1-leaf",
+  ),
+
+  "Ort"=>array(
+    "Kurs",
   ),
 
   "Person"=>array(
