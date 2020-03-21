@@ -12,8 +12,12 @@ if( isset($_COOKIE["dahinNachSpeichern"]) )
 }
 
 if( !isset( $dahin ) )
-  $dahin="index.php?navi=Zahnrad";//mit Fragezeichen evtl. &-Anhaengsel eroeffnen. Ein beginnendes & wuerde zum Dateinamen gerechnet werden
-
+{
+  $navi="Zahnrad";
+  if( isset($_REQUEST['navi']) )
+    $navi = $_REQUEST['navi'];
+  $dahin="index.php?navi=$navi";//mit Fragezeichen evtl. &-Anhaengsel eroeffnen. Ein beginnendes & wuerde zum Dateinamen gerechnet werden
+}
 
 if( isset($dahin) and $dahin )
 {

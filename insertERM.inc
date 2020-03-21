@@ -249,11 +249,16 @@ if( !$nTreffer )
     reagierenAufSQLFehler( $lkid, $sql, $PKViolation );
     if( $PKViolation )
     {
+      ?>UNIQUE KEY VIOLATION<p><?php
     }
     if( 0 == $autoID )
     {
       $_E['wZu']="anbietendKnopfZurueck";
       include("forkZu.inc");
+    }
+    else
+    {
+      ?>autoID ist versorgt.<br><?php
     }
     if( $table == $globalTab )
       $globalID=$autoID;

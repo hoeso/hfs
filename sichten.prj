@@ -11,9 +11,8 @@ $enumListe=array
 (
 /*** Achtung! enum-Felder, welche in CONCAT Anweisungen stehen, werden nicht
 mitgezaehlt! ***/
-  "Dauer_1"=>">6,1,>1,>2,>3,>4,>5,>7,>8,>9,>10,>11,>12,>13,>14,>15,>16,>17,>18,>19,>20",
-  "Dauer_2"=>"4,1,2,3,5",
-  "Dauer_3"=>"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+  "Dauer_1"=>"4,1,2,3,5",
+  "Dauer_2"=>"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
 
   "Klient_1"=>"weiblich,maennlich", // Geschlecht
   "Klient_2"=>"ja,nein", // Planen
@@ -45,7 +44,7 @@ mitgezaehlt! ***/
 
 $enumOVL=array
 ( // Overlay: angezeigt werden diese Werte, gespeichert wird der Wert aus Vektor enumListe
-  "Dauer_3"=>"0:15,0:30,0:45,1:00,1:15,1:30,1:45,2:00,2:15,2:30,2:45,3:00,3:15,3:30,3:45,4:00",
+  "Dauer_2"=>"0:15,0:30,0:45,1:00,1:15,1:30,1:45,2:00,2:15,2:30,2:45,3:00,3:15,3:30,3:45,4:00",
   "KlientVS"=>"2.00,1.00,0.50,0.25,0.45,1.25,1.50,1.75,2.25,2.50,2.75,3.00,3.25,3.50,3.75,4.00,17,18,19,5.00,21,22,23,6.00,25,26,27,7.00,29,30,31,8.00,33,34,35,9.00,37,38,39,10.00,41,42,43,11.00,45,46,47,12.00,49,50,51,13.00,53,54,55,14.00,57,58,59,15.00,61,62,63,16.00,65,66,67,17.00,69,70,71,18.00,73,74,75,19.00,77,78,79,20.00,81,82,83,21.00,85,86,87,22.00,89,90,91,23.00,93,94,95,24.00",
 );
 
@@ -99,7 +98,7 @@ $Select=array
 /* zum Kopieren:
   ""=>"",
 */
-  "Dauer"=>"SELECT d.ID, ka.Kursart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*d.Dauer), '%H:%i') AS Dauer, d.Teilnehmer, d.Termine FROM Dauer d JOIN Kursart ka ON d.KursartID=ka.ID",
+  "Dauer"=>"SELECT d.ID, ka.Kursart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*d.Dauer), '%H:%i') AS Dauer, d.Termine FROM Dauer d JOIN Kursart ka ON d.KursartID=ka.ID",
   
   "KlientAdresse"=>"SELECT ca.ID, c.Name, c.Vorname, c.geborenAm, z.Datum, ca.Telefon, ca.PLZ, ca.Ort, ca.Strasse FROM KlientAdresse ca JOIN Klient c ON (c.ID=ca.KlientID) JOIN Zeitstempel z ON (ca.ZeitstempelID=z.ID)",
 
@@ -109,7 +108,9 @@ $Select=array
   
   "Kontingent"=>"SELECT k.ID, m.Name, m.Vorname, k.Wochenstunden, z.Datum FROM Kontingent k JOIN MA m ON (m.ID=k.MAID) JOIN Zeitstempel z ON (k.ZeitstempelID=z.ID)",
 
-  "Kurs"=>"SELECT k.ID, CONCAT(b. Bundesland,' ',o.Kursort,' in ',CONCAT(o.Ortschaft,' ',o.Strasse)) AS Kursort, ka.Kursart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*d.Dauer), '%H:%i') AS Dauer, d.Teilnehmer, d.Termine FROM Kurs k JOIN Ort o ON k.OrtID=o.ID JOIN Dauer d ON k.DauerID=d.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Kursart ka ON d. KursartID=ka.ID",
+  "Kurs"=>"SELECT k.ID, CONCAT(b. Bundesland,' ',o.Kursort,' in ',CONCAT(o.Ortschaft,' ',o.Strasse)) AS Kursort, ka.Kursart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*d.Dauer), '%H:%i') AS Dauer, d.Termine FROM Kurs k JOIN Ort o ON k.OrtID=o.ID JOIN Dauer d ON k.DauerID=d.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Kursart ka ON d. KursartID=ka.ID",
+  
+  "KursTrainer"=>"SELECT kt.ID, CONCAT(t.Name,' ',t.Vorname) AS Trainer, ka.Kursart FROM KursTrainer kt JOIN Kursart ka ON kt.KursartID=ka.ID JOIN Trainer t ON kt.TrainerID=t.ID",
   
   "MA-Einsatz"=>"SELECT mcv.ID, m.Name, m.Vorname, c.Name, c.Vorname, c.geborenAm, CONCAT(IF(YEAR(NOW())=j.Jahr,'',DATE_FORMAT(j.Jahr,'%Y-')),k.KW) AS KW, t.Tag, TIME_FORMAT(v.Quart,'%H:%i') AS Start, ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')) AS Ende, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge),'%H:%i') AS Dauer FROM MAKlientVS mcv JOIN MAKlient mc ON (mcv.MAKlientID=mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN KlientVS cv ON (mcv.KlientVSID=cv.ID) JOIN Klient c ON (cv.KlientID=c.ID) JOIN Jahr j on (cv.JahrID=j.ID) JOIN KW k ON (cv.KWID=k.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID) WHERE YEAR(NOW())=j.Jahr",
   
@@ -162,10 +163,11 @@ $OrderBy=array
   ""=>"",
 */
   "Angebot"=>" ORDER BY Position",
-  "Dauer"=>" ORDER BY ka.Kursart, d.Teilnehmer DESC",
+  "Dauer"=>" ORDER BY ka.Kursart, d.Termine DESC",
   "KlientAdresse"=>" ORDER BY c.Name, c.Vorname, c.geborenAm, z.Datum DESC",
   "KlientVS"=>" ORDER BY c.Name, c.Vorname, c.geborenAm, j.ID, k.ID, t.ID, v.ID",
   "Kurs"=>" ORDER BY Kursort, Kursart",
+  "KursTrainer"=>" ORDER BY Trainer, Kursart",
   "EDV"=>" ORDER BY ID DESC",
   "EDVAngebot"=>" ORDER BY ID DESC",
   "MAAbwesenheit"=>" ORDER BY a.Beginn DESC",

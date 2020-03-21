@@ -39,15 +39,18 @@ $_REQUEST['mn'] = "kw";
 $_REQUEST["a"] = "MAKlientVS";
 $_REQUEST["b"] = "d";
 $_REQUEST["k"] = "Y-m-d";
-$_REQUEST["navi"] = "KW";
+//$_REQUEST["navi"] = "KW";
 $_REQUEST["u"] = "KW#1";
+$_A['css'] = "./cal.css";
 /***
  *** VPI, Schritt 0:
  *** Eingabe der fixen Stammdaten
  ***/
 $_REQUEST['mn'] = "pe";
-$_REQUEST["navi"] = "Zahnrad";
+if( !isset($_REQUEST['navi']) )
+  $_REQUEST["navi"] = "Zahnrad";
 $_REQUEST["a"] = "Kursart";
+$_A['css'] = "./erica.css";
 include("mn.php"); 
 ?>
 </body>

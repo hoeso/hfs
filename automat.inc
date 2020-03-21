@@ -575,10 +575,10 @@ $automat = array(
 		"containerTitel.php",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"insertERM.inc",
-		"nachInsertERM.prj",
 		"setzenFortsetzung.prj",
 		"pokeFortsetzung.prj",
+		"insertERM.inc",
+		"nachInsertERM.prj",
 		"linkFortsetzen.inc",
 		"nachSpeichernAnzeigen.inc",
 		"endeContainer.html",//haupttext

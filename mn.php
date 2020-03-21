@@ -50,7 +50,7 @@ INFAR<?php
 }?>
 </title>
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
-<link rel="stylesheet" href="./erica.css" media="screen" title="Flex Care Suite-Stylesheet" />
+<link rel="stylesheet" href="<?php if( isset($_A['css']) ) echo $_A['css']; else echo "./erica.css";?>" media="screen" title="Flex Care Suite-Stylesheet" />
 </head>
 <body class="<?php
 echo $_E['bodyClass'];

@@ -13,6 +13,7 @@ $sqlAbbrev = array(
   "KlientVS"=>"cv",
   "Kontingent"=>"k",
   "Kursart"=>"ka",
+  "KursTrainer"=>"kt",
   "MAAbwesenheit"=>"a",
   "MAKlient"=>"mc",
   "MAKlientVS"=>"mcv",
