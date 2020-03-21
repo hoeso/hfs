@@ -324,6 +324,9 @@ function speichernPKsUndAttr( $lkid, $db, $table, $arrPK, $arrAttr,$UniquePK, &$
           else
             $sql .= ", ''";
         break;
+	case "enum":
+	     $sql .= ", '".$elem."'";
+	     break;
 	case "int":
 				     $sql .= ", $elem";
 				     break;

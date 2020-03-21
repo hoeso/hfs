@@ -322,6 +322,7 @@ $automat = array(
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"eiZuWrapperListend.inc",
+		"setzenFortsetzung.prj",
 		"linkFortsetzen.inc",
 		"anzeigenZieltabelle.inc",
 		"linkFortsetzen.inc",
@@ -948,6 +949,7 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"MAAbwesenheit.php",
+		"cal.css",
 		"KWview.php",
 		"KW.prj",
 		"containerTitel.php",

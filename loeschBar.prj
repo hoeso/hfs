@@ -33,10 +33,12 @@ $arrRefs = array(
 
   "Jahr"=>array(
     "KlientVS",
+    "Termin",
   ),
 
   "KW"=>array(
     "KlientVS",
+    "Termin",
   ),
 
   "Klient"=>array(
@@ -70,7 +72,7 @@ $arrRefs = array(
   ),
 
   "Kurs"=>array(
-    "1-leaf",
+    "Termin",
   ),
 
   "KursTrainer"=>array(
@@ -130,6 +132,7 @@ $arrRefs = array(
 
   "Tag"=>array(
     "KlientVS",
+    "Termin",
   ),
 
   "Tel"=>array(
@@ -137,6 +140,10 @@ $arrRefs = array(
   ),
 
   "TelKlient"=>array(
+    "1-leaf",
+  ),
+
+  "Termin"=>array(
     "1-leaf",
   ),
 
@@ -148,6 +155,7 @@ $arrRefs = array(
   "VS"=>array(
     "KlientVS",
     "MAKlientVS",
+    "Termin",
   ),
 
   "Zeitstempel"=>array(

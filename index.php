@@ -35,22 +35,49 @@ echo $_E['bodyClass'];
 echo $_E['bodyId'];
 ?>">
 <?php
-$_REQUEST['mn'] = "kw";
-$_REQUEST["a"] = "MAKlientVS";
-$_REQUEST["b"] = "d";
-$_REQUEST["k"] = "Y-m-d";
-//$_REQUEST["navi"] = "KW";
-$_REQUEST["u"] = "KW#1";
-$_A['css'] = "./cal.css";
-/***
- *** VPI, Schritt 0:
- *** Eingabe der fixen Stammdaten
- ***/
-$_REQUEST['mn'] = "pe";
-if( !isset($_REQUEST['navi']) )
-  $_REQUEST["navi"] = "Zahnrad";
-$_REQUEST["a"] = "Kursart";
-$_A['css'] = "./erica.css";
+if( isset($_REQUEST["navi"]) )
+{
+  switch( $_REQUEST["navi"] )
+  {
+    case 'Plan':
+      $_REQUEST['mn'] = "1432";
+      $_REQUEST["a"] = "Termin";
+      $_REQUEST["i"] = "4";
+    break;
+    case 'Zahnrad':
+      $_REQUEST['mn'] = "pe";
+      $_REQUEST["a"] = "Kursart";
+      $_A['css'] = "./erica.css";
+    break;
+    case 'Verknuepfen':
+      $_REQUEST['mn'] = "pe_pe";
+      $_REQUEST["a"] = "KursTrainer";
+      $_A['css'] = "./erica.css";
+      $_REQUEST["re"] = "2";
+      $_REQUEST["re1"] = "Kursart";
+      $_REQUEST["re2"] = "Trainer";
+      $_REQUEST["i"] = "1";
+    break;
+  }
+}
+else
+{
+  $_REQUEST['mn'] = "kw";
+  $_REQUEST["a"] = "MAKlientVS";
+  $_REQUEST["b"] = "d";
+  $_REQUEST["k"] = "Y-m-d";
+  //$_REQUEST["navi"] = "KW";
+  $_REQUEST["u"] = "KW#1";
+  /***
+   *** VPI, Schritt 0:
+   *** Eingabe der fixen Stammdaten
+  $_REQUEST['mn'] = "pe";
+  if( !isset($_REQUEST['navi']) )
+    $_REQUEST["navi"] = "Zahnrad";
+  $_REQUEST["a"] = "Kursart";
+  $_A['css'] = "./erica.css";
+   ***/
+}
 include("mn.php"); 
 ?>
 </body>

@@ -11,7 +11,7 @@ echo"\nPOST Variablen:<br>";
 echo"\nREQUEST Variablen:<br>";
   foreach( $_REQUEST as $k=>$elem )
     echo"\nk : $k, elem: $elem<br>";
-exit;
+//exit;
 }
 /* zum Kopieren:
 if( isset($_REQUEST[""]) )
@@ -19,7 +19,7 @@ if( isset($_REQUEST[""]) )
 */
 
 $_REQUEST["sl"]=1;
-$_REQUEST["sl1"]="Klient";
+$_REQUEST["sl1"]="Kurs";
 if( !isset($_REQUEST["j"]) or !isset($_REQUEST["k"]) )
 {
   ?>kein Jahr oder keine KW &uuml;bergeben!?<br><?php
@@ -36,12 +36,12 @@ $SELECTRE3=$_REQUEST["sl3"];
 $_REQUEST["re4"]="VS";
 $SELECTRE4=$_REQUEST["sl2"];
 
-$_REQUEST["a"]="KlientVS";
+$_REQUEST["a"]="Termin";
 /******
 noch $_E[filter] setzen, um sichten.prj zu filtern.
  ******/
 if( isset($_REQUEST["ID"]) )
-  $_E["filter"]=" AND $_REQUEST[ID]=c.ID";
+  $_E["filter"]=" AND $_REQUEST[ID]=k.ID";
 
 $_E['mn']="sl_pe";
 

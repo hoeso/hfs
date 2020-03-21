@@ -267,7 +267,8 @@ class KWview extends KWmodel
 	    $d="&d";
 	  else
 	    $d="";
-          ?><a href="mn.php?mn=planend&a=KlientVS&sl=3&sl1=Klient&sl2=<?php echo $row;?>&sl3=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">&nbsp;</a><?php
+          ?><a href="mn.php?mn=planend&a=Termin&sl=3&sl1=Kurs&sl2=<?php echo $row;?>&sl3=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">&nbsp;</a><?php
+	  /***
           if( isset($clutch) && 1 < $i ) // 1 < $i: Vorgaenger 'Sonntag' weglassen
           {
             $c_ = explode( "|", $clutch );
@@ -281,6 +282,7 @@ class KWview extends KWmodel
 	    }
           }
           unset($clutch);
+	   ***/
 	}
         else
 	{ // Treffer, hier findet ein Klient|MA Besuch statt:

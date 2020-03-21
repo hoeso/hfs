@@ -44,19 +44,28 @@ reset( $HTTP_POST_VARS );
 // weil sie muss einmalig sein
 
 unset( $arrPK );
-
-if( isset($_REQUEST["d"]) )
-{
-  $a_ = explode( "/", __file__ );
-  $b_ = $a_[count($a_)-1];
-}
-if( isset($_REQUEST["d"]) )
-  foreach( $HTTP_POST_VARS as $k=>$elem )
-    dEcho( $b_, $k . " -- " . $elem );
 foreach( $HTTP_POST_VARS as $k=>$elem )
 {
   switch( $k )
   {
+    case "TabelleRE1": // praeparierte RE FK-Tabellen
+    case "TabelleRE2": // heissen wie die RE-Tabelle,
+    case "TabelleRE3": // haben jedoch am Ende
+    case "TabelleRE4": // zusaetzlich ein $-Zeichen
+    case "TabelleRE5":
+      if( '$' == $elem[ strlen($elem)-1 ] )
+        $elem = substr( $elem, 0, -1 );
+    case "TabelleRE1":
+      $keyRE1 = $elem . "ID";
+    case "TabelleRE2":
+      $keyRE2 = $elem . "ID";
+    case "TabelleRE3":
+      $keyRE3 = $elem . "ID";
+    case "TabelleRE4":
+      $keyRE4 = $elem . "ID";
+    case "TabelleRE5":
+      $keyRE5 = $elem . "ID";
+    break;
     case "TabelleID":
       $keyID = $elem . "ID";
     break;

@@ -22,5 +22,6 @@ $sqlAbbrev = array(
   "PersonKlient"=>"pc",
   "EDV"=>"EDV",
   "Region"=>"r",
+  "Termin"=>"te",
 );
 ?>

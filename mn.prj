@@ -306,7 +306,9 @@ switch( $_E['mn'] )
           $_E["sl$i"] = $_REQUEST["sl$i"];
         switch( $_REQUEST["sl$i"] )
         {
-          case "Klient":
+          case "Kurs":
+	    if( isset($Select) and isset($Select[$_REQUEST["sl$i"]]) )
+	      $_E["stm$i"] = $Select[$_REQUEST["sl$i"]];
             //$_E["stm$i"] = "SELECT c.ID, CONCAT(c.Name,' ', c.Vorname), DATE_FORMAT( c.geborenAm,'%d.%m.%Y' ) FROM Klient c";
             switch( $_E['entitaet'] )
             {
@@ -317,7 +319,7 @@ switch( $_E['mn'] )
               break;
                ***/
               default:
-                $_E["stm$i"] = "SELECT c.ID, CONCAT(c.Name,' ', c.Vorname), DATE_FORMAT( c.geborenAm,'%d.%m.%Y' ) FROM Klient c WHERE 'ja'=c.planen"; // Planungs-Filter setzen
+                //$_E["stm$i"] = "SELECT c.ID, CONCAT(c.Name,' ', c.Vorname), DATE_FORMAT( c.geborenAm,'%d.%m.%Y' ) FROM Klient c WHERE 'ja'=c.planen"; // Planungs-Filter setzen
               break;
             }
           break;

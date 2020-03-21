@@ -1,28 +1,58 @@
-<?php
-if( isset($_REQUEST["k"]) )
-  $k = "&k=" . $_REQUEST["k"];
-else
-  $k = "";
-$clickIst="&re=4&re1=Jahr&re2=KW&re3=Tag&re4=VS";
-if( isset($_REQUEST["j"]) && isset($_REQUEST["k"]) && isset($_REQUEST["sl3"]) && isset($_REQUEST["sl2"]) )
-  $clickIst .= "&SELECTRE1=$_REQUEST[j]&SELECTRE2=$_REQUEST[k]&SELECTRE3=$_REQUESTsl3]&SELECTRE4=$_REQUEST[sl2]";
-?>
-<li>
-<a href="./mn.php?mn=pe&a=Client">Klient&#042;in</a>
-</li>
-<!--
-<li>
-<a href="./mn.php?mn=sl_pe&a=ClientVS&sl=1&sl1=Client&navi=Plan<?php echo $clickIst;?>&i=3">Planung
-<?php
-if( isset($_REQUEST["k"]) )
-  echo " KW $_REQUEST[k]";
-?>
-</a>
-</li>
+<!-- li>
+<a target=_blank href="./geocodeXML.php">Lat+Lng</a>
+</li-->
+<!-- naechste 4-stellige mn erwuerfeln:
+vorgaenger mn ziffern anschauen:
+1. Ziffer > 6 ? 1 Wurf: 2 Wuerfe
+naechste Ziffer kleiner ? 1 Wurf : 2 Wuerfe
 -->
+<!-- a name='navi'-->
+
+<ul>
 <li>
-<a href="./mn.php?mn=pe&a=MA<?php echo $k;?>&navi=Plan">Mitarbeiter&#042;in</a>
+<a href="<?php echo $candyURL['Termin']?>">Termin</a>
 </li>
 <li>
-<a href="./mn.php?mn=sl_pe&a=MAClient&sl=2&sl1=Client&sl2=MA<?php echo $k;?>&navi=Plan&i=3">Betreuung</a>
+<a href="<?php echo $candyURL['Ort']?>">Kursort</a>
 </li>
+<li>
+<a href="<?php echo $candyURL['Dauer']?>">Kursdauer</a>
+</li>
+<li>
+<a href="<?php echo $candyURL['Kurs']?>">Kurs</a>
+</li>
+<li>
+<a href="<?php echo $candyURL['KursTrainer']?>">Kurs-Trainer</a>
+</li>
+<!--li>
+<a href="<?php echo $candyURL['Zeitstempel']?>">Zeitstempel</a>
+</li-->
+</ul>
+<?php
+/*** Menue-Links:
+<li>
+<a href="./mn.php?mn=pe_pe&a=Ausgabe&re=1&re1=Lieferant&i=1&navi=Liegenschaft">Ausgabe</a>
+</li>
+<li>
+<a href="./mn.php?mn=pe_pe&a=PreisWare&re=3&re1=Ware&re2=Preis&re3=Zeitstempel&i=1&navi=Liegenschaft">PreisWare</a>
+</li>
+ *  mn         a               b                       c                d                   1                         n
+ * -----+----------------+----------------+---------------------+----------------+-------------------------+-----------------
+ * 5413   1. Titel         2. Titel
+ * 6649   reine Entitaet   Bleistift weg
+ * 8417   dummy
+ * 8546   reine Entitaet   reine Entitaet   Verbindungsentitaet   Titel
+ * 3655                                                                            zu speichernde Entitaet   Bezugsentitaet
+ * 
+ ***/
+
+/*** intern gesetzte Links:
+ *  mn         a                       ID             
+ * -----+-------------------------+-------------------
+ * 1142   zu loeschende Entitaet    Primaerschluessel
+ * 3653   zu aendernde Entitaet
+ * 4454   zu speichernde Entitaet
+ * 7774   zu aendernde Entitaet
+ * 
+ ***/
+?>

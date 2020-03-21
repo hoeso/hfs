@@ -822,6 +822,7 @@ $forkAutomat = array(
 	),
 	"planendVS"=>array( // CFS
 		"eiZuPlanendVS.prj",
+		"sichten.prj",
 		"mn.prj",
 		"automatReloaded.inc",
 	),
