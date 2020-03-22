@@ -126,7 +126,7 @@ class KWview extends KWmodel
 	  $d="";
         ?><td colspan=8>
 	<!--img class="img18" src="images/punaise-18px.png" alt="diese Uhrzeit" usemap="#pinnen<?php echo $ancor;?>"-->
-	<!--img class="img18" src="images/reload-icon-18px.png" alt="hier neu laden" usemap="#pinnen<?php echo $ancor;?>"-->
+	<img class="img18" src="images/reload-icon-18px.png" alt="hier neu laden" usemap="#pinnen<?php echo $ancor;?>">
 	<a name='<?php echo $ancor;?>'></a>
         <map name="pinnen<?php echo $ancor;?>">
         <!--area shape=rect coords="0,0,18,18" title='diese Uhrzeit pinnen' href="./mn.php?mn=kw&a=MAKlientVS&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $NOTkw; echo $f;?>#<?php echo $ancor;?>"-->
