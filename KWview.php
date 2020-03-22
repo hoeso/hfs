@@ -126,18 +126,18 @@ class KWview extends KWmodel
 	  $d="";
         ?><td colspan=8>
 	<!--img class="img18" src="images/punaise-18px.png" alt="diese Uhrzeit" usemap="#pinnen<?php echo $ancor;?>"-->
-	<img class="img18" src="images/reload-icon-18px.png" alt="hier neu laden" usemap="#pinnen<?php echo $ancor;?>">
+	<!--img class="img18" src="images/reload-icon-18px.png" alt="hier neu laden" usemap="#pinnen<?php echo $ancor;?>"-->
 	<a name='<?php echo $ancor;?>'></a>
         <map name="pinnen<?php echo $ancor;?>">
         <!--area shape=rect coords="0,0,18,18" title='diese Uhrzeit pinnen' href="./mn.php?mn=kw&a=MAKlientVS&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $NOTkw; echo $f;?>#<?php echo $ancor;?>"-->
         <area shape=rect coords="0,0,18,18" title='Kalender neu laden' href="javascript:location.reload()" target="_self">
         </map>
-	<img class="img18" src="images/<?php echo $img;?>" alt="zum Wochenplan" usemap="#maorcl<?php echo $ancor;?>">
+	<!--img class="img18" src="images/<?php echo $img;?>" alt="zum Wochenplan" usemap="#maorcl<?php echo $ancor;?>"-->
 	<a name='<?php echo $ancor;?>'></a>
         <map name="maorcl<?php echo $ancor;?>">
         <area shape=rect coords="0,0,18,18" title='<?php echo $title;?>' href="./mn.php?mn=kw&a=MAKlientVS&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $kw;?>#<?php echo $ancor;?>">
         </map>
-	<img class="img18" src="images/Copy-18px.png" alt="KW kopieren" usemap="#kopierenKW<?php echo $ancor;?>">
+	<!--img class="img18" src="images/Copy-18px.png" alt="KW kopieren" usemap="#kopierenKW<?php echo $ancor;?>"-->
         <map name="kopierenKW<?php echo $ancor;?>">
         <area shape=rect coords="0,0,18,18" target="_blank" title='KW<?php echo $this->Kalenderwoche;?> kopieren' href="./mn.php?mn=kopierenKW&a=Kalenderwoche&sl=4&sl1=Jahr-%3E&sl2=KW-%3E&sl3=Jahr&sl4=KW&b=<?php echo $maORcl;?>&j=<?php echo $this->Jahr . $d;?>&k=<?php echo $this->Kalenderwoche;?>&navi=KW&u=<?php echo $this->Kalenderwoche;?>%20-&gt;KW%3F&kopierenKW_x#<?php echo $ancor;?>">
         </map>
@@ -177,12 +177,12 @@ class KWview extends KWmodel
         <map name="initialen<?php echo $ancor;?>">
         <area shape=rect coords="0,0,18,18" title='Darstellung' href="./mn.php?mn=kw&a=MAKlientVS&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->Datum;?>&c=<?php echo $text;?>&navi=KW&u=<?php echo $this->Kalenderwoche . " " . $kwTitel; echo $f;?>#<?php echo $ancor;?>">
         </map>
-	<img class="img18" src="images/kalender-18px.png" alt="Wochen&uuml;bersicht" usemap="#woche<?php echo $ancor;?>">
+	<!--img class="img18" src="images/kalender-18px.png" alt="Wochen&uuml;bersicht" usemap="#woche<?php echo $ancor;?>"-->
 	<a name='<?php echo $ancor;?>'></a>
         <map name="woche<?php echo $ancor;?>">
         <area shape=rect coords="0,0,18,18" target="_blank" title='Wochen&uuml;bersicht' href="./mn.php?mn=blatt&navi=KW&a=<?php echo $this->Kalenderwoche;?>&c=k&k=<?php echo $this->Datum;?>&u=KW<?php echo $this->Kalenderwoche; echo $f;?>#<?php echo $ancor;?>">
         </map>
-	<img class="img18" src="images/calendar2-18px.png" alt="Monats&uuml;bersicht" usemap="#monat<?php echo $ancor;?>">
+	<!--img class="img18" src="images/calendar2-18px.png" alt="Monats&uuml;bersicht" usemap="#monat<?php echo $ancor;?>"-->
 	<a name='<?php echo $ancor;?>'></a>
         <map name="monat<?php echo $ancor;?>">
         <area shape=rect coords="0,0,18,18" target="_blank" title='Monats&uuml;bersicht' href="./mn.php?mn=blatt&navi=KW&a=<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Datum;?>&c=m&u=KW<?php echo $this->Kalenderwoche; echo $f;?>#<?php echo $ancor;?>">
