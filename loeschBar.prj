@@ -41,6 +41,10 @@ $arrRefs = array(
     "Termin",
   ),
 
+  "Kategorie"=>array(
+    "1-leaf",
+  ),
+
   "Klient"=>array(
     "KlientAdresse",
     "KlientKurs",
@@ -83,6 +87,10 @@ $arrRefs = array(
     "Dauer",
     "KlientKurs",
     "KursTrainer",
+  ),
+
+  "Leistung"=>array(
+    "Kursart",
   ),
 
   "MA"=>array(
@@ -150,6 +158,7 @@ $arrRefs = array(
   "Trainer"=>array(
     "BundeslandTrainer",
     "KursTrainer",
+    "Ort",
   ),
 
   "VS"=>array(

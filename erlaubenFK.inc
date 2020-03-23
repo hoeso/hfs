@@ -5,6 +5,9 @@ $arrFK = array(
 		"",// ich bin ein Fremdschluessel
 	),
 */
+	"Ort"=>array( // ich bin die Entitaet
+		"Trainer",// ich bin ein Fremdschluessel
+	),
 	"KlientVS"=>array(
 		"VS",
 	),

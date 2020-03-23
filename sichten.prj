@@ -142,7 +142,7 @@ $Select=array
 
   "EDVAngebot"=>"SELECT ID, Projekt, ID AS Nr, Beschreibung, Prioritaet, akzeptiert, akzeptiertAm, installiertAm, anzeigeSTD FROM EDV",
 
-  "Ort"=>"SELECT o.ID, b.Bundesland, o.Kursort, CONCAT(o.PLZ,' ',o.Ortschaft,', ',o.Strasse) AS Adresse FROM Ort o JOIN Bundesland b ON o. BundeslandID=b.ID",
+  "Ort"=>"SELECT o.ID, b.Bundesland, t.Name AS Trainer, o.Kursort, CONCAT(o.PLZ,' ',o.Ortschaft,', ',o.Strasse) AS Adresse FROM Ort o JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Trainer t ON o.TrainerID=t.ID",
   
   "Stundensatz"=>"SELECT ss.ID, Stundensatz, Datum FROM Stundensatz ss JOIN Zeitstempel z ON (ss.ZeitstempelID=z.ID)",
 

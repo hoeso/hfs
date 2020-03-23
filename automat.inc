@@ -611,14 +611,26 @@ $automat = array(
 		"row01.inc",
 		"navBar.organisation.inc",
 	),
-	"aenderndFK"=>array(
-		"eiZuAenderndFK.inc",
-		"verbindenMitDB.inc",
-		"transpHeader.html",
-		"ueberschrift.inc",
-		"routinen.inc",
+	"aenderndFK"=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"dbConnect.inc",
+		"containerTitel.php",
 		"aendernFK.inc",
+		"setzenFortsetzung.prj",
 		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
 	),
 	"anzeigendTabelle"=>array(
 		"eiZuAnzeigendTabelle.inc",
