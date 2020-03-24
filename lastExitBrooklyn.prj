@@ -14,64 +14,25 @@ if( isset($_REQUEST["d"]) )
 }
 if( isset($_REQUEST['d']) )
   hiddenFeldSchreiben( "d", 1 );
-if( $table=="Klient" && $recID )
+if( $table=="Tel" && $recID )
 {
-  $f = false;
-  if( isset($_REQUEST['navi']) && 'Stammblatt' == $_REQUEST['navi'] )
-    $f = true; // Stammblatt
-  // wenn noch nichts hinterlegt ist, werden diese Icons in Graustufen ausgegeben
-  $sw = 'sw-';
-  /*if( false == $f && gibFeld( $MySQLDb, "SELECT ID FROM KlientVS WHERE KlientID=$recID LIMIT 1", 0 ) )
+  if( false == gibFeld( $MySQLDb, "SELECT ID FROM TelProband WHERE TelID=$recID", 0 ) )
   {?>
-    <INPUT TYPE=image src='images/threepeople-18px.png' NAME='planungKlient' title='Einsatzplan'>
-  <?php
-  }*/
-  $img = 'empty-calendar-18px.png';
-  if( !gibFeld( $MySQLDb, "SELECT KlientID FROM KlientVS WHERE KlientID=$recID LIMIT 1", 0 ) )
-  {
-    $img = $sw . $img;
-  }
-  if( false == $f )
-  {?>
-    <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='planungTag' title='Wochenschema'>
+    <INPUT TYPE=image src='images/iconmonstr-user-9-16.png' NAME='addProband' title='Proband anlegen'>
     <?php
-  }
-  $img = 'Anonymous-my-house-18px.png';
-  if( !gibFeld( $MySQLDb, "SELECT ID FROM KlientAdresse WHERE KlientID=$recID LIMIT 1", 0 ) )
-  {
-    $img = $sw . $img;
-  }
-  if( true == $f )
-  {?>
-    <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='wohnhaft' title='Adresse'>
-    <?php
-  }
-  $img = '1400527615-18px.png';
-  if( !gibFeld( $MySQLDb, "SELECT KlientID FROM PersonKlient WHERE KlientID=$recID LIMIT 1", 0 ) )
-  {
-    $img = $sw . $img;
-  }
-  if( true == $f )
-  {?>
-    <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='bevormundung' title='wichtige Person'>
-  <?php
+    //hiddenFeldSchreiben( "d", "1" );// Debug-Ausgaben ausloesen
   }
 }
-else if( $table=="KlientVS" && $recID )
+else if( $table=="Proband" && $recID )
 {
-  // wenn noch nichts hinterlegt ist, werden diese Icons in Graustufen ausgegeben
-  $sw = 'sw-';
-  $img = 'threepeople-18px.png';
-  $mcvID=gibFeld( $MySQLDb, "SELECT ID FROM MAKlientVS WHERE $recID=KlientVSID", 0 );
-  if( !$mcvID )
+  if( isset($_E['ID2join']) and isset($_E['entitaet2join']) and isset($_E['value2join']) )
   {
-    $img = $sw . $img;
-    ?><INPUT TYPE=image src='images/<?php echo $img;?>' NAME='planungKlientVS' title='MA-Einsatz'><?php
-  }
-  else
-  {
-    ?><INPUT TYPE=image src='images/Copy-18px.png' NAME='kopierenSchicht' title='Schicht kopieren'><?php
-    hiddenFeldSchreiben( "m", "$mcvID" );//
+    if( "Tel" == $_E['entitaet2join'] )
+    {?><INPUT TYPE=image src='images/iconmonstr-phone-11-16.png' NAME='addTelefon' title='<?php echo $_E['value2join'];?> zuweisen'><?php
+      hiddenFeldSchreiben( "ID2join", $_E['ID2join'] );
+      hiddenFeldSchreiben( "entitaet2join", $_E['entitaet2join'] );
+      hiddenFeldSchreiben( "value2join", $_E['value2join'] );
+    }
   }
 }
 else if( $table=="MA-KW" && $recID )

@@ -1,4 +1,9 @@
 <?php
+if( isset($_REQUEST["d"]) )
+{
+  $a_ = explode( "/", __file__ );
+  $b_ = $a_[count($a_)-1];
+}
 $arrNichtAendern=array (
 /* zum Kopieren
 "",
@@ -43,9 +48,15 @@ if( false==isset($keinInsert) )
 {
   // Zeile fuer neuen Eintrag...
   tabellenZeileBeginnen();
-  formularBeginnen("./mn.php?mn=9422&a={$_E['entitaet']}&b={$_E['entitaet']}%20wird%20gespeichert%20...", "name=frm" . $_E['entitaet'] . " onSubmit='return pruefenEingaben(this)'");
+  $actio = "./mn.php?mn=9422&a={$_E['entitaet']}&b={$_E['entitaet']}%20wird%20gespeichert%20...";
+  if( isset($_E["navi"]) )
+    $actio .= "&navi=" . $_E["navi"];
+  if( isset($_REQUEST["d"]) )
+    $actio .= "&d";
+
+  formularBeginnen( $actio, "name=frm" . $_E['entitaet'] . " onSubmit='return pruefenEingaben(this)'" );
   hiddenFeldSchreiben( "Tabelle", $_E['entitaet'] );
-  if( !isset($enumListe[$_E['entitaet']]) and !isset($enumListe[$_E['entitaet'] . "_1"]) )
+  if( !isset($enumListe[$_E['entitaet']]) )
     ausgebenAlsNeueTabellenzeile( $result, $_E['entitaet'] );
   else
     ausgebenAlsNeueTabellenzeile( $result, $_E['entitaet'], $enumListe[$_E['entitaet']] );

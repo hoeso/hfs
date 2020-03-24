@@ -479,9 +479,9 @@ $automat = array(
 		"hauptteil.html",
 		"haupttext.html",
 		"containerTitel.php",
-		"pruefenSymbol.prj",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"pruefenSymbol.prj",
 		"setzenFortsetzung.prj",
 		"pokeFortsetzung.prj",
 		"editierenRE.inc",
@@ -530,6 +530,7 @@ $automat = array(
 		"containerTitel.php",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"setzenFortsetzung.prj",
 		"insertRE.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext

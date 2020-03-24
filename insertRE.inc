@@ -11,6 +11,7 @@ else
 $sql = "INSERT INTO {$_E['entitaet']} VALUES ( null";
 // Die Variablen kommen in der Reihenfolge Tabellenname, 1. Feld, ...,letztes Feld
 // Deshalb in der Schleife das erste Feld 'Tabelle' ignorieren
+$_select = "SELECT * FROM ";
 foreach( $HTTP_POST_VARS as $k=>$elem )
 {
   if( $k == "Tabelle" )
@@ -23,20 +24,24 @@ foreach( $HTTP_POST_VARS as $k=>$elem )
     if(isset($debug) && $debug) echo"\nk $k : ohne _ ?!<p>";
     continue;
   }
+  if( !strstr( $_select, $arr[0]) )
+    $_select .= $arr[0] . " WHERE ";
   switch( $arr[1] )
   {
     case "date":
-      $arr = explode( ".", $elem );
-      if( isset($arr[2]) and 2 == strlen( $arr[2] ) )
-        $arr[2] = "20" . $arr[2];
-      if( isset($arr[2]) and 4 == strlen( $arr[2] ) )
-        $datum = "$arr[2]-$arr[1]-$arr[0]";
+      unset($_a);
+      $_a = explode( ".", $elem );
+      if( isset($_a[2]) and 2 == strlen( $_a[2] ) )
+        $_a[2] = "20" . $_a[2];
+      if( isset($_a[2]) and 4 == strlen( $_a[2] ) )
+        $datum = "$_a[2]-$_a[1]-$_a[0]";
       else
       {
-        if( !isset($arr[2]) )
+        if( !isset($_a[2]) )
           $datum = $elem;
       }
       $sql .= ", '".$datum."'";
+      $_select  .= "$arr[2] = '" . $elem . "' AND ";
     break;
     case "int":
       $sql .= ", $elem";
@@ -48,8 +53,10 @@ foreach( $HTTP_POST_VARS as $k=>$elem )
         $elem = "$aDP[0].$aDP[1]";
        $sql .= ", '$elem'";
     break;
+    case "enum":
     case "string":
       $sql .= ", '".$elem."'";
+      $_select  .= "$arr[2] = '" . $elem . "' AND ";
     break;
     case "time":
       $sql .= ", '".$elem."'";
@@ -62,16 +69,30 @@ foreach( $HTTP_POST_VARS as $k=>$elem )
   }
 }
 $sql .= " )";
+$_select = rtrim( $_select, " AND " );
 if(isset($debug) && $debug)
+{
   echo "$sql<br>";
+  echo "$_select<br>";
+}
 $result = mysql_db_query( $MySQLDb, $sql );
 if(!$result)
 {
-  reagierenAufSQLFehler( $lkid, $sql, $ID );
+  $result = mysql_db_query( $MySQLDb, $_select );
+  if($result)
+  {
+    ?>Diesen Eintrag gibt es schon. Er darf nicht nochmal angelegt werden.<?php
+    $arr = mysql_fetch_row( $result );
+    $_eCandy[$_E['entitaet']] = $arr[0]; // damit wird auf die gerade angelegte Instanz in ihrer Liste positioniert
+  }
+  else
+    reagierenAufSQLFehler( $lkid, $sql, $ID );
 }
 else
 {
   echo "\nDer Eintrag wurde gespeichert<br>";
+  if( 0 )
+  {
   include("linkFortsetzen.inc");
   lesenRETabelle( $result, $MySQLDb, $_E['entitaet'], "" );
   if( $result )
@@ -103,6 +124,15 @@ else
     tabelleBeenden();
 
     $succ = mysql_free_result( $result );
+  }
+  }
+  else if( isset($_E) and isset($_E['entitaet']) and isset($_eCandy) and isset($_eCandy[$_E['entitaet']]) )
+  {
+    $sql = "SELECT LAST_INSERT_ID() FROM " . $_E['entitaet'];
+    $result = mysql_db_query( $MySQLDb, $sql );
+    $arr = mysql_fetch_row( $result );
+    $_eCandy[$_E['entitaet']] = $arr[0]; // damit wird auf die gerade angelegte Instanz in ihrer Liste positioniert
+    mysql_free_result( $result );
   }
 }
 ?>

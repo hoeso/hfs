@@ -1,5 +1,29 @@
 <?php
 /******** Formular-Funktionen ************************************************/
+function setFieldDate($attr, &$fHTML5)
+{
+  $fHTML5 = false;
+  if( isset( $_SERVER['HTTP_USER_AGENT'] ) )
+  {
+    $signature = "Firefox/";
+    $ver = strstr( $_SERVER['HTTP_USER_AGENT'], $signature );
+  	if( $ver )
+  	{
+  	  $a_ = explode( '/', $ver );
+  	  if( 55 < $a_[1] )
+          {
+            $fHTML5 = true;
+            return $attr; // HTML5, passt.
+          }
+  	}
+  }
+  $arr = explode( "-", $attr );
+  if( 4 == strlen( $arr[0] ) )
+    $datum = "$arr[2].$arr[1].$arr[0]";
+  else
+    $datum = $attr;
+  return $datum;
+}
 function formularBeginnen($action,$extra)
 {
   global $_E;
@@ -1122,7 +1146,7 @@ function ergebnisBoxenMitID( $label, $table, $anz, $id, $exclude, $zeilen, $ziel
 }
 function ausgebenAlsNeueTabellenzeile( $result, $table, $enumListe = "" )
 {
-  global $enumListe;
+  //global $enumListe;
   /***
    *** geht bisher nur mit enumListe-Schluessel[$table]
    *** es gibt allerdings auch enumListe-Schluessel[$table . "_1"] und hoeher
@@ -1460,6 +1484,8 @@ function formularAttribut( $table, $result, $i, $attr, $enumListe, $laengeBeiTex
   {
     echo " SIZE='1'>";
     $arr = explode(",", $enumListe);
+    for($e=0;$e<count($arr);$e++)
+      echo "\n" . $arr[$e] . "<br>";
     if( isset($enumOVL[$clutch]) )
       $aOVL = explode(",", $enumOVL[$clutch]);
     $idx=0;
@@ -1497,13 +1523,14 @@ function formularAttribut( $table, $result, $i, $attr, $enumListe, $laengeBeiTex
       $datum="";
     else
     {
-      $arr = explode( "-", $attr );
-      if( 4 == strlen( $arr[0] ) )
-        $datum = "$arr[2].$arr[1].$arr[0]";
-      else
-        $datum = $attr;
+      $datum = setFieldDate($attr, $fHTML5);
     }
-    echo " TYPE='TEXT' VALUE='$datum'";
+    echo " TYPE='";
+    if( true == $fHTML5 )
+      echo "DATE";
+    else
+      echo "TEXT";
+    echo "' VALUE='$datum'";
   }
   else if( "time" == $feldTyp )
   {

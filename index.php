@@ -44,9 +44,14 @@ if( isset($_REQUEST["navi"]) )
       $_REQUEST["a"] = "Termin";
       $_REQUEST["i"] = "4";
     break;
+    case 'Proband':
+      $_REQUEST['mn'] = "pe";
+      $_REQUEST["a"] = "Tel";
+      $_A['css'] = "./erica.css";
+    break;
     case 'Zahnrad':
       $_REQUEST['mn'] = "pe";
-      $_REQUEST["a"] = "Kursart";
+      $_REQUEST["a"] = "Behoerde";
       $_A['css'] = "./erica.css";
     break;
     case 'Verknuepfen':

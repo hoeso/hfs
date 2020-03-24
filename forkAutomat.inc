@@ -125,6 +125,21 @@ $forkAutomat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
+	"fuellendRE"=>array( // reine Entitaet
+		"containerTitel.php",
+		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
+		"formularFuerRE.inc",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"strukturierendLVTabelle"=>array(
  		"strukturierenLVTabelle.prj",
 		"dumpLV.prj",
