@@ -14,6 +14,8 @@ if( isset($_REQUEST["d"]) )
 }
 if( isset($_REQUEST["d"]) )
   dEcho( $b_, "wZu: " . $_E['mn'] );
+if( !isset($Select) )
+  include("sichten.prj");
 switch( $_E['mn'] )
 {
 /* zum Kopieren:
@@ -244,7 +246,7 @@ switch( $_E['mn'] )
     $_E['recipient'] = 4224; // speichernd1ZuN
     if( isset($_REQUEST["sl"]) and $_REQUEST["sl"] )
     {
-      include("sichten.prj");
+      //include("sichten.prj");
       $_E['sl'] = $_REQUEST["sl"];
       for( $i=1; $i <= $_E['sl'] and $i < 6; $i++ )
       {
@@ -304,6 +306,9 @@ switch( $_E['mn'] )
       {
         if( isset($_REQUEST["sl$i"]) )
           $_E["sl$i"] = $_REQUEST["sl$i"];
+	if( isset($Select) and isset($Select[$_REQUEST["sl$i"]]) )
+	  $_E["stm$i"] = $Select[$_REQUEST["sl$i"]];
+        /***
         switch( $_REQUEST["sl$i"] )
         {
           case "Kurs":
@@ -312,12 +317,14 @@ switch( $_E['mn'] )
             //$_E["stm$i"] = "SELECT c.ID, CONCAT(c.Name,' ', c.Vorname), DATE_FORMAT( c.geborenAm,'%d.%m.%Y' ) FROM Klient c";
             switch( $_E['entitaet'] )
             {
+               ***/
               /***
               case "MAKlient":
                 if( isset($_REQUEST["ID"]) )
                   $_E["stm$i"] = "SELECT DISTINCT KlientID, Klient.Name FROM MAKlient JOIN Klient ON (MAKlient.KlientID=Klient.ID) WHERE KlientID NOT IN ( SELECT DISTINCT MAID FROM MAKlient WHERE $_REQUEST[ID]<>MAID )";
               break;
                ***/
+              /***
               default:
                 //$_E["stm$i"] = "SELECT c.ID, CONCAT(c.Name,' ', c.Vorname), DATE_FORMAT( c.geborenAm,'%d.%m.%Y' ) FROM Klient c WHERE 'ja'=c.planen"; // Planungs-Filter setzen
               break;
@@ -341,6 +348,7 @@ switch( $_E['mn'] )
             $_E["stm$i"] = "SELECT 1, 'Fuer Entitaet {$_REQUEST["sl$i"]} ist kein SELECT hinterlegt'";
           break;
         }  
+         ***/
         if( isset($_E["stm$i-filter"]) && isset($_E["stm$i"]) )
         {
           if( isset($_REQUEST["d"]) )

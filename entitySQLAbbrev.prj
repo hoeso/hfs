@@ -20,6 +20,7 @@ $sqlAbbrev = array(
   "Dauer"=>"d",
   "Ort"=>"o",
   "PersonKlient"=>"pc",
+  "Proband"=>"p",
   "EDV"=>"EDV",
   "Region"=>"r",
   "TelProband"=>"tp",

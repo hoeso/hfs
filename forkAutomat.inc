@@ -62,8 +62,6 @@ $forkAutomat = array(
 		"automatReloaded.inc",
 	),
 	"forkendVerlinkenEntitaet"=>array(
-		"dbConnect.inc",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
 		"pokeFortsetzung.prj",
 		"wohinDamit.prj",
@@ -108,7 +106,7 @@ $forkAutomat = array(
 	"fragendLoeschen"=>array(
 		"dbConnect.inc",
 		"containerTitel.php",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		//"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
 		"pokeFortsetzung.prj",
 		"logic2PhysView.prj",

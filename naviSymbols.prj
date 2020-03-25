@@ -18,7 +18,7 @@ switch( $sw )
   {
     ?><img src="images/iconmonstr-process-2-32.png" alt="zum Getriebe" usemap="#zahnrad">
       <img src="images/iconmonstr-link-thin-32.png" alt="zum Verkn&uuml;pfen" usemap="#verknuepfen">
-      <img src="images/iconmonstr-user-25-32.png" alt="zu den Probanden" usemap="#proband">
+      <img src="images/iconmonstr-user-25-32.png" alt="neue Probanden" usemap="#proband">
   <?php
   }
   break;
@@ -38,14 +38,18 @@ switch( $sw )
   case "Zahnrad":
   {
     ?><img src="images/iconmonstr-link-thin-32.png" alt="zum Verkn&uuml;pfen" usemap="#verknuepfen">
-      <img src="images/iconmonstr-user-25-32.png" alt="zu den Probanden" usemap="#proband">
+      <img src="images/iconmonstr-user-25-32.png" alt="neue Probanden" usemap="#proband">
+      <img src="images/iconmonstr-user-circle-thin-32.png" alt="Einzeltermin" usemap="#einzeln">
   <?php
   }
   break;
 }
 ?>
+<map name="einzeln">
+<area shape=rect coords="0,0,32,32" title='Untersuchung Einzeltermin' href="./mn.php?mn=goto&navi=Einzeln<?php echo $str;?>">
+</map>
 <map name="proband">
-<area shape=rect coords="0,0,32,32" title='zu den Probanden' href="./mn.php?mn=goto&navi=Proband<?php echo $str;?>">
+<area shape=rect coords="0,0,32,32" title='neue Probanden' href="./mn.php?mn=goto&navi=Proband<?php echo $str;?>">
 </map>
 <map name="wochenschema">
 <area shape=rect coords="0,0,18,18" title='zum Wochenplan' href="./mn.php?mn=goto&navi=Zahnrad<?php echo $str;?>">

@@ -277,7 +277,7 @@ if( $gespeichert )
 {
   echo "\nDer Eintrag wurde gespeichert<br>";
 
-  if( isset($zielTabelle) )
+  if( 0/*isset($zielTabelle)*/ )
   {
     $sql = "SELECT LAST_INSERT_ID() FROM " . $zielTabelle;
     $result = mysql_db_query( $MySQLDb, $sql );
@@ -287,6 +287,14 @@ if( $gespeichert )
       $globalID=$arr[0];
     }
     $autoID=$arr[0];
+    mysql_free_result( $result );
+  }
+  else if( isset($table) and isset($_eCandy) and isset($_eCandy[$table]) )
+  {
+    $sql = "SELECT LAST_INSERT_ID() FROM " . $table;
+    $result = mysql_db_query( $MySQLDb, $sql );
+    $arr = mysql_fetch_row( $result );
+    $_eCandy[$table] = $arr[0]; // damit wird auf die gerade angelegte Instanz in ihrer Liste positioniert
     mysql_free_result( $result );
   }
 }

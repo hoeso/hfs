@@ -267,7 +267,7 @@ class KWview extends KWmodel
 	    $d="&d";
 	  else
 	    $d="";
-          ?><a href="mn.php?mn=planend&a=Termin&sl=3&sl1=Kurs&sl2=<?php echo $row;?>&sl3=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">&nbsp;</a><?php
+          ?><a href="mn.php?mn=planend&a=Termin&sl=4&sl1=Leistung&sl2=Ort&sl3=<?php echo $row;?>&sl4=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">&nbsp;</a><?php
 	  /***
           if( isset($clutch) && 1 < $i ) // 1 < $i: Vorgaenger 'Sonntag' weglassen
           {
