@@ -4,11 +4,18 @@ include("vektorQuart.prj"); // $quart
 class KWview extends KWmodel
 {
   protected $tag;
+  private   $iLeistung;
+  private   $idLeistung;
+  private   $Leistung;
 
   function __construct($strDate, $filter="")
   {
     parent::__construct($strDate, $filter);
     //var_dump($this->tag); echo "\n<br>";
+    $this->iLeistung = 1;
+    $this->idLeistung = DB::gibFeld( "SELECT ID FROM Leistung LIMIT " . $this->iLeistung );
+    $this->iLeistung += 1;
+    $this->Leistung = DB::gibFeld( "SELECT Leistung FROM Leistung WHERE ID=" . $this->idLeistung);
   }
   function __get($var)
   {
@@ -28,6 +35,8 @@ class KWview extends KWmodel
         return parent::__get('KWweiter');
       case 'KWzurueck':
         return parent::__get('KWzurueck');
+      case 'Leistung':
+        return $this->Leistung;
       case 'Stop':
         return parent::__get('Stop');
       case 'WochentagNumerisch':
@@ -177,6 +186,7 @@ class KWview extends KWmodel
         <map name="initialen<?php echo $ancor;?>">
         <area shape=rect coords="0,0,18,18" title='Darstellung' href="./mn.php?mn=kw&a=MAKlientVS&b=<?php echo $NOTmaORcl;?>&k=<?php echo $this->Datum;?>&c=<?php echo $text;?>&navi=KW&u=<?php echo $this->Kalenderwoche . " " . $kwTitel; echo $f;?>#<?php echo $ancor;?>">
         </map>
+	<a href="./mn.php?mn=kw&a=MAKlientVS&b=<?php echo $maORcl;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $kw;?>#<?php echo $ancor;?>"><?php echo $this->Leistung?></a>
 	<!--img class="img18" src="images/kalender-18px.png" alt="Wochen&uuml;bersicht" usemap="#woche<?php echo $ancor;?>"-->
 	<a name='<?php echo $ancor;?>'></a>
         <map name="woche<?php echo $ancor;?>">
