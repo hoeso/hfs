@@ -751,6 +751,8 @@ switch( $_E['mn'] )
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "anzeigendEntitaet";
     $_E['entitaet'] = $_REQUEST["a"];
+    if( isset($_REQUEST["i"]) ) // ident: einruecken, gemappt auf gruppenStaerke
+      $_E['ident'] = $_REQUEST["i"];
     if( isset($_REQUEST["navi"]) )
       $_E['navi'] = $_REQUEST["navi"];
   break;
