@@ -18,9 +18,10 @@ if( isset($_REQUEST[""]) )
   $ = $_REQUEST[""];
 */
 
-$_REQUEST["sl"]=2;
+$_REQUEST["sl"]=3;
 $_REQUEST["sl1"]="Leistung";
-$_REQUEST["sl2"]="Ort";
+$_REQUEST["sl2"]="Trainer";
+$_REQUEST["sl3"]="Ort";
 if( !isset($_REQUEST["j"]) or !isset($_REQUEST["k"]) )
 {
   ?>kein Jahr oder keine KW &uuml;bergeben!?<br><?php
@@ -33,9 +34,9 @@ $SELECTRE1=$_REQUEST["j"];
 $_REQUEST["re2"]="KW";
 $SELECTRE2=$_REQUEST["k"];
 $_REQUEST["re3"]="Tag";
-$SELECTRE3=$_REQUEST["sl4"];
+$SELECTRE3=$_REQUEST["sl5"];
 $_REQUEST["re4"]="VS";
-$SELECTRE4=$_REQUEST["sl3"];
+$SELECTRE4=$_REQUEST["sl4"];
 
 $_REQUEST["a"]="Termin";
 /******
