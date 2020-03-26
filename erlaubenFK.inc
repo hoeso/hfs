@@ -14,8 +14,8 @@ $arrFK = array(
 	"MAKlient"=>array(
 		"MA",
 	),
-	"MAKlientVS"=>array(
-		"MAKlient",
+	"Termin"=>array(
+		"Trainer",
 	),
 );
 ?>

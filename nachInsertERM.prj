@@ -16,6 +16,30 @@ if( isset($_REQUEST["d"]) )
   dEcho( $b_, "in $table als " . $arr[0] . ". Instanz eingefuegt" );
 switch( $table )
 {
+  case 'Termin':
+    unset($a__);
+    $a__[0]=0;// hier Feld 0 rein = LeistungID
+    $a__[1]=1;// hier Feld 1 rein = OrtID
+    gibFelderArray( $MySQLDb, "SELECT LeistungID, OrtID FROM Termin WHERE $_E[ID]=ID", $a__ );
+    if( false == habWas( $a__, 0, 1 ) )
+    {
+      ?>Der Trainer des Termins kann nicht ermittelt werden.<?php
+      $wZu="anbietendKnopfZurueck";
+      include("forkZu.inc");
+    }
+    $trID = gibFeld( $MySQLDb, "SELECT TrainerID FROM TrainerOrtLeistung WHERE $a__[0]=LeistungID AND $a__[1]=OrtID", 0 );
+    
+    $result = mysql_db_query( $MySQLDb, "UPDATE Termin SET TrainerID=$trID WHERE $_E[ID]=ID" );
+    if(!$result)
+    {
+      reagierenAufSQLFehler( $lkid, $sql, $ID );
+    }
+    else
+    {
+      ?>Der Trainer wurde gem&auml;&szlig; den Vorgaben gesetzt.<br>
+      Er kann mit dem Bleistift korrigiert werden.<br><?php
+    }
+  break;
   case 'MAAbwesenheit':
   break;
 }

@@ -18,10 +18,11 @@ if( isset($_REQUEST[""]) )
   $ = $_REQUEST[""];
 */
 
-$_REQUEST["sl"]=3;
+$_REQUEST["sl"]=2;
 $_REQUEST["sl1"]="Leistung";
-$_REQUEST["sl2"]="Trainer";
-$_REQUEST["sl3"]="Ort";
+$_REQUEST["sl3"]="Trainer";
+//$SELECTSL3=;
+$_REQUEST["sl2"]="Ort";
 if( !isset($_REQUEST["j"]) or !isset($_REQUEST["k"]) )
 {
   ?>kein Jahr oder keine KW &uuml;bergeben!?<br><?php
