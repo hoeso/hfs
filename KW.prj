@@ -12,11 +12,11 @@ if( !isset($_E['date']) )
 }
 $f="";
 if( isset($_REQUEST['f']) && $_REQUEST['f'] )// 0: kein Filter
-{ //MA o. Klient*innen filtern?
-  if( 'client' == $_A['what'] )
-    $f=" AND $_REQUEST[f]=c.ID";
+{ //Ort o. Trainer*innen filtern?
+  if( 'ort' == $_A['what'] )
+    $f=" AND $_REQUEST[f]=o.ID";
   else
-    $f=" AND $_REQUEST[f]=m.ID";
+    $f=" AND $_REQUEST[f]=tr.ID";
 }
 $kw = new KWview( $_E['date'], $f );
 echo "[KW " . $kw->Kalenderwoche . "] " . $kw->show($_A['what'],$_A['how']) . "20" . $kw->Jahr/* . $kw->KWzurueck . "[" . $kw->Datum . "]" . $kw->KWweiter . "<br>"*/;

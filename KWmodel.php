@@ -20,8 +20,10 @@ class KWmodel extends KW
     $this->db = Db::getInstance();
     // Start-Quart am Morgen:
     $this->go = DB::gibFeld( "SELECT IF(4 < MIN(v.ID), MIN(v.ID)-4, 1) FROM VS v JOIN KlientVS cv ON (v.ID=cv.VSID) JOIN MAKlientVS mcv ON (cv.ID=mcv.KlientVSID)", 0 );
+    $this->go = DB::gibFeld( "SELECT IF(4 < MIN(v.ID), MIN(v.ID)-4, 1) FROM VS v JOIN Termin te ON (v.ID=te.VSID)", 0 );
     // Ende-Quart am Abend:
     $this->stop = DB::gibFeld( "SELECT IF(v.ID + cv.Menge > 96, 96, v.ID + cv.Menge) FROM VS v JOIN KlientVS cv ON (v.ID=cv.VSID) JOIN MAKlientVS mcv ON (cv.ID=mcv.KlientVSID) ORDER BY v.ID DESC LIMIT 1", 0 );
+    $this->stop = DB::gibFeld( "SELECT IF(v.ID + te.Dauer > 96, 96, v.ID + te.Dauer) FROM VS v JOIN Termin te ON (v.ID=te.VSID) ORDER BY v.ID DESC LIMIT 1", 0 );
     if( !$this->stop )
     {
       $this->go   = 31;
