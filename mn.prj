@@ -70,6 +70,76 @@ switch( $_E['mn'] )
     }
     //if( !isset($_REQUEST["navi"]) ) { echo $exitus; return; }
   break;
+  case "nn": // bspVerlinkendEntitaet
+    if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
+    if( isset($_REQUEST["nn"]) and !isset($_REQUEST["nn1"]) ) { echo $exitus; return; }
+    if( isset($_REQUEST["sl"]) and !isset($_REQUEST["sl1"]) ) { echo $exitus; return; }
+    //$_E['enableDbg'] = true; // Ausgaben von dbConnect.inc aktivieren
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "bspVerlinkendEntitaet";
+    $_E['entitaet'] = $_REQUEST["a"];
+    if( isset($_REQUEST["i"]) ) // ident: einruecken, gemappt auf gruppenStaerke
+      $_E['ident'] = $_REQUEST["i"];
+    if( isset($_REQUEST["re"]) and $_REQUEST["re"] )
+    {
+      $_E['re'] = $_REQUEST["re"];
+      for( $i=1; $i <= $_E['re'] and $i < 6; $i++ )
+        if( isset($_REQUEST["re$i"]) )
+          $_E["re$i"] = $_REQUEST["re$i"];
+    }
+    if( isset($_REQUEST["1n"]) and $_REQUEST["1n"] )
+    {
+      $_E['1n'] = $_REQUEST["1n"];
+      for( $i=1; $i <= $_E['1n'] and $i < 6; $i++ )
+        if( isset($_REQUEST["1n$i"]) )
+          $_E["1n$i"] = $_REQUEST["1n$i"];
+    }
+    if( isset($_REQUEST["nn"]) and $_REQUEST["nn"] )
+    {
+      $_E['nn'] = $_REQUEST["nn"];
+      for( $i=1; $i <= $_E['nn'] and $i < 6; $i++ )
+        if( isset($_REQUEST["nn$i"]) )
+          $_E["nn$i"] = $_REQUEST["nn$i"];
+    }
+    if( isset($_REQUEST["sl"]) and $_REQUEST["sl"] )
+    {
+      $_E['sl'] = $_REQUEST["sl"];
+      for( $i=1; $i <= $_E['sl'] and $i < 6; $i++ )
+      {
+        if( isset($_REQUEST["sl$i"]) )
+          $_E["sl$i"] = $_REQUEST["sl$i"];
+        switch( $_REQUEST["sl$i"] )
+        {
+          case "Platzhalter":
+            $_E["stm$i"] = "SELECT c.ID, CONCAT(c.Name,' ', c.Vorname), DATE_FORMAT( c.geborenAm,'%d.%m.%Y' ) FROM Klient c";
+          break;
+          default:
+	    if( isset($Select) and isset($Select[$_REQUEST["sl$i"]]) )
+	    {
+              $_E["stm$i"] = $Select[$_REQUEST["sl$i"]];
+	      if( isset($OrderBy) and isset($OrderBy[$_REQUEST["sl$i"]]) )
+	        $_E["stm$i"] .= $OrderBy[$_REQUEST["sl$i"]];
+	    }
+          break;
+        }  
+        if( isset($_E["stm$i-filter"]) && isset($_E["stm$i"]) )
+        {
+          if( isset($_REQUEST["d"]) )
+            dEcho( $b_, "i: $i -- filter: " . $_E["stm$i-filter"] );
+          $_E["stm$i"] .= $_E["stm$i-filter"];
+          if( isset($_E["stm$i-order"]) )
+            $_E["stm$i"] .= $_E["stm$i-order"];
+          if( isset($_REQUEST["d"]) )
+            dEcho( $b_, $_E["stm$i"] );
+        }
+      }
+    }
+    $_E['recipient'] = 4224; // speichernd1ZuN
+    $_eTitel = array( $_REQUEST["a"] );
+    $_E['navi'] = "Verknuepfen";
+    if( isset($_REQUEST["x"]) )
+      $_E['nichtEinfuegen'] = $_REQUEST["x"];
+  break;
   case "speichernKW":
     $_E['wZu'] = "pruefendSymbol";
     $_REQUEST['kopierenKW_x']=true;
@@ -171,15 +241,15 @@ switch( $_E['mn'] )
     $_E['date'] = $_REQUEST["k"];
     switch( $_REQUEST["b"] )
     {
-      case 'c':
-        $_A['what'] = 'client';
+      case 'o':
+        $_A['what'] = 'ort';
       break;
       default:
-        $_A['what'] = 'mitarbeiter';
+        $_A['what'] = 'trainer';
       break;
     }
-    if( isset($_REQUEST["c"]) )
-      switch( $_REQUEST["c"] )
+    if( isset($_REQUEST["o"]) )
+      switch( $_REQUEST["o"] )
       {
         case 'i':
           $_A['how'] = 'initialen';

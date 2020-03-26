@@ -146,6 +146,8 @@ $Select=array
 
   "Trainer"=>"SELECT tr.ID, tr.Name, tr.Vorname, tr.Titel, tr.Telefon FROM Trainer tr WHERE tr.ID=tr.ID",
 	
+  "TrainerOrtLeistung"=>"SELECT tol.ID, tr.Name AS Trainer, l. Leistung, b.Bundesland, CONCAT(o.Kursort,' ',o.Ortschaft,' ',o.Strasse) AS Ort FROM TrainerOrtLeistung tol JOIN Trainer tr ON tol. TrainerID=tr.ID JOIN Ort o ON tol. OrtID=o.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Leistung l ON tol. LeistungID=l.ID",
+	
   "Angebot"=>"SELECT Angebot.ID, EDV.ID AS Nr, EDV.Projekt, EDV.Prioritaet, Angebot.Position as Pos, Angebot.Section, Angebot.Details, Angebot.realisierungsStunden AS h FROM Angebot, EDV WHERE Angebot.EDVID=EDV.ID",
 
   "Auftraege"=>"SELECT a.ID, CONCAT(v. Versicherer,' ', sb. Schadenbuero,': ', b. Anrede,' ',b. Name) AS VR, DATE_FORMAT( p.commit,'%d.%m.%Y' ) AS am, CONCAT( c.Kuerzel, DATE_FORMAT( p.commit,'%y' ), a.Nr ) AS Nr, p.vnName, CONCAT( c.Kuerzel, DATE_FORMAT( p.commit,'%y' ), a.Nr ) AS Nr, CONCAT(p.vnName,' T. ',p.Telefon)AS VN, CONCAT(p.PLZ,' ',p.Besichtigungsort,', ',p.Strasse) AS Adr FROM Portal p JOIN Auftrag a ON (p.ID=a. PortalID) JOIN Bearbeiter b ON (p. BearbeiterID=b.ID) JOIN Schadenbuero sb ON (b. SchadenbueroID=sb.ID) JOIN Versicherer v ON (sb. VersichererID=v.ID) JOIN Center c ON (p. CenterID=c.ID) WHERE '2014'=YEAR(p.commit) AND WEEKOFYEAR(p.commit) > (WEEKOFYEAR(DATE(NOW()))-4) AND 'nein'=a. abgeschlossen",
@@ -154,7 +156,7 @@ $Select=array
 
   "EDVAngebot"=>"SELECT ID, Projekt, ID AS Nr, Beschreibung, Prioritaet, akzeptiert, akzeptiertAm, installiertAm, anzeigeSTD FROM EDV",
 
-  "Ort"=>"SELECT o.ID, b.Bundesland, t.Name AS Trainer, o.Kursort, CONCAT(o.PLZ,' ',o.Ortschaft,', ',o.Strasse) AS Adresse FROM Ort o JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Trainer t ON o.TrainerID=t.ID",
+  "Ort"=>"SELECT o.ID, b.Bundesland, o.Kursort, CONCAT(o.PLZ,' ',o.Ortschaft,', ',o.Strasse) AS Adresse FROM Ort o JOIN Bundesland b ON o. BundeslandID=b.ID",
   
   "Stundensatz"=>"SELECT ss.ID, Stundensatz, Datum FROM Stundensatz ss JOIN Zeitstempel z ON (ss.ZeitstempelID=z.ID)",
 
@@ -199,6 +201,7 @@ $OrderBy=array
   "TelProband"=>" ORDER BY Proband, Tel",
   "Termin"=>" ORDER BY Bundesland, Leistung, Kursort, Jahr DESC, KW DESC",
   "Trainer"=>" ORDER BY Name, Vorname",
+  "TrainerOrtLeistung"=>" ORDER BY Trainer, Ort, Leistung",
 );
 
 $gfaerbteSpoidn = array(
