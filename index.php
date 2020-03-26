@@ -39,6 +39,11 @@ if( isset($_REQUEST["navi"]) )
 {
   switch( $_REQUEST["navi"] )
   {
+    case 'Einzeln':
+      $_REQUEST['mn'] = "1432";
+      $_REQUEST["a"] = "Termin";
+      $_REQUEST["i"] = "3";
+    break;
     case 'Plan':
       $_REQUEST['mn'] = "1432";
       $_REQUEST["a"] = "Termin";
