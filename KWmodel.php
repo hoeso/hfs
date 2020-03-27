@@ -82,7 +82,7 @@ class KWmodel extends KW
     {
       //$sql = "SELECT cv.Menge, " . $concat . " AS sc, CONCAT(c.Name,',',c.Vorname), c.ID, mcv.ID, CONCAT(LEFT(m.Name,1),LEFT(m.Vorname,1)), cv.ID FROM MAKlientVS mcv JOIN KlientVS cv ON (mcv. KlientVSID =cv.ID) JOIN MAKlient mc ON (mcv. MAKlientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Klient c ON (cv. KlientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID $this->filter ORDER BY sc";
       /*###*/
-      $sql = "SELECT te.Dauer, " . $concat . " AS sc, CONCAT(LEFT(tr.Name,1),LEFT(tr.Vorname,1)), tr.ID, te.ID, CONCAT(tr.Name,' ',tr.Vorname), te.ID FROM Termin te JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Ort o ON te.OrtID=o.ID JOIN Jahr j ON (te. JahrID =j.ID) JOIN KW k ON (te. KWID =k.ID) JOIN Tag t ON (te. TagID =t.ID) JOIN VS v ON (te. VSID =v.ID) WHERE $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID $this->filter ORDER BY sc";
+      $sql = "SELECT te.Dauer, " . $concat . " AS sc, CONCAT(LEFT(tr.Name,1),LEFT(tr.Vorname,1)), tr.ID, te.ID, CONCAT(o.Kursort,'-',o.Ortschaft), te.ID FROM Termin te JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Ort o ON te.OrtID=o.ID JOIN Jahr j ON (te. JahrID =j.ID) JOIN KW k ON (te. KWID =k.ID) JOIN Tag t ON (te. TagID =t.ID) JOIN VS v ON (te. VSID =v.ID) WHERE $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID $this->filter ORDER BY sc";
     }
     else
     {

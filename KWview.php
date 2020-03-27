@@ -140,7 +140,17 @@ class KWview extends KWmodel
         <map name="pinnen<?php echo $ancor;?>">
         <!--area shape=rect coords="0,0,18,18" title='diese Uhrzeit pinnen' href="./mn.php?mn=kw&a=Termin&b=<?php echo $NOTtrainerORort;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $NOTkw; echo $f;?>#<?php echo $ancor;?>"-->
         <area shape=rect coords="0,0,18,18" title='Kalender neu laden' href="javascript:location.reload()" target="_self">
+        </map><?php
+        if( 'initialen' == $how )
+          $img2 = "1430954247-18px.png";
+        else
+          $img2 = "matt-icons_emblem-minus-18px.png";?>
+	<img class="img18" src="images/<?php echo $img2;?>" alt="Darstellung" usemap="#initialen<?php echo $ancor;?>">
+	<a name='<?php echo $ancor;?>'></a>
+        <map name="initialen<?php echo $ancor;?>">
+        <area shape=rect coords="0,0,18,18" title='Darstellung' href="./mn.php?mn=kw&a=Termin&b=<?php echo $NOTtrainerORort;?>&k=<?php echo $this->Datum;?>&c=<?php echo $text;?>&navi=KW&u=<?php echo $this->Kalenderwoche . " " . $kwTitel; echo $f;?>#<?php echo $ancor;?>">
         </map>
+
 	<!--img class="img18" src="images/<?php echo $img;?>" alt="zum Wochenplan" usemap="#maorcl<?php echo $ancor;?>"-->
 	<a name='<?php echo $ancor;?>'></a>
         <map name="maorcl<?php echo $ancor;?>">
@@ -176,15 +186,6 @@ class KWview extends KWmodel
         <img class="img18" src="images/jean-victor-balin-arki-arrow-right-18px.png" alt="weiter" usemap="#weiter<?php echo $ancor;?>">
         <map name="weiter<?php echo $ancor;?>">
         <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche + 1;?>' href="./mn.php?mn=kw&a=TerminKW&b=<?php echo $NOTtrainerORort;?>&k=<?php echo $this->KWweiter;?>&navi=KW&u=<?php echo $kw + 1 . " " . $kwTitel; echo $f;?>#<?php echo $ancor;?>">
-        </map><?php
-        if( 'initialen' == $how )
-          $img2 = "1430954247-18px.png";
-        else
-          $img2 = "matt-icons_emblem-minus-18px.png";?>
-	<img class="img18" src="images/<?php echo $img2;?>" alt="Darstellung" usemap="#initialen<?php echo $ancor;?>">
-	<a name='<?php echo $ancor;?>'></a>
-        <map name="initialen<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,18,18" title='Darstellung' href="./mn.php?mn=kw&a=Termin&b=<?php echo $NOTtrainerORort;?>&k=<?php echo $this->Datum;?>&c=<?php echo $text;?>&navi=KW&u=<?php echo $this->Kalenderwoche . " " . $kwTitel; echo $f;?>#<?php echo $ancor;?>">
         </map>
 	<a href="./mn.php?mn=kw&a=Termin&b=<?php echo $trainerORort;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $kw;?>#<?php echo $ancor;?>"><?php echo $this->Leistung?></a>
 	<!--img class="img18" src="images/kalender-18px.png" alt="Wochen&uuml;bersicht" usemap="#woche<?php echo $ancor;?>"-->
@@ -406,6 +407,11 @@ class KWview extends KWmodel
             <!--area shape=rect coords="0,0,18,18" title='diese Uhrzeit pinnen' href="./mn.php?mn=kw&a=Termin&b=<?php echo $NOTtrainerORort;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $NOTkw;?>#<?php echo $ancor;?>"-->
             <area shape=rect coords="0,0,18,18" title='Kalender neu laden' href="javascript:location.reload()" target="_self">
             </map>
+    	    <img class="img18" src="images/<?php echo $img2;?>" alt="Darstellung" usemap="#initialen<?php echo $ancor;?>">
+    	    <a name='<?php echo $ancor;?>'></a>
+            <map name="initialen<?php echo $ancor;?>">
+            <area shape=rect coords="0,0,18,18" title='Darstellung' href="./mn.php?mn=kw&a=Termin&b=<?php echo $NOTtrainerORort;?>&k=<?php echo $this->Datum;?>&c=<?php echo $text;?>&navi=KW&u=<?php echo $this->Kalenderwoche . " " . $kwTitel;?>#<?php echo $ancor;?>">
+            </map>
 	    <img class="img18" src="images/<?php echo $img;?>" alt="zum Wochenplan" usemap="#maorcl<?php echo $ancor;?>">
             <a name='<?php echo $ancor;?>'></a>
             <map name="maorcl<?php echo $ancor;?>">
@@ -440,11 +446,6 @@ class KWview extends KWmodel
             <img class="img18" src="images/jean-victor-balin-arki-arrow-right-18px.png" alt="weiter" usemap="#weiter<?php echo $ancor;?>">
             <map name="weiter<?php echo $ancor;?>">
             <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche + 1;?>' href="./mn.php?mn=kw&a=TerminKW&b=<?php echo $NOTtrainerORort;?>&k=<?php echo $this->KWweiter;?>&navi=KW&u=<?php echo $kw + 1 . " " . $kwTitel;?>#<?php echo $ancor;?>">
-            </map>
-    	    <img class="img18" src="images/<?php echo $img2;?>" alt="Darstellung" usemap="#initialen<?php echo $ancor;?>">
-    	    <a name='<?php echo $ancor;?>'></a>
-            <map name="initialen<?php echo $ancor;?>">
-            <area shape=rect coords="0,0,18,18" title='Darstellung' href="./mn.php?mn=kw&a=Termin&b=<?php echo $NOTtrainerORort;?>&k=<?php echo $this->Datum;?>&c=<?php echo $text;?>&navi=KW&u=<?php echo $this->Kalenderwoche . " " . $kwTitel;?>#<?php echo $ancor;?>">
             </map>
 	    <!--img class="img18" src="images/kalender-18px.png" alt="Wochen&uuml;bersicht" usemap="#woche<?php echo $ancor;?>"-->
 	    <a name='<?php echo $ancor;?>'></a>

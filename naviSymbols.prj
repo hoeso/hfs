@@ -19,7 +19,7 @@ switch( $sw )
   {
     ?><img src="images/iconmonstr-process-2-32.png" alt="zum Getriebe" usemap="#zahnrad">
       <img src="images/iconmonstr-link-thin-32.png" alt="zum Verkn&uuml;pfen" usemap="#verknuepfen">
-      <!--img src="images/iconmonstr-user-25-32.png" alt="neue Probanden" usemap="#proband"-->
+      <img src="images/iconmonstr-user-25-32.png" alt="neue Probanden" usemap="#proband">
   <?php
   }
   break;
@@ -32,7 +32,8 @@ switch( $sw )
   break;
   case "Verknuepfen":
   {
-    ?><img src="images/iconmonstr-process-2-32.png" alt="zum Getriebe" usemap="#zahnrad"><!--img src="images/iconmonstr-user-25-32.png" alt="zur Neuanlage von Probanden" usemap="#proband"-->
+    ?><img src="images/iconmonstr-process-2-32.png" alt="zum Getriebe" usemap="#zahnrad">
+      <img src="images/iconmonstr-user-25-32.png" alt="zur Neuanlage von Probanden" usemap="#proband">
       <img src="images/iconmonstr-user-circle-thin-32.png" alt="Einzeltermin" usemap="#einzeln">
   <?php
   }
@@ -40,7 +41,7 @@ switch( $sw )
   case "Zahnrad":
   {
     ?><img src="images/iconmonstr-link-thin-32.png" alt="zum Verkn&uuml;pfen" usemap="#verknuepfen">
-      <!--img src="images/iconmonstr-user-25-32.png" alt="neue Probanden" usemap="#proband"-->
+      <img src="images/iconmonstr-user-25-32.png" alt="neue Probanden" usemap="#proband">
       <img src="images/iconmonstr-user-circle-thin-32.png" alt="Einzeltermin" usemap="#einzeln">
   <?php
   }
