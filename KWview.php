@@ -273,7 +273,7 @@ class KWview extends KWmodel
         unset($a);
         $this->gibTermine( $a, $dim, $what, $concat, $dayofweek, $row );
         if( $a[0]==0 && $a[1]==1 && $a[2]==2 )
-	{ // nix gfundn worn :-(
+	{ // keine Start-VS, oder: nix gfundn worn :-(
 	  if( isset($_REQUEST['d']) )
 	    $d="&d";
 	  else
@@ -302,8 +302,7 @@ class KWview extends KWmodel
 	    $d="&d";
 	  else
 	    $d="";
-          ?><!--a href="mn.php?mn=planend&a=KlientVS&sl=3&sl1=Klient&sl2=<?php echo $row;?>&sl3=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x&i=6" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">&nbsp;</a-->&nbsp;<?php
-          ?><a href="mn.php?mn=planend&a=Termin&sl=5&sl1=Leistung&sl2=Trainer&sl3=Ort&sl4=<?php echo $row;?>&sl5=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x&i=6" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">&nbsp;</a>&nbsp;<?php
+          ?><a href="mn.php?mn=planend&a=Termin&sl=5&sl1=Leistung&sl2=Trainer&sl3=Ort&sl2ID=<?php echo $a[6]?>&sl4=<?php echo $row;?>&sl5=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x&i=6" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">+&nbsp;</a>&nbsp;<?php
 	  for( $k=0; $k < count($a); $k += $dim )
 	  {
             $maclientvsID=$a[$k+4];

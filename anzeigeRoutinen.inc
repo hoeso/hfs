@@ -978,6 +978,7 @@ function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
   global $SELECTEM1;  // im Falle von 'zurueck zum Neuanlegen'
   global $SELECTMM1;  // im Falle von 'zurueck zum Neuanlegen'
   global $SELECTSL1;  // im Falle von 'zurueck zum Neuanlegen'
+  global $SELECTSL2;  
   global $SELECTSL3;  
   global $SELECTSL4;  
   global $SELECT0;  // im Falle von 'EMspazierend'
@@ -1002,6 +1003,10 @@ function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
   {
     $IDgewaehlt=$SELECTSL1;
   }
+  else if( "SL2" == $label and isset($_REQUEST["sl2ID"]) )
+  {
+    $IDgewaehlt=$_REQUEST["sl2ID"];
+  }
   else if( "SL3" == $label )
   {
     $IDgewaehlt=$SELECTSL3;
@@ -1019,7 +1024,7 @@ function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
     echo $label;
     ?>' value='<?php
     echo $table;
-    ?>'><?php
+    ?>'><?php echo "\n";
     ?><select name='SELECT<?php
     echo "$label";
     ?>'><?php
