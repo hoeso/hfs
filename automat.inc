@@ -955,7 +955,7 @@ $automat = array(
 	),
 	"zeigendKW"=>array(
 		//"kopfteil.html",
-		//"kopfteil.prj",
+		"kopfteil.prj",
 		//"naviSymbols.prj",
 		//"endeContainer.html",
 		"hauptteil.html",

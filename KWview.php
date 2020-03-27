@@ -277,7 +277,7 @@ class KWview extends KWmodel
 	    $d="&d";
 	  else
 	    $d="";
-          ?><a href="mn.php?mn=planend&a=Termin&sl=5&sl1=Leistung&sl2=Trainer&sl3=Ort&sl4=<?php echo $row;?>&sl5=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x&i=6" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">&nbsp;</a><?php
+          ?><a href="mn.php?mn=planend&a=Termin&sl=5&sl1=Leistung&sl2=Trainer&sl3=Ort&sl4=<?php echo $row;?>&sl5=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x&i=6" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">&nbsp;</a>&nbsp;<?php
 	  /***
           if( isset($clutch) && 1 < $i ) // 1 < $i: Vorgaenger 'Sonntag' weglassen
           {
@@ -295,13 +295,14 @@ class KWview extends KWmodel
 	   ***/
 	}
         else
-	{ // Treffer, hier findet ein Klient|MA Besuch statt:
+	{ // Treffer, hier findet ein Termin statt:
           /*** zunaechst noch Bindestrich-Link fuer weiteren Einsatz um diese Uhrzeit anbieten: ***/
 	  if( isset($_REQUEST['d']) )
 	    $d="&d";
 	  else
 	    $d="";
-          ?><a href="mn.php?mn=planend&a=KlientVS&sl=3&sl1=Klient&sl2=<?php echo $row;?>&sl3=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x&i=6" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">&nbsp;</a><?php
+          ?><!--a href="mn.php?mn=planend&a=KlientVS&sl=3&sl1=Klient&sl2=<?php echo $row;?>&sl3=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x&i=6" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">&nbsp;</a-->&nbsp;<?php
+          ?><a href="mn.php?mn=planend&a=Termin&sl=5&sl1=Leistung&sl2=Trainer&sl3=Ort&sl4=<?php echo $row;?>&sl5=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x&i=6" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">&nbsp;</a>&nbsp;<?php
 	  for( $k=0; $k < count($a); $k += $dim )
 	  {
             $maclientvsID=$a[$k+4];
@@ -325,14 +326,20 @@ class KWview extends KWmodel
 	        $ent=$a__[5];
                 $str="&a=Klient&planungTag_x&k=c"; // k=c: eOverlay-Kontext --> KlientVS=Klient
                 $str.="&l=zum%20Klient&#42;in";
+		/*###*/
+                $str="&a=Termin&planungVS_x&k=o"; // k=c: eOverlay-Kontext --> KlientVS=Klient
+                $str.="&l=zum%20Termin";
 	      }
               else                
 	      {
 	        $ent=$a__[3];
                 $str="&a=MA&planungMA_x";
                 $str.="&l=zum%20MA&#42;in";
+		/*###*/
+                $str="&a=Termin&planungVS_x&k=t"; // k=c: eOverlay-Kontext --> KlientVS=Klient
+                $str.="&l=zum%20Termin";
 	      }
-              ?><a href="mn.php?mn=3653&navi=Plan&ID=<?php echo $a__[2];?>&u=<?php echo substr($sc,2,2) . $str;?>&Termin=<?php echo $ent;?>#<?php echo $ent;?>" target="_blank" title=<?php echo $a__[1] . ">"; // title: voller Name
+              ?><a href="mn.php?mn=Tag&navi=Plan&ID=<?php echo $a__[2];?>&u=<?php echo substr($sc,2,2) . $str;?>&Termin=<?php echo $ent;?>#<?php echo $ent;?>" target="_blank" title=<?php echo $a__[1] . ">"; // title: voller Name
               if( 'initialen' == $how )
 	        echo substr($sc,2,2) . " "; // nur die Initialen
               else
@@ -344,6 +351,7 @@ class KWview extends KWmodel
   		  if( 1 == strlen($md_[$n]) )
 		    $md_[$n] = "0$md_[$n]";
 	        //echo "-$a__[2] + 20$this->Jahr-$md_[1]-$md_[0]";
+		/*** Abwesenheit gibt es noch nicht in der VPI Suite
 		$maPraesenz = new MAAbwesenheit( "20$this->Jahr", "20$this->Jahr-$md_[1]-$md_[0]", $a__[2] );
                 if( true == $maPraesenz->abwesend )
                 {
@@ -355,6 +363,7 @@ class KWview extends KWmodel
                   ?>-18px.png"><?php
                 }
                 unset($maPraesenz);
+		 ***/
 	      }
               ?></a><?php
 	      if( $counter )

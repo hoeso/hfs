@@ -294,6 +294,26 @@ switch( $_E['mn'] )
     if( isset($_REQUEST["navi"]) )
       $_E['navi'] = $_REQUEST["navi"];
   break;
+  case "Tag":
+    if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
+    $i = $_REQUEST["a"];
+    //if( !isset($_a[ $_REQUEST["a"] ]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "listend";
+    $_E['lView'] = $_REQUEST["a"];
+    $_E['entitaet'] = $_REQUEST["a"];
+    $_eTitel = array( str_replace("ae", "&auml;", $_a[ $_REQUEST["a"] ]) );
+  break;
+  case "Tag-planend": // aenderndRE
+    if( !isset($_REQUEST["a"]) /*or !isset($_REQUEST["ID"])*/ ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "pruefendSymbol";
+    $_E['entitaet'] = $_REQUEST["a"];
+    //$_E['ID'] = $_REQUEST["ID"];
+    $_eTitel = array( "{$_E['entitaet']}" );
+    if( isset($_REQUEST["navi"]) )
+      $_E['navi'] = $_REQUEST["navi"];
+  break;
   case "sl_1n": // FK mit Filter-SELECT und FK zu 1:N entities
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
     if( isset($_REQUEST["1n"]) and !isset($_REQUEST["1n1"]) ) { echo $exitus; return; }

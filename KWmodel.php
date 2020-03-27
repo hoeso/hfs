@@ -70,21 +70,25 @@ class KWmodel extends KW
       $a_ = explode( "/", __file__ );
       $b_ = $a_[count($a_)-1];
     }
-    $a[0]=0;// hier Feld 0 rein = Menge
+    $a[0]=0;// hier Feld 0 rein = Dauer
     $a[1]=1;// hier Feld 1 rein = Initialen
     $a[2]=2;// hier Feld 2 rein = Name, Vorname
-    $a[3]=3;// hier Feld 3 rein = [Klient|MA].ID
-    $a[4]=4;// hier Feld 4 rein = [MAKlientVS].ID
+    $a[3]=3;// hier Feld 3 rein = Trainer.ID
+    $a[4]=4;// hier Feld 4 rein = Termin.ID
     $a[5]=5;// hier Feld 5 rein = Initialen der jeweils anderen Person
     $a[6]=6;// hier Feld 6 rein = [KlientVS].ID
     $dim=count($a);
-    if( 'client' == $what )
+    if( 'ort' == $what )
     {
-      $sql = "SELECT cv.Menge, " . $concat . " AS sc, CONCAT(c.Name,',',c.Vorname), c.ID, mcv.ID, CONCAT(LEFT(m.Name,1),LEFT(m.Vorname,1)), cv.ID FROM MAKlientVS mcv JOIN KlientVS cv ON (mcv. KlientVSID =cv.ID) JOIN MAKlient mc ON (mcv. MAKlientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Klient c ON (cv. KlientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID $this->filter ORDER BY sc";
+      //$sql = "SELECT cv.Menge, " . $concat . " AS sc, CONCAT(c.Name,',',c.Vorname), c.ID, mcv.ID, CONCAT(LEFT(m.Name,1),LEFT(m.Vorname,1)), cv.ID FROM MAKlientVS mcv JOIN KlientVS cv ON (mcv. KlientVSID =cv.ID) JOIN MAKlient mc ON (mcv. MAKlientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Klient c ON (cv. KlientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID $this->filter ORDER BY sc";
+      /*###*/
+      $sql = "SELECT te.Dauer, " . $concat . " AS sc, CONCAT(LEFT(tr.Name,1),LEFT(tr.Vorname,1)), tr.ID, te.ID, CONCAT(tr.Name,' ',tr.Vorname), te.ID FROM Termin te JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Ort o ON te.OrtID=o.ID JOIN Jahr j ON (te. JahrID =j.ID) JOIN KW k ON (te. KWID =k.ID) JOIN Tag t ON (te. TagID =t.ID) JOIN VS v ON (te. VSID =v.ID) WHERE $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID $this->filter ORDER BY sc";
     }
     else
     {
-      $sql = "SELECT cv.Menge, CONCAT(LEFT(m.Name,1),LEFT(m.Vorname,1)), CONCAT(m.Name,',',m.Vorname), m.ID, mcv.ID, CONCAT(LEFT(c.Name,1),LEFT(c.Vorname,1)), cv.ID FROM MAKlientVS mcv JOIN KlientVS cv ON (mcv. KlientVSID =cv.ID) JOIN MAKlient mc ON (mcv. MAKlientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Klient c ON (cv. KlientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE mc.KlientID=cv.KlientID AND $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID $this->filter ORDER BY sc";
+      $sql = "SELECT te.Dauer, CONCAT(LEFT(tr.Name,1),LEFT(tr.Vorname,1)), CONCAT(tr.Name,' ',tr.Vorname), tr.ID, te.ID, CONCAT(LEFT(tr.Name,1),LEFT(tr.Vorname,1)), te.ID FROM Termin te JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Jahr j ON (te. JahrID =j.ID) JOIN KW k ON (te. KWID =k.ID) JOIN Tag t ON (te. TagID =t.ID) JOIN VS v ON (te. VSID =v.ID) WHERE $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID $this->filter ORDER BY sc";
+      /*###*/
+      //$sql = "SELECT cv.Menge, CONCAT(LEFT(m.Name,1),LEFT(m.Vorname,1)), CONCAT(m.Name,',',m.Vorname), m.ID, mcv.ID, CONCAT(LEFT(c.Name,1),LEFT(c.Vorname,1)), cv.ID FROM MAKlientVS mcv JOIN KlientVS cv ON (mcv. KlientVSID =cv.ID) JOIN MAKlient mc ON (mcv. MAKlientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Klient c ON (cv. KlientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE mc.KlientID=cv.KlientID AND $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID $this->filter ORDER BY sc";
     }
     DB::gibFelderArray( $sql, $a );
     if( isset($_REQUEST["d"]) )
