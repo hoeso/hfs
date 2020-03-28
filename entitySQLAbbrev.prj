@@ -26,5 +26,6 @@ $sqlAbbrev = array(
   "TelProband"=>"tp",
   "Termin"=>"te",
   "Trainer"=>"tr",
+  "TrainerOrtLeistung"=>"tol",
 );
 ?>
