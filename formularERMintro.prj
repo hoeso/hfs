@@ -1,0 +1,7 @@
+<?php
+function mapTableHeader( $th )
+{
+  if( "VS" == $th )
+    return "Start";
+  return $th;
+}

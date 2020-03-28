@@ -162,6 +162,7 @@ if( $i < $countSL )
 }
 if( $i < $countSL )
 {
+        mapTableHeader( $tableSL2 );
 	$arrSL[ $i ] = $tableSL2;
 	$SL2=str_replace( "\'", "'", $SL2 );
 	$SL2=str_replace( "|", " ", $SL2 );
@@ -254,14 +255,6 @@ if( isset($TabellePK) and $TabellePK )	// Den  Datensatz anzeigen, fuer den zuge
     anzeigen( $MySQLDb, $sql_, $_E['entitaet'], "" );
 }
 
-// *** Plausi: is ueberhaupt schon ein Datensatz angelegt?
-if( isset($BOGesID) and $BOGesID and isset($keinInsert) and $keinInsert )
-{
-  $praefix = gibFeld( $MySQLDb, "SELECT KontoPraefix FROM KontoSicherheitseinbehalt WHERE GesellschaftID=$BOGesID", 0 );
-  if( !$praefix )
-    unset( $keinInsert );
-  unset( $praefix );
-}
 if( !isset($keinInsert) or false == $keinInsert )
 {
   ?><table>
@@ -287,7 +280,7 @@ if( !isset($keinInsert) or false == $keinInsert )
 	  ?><th><?php
 	  $str=$arrRE[ $i ];
 	  $str=str_replace( "ae", "&auml;", $str );
-	  echo $str;
+	  echo mapTableHeader( $str );
 	  ?></th><?php
     }
   if( isset($arrEM) )

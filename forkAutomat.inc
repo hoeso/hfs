@@ -837,6 +837,7 @@ $forkAutomat = array(
 		"eiZuPlanendVS.prj",
 		"sichten.prj",
 		"mn.prj",
+		"formularERMintro.prj",
 		"automatReloaded.inc",
 	),
 	"pruefendVerzug"=>array(
