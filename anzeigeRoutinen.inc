@@ -1031,6 +1031,8 @@ function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
     ?>'><?php echo "\n";
     ?><select name='SELECT<?php
     echo "$label";
+    ?>' id='SELECT<?php
+    echo "$label";
     ?>'><?php
   }
   $i=0;

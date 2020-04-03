@@ -1,0 +1,72 @@
+<?php
+/***
+ *** onLoad, onChange
+ ***/
+ unset($ta_);
+ $ta_[0]=0;// hier Feld 0 rein = Terminart
+ $ta_[1]=1;// hier Feld 1 rein = Kuerzel
+ $di_=count($ta_);
+ gibFelderArray( $MySQLDb, "SELECT Terminart, Kuerzel FROM Terminart", $ta_ );
+ if( true == habWas( $ta_, 0, $di_-1 ) )
+ {
+   for( $i=0; $i<count($ta_); $i += $di_ )
+   {
+     $i1 = $i+1;
+ 	  ?>
+ 	  <script>
+ 	  //alert('<?php echo $ta_[$i]?>')
+ 	  </script>
+ 	  <?php
+   }
+ }
+switch( $zielTabelle )
+{
+  case 'Termin':
+    ?>
+    <script>
+      var abk = document.getElementById("Termin_string_Kuerzel")
+      var selTA = document.getElementById("SELECTSL1") // Terminart
+      var selO  = document.getElementById("SELECTSL2") // Ort
+    </script>
+    <?php
+    for( $i=0; $i<count($ta_); $i += $di_ )
+    {
+      $i1 = $i+1;
+      ?>
+      <script>
+      if( '<?php echo $ta_[$i]?>' == selTA.options[selTA.selectedIndex].text )
+      {
+        //alert('<?php echo $ta_[$i] . " : " . $ta_[$i1]?>')
+	//alert( selO.options[selO.selectedIndex].text )
+	var a = selO.options[selO.selectedIndex].text.split("•")
+	var l = a.length - 1
+	//alert(a[l])
+        //abk.value = selO.options[selO.selectedIndex].text + '<?php echo $ta_[$i1]?>'
+        abk.value = a[l] + '<?php echo $ta_[$i1]?>'
+      }
+      </script>
+      <?php
+    }
+    ?>
+    <script>
+      selTA.onchange = function()
+      {
+        <?php
+        for( $i=0; $i<count($ta_); $i += $di_ )
+        {
+          $i1 = $i+1;
+	  ?>
+	  if( '<?php echo $ta_[$i]?>' == selTA.options[selTA.selectedIndex].text )
+	  {
+	    //alert('<?php echo $ta_[$i] . " : " . $ta_[$i1]?>')
+	    abk.value = '<?php echo $ta_[$i1]?>'
+	  }
+	  <?php
+        }
+	?>
+      }
+    </script><?php
+
+  break;
+}
+?>

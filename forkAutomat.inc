@@ -69,6 +69,7 @@ $forkAutomat = array(
 		"formularERMintro.inc",
 		//"mapSpaltennamen.inc",
 		"ERMListenfuellen.inc",
+		"ERMListenfuellen.prj",
 		"ERMsubmit.inc",
 		"gibWeiter.inc",
 		"anzeigenZieltabelle.inc",

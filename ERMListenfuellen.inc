@@ -301,17 +301,21 @@ if( $zielTabelle and (!isset($keinInsert) or false == $keinInsert) )
         echo "TEXTAREA ";
        ***/
       else
-        echo "INPUT ";
+        echo "input ";
     }
     if( !$focusFeld )
       $focusName="$zielTabelle" . "_";
     if( !isset($keinInsert) or false == $keinInsert )
-      echo "NAME='$zielTabelle" . "_";
+    {
+      echo "name='$zielTabelle" . "_";
+      $idStr = " id='$zielTabelle" . "_";
+    }
     /*** fortsetzen: ***/
     if( !isset($keinInsert) or false == $keinInsert )
     {// if keinInsert
       if( $fType ) {
         echo "$feldFlag" . "_" . "$feld'";
+        $idStr .= "$feldFlag" . "_" . "$feld'";
       if( !$focusFeld )
       {
         $focusName .="$feldFlag" . "_" . "$feld";
@@ -391,6 +395,7 @@ if( $zielTabelle and (!isset($keinInsert) or false == $keinInsert) )
         else
         {
         //default:
+          echo $idStr;
           echo " TYPE='TEXT' >\n</li>\n";
           if( $debug ) echo"\nfeldFlag: $feldFlag. elem: $elem<br>";
 
@@ -448,7 +453,7 @@ for( $i=0; $i<$anz; $i++ )
           else if( strstr( $feldFlag, "blob" ) )
             echo "TEXTAREA ";
           else
-            echo "INPUT ";
+            echo "input ";
         }
         if( !$focusFeld )
           $focusName="$zielTabelle" . "_";
@@ -616,7 +621,7 @@ return;
             else if( strstr( $feldFlag, "blob" ) )
               echo "TEXTAREA ";
             else
-              echo "INPUT ";
+              echo "input ";
           }
           if( !$focusFeld )
             $focusName="$zielTabelle" . "_";

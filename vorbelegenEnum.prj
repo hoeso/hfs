@@ -27,7 +27,7 @@ for( $j=0; $j<count($arr); $j++ )
   else if( !$j )
     echo " SELECTED";
   echo ">";
-  if( isset($aOVL) )
+  if( isset($aOVL) and isset($aOVL[$j]) )
     echo $aOVL[$j];
   else
     echo $arr[$j];
