@@ -314,6 +314,7 @@ $automat = array(
 	"listend"=>array(
 		"kopfteil.html",
 		"kopfteil.prj",
+		"naviSymbols.prj",
 		"endeContainer.html",
 		"hauptteil.html",
 		"haupttext.html",
