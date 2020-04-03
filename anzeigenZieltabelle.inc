@@ -7,6 +7,8 @@
 //$sql=str_replace( "\$gNLID", $gNLID, $sql );
 // wg. PHP4 (5 stoert ein \ im String nicht )
 
+if( isset($_A['sql']) ) // ueberstimmt den ungeschuetzten $sql
+  $sql = $_A['sql'];
 if ( isset($sql))
 {
   $sql=str_replace( "\\", "", $sql );

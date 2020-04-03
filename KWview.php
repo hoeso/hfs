@@ -78,16 +78,16 @@ class KWview extends KWmodel
     else
       $img = 'threepeople-18px.png';
     ?><table><tr><?php
-    if( 'initialen' == $how )
+    if( 1/*'initialen' == $how*/ )
     {
       $text='n';
-      if( 'ort' == $what )
+      if( 0/*'ort' == $what*/ )
       {
         $concat = "CONCAT(LEFT(o.Kursort,1),LEFT(o.Ortschaft,1))";
       }
       else
       {
-        $concat = "CONCAT(LEFT(tr.Name,1),LEFT(tr.Vorname,1))";
+        $concat = "CONCAT(LEFT(tr.Vorname,1),LEFT(tr.Name,1))";
       }
     }
     else
@@ -145,7 +145,7 @@ class KWview extends KWmodel
           $img2 = "1430954247-18px.png";
         else
           $img2 = "matt-icons_emblem-minus-18px.png";?>
-	<img class="img18" src="images/<?php echo $img2;?>" alt="Darstellung" usemap="#initialen<?php echo $ancor;?>">
+	<!--img class="img18" src="images/<?php echo $img2;?>" alt="Darstellung" usemap="#initialen<?php echo $ancor;?>"-->
 	<a name='<?php echo $ancor;?>'></a>
         <map name="initialen<?php echo $ancor;?>">
         <area shape=rect coords="0,0,18,18" title='Darstellung' href="./mn.php?mn=kw&a=Termin&b=<?php echo $NOTtrainerORort;?>&k=<?php echo $this->Datum;?>&c=<?php echo $text;?>&navi=KW&u=<?php echo $this->Kalenderwoche . " " . $kwTitel; echo $f;?>#<?php echo $ancor;?>">
@@ -406,7 +406,7 @@ class KWview extends KWmodel
             <!--area shape=rect coords="0,0,18,18" title='diese Uhrzeit pinnen' href="./mn.php?mn=kw&a=Termin&b=<?php echo $NOTtrainerORort;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $NOTkw;?>#<?php echo $ancor;?>"-->
             <area shape=rect coords="0,0,18,18" title='Kalender neu laden' href="javascript:location.reload()" target="_self">
             </map>
-    	    <img class="img18" src="images/<?php echo $img2;?>" alt="Darstellung" usemap="#initialen<?php echo $ancor;?>">
+    	    <!--img class="img18" src="images/<?php echo $img2;?>" alt="Darstellung" usemap="#initialen<?php echo $ancor;?>"-->
     	    <a name='<?php echo $ancor;?>'></a>
             <map name="initialen<?php echo $ancor;?>">
             <area shape=rect coords="0,0,18,18" title='Darstellung' href="./mn.php?mn=kw&a=Termin&b=<?php echo $NOTtrainerORort;?>&k=<?php echo $this->Datum;?>&c=<?php echo $text;?>&navi=KW&u=<?php echo $this->Kalenderwoche . " " . $kwTitel;?>#<?php echo $ancor;?>">

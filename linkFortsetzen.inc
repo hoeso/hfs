@@ -110,6 +110,8 @@ if( isset( $_eCandy ) )
     if( $elem && isset($candyURL)  && isset($candyURL[$k]) )
     {
       $dahin = $candyURL[$k];
+      if( isset($_E['yy']) )
+        $dahin .= "&yyR=$_E[yy]";
       if( isset($_REQUEST['u']) )
         $dahin .= "&u=" . $_REQUEST['u']; // Tab-Ueberschrift
       $dahin .= "&$k=$elem#$elem";

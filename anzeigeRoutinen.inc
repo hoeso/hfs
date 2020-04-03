@@ -444,7 +444,11 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
       $key=$arrFeldName[$i] . "_" . $table;
       if( isset($toggleJaNein["$key"]) && strstr( $arrFeldFlag[$i], 'enum' ) && strstr( $toggleJaNein["$key"], $elem ) )
       {
-        echo"<A HREF=\"./mn.php?mn=3151&ID=$ident&feld=$arrFeldName[$i]&wert=$elem&table=$table&$proj\">";
+        $str = "<A HREF=\"./mn.php?mn=3151&ID=$ident&feld=$arrFeldName[$i]&wert=$elem&table=$table&$proj";
+        if( isset($_REQUEST) and isset($_REQUEST["yyR"]) )
+	  $str .= "&yyR=$_REQUEST[yyR]";
+	$str .= "\">";
+        echo $str;
         $fAnkern=true;
       }
       if( !isset($vgl) )

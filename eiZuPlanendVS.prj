@@ -19,7 +19,7 @@ if( isset($_REQUEST[""]) )
 */
 
 $_REQUEST["sl"]=2;
-$_REQUEST["sl1"]="Leistung";
+$_REQUEST["sl1"]="Terminart";
 $_REQUEST["sl3"]="Trainer";
 if( isset($_REQUEST["sl2ID"]) ) {
   $SELECTSL2=$_REQUEST["sl2ID"];//echo "sl2ID = " . $_REQUEST["sl2ID"] . "<br>";

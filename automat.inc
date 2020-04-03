@@ -197,7 +197,7 @@ $automat = array(
 		"dbClose.inc",
 	),
 	"bspVerlinkendEntitaet"=>array(
-		//"eiZuWrapperFK.inc",
+		"eiZuWrapperListend.prj",
 		"wrapperFBS10.inc",
 		"anbietenVerlinkenEntitaet.inc",
 	),

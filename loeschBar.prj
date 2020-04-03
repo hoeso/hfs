@@ -90,8 +90,6 @@ $arrRefs = array(
   ),
 
   "Leistung"=>array(
-    "Kursart",
-    "Termin",
     "TrainerOrtLeistung",
   ),
 
@@ -126,6 +124,7 @@ $arrRefs = array(
     "Kurs",
     "Termin",
     "TrainerOrtLeistung",
+    "TrainerOrtTerminart",
   ),
 
   "Person"=>array(
@@ -172,14 +171,25 @@ $arrRefs = array(
     "1-leaf",
   ),
 
+  "Terminart"=>array(
+    "Kursart",
+    "Termin",
+    "TrainerOrtTerminart",
+  ),
+
   "Trainer"=>array(
     "BundeslandTrainer",
     "KursTrainer",
     "Termin",
     "TrainerOrtLeistung",
+    "TrainerOrtTerminart",
   ),
 
   "TrainerOrtLeistung"=>array(
+    "1-leaf",
+  ),
+
+  "TrainerOrtTerminart"=>array(
     "1-leaf",
   ),
 
