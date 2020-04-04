@@ -295,7 +295,7 @@ if( $zielTabelle and (!isset($keinInsert) or false == $keinInsert) )
     if( !isset($keinInsert) or false == $keinInsert )
     {
       if( 254 ==  $a_->type ) // enum
-        echo "SELECT ";
+        echo "select ";
       /*** blob wird noch ausgespart
       else if( strstr( $feldFlag, "blob" ) )
         echo "TEXTAREA ";
@@ -343,7 +343,9 @@ if( $zielTabelle and (!isset($keinInsert) or false == $keinInsert) )
          ***/
         else if( 254 ==  $a_->type ) // enum - keine passende Konstante gefunden
         {
-          echo " SIZE='1'>";
+          echo $idStr;
+          echo " size='1'>";
+      $idStr = " id='$zielTabelle" . "_";
           $strKey=$zielTabelle;
           if( !isset($enumListe["$zielTabelle"]) )
           {
@@ -617,7 +619,7 @@ return;
           if( !isset($keinInsert) or false == $keinInsert )
           {
             if( strstr( $feldFlag, "enum" ) )
-              echo "SELECT ";
+              echo "select ";
             else if( strstr( $feldFlag, "blob" ) )
               echo "TEXTAREA ";
             else

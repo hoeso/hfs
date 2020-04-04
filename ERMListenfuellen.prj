@@ -26,9 +26,11 @@ switch( $zielTabelle )
     <script>
       var tArt = ''
       var ort = ''
+      var dauer = ''
       var abk = document.getElementById("Termin_string_Kuerzel")
       var selTA = document.getElementById("SELECTSL1") // Terminart
       var selO  = document.getElementById("SELECTSL2") // Ort
+      var dau = document.getElementById("Termin_enum_Dauer")
     </script>
     <?php
     for( $i=0; $i<count($ta_); $i += $di_ )
@@ -39,16 +41,18 @@ switch( $zielTabelle )
       if( '<?php echo $ta_[$i]?>' == selTA.options[selTA.selectedIndex].text )
       {
         tArt = '<?php echo $ta_[$i1]?>'
-        //alert('<?php echo $ta_[$i] . " : " . $ta_[$i1]?>')
-	//alert( selO.options[selO.selectedIndex].text )
 	var a = selO.options[selO.selectedIndex].text.split("•")
 	var l = a.length - 1
-	//alert(a[l])
-        //abk.value = selO.options[selO.selectedIndex].text + '<?php echo $ta_[$i1]?>'
-	
-        //abk.value = a[l] + '<?php echo $ta_[$i1]?>'
 	ort = a[l]
 	abk.value = ort + tArt
+	//alert(dau.options[dau.selectedIndex].text)
+	// BESSER: Feld Terminart.Dauer einfuehren u. verwenden
+	if( '.UE' == tArt ) {
+	  dau.value = '4'
+	}
+	else {
+	  dau.value = '12'
+	}
       }
       </script>
       <?php
@@ -57,12 +61,17 @@ switch( $zielTabelle )
     <script>
       selO.onchange = function()
       {
-        //var selO  = document.getElementById("SELECTSL2") // Ort
 	var a = selO.options[selO.selectedIndex].text.split("•")
 	var l = a.length - 1
 	ort = a[l]
-	//alert(ort)
 	abk.value = ort + tArt
+	// BESSER: Feld Terminart.Dauer einfuehren u. verwenden
+        if( '.UE' == tArt ) {
+          dau.value = '4'
+        }
+        else {
+          dau.value = '12'
+        }
       }
       selTA.onchange = function()
       {
@@ -74,9 +83,15 @@ switch( $zielTabelle )
 	  if( '<?php echo $ta_[$i]?>' == selTA.options[selTA.selectedIndex].text )
 	  {
             tArt = '<?php echo $ta_[$i1]?>'
-	    //alert('<?php echo $ta_[$i] . " : " . $ta_[$i1]?>')
 	    abk.value = '<?php echo $ta_[$i1]?>'
 	    abk.value = ort + tArt
+	    // BESSER: Feld Terminart.Dauer einfuehren u. verwenden
+            if( '.UE' == tArt ) {
+              dau.value = '4'
+            }
+            else {
+              dau.value = '12'
+            }
 	  }
 	  <?php
         }

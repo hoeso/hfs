@@ -75,7 +75,7 @@ class KWmodel extends KW
     $a[2]=2;// hier Feld 2 rein = Name, Vorname
     $a[3]=3;// hier Feld 3 rein = Trainer.ID
     $a[4]=4;// hier Feld 4 rein = Termin.ID
-    $a[5]=5;// hier Feld 5 rein = Initialen der jeweils anderen Gegenueber
+    $a[5]=5;// hier Feld 5 rein = Ort.Kuerzel
     $a[6]=6;// hier Feld 6 rein = Ort.ID
     $dim=count($a);
     if( 1/*'ort' == $what*/ )
@@ -83,13 +83,14 @@ class KWmodel extends KW
       /*###*/
       //$sql = "SELECT te.Dauer, " . $concat . " AS sc, CONCAT(LEFT(tr.Name,1),LEFT(tr.Vorname,1)), tr.ID, te.ID, CONCAT(o.Kursort,'-',o.Ortschaft), o.ID FROM Termin te JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Ort o ON te.OrtID=o.ID JOIN Jahr j ON (te. JahrID =j.ID) JOIN KW k ON (te. KWID =k.ID) JOIN Tag t ON (te. TagID =t.ID) JOIN VS v ON (te. VSID =v.ID) WHERE $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID $this->filter ORDER BY sc";
       /*** 29.3.20: Nur noch Trainer-Initialen und Ort-Kuerzel ***/
-      $sql = "SELECT te.Dauer, " . $concat . " AS sc, CONCAT(LEFT(tr.Vorname,1),LEFT(tr.Name,1)), tr.ID, te.ID, o.Kuerzel, o.ID FROM Termin te JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Ort o ON te.OrtID=o.ID JOIN Jahr j ON (te. JahrID =j.ID) JOIN KW k ON (te. KWID =k.ID) JOIN Tag t ON (te. TagID =t.ID) JOIN VS v ON (te. VSID =v.ID) WHERE $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID $this->filter ORDER BY sc";
+      $sql = "SELECT te.Dauer, " . $concat . " AS sc, CONCAT(LEFT(tr.Vorname,1),LEFT(tr.Name,1)), tr.ID, te.ID, te.Kuerzel, o.ID FROM Termin te JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Ort o ON te.OrtID=o.ID JOIN Jahr j ON (te. JahrID =j.ID) JOIN KW k ON (te. KWID =k.ID) JOIN Tag t ON (te. TagID =t.ID) JOIN VS v ON (te. VSID =v.ID) WHERE $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID $this->filter ORDER BY sc";
     }
     else
     {
       $sql = "SELECT te.Dauer, CONCAT(LEFT(tr.Name,1),LEFT(tr.Vorname,1)), CONCAT(tr.Name,' ',tr.Vorname), tr.ID, te.ID, CONCAT(LEFT(tr.Name,1),LEFT(tr.Vorname,1)), o.ID FROM Termin te JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Ort o ON te.OrtID=o.ID JOIN Jahr j ON (te. JahrID =j.ID) JOIN KW k ON (te. KWID =k.ID) JOIN Tag t ON (te. TagID =t.ID) JOIN VS v ON (te. VSID =v.ID) WHERE $this->Jahr=j.ID AND $this->Kalenderwoche=k.ID AND '$dayofweek'=t.SC AND $row=v.ID $this->filter ORDER BY sc";
       /*###*/
     }
+    //echo $sql . "<br>";
     DB::gibFelderArray( $sql, $a );
     if( isset($_REQUEST["d"]) )
       dEcho( $b_, $sql );

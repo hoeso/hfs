@@ -4,7 +4,7 @@ if( isset($enumOVL[$strKey]) ) // Overlay: angezeigt werden diese Werte, gespeic
   $aOVL = explode(",", $enumOVL[$strKey]);
 for( $j=0; $j<count($arr); $j++ )
 {
-  echo "<OPTION VALUE='$arr[$j]'";
+  echo "<option value='$arr[$j]'";
   if( "Angebot" == $zielTabelle && "Position" == $feld )
   {
     $pos = gibFeld($MySQLDb, "SELECT MAX(LPAD(Position,3,'0')) FROM Angebot WHERE {$_REQUEST['ID']}=EDVID", 0 );//Auffuellen mit 0 3-stellig muss sein, weil sonst MAX den Wert 9 liefert

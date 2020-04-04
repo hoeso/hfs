@@ -398,8 +398,19 @@ switch( $_E['mn'] )
       {
         if( isset($_REQUEST["sl$i"]) )
           $_E["sl$i"] = $_REQUEST["sl$i"];
-	if( isset($Select) and isset($Select[$_REQUEST["sl$i"]]) )
-	  $_E["stm$i"] = $Select[$_REQUEST["sl$i"]];
+        switch( $_REQUEST["sl$i"] )
+        {
+          case "Ort":
+            $_E["stm$i"] = "SELECT o.ID, o.Kursort, o.Ortschaft, o.Kuerzel FROM Ort o";
+	    $_E["stm$i-filter"] = " ORDER BY o.Kuerzel";
+          break;
+          default:
+	    if( isset($Select) and isset($Select[$_REQUEST["sl$i"]]) )
+	      $_E["stm$i"] = $Select[$_REQUEST["sl$i"]];
+	    else
+              $_E["stm$i"] = "SELECT 1, 'Fuer Entitaet {$_REQUEST["sl$i"]} ist kein SELECT hinterlegt'";
+          break;
+        }  
         /***
         switch( $_REQUEST["sl$i"] )
         {

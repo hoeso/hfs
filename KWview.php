@@ -88,6 +88,7 @@ class KWview extends KWmodel
       else
       {
         $concat = "CONCAT(LEFT(tr.Vorname,1),LEFT(tr.Name,1))";
+        $concat = "o.Kuerzel";
       }
     }
     else
@@ -307,6 +308,7 @@ class KWview extends KWmodel
 	  {
             $maclientvsID=$a[$k+4];
 	    $clutch = $dayofweek . $a[$k+1] . $quart[$row] . "|" . $a[$k+2] . "|" . $a[$k+3] . "|" . $a[$k+4] . "|" . $a[$k+5] . "|" . $a[$k+6];
+	    //var_dump($clutch);
 	    if ( !isset($aSC) or isset($aSC) and !isset($aSC[$clutch]) )
 	    { // Zelle assoziativ belegen: "Wochentag . [MA|Klient]-Initialen" = Menge
 	      $aSC[$clutch] = $a[$k];
@@ -343,7 +345,8 @@ class KWview extends KWmodel
               if( 'initialen' == $how )
 	        echo substr($sc,2,2) . " "; // nur die Initialen
               else
-	        echo substr($a__[1],0,12) . "[" . $a__[4] . "] "; // Name Vorname
+	        //echo substr($a__[1],0,12) . "[" . $a__[4] . "] "; // Name Vorname
+	        echo $a__[4] . "/" . substr($a__[1],0,12); // Name Vorname
               if( 'trainer' == $what )
 	      {
 	        $md_ = explode( ".", $value );
