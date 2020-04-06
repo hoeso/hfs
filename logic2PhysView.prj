@@ -3,6 +3,8 @@
  * $_E['entitaet']    :  Name der logischen Liste
  * 
  *****************************************************************************/
+if( isset($_E['lView']) && "Nachschulung" == $_E['lView'] )
+  $_E['lView'] = "Termin";
 if( isset($tableRE) && "Eingang" == $tableRE )
   $tableRE = "Portal";
 else if( isset($_E) && isset($_E['entitaet']) && "MA-Einsatz" == $_E['entitaet'] ) // funktioniert nicht

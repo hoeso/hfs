@@ -102,6 +102,10 @@ if( isset($_E["sl"]) )
       dEcho( $b_, "SL$i: " . $_E["stm$i"] );
   }
 }
+if( isset($_E["AND"]) )
+{
+  $AND = $_E["AND"];
+}
 // planend
 if( isset($_REQUEST["SELECTRE1"]) )
   $SELECTRE1=$_REQUEST["SELECTRE1"];

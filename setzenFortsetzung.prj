@@ -72,7 +72,7 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
 //"Termin"=>"./mn.php?mn=listend&a=Termin",
 //"Termin"=>"./mn.php?mn=anzeigendEntitaet&a=Termin",
   "Tel"=>"mn.php?mn=pe&a=Tel",
-  "Termin"=>"./mn.php?mn=1432&a=Termin&i=3",
+  "Termin"=>"./mn.php?mn=t&a=Termin&i=3",
   "Trainer"=>"./mn.php?mn=pe&a=Trainer",
   "Kategorie"=>"mn.php?mn=pe&a=Kategorie",
   "Kurs"=>"mn.php?mn=sl_1n&a=Kurs&1n=1&1n1=Ort&sl=1&sl1=Dauer",
