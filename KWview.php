@@ -307,7 +307,7 @@ class KWview extends KWmodel
 	  for( $k=0; $k < count($a); $k += $dim )
 	  {
             $maclientvsID=$a[$k+4];
-	    $clutch = $dayofweek . $a[$k+1] . $quart[$row] . "|" . $a[$k+2] . "|" . $a[$k+3] . "|" . $a[$k+4] . "|" . $a[$k+5] . "|" . $a[$k+6];
+	    $clutch = $dayofweek . $a[$k+1] . $quart[$row] . "|" . $a[$k+2] . "|" . $a[$k+3] . "|" . $a[$k+4] . "|" . $a[$k+5] . "|" . $a[$k+6] . "|" . $a[$k+7] . "|" . $a[$k+8];
 	    //var_dump($clutch);
 	    if ( !isset($aSC) or isset($aSC) and !isset($aSC[$clutch]) )
 	    { // Zelle assoziativ belegen: "Wochentag . [MA|Klient]-Initialen" = Menge
@@ -325,11 +325,11 @@ class KWview extends KWmodel
               $a__ = explode( "|", $sc );
               if( 'ort' == $what )
 	      {
-	        $ent=$a__[5];
+	        $ent=$a__[3];
                 $str="&a=Klient&planungTag_x&k=c"; // k=c: eOverlay-Kontext --> KlientVS=Klient
                 $str.="&l=zum%20Klient&#42;in";
 		/*###*/
-                $str="&a=Termin&planungVS_x&k=o"; // k=c: eOverlay-Kontext --> KlientVS=Klient
+                $str="&a=Termin&planungVS_x&k=$a__[7]";
                 $str.="&l=zum%20Termin";
 	      }
               else                
@@ -338,10 +338,10 @@ class KWview extends KWmodel
                 $str="&a=MA&planungMA_x";
                 $str.="&l=zum%20MA&#42;in";
 		/*###*/
-                $str="&a=Termin&planungVS_x&k=t"; // k=c: eOverlay-Kontext --> KlientVS=Klient
+                $str="&a=Termin&planungVS_x&k=$a__[7]";
                 $str.="&l=zum%20Termin";
 	      }
-              ?><a href="mn.php?mn=Tag&navi=Plan&ID=<?php echo $a__[2];?>&u=<?php echo substr($sc,2,2) . $str;?>&Termin=<?php echo $ent;?>#<?php echo $ent;?>" target="_blank" title=<?php echo $a__[1] . ">"; // title: voller Name
+              ?><a href="mn.php?mn=Tag&navi=Plan&ID=<?php echo $a__[2];?>&u=<?php echo substr($sc,2,2) . $str;?>&f=<?php echo $a__[6]?>&Termin=<?php echo $ent;?>#<?php echo $ent;?>" target="_blank" title=<?php echo $a__[1] . ">"; // title: voller Name
               if( 'initialen' == $how )
 	        echo substr($sc,2,2) . " "; // nur die Initialen
               else

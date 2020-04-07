@@ -300,6 +300,36 @@ switch( $_E['mn'] )
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
     $i = $_REQUEST["a"];
     //if( !isset($_a[ $_REQUEST["a"] ]) ) { echo $exitus; return; }
+    if( !isset($_a[ $_REQUEST["f"] ]) )
+    {
+      switch($_REQUEST["f"])
+      {
+        case '1':
+	  $_E["sql"] = "SELECT te.ID, CONCAT(tr.Vorname,' ',tr.Name) AS Trainer, CONCAT(o.Kursort,'-',o.Ortschaft) AS Ort, te.Kuerzel, kw.KW, t.Tag, DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%d. %M' ) AS Termin, TIME_FORMAT(v.Quart,'%H:%i') AS Start, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*te.Dauer),'%H:%i') AS Dauer FROM Termin te JOIN Terminart l ON te. TerminartID=l.ID JOIN Ort o ON te. OrtID=o.ID JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID JOIN VS v ON te.VSID=v.ID";
+          $_E["filter"] = " WHERE YEAR(NOW())=j.Jahr AND ";
+	  if( isset($_REQUEST["k"]) )
+            $_E["filter"] .= "$_REQUEST[k]<="; // Aus dieser KW kommt der Aufruf
+          else
+            $_E["filter"] .= "DATE_FORMAT(NOW(),'%v')>=";
+          $_E["filter"] .= "kw.KW AND $_REQUEST[f]=te.TerminartID";
+          $_E["sort"] = " ORDER BY j.Jahr, kw.KW";
+	  $_E["ident"] = 2; // Trainer, Ort
+	break;
+	default:
+	  if( isset($Select) and isset($Select[$_REQUEST["a"]]) )
+	  {
+	    $_E["sql"] = $Select[$_REQUEST["a"]];
+            $_E["filter"] = " WHERE YEAR(NOW())=j.Jahr AND ";
+	    if( isset($_REQUEST["k"]) )
+              $_E["filter"] .= "$_REQUEST[k]<="; // Aus dieser KW kommt der Aufruf
+            else
+              $_E["filter"] .= "DATE_FORMAT(NOW(),'%v')>=";
+            $_E["filter"] .= "kw.KW AND $_REQUEST[f]=te.TerminartID";
+            $_E["sort"] = " ORDER BY j.Jahr, kw.KW";
+	  }
+	break;
+      }
+    }
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "listend";
     $_E['lView'] = $_REQUEST["a"];
@@ -850,17 +880,19 @@ switch( $_E['mn'] )
     $_E['navi'] = "Upload";
   break;
   case "t": // erweitertes 1432
-    if( !isset($_REQUEST["b"]) ) { echo $exitus; return; }
-    $_E['lView'] = $_REQUEST["a"];
+    if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
     if( isset($_REQUEST["b"]) )
     {
       switch($_REQUEST["b"])
       {
         case 'n':
-          $_E["AND"] = " WHERE 1=te.TerminartID";
+	  $_E["sql"] = "SELECT te.ID, kw.KW, DATE_FORMAT(NOW(),'%u') AS KW, CONCAT(tr.Vorname,' ',tr.Name) AS Trainer, CONCAT(o.Kursort,'-',o.Ortschaft) AS Ort, t.Tag, DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%d. %M' ) AS Termin, TIME_FORMAT(v.Quart,'%H:%i') AS Start, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*te.Dauer),'%H:%i') AS Dauer FROM Termin te JOIN Terminart l ON te. TerminartID=l.ID JOIN Ort o ON te. OrtID=o.ID JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID JOIN VS v ON te.VSID=v.ID";
+	  $_E["filter"] = " WHERE YEAR(NOW())=j.Jahr AND DATE_FORMAT(NOW(),'%v')=kw.KW AND 1=te.TerminartID";
 	break;
       }
     }
+    else if( isset($_REQUEST["a"]) )
+      $_E['lView'] = $_REQUEST["a"];
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "anzeigendEntitaet";
     $_E['entitaet'] = $_REQUEST["a"];

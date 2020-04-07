@@ -7,7 +7,15 @@
 //$sql=str_replace( "\$gNLID", $gNLID, $sql );
 // wg. PHP4 (5 stoert ein \ im String nicht )
 
-if( isset($_A['sql']) ) // ueberstimmt den ungeschuetzten $sql
+if( isset($_E["sql"]) )
+{
+  $sql = $_E["sql"]; // gesetzt zB in mn.prj case 't'
+  if( isset($_E["filter"]) )
+    $sql .= $_E["filter"];
+  if( isset($_E["sort"]) )
+    $sql .= $_E["sort"];
+}
+else if( isset($_A['sql']) ) // ueberstimmt den ungeschuetzten $sql
   $sql = $_A['sql'];
 if ( isset($sql))
 {
@@ -43,6 +51,5 @@ if( isset( $filterjahr ) )
 }
 if( !isset($zielTabelle) )
   $zielTabelle="";
-
 anzeigen( $MySQLDb, isset($sql)?$sql:"SELECT 1, 'SELECT Anweisung fuer Entitaet $zielTabelle noch hinterlegen bitte in Modul sichten.prj'", isset($_E['entitaet'])?$_E['entitaet']:"", $ActionSuffix );
 ?>

@@ -199,7 +199,7 @@ $OrderBy=array
   "Proband"=>"ORDER BY Name, Vorname",
   "Stundensatz"=>" ORDER BY Datum DESC",
   "TelProband"=>" ORDER BY Proband, Tel",
-  "Termin"=>" ORDER BY Bundesland, Terminart, Kursort, Jahr DESC, KW DESC",
+  "Termin"=>" ORDER BY Bundesland, Terminart, Kursort, Jahr, KW",
   "Trainer"=>" ORDER BY Name, Vorname",
   "TrainerOrtTerminart"=>" ORDER BY Trainer, Ort, Terminart",
 );
