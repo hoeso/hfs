@@ -5,6 +5,7 @@
  * 
  *****************************************************************************/
 include("eiZuEintretendBericht.inc");
+global $candyURL;
 $fDebug=0;
 if( $fDebug ) echo "table: $table. recID : $recID";
 if( isset($_REQUEST["d"]) )
@@ -33,6 +34,13 @@ else if( $table=="Proband" && $recID )
       hiddenFeldSchreiben( "entitaet2join", $_E['entitaet2join'] );
       hiddenFeldSchreiben( "value2join", $_E['value2join'] );
     }
+  }
+  else
+  {?>
+    <img src="images/iconmonstr-phone-3-16.png" alt="neue Nr ..." usemap="#telVon">
+    <map name="telVon">
+    <area shape=rect coords="0,0,32,32" title='Tel von ...' href="<?php echo $candyURL['TelProband']?>">
+    </map><?php
   }
 }
 else if( $table=="MA-KW" && $recID )

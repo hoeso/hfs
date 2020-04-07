@@ -330,7 +330,7 @@ if( $zielTabelle and (!isset($keinInsert) or false == $keinInsert) )
         {
         //case "date":
           echo " TYPE='TEXT' SIZE=10 VALUE='";
-    	      include("eingabeFuellenDatum.prj");
+    	      include("vorbelegenDate.prj");
           echo "'></li>";
         //break;
         }

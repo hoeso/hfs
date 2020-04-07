@@ -434,6 +434,10 @@ switch( $_E['mn'] )
             $_E["stm$i"] = "SELECT o.ID, o.Kursort, o.Ortschaft, o.Kuerzel FROM Ort o";
 	    $_E["stm$i-filter"] = " ORDER BY o.Kuerzel";
           break;
+          case "Proband":
+            $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
+	    $_E["stm$i-filter"] = " ORDER BY p.Name, p.Vorname, p.geborenAm";
+          break;
           default:
 	    if( isset($Select) and isset($Select[$_REQUEST["sl$i"]]) )
 	      $_E["stm$i"] = $Select[$_REQUEST["sl$i"]];
@@ -441,47 +445,6 @@ switch( $_E['mn'] )
               $_E["stm$i"] = "SELECT 1, 'Fuer Entitaet {$_REQUEST["sl$i"]} ist kein SELECT hinterlegt'";
           break;
         }  
-        /***
-        switch( $_REQUEST["sl$i"] )
-        {
-          case "Kurs":
-	    if( isset($Select) and isset($Select[$_REQUEST["sl$i"]]) )
-	      $_E["stm$i"] = $Select[$_REQUEST["sl$i"]];
-            //$_E["stm$i"] = "SELECT c.ID, CONCAT(c.Name,' ', c.Vorname), DATE_FORMAT( c.geborenAm,'%d.%m.%Y' ) FROM Klient c";
-            switch( $_E['entitaet'] )
-            {
-               ***/
-              /***
-              case "MAKlient":
-                if( isset($_REQUEST["ID"]) )
-                  $_E["stm$i"] = "SELECT DISTINCT KlientID, Klient.Name FROM MAKlient JOIN Klient ON (MAKlient.KlientID=Klient.ID) WHERE KlientID NOT IN ( SELECT DISTINCT MAID FROM MAKlient WHERE $_REQUEST[ID]<>MAID )";
-              break;
-               ***/
-              /***
-              default:
-                //$_E["stm$i"] = "SELECT c.ID, CONCAT(c.Name,' ', c.Vorname), DATE_FORMAT( c.geborenAm,'%d.%m.%Y' ) FROM Klient c WHERE 'ja'=c.planen"; // Planungs-Filter setzen
-              break;
-            }
-          break;
-          case "KlientVS":
-            $_E["stm$i"] = "SELECT cv.ID, CONCAT(c.Name,' ', c.Vorname), YEAR(NOW())-YEAR(c.geborenAm), CONCAT(IF(YEAR(NOW())=j.Jahr,'',DATE_FORMAT(j.Jahr,'%Y-')),k.KW), t.Tag, CONCAT(TIME_FORMAT(v.Quart,'%H:%i'),'-', TIME_FORMAT(ADDTIME(v.Quart, SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge)), '%H:%i')), TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%k:%i') FROM KlientVS cv JOIN Klient c ON (cv.KlientID=c.ID) JOIN Jahr j on (cv.JahrID=j.ID) JOIN KW k ON (cv.KWID=k.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID) AND NOT EXISTS (SELECT KlientVSID FROM MAKlientVS WHERE MAKlientVS.KlientVSID=cv.ID)";
-            $_E["stm$i-order"] = " ORDER BY t.ID, v.ID";
-          break;
-          case "MA":
-            $_E["stm$i"] = "SELECT m.ID, m.Name, m.Vorname FROM MA m";
-            $_E["stm$i-order"] = " ORDER BY Name, Vorname";
-          break;
-          case "MAKlient":
-            $_E["stm$i"] = "SELECT mc.ID, CONCAT(m.Name,' ', m.Vorname) FROM MAKlient mc JOIN Klient c ON (mc.KlientID=c.ID) JOIN MA m ON (mc.MAID=m.ID) WHERE 'ja'=m.planen";
-          break;
-          case "Person":
-            $_E["stm$i"] = "SELECT p.ID, p.Name, p.Vorname, p.Telefon FROM Person p";
-          break;
-          default:
-            $_E["stm$i"] = "SELECT 1, 'Fuer Entitaet {$_REQUEST["sl$i"]} ist kein SELECT hinterlegt'";
-          break;
-        }  
-         ***/
         if( isset($_E["stm$i-filter"]) && isset($_E["stm$i"]) )
         {
           if( isset($_REQUEST["d"]) )

@@ -11,6 +11,8 @@ $enumListe=array
 (
 /*** Achtung! enum-Felder, welche in CONCAT Anweisungen stehen, werden nicht
 mitgezaehlt! ***/
+  "ProbandMassnahme_1"=>"nein,ja",// bezahlt
+  "ProbandMassnahme_2"=>"nein,ja",// bestaetigt
   "Dauer_1"=>"4,1,2,3,5",
   "Dauer_2"=>"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
 
@@ -138,7 +140,9 @@ $Select=array
 
   "PersonKlient"=>"SELECT pc.ID, c.Name, c.Vorname, c.geborenAm, p.Name, p.Vorname, p.Telefon, b.Beziehung, r.Recht FROM PersonKlient pc JOIN Person p ON (pc. PersonID=p.ID) JOIN Beziehung b ON (pc. BeziehungID =b.ID) JOIN Recht r ON (pc. RechtID =r.ID) JOIN Klient c ON (pc. KlientID =c.ID)",
 
-  "Proband"=>"SELECT p.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p",
+  "Proband"=>"SELECT p.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p WHERE NOT EXISTS (SELECT ProbandID FROM TelProband WHERE p.ID=ProbandID)",
+  
+  "ProbandMassnahme"=>"SELECT pm.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm, m.Massnahme, pm.bezahlt, pm.bestaetigt FROM ProbandMassnahme pm JOIN Proband p ON pm.ProbandID=p.ID JOIN Massnahme m ON pm.MassnahmeID=m.ID",
   
   "TelProband"=>"SELECT tp.ID, CONCAT(p.Name,' ',p.Vorname,' ',DATE_FORMAT(p.geborenAm,'%d.%m.%Y')) AS Proband, tel.Tel FROM TelProband tp JOIN Tel tel ON tp. TelID=tel.ID JOIN Proband p ON tp. ProbandID=p.ID",
   
@@ -157,6 +161,8 @@ $Select=array
   "EDVAngebot"=>"SELECT ID, Projekt, ID AS Nr, Beschreibung, Prioritaet, akzeptiert, akzeptiertAm, installiertAm, anzeigeSTD FROM EDV",
 
   "Ort"=>"SELECT o.ID, b.Bundesland, o.Kursort, CONCAT(o.PLZ,' ',o.Ortschaft,', ',o.Strasse) AS Adresse, o.Kuerzel AS K FROM Ort o JOIN Bundesland b ON o. BundeslandID=b.ID",
+  
+  "OrtBehoerde"=>"SELECT ob.ID, b.Behoerde, ob.PLZ, ob.Ort FROM OrtBehoerde ob JOIN Behoerde b ON ob. BehoerdeID=b.ID",
   
   "Stundensatz"=>"SELECT ss.ID, Stundensatz, Datum FROM Stundensatz ss JOIN Zeitstempel z ON (ss.ZeitstempelID=z.ID)",
 
@@ -196,7 +202,9 @@ $OrderBy=array
   "MAKlientVS"=>" ORDER BY c.Name, c.Vorname, c.geborenAm, j.ID, k.ID, t.ID, v.Quart",
   "MitarbeiterFunktion"=>" ORDER BY Name, Vorname, PersonalNr, Funktion",
   "Ort"=>" ORDER BY Bundesland, Kursort",
+  "OrtBehoerde"=>" ORDER BY Behoerde, Ort",
   "Proband"=>"ORDER BY Name, Vorname",
+  "ProbandMassnahme"=>" ORDER BY p.Name, p.Vorname, p.geborenAm, m.Massnahme",
   "Stundensatz"=>" ORDER BY Datum DESC",
   "TelProband"=>" ORDER BY Proband, Tel",
   "Termin"=>" ORDER BY Bundesland, Terminart, Kursort, Jahr, KW",

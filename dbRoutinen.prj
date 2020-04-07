@@ -7,6 +7,8 @@ $appendix=array(
   "Beziehung"=>" ORDER BY Beziehung DESC",
   "Klient"=>" ORDER BY planen, Name, Vorname",
   "MA"=>" ORDER BY planen, Name, Vorname",
+  "Proband"=>" WHERE NOT EXISTS (SELECT ProbandID FROM TelProband WHERE Proband.ID=ProbandID) ORDER BY Name, Vorname, geborenAm",
+  "Tel"=>" WHERE NOT EXISTS (SELECT TelID FROM TelProband WHERE Tel.ID=TelID) ORDER BY Tel",
   "Topic"=>" ORDER BY Topic",
   "Zeitstempel"=>" ORDER BY Datum DESC",
 );
