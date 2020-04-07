@@ -86,6 +86,11 @@ function lesenRETabelle( &$result, $db, $table, $suffix )
   global $lkid;
   include "dbRoutinen.prj";
   $sql = "SELECT * FROM $table ";
+  if( $suffix and isset($appendix[$table]) )
+  {
+    if( strstr( $suffix, "WHERE") and strstr( $appendix[$table], "WHERE") )
+      $appendix[$table] = preg_replace("WHERE","AND",$appendix[$table],1); // nur das 1. WHERE ersetzen
+  }
   if( $suffix )
     $sql .= $suffix;
   else if( isset($hashMandant[$table]) )
