@@ -150,7 +150,7 @@ $Select=array
 
   "Trainer"=>"SELECT tr.ID, tr.Name, tr.Vorname, tr.Titel, tr.Telefon FROM Trainer tr WHERE tr.ID=tr.ID",
 	
-  "TrainerOrtTerminart"=>"SELECT tol.ID, CONCAT(tr.Titel,' ',tr.Name) AS Trainer, l. Terminart, b.Bundesland, CONCAT(o.Kursort,' ',o.Ortschaft,' ',o.Strasse) AS Ort FROM TrainerOrtTerminart tol JOIN Trainer tr ON tol. TrainerID=tr.ID JOIN Ort o ON tol. OrtID=o.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Terminart l ON tol. TerminartID=l.ID",
+  "TrainerOrtTerminart"=>"SELECT tol.ID, b.Bundesland, CONCAT(o.Kursort,' ',o.Ortschaft,' ',o.Strasse) AS Ort, l. Terminart, CONCAT(tr.Titel,' ',tr.Name) AS Trainer FROM TrainerOrtTerminart tol JOIN Trainer tr ON tol. TrainerID=tr.ID JOIN Ort o ON tol. OrtID=o.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Terminart l ON tol. TerminartID=l.ID",
 	
   "Angebot"=>"SELECT Angebot.ID, EDV.ID AS Nr, EDV.Projekt, EDV.Prioritaet, Angebot.Position as Pos, Angebot.Section, Angebot.Details, Angebot.realisierungsStunden AS h FROM Angebot, EDV WHERE Angebot.EDVID=EDV.ID",
 
