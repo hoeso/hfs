@@ -65,7 +65,7 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "Angebot"=>"./mn.php?mn=1466&a=EDVAngebot&x=1",
   "Behoerde"=>"mn.php?mn=pe&a=Behoerde",
   "Bundesland"=>"mn.php?mn=pe&a=Bundesland",
-  "TrainerOrtTerminart"=>"mn.php?mn=nn&a=TrainerOrtTerminart&sl=1&sl1=Ort&re=2&re1=Trainer&re2=Terminart&i=3",
+  "TrainerOrtTerminart"=>"mn.php?mn=nn&a=TrainerOrtTerminart&sl=1&sl1=Ort&re=2&re1=Trainer&re2=Terminart&i=2",
   "Klient"=>"./mn.php?mn=pe&a=Klient",
   "KlientVS"=>"./mn.php?mn=sl_pe&a=KlientVS&sl=1&sl1=Klient&navi=Plan&re=4&re1=Jahr&re2=KW&re3=Tag&re4=VS",
   "EDVAngebot"=>"./mn.php?mn=1466&a=EDVAngebot&x=1",
