@@ -1,0 +1,6 @@
+<?php
+if( "Proband" == $table /*&& "geborenAm" == $feld*/ )
+  $datum = date ("d.m.Y");
+  $datum = setFieldDate('1901-01-01', $fHTML5);
+
+?>

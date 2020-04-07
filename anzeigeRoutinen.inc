@@ -1524,6 +1524,7 @@ function formularAttribut( $table, $result, $i, $attr, $enumListe, $laengeBeiTex
   }
   else if( "date" == $feldTyp )
   {
+    include("vorbelegenDatumRE.prj");
     if( false/*!$attr*/ )
     {/*** keine Vorbelegung mehr mit Tagesdatum, weil inzwischen**
       *** viele Attribute, wegen denen auch die Aenderung aufge-**
@@ -1531,12 +1532,14 @@ function formularAttribut( $table, $result, $i, $attr, $enumListe, $laengeBeiTex
       $datum = date("d.m.Y",time());
       echo" class=rechnungZeichenWichtig"; 
     }
+    /***
     else if( "0000-00-00" == $attr )
       $datum="";
     else
     {
       $datum = setFieldDate($attr, $fHTML5);
     }
+     ***/
     echo " TYPE='";
     if( true == $fHTML5 )
       echo "DATE";

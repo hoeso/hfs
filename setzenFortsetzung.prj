@@ -33,8 +33,9 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "MA-Einsatz"=>"0",
   "Massnahme"=>"0",
   "Ort"=>"0",
+  "OrtBehoerde"=>"0",
   "Proband"=>"0",
-  "Proband"=>"0",
+  "ProbandMassnahme"=>"0",
   "PersonKlient"=>"0",
   "Rolle"=>"0",
   );
@@ -80,9 +81,11 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "KursTrainer"=>"mn.php?mn=pe_pe&a=KursTrainer&re=2&re1=Kursart&re2=Trainer&i=1",
   "Massnahme"=>"./mn.php?mn=pe&a=Massnahme",
   "Ort"=>"mn.php?mn=pe_pe&a=Ort&re=1&re1=Bundesland&i=2",
+  "OrtBehoerde"=>"mn.php?mn=pe_pe&a=OrtBehoerde&re=1&re1=Behoerde&i=3",
   "Proband"=>"mn.php?mn=pe&a=Proband",
-  "Taetigkeit"=>"./mn.php?mn=pe&a=Taetigkeit&x=1",
   "TelProband"=>"./mn.php?mn=sl_pe&a=TelProband&sl=1&sl1=Proband&navi=Proband&re=1&re1=Tel",
+  "Taetigkeit"=>"./mn.php?mn=pe&a=Taetigkeit&x=1",
+  "ProbandMassnahme"=>"./mn.php?mn=sl_pe&a=ProbandMassnahme&navi=Proband&re=1&re1=Massnahme&sl=1&sl1=Proband",
   );
 if( isset($_REQUEST['d']) )
   foreach( $candyURL as $k => $elem )
