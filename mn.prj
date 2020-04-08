@@ -458,6 +458,53 @@ switch( $_E['mn'] )
       }
     }
   break;
+  case "not_exists": // FK mit Filter-SELECT und FK zu pure entities
+    if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
+    if( isset($_REQUEST["re"]) and !isset($_REQUEST["re1"]) ) { echo $exitus; return; }
+    if( isset($_REQUEST["sl"]) and !isset($_REQUEST["sl1"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    if( isset($_REQUEST["wZu"]) )
+      $_E['wZu'] = $_REQUEST["wZu"];
+    else
+      $_E['wZu'] = "bspVerlinkendEntitaet";
+    $_E['entitaet'] = $_REQUEST["a"];
+    if( isset($_REQUEST["i"]) ) // ident: einruecken, gemappt auf gruppenStaerke
+      $_E['ident'] = $_REQUEST["i"];
+    if( isset($_REQUEST["re"]) and $_REQUEST["re"] )
+    {
+      $_E['re'] = $_REQUEST["re"];
+      for( $i=1; $i <= $_E['re'] and $i < 6; $i++ )
+        if( isset($_REQUEST["re$i"]) )
+          $_E["re$i"] = $_REQUEST["re$i"];
+    }
+    $_E['recipient'] = 4224; // speichernd1ZuN
+    if( isset($_REQUEST["sl"]) and $_REQUEST["sl"] )
+    {
+      $_E['sl'] = $_REQUEST["sl"];
+      for( $i=1; $i <= $_E['sl'] and $i < 6; $i++ )
+      {
+        if( isset($_REQUEST["sl$i"]) )
+          $_E["sl$i"] = $_REQUEST["sl$i"];
+        switch( $_REQUEST["sl$i"] )
+        {
+          case "Ort":
+            $_E["stm$i"] = "SELECT o.ID, o.Kursort, o.Ortschaft, o.Kuerzel FROM Ort o";
+	    $_E["stm$i-filter"] = " ORDER BY o.Kuerzel";
+          break;
+          case "Proband":
+            $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
+	    $_E["stm$i-filter"] = " WHERE NOT EXISTS (SELECT ProbandID FROM TelProband WHERE p.ID=ProbandID) ORDER BY p.Name, p.Vorname, p.geborenAm";
+          break;
+          default:
+	    if( isset($Select) and isset($Select[$_REQUEST["sl$i"]]) )
+	      $_E["stm$i"] = $Select[$_REQUEST["sl$i"]];
+	    else
+              $_E["stm$i"] = "SELECT 1, 'Fuer Entitaet {$_REQUEST["sl$i"]} ist kein SELECT hinterlegt'";
+          break;
+        }  
+      }
+    }
+  break;
   case "1n": // 1 FK als 1:n Verknuepfung
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
     if( isset($_REQUEST["1n"]) and !isset($_REQUEST["1n1"]) ) { echo $exitus; return; }

@@ -20,6 +20,7 @@ if( $table=="Tel" && $recID )
   if( false == gibFeld( $MySQLDb, "SELECT ID FROM TelProband WHERE TelID=$recID", 0 ) )
   {?>
     <INPUT TYPE=image src='images/iconmonstr-user-9-16.png' NAME='addProband' title='Proband anlegen'>
+    <INPUT TYPE=image src='images/iconmonstr-link-6-16.png' NAME='joinProband' title='Bestehenden Kontakt erweitern'>
     <?php
     //hiddenFeldSchreiben( "d", "1" );// Debug-Ausgaben ausloesen
   }

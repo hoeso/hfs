@@ -1,0 +1,33 @@
+<?php
+/** Aufrufendes Skript **** Variable *****************************************
+ * naviCFS.html/Mitarbeiter*in, Klient-Symbol :
+ *                                           : 
+ *****************************************************************************/
+if( 0 )
+{
+echo"\nPOST Variablen:<br>";
+  foreach( $_POST as $k=>$elem )
+    echo"\nk : $k, elem: $elem<br>";
+echo"\nREQUEST Variablen:<br>";
+  foreach( $_REQUEST as $k=>$elem )
+    echo"\nk : $k, elem: $elem<br>";
+exit;
+}
+/* zum Kopieren:
+if( isset($_REQUEST[""]) )
+  $ = $_REQUEST[""];
+*/
+$_E["sl"]=2;
+// Alle Probanden:
+$_E["sl1"]="Proband";
+$_E["stm1"] = "SELECT p.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
+$_E["stm1-filter"] = " ORDER BY p.Name, p.Vorname, p.geborenAm";
+// Das Telefon
+$_E["sl2"]="Tel";
+$_E["stm2"] = "SELECT ID, Tel FROM Tel";
+$_E["stm2-filter"] = " WHERE $_E[ID]=ID";
+
+$_E['recipient'] = 4224; // speichernd1ZuN
+// i Spalten einruecken
+$_REQUEST["i"]=3;
+?>
