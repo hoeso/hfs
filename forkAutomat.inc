@@ -149,6 +149,22 @@ $forkAutomat = array(
 		"formularERMintro.inc",
 		"ERMListenfuellen.inc",
 		"ERMsubmit.inc",
+		"gibWeiter.inc",
+		//"anzeigenZieltabelle.inc",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",//seitenleiste
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+		"Plan.prj",
+		"containerTitel.php",
+		"endeContainer.html",//haupttext
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
 	),
 	"strukturierendLVTabelle"=>array(
  		"strukturierenLVTabelle.prj",
