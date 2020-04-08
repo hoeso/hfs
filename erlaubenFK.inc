@@ -8,13 +8,9 @@ $arrFK = array(
 	"Ort"=>array( // ich bin die Entitaet
 		"Trainer",// ich bin ein Fremdschluessel
 	),
-	"KlientVS"=>array(
-		"VS",
-	),
-	"MAKlient"=>array(
-		"MA",
-	),
 	"Termin"=>array(
+		"KW",
+		"Tag",
 		"Trainer",
 	),
 );
