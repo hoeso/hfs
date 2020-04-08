@@ -849,8 +849,9 @@ switch( $_E['mn'] )
       switch($_REQUEST["b"])
       {
         case 'n':
-	  $_E["sql"] = "SELECT te.ID, kw.KW, DATE_FORMAT(NOW(),'%u') AS KW, CONCAT(tr.Vorname,' ',tr.Name) AS Trainer, CONCAT(o.Kursort,'-',o.Ortschaft) AS Ort, t.Tag, DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%d. %M' ) AS Termin, TIME_FORMAT(v.Quart,'%H:%i') AS Start, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*te.Dauer),'%H:%i') AS Dauer FROM Termin te JOIN Terminart l ON te. TerminartID=l.ID JOIN Ort o ON te. OrtID=o.ID JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID JOIN VS v ON te.VSID=v.ID";
-	  $_E["filter"] = " WHERE YEAR(NOW())=j.Jahr AND DATE_FORMAT(NOW(),'%v')=kw.KW AND 1=te.TerminartID";
+	  $_E["sql"] = "SELECT te.ID, CONCAT(tr.Vorname,' ',tr.Name) AS Trainer, CONCAT(o.Kursort,'-',o.Ortschaft) AS Ort, t.Tag, DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%d. %M' ) AS Termin, TIME_FORMAT(v.Quart,'%H:%i') AS Start, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*te.Dauer),'%H:%i') AS Dauer, kw.KW FROM Termin te JOIN Terminart l ON te. TerminartID=l.ID JOIN Ort o ON te. OrtID=o.ID JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID JOIN VS v ON te.VSID=v.ID";
+	  $_E["filter"] = " WHERE YEAR(NOW())=j.Jahr AND (DATE_FORMAT(NOW(),'%v')-4)<=kw.KW AND 1=te.TerminartID";
+	  $_E["sort"] = " ORDER BY j.Jahr, kw.KW";
 	break;
       }
     }
