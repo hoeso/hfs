@@ -388,16 +388,6 @@ switch( $_E['mn'] )
 	    }
           break;
         }  
-        if( isset($_E["stm$i-filter"]) && isset($_E["stm$i"]) )
-        {
-          if( isset($_REQUEST["d"]) )
-            dEcho( $b_, "i: $i -- filter: " . $_E["stm$i-filter"] );
-          $_E["stm$i"] .= $_E["stm$i-filter"];
-          if( isset($_E["stm$i-order"]) )
-            $_E["stm$i"] .= $_E["stm$i-order"];
-          if( isset($_REQUEST["d"]) )
-            dEcho( $b_, $_E["stm$i"] );
-        }
       }
     }
   break;
@@ -432,7 +422,7 @@ switch( $_E['mn'] )
         {
           case "Ort":
             $_E["stm$i"] = "SELECT o.ID, o.Kursort, o.Ortschaft, o.Kuerzel FROM Ort o";
-	    $_E["stm$i-filter"] = " ORDER BY o.Kuerzel";
+	    //$_E["stm$i-filter"] = " ORDER BY o.Kuerzel";
           break;
           case "Proband":
             $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
@@ -489,7 +479,7 @@ switch( $_E['mn'] )
         {
           case "Ort":
             $_E["stm$i"] = "SELECT o.ID, o.Kursort, o.Ortschaft, o.Kuerzel FROM Ort o";
-	    $_E["stm$i-filter"] = " ORDER BY o.Kuerzel";
+	    //$_E["stm$i-filter"] = " ORDER BY o.Kuerzel";
           break;
           case "Proband":
             $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
