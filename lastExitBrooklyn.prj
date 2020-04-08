@@ -6,6 +6,7 @@
  *****************************************************************************/
 include("eiZuEintretendBericht.inc");
 global $candyURL;
+//global $Select;
 $fDebug=0;
 if( $fDebug ) echo "table: $table. recID : $recID";
 if( isset($_REQUEST["d"]) )
@@ -44,33 +45,14 @@ else if( $table=="Proband" && $recID )
     </map><?php
   }
 }
-else if( $table=="MA-KW" && $recID )
+else if( "Termin"==$table && $recID )
 {
-  ?><INPUT TYPE=image src='images/kalender-18px.png' NAME='kwWaehlendMA' title='Wochen&uuml;bersicht'><?php
-  hiddenFeldSchreiben( "mn", "blatt" );//da geht's weiter
-  hiddenFeldSchreiben( "navi", "KW" );//
-  hiddenFeldSchreiben( "c", "m" );//
-  $a_ = explode( "W", $recID );// $recID kommt als YYYY-W<kw>
-  hiddenFeldSchreiben( "a", "$a_[1]" );//
-  $timestamp_montag = strtotime("{$recID}"); 
-  $k = date("Y-m-d", $timestamp_montag);
-  hiddenFeldSchreiben( "k", "$k" );//
-  if( isset($_REQUEST['maID']) )
+  if( gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Termin te JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID WHERE $recID=te.ID AND DATE(NOW()) <= STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y')", 0 ) )
   {
-    hiddenFeldSchreiben( "filterMA", " AND $_REQUEST[maID]=m.ID" );//
-    hiddenFeldSchreiben( "m", $_REQUEST['maID'] );//
-    $c_ = explode( "-", $a_[0] );
-    $c_[0] -= 2000;
-    if( isset($_REQUEST["d"]) )
-      dEcho( $b_, $c_[0] . " " . $a_[1] . " " . $_REQUEST['maID'] );
-    $title = gibFeld( $MySQLDb, "SELECT Text FROM kwMailMA WHERE $_REQUEST[maID]=MAID AND $a_[1]=KWID AND $c_[0]=JahrID ORDER BY ID DESC LIMIT 1", 0 );
-    if( $title )
-    {?>
-      <img class="img20" src='images/rg1024-grey-mail-18px.png' title='<?php echo $title;?>'><?php
-    }
+    ?><INPUT TYPE=image src='images/iconmonstr-user-10-16.png' NAME='terminProband' title='Proband hinzuf&uuml;gen/anzeigen'><?php
+    //hiddenFeldSchreiben( "mn", "blatt" );//da geht's weiter
+    hiddenFeldSchreiben( "navi", "KW" );//
   }
-  if( isset($_REQUEST['u']) )
-    hiddenFeldSchreiben( "u", "$_REQUEST[u]" );//
 }
 else if( $table=="MA" && $recID )
 {
