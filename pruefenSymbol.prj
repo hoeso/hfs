@@ -30,7 +30,7 @@ else if( isset($_REQUEST["joinProband_x"]) )
 }
 else if( isset($_REQUEST["addTelefon_x"]) )
 {
-  $_E['wZu']="zeigendJoin";
+  $_E['wZu']="anbietendKnopfZurueck";
   
   $result = mysql_db_query( $MySQLDb, "INSERT INTO $_REQUEST[entitaet2join]$_E[entitaet] VALUES( null, $_REQUEST[ID2join], $_E[ID] )" );
   if( isset($_E) and isset($_E['entitaet']) and isset($_eCandy) and isset($_eCandy[$_E['entitaet']]) )
