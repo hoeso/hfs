@@ -72,31 +72,46 @@ if( isset($_E["sl"]) )
     {
       $tableSL1 = $_E["sl$i"];
       $SL1 = $_E["stm$i"];
-      $SELECTSL1=$_E["slct$i"];
+      if( isset($_E["stm$i-filter"]) )
+        $SL1 .= $_E["stm$i-filter"];
+      if( isset($_E["slct$i"]) )
+        $SELECTSL1=$_E["slct$i"];
     }
     else if( 2 == $i && isset($_E["sl$i"]) )
     {
       $tableSL2 = $_E["sl$i"];
       $SL2 = $_E["stm$i"];
-      $SELECTSL2=$_E["slct$i"];
+      if( isset($_E["stm$i-filter"]) )
+        $SL2 .= $_E["stm$i-filter"];
+      if( isset($_E["slct$i"]) )
+        $SELECTSL2=$_E["slct$i"];
     }
     else if( 3 == $i && isset($_E["sl$i"]) )
     {
       $tableSL3 = $_E["sl$i"];
       $SL3 = $_E["stm$i"];
-      $SELECTSL3=$_E["slct$i"];
+      if( isset($_E["stm$i-filter"]) )
+        $SL3 .= $_E["stm$i-filter"];
+      if( isset($_E["slct$i"]) )
+        $SELECTSL3=$_E["slct$i"];
     }
     else if( 4 == $i && isset($_E["sl$i"]) )
     {
       $tableSL4 = $_E["sl$i"];
       $SL4 = $_E["stm$i"];
-      $SELECTSL4=$_E["slct$i"];
+      if( isset($_E["stm$i-filter"]) )
+        $SL4 .= $_E["stm$i-filter"];
+      if( isset($_E["slct$i"]) )
+        $SELECTSL4=$_E["slct$i"];
     }
     else if( 5 == $i && isset($_E["sl$i"]) )
     {
       $tableSL5 = $_E["sl$i"];
       $SL5 = $_E["stm$i"];
-      $SELECTSL5=$_E["slct$i"];
+      if( isset($_E["stm$i-filter"]) )
+        $SL5 .= $_E["stm$i-filter"];
+      if( isset($_E["slct$i"]) )
+        $SELECTSL5=$_E["slct$i"];
     }
     if( isset($_REQUEST["d"]) )
       dEcho( $b_, "SL$i: " . $_E["stm$i"] );

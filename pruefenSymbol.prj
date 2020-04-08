@@ -13,7 +13,19 @@ else if( isset($_REQUEST["addProband_x"]) )
   $_E['entitaet2join']=$_E['entitaet'];
   $_E['value2join']=gibFeld( $MySQLDb, "SELECT Tel FROM Tel WHERE ID=$_E[ID]", 0 );
   $_E['entitaet']="Proband";
+  $_E['filter']="";
   $_E['wZu']="fuellendRE";
+  $_eTitel = array( "$_E[value2join] &rArr; $_E[entitaet]" );
+}
+else if( isset($_REQUEST["joinProband_x"]) )
+{
+  $_REQUEST['mn'] = "exists";
+  $_E['ID2join']=$_E['ID'];
+  $_E['entitaet2join']=$_E['entitaet'];
+  $_E['value2join']=gibFeld( $MySQLDb, "SELECT Tel FROM Tel WHERE ID=$_E[ID]", 0 );
+  $_E['entitaet']="TelProband";
+  $_E['filter']="";
+  $_E['wZu']="hinzufuegendTel";
   $_eTitel = array( "$_E[value2join] &rArr; $_E[entitaet]" );
 }
 else if( isset($_REQUEST["addTelefon_x"]) )
