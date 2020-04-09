@@ -482,8 +482,8 @@ $automat = array(
 		"containerTitel.php",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"pruefenSymbol.prj",
 		"setzenFortsetzung.prj",
+		"pruefenSymbol.prj",
 		"pokeFortsetzung.prj",
 		"editierenRE.inc",
 		"erlaubenFK.inc",

@@ -19,13 +19,22 @@ else if( isset($_REQUEST["addProband_x"]) )
 }
 else if( isset($_REQUEST["joinProband_x"]) )
 {
-  $_REQUEST['mn'] = "exists";
-  $_E['ID2join']=$_E['ID'];
-  $_E['entitaet2join']=$_E['entitaet'];
-  $_E['value2join']=gibFeld( $MySQLDb, "SELECT Tel FROM Tel WHERE ID=$_E[ID]", 0 );
+  $_E["sl"]=2;
+  // Alle Probanden:
+  $_E["sl1"]="Proband";
+  $_E["stm1"] = "SELECT p.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
+  $_E["stm1-filter"] = " ORDER BY p.Name, p.Vorname, p.geborenAm";
+  // Das Telefon
+  $_E["sl2"]="Tel";
+  $_E["stm2"] = "SELECT ID, Tel FROM Tel";
+  $_E["stm2-filter"] = " WHERE $_E[ID]=ID";
+  $_E['recipient'] = 4224; // speichernd1ZuN
+  // i Spalten einruecken
+  $_REQUEST["i"]=3;
+  
   $_E['entitaet']="TelProband";
-  $_E['filter']="";
-  $_E['wZu']="hinzufuegendTel";
+  $_E['value2join']=gibFeld( $MySQLDb, "SELECT Tel FROM Tel WHERE ID=$_E[ID]", 0 );
+  $_E['wZu']="verbindend";
   $_eTitel = array( "$_E[value2join] &rArr; $_E[entitaet]" );
 }
 else if( isset($_REQUEST["addTelefon_x"]) )
@@ -35,6 +44,7 @@ else if( isset($_REQUEST["addTelefon_x"]) )
   $result = mysql_db_query( $MySQLDb, "INSERT INTO $_REQUEST[entitaet2join]$_E[entitaet] VALUES( null, $_REQUEST[ID2join], $_E[ID] )" );
   if( isset($_E) and isset($_E['entitaet']) and isset($_eCandy) and isset($_eCandy[$_E['entitaet']]) )
   {
+    $_E['entitaet'] = $_REQUEST['entitaet2join'] . $_E['entitaet'];
     $sql = "SELECT LAST_INSERT_ID() FROM " . $_E['entitaet'];
     $result = mysql_db_query( $MySQLDb, $sql );
     $arr = mysql_fetch_row( $result );
@@ -42,6 +52,34 @@ else if( isset($_REQUEST["addTelefon_x"]) )
     mysql_free_result( $result );
   }
   $_eTitel = array( ":-)" );
+}
+else if( isset($_REQUEST["terminProband_x"]) )
+{
+  if( !isset($Select) )
+  {
+    ?>Probanden mit ihren Massnahmen k&ouml;nnen nicht gelistet werden.<br><?php
+    mysql_close( $lkid );
+    //$_REQUEST['b'] = 'n';
+    $_E['wZu'] = $wZu="anbietendKnopfZurueck";
+    include("forkZu.inc");
+  }
+  $_E["sl"]=2;
+  // Alle Probanden:
+  $_E["sl2"]="ProbandMassnahme";
+  $_E["stm2"] = "SELECT pm.ID, CONCAT(p.Name,' ',p.Vorname), DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ), m.Massnahme FROM ProbandMassnahme pm JOIN Proband p ON pm.ProbandID=p.ID JOIN Massnahme m ON pm.MassnahmeID=m.ID";
+  $_E["stm2-filter"] = " WHERE ('nein'=pm.bestaetigt OR 'nein'=pm.bezahlt) ORDER BY p.Name, p.Vorname, p.geborenAm";
+  // Der Termin
+  $_E["sl1"]="Termin";
+  $_E["stm1"] = "SELECT te.ID, CONCAT(o.Kursort,'-',o.Ortschaft) AS Ort, l.Terminart, CONCAT(tr.Name,' ',tr.Vorname) AS Trainer, t.Tag, DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%d. %M' ) AS Termin, TIME_FORMAT(v.Quart,'%H:%i') AS Start, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*te.Dauer),'%H:%i') AS Dauer FROM Termin te JOIN Terminart l ON te. TerminartID=l.ID JOIN Ort o ON te. OrtID=o.ID JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID JOIN VS v ON te.VSID=v.ID";
+  $_E["stm1-filter"] = " WHERE $_E[ID]=te.ID";
+  $_E['recipient'] = 4224; // speichernd1ZuN
+  // i Spalten einruecken
+  $_REQUEST["i"]=3;
+  
+  $_E['entitaet']="ProbandTermin";
+  //$_E['value2join']=gibFeld( $MySQLDb, "SELECT Tel FROM Tel WHERE ID=$_E[ID]", 0 );
+  $_E['wZu']="verbindend";
+  //$_eTitel = array( "$_E[value2join] &rArr; $_E[entitaet]" );
 }
 else if( isset($_REQUEST["delete_x"]) )
 {

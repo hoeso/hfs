@@ -13,6 +13,7 @@ $enumListe=array
 mitgezaehlt! ***/
   "ProbandMassnahme_1"=>"nein,ja",// bezahlt
   "ProbandMassnahme_2"=>"nein,ja",// bestaetigt
+  "ProbandTermin"=>"nein,ja",// anwesend
   "Dauer_1"=>"4,1,2,3,5",
   "Dauer_2"=>"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
 
@@ -144,6 +145,8 @@ $Select=array
   
   "ProbandMassnahme"=>"SELECT pm.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm, m.Massnahme, pm.bezahlt, pm.bestaetigt FROM ProbandMassnahme pm JOIN Proband p ON pm.ProbandID=p.ID JOIN Massnahme m ON pm.MassnahmeID=m.ID",
   
+  "ProbandTermin"=>"SELECT pt.ID, te.Kuerzel, CONCAT(tr.Name,' ',tr.Vorname) AS Trainer, t.Tag, DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%d. %M' ) AS Termin, TIME_FORMAT(v.Quart,'%H:%i') AS Start, CONCAT(p.Name,' ',p.Vorname) AS Proband, pt.anwesend, m.Massnahme FROM ProbandTermin pt JOIN Termin te ON pt. TerminID=te.ID JOIN Terminart l ON te. TerminartID=l.ID JOIN Ort o ON te. OrtID=o.ID JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID JOIN VS v ON te.VSID=v.ID JOIN ProbandMassnahme pm ON pt. ProbandMassnahmeID=pm.ID JOIN Proband p ON pm.ProbandID=p.ID JOIN Massnahme m ON pm.MassnahmeID=m.ID",
+  
   "TelProband"=>"SELECT tp.ID, CONCAT(p.Name,' ',p.Vorname,' ',DATE_FORMAT(p.geborenAm,'%d.%m.%Y')) AS Proband, tel.Tel FROM TelProband tp JOIN Tel tel ON tp. TelID=tel.ID JOIN Proband p ON tp. ProbandID=p.ID",
   
   "Termin"=>"SELECT te.ID, CONCAT(o.Kursort,'-',o.Ortschaft) AS Ort, l.Terminart, CONCAT(tr.Name,' ',tr.Vorname) AS Trainer, t.Tag, DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%d. %M' ) AS Termin, CONCAT(IF(YEAR(NOW())=j.Jahr,'',DATE_FORMAT(j.Jahr,'%Y-')),kw.KW) AS KW, TIME_FORMAT(v.Quart,'%H:%i') AS Start, ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*te.Dauer), '%H:%i')) AS Ende, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*te.Dauer),'%H:%i') AS Dauer FROM Termin te JOIN Terminart l ON te. TerminartID=l.ID JOIN Ort o ON te. OrtID=o.ID JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID JOIN VS v ON te.VSID=v.ID",
@@ -205,9 +208,10 @@ $OrderBy=array
   "OrtBehoerde"=>" ORDER BY Behoerde, Ort",
   "Proband"=>"ORDER BY Name, Vorname",
   "ProbandMassnahme"=>" ORDER BY p.Name, p.Vorname, p.geborenAm, m.Massnahme",
+  "ProbandTermin"=>" ORDER BY Jahr, KW, Tag, Kursort, Terminart,  p.Name, p.Vorname",
   "Stundensatz"=>" ORDER BY Datum DESC",
   "TelProband"=>" ORDER BY Proband, Tel",
-  "Termin"=>" ORDER BY Jahr, KW, Kursort, Terminart",
+  "Termin"=>" ORDER BY Jahr, KW, Tag, Kursort, Terminart",
   "Trainer"=>" ORDER BY Name, Vorname",
   "TrainerOrtTerminart"=>" ORDER BY Trainer, Ort, Terminart",
 );

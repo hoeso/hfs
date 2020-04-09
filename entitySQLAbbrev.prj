@@ -21,6 +21,7 @@ $sqlAbbrev = array(
   "Ort"=>"o",
   "PersonKlient"=>"pc",
   "Proband"=>"p",
+  "ProbandTermin"=>"pt",
   "EDV"=>"EDV",
   "Region"=>"r",
   "TelProband"=>"tp",
