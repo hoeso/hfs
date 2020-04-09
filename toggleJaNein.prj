@@ -6,5 +6,6 @@
 $toggleJaNein = array(
   "bestaetigt_ProbandMassnahme"=>"ja_nein",
   "bezahlt_ProbandMassnahme"=>"ja_nein",
+  "VM_Termin"=>"ja_nein",
 );
 ?>

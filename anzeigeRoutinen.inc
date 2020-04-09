@@ -904,9 +904,11 @@ function ListeMitID( $result, $label, $table, $fDatum, $anzuzeigen )
     echo $label;
     ?>' value='<?php
     echo $table;
-    ?>'>
-    <select name='SELECT<?php
+    ?>'><?php echo "\n";
+    ?><select name='SELECT<?php
     echo $label;
+    ?>' id='SELECT<?php
+    echo "$label";
     ?>'><?php
   }
   $f=false;

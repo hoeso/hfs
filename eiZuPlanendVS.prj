@@ -31,7 +31,8 @@ if( !isset($_REQUEST["j"]) or !isset($_REQUEST["k"]) )
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
-$_REQUEST["re"]=4;
+$_REQUEST["re"]=5;
+$_REQUEST["re5"]="Kategorie";
 $_REQUEST["re1"]="Jahr";
 $SELECTRE1=$_REQUEST["j"];
 $_REQUEST["re2"]="KW";

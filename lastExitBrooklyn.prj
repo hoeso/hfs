@@ -26,6 +26,15 @@ if( $table=="Tel" && $recID )
     //hiddenFeldSchreiben( "d", "1" );// Debug-Ausgaben ausloesen
   }
 }
+if( $table=="Mail" && $recID )
+{
+  if( false == gibFeld( $MySQLDb, "SELECT ID FROM MailProband WHERE MailID=$recID", 0 ) )
+  {?>
+    <INPUT TYPE=image src='images/iconmonstr-link-6-16.png' NAME='joinMail' title='Bestehenden Kontakt erweitern'>
+    <?php
+    //hiddenFeldSchreiben( "d", "1" );// Debug-Ausgaben ausloesen
+  }
+}
 else if( $table=="Proband" && $recID )
 {
   if( isset($_E['ID2join']) and isset($_E['entitaet2join']) and isset($_E['value2join']) )

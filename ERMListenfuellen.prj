@@ -28,6 +28,7 @@ switch( $zielTabelle )
       var ort = ''
       var dauer = ''
       var abk = document.getElementById("Termin_string_Kuerzel")
+      var selK  = document.getElementById("SELECTRE5") // Kategorie
       var selTA = document.getElementById("SELECTSL1") // Terminart
       var selO  = document.getElementById("SELECTSL2") // Ort
       var dau = document.getElementById("Termin_enum_Dauer")
@@ -45,13 +46,15 @@ switch( $zielTabelle )
 	var l = a.length - 1
 	ort = a[l]
 	abk.value = ort + tArt
-	//alert(dau.options[dau.selectedIndex].text)
+	//alert(selK.options[selK.selectedIndex].value)
 	// BESSER: Feld Terminart.Dauer einfuehren u. verwenden
 	if( '.UE' == tArt ) {
 	  dau.value = '4'
+	  //selK.options[selK.selectedIndex].value = '8'
 	}
 	else {
 	  dau.value = '12'
+	  //selK.options[selK.selectedIndex].value = '6'
 	}
       }
       </script>

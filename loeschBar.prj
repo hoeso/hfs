@@ -42,7 +42,7 @@ $arrRefs = array(
   ),
 
   "Kategorie"=>array(
-    "1-leaf",
+    "Termin",
   ),
 
   "Klient"=>array(
@@ -116,6 +116,14 @@ $arrRefs = array(
     "1-leaf",
   ),
 
+  "Mail"=>array(
+    "MailProband",
+  ),
+
+  "MailProband"=>array(
+    "1-leaf",
+  ),
+
   "Massnahme"=>array(
     "ProbandMassnahme",
     "ProbandTermin",
@@ -146,6 +154,7 @@ $arrRefs = array(
   ),
 
   "Proband"=>array(
+    "MailProband",
     "ProbandMassnahme",
     "TelProband",
   ),
