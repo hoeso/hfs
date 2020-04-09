@@ -2,7 +2,7 @@
 $arrRefs = array(
 
   "Behoerde"=>array(
-    "1-leaf",
+    "OrtBehoerde",
   ),
 
   "Beziehung"=>array(
@@ -117,7 +117,8 @@ $arrRefs = array(
   ),
 
   "Massnahme"=>array(
-    "1-leaf",
+    "ProbandMassnahme",
+    "ProbandTermin",
   ),
 
   "Ort"=>array(
@@ -125,6 +126,10 @@ $arrRefs = array(
     "Termin",
     "TrainerOrtLeistung",
     "TrainerOrtTerminart",
+  ),
+
+  "OrtBehoerde"=>array(
+    "1-leaf",
   ),
 
   "Person"=>array(
@@ -141,7 +146,16 @@ $arrRefs = array(
   ),
 
   "Proband"=>array(
+    "ProbandMassnahme",
     "TelProband",
+  ),
+
+  "ProbandMassnahme"=>array(
+    "ProbandTermin",
+  ),
+
+  "ProbandTermin"=>array(
+    "1-leaf",
   ),
 
   "Recht"=>array(
@@ -168,7 +182,7 @@ $arrRefs = array(
   ),
 
   "Termin"=>array(
-    "1-leaf",
+    "ProbandTermin",
   ),
 
   "Terminart"=>array(
