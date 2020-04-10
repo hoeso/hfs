@@ -491,6 +491,13 @@ switch( $_E['mn'] )
 	        $_E["stm$i-filter"] = " WHERE NOT EXISTS (SELECT ProbandID FROM TelProband WHERE p.ID=ProbandID) ORDER BY p.Name, p.Vorname, p.geborenAm";
 	      break;
 	    }
+	    switch( $_REQUEST["sl2"] )
+	    {
+	      case 'Adresse':
+	        $_E["stm$i-filter"] = " WHERE NOT EXISTS (SELECT ProbandID FROM AdresseProband WHERE p.ID=ProbandID) ORDER BY p.Name, p.Vorname, p.geborenAm";
+	      break;
+	      break;
+	    }
           break;
           default:
 	    if( isset($Select) and isset($Select[$_REQUEST["sl$i"]]) )
