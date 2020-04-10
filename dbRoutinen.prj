@@ -4,6 +4,7 @@
  **** Sortierung angegeben werden.                                        *****/
 
 $appendix=array(
+  "Behoerde"=>" ORDER BY Behoerde",
   "Beziehung"=>" ORDER BY Beziehung DESC",
   "Kategorie"=>" ORDER BY Kategorie",
   "MA"=>" ORDER BY planen, Name, Vorname",
