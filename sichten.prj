@@ -107,6 +107,8 @@ $Select=array
 /* zum Kopieren:
   ""=>"",
 */
+  "Adresse"=>"SELECT a.ID, CONCAT(ob.PLZ,' ',ob.Ort) AS Ort, CONCAT(a.Strasse,' ',a.Nr) AS Strasse FROM Adresse a JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID",
+  
   "Dauer"=>"SELECT d.ID, ka.Kursart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*d.Dauer), '%H:%i') AS Dauer, d.Termine FROM Dauer d JOIN Kursart ka ON d.KursartID=ka.ID",
   
   "KlientAdresse"=>"SELECT ca.ID, c.Name, c.Vorname, c.geborenAm, z.Datum, ca.Telefon, ca.PLZ, ca.Ort, ca.Strasse FROM KlientAdresse ca JOIN Klient c ON (c.ID=ca.KlientID) JOIN Zeitstempel z ON (ca.ZeitstempelID=z.ID)",
@@ -141,9 +143,6 @@ $Select=array
   "Massnahme"=>"SELECT mc.ID, c.Name, c.Vorname, c.geborenAm, m.Name, m.Vorname, mc.planen FROM MAKlient mc JOIN Klient c ON (mc.KlientID=c.ID) JOIN MA m ON (mc.MAID=m.ID)",
   
   "Person"=>"SELECT p.ID, p.Name, p.Vorname, p.Telefon FROM Person p",
-  //"Person"=>"SELECT p.ID, c.Name, c.Vorname, c.geborenAm, p.Name, p.Vorname, p.Telefon FROM Person p JOIN Klient c ON (p.KlientID=c.ID) JOIN Beziehung b ON (p.BeziehungID=b.ID)",
-
-  "PersonKlient"=>"SELECT pc.ID, c.Name, c.Vorname, c.geborenAm, p.Name, p.Vorname, p.Telefon, b.Beziehung, r.Recht FROM PersonKlient pc JOIN Person p ON (pc. PersonID=p.ID) JOIN Beziehung b ON (pc. BeziehungID =b.ID) JOIN Recht r ON (pc. RechtID =r.ID) JOIN Klient c ON (pc. KlientID =c.ID)",
 
   "Proband"=>"SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p WHERE NOT EXISTS (SELECT ProbandID FROM TelProband WHERE p.ID=ProbandID)",
   
@@ -193,6 +192,7 @@ $OrderBy=array
 /* zum Kopieren:
   ""=>"",
 */
+  "Adresse"=>" ORDER BY Ort, Strasse",
   "Angebot"=>" ORDER BY Position",
   "Dauer"=>" ORDER BY ka.Kursart, d.Termine DESC",
   "KlientAdresse"=>" ORDER BY c.Name, c.Vorname, c.geborenAm, z.Datum DESC",

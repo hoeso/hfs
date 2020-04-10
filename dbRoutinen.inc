@@ -520,7 +520,8 @@ function auslesenZuordnung( $db, $sql, &$tabKopf, &$JEid, &$zeilen )
 }
 function auslesenEMKette( $db, $table, &$tabKopf, &$Mid, &$zeilen, &$t, &$textname )
 {
-//$fDebug=1;
+  global $_E;
+  //$fDebug=1;
   // Der erste Foreign Key einer verknuepften Entitaet steht hinter
   // ihrem Primaerschluessel 
   $FKeins = 1;
@@ -603,6 +604,12 @@ function auslesenEMKette( $db, $table, &$tabKopf, &$Mid, &$zeilen, &$t, &$textna
     $maxc = $tc-1;		// soviele Tabellen durchforsten
     $offs = $i*$tc + $maxc;
     $zeilen[ $offs ] = $arr[ $bez ];
+    if( isset($_E) and isset($_E['1nf']) )
+    { // Anzahl der anzuzeigenden Felder der gefundenen RE-Tabelle
+      for( $j=1; $j<$_E['1nf']; $j++ )
+        $zeilen[ $offs ] .= " " . $arr[ $bez+$j ];
+    }
+
     if( isset($fDebug) )
       echo "\n[$offs] = $zeilen[$offs]<br>";
     $tabc = 1;
@@ -625,36 +632,36 @@ function auslesenEMKette( $db, $table, &$tabKopf, &$Mid, &$zeilen, &$t, &$textna
 	return false;
       }
       $arrm = mysql_fetch_row( $result );
-			$zeilen[$offs] = $arrm[$bez];
-			if( isset($debug) )
-			    echo "\n[$offs] = $zeilen[$offs]<br>";
-			mysql_free_result( $result );
-			$tabc++;
-			$maxc--;
-			$offs--;
-		}
-		// Letzte RE-Tabelle auslesen
-		$sql = "SELECT * FROM " . $t[$tabc] . " WHERE " . $t[$tabc] . ".ID=";
-		if( $fWhile )
-			$sql .= $arrm[$FKeins];    
-		else
-			$sql .= $arr[$FKeins];
-		if( isset($fDebug) )
-		    echo "\n$sql<br>";
-		$result = mysql_db_query( $db, $sql );
-		if(!$result)
-		{
-			return false;
-		}
-		$arrm = mysql_fetch_row( $result );
-		$zeilen[$offs] = $arrm[1];
-		if( isset($debug) )
-		    echo "\n[$offs] = $zeilen[$offs]<br>";
-		    
-		mysql_free_result( $result );
-	}
-	$offs++;
-	zeilenSortieren( $offs, count($tabKopf), $zeilen, $Mid );
+      $zeilen[$offs] = $arrm[$bez];
+      if( isset($debug) )
+          echo "\n[$offs] = $zeilen[$offs]<br>";
+      mysql_free_result( $result );
+      $tabc++;
+      $maxc--;
+      $offs--;
+    }
+    // Letzte RE-Tabelle auslesen
+    $sql = "SELECT * FROM " . $t[$tabc] . " WHERE " . $t[$tabc] . ".ID=";
+    if( $fWhile )
+      $sql .= $arrm[$FKeins];    
+    else
+      $sql .= $arr[$FKeins];
+    if( isset($fDebug) )
+      echo "\n$sql<br>";
+    $result = mysql_db_query( $db, $sql );
+    if(!$result)
+    {
+      return false;
+    }
+    $arrm = mysql_fetch_row( $result );
+    $zeilen[$offs] = $arrm[1];
+    if( isset($debug) )
+      echo "\n[$offs] = $zeilen[$offs]<br>";
+    
+    mysql_free_result( $result );
+  }
+  $offs++;
+  zeilenSortieren( $offs, count($tabKopf), $zeilen, $Mid );
 }
 /****************************************************************
  * die Dimension von $tabKopf zeigt an, wieviele Attribute pro 

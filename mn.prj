@@ -95,6 +95,8 @@ switch( $_E['mn'] )
       for( $i=1; $i <= $_E['1n'] and $i < 6; $i++ )
         if( isset($_REQUEST["1n$i"]) )
           $_E["1n$i"] = $_REQUEST["1n$i"];
+      if( isset($_REQUEST["1nf"]) ) // Anzahl Felder in der 1:n-Liste
+        $_E['1nf'] = $_REQUEST["1nf"];
     }
     if( isset($_REQUEST["nn"]) and $_REQUEST["nn"] )
     {
@@ -890,6 +892,11 @@ switch( $_E['mn'] )
     {
       switch($_REQUEST["b"])
       {
+        case 'c':
+	  $_E["sql"] = "SELECT te.ID, te.Kuerzel, CONCAT(LEFT(tr.Vorname,1),LEFT(tr.Name,1)) AS TR, t.Tag, DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%d. %M' ) AS Termin, TIME_FORMAT(v.Quart,'%H:%i') AS Start, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*te.Dauer),'%H:%i') AS Dauer, kw.KW FROM Termin te JOIN Terminart l ON te. TerminartID=l.ID JOIN Ort o ON te. OrtID=o.ID JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID JOIN VS v ON te.VSID=v.ID";
+	  $_E["filter"] = " WHERE YEAR(NOW())=j.Jahr AND (DATE_FORMAT(NOW(),'%v')-4)<=kw.KW AND 3=te.TerminartID";
+	  $_E["sort"] = " ORDER BY j.Jahr, kw.KW";
+	break;
         case 'n':
 	  $_E["sql"] = "SELECT te.ID, te.Kuerzel, CONCAT(LEFT(tr.Vorname,1),LEFT(tr.Name,1)) AS TR, t.Tag, DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%d. %M' ) AS Termin, TIME_FORMAT(v.Quart,'%H:%i') AS Start, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*te.Dauer),'%H:%i') AS Dauer, kw.KW FROM Termin te JOIN Terminart l ON te. TerminartID=l.ID JOIN Ort o ON te. OrtID=o.ID JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID JOIN VS v ON te.VSID=v.ID";
 	  $_E["filter"] = " WHERE YEAR(NOW())=j.Jahr AND (DATE_FORMAT(NOW(),'%v')-4)<=kw.KW AND 1=te.TerminartID";

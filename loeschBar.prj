@@ -1,7 +1,12 @@
 <?php
 $arrRefs = array(
 
+  "Adresse"=>array(
+    "1-leaf",
+  ),
+
   "Behoerde"=>array(
+    "Adresse",
     "OrtBehoerde",
   ),
 
@@ -137,7 +142,7 @@ $arrRefs = array(
   ),
 
   "OrtBehoerde"=>array(
-    "1-leaf",
+    "Adresse",
   ),
 
   "Person"=>array(
