@@ -109,6 +109,8 @@ $Select=array
 */
   "Adresse"=>"SELECT a.ID, CONCAT(ob.PLZ,' ',ob.Ort) AS Ort, CONCAT(a.Strasse,' ',a.Nr) AS Strasse FROM Adresse a JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID",
   
+  "AdresseProband"=>"SELECT ap.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, CONCAT(ob.PLZ,' ',ob.Ort) AS Wohnort FROM AdresseProband ap JOIN Proband p ON ap. ProbandID=p.ID JOIN Adresse a ON ap. AdresseID=a.ID JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID",
+  
   "Dauer"=>"SELECT d.ID, ka.Kursart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*d.Dauer), '%H:%i') AS Dauer, d.Termine FROM Dauer d JOIN Kursart ka ON d.KursartID=ka.ID",
   
   "KlientAdresse"=>"SELECT ca.ID, c.Name, c.Vorname, c.geborenAm, z.Datum, ca.Telefon, ca.PLZ, ca.Ort, ca.Strasse FROM KlientAdresse ca JOIN Klient c ON (c.ID=ca.KlientID) JOIN Zeitstempel z ON (ca.ZeitstempelID=z.ID)",
@@ -138,7 +140,7 @@ $Select=array
   
   "MAKlientVS"=>"SELECT mcv.ID, c.Name, c.Vorname, c.geborenAm, m.Name, m.Vorname, CONCAT(IF(YEAR(NOW())=j.Jahr,'',DATE_FORMAT(j.Jahr,'%Y-')),k.KW) AS KW, t.Tag, TIME_FORMAT(v.Quart,'%H:%i') AS Start, ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')) AS Ende, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge),'%H:%i') AS Dauer FROM MAKlientVS mcv JOIN MAKlient mc ON (mcv.MAKlientID=mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN KlientVS cv ON (mcv.KlientVSID=cv.ID) JOIN Jahr j on (cv.JahrID=j.ID) JOIN KW k ON (cv.KWID=k.ID) JOIN Klient c ON (cv.KlientID=c.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID)$_E[where_and]",
   
-  "MailProband"=>"SELECT mp.ID, CONCAT(p.Name,' ',p.Vorname,' ',DATE_FORMAT(p.geborenAm,'%d.%m.%Y')) AS Proband, m.Mail FROM MailProband mp JOIN Mail m ON mp. MailID=m.ID JOIN Proband p ON mp. ProbandID=p.ID",
+  "MailProband"=>"SELECT mp.ID, CONCAT(p.Vorname,' ',p.Name,' ',DATE_FORMAT(p.geborenAm,'%d.%m.%Y')) AS Proband, m.Mail FROM MailProband mp JOIN Mail m ON mp. MailID=m.ID JOIN Proband p ON mp. ProbandID=p.ID",
   
   "Massnahme"=>"SELECT mc.ID, c.Name, c.Vorname, c.geborenAm, m.Name, m.Vorname, mc.planen FROM MAKlient mc JOIN Klient c ON (mc.KlientID=c.ID) JOIN MA m ON (mc.MAID=m.ID)",
   
@@ -156,7 +158,7 @@ $Select=array
 
   "Trainer"=>"SELECT tr.ID, tr.Name, tr.Vorname, tr.Titel, tr.Telefon FROM Trainer tr WHERE tr.ID=tr.ID",
 	
-  "TrainerOrtTerminart"=>"SELECT tol.ID, b.Bundesland, CONCAT(o.Kursort,' ',o.Ortschaft,' ',o.Strasse) AS Ort, l. Terminart, CONCAT(tr.Titel,' ',tr.Name) AS Trainer FROM TrainerOrtTerminart tol JOIN Trainer tr ON tol. TrainerID=tr.ID JOIN Ort o ON tol. OrtID=o.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Terminart l ON tol. TerminartID=l.ID",
+  "TrainerOrtTerminart"=>"SELECT tol.ID, b.Bundesland, l. Terminart, CONCAT(tr.Titel,' ',tr.Name) AS Trainer, CONCAT(o.Kursort,' ',o.Ortschaft,' ',o.Strasse) AS Ort FROM TrainerOrtTerminart tol JOIN Trainer tr ON tol. TrainerID=tr.ID JOIN Ort o ON tol. OrtID=o.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Terminart l ON tol. TerminartID=l.ID",
 	
   "Angebot"=>"SELECT Angebot.ID, EDV.ID AS Nr, EDV.Projekt, EDV.Prioritaet, Angebot.Position as Pos, Angebot.Section, Angebot.Details, Angebot.realisierungsStunden AS h FROM Angebot, EDV WHERE Angebot.EDVID=EDV.ID",
 
@@ -193,21 +195,12 @@ $OrderBy=array
   ""=>"",
 */
   "Adresse"=>" ORDER BY Ort, Strasse",
+  "AdresseProband"=>" ORDER BY Name, Vorname, Ort",
   "Angebot"=>" ORDER BY Position",
   "Dauer"=>" ORDER BY ka.Kursart, d.Termine DESC",
-  "KlientAdresse"=>" ORDER BY c.Name, c.Vorname, c.geborenAm, z.Datum DESC",
-  "KlientVS"=>" ORDER BY c.Name, c.Vorname, c.geborenAm, j.ID, k.ID, t.ID, v.ID",
-  "Kurs"=>" ORDER BY Kursort, Kursart",
-  "KursTrainer"=>" ORDER BY Trainer, Kursart",
   "EDV"=>" ORDER BY ID DESC",
   "EDVAngebot"=>" ORDER BY ID DESC",
   "Terminart"=>" ORDER BY Terminart",
-  "MAAbwesenheit"=>" ORDER BY a.Beginn DESC",
-  "MA-Einsatz"=>" ORDER BY j.ID, k.ID, t.ID, v.Quart",
-  "MA-KW"=>" ORDER BY j.ID DESC, k.ID DESC, t.ID, v.Quart",
-  "MAKlient"=>" ORDER BY c.Name, c.Vorname, c.geborenAm",
-  "MAKlientVS"=>" ORDER BY c.Name, c.Vorname, c.geborenAm, j.ID, k.ID, t.ID, v.Quart",
-  "MitarbeiterFunktion"=>" ORDER BY Name, Vorname, PersonalNr, Funktion",
   "Ort"=>" ORDER BY Bundesland, Kursort",
   "OrtBehoerde"=>" ORDER BY Behoerde, Ort",
   "Proband"=>"ORDER BY Name, Vorname",
@@ -217,7 +210,7 @@ $OrderBy=array
   "TelProband"=>" ORDER BY Proband, Tel",
   "Termin"=>" ORDER BY Jahr, KW, Tag, Kursort, Terminart",
   "Trainer"=>" ORDER BY Name, Vorname",
-  "TrainerOrtTerminart"=>" ORDER BY Trainer, Ort, Terminart",
+  "TrainerOrtTerminart"=>" ORDER BY Bundesland, Terminart, Trainer, Ort",
 );
 
 $gfaerbteSpoidn = array(

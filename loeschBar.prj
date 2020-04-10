@@ -2,6 +2,10 @@
 $arrRefs = array(
 
   "Adresse"=>array(
+    "AdresseProband",
+  ),
+
+  "AdresseProband"=>array(
     "1-leaf",
   ),
 
@@ -159,6 +163,7 @@ $arrRefs = array(
   ),
 
   "Proband"=>array(
+    "AdresseProband",
     "MailProband",
     "ProbandMassnahme",
     "TelProband",
