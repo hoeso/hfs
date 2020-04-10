@@ -33,6 +33,7 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "OrtBehoerde"=>"0",
   "Proband"=>"0",
   "ProbandMassnahme"=>"0",
+  "ProbandTermin"=>"0",
   "Rolle"=>"0",
   );
   $_eOverlay = array(
@@ -82,6 +83,7 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "TelProband"=>"./mn.php?mn=not_exists&a=TelProband&sl=1&sl1=Proband&navi=Proband&re=1&re1=Tel",
   "Taetigkeit"=>"./mn.php?mn=pe&a=Taetigkeit&x=1",
   "ProbandMassnahme"=>"./mn.php?mn=sl_pe&a=ProbandMassnahme&navi=Proband&re=1&re1=Massnahme&sl=1&sl1=Proband",
+  "ProbandTermin"=>"./mn.php?mn=sl_pe&a=ProbandTermin&navi=Proband&sl1=Termin&sl=2&sl2=ProbandMassnahme",
   );
 if( isset($_REQUEST['d']) )
   foreach( $candyURL as $k => $elem )

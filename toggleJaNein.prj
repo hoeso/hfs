@@ -4,6 +4,7 @@
  * enum-Feldname_Tabelle=>wert1_wertn
  */
 $toggleJaNein = array(
+  "anwesend_ProbandTermin"=>"ja_nein",
   "bestaetigt_ProbandMassnahme"=>"ja_nein",
   "bezahlt_ProbandMassnahme"=>"ja_nein",
   "VM_Termin"=>"ja_nein",

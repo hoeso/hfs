@@ -58,66 +58,11 @@ else if( "Termin"==$table && $recID )
 {
   if( gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Termin te JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID WHERE $recID=te.ID AND DATE(NOW()) <= STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y')", 0 ) )
   {
-    ?><INPUT TYPE=image src='images/iconmonstr-user-10-16.png' NAME='terminProband' title='Proband hinzuf&uuml;gen/anzeigen'><?php
+    ?><b><?php echo gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Termin te JOIN ProbandTermin pt ON te.ID=pt.TerminID WHERE $recID=te.ID", 0 );
+    ?></b>&nbsp;&nbsp;<INPUT TYPE=image src='images/iconmonstr-user-10-16.png' NAME='terminProband' title='Proband hinzuf&uuml;gen/anzeigen'><?php
     //hiddenFeldSchreiben( "mn", "blatt" );//da geht's weiter
     hiddenFeldSchreiben( "navi", "KW" );//
   }
-}
-else if( $table=="MA" && $recID )
-{
-  $f = false;
-  if( isset($_REQUEST['navi']) && 'Stammblatt' == $_REQUEST['navi'] )
-    $f = true; // Stammblatt
-  // wenn noch nichts hinterlegt ist, werden diese Icons in Graustufen ausgegeben
-  $sw = 'sw-';
-  if( /*gibFeld( $MySQLDb, "SELECT ID FROM Kontingent WHERE MAID=$recID LIMIT 1", 0 ) and*/ // es wird auch ohne Kontigent geplant
-      false == $f and
-      gibFeld( $MySQLDb, "SELECT mcv.ID FROM MAKlientVS mcv JOIN MAKlient mc ON (mcv.MAKlientID=mc.ID) WHERE mc.MAID=$recID LIMIT 1", 0 ) )
-  {?>
-    <INPUT TYPE=image src='images/empty-calendar-18px.png' NAME='planungMA' title='Einsatz tauschen'>
-    <INPUT TYPE=image src='images/kalender-18px.png' NAME='kwWaehlendMA' title='Wochen&uuml;bersicht'><?php
-    hiddenFeldSchreiben( "maID", "$recID" );//
-    if( isset($_REQUEST['u']) )
-      hiddenFeldSchreiben( "u", "$_REQUEST[u]" );//
-  }
-  if( false == $f )
-  {?>
-  <INPUT TYPE=image src='images/havaianas07-18px.png' NAME='abwesendMA' title='Urlaub oder krank?'>
-    <?php
-  }?>
-  <?php
-  $img = 'signal-working-18px.png';
-  $konti = 0; // Kontingent
-  if( !gibFeld( $MySQLDb, "SELECT MAID FROM Kontingent WHERE MAID=$recID LIMIT 1", 0 ) )
-  {
-    $img = $sw . $img;
-  }
-  else
-  {
-    $konti = gibFeld( $MySQLDb, "SELECT Wochenstunden FROM Kontingent k JOIN Zeitstempel z ON (k. ZeitstempelID =z.ID) WHERE $recID=k.MAID AND DATE(NOW()) >= z.Datum ORDER BY z.Datum DESC LIMIT 1", 0 );
-  }
-  $titel =  "Wochenkontingent " . $konti . " Std";
-  ?>
-  <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='kontingentMA' title='<?php echo $titel;?>'>
-  <?php
-  $img = 'grandma-penguin-18px.png';
-  if( !gibFeld( $MySQLDb, "SELECT MAID FROM MAKlient WHERE MAID=$recID LIMIT 1", 0 ) )
-  {
-    $img = $sw . $img;
-  }?>
-  <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='client' title='Klient&#042;innen'>
-  <?php
-  $img = 'Anonymous-my-house-18px.png';
-  if( !gibFeld( $MySQLDb, "SELECT ID FROM MAAdresse WHERE MAID=$recID LIMIT 1", 0 ) )
-  {
-    $img = $sw . $img;
-  }
-  if( true == $f )
-  {?>
-    <INPUT TYPE=image src='images/<?php echo $img;?>' NAME='maWohnhaft' title='Adresse'>
-    <?php
-  }?>
-<?php
 }
 else if( ( $table=="EDV" ) && $recID )
 {
