@@ -94,9 +94,10 @@ else if( isset($_REQUEST["terminProband_x"]) )
   $_E["stm1-filter"] = " WHERE $_E[ID]=te.ID";
   $_E['recipient'] = 4224; // speichernd1ZuN
   // i Spalten einruecken
-  $_REQUEST["i"]=3;
+  $_E["ident"]=5;
   
   $_E['entitaet']="ProbandTermin";
+  $_E["filter"] = " AND $_E[ID]=pt.TerminID";
   //$_E['value2join']=gibFeld( $MySQLDb, "SELECT Tel FROM Tel WHERE ID=$_E[ID]", 0 );
   $_E['wZu']="verbindend";
   //$_eTitel = array( "$_E[value2join] &rArr; $_E[entitaet]" );

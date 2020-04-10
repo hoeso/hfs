@@ -74,6 +74,8 @@ if( isset($nochnFilter) and $nochnFilter )
 }
 if( isset($AND) and $AND )
     $sql .= $AND;
+if( isset($_E["filter"]) )
+  $sql .= $_E["filter"]; // zB gesetzt in pruefendSymbol.prj
 if( isset($OrderBy[$zielTabelle]) )
     $sql .= $OrderBy[$zielTabelle];
 
