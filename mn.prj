@@ -430,6 +430,10 @@ switch( $_E['mn'] )
             $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
 	    $_E["stm$i-filter"] = " ORDER BY p.Name, p.Vorname, p.geborenAm";
           break;
+          case "ProbandMassnahme":
+            $_E["stm$i"] = "SELECT pm.ID, CONCAT(p.Name,' ',p.Vorname), DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ), m.Massnahme FROM ProbandMassnahme pm JOIN Proband p ON pm.ProbandID=p.ID JOIN Massnahme m ON pm.MassnahmeID=m.ID";
+	    $_E["stm$i-filter"] = " WHERE ('nein'=pm.bestaetigt OR 'nein'=pm.bezahlt) ORDER BY p.Name, p.Vorname, p.geborenAm";
+          break;
           default:
 	    if( isset($Select) and isset($Select[$_REQUEST["sl$i"]]) )
 	      $_E["stm$i"] = $Select[$_REQUEST["sl$i"]];
