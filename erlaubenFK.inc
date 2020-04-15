@@ -16,6 +16,7 @@ $arrFK = array(
 		"KW",
 		"Tag",
 		"Trainer",
+		"VS",
 	),
 );
 ?>
