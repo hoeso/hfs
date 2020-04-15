@@ -68,7 +68,7 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "Mail"=>"mn.php?mn=pe&a=Mail",
   "MailProband"=>"./mn.php?mn=not_exists&a=MailProband&sl=1&sl1=Proband&navi=Proband&re=1&re1=Mail",
   "Tel"=>"mn.php?mn=pe&a=Tel",
-  "Termin"=>"./mn.php?mn=t&a=Termin&i=3",
+  "Termin"=>"./mn.php?mn=t&a=Termin&i=6&b=",
   "Trainer"=>"./mn.php?mn=pe&a=Trainer",
   "TrainerOrtTerminart"=>"mn.php?mn=nn&a=TrainerOrtTerminart&sl=1&sl1=Ort&re=2&re1=Trainer&re2=Terminart&i=3",
   "Kategorie"=>"mn.php?mn=pe&a=Kategorie",

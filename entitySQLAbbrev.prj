@@ -16,6 +16,7 @@ $sqlAbbrev = array(
   "KursTrainer"=>"kt",
   "Mail"=>"m",
   "MailProband"=>"mp",
+  "Massnahme"=>"Massnahme",
   "Dauer"=>"d",
   "Ort"=>"o",
   "OrtBehoerde"=>"ob",

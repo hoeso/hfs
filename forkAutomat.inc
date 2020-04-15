@@ -72,6 +72,7 @@ $forkAutomat = array(
 		"ERMListenfuellen.prj",
 		"ERMsubmit.inc",
 		"gibWeiter.inc",
+		"linkFortsetzen.inc",
 		"anzeigenZieltabelle.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext

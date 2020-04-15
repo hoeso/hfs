@@ -49,6 +49,9 @@ noch $_E[filter] setzen, um sichten.prj zu filtern.
 if( isset($_REQUEST["ID"]) )
   $_E["filter"]=" AND $_REQUEST[ID]=k.ID";
 
+$_E["sort"] = " ORDER BY j.Jahr, kw.KW, te.TagID, te.vsID";
+$_E["ident"] = 6; // 
+
 $_E['mn']="sl_pe";
 
 /******

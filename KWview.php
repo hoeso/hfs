@@ -264,8 +264,16 @@ class KWview extends KWmodel
       {
         if( !$i )
         { // Zeile mit Uhrzeit beginnen
-          ?><td><?php echo "\n" . $quart[$row];?></td><?php
-          ++$i;
+	  unset($z_);
+          $z_ = explode( ":", $quart[$row] );
+	  if( isset($z_[1]) and ("15" == $z_[1] or "45" == $z_[1]) )
+	  {
+	  }
+	  else
+	  {
+            ?><td><?php echo "\n" . $quart[$row];?></td><?php
+            ++$i;
+	  }
 	  continue;
         }
 	?>
@@ -303,17 +311,22 @@ class KWview extends KWmodel
 	    $d="&d";
 	  else
 	    $d="";
-          ?><a href="mn.php?mn=planend&a=Termin&sl=5&sl1=Leistung&sl2=Trainer&sl3=Ort&sl2ID=<?php echo $a[6]?>&sl4=<?php echo $row;?>&sl5=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x&i=3" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">+&nbsp;</a>&nbsp;<?php
+	  $f=false;
 	  for( $k=0; $k < count($a); $k += $dim )
 	  {
             $maclientvsID=$a[$k+4];
 	    $clutch = $dayofweek . $a[$k+1] . $quart[$row] . "|" . $a[$k+2] . "|" . $a[$k+3] . "|" . $a[$k+4] . "|" . $a[$k+5] . "|" . $a[$k+6] . "|" . $a[$k+7] . "|" . $a[$k+8];
+	    $ent=$a[$k+4];
+	    $pro=0;
+	    $pro = gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Termin te JOIN ProbandTermin pt ON te.ID=pt.TerminID WHERE $ent=te.ID", 0 );
 	    //var_dump($clutch);
+	    $f=true;
 	    if ( !isset($aSC) or isset($aSC) and !isset($aSC[$clutch]) )
 	    { // Zelle assoziativ belegen: "Wochentag . [MA|Klient]-Initialen" = Menge
 	      $aSC[$clutch] = $a[$k];
 	    }
 	  }
+          ?><a href="mn.php?mn=planend&a=Termin&sl=5&sl1=Leistung&sl2=Trainer&sl3=Ort&sl2ID=<?php echo $a[6]?>&sl4=<?php echo $row;?>&sl5=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x&i=3" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">+&nbsp;</a>&nbsp;<?php
 	}
 	if( isset($aSC) )
           foreach ($aSC as $sc => &$counter)
@@ -325,7 +338,7 @@ class KWview extends KWmodel
               $a__ = explode( "|", $sc );
               if( 'ort' == $what )
 	      {
-	        $ent=$a__[3];
+	        //$ent=$a__[3];
                 $str="&a=Klient&planungTag_x&k=c"; // k=c: eOverlay-Kontext --> KlientVS=Klient
                 $str.="&l=zum%20Klient&#42;in";
 		/*###*/
@@ -334,41 +347,45 @@ class KWview extends KWmodel
 	      }
               else                
 	      {
-	        $ent=$a__[3];
+	        //$ent=$a__[3];
                 $str="&a=MA&planungMA_x";
                 $str.="&l=zum%20MA&#42;in";
 		/*###*/
                 $str="&a=Termin&planungVS_x&k=$a__[7]";
                 $str.="&l=zum%20Termin";
 	      }
-              ?><a href="mn.php?mn=Tag&navi=Plan&ID=<?php echo $a__[2];?>&u=<?php echo substr($sc,2,2) . $str;?>&f=<?php echo $a__[6]?>&Termin=<?php echo $ent;?>#<?php echo $ent;?>" target="_blank" title=<?php echo $a__[1] . ">"; // title: voller Name
-              if( 'initialen' == $how )
-	        echo substr($sc,2,2) . " "; // nur die Initialen
-              else
-	        //echo substr($a__[1],0,12) . "[" . $a__[4] . "] "; // Name Vorname
-	        echo $a__[4] . "/" . substr($a__[1],0,12); // Name Vorname
-              if( 'trainer' == $what )
+	      if( true == $f ) // Start-VS des Termins
 	      {
-	        $md_ = explode( ".", $value );
-		for( $n=0; $n < 2; $n++ ) // fuer fuehrende Null sorgen:
-  		  if( 1 == strlen($md_[$n]) )
-		    $md_[$n] = "0$md_[$n]";
-	        //echo "-$a__[2] + 20$this->Jahr-$md_[1]-$md_[0]";
-		/*** Abwesenheit gibt es noch nicht in der VPI Suite
-		$maPraesenz = new MAAbwesenheit( "20$this->Jahr", "20$this->Jahr-$md_[1]-$md_[0]", $a__[2] );
-                if( true == $maPraesenz->abwesend )
-                {
-                  ?>&nbsp;&nbsp;<img title="<?php echo $maPraesenz->vonBis;?>" src="images/<?php
-                  if( "krank" == $maPraesenz->Status )
-                    echo "krank";
-          	  else
-                    echo "havaianas07";
-                  ?>-18px.png"><?php
-                }
-                unset($maPraesenz);
-		 ***/
+                ?><a href="mn.php?mn=Tag&navi=Plan&ID=<?php echo $a__[2];?>&u=<?php echo substr($sc,2,2) . $str;?>&f=<?php echo $a__[6]?>&Termin=<?php echo $ent;?>#<?php echo $ent;?>" target="_blank" title=<?php echo $a__[1] . ">"; // title: voller Name
+                if( 'initialen' == $how )
+	          echo substr($sc,2,2) . " "; // nur die Initialen
+                else
+	          //echo substr($a__[1],0,12) . "[" . $a__[4] . "] "; // Name Vorname
+	          echo $a__[4] . "/" . substr($a__[1],0,12) . "/" . $pro; // Name Vorname
+                if( 'trainer' == $what )
+	        {
+	          $md_ = explode( ".", $value );
+		  for( $n=0; $n < 2; $n++ ) // fuer fuehrende Null sorgen:
+  		    if( 1 == strlen($md_[$n]) )
+		      $md_[$n] = "0$md_[$n]";
+	          //echo "-$a__[2] + 20$this->Jahr-$md_[1]-$md_[0]";
+		  /*** Abwesenheit gibt es noch nicht in der VPI Suite
+		  $maPraesenz = new MAAbwesenheit( "20$this->Jahr", "20$this->Jahr-$md_[1]-$md_[0]", $a__[2] );
+                  if( true == $maPraesenz->abwesend )
+                  {
+                    ?>&nbsp;&nbsp;<img title="<?php echo $maPraesenz->vonBis;?>" src="images/<?php
+                    if( "krank" == $maPraesenz->Status )
+                      echo "krank";
+          	    else
+                      echo "havaianas07";
+                    ?>-18px.png"><?php
+                  }
+                  unset($maPraesenz);
+		   ***/
+	        }
+                ?></a><?php
+		$f=false;
 	      }
-              ?></a><?php
 	      if( $counter )
 	        --$counter;
 	      if( !$counter )
