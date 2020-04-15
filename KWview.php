@@ -254,8 +254,42 @@ class KWview extends KWmodel
        *** Ende der Symbol-Anzeige ueber der Wochentag-Zeile
        ***/
     }?>
-    </tr><tr><?php
-    /*** 2. Quart-Zeilen ausgeben     ***/
+    </tr><?php
+    /*** 2. Viertelstunden-Zeilen mit Start-Terminen finden ***/
+    $row = $this->Go;
+    $vs = array();
+    while( $row < $this->Stop )
+    {
+      $i=0;
+      foreach ($this->tag as $dayofweek => $value)
+      {
+        if( !$i )
+        { // Zeile mit Uhrzeit beginnen
+	  unset($z_);
+          $z_ = explode( ":", $quart[$row] );
+	  if( isset($z_[1]) and ("15" == $z_[1] or "45" == $z_[1]) )
+	  {
+            unset($a);
+            $this->gibTermine( $a, $dim, $what, $concat, $dayofweek, $row );
+            if( $a[0]==0 && $a[1]==1 && $a[2]==2 )
+	    {
+	    }
+	    else
+	      $vs[$quart[$row]] = $quart[$row];
+	  }
+	  else
+	  {
+            ++$i;
+	  }
+	  continue;
+        }
+        ++$i;
+      }
+      ++$row;
+      //var_dump($vs);
+    }
+    
+    /*** 3. Quart-Zeilen ausgeben     ***/
     $row = $this->Go;
     while( $row < $this->Stop )
     {
@@ -268,6 +302,11 @@ class KWview extends KWmodel
           $z_ = explode( ":", $quart[$row] );
 	  if( isset($z_[1]) and ("15" == $z_[1] or "45" == $z_[1]) )
 	  {
+	    if( isset($vs) && isset($vs[$quart[$row]]) )
+	    { // es gibt einen :15 oder :45 Termin
+              ?><td><?php echo "\n" . $quart[$row];?></td><?php
+              ++$i;
+	    }
 	  }
 	  else
 	  {
@@ -361,7 +400,15 @@ class KWview extends KWmodel
 	          echo substr($sc,2,2) . " "; // nur die Initialen
                 else
 	          //echo substr($a__[1],0,12) . "[" . $a__[4] . "] "; // Name Vorname
+		  if( 0 == $pro )
+		  {
+		    ?><b><?php
+		  }
 	          echo $a__[4] . "/" . substr($a__[1],0,12) . "/" . $pro; // Name Vorname
+		  if( 0 == $pro )
+		  {
+		    ?></b><?php
+		  }
                 if( 'trainer' == $what )
 	        {
 	          $md_ = explode( ".", $value );

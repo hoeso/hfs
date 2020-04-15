@@ -12,6 +12,7 @@ $arrFK = array(
 		"Massnahme",// ich bin ein Fremdschluessel
 	),
 	"Termin"=>array(
+		"Kategorie",
 		"KW",
 		"Tag",
 		"Trainer",

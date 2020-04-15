@@ -61,7 +61,7 @@ else if( "Termin"==$table && $recID )
     ?><b><?php echo gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Termin te JOIN ProbandTermin pt ON te.ID=pt.TerminID WHERE $recID=te.ID", 0 );
     ?></b>&nbsp;&nbsp;<INPUT TYPE=image src='images/iconmonstr-user-10-16.png' NAME='terminProband' title='Proband hinzuf&uuml;gen/anzeigen'><?php
     //hiddenFeldSchreiben( "mn", "blatt" );//da geht's weiter
-    hiddenFeldSchreiben( "navi", "KW" );//
+    hiddenFeldSchreiben( "navi", "Plan" );//
   }
 }
 else if( ( $table=="EDV" ) && $recID )

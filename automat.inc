@@ -6,7 +6,7 @@
 if( isset($_REQUEST['navi']) )
   $_E['navi'] = $_REQUEST['navi'];
 else if( !isset($_E['navi']) )
-  $_E['navi'] = "Zahnrad";
+  $_E['navi'] = "Plan";
 $automat = array(
 /* zum Kopieren
 	""=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
