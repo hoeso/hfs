@@ -234,6 +234,46 @@ switch( $_E['mn'] )
     if( isset($_REQUEST["navi"]) )
       $_E['navi'] = $_REQUEST["navi"];
   break;
+  case "speichernSchicht":
+    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"])/* or !isset($_REQUEST["e"]) or !isset($_REQUEST["t"])*/ ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "speicherndSchicht";
+    $_e = array( "1", "2" );
+  break;
+  case "speichernVorgaenger":
+    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"]) or !isset($_REQUEST["e"]) or !isset($_REQUEST["t"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "speicherndVorgaenger";
+    $_e = array( "1", "2" );
+  break;
+  case "kw": // Zeigt Kalender an
+    if( !isset($_REQUEST["k"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "zeigendKW";
+    $_E['date'] = $_REQUEST["k"];
+    switch( $_REQUEST["b"] )
+    {
+      case 'o':
+        $_A['what'] = 'ort';
+      break;
+      default:
+        $_A['what'] = 'trainer';
+      break;
+    }
+    if( isset($_REQUEST["o"]) )
+      switch( $_REQUEST["o"] )
+      {
+        case 'i':
+          $_A['how'] = 'initialen';
+        break;
+        default:
+          $_A['how'] = 'name';
+        break;
+      }
+    else
+      $_A['how'] = 'name';
+    $_e = array( "1", "2" );
+  break;
   case "pe": // pure entity
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
