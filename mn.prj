@@ -144,6 +144,14 @@ switch( $_E['mn'] )
     if( isset($_REQUEST["x"]) )
       $_E['nichtEinfuegen'] = $_REQUEST["x"];
   break;
+  case "outer":echo $_REQUEST["a"] . "<br>";
+    if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "listend";
+    $_E['entitaet'] = $_REQUEST["a"];
+    $_E['lView'] = $_REQUEST["a"];
+    $_e = array( $_REQUEST["a"], $_REQUEST["a"] );
+  break;
   case "speichernKW":
     $_E['wZu'] = "pruefendSymbol";
     $_REQUEST['kopierenKW_x']=true;
@@ -238,7 +246,7 @@ switch( $_E['mn'] )
     $_E['wZu'] = "speicherndVorgaenger";
     $_e = array( "1", "2" );
   break;
-  case "kw":
+  case "kw": // Zeigt Kalender an
     if( !isset($_REQUEST["k"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "zeigendKW";
