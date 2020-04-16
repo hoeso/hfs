@@ -329,8 +329,11 @@ if( $zielTabelle and (!isset($keinInsert) or false == $keinInsert) )
         if( 10 ==  $a_->type )
         {
         //case "date":
-          echo " TYPE='TEXT' SIZE=10 VALUE='";
-    	      include("vorbelegenDate.prj");
+          if( isset($versionPHP) && "5" < $versionPHP[0] )
+            echo " TYPE='date' VALUE='";
+          else
+            echo " TYPE='TEXT' SIZE=10 VALUE='";
+    	  include("vorbelegenDate.prj");
           echo "'></li>";
         //break;
         }
@@ -477,11 +480,11 @@ for( $i=0; $i<$anz; $i++ )
           switch( $elem )
           {// switch
             case "date":
-	      /*** wg. FF Quantum: solange nicht auf HTML5 umgestellt ist
-              echo " TYPE='date' VALUE='";
-	       ***/
-              echo " TYPE='text' VALUE='";
-	      include("eingabeFuellenDatum.prj");
+              if( isset($versionPHP) && "5" < $versionPHP[0] )
+                echo " TYPE='date' VALUE='";
+              else
+                echo " TYPE='text' VALUE='";
+	      include("vorbelegenDate.prj");
               echo "'><br>";
             break;
             case "int":
