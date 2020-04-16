@@ -132,7 +132,7 @@ function headerFooter( $mark, $spaltenName, $auchID, &$cSpalten, $sql, $zielTabe
           $bzg = "";
         else
           $bzg = "&Bezug=$Bezug";
-        echo_("<A HREF=\"./eiZu.php?wZu=zeigendDruckansicht&zielTabelle=$zielTabelle&sql=$str$bzg&bgcolor=white&gruppenStaerke=$gruppenStaerke&$proj&orderBy=$spaltenName[$i]&desc=false\">$spaltenName[$i]</A>");
+        /*echo_("<A HREF=\"./eiZu.php?wZu=zeigendDruckansicht&zielTabelle=$zielTabelle&sql=$str$bzg&bgcolor=white&gruppenStaerke=$gruppenStaerke&$proj&orderBy=$spaltenName[$i]&desc=false\">*/echo_($spaltenName[$i]);/*</A>");*/
         ?></th><?php
         $cSpalten++;
       }
