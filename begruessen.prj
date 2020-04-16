@@ -1,0 +1,36 @@
+<?php
+/************ Input ********************
+ * gesetzt von naviSymbols.prj:
+ *                            :
+ *                            :
+ ***************************************/
+if( !isset($_A['naviSwitch']) )
+  return;
+switch( $_A['naviSwitch'] )
+{
+/* zum Kopieren:
+  case "":
+  break;
+*/
+  case "Umsatz":
+  {
+//    break; // der folgende Code funktioniert (noch) nicht
+    $_E['mn'] = "sr";
+    $_REQUEST["a"] = "Umsatz";
+    $_REQUEST["sr"] = "1";
+    $_REQUEST["s1"] = "PreisWare";
+    if( !isset($_REQUEST["navi"]) )
+      $_REQUEST["navi"] = "Umsatz";
+    $_REQUEST["i"] = "3";
+    $_E['wZu']="erfassendUmsatz";
+    include("forkZu.inc");
+  }
+  break;
+  case "Verkauft":
+  {
+    $_E['wZu']="befragendZeitraum";
+    include("forkZu.inc");
+  }
+  break;
+}
+?>
