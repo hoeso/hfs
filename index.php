@@ -50,8 +50,8 @@ if( isset($_REQUEST["navi"]) )
       $_REQUEST["i"] = "4";
     break;
     case 'Proband':
-      $_REQUEST['mn'] = "pe";
-      $_REQUEST["a"] = "Tel";
+      $_REQUEST['mn'] = "np";
+      $_REQUEST["a"] = "Proband";
       $_A['css'] = "./erica.css";
     break;
     case 'Zahnrad':

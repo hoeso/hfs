@@ -1,6 +1,11 @@
 <?php
 if( "Proband" == $zielTabelle && "geborenAm" == $feld )
-  echo "01/01/2000";
+{
+  $datum = date ("d.m.Y");
+  $datum = setFieldDate('1901-01-01', $fHTML5);
+  echo $datum;
+  //echo "01/01/2000";
+}
 else if( "Aktennotiz" == $zielTabelle && "zuErledigenBis" == $feld )
   echo gibFeld( $MySQLDb, "SELECT DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 3 DAY),'%d.%m.%Y')", 0 );
 else if( "EDV" == $zielTabelle )

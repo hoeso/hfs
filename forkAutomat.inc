@@ -61,6 +61,32 @@ $forkAutomat = array(
 		"mn.prj",
 		"automatReloaded.inc",
 	),
+	"erfassendProband"=>array( // Kopie von anbietendVerlinkenEntitaet
+		"hauptteil.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"dbConnect.inc",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
+		"wohinDamit.prj",
+		"wohinDamit.inc",
+		"formularERMintro.inc",
+		//"mapSpaltennamen.inc",
+		"ERMListenfuellen.inc",
+		"ERMsubmit.inc",
+		"gibWeiter.inc",
+		//"anzeigenZieltabelle.inc",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",//seitenleiste
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"forkendVerlinkenEntitaet"=>array(
 		"setzenFortsetzung.prj",
 		"pokeFortsetzung.prj",

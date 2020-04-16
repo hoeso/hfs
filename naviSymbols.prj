@@ -27,7 +27,8 @@ switch( $sw )
   {
     ?><img src="images/iconmonstr-process-2-32.png" alt="zum Getriebe" usemap="#zahnrad">
       <img src="images/iconmonstr-link-thin-32.png" alt="zum Verkn&uuml;pfen" usemap="#verknuepfen">
-  <?php
+    <?php
+    $_A['naviSwitch'] = $sw; // fuer begruessen.prj
   }
   break;
   case "Verknuepfen":

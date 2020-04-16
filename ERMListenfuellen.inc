@@ -8,7 +8,27 @@ if( isset($_REQUEST["d"]) )
   $a_ = explode( "/", __file__ );
   $b_ = $a_[count($a_)-1];
 }
-$debug=false;
+$debug=0;
+  /*** HIER KANN MAN DIE KONSTANTEN TESTEN, DIE
+   *** WEITER UNTEN ZUR FELDTYP-BESTIMMUNG HERANGEZOGEN
+   *** WERDEN KOENNEN
+   ***/
+  if( isset($_REQUEST["d"]) )
+  {
+    dEcho( $b_, "type MYSQLI_TYPE_CHAR : " . MYSQLI_TYPE_CHAR );
+    dEcho( $b_, "type MYSQLI_NUM       : " . MYSQLI_NUM       );
+    dEcho( $b_, "type MYSQLI_TYPE_LONG : " . MYSQLI_TYPE_LONG );
+    dEcho( $b_, "type MYSQLI_TYPE_FLOAT : " . MYSQLI_TYPE_FLOAT );
+    dEcho( $b_, "type MYSQLI_TYPE_DATE : " . MYSQLI_TYPE_DATE );
+    dEcho( $b_, "type MYSQLI_TYPE_INTERVAL : " . MYSQLI_TYPE_INTERVAL );
+    dEcho( $b_, "type MYSQLI_TYPE_ENUM : " . MYSQLI_TYPE_ENUM );
+    dEcho( $b_, "type MYSQLI_TYPE_BLOB : " . MYSQLI_TYPE_BLOB );
+    dEcho( $b_, "type MYSQLI_TYPE__VAR_STRING : " . MYSQLI_TYPE_VAR_STRING );
+    dEcho( $b_, "type MYSQLI_TYPE_STRING : " . MYSQLI_TYPE_STRING );
+    dEcho( $b_, "type MYSQLI_TYPE_GEOMETRY : " . MYSQLI_TYPE_GEOMETRY );
+    dEcho( $b_, "flag MYSQLI_ENUM_FLAG : " . MYSQLI_ENUM_FLAG );
+    dEcho( $b_, "type  : " . "platzhalter" );
+  }
 if( isset($UniquePK) )
   echo "\n\t<INPUT TYPE='HIDDEN' NAME='UniquePK' VALUE='$UniquePK'>";
 if( isset($ID1) and $ID1 )
@@ -156,7 +176,7 @@ if( isset($arrEM) )
     unset($zeilen);
     auslesenEMKette( $MySQLDb, $arrEM[$i], $tabKopf, $Mid, $zeilen, $dummy, $dummy );
     if( count($tabKopf) )
-    {//$debug=1;
+    {
       if( $debug )
       {
         $anz = count($Mid);
@@ -170,7 +190,7 @@ if( isset($arrEM) )
           for( $z=0; $z < count($tabKopf); $z++, $y++ )
             echo "zeilen[$y] = $zeilen[$y], ";
           echo "<br>";
-        }//unset($debug);
+        }
     }
     ergebnisListeMitID( $labelEM[$i], $arrEM[$i], count($tabKopf), $Mid, $zeilen );
     $anzListeneintrag += count($Mid);
@@ -239,176 +259,141 @@ if( $zielTabelle and (!isset($keinInsert) or false == $keinInsert) )
     $_E['wZu']="anbietendKnopfZurueck";
     include("forkZu.inc");
   }
-  /*** HIER KANN MAN DIE KONSTANTEN TESTEN, DIE
-   *** WEITER UNTEN ZUR FELDTYP-BESTIMMUNG HERANGEZOGEN
-   *** WERDEN KOENNEN
-   ***/
-  if( isset($_REQUEST["d"]) )
-  {
-    dEcho( $b_, "type int  : " . MYSQLI_TYPE_LONG );//   3 : ok 
-    dEcho( $b_, "type enum : " . MYSQLI_TYPE_ENUM );// 247 : nok
-    dEcho( $b_, "flag enum : " . MYSQLI_ENUM_FLAG );// 256 : nok
-    dEcho( $b_, "type num  : " . MYSQLI_NUM       );// 247 : nok
-    dEcho( $b_, "type datum: " . MYSQLI_TYPE_DATE );//  10 : ok 
-  }
   ?><p><?php
   $focusFeld=false;      // Namen des 1. Eingabefeldes speichern in $focusName
   $enumIDX=1;
   if( "5" < $versionPHP[0] )
   {
-  $y=-1;
-  $anz=0;
-  while ($a_=mysqli_fetch_field($result))
-  {
-    ++$y;
-    if( isset($_REQUEST["d"]) )
-      dEcho( $b_, "FeldNr: " . $y );
-    $anz++; // Anzahl Spalten
-    /*** HIER KANN MAN SICH DIE FELDTYP-WERTE ANZEIGEN LASSEN, DIE
-     *** WEITER UNTEN ZUR FELDTYP-BESTIMMUNG HERANGEZOGEN
-     *** WERDEN MUESSEN
-     ***/
-    if( isset($_REQUEST["d"]) )
+    $y=-1;
+    $anz=0;
+    while ($a_=mysqli_fetch_field($result))
     {
-      dEcho( $b_, "Name: " . $a_->name  );
-      dEcho( $b_, "Type: " . $a_->type  );
-      dEcho( $b_, "Flag: " . $a_->flags );
-    }
-    $elem = $a_->name;
-
-    // alle Felder ausgeben, welche	nicht auf "ID" enden
-    // also keine Verknuepfungen sind
-    $len = strlen($elem) - 2;
-    $str = substr($elem, $len, 2); 
-    if( strstr($str, "ID" ) )
-      continue;
-    echo "\n";
-    ?><li><?php
-    $fType = true;
-    $feld = $elem;
-    if( !isset($keinInsert) or false == $keinInsert )
-    {
-      echo "\n<label for=\"$elem\">$elem:</label><";
-      $strId = $elem;
-    }
-    $feldFlag = mysql_field_flags( $result, $y );
-    if( !isset($keinInsert) or false == $keinInsert )
-    {
-      if( 254 ==  $a_->type ) // enum
-        echo "select ";
-      /*** blob wird noch ausgespart
-      else if( strstr( $feldFlag, "blob" ) )
-        echo "TEXTAREA ";
+      ++$y;
+      if( isset($_REQUEST["d"]) )
+        dEcho( $b_, "FeldNr: " . $y );
+      $anz++; // Anzahl Spalten
+      /*** HIER KANN MAN SICH DIE FELDTYP-WERTE ANZEIGEN LASSEN, DIE
+       *** WEITER UNTEN ZUR FELDTYP-BESTIMMUNG HERANGEZOGEN
+       *** WERDEN MUESSEN
        ***/
-      else
-        echo "input ";
-    }
-    if( !$focusFeld )
-      $focusName="$zielTabelle" . "_";
-    if( !isset($keinInsert) or false == $keinInsert )
-    {
-      echo "name='$zielTabelle" . "_";
-      $idStr = " id='$zielTabelle" . "_";
-    }
-    /*** fortsetzen: ***/
-    if( !isset($keinInsert) or false == $keinInsert )
-    {// if keinInsert
-      if( $fType ) {
-        echo "$feldFlag" . "_" . "$feld'";
-        $idStr .= "$feldFlag" . "_" . "$feld'";
-      if( !$focusFeld )
+      if( isset($_REQUEST["d"]) )
       {
-        $focusName .="$feldFlag" . "_" . "$feld";
-        $focusFeld=true;
+        dEcho( $b_, "Name: " . $a_->name  );
+        dEcho( $b_, "Type: " . $a_->type  );
+        dEcho( $b_, "Flag: " . $a_->flags );
       }
-      /*** statt switch()
-      switch( $elem )
-      {// switch
-       *** if-else if
-       ***/
-        if( 10 ==  $a_->type )
+      $elem = $a_->name;
+    
+      // alle Felder ausgeben, welche	nicht auf "ID" enden
+      // also keine Verknuepfungen sind
+      $len = strlen($elem) - 2;
+      $str = substr($elem, $len, 2); 
+      if( strstr($str, "ID" ) )
+        continue;
+      echo "\n";
+      ?><li><?php
+      $fType = true;
+      $feld = $elem;
+      if( !isset($keinInsert) or false == $keinInsert )
+      {
+        echo "\n<label for=\"$elem\">$elem:</label><";
+        $strId = $elem;
+      }
+      //$feldFlag = mysql_field_flags( $result, $y );
+      $feldFlag = "string";
+      if( !isset($keinInsert) or false == $keinInsert )
+      {
+        if( MYSQLI_TYPE_STRING ==  $a_->type )
         {
-        //case "date":
-          if( isset($versionPHP) && "5" < $versionPHP[0] )
-            echo " TYPE='date' VALUE='";
-          else
-            echo " TYPE='TEXT' SIZE=10 VALUE='";
-    	  include("vorbelegenDate.prj");
-          echo "'></li>";
-        //break;
-        }
-        /*** noch ausgespart: 
-        case "real":
-          echo " TYPE='TEXT' SIZE=8 VALUE='";
-    	      include("vorbelegenReal.prj");
-          echo"'>\n</li>\n";
-        break;
-         ***/
-        else if( 254 ==  $a_->type ) // enum - keine passende Konstante gefunden
-        {
-          echo $idStr;
-          echo " size='1'>";
-      $idStr = " id='$zielTabelle" . "_";
-          $strKey=$zielTabelle;
-          if( !isset($enumListe["$zielTabelle"]) )
+          if ($a_->flags & MYSQLI_ENUM_FLAG)
           {
-            $strKey .= "_$enumIDX";
-            $enumIDX++;
+            echo "select ";
+            $feldFlag = "enum";
           }
-    	  	include("vorbelegenEnum.prj");
-          echo "</SELECT></li>";
+          else
+            echo "input ";
         }
-        /*** noch ausgespart: 
-        case "string":
-          $feldFlag = mysql_field_flags( $result, $y );
-           *** das ist im Vorgaenger else-if schon behandelt:
-          if( strstr( $feldFlag, "enum" ) )
-          {  
-            echo " SIZE='1'>";
+        else if( MYSQLI_TYPE_BLOB ==  $a_->type )
+        { // else if( strstr( $feldFlag, "blob" ) )
+          echo "textarea ";
+          $feldFlag = "blob";
+        }
+        else if( 246 ==  $a_->type ) // vordefinierte Konstante nicht gefunden
+        { // case "real":
+          echo "input ";
+          $feldFlag = "real";
+        }
+        else
+          echo "input ";
+      }
+      if( !$focusFeld )
+        $focusName="$zielTabelle" . "_";
+      if( !isset($keinInsert) or false == $keinInsert )
+        echo "name='$zielTabelle" . "_";
+      /*** fortsetzen: ***/
+      if( !isset($keinInsert) or false == $keinInsert )
+      {// if keinInsert
+        if( $fType ) {
+          echo "$feldFlag" . "_" . "$feld'";
+        if( !$focusFeld )
+        {
+          $focusName .="$feldFlag" . "_" . "$feld";
+          $focusFeld=true;
+        }
+        /*** statt switch()
+        switch( $elem )
+        {// switch
+         *** if-else if
+         ***/
+          if( MYSQLI_TYPE_DATE ==  $a_->type )
+          { //case "date"
+            //echo " TYPE='TEXT' SIZE=10 VALUE='";
+            echo " TYPE='DATE' VALUE='";
+      	      include("vorbelegenDate.prj");
+            echo "'>\n</li>";
+          //break;
+          }
+          else if( MYSQLI_TYPE_BLOB ==  $a_->type )
+          { // case "blob":
+            echo " COLS=86 ROWS=3 WRAP=PHYSICAL>";
+            include("vorbelegenBlob.prj");
+            ?></textarea><?php echo "\n";?></li><?php
+          }
+          else if( 246 ==  $a_->type ) // vordefinierte Konstante nicht gefunden
+          { // case "real":
+            echo " type='text' size=8 value='";
+   	    include("vorbelegenReal.prj");
+            echo"'>\n</li>\n";
+          }
+          else if( MYSQLI_TYPE_STRING ==  $a_->type )
+          {
             $strKey=$zielTabelle;
             if( !isset($enumListe["$zielTabelle"]) )
             {
               $strKey .= "_$enumIDX";
               $enumIDX++;
             }
-    		include("vorbelegenEnum.prj");
-            echo "</SELECT></li>";
+            if ($a_->flags & MYSQLI_ENUM_FLAG)
+            {
+              echo " SIZE='1'>";
+      	      include("vorbelegenEnum.prj");
+              echo "</select>";
+            }
+            else
+              echo " type='text' >";
+            echo "\n</li>\n";
           }
           else
-           ***
           {
-            echo " TYPE='TEXT'";
-            include("vorbelegenString.prj");
-            echo" id=\"$strId\"/></li>";
+          //default:
+            echo " TYPE='TEXT' >\n</li>\n";
+            if( $debug ) echo"\nfeldFlag: $feldFlag. elem: $elem<br>";
+    
+          //break;
           }
-        break;
-        case "time":
-          if( "Verzoegerung" == $zielTabelle )
-            $val=$Beginn;
-          else
-    	      {
-            $val=date("H:i",time());
-    	      }
-          echo " TYPE='TEXT' SIZE=8 VALUE='$val'>\n</li>\n";
-        break;
-        case "blob":
-          echo " COLS=86 ROWS=3 WRAP=PHYSICAL>";
-          include("vorbelegenBlob.prj");
-          ?></TEXTAREA></LI><?php
-        break;
-        ***/
-        else
-        {
-        //default:
-          echo $idStr;
-          echo " TYPE='TEXT' >\n</li>\n";
-          if( $debug ) echo"\nfeldFlag: $feldFlag. elem: $elem<br>";
-
-        //break;
         }
       }
     }
-  }
   }
   else
   {
@@ -458,7 +443,7 @@ for( $i=0; $i<$anz; $i++ )
           else if( strstr( $feldFlag, "blob" ) )
             echo "TEXTAREA ";
           else
-            echo "input ";
+            echo "INPUT ";
         }
         if( !$focusFeld )
           $focusName="$zielTabelle" . "_";
@@ -480,10 +465,10 @@ for( $i=0; $i<$anz; $i++ )
           switch( $elem )
           {// switch
             case "date":
-              if( isset($versionPHP) && "5" < $versionPHP[0] )
-                echo " TYPE='date' VALUE='";
-              else
-                echo " TYPE='text' VALUE='";
+              echo " TYPE='date' VALUE='";
+	      /*** wg. FF Quantum: solange nicht auf HTML5 umgestellt ist
+              echo " TYPE='text' VALUE='";
+	       ***/
 	      include("vorbelegenDate.prj");
               echo "'><br>";
             break;
@@ -543,7 +528,7 @@ for( $i=0; $i<$anz; $i++ )
             break;
             case "datetime":
               echo " TYPE='TEXT' VALUE='";
-	      include("eingabeFuellenDatum.prj");
+	      include("vorbelegenDate.prj");
               echo "'><br>";
             break;
             default:
@@ -622,11 +607,11 @@ return;
           if( !isset($keinInsert) or false == $keinInsert )
           {
             if( strstr( $feldFlag, "enum" ) )
-              echo "select ";
+              echo "SELECT ";
             else if( strstr( $feldFlag, "blob" ) )
               echo "TEXTAREA ";
             else
-              echo "input ";
+              echo "INPUT ";
           }
           if( !$focusFeld )
             $focusName="$zielTabelle" . "_";
@@ -648,9 +633,12 @@ return;
             switch( $elem )
             {// switch
               case "date":
+	      /*** wg. FF Quantum: solange nicht auf HTML5 umgestellt ist
                 echo " TYPE='TEXT' SIZE=10 VALUE='";
-      		      include("eingabeFuellenDatum.prj");
-                echo "'></li>";
+               ***/
+                echo " TYPE='DATE' SIZE=10 VALUE='";
+      		      include("vorbelegenDate.prj");
+                echo "'>\n</li>";
               break;
               case "real":
                 echo " TYPE='TEXT' SIZE=8 VALUE='";
@@ -669,13 +657,13 @@ return;
                     $enumIDX++;
                   }
       			include("vorbelegenEnum.prj");
-                  echo "</SELECT></li>";
+                  echo "</SELECT>\n</li>";
                 }
                 else
                 {
                   echo " TYPE='TEXT'";
                   include("vorbelegenString.prj");
-                  echo" id=\"$strId\"/></li>";
+                  echo" id=\"$strId\"/>\n</li>";
                 }
               break;
               case "time":

@@ -183,6 +183,7 @@ $automat = array(
 		"kopfteil.prj",
 		"naviSymbols.prj",
 		"endeContainer.html",
+		"begruessen.prj",
 		"hauptteil.html",
 		"haupttext.html",
 		"containerTitel.php",
@@ -197,6 +198,11 @@ $automat = array(
 		"dbClose.inc",
 	),
 	"bspVerlinkendEntitaet"=>array(
+		"eiZuWrapperListend.prj",
+		"wrapperFBS10.inc",
+		"anbietenVerlinkenEntitaet.inc",
+	),
+	"erfassendOhneListe"=>array(
 		"eiZuWrapperListend.prj",
 		"wrapperFBS10.inc",
 		"anbietenVerlinkenEntitaet.inc",

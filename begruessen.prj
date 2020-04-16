@@ -12,6 +12,13 @@ switch( $_A['naviSwitch'] )
   case "":
   break;
 */
+  case "Proband":
+    $_E['mn'] = "np";
+    $_E["entitaet"] = $_A['naviSwitch'];
+    $_E['wZu']="erfassendProband";
+    $_E['recipient'] = 4224; // speichernd1ZuN
+    include("forkZu.inc");
+  break;
   case "Umsatz":
   {
 //    break; // der folgende Code funktioniert (noch) nicht
