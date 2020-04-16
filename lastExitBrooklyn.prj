@@ -37,6 +37,7 @@ if( $table=="Mail" && $recID )
 }
 else if( $table=="Proband" && $recID )
 {
+  /***
   if( isset($_E['ID2join']) and isset($_E['entitaet2join']) and isset($_E['value2join']) )
   {
     if( "Tel" == $_E['entitaet2join'] )
@@ -53,6 +54,7 @@ else if( $table=="Proband" && $recID )
     <area shape=rect coords="0,0,32,32" title='Tel von ...' href="<?php echo $candyURL['TelProband']?>">
     </map><?php
   }
+   ***/
 }
 else if( "Termin"==$table && $recID )
 {
