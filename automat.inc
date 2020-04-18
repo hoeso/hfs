@@ -250,6 +250,7 @@ $automat = array(
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
 		"insertRE.inc",
+		"joinAfterInsert1N.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",

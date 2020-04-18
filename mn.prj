@@ -180,7 +180,8 @@ switch( $_E['mn'] )
     }
     
     $_E['wZu'] = "einfuegVerknuepfend"; // fuellendRE ist u.a. die Vorlage
-    $_E['FK2join'] = $_E['entitaet'] = $_REQUEST["a"]; // FK2 fuer Weiterverwendung nach dem Speichern
+    $_E['entitaet'] = $_REQUEST["a"];
+    $_E['FK2join'] = $_REQUEST["b"]; // FK2 fuer Weiterverwendung nach dem Speichern
     $_E['value2Join'] = $_REQUEST["r"];
     $_E['verbEntitaet'] = $_REQUEST["b"] . $_REQUEST["a"];
     $_E['reInsertWo'] = "sj";
@@ -210,10 +211,17 @@ switch( $_E['mn'] )
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "speicherndREdannJoin";
+    $_E['wZu'] = "anbietendKnopfZurueck";
     $_E['entitaet'] = $_REQUEST["a"];
     $_eTitel = array( $_REQUEST["b"] );
     if( isset($_REQUEST["navi"]) )
       $_E['navi'] = $_REQUEST["navi"];
+    if( isset($_REQUEST["FK2join"]) )
+      $_E['FK2join'] = $_REQUEST["FK2join"];
+    if( isset($_REQUEST["value2Join"]) )
+      $_E['value2Join'] = $_REQUEST["value2Join"];
+    if( isset($_REQUEST["verbEntitaet"]) )
+      $_E['verbEntitaet'] = $_REQUEST["verbEntitaet"];
   break;
   case "kw": // Zeigt Kalender an
     if( !isset($_REQUEST["k"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
