@@ -14,7 +14,7 @@
  *****************************************************************************/
 include("port.prj");
 include("sichten.prj");
-function anzeigen( $db, $sql, $table, $ActionSuffix )
+function anzeigen( $db, $sql, $table, $ActionSuffix, $fHeader = true )
 {
   global $_eCandy;
   global $fSummeBilden;
@@ -71,7 +71,7 @@ if( isset($_REQUEST["d"]) )
   tabelleBeginnen( $table );
   include("logic2PhysView.prj");
   dEcho( "anzeigenTabelle.inc", $table );
-  ausgebenAlsTabellenkopf( $spaltenName, $auchIDausgeben, $cSpalten, $sql, $table, "" );
+  ausgebenAlsTabellenkopf( $spaltenName, $auchIDausgeben, $cSpalten, $sql, $table, "", $fHeader );
   //
 
   $fChecked = false;

@@ -121,12 +121,17 @@ function mysql_field_type( $result, $i )
         return "enum";
       else
         return "string";
-    case 10:
+    case MYSQLI_TYPE_DATE:
       return "date";
-    case 11:
+    case MYSQLI_TYPE_TIME:
       return "time";
-    case 246:
+    case MYSQLI_TYPE_NEWDECIMAL:
       return "decimal";
+    case MYSQLI_TYPE_BLOB:
+      return "blob";
+    default:
+      //echo $finfo->type . "<br>";
+      break;
   }
 }
 
@@ -151,7 +156,7 @@ function mysql_field_flags( $result, $i )
     return "string";
     case MYSQLI_TYPE_STRING:
       //if( 256 == $finfo->flags || 257 == $finfo->flags )
-      if( ($finfo->flags | 256) || ($finfo->flags | 257) )
+      if( ($finfo->flags | MYSQLI_ENUM_FLAG) || ($finfo->flags | 257) )
         return "enum";
       else
         return "string";

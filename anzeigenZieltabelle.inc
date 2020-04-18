@@ -51,5 +51,10 @@ if( isset( $filterjahr ) )
 }
 if( !isset($zielTabelle) )
   $zielTabelle="";
-anzeigen( $MySQLDb, isset($sql)?$sql:"SELECT 1, 'SELECT Anweisung fuer Entitaet $zielTabelle noch hinterlegen bitte in Modul sichten.prj'", isset($_E['entitaet'])?$_E['entitaet']:"", $ActionSuffix );
+if( isset($_E) and !isset($_E['TabHeader']) )
+  $fHeader=true;
+else
+  $fHeader=false;
+
+anzeigen( $MySQLDb, isset($sql)?$sql:"SELECT 1, 'SELECT Anweisung fuer Entitaet $zielTabelle noch hinterlegen bitte in Modul sichten.prj'", isset($_E['entitaet'])?$_E['entitaet']:"", $ActionSuffix, $fHeader );
 ?>

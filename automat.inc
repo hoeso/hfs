@@ -202,6 +202,33 @@ $automat = array(
 		"wrapperFBS10.inc",
 		"anbietenVerlinkenEntitaet.inc",
 	),
+	"einfuegVerknuepfend"=>array(
+		"kopfteil.html",
+		"kopfteil.prj",
+		"naviSymbols.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"dbConnect.inc",
+		"containerTitel.php",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"setzenFortsetzung.prj",
+		"eiZuWrapperFK.inc",
+		"anzeigenZieltabelle.inc", // hier wird die Referenz-Instanz angezeigt
+		// fuellendRE.inc
+		"pokeFortsetzung.prj",
+		"formularFuerRE.inc",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"erfassendOhneListe"=>array(
 		"eiZuWrapperListend.prj",
 		"wrapperFBS10.inc",

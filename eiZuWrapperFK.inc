@@ -121,6 +121,10 @@ if( isset($_E["AND"]) )
 {
   $AND = $_E["AND"];
 }
+if( isset($_E["noDelete"]) )
+  $fKeinDelete=true;
+if( isset($_E["noUpdate"]) )
+  $fKeinUpdate=true;
 // planend
 if( isset($_REQUEST["SELECTRE1"]) )
   $SELECTRE1=$_REQUEST["SELECTRE1"];

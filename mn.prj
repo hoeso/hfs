@@ -164,6 +164,26 @@ switch( $_E['mn'] )
     $_A['how'] = 'ungenutzt';
     $_e = array( "1", "2" );
   break;
+  case "ij": // insert & join
+    if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
+    if( !isset($_REQUEST["b"]) ) { echo $exitus; return; }
+    if( !isset($_REQUEST["r"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    if( isset($Select) and isset($Select[$_REQUEST["b"]]) )
+    { // fuer anzeigenZielTabelle.inc
+      $_E["sql"] = $Select[$_REQUEST["b"]];
+      $_E["filter"] = " WHERE $_REQUEST[r]=p.ID";
+      $_E['TabHeader'] = false; // Spalten-Namen unterdruecken
+      //$_E["noUpdate"] = true; funktioniert no ned, trotz eiZuWrapperFK.inc
+    }
+    $_E['wZu'] = "einfuegVerknuepfend"; // fuellendRE ist u.a. die Vorlage
+    $_E['entitaet'] = $_REQUEST["a"];
+    
+    $_E['lView'] = $_REQUEST["a"]; // erst mal die referenzierte Instanz anzeigen- siehe 'listend'
+    $_e = array( $_REQUEST["b"], $_REQUEST["a"] );
+    if( !isset($_REQUEST["navi"]) )
+      $_REQUEST["navi"] = $_E['navi'] = "Proband";
+  break;
   case "kopierenVorgaenger":
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
@@ -231,8 +251,6 @@ switch( $_E['mn'] )
     //$_E['entitaet'] = $_REQUEST["zielTabelle"];
     //$_eTitel = array( "in {$_E['entitaet']} speichern ..." );
     $_eTitel = array( $_REQUEST["b"] );
-    if( isset($_REQUEST["navi"]) )
-      $_E['navi'] = $_REQUEST["navi"];
   break;
   case "speichernSchicht":
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"])/* or !isset($_REQUEST["e"]) or !isset($_REQUEST["t"])*/ ) { echo $exitus; return; }

@@ -146,7 +146,7 @@ $Select=array
   "Person"=>"SELECT p.ID, p.Name, p.Vorname, p.Telefon FROM Person p",
 
   //"Proband"=>"SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p WHERE NOT EXISTS (SELECT ProbandID FROM TelProband WHERE p.ID=ProbandID)",
-  "Proband"=>"SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, IF(tel.Tel IS NULL,'<a href=\"" . "mn.php?mn=pe&a=Tel" . "\">Tel</a>',tel.Tel) AS Tel FROM Proband p LEFT JOIN TelProband tp ON tp.ProbandID=p.ID LEFT JOIN Tel tel ON tp.TelID=tel.ID",
+  "Proband"=>"SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, IF(tel.Tel IS NULL,CONCAT('<a href=\"','mn.php?mn=ij&a=Tel&b=Proband&r=',p.ID,'\">Tel</a>'),tel.Tel) AS Tel FROM Proband p LEFT JOIN TelProband tp ON tp.ProbandID=p.ID LEFT JOIN Tel tel ON tp.TelID=tel.ID",
   
   "ProbandMassnahme"=>"SELECT pm.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm, m.Massnahme, pm.bezahlt, pm.bestaetigt FROM ProbandMassnahme pm JOIN Proband p ON pm.ProbandID=p.ID JOIN Massnahme m ON pm.MassnahmeID=m.ID",
   

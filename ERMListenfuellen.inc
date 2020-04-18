@@ -355,7 +355,7 @@ if( $zielTabelle and (!isset($keinInsert) or false == $keinInsert) )
           }
           else if( MYSQLI_TYPE_BLOB ==  $a_->type )
           { // case "blob":
-            echo " COLS=86 ROWS=3 WRAP=PHYSICAL>";
+            echo " COLS=32 ROWS=3 WRAP=PHYSICAL>";
             include("vorbelegenBlob.prj");
             ?></textarea><?php echo "\n";?></li><?php
           }

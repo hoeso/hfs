@@ -118,8 +118,9 @@ function headerFooter( $mark, $spaltenName, $auchID, &$cSpalten, $sql, $zielTabe
     if( false == istForeignKeyName( $spaltenName[$i] ) )
     {
       $fUnterdruecken=false;
-      for($c=0;$c<count($unterdrueckteSpalte);$c++)
-        if( $unterdrueckteSpalte[$c] == $spaltenName[$i] )
+      if( isset($unterdrueckteSpalte) )
+        for($c=0;$c<count($unterdrueckteSpalte);$c++)
+          if( $unterdrueckteSpalte[$c] == $spaltenName[$i] )
             $fUnterdruecken=true;
       if( false == $fUnterdruecken )
       {
@@ -152,8 +153,10 @@ function headerFooter( $mark, $spaltenName, $auchID, &$cSpalten, $sql, $zielTabe
   }
   echo "</$mark>";
 }
-function ausgebenAlsTabellenkopf( $spaltenName, $auchID, &$cSpalten, $sql, $zielTabelle, $aColspan )
+function ausgebenAlsTabellenkopf( $spaltenName, $auchID, &$cSpalten, $sql, $zielTabelle, $aColspan, $f = true )
 {
+  if( false == $f )
+    return; // Ohne Spalten-Namen
   headerFooter( "thead", $spaltenName, $auchID, $cSpalten, $sql, $zielTabelle, $aColspan );
   headerFooter( "tfoot", $spaltenName, $auchID, $cSpalten, $sql, $zielTabelle, $aColspan );
 }
