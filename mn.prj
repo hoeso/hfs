@@ -168,9 +168,12 @@ switch( $_E['mn'] )
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
     if( !isset($_REQUEST["b"]) ) { echo $exitus; return; }
     if( !isset($_REQUEST["r"]) ) { echo $exitus; return; }
+    include("dbConnect.inc");
+    include("routinen.inc"); // includiert dbRoutinen.inc, anzeigeRoutinen.inc
     $_E['bodyID'] = "standard";
+    $_E["stm1"] = "";
     if( isset($Select) and isset($Select[$_REQUEST["b"]]) )
-    { // fuer anzeigenZielTabelle.inc
+    { // fuer anzeigenZielTabelle.inc: Aktiver Proband als Ueberschrift
       $_E["sql"] = $Select[$_REQUEST["b"]];
       $_E["filter"] = " WHERE $_REQUEST[r]=p.ID";
       $_E['TabHeader'] = false; // Spalten-Namen unterdruecken
@@ -178,91 +181,37 @@ switch( $_E['mn'] )
     }
     $_E['wZu'] = "einfuegVerknuepfend"; // fuellendRE ist u.a. die Vorlage
     $_E['entitaet'] = $_REQUEST["a"];
-    
+    $_E['reInsertWo'] = "sj";
     $_E['lView'] = $_REQUEST["a"]; // erst mal die referenzierte Instanz anzeigen- siehe 'listend'
     $_e = array( $_REQUEST["b"], $_REQUEST["a"] );
     if( !isset($_REQUEST["navi"]) )
       $_REQUEST["navi"] = $_E['navi'] = "Proband";
-  break;
-  case "kopierenVorgaenger":
-    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
-    $_E['bodyID'] = "standard";
-    $_E['wZu'] = "kopierendVorgaenger";
-    $_e = array( "1", "2" );
-  break;
-  case "kw_text":
-    // Merkmal zu setzen: Empfaenger=[MA|Klient]
-    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["c"]) or !isset($_REQUEST["k"]) or !isset($_REQUEST["kw"]) or !isset($_REQUEST["j"]) or !isset($_REQUEST["m"]) ) { echo $exitus; return; }
-    if( isset($_REQUEST["sl"]) and !isset($_REQUEST["sl1"]) ) { echo $exitus; return; }
-    $_E['bodyID'] = "standard";
-    $_E['entitaet'] = $_REQUEST["a"];
-    $_E['Label'] = "versenden"; // Beschriftung submit-Knopf
-    if( isset($_REQUEST["re1ID"]) )
-      $_REQUEST["SELECTRE1"] = $_REQUEST["re1ID"];
-    $_E['wZu'] = "textendPlan";
-    $_E['date'] = $_REQUEST["k"];
-    $_A['how'] = 'ungenutzt';
-    $_e = array( "1", "2" );
-    if( isset($_REQUEST["sl"]) and $_REQUEST["sl"] )
+    
+    switch( $_REQUEST["a"] )
     {
-      $_E['sl'] = $_REQUEST["sl"];
-      for( $i=1; $i <= $_E['sl'] and $i < 6; $i++ )
-      {
-        if( isset($_REQUEST["sl$i"]) )
-          $_E["sl$i"] = $_REQUEST["sl$i"];
-        switch( $_REQUEST["sl$i"] )
-        {
-          case "MA":
-            $_E["stm$i"] = "SELECT m.ID, m.Name, m.Vorname FROM MA m WHERE $_REQUEST[m]=m.ID";
-          break;
-          case "Jahr":
-            $_E["stm$i"] = "SELECT ID, Jahr FROM Jahr WHERE $_REQUEST[j]=ID";
-          break;
-          case "KW":
-            $_E["stm$i"] = "SELECT ID, KW FROM KW WHERE $_REQUEST[kw]=ID";
-          break;
-          default:
-            $_E["stm$i"] = "SELECT 1, 'Fuer Entitaet {$_REQUEST["sl$i"]} ist kein SELECT hinterlegt'";
-          break;
-        }  
-        if( isset($_E["stm$i-filter"]) && isset($_E["stm$i"]) )
-        {
-          if( isset($_REQUEST["d"]) )
-            dEcho( $b_, "i: $i -- filter: " . $_E["stm$i-filter"] );
-          $_E["stm$i"] .= $_E["stm$i-filter"];
-          if( isset($_E["stm$i-order"]) )
-            $_E["stm$i"] .= $_E["stm$i-order"];
-          if( isset($_REQUEST["d"]) )
-            dEcho( $b_, $_E["stm$i"] );
-        }
-      }
+      case "Tel":
+        $_E["stm2"] = "SELECT tel.ID, Tel FROM Tel tel WHERE NOT EXISTS( SELECT TelID FROM TelProband WHERE tel.ID=TelID)";
+    	if( gibFeld( $MySQLDb, $_E["stm2"], 0 ) )
+	{
+          $_E["re"] = "1";
+          $_E["re1"] = "Tel";
+	  $_E["entitaet1N"] = "TelProband";
+          $_E["sl"] = "1";
+          $_E["sl1"] = "Proband";
+	  $_E["stm1"] = "SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
+	  $_E["stm1-filter"] = " WHERE $_REQUEST[r]=p.ID";
+	}
+    	break;
     }
-  $_E['recipient'] = 'sm'; // speichernd1ZuN + Mail versenden
   break;
-  case "sm": // speichernd1ZuN + Mail versenden
-    // Merkmal auszuwerten: Empfaenger=[MA|Klient]
+  case "sj": // save and join (Kopie von speicherndRE )
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
-    //if( !isset($_REQUEST["zielTabelle"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
-    $_E['wZu'] = "versendendMail";
+    $_E['wZu'] = "speicherndREdannJoin";
     $_E['entitaet'] = $_REQUEST["a"];
-    if( isset($_REQUEST["d"]) )
-      dEcho( $b_, "versendendMail in " . $_E['entitaet'] );
-    //$_E['entitaet'] = $_REQUEST["zielTabelle"];
-    //$_eTitel = array( "in {$_E['entitaet']} speichern ..." );
     $_eTitel = array( $_REQUEST["b"] );
-  break;
-  case "speichernSchicht":
-    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"])/* or !isset($_REQUEST["e"]) or !isset($_REQUEST["t"])*/ ) { echo $exitus; return; }
-    $_E['bodyID'] = "standard";
-    $_E['wZu'] = "speicherndSchicht";
-    $_e = array( "1", "2" );
-  break;
-  case "speichernVorgaenger":
-    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"]) or !isset($_REQUEST["e"]) or !isset($_REQUEST["t"]) ) { echo $exitus; return; }
-    $_E['bodyID'] = "standard";
-    $_E['wZu'] = "speicherndVorgaenger";
-    $_e = array( "1", "2" );
+    if( isset($_REQUEST["navi"]) )
+      $_E['navi'] = $_REQUEST["navi"];
   break;
   case "kw": // Zeigt Kalender an
     if( !isset($_REQUEST["k"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }

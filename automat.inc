@@ -131,6 +131,7 @@ $automat = array(
 		"setzenFortsetzung.prj",
 		"pokeFortsetzung.prj",
 		"formularFuerRE.inc",
+		"listenRE.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -212,13 +213,43 @@ $automat = array(
 		"containerTitel.php",
 		"dbConnect.inc",
 		"containerTitel.php",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		//"routinen.inc", // schon in mn.prj(case 'ij') includiert
 		"setzenFortsetzung.prj",
 		"eiZuWrapperFK.inc",
 		"anzeigenZieltabelle.inc", // hier wird die Referenz-Instanz angezeigt
+		"abstand.html",
 		// fuellendRE.inc
 		"pokeFortsetzung.prj",
-		"formularFuerRE.inc",
+		"formularFuerRE.inc", // fehlende 1:N-Instanz zu Proband anlegen
+		// 1:N-Liste anbieten
+		"wieWeiter.inc",
+		"abstand.html",
+		"formularERMintro.inc",
+		//"mapSpaltennamen.inc",
+		"ERMListenfuellen.inc",
+		"ERMsubmit.inc",
+		"gibWeiter.inc",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
+	"speicherndREdannJoin"=>array(
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"dbConnect.inc",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"setzenFortsetzung.prj",
+		"insertRE.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -702,7 +733,8 @@ $automat = array(
 		"routinen.inc",
 		"pruefenEingaben.js",
 		"plausiIssetA.inc",
-		"formularFuerRE.inc"
+		"formularFuerRE.inc",
+		"listenRE.inc",
 	),
 	"gruppierend"=>array(
 		"verbindenMitDB.inc",

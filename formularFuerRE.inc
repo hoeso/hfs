@@ -48,7 +48,12 @@ if( false==isset($keinInsert) )
 {
   // Zeile fuer neuen Eintrag...
   tabellenZeileBeginnen();
-  $actio = "./mn.php?mn=9422&a={$_E['entitaet']}&b={$_E['entitaet']}%20wird%20gespeichert%20...";
+  $actio = "./mn.php?mn=";
+  if( isset($_E) && isset($_E['reInsertWo']) )
+    $actio .= $_E['reInsertWo'];
+  else
+    $actio .= "9422";
+  $actio .= "&a={$_E['entitaet']}&b={$_E['entitaet']}%20wird%20gespeichert%20...";
   if( isset($_E["navi"]) )
     $actio .= "&navi=" . $_E["navi"];
   if( isset($_REQUEST["d"]) )
@@ -63,35 +68,6 @@ if( false==isset($keinInsert) )
   ?><td><?php
   formularKnopf("neu anlegen", "");
   ?></td></form><?php
-  tabellenZeileBeenden();
-}
-
-$fChecked = false;
-unset($arrFeldTyp);
-for( $z=0; $z<count($spaltenName); $z++ )	// wegen Datumsformatierung
-  $arrFeldTyp[$z] = mysql_field_type( $result, $z );
-for( $z=0; $z<count($spaltenName); $z++ )	// wegen enum-Sofortaenderung
-  $arrFeldFlag[$z] = mysql_field_flags( $result, $z );
-for( $z=0; $z<count($spaltenName); $z++ )	// wegen enum-Sofortaenderung
-  $arrFeldName[$z] = mysql_field_name( $result, $z );
-if( !isset($ActionSuffix) )
-  $ActionSuffix="";
-
-while( $row=mysql_fetch_array( $result, MYSQL_NUM ) )
-{
-  tabellenZeileBeginnen();
-  $fAendern = true;
-  foreach( $arrNichtAendern as $k )
-    if( 0 == strcmp( $k, $_E['entitaet'] ) )
-      $fAendern = false;
-    if( $fAendern )
-      ausgebenAlsTabellenzeileZumAendern( $row, $auchIDausgeben, $fChecked, $arrFeldTyp, $arrFeldFlag, $arrFeldName, $_E['entitaet'], $ActionSuffix, $iFarbReihe );
-    else
-    {
-      if( !isset($globalID) )
-        $globalID=0;
-      ausgebenAlsTabellenzeile( $row, $auchIDausgeben, $fChecked, $spaltenName, $globalID, $arrFeldTyp, $_E['entitaet'], $ActionSuffix, "", $dummy );
-    }
   tabellenZeileBeenden();
 }
 

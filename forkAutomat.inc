@@ -156,6 +156,7 @@ $forkAutomat = array(
 		"setzenFortsetzung.prj",
 		"pokeFortsetzung.prj",
 		"formularFuerRE.inc",
+		"listenRE.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -297,72 +298,12 @@ $forkAutomat = array(
 		"anzeigenZieltabelle.inc",
 		"linkFortsetzen.inc",
 	),
-	"anlegendAenderndPartner"=>array(
-		//"eiZuGruppierendERM.inc",
-		"transpHeader.html",
-		"bezug.inc",
-		"ueberschrift.inc",
-		"pruefenEingaben.js",
-		"plausiIssetA.inc",
-		"speichernAction.inc",
-		"formularERMintro.inc",
-		"mapSpaltennamen.inc",
-		"ERMListenfuellen.inc",
-		"ERMsubmit.inc", // bis hier wie gruppierendERM
-		"eiZuAenderndPartner.prj",
-		"ueberschrift.inc",
-		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
-		"eiZuAnlegendBeruf.prj",
-		"ueberschrift.inc",
-		"formularFuerRE.inc",
-		"linkFortsetzen.inc",
-	),
 	"antwortend"=>array(
 		"eiZuAntwortend.prj",
 	),
 	"anzeigendAufwand"=>array(
 		"mapInnendienstPort.inc",
 		"eiZuEingebendAufwand.inc",
-		"ueberschrift.inc",
-		"speichernAction.inc",// entnommen von gruppierendERM
-		"formularERMintro.inc",
-		"mapSpaltennamen.inc",
-		"ERMListenfuellen.inc",
-		"ERMsubmit.inc",
-		"hr.html",
-		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
-	),
-	"anzeigendErstkontakt"=>array(
-		"eiZuAnzeigendErstkontakt.inc",
-		"eiZuAnzeigendTabelle.inc",
-		"bezug.inc",
-		"ueberschrift.inc",
-		"anzeigenZieltabelle.inc",
-		"forkOrtstermin.inc",
-		"linkFortsetzen.inc",// bis hier wie anzeigendTabelle
-	),
-	"anzeigendNachtrag"=>array(
-		"eiZuAnzeigendTabelle.inc",
-		"bezug.inc",
-		"ueberschrift.inc",
-		"anzeigenZieltabelle.inc",
-		"forkErstkontakt.inc",
-		"linkFortsetzen.inc",// bis hier wie anzeigendTabelle
-	),
-	"anzeigendOrtstermin"=>array(
-		"eiZuAnzeigendOrtstermin.inc",
-		"eiZuAnzeigendTabelle.inc",
-		"bezug.inc",
-		"ueberschrift.inc",
-		"anzeigenZieltabelle.inc",
-		"popID.inc",
-		"forkAufwand.inc",
-		"linkFortsetzen.inc",// bis hier wie anzeigendTabelle
-	),
-	"anzeigendPosten"=>array(
-		"eiZuAngebendPosten.inc",
 		"ueberschrift.inc",
 		"speichernAction.inc",// entnommen von gruppierendERM
 		"formularERMintro.inc",
