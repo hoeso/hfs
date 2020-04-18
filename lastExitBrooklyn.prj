@@ -19,7 +19,7 @@ if( isset($_REQUEST['d']) )
 if( $table=="Tel" && $recID )
 {
   /***
-  if( false == gibFeld( $MySQLDb, "SELECT ID FROM TelProband WHERE TelID=$recID", 0 ) )
+  if( false == gibFeld( $MySQLDb, "SELECT ID FROM ProbandTel WHERE TelID=$recID", 0 ) )
   {?>
     <INPUT TYPE=image src='images/iconmonstr-user-9-16.png' NAME='addProband' title='Proband anlegen'>
     <INPUT TYPE=image src='images/iconmonstr-link-6-16.png' NAME='joinProband' title='Bestehenden Kontakt erweitern'>
@@ -53,7 +53,7 @@ else if( $table=="Proband" && $recID )
   {?>
     <img src="images/iconmonstr-phone-3-16.png" alt="neue Nr ..." usemap="#telVon">
     <map name="telVon">
-    <area shape=rect coords="0,0,32,32" title='Tel von ...' href="<?php echo $candyURL['TelProband']?>">
+    <area shape=rect coords="0,0,32,32" title='Tel von ...' href="<?php echo $candyURL['ProbandTel']?>">
     </map><?php
   }
    ***/

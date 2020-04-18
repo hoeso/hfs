@@ -32,7 +32,7 @@ else if( isset($_REQUEST["joinProband_x"]) )
   // i Spalten einruecken
   $_REQUEST["i"]=3;
   
-  $_E['entitaet']="TelProband";
+  $_E['entitaet']="ProbandTel";
   $_E['value2join']=gibFeld( $MySQLDb, "SELECT Tel FROM Tel WHERE ID=$_E[ID]", 0 );
   $_E['wZu']="verbindend";
   $_eTitel = array( "$_E[value2join] &rArr; $_E[entitaet]" );

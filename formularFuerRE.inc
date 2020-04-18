@@ -61,6 +61,12 @@ if( false==isset($keinInsert) )
 
   formularBeginnen( $actio, "name=frm" . $_E['entitaet'] . " onSubmit='return pruefenEingaben(this)'" );
   hiddenFeldSchreiben( "Tabelle", $_E['entitaet'] );
+  if( isset($_E) && isset($_E['FK2join']) && isset($_E['verbEntitaet']) && isset($_E['value2Join']) ) // nur wenn vollstaendig uebergeben
+  {
+    hiddenFeldSchreiben( "FK2join", $_E['FK2join'] );
+    hiddenFeldSchreiben( "verbEntitaet", $_E['verbEntitaet'] );
+    hiddenFeldSchreiben( "value2Join", $_E['value2Join'] );
+  }
   if( !isset($enumListe[$_E['entitaet']]) )
     ausgebenAlsNeueTabellenzeile( $result, $_E['entitaet'] );
   else

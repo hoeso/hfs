@@ -171,7 +171,6 @@ switch( $_E['mn'] )
     include("dbConnect.inc");
     include("routinen.inc"); // includiert dbRoutinen.inc, anzeigeRoutinen.inc
     $_E['bodyID'] = "standard";
-    $_E["stm1"] = "";
     if( isset($Select) and isset($Select[$_REQUEST["b"]]) )
     { // fuer anzeigenZielTabelle.inc: Aktiver Proband als Ueberschrift
       $_E["sql"] = $Select[$_REQUEST["b"]];
@@ -179,8 +178,11 @@ switch( $_E['mn'] )
       $_E['TabHeader'] = false; // Spalten-Namen unterdruecken
       //$_E["noUpdate"] = true; funktioniert no ned, trotz eiZuWrapperFK.inc
     }
+    
     $_E['wZu'] = "einfuegVerknuepfend"; // fuellendRE ist u.a. die Vorlage
-    $_E['entitaet'] = $_REQUEST["a"];
+    $_E['FK2join'] = $_E['entitaet'] = $_REQUEST["a"]; // FK2 fuer Weiterverwendung nach dem Speichern
+    $_E['value2Join'] = $_REQUEST["r"];
+    $_E['verbEntitaet'] = $_REQUEST["b"] . $_REQUEST["a"];
     $_E['reInsertWo'] = "sj";
     $_E['lView'] = $_REQUEST["a"]; // erst mal die referenzierte Instanz anzeigen- siehe 'listend'
     $_e = array( $_REQUEST["b"], $_REQUEST["a"] );
@@ -190,12 +192,12 @@ switch( $_E['mn'] )
     switch( $_REQUEST["a"] )
     {
       case "Tel":
-        $_E["stm2"] = "SELECT tel.ID, Tel FROM Tel tel WHERE NOT EXISTS( SELECT TelID FROM TelProband WHERE tel.ID=TelID)";
+        $_E["stm2"] = "SELECT tel.ID, Tel FROM Tel tel WHERE NOT EXISTS( SELECT TelID FROM ProbandTel WHERE tel.ID=TelID)";
     	if( gibFeld( $MySQLDb, $_E["stm2"], 0 ) )
 	{
           $_E["re"] = "1";
           $_E["re1"] = "Tel";
-	  $_E["entitaet1N"] = "TelProband";
+	  $_E["entitaet1N"] = "ProbandTel";
           $_E["sl"] = "1";
           $_E["sl1"] = "Proband";
 	  $_E["stm1"] = "SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
@@ -492,7 +494,7 @@ switch( $_E['mn'] )
 	        $_E["stm$i-filter"] = " WHERE NOT EXISTS (SELECT ProbandID FROM MailProband WHERE p.ID=ProbandID) ORDER BY p.Name, p.Vorname, p.geborenAm";
 	      break;
 	      case 'Tel':
-	        $_E["stm$i-filter"] = " WHERE NOT EXISTS (SELECT ProbandID FROM TelProband WHERE p.ID=ProbandID) ORDER BY p.Name, p.Vorname, p.geborenAm";
+	        $_E["stm$i-filter"] = " WHERE NOT EXISTS (SELECT ProbandID FROM ProbandTel WHERE p.ID=ProbandID) ORDER BY p.Name, p.Vorname, p.geborenAm";
 	      break;
 	    }
 	    switch( $_REQUEST["sl2"] )

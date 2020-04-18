@@ -166,11 +166,15 @@ $arrRefs = array(
     "AdresseProband",
     "MailProband",
     "ProbandMassnahme",
-    "TelProband",
+    "ProbandTel",
   ),
 
   "ProbandMassnahme"=>array(
     "ProbandTermin",
+  ),
+
+  "ProbandTel"=>array(
+    "1-leaf",
   ),
 
   "ProbandTermin"=>array(
@@ -188,15 +192,11 @@ $arrRefs = array(
   ),
 
   "Tel"=>array(
+    "ProbandTel",
     "TelKlient",
-    "TelProband",
   ),
 
   "TelKlient"=>array(
-    "1-leaf",
-  ),
-
-  "TelProband"=>array(
     "1-leaf",
   ),
 
