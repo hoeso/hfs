@@ -8,6 +8,7 @@ if( isset($_E["entitaet1N"]) )
 }
 else
 {
+  echo "\n";?></table><?php
   $_E['wZu'] = "anbietendKnopfZurueck";
   include("forkZu.inc");
 }
