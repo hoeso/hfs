@@ -28,7 +28,7 @@ switch( $zielTabelle )
       var ort = ''
       var dauer = ''
       var abk = document.getElementById("Termin_string_Kuerzel")
-      var selK  = document.getElementById("SELECTRE5") // Kategorie
+      //var selK  = document.getElementById("SELECTRE5") // Kategorie
       var selTA = document.getElementById("SELECTSL1") // Terminart
       var selO  = document.getElementById("SELECTSL2") // Ort
       var dau = document.getElementById("Termin_enum_Dauer")

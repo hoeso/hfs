@@ -302,7 +302,7 @@ $mapAushang["<="]="qm";
   }
   if( $fSubmit )
   {
-    ?><td><?php
+    ?><td><?php echo "\n";
     ?><input type=image src='images/del.gif' name='delete'>
     </td>
     </FORM><?php
@@ -518,7 +518,10 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
   {
     ?><input type=image src='images/del.gif' name='delete'><?php
   }
+  echo "\n"; // HTML-Quelltext besser lesbar
   ?></td></form><?php
+  echo "\n"; // HTML-Quelltext besser lesbar
+
 }
 function ausgebenAlsTabelleHorizontal( $spaltenName, $auchID, &$cSpalten, $sql, $zielTabelle, $result, $table, $ID, $ActionSuffix, $arrStyle )
 {

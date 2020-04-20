@@ -2,7 +2,8 @@
 if( !isset($_E) || !isset($_E) || !isset($_E['FK2join']) || !isset($_E['verbEntitaet']) || !isset($_E['value2Join']) || !isset($_E['entitaet']) || !isset($_eCandy[$_E['entitaet']])  ) // nur wenn vollstaendig uebergeben
   return;
 
-$result = mysql_db_query( $MySQLDb, "INSERT INTO $_REQUEST[entitaet2join]$_E[entitaet] VALUES( null, $_REQUEST[ID2join], $_E[ID] )" );
+$str = "INSERT INTO $_E['verbEntitaet'] VALUES( null, $_REQUEST[ID2join], $_E[ID] )";
+$result = mysql_db_query( $MySQLDb, $str );
 if( isset($_E) and isset($_E['entitaet']) and isset($_eCandy) and isset($_eCandy[$_E['entitaet']]) )
 {
   $_E['entitaet'] = $_REQUEST['entitaet2join'] . $_E['entitaet'];

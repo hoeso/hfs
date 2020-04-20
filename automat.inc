@@ -224,6 +224,8 @@ $automat = array(
 		// 1:N-Liste anbieten
 		"wieWeiter.inc",
 		"abstand.html",
+		"wohinDamit.prj",
+		"wohinDamit.inc",
 		"formularERMintro.inc",
 		//"mapSpaltennamen.inc",
 		"ERMListenfuellen.inc",

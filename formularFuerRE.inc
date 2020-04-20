@@ -77,7 +77,5 @@ if( false==isset($keinInsert) )
   ?></td></form><?php
   tabellenZeileBeenden();
 }
-
-tabelleBeenden();
-$succ = mysql_free_result( $result );
+// listenRE.inc beendet die Tabelle
 ?>
