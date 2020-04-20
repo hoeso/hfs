@@ -365,7 +365,7 @@ if( $zielTabelle and (!isset($keinInsert) or false == $keinInsert) )
    	    include("vorbelegenReal.prj");
             echo"'>\n</li>\n";
           }
-          else if( MYSQLI_TYPE_STRING ==  $a_->type )
+          else if( MYSQLI_TYPE_STRING == $a_->type )
           {
             $strKey=$zielTabelle;
             if( !isset($enumListe["$zielTabelle"]) )
@@ -375,6 +375,7 @@ if( $zielTabelle and (!isset($keinInsert) or false == $keinInsert) )
             }
             if ($a_->flags & MYSQLI_ENUM_FLAG)
             {
+              echo " id=\"$strId\"";
               echo " SIZE='1'>";
       	      include("vorbelegenEnum.prj");
               echo "</select>";
@@ -385,8 +386,9 @@ if( $zielTabelle and (!isset($keinInsert) or false == $keinInsert) )
           }
           else
           {
-          //default:
-            echo " TYPE='TEXT' >\n</li>\n";
+          //default: 
+            echo " TYPE='TEXT'";
+            echo " id=\"$strId\"/>\n</li>";
             if( $debug ) echo"\nfeldFlag: $feldFlag. elem: $elem<br>";
     
           //break;

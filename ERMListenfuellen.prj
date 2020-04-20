@@ -28,10 +28,14 @@ switch( $zielTabelle )
       var ort = ''
       var dauer = ''
       var abk = document.getElementById("Termin_string_Kuerzel")
+      if( null == abk )
+        abk = document.getElementById("Kuerzel")
       //var selK  = document.getElementById("SELECTRE5") // Kategorie
       var selTA = document.getElementById("SELECTSL1") // Terminart
       var selO  = document.getElementById("SELECTSL2") // Ort
       var dau = document.getElementById("Termin_enum_Dauer")
+      if( null == dau )
+        dau = document.getElementById("Dauer")
     </script>
     <?php
     for( $i=0; $i<count($ta_); $i += $di_ )
