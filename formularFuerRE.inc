@@ -66,7 +66,7 @@ if( false==isset($keinInsert) )
     hiddenFeldSchreiben( "FK2join", $_E['FK2join'] );
     hiddenFeldSchreiben( "verbEntitaet", $_E['verbEntitaet'] );
     hiddenFeldSchreiben( "value2Join", $_E['value2Join'] );
-    hiddenFeldSchreiben( "d", $_E['FK2join'] );
+    //hiddenFeldSchreiben( "d", $_E['FK2join'] );
   }
   if( !isset($enumListe[$_E['entitaet']]) )
     ausgebenAlsNeueTabellenzeile( $result, $_E['entitaet'] );
