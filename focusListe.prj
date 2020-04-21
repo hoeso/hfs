@@ -1,0 +1,6 @@
+<?php
+// 1:N-Entitaet zur fokussierten Entitaet machen:
+$_E['entitaet'] = "liste";
+if( isset($_E) and isset($_E['entitaet']) and isset($_eCandy) and isset($_eCandy[$_E['entitaet']]) )
+  $_eCandy[$_E['entitaet']] = 9; // irgendein Wert
+?>

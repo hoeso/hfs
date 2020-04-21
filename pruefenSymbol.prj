@@ -52,7 +52,7 @@ else if( isset($_REQUEST["joinMail_x"]) )
   // i Spalten einruecken
   $_REQUEST["i"]=3;
   
-  $_E['entitaet']="MailProband";
+  $_E['entitaet']="ProbandMail";
   $_E['value2join']=gibFeld( $MySQLDb, "SELECT Mail FROM Mail WHERE ID=$_E[ID]", 0 );
   $_E['wZu']="verbindend";
   $_eTitel = array( "$_E[value2join] &rArr; $_E[entitaet]" );

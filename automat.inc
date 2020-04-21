@@ -254,6 +254,7 @@ $automat = array(
 		"insertRE.inc",
 		"joinAfterInsert1N.inc", // speichern in 1:N
 		"focus1N.inc", // 1:N wird fokussierte Entitaet
+		"focusListe.prj", // ueberstimmt focus1N.inc
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",

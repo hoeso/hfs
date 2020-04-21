@@ -192,6 +192,19 @@ switch( $_E['mn'] )
     
     switch( $_REQUEST["a"] )
     {
+      case "Mail":
+        $_E["stm2"] = "SELECT m.ID, Mail FROM Mail m WHERE NOT EXISTS( SELECT MailID FROM ProbandMail WHERE m.ID=MailID)";
+    	if( gibFeld( $MySQLDb, $_E["stm2"], 0 ) )
+	{
+          $_E["re"] = "1";
+          $_E["re1"] = "Mail";
+	  $_E["entitaet1N"] = "ProbandMail";
+          $_E["sl"] = "1";
+          $_E["sl1"] = "Proband";
+	  $_E["stm1"] = "SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
+	  $_E["stm1-filter"] = " WHERE $_REQUEST[r]=p.ID";
+	}
+    	break;
       case "Tel":
         $_E["stm2"] = "SELECT tel.ID, Tel FROM Tel tel WHERE NOT EXISTS( SELECT TelID FROM ProbandTel WHERE tel.ID=TelID)";
     	if( gibFeld( $MySQLDb, $_E["stm2"], 0 ) )
@@ -498,7 +511,7 @@ switch( $_E['mn'] )
 	    switch( $_REQUEST["re1"] )
 	    {
 	      case 'Mail':
-	        $_E["stm$i-filter"] = " WHERE NOT EXISTS (SELECT ProbandID FROM MailProband WHERE p.ID=ProbandID) ORDER BY p.Name, p.Vorname, p.geborenAm";
+	        $_E["stm$i-filter"] = " WHERE NOT EXISTS (SELECT ProbandID FROM ProbandMail WHERE p.ID=ProbandID) ORDER BY p.Name, p.Vorname, p.geborenAm";
 	      break;
 	      case 'Tel':
 	        $_E["stm$i-filter"] = " WHERE NOT EXISTS (SELECT ProbandID FROM ProbandTel WHERE p.ID=ProbandID) ORDER BY p.Name, p.Vorname, p.geborenAm";
