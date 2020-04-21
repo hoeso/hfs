@@ -19,10 +19,10 @@ class KWmodel extends KW
     $this->filter = $filter;
     $this->db = Db::getInstance();
     // Start-Quart am Morgen:
-    $this->go = DB::gibFeld( "SELECT IF(4 < MIN(v.ID), MIN(v.ID)-4, 1) FROM VS v JOIN KlientVS cv ON (v.ID=cv.VSID) JOIN MAKlientVS mcv ON (cv.ID=mcv.KlientVSID)", 0 );
+    //$this->go = DB::gibFeld( "SELECT IF(4 < MIN(v.ID), MIN(v.ID)-4, 1) FROM VS v JOIN KlientVS cv ON (v.ID=cv.VSID) JOIN MAKlientVS mcv ON (cv.ID=mcv.KlientVSID)", 0 );
     $this->go = DB::gibFeld( "SELECT IF(4 < MIN(v.ID), MIN(v.ID)-4, 1) FROM VS v JOIN Termin te ON (v.ID=te.VSID)", 0 );
     // Ende-Quart am Abend:
-    $this->stop = DB::gibFeld( "SELECT IF(v.ID + cv.Menge > 96, 96, v.ID + cv.Menge) FROM VS v JOIN KlientVS cv ON (v.ID=cv.VSID) JOIN MAKlientVS mcv ON (cv.ID=mcv.KlientVSID) ORDER BY v.ID DESC LIMIT 1", 0 );
+    //$this->stop = DB::gibFeld( "SELECT IF(v.ID + cv.Menge > 96, 96, v.ID + cv.Menge) FROM VS v JOIN KlientVS cv ON (v.ID=cv.VSID) JOIN MAKlientVS mcv ON (cv.ID=mcv.KlientVSID) ORDER BY v.ID DESC LIMIT 1", 0 );
     $this->stop = DB::gibFeld( "SELECT IF(v.ID + te.Dauer > 96, 96, v.ID + te.Dauer) FROM VS v JOIN Termin te ON (v.ID=te.VSID) ORDER BY v.ID DESC LIMIT 1", 0 );
     if( !$this->stop )
     {
@@ -100,84 +100,4 @@ class KWmodel extends KW
   /***
    *** fMA : filter MA
    ***/
-  function gibKlient( &$a, &$dim, $j, $kw, $t, $fMA = "" )
-  {
-    if( isset($_REQUEST["d"]) )
-    {
-      $a_ = explode( "/", __file__ );
-      $b_ = $a_[count($a_)-1];
-    }
-    $a[0]=0;// hier Feld 0 rein = c.Name, c.Vorname
-    $a[1]=1;// hier Feld 1 rein = c.ID
-    $dim=count($a);
-    $sql = "SELECT DISTINCT CONCAT(c.Name,',',c.Vorname) AS Klient, c.ID FROM MAKlientVS mcv JOIN KlientVS cv ON (mcv. KlientVSID =cv.ID) JOIN MAKlient mc ON (mcv. MAKlientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Klient c ON (cv. KlientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE $j=j.ID $fMA AND $kw=k.ID AND $t=t.ID $this->filter ORDER BY v.ID";
-    DB::gibFelderArray( $sql, $a );
-    if( isset($_REQUEST["d"]) )
-      dEcho( $b_, $sql );
-  }
-  function gibTerminMA( &$a, &$dim, $j, $kw, $t, $cID, $tagesZeit )
-  {
-    if( isset($_REQUEST["d"]) )
-    {
-      $a_ = explode( "/", __file__ );
-      $b_ = $a_[count($a_)-1];
-    }
-    if( 'morgens' == $tagesZeit )
-      $spot = "AND v.ID < 49";
-    else if( 'mittags' == $tagesZeit )
-      $spot = "AND v.ID > 48 AND v.ID < 61";
-    else if( 'nachmittags' == $tagesZeit )
-      $spot = "AND v.ID > 60 AND v.ID < 73";
-    else if( 'abends' == $tagesZeit )
-      $spot = "AND v.ID > 72 AND v.ID < 97";
-    $a[0]=0;// hier Feld 0 rein = m.Name, m.Vorname
-    $a[1]=1;// hier Feld 1 rein = v.Quart (Start)
-    $a[2]=2;// hier Feld 2 rein = v.Menge (Ende)
-    $a[3]=3;// hier Feld 3 rein = m.ID // pruefen, ob Schicht des anzumailenden MA
-    $dim=count($a);
-    $sql = "SELECT DISTINCT CONCAT(m.Name,',',m.Vorname), TIME_FORMAT(v.Quart,'%H:%i'), TIME_FORMAT(ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')),'%H:%i'), m.ID FROM MAKlientVS mcv JOIN KlientVS cv ON (mcv. KlientVSID =cv.ID) JOIN MAKlient mc ON (mcv. MAKlientID =mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN Klient c ON (cv. KlientID =c.ID) JOIN Jahr j ON (cv. JahrID =j.ID) JOIN KW k ON (cv. KWID =k.ID) JOIN Tag t ON (cv. TagID =t.ID) JOIN VS v ON (cv. VSID =v.ID) WHERE $j=j.ID AND $kw=k.ID AND $t=t.ID AND $cID=c.ID $spot ORDER BY v.ID";
-    DB::gibFelderArray( $sql, $a );
-    if( isset($_REQUEST["d"]) )
-      dEcho( $b_, $sql );
-  }
-  function gibKlients( &$a, &$dim )
-  {
-    if( isset($_REQUEST["d"]) )
-    {
-      $a_ = explode( "/", __file__ );
-      $b_ = $a_[count($a_)-1];
-    }
-    $a[0]=0;// hier Feld 0 rein = c.ID
-    $a[1]=1;// hier Feld 1 rein = c.Name, c.Vorname
-    $dim=count($a);
-    $sql = "SELECT DISTINCT c.ID, CONCAT (c.Name,' ',c.Vorname,', ',YEAR(NOW())-YEAR(c.geborenAm)) FROM MAKlientVS mcv JOIN MAKlient mc ON (mcv. MAKlientID=mc.ID) JOIN Klient c ON (mc.KlientID=c.ID) ORDER BY Name, Vorname";
-    DB::gibFelderArray( $sql, $a );
-    if( isset($_REQUEST["d"]) )
-      dEcho( $b_, $sql );
-  }
-  function gibMAs( &$a, &$dim )
-  {
-    if( isset($_REQUEST["d"]) )
-    {
-      $a_ = explode( "/", __file__ );
-      $b_ = $a_[count($a_)-1];
-    }
-    $a[0]=0;// hier Feld 0 rein = m.ID
-    $a[1]=1;// hier Feld 1 rein = m.Name, m.Vorname
-    $dim=count($a);
-    $sql = "SELECT DISTINCT m.ID, CONCAT (m.Name,' ',m.Vorname) FROM MAKlientVS mcv JOIN MAKlient mc ON (mcv. MAKlientID=mc.ID) JOIN MA m ON (mc.MAID=m.ID) ORDER BY Name, Vorname";
-    DB::gibFelderArray( $sql, $a );
-    if( isset($_REQUEST["d"]) )
-      dEcho( $b_, $sql );
-  }
-  function gibKontingent( $maID, $datum )
-  {
-    $sql = "SELECT k. Wochenstunden FROM Kontingent k JOIN Zeitstempel z ON (z.ID=k. ZeitstempelID) WHERE z.Datum <= '" . $datum . "' AND $maID=k.MAID ORDER BY z.Datum DESC LIMIT 1";
-    return DB::gibFeld( $sql, 0 );
-  }
-  function gibKontingentKW( $maID, $jahrID, $kwID )
-  {
-    $sql = "SELECT SUM(cv.Menge)/4 FROM KlientVS cv JOIN MAKlientVS mcv ON (cv.ID=mcv. KlientVSID) JOIN MAKlient mc ON (mcv. MAKlientID =mc.ID) WHERE $jahrID=cv. JahrID AND $kwID=cv. KWID AND $maID=mc.MAID";
-    return DB::gibFeld( $sql, 0 );
-  }
 }
