@@ -241,6 +241,52 @@ $automat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
+	"einfuegNNverknuepfend"=>array(
+		"wrapperFBS10.inc",
+		"kopfteil.html",
+		"kopfteil.prj",
+		"naviSymbols.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"dbConnect.inc",
+		"containerTitel.php",
+		//"routinen.inc", // schon in mn.prj(case 'ij') includiert
+		"setzenFortsetzung.prj",
+		"eiZuWrapperFK.inc",
+		"anzeigenZieltabelle.inc", // hier wird die Referenz-Instanz angezeigt
+		"abstand.html",
+		"pokeFortsetzung.prj",
+		"wohinDamit.prj",
+		"wohinDamit.inc",
+		"formularERMintro.inc", // fehlende N:N-Instanz zu Proband anlegen
+		"ERMListenfuellen.inc",
+		"ERMsubmit.inc",
+		"wieWeiter.prj",
+		"wrapperFBS10.inc",
+		//"wieWeiter.inc",
+		"abstand.html",
+		"wohinDamit.prj",
+		"wohinDamit.inc",
+		"formularERMintro.inc",
+		//"mapSpaltennamen.inc",
+		"ERMListenfuellen.inc",
+		"ERMsubmit.inc",
+		"gibWeiter.inc",
+		"abstand.html",
+		"wieWeiter.prj",
+		"wieWeiter.inc",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"speicherndREdannJoin"=>array(
 		"kopfteil.html",
 		"kopfteil.prj",

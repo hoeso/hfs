@@ -1,0 +1,56 @@
+<?php
+/***
+ *** eingefuehrt um Liste evtl. noch nicht verknuepfter 1:N-Instanzen anzuzeigen
+ ***/
+if( "einfuegNNverknuepfend" == $_E['wZu'] && isset($_E['sl']) )
+{ // Elemente Vorgaenger-Liste loeschen, sonst werden sie nochmal ausgegeben
+  /*** nicht noetig, nur die beiden unset() am Ende des Blocks
+  for( $i=1; $i <= $_E['sl'] and $i < 6; $i++ )
+  {
+    if( isset($_E["sl$i"]) )
+    {
+      if( 1 == $i && isset($_E["sl$i"]) )
+      {
+        unset($tableSL1);
+        unset($SL1);
+        unset($_REQUEST['SL1']);
+        unset($SELECTSL1);
+      }
+      if( 2 == $i && isset($_E["sl$i"]) )
+      {
+        unset($tableSL2);
+        unset($SL2);
+        unset($_REQUEST['SL2']);
+        unset($SELECTSL2);
+      }
+      unset($_E["sl$i"]);
+    }
+    if( isset($_REQUEST["sl$i"]) )
+      unset($_REQUEST["sl$i"]);
+    if( isset($_E["stm$i"]) )
+      unset($_E["stm$i"]);
+  }
+   ***/
+  $_E["entitaet"] = $_REQUEST["c"]; // Adresse
+  if( isset($_REQUEST["1n"]) and $_REQUEST["1n"] )
+  { // OrtBehoerde
+    $_E['1n'] = $_REQUEST["1n"];
+    for( $i=1; $i <= $_E['1n'] and $i < 6; $i++ )
+      if( isset($_REQUEST["1n$i"]) )
+        $_E["1n$i"] = $_REQUEST["1n$i"];
+    if( isset($_REQUEST["1nf"]) ) // Anzahl Felder in der 1:n-Liste
+      $_E['1nf'] = $_REQUEST["1nf"];
+  }
+  unset($_E['sl']);
+  unset($countSL);
+}
+if( "einfuegNNverknuepfend" == $_E['wZu'] && isset($_E['1n']) )
+{ // Elemente Vorgaenger-Liste loeschen, sonst werden sie nochmal ausgegeben
+}
+else
+{
+  echo "\n";?></table><?php
+  $_E['wZu'] = "anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
+?>

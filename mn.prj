@@ -220,6 +220,85 @@ switch( $_E['mn'] )
     	break;
     }
   break;
+  case "innj": // insert nn-Instanz & join
+    if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
+    if( !isset($_REQUEST["b"]) ) { echo $exitus; return; }
+    if( !isset($_REQUEST["c"]) ) { echo $exitus; return; }
+    if( isset($_REQUEST["1n"]) and !isset($_REQUEST["1n1"]) ) { echo $exitus; return; }
+    if( isset($_REQUEST["sl"]) and !isset($_REQUEST["sl1"]) ) { echo $exitus; return; }
+    if( !isset($_REQUEST["r"]) ) { echo $exitus; return; }
+    include("dbConnect.inc");
+    include("routinen.inc"); // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+    $_E['bodyID'] = "standard";
+    if( isset($Select) and isset($Select[$_REQUEST["b"]]) )
+    { // fuer anzeigenZielTabelle.inc: Aktiver Proband als Ueberschrift
+      $_E["sql"] = $Select[$_REQUEST["b"]];
+      $_E["filter"] = " WHERE $_REQUEST[r]=p.ID";
+      $_E['TabHeader'] = false; // Spalten-Namen unterdruecken
+      //$_E["noUpdate"] = true; funktioniert no ned, trotz eiZuWrapperFK.inc
+    }
+    
+    $_E['wZu'] = "einfuegNNverknuepfend"; // anbietendVerlinkenEntitaet ist u.a. die Vorlage
+    $_E['entitaet'] = $_REQUEST["a"];
+    $_E['FK2join'] = $_REQUEST["b"]; // FK2 fuer Weiterverwendung nach dem Speichern
+    $_E['value2Join'] = $_REQUEST["r"];
+    $_E['verbEntitaet'] = $_REQUEST["b"] . $_REQUEST["a"];
+    $_E['reInsertWo'] = "sj";
+    $_E['lView'] = $_REQUEST["a"]; // erst mal die referenzierte Instanz anzeigen- siehe 'listend'
+    $_e = array( $_REQUEST["b"], $_REQUEST["a"] );
+    if( !isset($_REQUEST["navi"]) )
+      $_REQUEST["navi"] = $_E['navi'] = "Proband";
+/*** Dies wird als 2. Liste angeboten, also hier noch nicht setzen
+    if( isset($_REQUEST["1n"]) and $_REQUEST["1n"] )
+    {
+      $_E['1n'] = $_REQUEST["1n"];
+      for( $i=1; $i <= $_E['1n'] and $i < 6; $i++ )
+        if( isset($_REQUEST["1n$i"]) )
+          $_E["1n$i"] = $_REQUEST["1n$i"];
+      if( isset($_REQUEST["1nf"]) ) // Anzahl Felder in der 1:n-Liste
+        $_E['1nf'] = $_REQUEST["1nf"];
+    }
+ ***/    
+    $_E['recipient'] = 4224; // speichernd1ZuN
+    $_E['sl'] = $_REQUEST["sl"];
+    for( $i=1; $i <= $_E['sl'] and $i < 6; $i++ )
+    {
+      if( isset($_REQUEST["sl$i"]) )
+        $_E["sl$i"] = $_REQUEST["sl$i"];
+      switch( $_REQUEST["sl$i"] )
+      {
+        case "Ort":
+          $_E["stm$i"] = "SELECT o.ID, o.Kursort, o.Ortschaft, o.Kuerzel FROM Ort o";
+    	    //$_E["stm$i-filter"] = " ORDER BY o.Kuerzel";
+        break;
+        case "Proband":
+          $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
+    	  switch( $_REQUEST["re1"] )
+    	  {
+    	    case 'Mail':
+    	      $_E["stm$i-filter"] = " WHERE NOT EXISTS (SELECT ProbandID FROM ProbandMail WHERE p.ID=ProbandID) ORDER BY p.Name, p.Vorname, p.geborenAm";
+    	    break;
+    	    case 'Tel':
+    	      $_E["stm$i-filter"] = " WHERE NOT EXISTS (SELECT ProbandID FROM ProbandTel WHERE p.ID=ProbandID) ORDER BY p.Name, p.Vorname, p.geborenAm";
+    	    break;
+    	  }
+    	  switch( $_REQUEST["sl2"] )
+    	  {
+    	    case 'Adresse':
+    	      $_E["stm$i-filter"] = " WHERE NOT EXISTS (SELECT ProbandID FROM ProbandAdresse WHERE p.ID=ProbandID) ORDER BY p.Name, p.Vorname, p.geborenAm";
+    	    break;
+    	    break;
+    	  }
+        break;
+        default:
+    	    if( isset($Select) and isset($Select[$_REQUEST["sl$i"]]) )
+    	      $_E["stm$i"] = $Select[$_REQUEST["sl$i"]];
+    	    else
+            $_E["stm$i"] = "SELECT 1, 'Fuer Entitaet {$_REQUEST["sl$i"]} ist kein SELECT hinterlegt'";
+        break;
+      }  
+    }
+  break;
   case "sj": // save and join (Kopie von speicherndRE )
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
@@ -520,7 +599,7 @@ switch( $_E['mn'] )
 	    switch( $_REQUEST["sl2"] )
 	    {
 	      case 'Adresse':
-	        $_E["stm$i-filter"] = " WHERE NOT EXISTS (SELECT ProbandID FROM AdresseProband WHERE p.ID=ProbandID) ORDER BY p.Name, p.Vorname, p.geborenAm";
+	        $_E["stm$i-filter"] = " WHERE NOT EXISTS (SELECT ProbandID FROM ProbandAdresse WHERE p.ID=ProbandID) ORDER BY p.Name, p.Vorname, p.geborenAm";
 	      break;
 	      break;
 	    }

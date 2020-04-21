@@ -2,11 +2,7 @@
 $arrRefs = array(
 
   "Adresse"=>array(
-    "AdresseProband",
-  ),
-
-  "AdresseProband"=>array(
-    "1-leaf",
+    "ProbandAdresse",
   ),
 
   "Behoerde"=>array(
@@ -15,73 +11,27 @@ $arrRefs = array(
   ),
 
   "Beziehung"=>array(
-    "PersonClient",
-    "PersonKlient",
+    "1-leaf",
   ),
 
   "Bundesland"=>array(
-    "BundeslandTrainer",
     "Ort",
-  ),
-
-  "BundeslandTrainer"=>array(
-    "1-leaf",
-  ),
-
-  "ClientBeziehung"=>array(
-    "1-leaf",
   ),
 
   "Dauer"=>array(
     "Kurs",
   ),
 
-  "Engagement"=>array(
-    "1-leaf",
-  ),
-
   "Jahr"=>array(
-    "KlientVS",
     "Termin",
   ),
 
   "KW"=>array(
-    "KlientVS",
     "Termin",
   ),
 
   "Kategorie"=>array(
     "Termin",
-  ),
-
-  "Klient"=>array(
-    "KlientAdresse",
-    "KlientKurs",
-    "KlientVS",
-    "MAKlient",
-    "MAKlientVS",
-    "PersonKlient",
-    "TelKlient",
-  ),
-
-  "KlientAdresse"=>array(
-    "1-leaf",
-  ),
-
-  "KlientBeziehung"=>array(
-    "1-leaf",
-  ),
-
-  "KlientKurs"=>array(
-    "1-leaf",
-  ),
-
-  "KlientVS"=>array(
-    "MAKlientVS",
-  ),
-
-  "Kontingent"=>array(
-    "1-leaf",
   ),
 
   "Kurs"=>array(
@@ -94,35 +44,7 @@ $arrRefs = array(
 
   "Kursart"=>array(
     "Dauer",
-    "KlientKurs",
     "KursTrainer",
-  ),
-
-  "Leistung"=>array(
-    "TrainerOrtLeistung",
-  ),
-
-  "MA"=>array(
-    "Kontingent",
-    "MAAdresse",
-    "MAClient",
-    "MAKlient",
-  ),
-
-  "MAAdresse"=>array(
-    "1-leaf",
-  ),
-
-  "MAClient"=>array(
-    "1-leaf",
-  ),
-
-  "MAKlient"=>array(
-    "MAKlientVS",
-  ),
-
-  "MAKlientVS"=>array(
-    "1-leaf",
   ),
 
   "Mail"=>array(
@@ -137,7 +59,6 @@ $arrRefs = array(
   "Ort"=>array(
     "Kurs",
     "Termin",
-    "TrainerOrtLeistung",
     "TrainerOrtTerminart",
   ),
 
@@ -145,25 +66,15 @@ $arrRefs = array(
     "Adresse",
   ),
 
-  "Person"=>array(
-    "PersonClient",
-    "PersonKlient",
-  ),
-
-  "PersonClient"=>array(
-    "1-leaf",
-  ),
-
-  "PersonKlient"=>array(
-    "1-leaf",
-  ),
-
   "Proband"=>array(
-    "AdresseProband",
+    "ProbandAdresse",
     "ProbandMail",
     "ProbandMassnahme",
     "ProbandTel",
-    "TelProband",
+  ),
+
+  "ProbandAdresse"=>array(
+    "1-leaf",
   ),
 
   "ProbandMail"=>array(
@@ -183,27 +94,15 @@ $arrRefs = array(
   ),
 
   "Recht"=>array(
-    "PersonClient",
-    "PersonKlient",
+    "1-leaf",
   ),
 
   "Tag"=>array(
-    "KlientVS",
     "Termin",
   ),
 
   "Tel"=>array(
     "ProbandTel",
-    "TelKlient",
-    "TelProband",
-  ),
-
-  "TelKlient"=>array(
-    "1-leaf",
-  ),
-
-  "TelProband"=>array(
-    "1-leaf",
   ),
 
   "Termin"=>array(
@@ -217,15 +116,9 @@ $arrRefs = array(
   ),
 
   "Trainer"=>array(
-    "BundeslandTrainer",
     "KursTrainer",
     "Termin",
-    "TrainerOrtLeistung",
     "TrainerOrtTerminart",
-  ),
-
-  "TrainerOrtLeistung"=>array(
-    "1-leaf",
   ),
 
   "TrainerOrtTerminart"=>array(
@@ -233,15 +126,11 @@ $arrRefs = array(
   ),
 
   "VS"=>array(
-    "KlientVS",
-    "MAKlientVS",
     "Termin",
   ),
 
   "Zeitstempel"=>array(
-    "KlientAdresse",
-    "Kontingent",
-    "MAAdresse",
+    "1-leaf",
   ),
 
 );

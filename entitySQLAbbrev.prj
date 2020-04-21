@@ -9,7 +9,7 @@ $sqlAbbrev = array(
   ""=>"",
 */
   "Adresse"=>"a",
-  "AdresseProband"=>"ap",
+  "ProbandAdresse"=>"pa",
   "Bundesland"=>"b",
   "Kontingent"=>"k",
   "Kursart"=>"ka",
