@@ -252,7 +252,8 @@ $automat = array(
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
 		"insertRE.inc",
-		"joinAfterInsert1N.inc",
+		"joinAfterInsert1N.inc", // speichern in 1:N
+		"focus1N.inc", // 1:N wird fokussierte Entitaet
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",

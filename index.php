@@ -88,6 +88,7 @@ else
   $_A['css'] = "./erica.css";
    ***/
 }
+$_E['container']=0; // <div>-Zaehler
 include("mn.php"); 
 ?>
 </body>

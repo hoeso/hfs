@@ -12,4 +12,9 @@ if( isset($_REQUEST['j']) ) // Jahr
   $_A['form_send'] .= "&j=$_REQUEST[j]";
 if( isset($_REQUEST['k']) ) // Kalenderwoche
   $_A['form_send'] .= "&k=$_REQUEST[k]";
+
+if( isset($_E) && isset($_E['verbEntitaet']) )
+{ // zB Proband wird verknuepft ...
+  $_E['recipient'] = "4224";
+}
 ?>
