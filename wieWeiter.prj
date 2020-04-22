@@ -41,11 +41,26 @@ if( "einfuegNNverknuepfend" == $_E['wZu'] && isset($_E['sl']) )
     if( isset($_REQUEST["1nf"]) ) // Anzahl Felder in der 1:n-Liste
       $_E['1nf'] = $_REQUEST["1nf"];
   }
-  unset($_E['sl']);
-  unset($countSL);
+  unset($_E['sl']); // damit Vorgaenger-Formular  
+  unset($countSL);  // nicht mehr dargestellt wird
 }
-if( "einfuegNNverknuepfend" == $_E['wZu'] && isset($_E['1n']) )
+else if( "einfuegNNverknuepfend" == $_E['wZu'] && isset($_E['1n']) )
 { // Elemente Vorgaenger-Liste loeschen, sonst werden sie nochmal ausgegeben
+  
+  if( isset($_REQUEST["1n1"]) )
+    $_E["entitaet"] = $_REQUEST["1n1"]; // OrtBehoerde
+  for( $i=1; $i <= $_E['1n'] and $i < 6; $i++ )
+  {
+    unset($_REQUEST["1n$i"]);
+    unset($_E["1n$i"]);
+  }
+  if( isset($_REQUEST["re"]) )
+    $_E['re'] = $_REQUEST["re"];
+  if( isset($_REQUEST["re1"]) )
+    $_E['re1'] = $_REQUEST["re1"];
+  unset($_E['1n']); // damit Vorgaenger-Formular
+  unset($countEM);  // nicht mehr dargestellt wird
+  unset($arrEM);
 }
 else
 {
