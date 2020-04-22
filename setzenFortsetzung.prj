@@ -15,7 +15,6 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "Behoerde"=>"0",
   "Bundesland"=>"0",
   "Dauer"=>"0",
-  "Kurs"=>"0",
   "Kategorie"=>"0",
   "Adresse"=>"0",
   "ProbandAdresse"=>"0",
@@ -25,6 +24,7 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "EDVAngebot"=>"0",
   "Tel"=>"0",
   "ProbandTel"=>"0",
+  "Region"=>"0",
   "Termin"=>"0",
   "Trainer"=>"0",
   "TrainerOrtTerminart"=>"0",
@@ -34,7 +34,7 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "Proband"=>"0",
   "ProbandMassnahme"=>"0",
   "ProbandTermin"=>"0",
-  "Rolle"=>"0",
+  "Umkreis"=>"0",
   "liste"=>"0",
   );
   $_eOverlay = array(
@@ -68,12 +68,12 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "EDVAngebot"=>"./mn.php?mn=1466&a=EDVAngebot&x=1",
   "Mail"=>"mn.php?mn=pe&a=Mail",
   "ProbandMail"=>"./mn.php?mn=not_exists&a=ProbandMail&sl=1&sl1=Proband&navi=Proband&re=1&re1=Mail",
+  "Region"=>"mn.php?mn=pe&a=Region",
   "Tel"=>"mn.php?mn=pe&a=Tel",
   "Termin"=>"./mn.php?mn=t&a=Termin&i=6&b=",
   "Trainer"=>"./mn.php?mn=pe&a=Trainer",
   "TrainerOrtTerminart"=>"mn.php?mn=nn&a=TrainerOrtTerminart&sl=1&sl1=Ort&re=2&re1=Trainer&re2=Terminart&i=3",
   "Kategorie"=>"mn.php?mn=pe&a=Kategorie",
-  "Kurs"=>"mn.php?mn=sl_1n&a=Kurs&1n=1&1n1=Ort&sl=1&sl1=Dauer",
   "Terminart"=>"mn.php?mn=pe&a=Terminart",
   "Adresse"=>"mn.php?mn=nn&a=Adresse&1n=1&1n1=OrtBehoerde&i=2&1nf=2",
   "ProbandAdresse"=>"./mn.php?mn=not_exists&a=ProbandAdresse&sl=2&sl1=Proband&navi=Proband&sl2=Adresse&1nf=2",
@@ -86,6 +86,7 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "Taetigkeit"=>"./mn.php?mn=pe&a=Taetigkeit&x=1",
   "ProbandMassnahme"=>"./mn.php?mn=sl_pe&a=ProbandMassnahme&navi=Proband&re=1&re1=Massnahme&sl=1&sl1=Proband",
   "ProbandTermin"=>"./mn.php?mn=sl_pe&a=ProbandTermin&navi=Proband&sl1=Termin&sl=2&sl2=ProbandMassnahme",
+  "Umkreis"=>"mn.php?mn=nn&a=Umkreis&re=1&re1=Region&1n=1&1n1=Ort&1nf=2&i=1",
   "liste"=>"mn.php?mn=outer&a=Proband",
   );
 if( isset($_REQUEST['d']) )

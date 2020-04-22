@@ -160,6 +160,8 @@ $Select=array
   
   "Stundensatz"=>"SELECT ss.ID, Stundensatz, Datum FROM Stundensatz ss JOIN Zeitstempel z ON (ss.ZeitstempelID=z.ID)",
 
+  "Umkreis"=>"SELECT u.ID, r.Region, o.Kuerzel FROM Umkreis u JOIN Region r ON u. RegionID=r.ID JOIN Ort o ON u. OrtID=o.ID",
+  
   "MitarbeiterFunktion"=>"SELECT mt.ID, CONCAT(m. Name,' ',m. Vorname) AS MA, m. PersonalNr, f. Funktion FROM MitarbeiterFunktion mt JOIN Mitarbeiter m ON (mt. MitarbeiterID=m.ID) JOIN Funktion f ON (mt. FunktionID=f.ID)",
 
 /* zum Kopieren:
@@ -197,6 +199,7 @@ $OrderBy=array
   "Termin"=>" ORDER BY j.Jahr, kw.KW, te.TagID, te.vsID",
   "Trainer"=>" ORDER BY Name, Vorname",
   "TrainerOrtTerminart"=>" ORDER BY Bundesland, Terminart, Trainer, Ort",
+  "Umkreis"=>" ORDER BY Region, Kuerzel",
 );
 
 $gfaerbteSpoidn = array(

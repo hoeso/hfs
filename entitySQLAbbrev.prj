@@ -25,9 +25,11 @@ $sqlAbbrev = array(
   "ProbandTermin"=>"pt",
   "EDV"=>"EDV",
   "ProbandTel"=>"pt",
+  "Region"=>"Region",
   "Termin"=>"te",
   "Terminart"=>"l",
   "Trainer"=>"tr",
   "TrainerOrtTerminart"=>"tol",
+  "Umkreis"=>"u",
 );
 ?>

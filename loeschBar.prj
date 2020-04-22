@@ -23,15 +23,27 @@ $arrRefs = array(
   ),
 
   "Jahr"=>array(
+    "KlientVS",
     "Termin",
   ),
 
   "KW"=>array(
+    "KlientVS",
     "Termin",
   ),
 
   "Kategorie"=>array(
     "Termin",
+  ),
+
+  "Klient"=>array(
+    "KlientVS",
+    "MAKlient",
+    "MAKlientVS",
+  ),
+
+  "KlientVS"=>array(
+    "MAKlientVS",
   ),
 
   "Kurs"=>array(
@@ -47,6 +59,22 @@ $arrRefs = array(
     "KursTrainer",
   ),
 
+  "Leistung"=>array(
+    "1-leaf",
+  ),
+
+  "MA"=>array(
+    "MAKlient",
+  ),
+
+  "MAKlient"=>array(
+    "MAKlientVS",
+  ),
+
+  "MAKlientVS"=>array(
+    "1-leaf",
+  ),
+
   "Mail"=>array(
     "ProbandMail",
   ),
@@ -60,6 +88,7 @@ $arrRefs = array(
     "Kurs",
     "Termin",
     "TrainerOrtTerminart",
+    "Umkreis",
   ),
 
   "OrtBehoerde"=>array(
@@ -97,7 +126,12 @@ $arrRefs = array(
     "1-leaf",
   ),
 
+  "Region"=>array(
+    "Umkreis",
+  ),
+
   "Tag"=>array(
+    "KlientVS",
     "Termin",
   ),
 
@@ -125,7 +159,13 @@ $arrRefs = array(
     "1-leaf",
   ),
 
+  "Umkreis"=>array(
+    "1-leaf",
+  ),
+
   "VS"=>array(
+    "KlientVS",
+    "MAKlientVS",
     "Termin",
   ),
 

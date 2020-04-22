@@ -13,7 +13,7 @@ $appendix=array(
   //"Proband"=>" WHERE NOT EXISTS (SELECT ProbandID FROM ProbandTel WHERE Proband.ID=ProbandID) ORDER BY Name, Vorname, geborenAm",
   "Proband"=>" ORDER BY Name, Vorname, geborenAm",
   "Tel"=>" WHERE NOT EXISTS (SELECT TelID FROM ProbandTel WHERE Tel.ID=TelID) ORDER BY Tel",
-  "Topic"=>" ORDER BY Topic",
+  "Region"=>" ORDER BY Region",
   "Zeitstempel"=>" ORDER BY Datum DESC",
 );
 
