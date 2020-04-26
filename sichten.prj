@@ -162,7 +162,7 @@ $Select=array
 
   "Umkreis"=>"SELECT u.ID, r.Region, o.Kuerzel FROM Umkreis u JOIN Region r ON u. RegionID=r.ID JOIN Ort o ON u. OrtID=o.ID",
   
-  "MitarbeiterFunktion"=>"SELECT mt.ID, CONCAT(m. Name,' ',m. Vorname) AS MA, m. PersonalNr, f. Funktion FROM MitarbeiterFunktion mt JOIN Mitarbeiter m ON (mt. MitarbeiterID=m.ID) JOIN Funktion f ON (mt. FunktionID=f.ID)",
+  "Vormerkung"=>"SELECT v.ID, CONCAT(o.PLZ,' ',o.Kursort,'-',o.Kuerzel) AS Kursort, CONCAT(p.Vorname,' ',p.Name) AS Proband, CONCAT(ob.PLZ,' ',ob.Ort) AS Wohnort FROM Vormerkung v JOIN Proband p ON v. ProbandID=p.ID JOIN Umkreis u ON v. RegionID=u. RegionID JOIN Ort o ON u. OrtID=o.ID JOIN ProbandAdresse pa ON p.ID=pa. ProbandID JOIN Adresse a ON pa. AdresseID=a.ID JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID",
 
 /* zum Kopieren:
   ""=>"",
@@ -200,6 +200,7 @@ $OrderBy=array
   "Trainer"=>" ORDER BY Name, Vorname",
   "TrainerOrtTerminart"=>" ORDER BY Bundesland, Terminart, Trainer, Ort",
   "Umkreis"=>" ORDER BY Region, Kuerzel",
+  "Vormerkung"=>" ORDER BY Kursort",
 );
 
 $gfaerbteSpoidn = array(

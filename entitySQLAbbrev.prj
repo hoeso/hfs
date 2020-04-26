@@ -31,5 +31,6 @@ $sqlAbbrev = array(
   "Trainer"=>"tr",
   "TrainerOrtTerminart"=>"tol",
   "Umkreis"=>"u",
+  "Vormerkung"=>"v",
 );
 ?>
