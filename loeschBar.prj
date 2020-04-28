@@ -100,6 +100,7 @@ $arrRefs = array(
     "ProbandMail",
     "ProbandMassnahme",
     "ProbandTel",
+    "Vormerkung",
   ),
 
   "ProbandAdresse"=>array(
@@ -128,6 +129,7 @@ $arrRefs = array(
 
   "Region"=>array(
     "Umkreis",
+    "Vormerkung",
   ),
 
   "Tag"=>array(
@@ -167,6 +169,10 @@ $arrRefs = array(
     "KlientVS",
     "MAKlientVS",
     "Termin",
+  ),
+
+  "Vormerkung"=>array(
+    "1-leaf",
   ),
 
   "Zeitstempel"=>array(

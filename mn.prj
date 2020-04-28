@@ -584,8 +584,8 @@ switch( $_E['mn'] )
             $_E["stm$i"] = "SELECT o.ID, o.Kursort, o.Ortschaft, o.Kuerzel FROM Ort o";
 	    //$_E["stm$i-filter"] = " ORDER BY o.Kuerzel";
           break;
-          case "Proband":
-            $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
+          case "ProbandAdresse":
+            $_E["stm$i"] = "SELECT pa.ID, CONCAT(p.Vorname,' ',p.Name,' ',DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ),'-',ob.PLZ,' ',ob.Ort) AS Proband FROM ProbandAdresse pa JOIN Adresse a ON pa. AdresseID=a.ID JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID JOIN Proband p ON pa. ProbandID=p.ID";
 	    $_E["stm$i-filter"] = " ORDER BY p.Name, p.Vorname, p.geborenAm";
           break;
           default:
@@ -1072,8 +1072,9 @@ switch( $_E['mn'] )
 	  $_E["sort"] = " ORDER BY j.Jahr, kw.KW, te.TagID, te.vsID";
 	break;
         case 'v':
-	  $_E["filter"] = " WHERE YEAR(NOW())=j.Jahr AND (DATE_FORMAT(NOW(),'%v')-4)<=kw.KW AND 'ja'=te.VM";
-	  $_E["sort"] = " ORDER BY j.Jahr, kw.KW, te.TagID, te.vsID";
+	  //$_E["filter"] = " WHERE YEAR(NOW())=j.Jahr AND (DATE_FORMAT(NOW(),'%v')-4)<=kw.KW";
+	  $_E["sort"] = " ORDER BY Kursort, Name, Vorname";
+	  unset($_E['bleistift']);
 	break;
 	default:
 	  $_E["filter"] = " WHERE YEAR(NOW())=j.Jahr AND (DATE_FORMAT(NOW(),'%v')-4)<=kw.KW";

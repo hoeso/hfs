@@ -22,6 +22,7 @@ function anzeigen( $db, $sql, $table, $ActionSuffix, $fHeader = true )
   global $gruppenStaerke;
   $arrNichtAendern=array (
     "ohne submit Knopf",
+    //"vmKursort",
   /* zum Kopieren
     "",
   */
@@ -94,8 +95,6 @@ if( isset($_REQUEST["d"]) )
       ausgebenAlsTabellenzeileZumAendern( $row, $auchIDausgeben, $fChecked, $arrFeldTyp, $arrFeldFlag, $arrFeldName, $table, $ActionSuffix, $iFarbReihe );
     else
     {
-      if( !isset($globalID) )
-        $globalID=0;
       ausgebenAlsTabellenzeile( $row, $auchIDausgeben, $fChecked, $spaltenName, $globalID, $arrFeldTyp, $table, $ActionSuffix, "", $dummy );
     }
     tabellenZeileBeenden();

@@ -16,6 +16,7 @@ if( isset($_REQUEST["d"]) )
 }
 if( isset($_REQUEST['d']) )
   hiddenFeldSchreiben( "d", 1 );
+  
 if( $table=="Tel" && $recID )
 {
   /***
@@ -28,7 +29,15 @@ if( $table=="Tel" && $recID )
   }
    ***/
 }
-if( $table=="Mail" && $recID )
+else if( $table=="vmKursort" && $recID )
+{
+  echo"\n"; // erzeugt Zeilenumbruch im HTML-Quelltext
+  ?>
+    <INPUT TYPE=image src='images/iconmonstr-school-29-16.png' NAME='flushVM' title='Vormerkungen zu bestehendem Termin hinzuf&uuml;gen'>
+    <?php
+    //hiddenFeldSchreiben( "d", "1" );// Debug-Ausgaben ausloesen
+}
+else if( $table=="Mail" && $recID )
 {
   /***
   if( false == gibFeld( $MySQLDb, "SELECT ID FROM ProbandMail WHERE MailID=$recID", 0 ) )

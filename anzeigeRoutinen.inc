@@ -170,8 +170,9 @@ global $ID1;
 global $proj;
 global $pw;
 $arrNichtLoeschen=array (
-"ohne submit Knopf",
-"mapDenAushang"
+  "ohne submit Knopf",
+  "vmKursort",
+  "mapDenAushang"
 );
 $mapAushang["flaechengestuft"]="qm";
 $mapAushang["pro lfm"]="lfm";
@@ -318,6 +319,7 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
   $arrNichtLoeschen=array (
   "GegenkontoNachunternehmer",
   "Gutschrift",
+  "vmKursort",
   );
   include( "toggleJaNein.prj" );
   global $WohnungID;
@@ -499,9 +501,6 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
   if( $gruppe <> $vgl )
     $gruppe = $vgl;
   ?><td><?php
-
-  // Bei bereits zugestellter Gewerk-Gutschrift den Insert blocken:
-  unset($gutschriftZugestellt);
 
   global $fPeek;
   include("lastExitBrooklyn.prj");
