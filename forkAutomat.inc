@@ -90,6 +90,7 @@ $forkAutomat = array(
 		"ERMsubmit.inc",
 		"gibWeiter.inc",
 		//"anzeigenZieltabelle.inc",
+		"linkFortsetzen.prj",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",

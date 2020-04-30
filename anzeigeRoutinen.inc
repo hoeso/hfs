@@ -1531,6 +1531,7 @@ function formularAttribut( $table, $result, $i, $attr, $enumListe, $laengeBeiTex
   }
   else if( "date" == $feldTyp )
   {
+    $datum = $attr;
     include("vorbelegenDatumRE.prj");
     if( false/*!$attr*/ )
     {/*** keine Vorbelegung mehr mit Tagesdatum, weil inzwischen**
@@ -1547,6 +1548,7 @@ function formularAttribut( $table, $result, $i, $attr, $enumListe, $laengeBeiTex
       $datum = setFieldDate($attr, $fHTML5);
     }
      ***/
+    $datum = setFieldDate($attr, $fHTML5);
     echo " TYPE='";
     if( true == $fHTML5 )
       echo "DATE";

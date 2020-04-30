@@ -5,7 +5,12 @@
  *** 
  ***/
 echo"\n";
-?></table><a href="./mn.php?mn=outer&a=Proband&navi=Proband&Proband=<?php echo "$_E[value2Join]#$_E[value2Join]";?>">&lt;&lt; fortsetzen &gt;&gt;</a><?php
+unset($str);
+if( isset($_E['value2Join']) )
+  $str=$_E['value2Join'];
+else if( isset($_E['ID']) )
+  $str=$_E['ID'];
+?></table><a href="./mn.php?mn=outer&a=Proband&navi=Proband&Proband=<?php echo "$str#$str";?>">&lt;&lt; fortsetzen &gt;&gt;</a><?php
 
 $_E['wZu'] = "beendendSofort";
 include("forkZu.inc");

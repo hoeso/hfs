@@ -192,6 +192,8 @@ foreach( $HTTP_POST_VARS as $k=>$elem )
       $str = substr( $k, 0, 6 );
       if( !strcmp( "hidden", $str ) )
         break;
+      if( !strcmp( "FK2join", $k ) || !strcmp( "verbEntitaet", $k ) || !strcmp( "value2Join", $k ) )
+        break;
       $arrAttr[ $k ] = $elem;
     break;
   }

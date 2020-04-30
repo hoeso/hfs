@@ -48,7 +48,19 @@ if( isset( $HTTP_POST_VARS ) )
       case "date":
         $arr = explode( ".", $elem );
         unset($datum);
-        if( isset($arr[2]) and 4 == strlen( $arr[2] ) )
+	
+	if( 3 > count($arr) )
+	{
+	  $aDate = explode("-",$elem); // HTML5-Format?
+	  if( 3 > count($aDate) )
+	  {
+	    echo "\nDa stimmt was mit dem Datum-Format nicht: $elem . Ende.<br>";
+            $_E['wZu']="anbietendKnopfZurueck";
+            include("forkZu.inc");
+	  }
+          $sql .= "'".$aDate[0]."-".$aDate[1]."-".$aDate[2]."'";
+	}
+	else if( isset($arr[2]) and 4 == strlen( $arr[2] ) )
         {
           $datum = "$arr[2]-$arr[1]-$arr[0]";
           $sql .= "'$datum'";
@@ -59,7 +71,6 @@ if( isset( $HTTP_POST_VARS ) )
       case "int":
         $sql .= "$elem";
       break;
-      case "decimal":
       case "real":
         unset( $aDP );
         $aDP = explode( ",", $elem );

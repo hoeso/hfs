@@ -5,6 +5,7 @@
 unset($_E['wZu']);
 if( isset($_REQUEST["update_x"]) )
 {
+  $_A['update'] = true;
   return; //Standardverhalten
 }
 else if( isset($_REQUEST["flushVM_x"]) )

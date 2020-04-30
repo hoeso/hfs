@@ -1,0 +1,13 @@
+<?php
+if( !strcmp( "Proband", $_E['entitaet'] ) )
+{
+  $_E['wZu']="beendendProbandLauf";
+  include("forkZu.inc");
+}
+else if( strcmp( "Ortbehoerde", $_E['entitaet'] ) )
+{
+  $_E['wZu']="beendendProbandLauf";
+  include("forkZu.inc");
+}
+echo $_E['entitaet'] . "(linkFortsetzen.prj)<br>";
+?>

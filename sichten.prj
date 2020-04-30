@@ -99,7 +99,7 @@ $Select=array
 */
   "Adresse"=>"SELECT a.ID, CONCAT(ob.PLZ,' ',ob.Ort) AS Ort, CONCAT(a.Strasse,' ',a.Nr) AS Strasse FROM Adresse a JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID",
   
-  "ProbandAdresse"=>"SELECT pa.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, CONCAT(ob.PLZ,' ',ob.Ort) AS Wohnort FROM ProbandAdresse pa JOIN Proband p ON pa. ProbandID=p.ID JOIN Adresse a ON pa. AdresseID=a.ID JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID",
+  "ProbandAdresse"=>"SELECT pa.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, CONCAT(ob.PLZ,' ',ob.Ort) AS Wohnort, CONCAT(a.Strasse,' ',a.Nr) AS Adresse FROM ProbandAdresse pa JOIN Proband p ON pa. ProbandID=p.ID JOIN Adresse a ON pa. AdresseID=a.ID JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID",
   
   "Dauer"=>"SELECT d.ID, ka.Kursart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*d.Dauer), '%H:%i') AS Dauer, d.Termine FROM Dauer d JOIN Kursart ka ON d.KursartID=ka.ID",
   

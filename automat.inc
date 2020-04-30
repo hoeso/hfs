@@ -284,6 +284,7 @@ $automat = array(
 		"formularERMintro.inc",
 		"ERMListenfuellen.inc",
 		"ERMsubmit.inc",
+		"linkFortsetzen.prj",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -543,6 +544,7 @@ $automat = array(
 		"setzenFortsetzung.prj",
 		"pokeFortsetzung.prj",
 		"updateRE.inc",
+		"linkFortsetzen.prj",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -611,6 +613,7 @@ $automat = array(
 		"erlaubenFK.inc",
 		"anbietenFK.prj",
 		"anbietenFK.inc",
+		"linkFortsetzen.prj",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
