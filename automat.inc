@@ -261,6 +261,7 @@ $automat = array(
 		"pokeFortsetzung.prj",
 		"wohinDamit.prj",
 		"wohinDamit.inc",
+		//"wieWeiter.prj",
 		"formularERMintro.inc", // fehlende N:N-Instanz zu Proband anlegen
 		"ERMListenfuellen.inc",
 		"ERMsubmit.inc",
@@ -284,6 +285,7 @@ $automat = array(
 		"formularERMintro.inc",
 		"ERMListenfuellen.inc",
 		"ERMsubmit.inc",
+		"wieWeiter.prj",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",

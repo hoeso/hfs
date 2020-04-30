@@ -290,6 +290,7 @@ switch( $_E['mn'] )
         break;
         case "Proband":
           $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
+	  $_E["stm$i-filter"] = " WHERE $_REQUEST[r]=p.ID";
     	  switch( $_REQUEST["re1"] )
     	  {
     	    case 'Mail':
@@ -302,7 +303,8 @@ switch( $_E['mn'] )
     	  switch( $_REQUEST["sl2"] )
     	  {
     	    case 'Adresse':
-    	      $_E["stm$i-filter"] = " WHERE NOT EXISTS (SELECT ProbandID FROM ProbandAdresse WHERE p.ID=ProbandID) ORDER BY p.Name, p.Vorname, p.geborenAm";
+	      //if( !isset($_E["stm$i-filter"]) ) // damit Filter nicht ueberstimmt wird
+    	        $_E["stm2-filter"] = " WHERE NOT EXISTS (SELECT AdresseID FROM ProbandAdresse WHERE a.ID=AdresseID) ORDER BY ob.PLZ";
     	    break;
     	    break;
     	  }
