@@ -184,7 +184,7 @@ function mysql_fetch_field( $result, $i )
 {
   for( $j=0; $j < $i; $j++ )
     $finfo = mysqli_fetch_field( $result );
-  var_dump($finfo);
+  //var_dump($finfo);
   return $finfo;
 }
 

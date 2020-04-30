@@ -306,5 +306,12 @@ if( !isset($keinInsert) or false == $keinInsert )
   echo "\n</tr>";
   if( $_E['entitaet'] )
     echo "\n\t<input type='hidden' name='zielTabelle' value='{$_E['entitaet']}'>";
+  if( isset($_E) && isset($_E['FK2join']) && isset($_E['verbEntitaet']) && isset($_E['value2Join']) ) // nur wenn vollstaendig uebergeben
+  {
+    hiddenFeldSchreiben( "FK2join", $_E['FK2join'] );
+    hiddenFeldSchreiben( "verbEntitaet", $_E['verbEntitaet'] );
+    hiddenFeldSchreiben( "value2Join", $_E['value2Join'] );
+    //hiddenFeldSchreiben( "d", $_E['FK2join'] );
+  }
 }
 ?>

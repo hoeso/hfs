@@ -6,7 +6,7 @@
  *****************************************************************************/
 include("eiZuEintretendBericht.inc");
 global $candyURL;
-//global $Select;
+global $Select;
 $fDebug=0;
 if( $fDebug ) echo "table: $table. recID : $recID";
 if( isset($_REQUEST["d"]) )
@@ -30,12 +30,30 @@ if( $table=="Tel" && $recID )
    ***/
 }
 else if( $table=="vmKursort" && $recID )
-{
+{ // recID ist Ort.ID
+  if( isset($Select) and isset($Select[$table]) )
+  {
+    unset($c_);
+    $c_ = explode( "FROM", $Select[$table] );
+    $filt = " WHERE $recID=o.ID";
+    $rID = gibFeld( $MySQLDb, "SELECT u.RegionID FROM " . $c_[1] . $filt, 0 );
+  }
+  /*** Pruefen ob es schon einen Kurs gibt: ***/
+  $termin = gibFeld( $MySQLDb, "SELECT DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%Y-%m-%d' ) AS Termin FROM Termin te JOIN Ort o ON te.OrtID=o.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID WHERE $recID=o.ID AND DATE(NOW()) <= DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%Y-%m-%d' )", 0 );
+  $o = gibFeld( $MySQLDb, "SELECT Kursort FROM Ort WHERE ID=$recID", 0 );
   echo"\n"; // erzeugt Zeilenumbruch im HTML-Quelltext
-  ?>
-    <INPUT TYPE=image src='images/iconmonstr-school-29-16.png' NAME='flushVM' title='Vormerkungen zu bestehendem Termin hinzuf&uuml;gen'>
-    <?php
-    //hiddenFeldSchreiben( "d", "1" );// Debug-Ausgaben ausloesen
+  if( $termin ) // es gibt einen Kurs:
+  {
+    ?>
+      <INPUT TYPE=image src='images/iconmonstr-school-29-16.png' NAME='flushVM' title='Probanden in Termin von <?php echo $o ?> &uuml;bernehmen'>
+      <?php
+      hiddenFeldSchreiben( "rID", $rID );
+      //hiddenFeldSchreiben( "d", "1" );// Debug-Ausgaben ausloesen
+  }
+  else
+  {  /*** Symbol o. Hinweis dass noch ein Termin anzulegen ist ***/
+    ?><img class="img18" src="images/iconmonstr-calendar-thin-16.png" title="noch kein Termin festgesetzt f&uuml;r <?php echo $o ?>" alt="Termin?"><?php
+  }
 }
 else if( $table=="Mail" && $recID )
 {

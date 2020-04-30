@@ -189,15 +189,15 @@ class KWview extends KWmodel
         <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche + 1;?>' href="./mn.php?mn=kw&a=TerminKW&b=<?php echo $NOTtrainerORort;?>&k=<?php echo $this->KWweiter;?>&navi=KW&u=<?php echo $kw + 1 . " " . $kwTitel; echo $f;?>#<?php echo $ancor;?>">
         </map>
 	<a href="./mn.php?mn=kw&a=Termin&b=<?php echo $trainerORort;?>&k=<?php echo $this->Datum;?>&navi=KW&u=<?php echo $kw;?>#<?php echo $ancor;?>"><?php /*echo $this->Leistung*/?></a>
-	<!--img class="img18" src="images/kalender-18px.png" alt="Wochen&uuml;bersicht" usemap="#woche<?php echo $ancor;?>"-->
+	<img class="img18" src="images/iconmonstr-user-25-24.png" alt="Probanden" usemap="#proband<?php echo $ancor;?>">
 	<a name='<?php echo $ancor;?>'></a>
-        <map name="woche<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,18,18" target="_blank" title='Wochen&uuml;bersicht' href="./mn.php?mn=blatt&navi=KW&a=<?php echo $this->Kalenderwoche;?>&c=k&k=<?php echo $this->Datum;?>&u=KW<?php echo $this->Kalenderwoche; echo $f;?>#<?php echo $ancor;?>">
+        <map name="proband<?php echo $ancor;?>">
+        <area shape=rect coords="0,0,24,24" target="_blank" title='Probanden' href="./mn.php?mn=goto&navi=Proband">
         </map>
-	<!--img class="img18" src="images/calendar2-18px.png" alt="Monats&uuml;bersicht" usemap="#monat<?php echo $ancor;?>"-->
+	<img class="img18" src="images/iconmonstr-calendar-thin-24.png" alt="Vormerkungen / Termine" usemap="#termin<?php echo $ancor;?>">
 	<a name='<?php echo $ancor;?>'></a>
-        <map name="monat<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,18,18" target="_blank" title='Monats&uuml;bersicht' href="./mn.php?mn=blatt&navi=KW&a=<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Datum;?>&c=m&u=KW<?php echo $this->Kalenderwoche; echo $f;?>#<?php echo $ancor;?>">
+        <map name="termin<?php echo $ancor;?>">
+        <area shape=rect coords="0,0,24,24" target="_blank" title='Vormerkungen / Termine' href="./mn.php?mn=goto&navi=Plan">
         </map><?php
 	$js_str="onchange=\"javascript:self.location='./mn.php?mn=kw&navi=KW&a=Termin&b=" . $NOTtrainerORort . "&k=" . $this->Datum . "&u=" . $NOTkw . "&fKeinUpdate=true&f=' + this.options[this.selectedIndex].value; return true;\"";
         $dim=0;
@@ -513,10 +513,15 @@ class KWview extends KWmodel
             <map name="weiter<?php echo $ancor;?>">
             <area shape=rect coords="0,0,18,18" title='KW <?php echo $this->Kalenderwoche + 1;?>' href="./mn.php?mn=kw&a=TerminKW&b=<?php echo $NOTtrainerORort;?>&k=<?php echo $this->KWweiter;?>&navi=KW&u=<?php echo $kw + 1 . " " . $kwTitel;?>#<?php echo $ancor;?>">
             </map>
-	    <!--img class="img18" src="images/kalender-18px.png" alt="Wochen&uuml;bersicht" usemap="#woche<?php echo $ancor;?>"-->
+	    <img class="img18" src="images/iconmonstr-user-25-24.png" alt="Probanden" usemap="#proband<?php echo $ancor;?>">
 	    <a name='<?php echo $ancor;?>'></a>
-            <map name="woche<?php echo $ancor;?>">
-            <area shape=rect coords="0,0,18,18" target="_blank" title='Wochen&uuml;bersicht' href="./mn.php?mn=blatt&navi=KW&a=<?php echo $this->Kalenderwoche;?>&c=k&k=<?php echo $this->Datum;?>&u=KW<?php echo $this->Kalenderwoche;?>#<?php echo $ancor;?>">
+            <map name="proband<?php echo $ancor;?>">
+            <area shape=rect coords="0,0,24,24" target="_blank" title='Probanden' href="./mn.php?mn=goto&navi=Proband">
+            </map>
+	    <img class="img18" src="images/iconmonstr-calendar-thin-24.png" alt="Vormerkungen / Termine" usemap="#termin<?php echo $ancor;?>">
+	    <a name='<?php echo $ancor;?>'></a>
+            <map name="termin<?php echo $ancor;?>">
+            <area shape=rect coords="0,0,24,24" target="_blank" title='Vormerkungen / Termine' href="./mn.php?mn=goto&navi=Plan">
             </map><?php
 	    $js_str="onchange=\"javascript:self.location='./mn.php?mn=kw&navi=KW&a=Termin&b=" . $NOTtrainerORort . "&k=" . $this->Datum . "&u=" . $NOTkw . "&fKeinUpdate=true&f=' + this.options[this.selectedIndex].value; return true;\"";
             $dim=0;

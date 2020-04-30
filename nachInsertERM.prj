@@ -40,7 +40,9 @@ switch( $table )
       Er kann mit dem Bleistift korrigiert werden.<br><?php
     }
   break;
-  case 'MAAbwesenheit':
+  case 'Proband':
+    $_E['wZu'] = "beendendProbandLauf";
+    include("forkZu.inc");
   break;
 }
 ?>

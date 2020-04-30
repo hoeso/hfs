@@ -7,6 +7,27 @@ if( isset($_REQUEST["update_x"]) )
 {
   return; //Standardverhalten
 }
+else if( isset($_REQUEST["flushVM_x"]) )
+{
+  $_E["sl"]=2;
+  // Alle Probanden:
+  $_E["sl2"]="ProbandMassnahme";
+  $_E["stm2"] = "SELECT pm.ID, CONCAT(p.Vorname,' ',p.Name,'-',p. geborenAm) AS Proband, ma.Massnahme FROM Vormerkung v JOIN ProbandAdresse pa ON v. ProbandAdresseID=pa.ID JOIN Adresse a ON pa. AdresseID=a.ID JOIN Proband p ON pa. ProbandID=p.ID JOIN ProbandMassnahme pm ON p.ID=pm.ProbandID JOIN Massnahme ma ON pm.MassnahmeID=ma.ID";
+  $_E["stm2-filter"] = " WHERE $_REQUEST[rID]=v.RegionID ORDER BY p.Name, p.Vorname, p.geborenAm";
+  // Der Termin
+  $_E["sl1"]="Termin";
+  $_E["stm1"] = "SELECT te.ID, te.Kuerzel, CONCAT(l.Terminart,'-',k.Kategorie) AS Kurs, CONCAT(LEFT(tr.Vorname,1),LEFT(tr.Name,1)) AS TR, t.Tag, DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%d. %M' ) AS Termin, TIME_FORMAT(v.Quart,'%H:%i') AS Start, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*te.Dauer),'%H:%i') AS Dauer FROM Termin te JOIN Terminart l ON te. TerminartID=l.ID JOIN Kategorie k ON te. KategorieID=k.ID JOIN Ort o ON te. OrtID=o.ID JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID JOIN VS v ON te.VSID=v.ID";
+  $_E["stm1-filter"] = " WHERE $_E[ID]=o.ID AND DATE(NOW()) <= DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%Y-%m-%d' )";
+  $_E['recipient'] = "speicherndVM"; // speichernd1ZuN
+  // i Spalten einruecken
+  $_E["ident"]=5;
+  
+  $_E['entitaet']="ProbandTermin";
+  $_E["filter"] = " AND $_E[ID]=pt.TerminID";
+  //$_E['value2join']=gibFeld( $MySQLDb, "SELECT Tel FROM Tel WHERE ID=$_E[ID]", 0 );
+  $_E['wZu']="vmVerbindend";
+  //$_eTitel = array( "$_E[value2join] &rArr; $_E[entitaet]" );
+}
 else if( isset($_REQUEST["addProband_x"]) )
 {
   $_E['ID2join']=$_E['ID'];

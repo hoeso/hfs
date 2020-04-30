@@ -64,6 +64,17 @@ else if( "einfuegNNverknuepfend" == $_E['wZu'] && isset($_E['1n']) )
   unset($countEM);  // nicht mehr dargestellt wird
   unset($arrEM);
 }
+else if( "vmVerbindend" == $_E['wZu'] )
+{
+  global $_eCandy;
+  global $candyURL;
+  $_eCandy['loopVM'] = "0";
+  $candyURL["loopVM"]= "./mn.php?mn=$_REQUEST[mn]&flushVM_x=$_REQUEST[flushVM_x]&ID=$_REQUEST[ID]&rID=$_REQUEST[rID]&a=$_REQUEST[a]&navi=$_REQUEST[navi]";
+
+  $_E["entitaet"] = "loopVM";
+  //echo "\nID: $_REQUEST[ID] flushVM_x: $_REQUEST[flushVM_x] rID: $_REQUEST[rID] mn: $_REQUEST[mn]  a: $_REQUEST[a] navi: $_REQUEST[navi]  <br>";
+  //exit;
+}
 else
 {
   echo "\n";?></table><?php

@@ -117,6 +117,33 @@ if( isset($_E["sl"]) )
       dEcho( $b_, "SL$i: " . $_E["stm$i"] );
   }
 }
+if( isset($_E["nsl"]) )
+{
+  $countMULTISL = $_E["nsl"];
+  for( $i=1; $i <= $_E['nsl'] and $i < 6; $i++ )
+  {
+    if( 1 == $i && isset($_E["nsl$i"]) )
+    {
+      $tableSL1 = $_E["nsl$i"];
+      $SL1 = $_E["stm$i"];
+      if( isset($_E["stm$i-filter"]) )
+        $SL1 .= $_E["stm$i-filter"];
+      if( isset($_E["nslct$i"]) )
+        $SELECTSL1=$_E["nslct$i"];
+    }
+    else if( 2 == $i && isset($_E["nsl$i"]) )
+    {
+      $tableSL2 = $_E["nsl$i"];
+      $SL2 = $_E["stm$i"];
+      if( isset($_E["stm$i-filter"]) )
+        $SL2 .= $_E["stm$i-filter"];
+      if( isset($_E["nslct$i"]) )
+        $SELECTSL2=$_E["nslct$i"];
+    }
+    if( isset($_REQUEST["d"]) )
+      dEcho( $b_, "SL$i: " . $_E["stm$i"] );
+  }
+}
 if( isset($_E["AND"]) )
 {
   $AND = $_E["AND"];
