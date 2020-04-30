@@ -41,6 +41,7 @@ switch( $table )
     }
   break;
   case 'Proband':
+  case 'ProbandAdresse':
     $_E['wZu'] = "beendendProbandLauf";
     include("forkZu.inc");
   break;

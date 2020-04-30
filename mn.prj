@@ -303,7 +303,7 @@ switch( $_E['mn'] )
     	  switch( $_REQUEST["sl2"] )
     	  {
     	    case 'Adresse':
-    	      $_E["stm2-filter"] = " WHERE NOT EXISTS (SELECT AdresseID FROM ProbandAdresse WHERE a.ID=AdresseID)";
+    	        $_E["stm2-filter"] = " WHERE NOT EXISTS (SELECT AdresseID FROM ProbandAdresse WHERE a.ID=AdresseID) ORDER BY ob.PLZ";
     	    break;
     	  }
         break;

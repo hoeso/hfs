@@ -726,12 +726,7 @@ function ausgebenAlsTabelleVertikal( $spaltenName, $auchID, &$cSpalten, $sql, $z
   {
     $str=str_replace( " ", "%20", $sql );
     $str=str_replace( "&uuml;", "%FC", $str );
-    if( $gPaketID )
-      $Bezug="PaketWohnung";
-    else if( $globalID )
-      $Bezug="Wohnung";
-    else
-      $Bezug="";
+    $Bezug="";
     echo_("\n\t<th><font size='-2'>");
 //    echo_("\n<A HREF=\"./eiZu.php?wZu=zeigendDruckansicht&zielTabelle=$zielTabelle&sql=$str&Bezug=$Bezug&bgcolor=white&gruppenStaerke=$gruppenStaerke&$proj\">Druckansicht</A>");
     echo_("\n</th>");
@@ -827,11 +822,6 @@ function ausgebenAlsTabelleZumVertikalenAendern( $spaltenName, $auchID, &$cSpalt
   {
     $str=str_replace( " ", "%20", $sql );
     $str=str_replace( "&uuml;", "%FC", $str );
-    if( $gPaketID )
-        $Bezug="PaketWohnung";
-    else if( $globalID )
-        $Bezug="Wohnung";
-    else
         $Bezug="";
     echo_("\n\t<th>");
 //    echo_("\n<A HREF=\"./eiZu.php?wZu=zeigendDruckansicht&zielTabelle=$zielTabelle&sql=$str&Bezug=$Bezug&bgcolor=white&gruppenStaerke=$gruppenStaerke&$proj\">Druckansicht</A>");
@@ -1484,6 +1474,7 @@ function formularAttribut( $table, $result, $i, $attr, $enumListe, $laengeBeiTex
       echo "\nfeldFlag : $feldFlag<br>";
     for( $j=0; $j < count($feldTyp); $j++ )
       echo "\nfeldTyp : $feldTyp<br>";
+    echo "\nattr : $attr<br>";
   }
   echo "\n\t<td>\n\t\t<";
   if( strstr( $feldFlag, "enum" ) )
@@ -1531,7 +1522,7 @@ function formularAttribut( $table, $result, $i, $attr, $enumListe, $laengeBeiTex
   }
   else if( "date" == $feldTyp )
   {
-    $datum = $attr;
+    $datum = setFieldDate($attr, $fHTML5);
     include("vorbelegenDatumRE.prj");
     if( false/*!$attr*/ )
     {/*** keine Vorbelegung mehr mit Tagesdatum, weil inzwischen**
