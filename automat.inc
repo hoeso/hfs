@@ -709,6 +709,7 @@ $automat = array(
 		"pokeFortsetzung.prj",
 		"insertERM.inc",
 		"nachInsertERM.prj",
+		"linkFortsetzen.prj",
 		"linkFortsetzen.inc",
 		"nachSpeichernAnzeigen.inc",
 		"endeContainer.html",//haupttext
