@@ -160,11 +160,7 @@ $Select=array
   
   "Stundensatz"=>"SELECT ss.ID, Stundensatz, Datum FROM Stundensatz ss JOIN Zeitstempel z ON (ss.ZeitstempelID=z.ID)",
 
-  "Umkreis"=>"SELECT u.ID, r.Region, o.Kuerzel, o.Kursort FROM Umkreis u JOIN Region r ON u. RegionID=r.ID JOIN Ort o ON u. OrtID=o.ID",
-  
-  "vmKursort"=>"SELECT o.ID, CONCAT(o.Kuerzel,' ',o.Kursort) AS Kursort, v.Wunschtermin, CONCAT(p.Vorname,' ',p.Name,'-',p. geborenAm) AS Proband, CONCAT(ob.PLZ,' ',ob.Ort) AS Wohnort FROM Vormerkung v JOIN Umkreis u ON v. RegionID=u.RegionID JOIN Ort o ON u. OrtID=o.ID JOIN ProbandAdresse pa ON v. ProbandAdresseID=pa.ID JOIN Adresse a ON pa. AdresseID=a.ID JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID JOIN Proband p ON pa. ProbandID=p.ID",
-  
-  "Vormerkung"=>"SELECT v.ID, CONCAT(o.Kursort,'-',o.Kuerzel) AS Kursort, CONCAT(p.Vorname,' ',p.Name,'-',p. geborenAm) AS Proband, v.Wunschtermin, CONCAT(ob.PLZ,' ',ob.Ort) AS Wohnort FROM Vormerkung v JOIN Umkreis u ON v. RegionID=u.RegionID JOIN Ort o ON u. OrtID=o.ID JOIN ProbandAdresse pa ON v. ProbandAdresseID=pa.ID JOIN Adresse a ON pa. AdresseID=a.ID JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID JOIN Proband p ON pa. ProbandID=p.ID",
+  "Vormerkung"=>"SELECT v.ID, CONCAT(o.Kursort,'-',o.Kuerzel) AS Kursort, v.Frist, ma.Massnahme, CONCAT(p.Vorname,' ',p.Name,'-',DATE_FORMAT(p. geborenAm,'%d.%m.%Y')) AS Proband, IF(ob.PLZ IS NULL,CONCAT('<a href=\"','mn.php?mn=innj&a=ProbandAdresse&b=Proband&c=Adresse&re=1&re1=Behoerde&1n=1&1n1=OrtBehoerde&i=2&sl=2&sl1=Proband&sl2=Adresse&1nf=2&r=',p.ID,'\">Adresse</a>'),CONCAT(ob.PLZ,' ',ob.Ort)) AS Wohnsitz FROM Vormerkung v JOIN ProbandMassnahme pm ON v. ProbandMassnahmeID=pm.ID JOIN Massnahme ma ON pm.MassnahmeID=ma.ID JOIN Proband p ON pm. ProbandID=p.ID LEFT JOIN ProbandAdresse pa ON p.ID=pa.ProbandID LEFT JOIN Adresse a ON pa. AdresseID=a.ID LEFT JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID JOIN Ort o ON v.OrtID=o.ID",
 
 /* zum Kopieren:
   ""=>"",
@@ -192,7 +188,8 @@ $OrderBy=array
   "EDVAngebot"=>" ORDER BY ID DESC",
   "Terminart"=>" ORDER BY Terminart",
   "Ort"=>" ORDER BY Bundesland, Kursort",
-  "OrtBehoerde"=>" ORDER BY Behoerde, Ort",
+  //"OrtBehoerde"=>" ORDER BY Behoerde, Ort",
+  "OrtBehoerde"=>" ORDER BY PLZ",
   "Proband"=>" ORDER BY Name, Vorname",
   "ProbandMassnahme"=>" ORDER BY p.Name, p.Vorname, p.geborenAm, m.Massnahme",
   "ProbandTermin"=>" ORDER BY Jahr, KW, Tag, Kursort, Terminart,  p.Name, p.Vorname",
@@ -203,7 +200,6 @@ $OrderBy=array
   "TrainerOrtTerminart"=>" ORDER BY Bundesland, Terminart, Trainer, Ort",
   "Umkreis"=>" ORDER BY Region, Kuerzel",
   "Vormerkung"=>" ORDER BY Kursort, Name, Vorname",
-  "vmKursort"=>" ORDER BY Kursort, Name, Vorname",
 );
 
 $gfaerbteSpoidn = array(

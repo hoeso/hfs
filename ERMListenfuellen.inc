@@ -170,7 +170,13 @@ if( isset($arrEM) )
       ?><td align=right><?php
     }
     $sql = "SELECT * FROM $arrEM[$i]";
-  
+    if( isset($Select) && isset($Select[$arrEM[$i]]) && isset($OrderBy) && isset($OrderBy[$arrEM[$i]]) )
+    {
+      /*** OrderBy zwecklos weil Reihenfolge wird durch
+       *** ergebnisListeMitID(){sort()} bestimmt:
+       ***/
+      //$sql .= $OrderBy[$arrEM[$i]]; // 
+    }
     unset($tabKopf);
     unset($Mid);
     unset($zeilen);

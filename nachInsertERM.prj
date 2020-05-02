@@ -40,8 +40,11 @@ switch( $table )
       Er kann mit dem Bleistift korrigiert werden.<br><?php
     }
   break;
+  case 'Adresse':
+  case 'OrtBehoerde':
   case 'Proband':
   case 'ProbandAdresse':
+    $_E['jumpNow'] = true;
     $_E['wZu'] = "beendendProbandLauf";
     include("forkZu.inc");
   break;

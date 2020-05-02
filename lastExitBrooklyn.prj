@@ -29,25 +29,28 @@ if( $table=="Tel" && $recID )
   }
    ***/
 }
-else if( $table=="vmKursort" && $recID )
-{ // recID ist Ort.ID
+else if( $table=="Vormerkung" && $recID )
+{
   if( isset($Select) and isset($Select[$table]) )
   {
     unset($c_);
     $c_ = explode( "FROM", $Select[$table] );
-    $filt = " WHERE $recID=o.ID";
-    $rID = gibFeld( $MySQLDb, "SELECT u.RegionID FROM " . $c_[1] . $filt, 0 );
+    $filt = " WHERE $recID=v.ID";
+    $ortID = gibFeld( $MySQLDb, "SELECT o.ID FROM " . $c_[1] . $filt, 0 );
+    //echo "SELECT o.ID FROM " . $c_[1] . " WHERE $recID=v.ID" . "<br>";
   }
   /*** Pruefen ob es schon einen Kurs gibt: ***/
-  $termin = gibFeld( $MySQLDb, "SELECT DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%Y-%m-%d' ) AS Termin FROM Termin te JOIN Ort o ON te.OrtID=o.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID WHERE $recID=o.ID AND DATE(NOW()) <= DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%Y-%m-%d' )", 0 );
-  $o = gibFeld( $MySQLDb, "SELECT Kursort FROM Ort WHERE ID=$recID", 0 );
+  $str = "SELECT DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%Y-%m-%d' ) AS Termin FROM Termin te JOIN Ort o ON te.OrtID=o.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID WHERE $ortID=o.ID AND DATE(NOW()) <= DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%Y-%m-%d' )";
+  $termin = gibFeld( $MySQLDb, $str, 0 );
+  $o = gibFeld( $MySQLDb, "SELECT Kursort FROM Ort WHERE ID=$ortID", 0 );
   echo"\n"; // erzeugt Zeilenumbruch im HTML-Quelltext
   if( $termin ) // es gibt einen Kurs:
   {
     ?>
       <INPUT TYPE=image src='images/iconmonstr-school-29-16.png' NAME='flushVM' title='Probanden in Termin von <?php echo $o ?> &uuml;bernehmen'>
       <?php
-      hiddenFeldSchreiben( "rID", $rID );
+      hiddenFeldSchreiben( "rID", $ortID );
+      //hiddenFeldSchreiben( "loopInput", "mn.php?mn=sl_uk&a=Vormerkung&sl=2&sl1=Ort&sl2=ProbandMassnahme&i=1&navi=Plan&b=v" );
       //hiddenFeldSchreiben( "d", "1" );// Debug-Ausgaben ausloesen
   }
   else

@@ -313,5 +313,7 @@ if( !isset($keinInsert) or false == $keinInsert )
     hiddenFeldSchreiben( "value2Join", $_E['value2Join'] );
     //hiddenFeldSchreiben( "d", $_E['FK2join'] );
   }
+  if( isset($_REQUEST) && isset($_REQUEST['loopInput']) ) // Insert-Formular Schleife
+    hiddenFeldSchreiben( "loopInput", $_REQUEST['loopInput'] );
 }
 ?>

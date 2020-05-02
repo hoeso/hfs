@@ -117,6 +117,32 @@ if( isset( $_eCandy ) )
       $dahin .= "&$k=$elem#$elem";
       $anker="$elem";
     }
+
+if( isset($_REQUEST['loopInput']) )
+{echo $_REQUEST['loopInput'] . "<br>";
+  $dahin = $_REQUEST['loopInput'];
+}
+
+/***
+ *** evtl. uebergebenen Listen-Eintrag dem
+ *** Ruecksprung in das Formular mitgeben
+ ***/
+if( isset( $dahin ) )
+{
+  if( isset($_REQUEST['SELECTSL1']) )
+  {
+    $erg = strstr( $dahin, "SELECTSL1" );
+    if( $erg )
+    {   // alten Wert abhaengen und durch neuen ersetzen
+      $arr = explode( "SELECTSL1", $dahin );
+      $dahin = $arr[0] . "SELECTSL1=$_REQUEST[SELECTSL1]";
+    }
+    else	// kein alter Wert, also direkt anhaengen
+      $dahin = str_replace( "?", "?SELECTSL1=$_REQUEST[SELECTSL1]&", $dahin );
+      //$dahin .= "&SELECTSL1=$_REQUEST[SELECTSL1]";
+  }
+}
+
 if( isset( $dahin ) )
 {
   echo"\n<A HREF=\"$dahin\"><em>&lt;&lt; ";

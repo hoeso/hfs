@@ -82,13 +82,14 @@ $arrRefs = array(
   "Massnahme"=>array(
     "ProbandMassnahme",
     "ProbandTermin",
+    "Vormerkung",
   ),
 
   "Ort"=>array(
     "Kurs",
     "Termin",
     "TrainerOrtTerminart",
-    "Umkreis",
+    "Vormerkung",
   ),
 
   "OrtBehoerde"=>array(
@@ -100,7 +101,6 @@ $arrRefs = array(
     "ProbandMail",
     "ProbandMassnahme",
     "ProbandTel",
-    "Vormerkung",
   ),
 
   "ProbandAdresse"=>array(
@@ -113,6 +113,7 @@ $arrRefs = array(
 
   "ProbandMassnahme"=>array(
     "ProbandTermin",
+    "Vormerkung",
   ),
 
   "ProbandTel"=>array(
@@ -125,11 +126,6 @@ $arrRefs = array(
 
   "Recht"=>array(
     "1-leaf",
-  ),
-
-  "Region"=>array(
-    "Umkreis",
-    "Vormerkung",
   ),
 
   "Tag"=>array(
@@ -158,10 +154,6 @@ $arrRefs = array(
   ),
 
   "TrainerOrtTerminart"=>array(
-    "1-leaf",
-  ),
-
-  "Umkreis"=>array(
     "1-leaf",
   ),
 

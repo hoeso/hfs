@@ -9,8 +9,10 @@ if( "einfuegNNverknuepfend" == $_E['wZu'] && isset($_E['sl']) )
   { // OrtBehoerde
     $_E['1n'] = $_REQUEST["1n"];
     for( $i=1; $i <= $_E['1n'] and $i < 6; $i++ )
+    {
       if( isset($_REQUEST["1n$i"]) )
         $_E["1n$i"] = $_REQUEST["1n$i"];
+    }
     if( isset($_REQUEST["1nf"]) ) // Anzahl Felder in der 1:n-Liste
       $_E['1nf'] = $_REQUEST["1nf"];
   }

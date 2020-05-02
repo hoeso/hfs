@@ -307,9 +307,11 @@ $automat = array(
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
 		"insertRE.inc",
+		"nachInsertRE.inc",
 		"joinAfterInsert1N.inc", // speichern in 1:N
 		"focus1N.inc", // 1:N wird fokussierte Entitaet
 		"focusListe.prj", // ueberstimmt focus1N.inc
+		"nachInsertRE.prj",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -659,6 +661,7 @@ $automat = array(
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
 		"insertRE.inc",
+		"nachInsertRE.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -709,6 +712,32 @@ $automat = array(
 		"pokeFortsetzung.prj",
 		"insertERM.inc",
 		"nachInsertERM.prj",
+		"linkFortsetzen.prj",
+		"linkFortsetzen.inc",
+		"nachSpeichernAnzeigen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
+	"speicherndVM"=>array(
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"dbConnect.inc",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
+		"insertERM.inc",
+		"nachInsertERM.prj",
+		"austragenVM.prj",
 		"linkFortsetzen.prj",
 		"linkFortsetzen.inc",
 		"nachSpeichernAnzeigen.inc",

@@ -1001,9 +1001,11 @@ function ergebnisListeMitID( $label, $table, $anz, $id, $zeilen )
   {
     $IDgewaehlt=$SELECTMM1;
   }
-  else if( "SL1" == $label )
+  else if( "SL1" == $label and isset($_REQUEST["SELECTSL1"]) )
   {
-    $IDgewaehlt=$SELECTSL1;
+    $IDgewaehlt=$_REQUEST["SELECTSL1"];
+    //echo "IDgewaehlt : $IDgewaehlt <br>";
+    //$IDgewaehlt=$SELECTSL1;
   }
   else if( "SL2" == $label and isset($_REQUEST["sl2ID"]) )
   {

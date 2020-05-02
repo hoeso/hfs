@@ -12,7 +12,18 @@ else if( isset($_REQUEST['value2Join']) )
   $str = $_REQUEST['value2Join'];
 else if( isset($_E['ID']) )
   $str=$_E['ID'];
-?></table><a href="./mn.php?mn=outer&a=Proband&navi=Proband&Proband=<?php echo "$str#$str";?>">&lt;&lt; fortsetzen &gt;&gt;</a><?php
+?></table><?php
+echo "\n";?>
+<a href="./mn.php?mn=outer&a=Proband&navi=Proband&Proband=<?php echo "$str#$str";?>">&lt;&lt; fortsetzen &gt;&gt;</a><?php
+$hl = "./mn.php?mn=outer&a=Proband&navi=Proband&Proband=$str#$str";
+
+if( isset($_E['jumpNow']) )
+{
+  echo "\n<script language=javascript type='text/javascript'>";
+  $url = "\n\tlocation.href = '$hl'";
+  echo $url;
+  echo "\n</script>\n";
+}
 
 $_E['wZu'] = "beendendSofort";
 include("forkZu.inc");

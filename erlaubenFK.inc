@@ -8,6 +8,9 @@ $arrFK = array(
 	"Ort"=>array( // ich bin die Entitaet
 		"Trainer",// ich bin ein Fremdschluessel
 	),
+	"ProbandAdresse"=>array( // ich bin die Entitaet
+		"Adresse",// ich bin ein Fremdschluessel
+	),
 	"ProbandMassnahme"=>array( // ich bin die Entitaet
 		"Massnahme",// ich bin ein Fremdschluessel
 	),

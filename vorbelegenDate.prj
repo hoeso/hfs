@@ -6,8 +6,11 @@ if( "Proband" == $zielTabelle && "geborenAm" == $feld )
   echo $datum;
   //echo "01/01/2000";
 }
-else if( "Aktennotiz" == $zielTabelle && "zuErledigenBis" == $feld )
-  echo gibFeld( $MySQLDb, "SELECT DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 3 DAY),'%d.%m.%Y')", 0 );
+else if( "Vormerkung" == $zielTabelle && "Frist" == $feld )
+{
+  $datum = setFieldDate(gibFeld( $MySQLDb, "SELECT DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 21 DAY),'%Y-%m-%d')", 0 ), $fHTML5);
+  echo $datum;
+}
 else if( "EDV" == $zielTabelle )
   echo"";
 else if( "anlegendKumul" == $wZu && "Portal" == $zielTabelle && "Schadentag" == $feld )
