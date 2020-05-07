@@ -261,7 +261,8 @@ if( $zielTabelle and (!isset($keinInsert) or false == $keinInsert) )
   $result = mysql_list_fields( $MySQLDb, $arrMM[$i], $lkid );
   if( false == $result )
   {
-    echo"\nFelder der Entit&auml;t $arrMM[$i] k&ouml;nnen nicht gelesen werden.<br>";
+    echo"\n</table>\n";
+    ?>Felder der Entit&auml;t <?php echo $arrMM[$i]?> k&ouml;nnen nicht gelesen werden.<br><?php
     $_E['wZu']="anbietendKnopfZurueck";
     include("forkZu.inc");
   }

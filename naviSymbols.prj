@@ -20,7 +20,19 @@ switch( $sw )
     ?><img src="images/iconmonstr-process-2-32.png" alt="zum Getriebe" usemap="#zahnrad">
       <img src="images/iconmonstr-link-thin-32.png" alt="zum Verkn&uuml;pfen" usemap="#verknuepfen">
       <img src="images/iconmonstr-user-25-32.png" alt="neue Probanden" usemap="#proband">
-  <?php
+      <img src="images/iconmonstr-document-thin-32.png" alt="Anschreiben" usemap="#docs">
+    <?php
+    $_A['naviSwitch'] = $sw; // fuer begruessen.prj
+  }
+  break;
+  case "Docs":
+  {
+    ?><img src="images/iconmonstr-process-2-32.png" alt="zum Getriebe" usemap="#zahnrad">
+      <img src="images/iconmonstr-link-thin-32.png" alt="zum Verkn&uuml;pfen" usemap="#verknuepfen">
+      <img src="images/iconmonstr-user-25-32.png" alt="neue Probanden" usemap="#proband">
+      <img src="images/iconmonstr-calendar-thin-32.png" alt="Kurse UE Vormerkungen" usemap="#kurse">
+    <?php
+    $_A['naviSwitch'] = $sw; // fuer begruessen.prj
   }
   break;
   case "Proband":
@@ -28,6 +40,7 @@ switch( $sw )
     ?><img src="images/iconmonstr-process-2-32.png" alt="zum Getriebe" usemap="#zahnrad">
       <img src="images/iconmonstr-link-thin-32.png" alt="zum Verkn&uuml;pfen" usemap="#verknuepfen">
       <img src="images/iconmonstr-calendar-thin-32.png" alt="Kurse UE Vormerkungen" usemap="#kurse">
+      <img src="images/iconmonstr-document-thin-32.png" alt="Anschreiben" usemap="#docs">
     <?php
     $_A['naviSwitch'] = $sw; // fuer begruessen.prj
   }
@@ -37,7 +50,9 @@ switch( $sw )
     ?><img src="images/iconmonstr-process-2-32.png" alt="zum Getriebe" usemap="#zahnrad">
       <img src="images/iconmonstr-user-25-32.png" alt="zur Neuanlage von Probanden" usemap="#proband">
       <img src="images/iconmonstr-calendar-thin-32.png" alt="Kurse UE Vormerkungen" usemap="#kurse">
-  <?php
+      <img src="images/iconmonstr-document-thin-32.png" alt="Anschreiben" usemap="#docs">
+    <?php
+    $_A['naviSwitch'] = $sw; // fuer begruessen.prj
   }
   break;
   case "Zahnrad":
@@ -45,7 +60,9 @@ switch( $sw )
     ?><img src="images/iconmonstr-link-thin-32.png" alt="zum Verkn&uuml;pfen" usemap="#verknuepfen">
       <img src="images/iconmonstr-user-25-32.png" alt="neue Probanden" usemap="#proband">
       <img src="images/iconmonstr-calendar-thin-32.png" alt="Kurse UE Vormerkungen" usemap="#kurse">
-  <?php
+      <img src="images/iconmonstr-document-thin-32.png" alt="Anschreiben" usemap="#docs">
+    <?php
+    $_A['naviSwitch'] = $sw; // fuer begruessen.prj
   }
   break;
 }
@@ -56,8 +73,8 @@ switch( $sw )
 <map name="proband">
 <area shape=rect coords="0,0,32,32" title='neue Probanden' href="./mn.php?mn=goto&navi=Proband<?php echo $str;?>">
 </map>
-<map name="wochenschema">
-<area shape=rect coords="0,0,18,18" title='zum Wochenplan' href="./mn.php?mn=goto&navi=Zahnrad<?php echo $str;?>">
+<map name="docs">
+<area shape=rect coords="0,0,32,32" title='zu den Anschreiben' href="./mn.php?mn=goto&navi=Docs<?php echo $str;?>">
 </map>
 <map name="verknuepfen">
 <area shape=rect coords="0,0,32,32" title='zum Verkn&uuml;pfen' href="./mn.php?mn=goto&navi=Verknuepfen<?php echo $str;?>">
