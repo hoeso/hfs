@@ -8,7 +8,12 @@ if( "Proband" == $zielTabelle && "geborenAm" == $feld )
 }
 else if( "Vormerkung" == $zielTabelle && "Frist" == $feld )
 {
-  $datum = setFieldDate(gibFeld( $MySQLDb, "SELECT DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 21 DAY),'%Y-%m-%d')", 0 ), $fHTML5);
+  /***
+   *** Frist vorbelegen zum 1. des uebernaechsten Monats
+   ***/
+  $datum = setFieldDate(gibFeld( $MySQLDb, "SELECT DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 60 DAY),'%Y-%m-%d')", 0 ), $fHTML5);
+  $datum[strlen($datum)-1] = '1';
+  $datum[strlen($datum)-2] = '0';
   echo $datum;
 }
 else if( "EDV" == $zielTabelle )
