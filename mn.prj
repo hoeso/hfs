@@ -1095,7 +1095,7 @@ switch( $_E['mn'] )
 	break;
         case 'n':
 	  $_E["filter"] = " WHERE YEAR(NOW())=j.Jahr AND (DATE_FORMAT(NOW(),'%v')-4)<=kw.KW AND 1=te.TerminartID";
-	  $_E["sort"] = " ORDER BY j.Jahr, kw.KW, te.TagID, te.vsID";
+	  $_E["sort"] = " ORDER BY LTRIM(te.Kuerzel), j.Jahr, kw.KW, te.TagID, te.vsID";
 	break;
         case 'u':
 	  $_E["filter"] = " WHERE YEAR(NOW())=j.Jahr AND (DATE_FORMAT(NOW(),'%v')-4)<=kw.KW AND 2=te.TerminartID";
