@@ -21,5 +21,8 @@ $arrFK = array(
 		"Trainer",
 		"VS",
 	),
+	"Vormerkung"=>array( // ich bin die Entitaet
+		"Ort",// ich bin ein Fremdschluessel
+	),
 );
 ?>

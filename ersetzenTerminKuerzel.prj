@@ -1,9 +1,18 @@
 <?php
 /** Aufrufendes Skript **** Variable *****************************************
  * 
- * SELECTSL1 : Vormerkung.ProbandMassnahmeID
+ * SELECTSL1 : Vormerkung.TerminID
+ * SELECTSL2 : Vormerkung.ProbandMassnahmeID
  * 
  *****************************************************************************/
+/***
+ *** Die Logik das Termin-Kuerzel zu aendern auf die Massnahme wenn der 1. Proband
+ *** aus einer Vormerkung uebernommen wird haut ned hi weil dann das Termin-Kuerzel
+ *** immer auf den zuletzt in den Termin uebernommenen Probanden gesetzt wird.
+ *** Haut schon hin, da es sich bei diesen Terminen um 1-Std-Termine handelt,
+ *** die mit 1 Probanden voll belegt sind.
+ ***/
+
 if( 0 )
 {
   echo"\n POSTs ... <br>";
@@ -16,24 +25,34 @@ if( 0 )
 }
 if( !isset($_REQUEST['SELECTSL1']) )
 {
-  ?>Vormerkung kann nicht gel&ouml;scht werden!?<br>
-  Bitte manuell austragen.<?php
+  ?>Termin kann nicht referenziert werden!?<br><?php
+  return;
+}
+/***
+ *** Der folgende Code trifft die folgenden Annahmen:
+ *** 1. Das Termin-Kuerzel enthaelt nur bei Terminart Untersuchung/Einzeltermin
+ *** einen dot (.) als Trennzeichen zwischen Ort.Kuerzel und Terminart-Kuerzel
+ *** d.h. die Kuerzel bei den Terminarten Nachschulung u. Verkehrscoaching
+ *** enthalten keinen dot (.)
+ ***/
+ 
+$m = gibFeld( $MySQLDb, "SELECT ma.Massnahme FROM ProbandMassnahme pm JOIN Massnahme ma ON pm. MassnahmeID=ma.ID WHERE {$_REQUEST['SELECTSL2']}=pm.ID", 0 );
+
+if( !$m )
+{
+  ?>Massnahme kann nicht referenziert werden!?<br><?php
   return;
 }
 
 $k = gibFeld( $MySQLDb, "SELECT Kuerzel FROM Termin WHERE ID={$_REQUEST['SELECTSL1']}", 0 );
 unset($a_);
 $a_ = explode( ".", $k );
-if( isset($a_) && isset($a_[1] ) )
-{}
+if( isset($a_) && isset($a_[1]) )
+  $a_[1] = $m;
+else // evtl. nicht Terminart UE
+  return;
 
-$sql="UPDATE ";
+$sql="UPDATE Termin SET Kuerzel ='$a_[0].$a_[1]' WHERE {$_REQUEST['SELECTSL1']}=ID";
 $result = mysql_db_query( $MySQLDb, $sql );
-//echo"\n<!-- $sql -->";
-if(!$result)
-  reagierenAufSQLFehler( $lkid, $sql, $PKViolation );
-else
-{
-  echo"\n<p>Die Vormerkung wurde ausgetragen.<br>";
-}
+echo"\n<!-- $sql -->";
 ?>

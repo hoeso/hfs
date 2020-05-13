@@ -737,6 +737,7 @@ $automat = array(
 		"pokeFortsetzung.prj",
 		"insertERM.inc",
 		"nachInsertERM.prj",
+		"ersetzenTerminKuerzel.prj",
 		"austragenVM.prj",
 		"linkFortsetzen.prj",
 		"linkFortsetzen.inc",
