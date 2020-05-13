@@ -218,7 +218,7 @@ switch( $_E['mn'] )
 	  $_E["entitaet1N"] = "ProbandMail";
           $_E["sl"] = "1";
           $_E["sl1"] = "Proband";
-	  $_E["stm1"] = "SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
+	  $_E["stm1"] = "SELECT p.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
 	  $_E["stm1-filter"] = " WHERE $_REQUEST[r]=p.ID";
 	}
     	break;
@@ -231,7 +231,7 @@ switch( $_E['mn'] )
 	  $_E["entitaet1N"] = "ProbandTel";
           $_E["sl"] = "1";
           $_E["sl1"] = "Proband";
-	  $_E["stm1"] = "SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
+	  $_E["stm1"] = "SELECT p.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
 	  $_E["stm1-filter"] = " WHERE $_REQUEST[r]=p.ID";
 	}
     	break;
@@ -289,7 +289,7 @@ switch( $_E['mn'] )
     	  $_E["stm$i-filter"] = " ORDER BY o.Kuerzel";
         break;
         case "Proband":
-          $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) FROM Proband p";
+          $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) FROM Proband p";
     	  $_E["stm$i-filter"] = " WHERE $_REQUEST[r]=p.ID";
     	  switch( $_REQUEST["re1"] )
     	  {
@@ -545,7 +545,7 @@ switch( $_E['mn'] )
 	    $_E["stm$i-filter"] = " ORDER BY o.Kuerzel";
           break;
           case "Proband":
-            $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
+            $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
 	    $_E["stm$i-filter"] = " ORDER BY p.Name, p.Vorname, p.geborenAm";
           break;
           case "ProbandMassnahme":
@@ -613,9 +613,9 @@ switch( $_E['mn'] )
           break;
           case "ProbandMassnahme":
 	    /*** mit Adresse: ***/
-            $_E["stm$i"] = "SELECT pm.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, ma.Massnahme, IF(ob.PLZ IS NULL,'Adresse ??',CONCAT('Wohnsitz: ',ob.PLZ,' ',ob.Ort)) FROM ProbandMassnahme pm JOIN Massnahme ma ON pm.MassnahmeID=ma.ID JOIN Proband p ON pm.ProbandID=p.ID LEFT JOIN ProbandAdresse pa ON pm.ProbandID=pa.ProbandID JOIN Adresse a ON pa. AdresseID=a.ID JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID";
+            $_E["stm$i"] = "SELECT pm.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, ma.Massnahme, IF(ob.PLZ IS NULL,'Adresse ??',CONCAT('Wohnsitz: ',ob.PLZ,' ',ob.Ort)) FROM ProbandMassnahme pm JOIN Massnahme ma ON pm.MassnahmeID=ma.ID JOIN Proband p ON pm.ProbandID=p.ID LEFT JOIN ProbandAdresse pa ON pm.ProbandID=pa.ProbandID JOIN Adresse a ON pa. AdresseID=a.ID JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID";
 	    /*** nur Proband: ***/
-            //$_E["stm$i"] = "SELECT pm.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, ma.Massnahme FROM ProbandMassnahme pm JOIN Massnahme ma ON pm.MassnahmeID=ma.ID JOIN Proband p ON pm.ProbandID=p.ID";
+            //$_E["stm$i"] = "SELECT pm.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, ma.Massnahme FROM ProbandMassnahme pm JOIN Massnahme ma ON pm.MassnahmeID=ma.ID JOIN Proband p ON pm.ProbandID=p.ID";
 	    $_E["stm$i-filter"] = " ORDER BY p.Name, ma.Massnahme";
           break;
           default:
@@ -669,7 +669,7 @@ switch( $_E['mn'] )
 	    $_E["stm$i-filter"] = " ORDER BY o.Kuerzel";
           break;
           case "Proband":
-            $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
+            $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
 	    switch( $_REQUEST["re1"] )
 	    {
 	      case 'Mail':

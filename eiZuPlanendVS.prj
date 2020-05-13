@@ -1,7 +1,12 @@
 <?php
 /** Aufrufendes Skript **** Variable *****************************************
  * naviCFS.html/Klient, planendTag-Symbol :
- *                                           : 
+ *                                        : 
+ *                                        : 
+ *                                        : 
+ *                                        : 
+ *                                        : 
+ *                                        : 
  *****************************************************************************/
 if( 0 )
 {
@@ -21,8 +26,11 @@ if( isset($_REQUEST[""]) )
 $_REQUEST["sl"]=2;
 $_REQUEST["sl1"]="Terminart";
 $_REQUEST["sl3"]="Trainer";
-if( isset($_REQUEST["sl2ID"]) ) {
-  $SELECTSL2=$_REQUEST["sl2ID"];//echo "sl2ID = " . $_REQUEST["sl2ID"] . "<br>";
+if( isset($_REQUEST["sl1ID"]) ) { // Terminart.ID
+  $SELECTSL1=$_REQUEST["sl1ID"];
+}
+if( isset($_REQUEST["sl2ID"]) ) { // Ort.ID
+  $SELECTSL2=$_REQUEST["sl2ID"];
 }
 $_REQUEST["sl2"]="Ort";
 if( !isset($_REQUEST["j"]) or !isset($_REQUEST["k"]) )
