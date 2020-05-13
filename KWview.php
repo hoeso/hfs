@@ -449,8 +449,8 @@ class KWview extends KWmodel
         ++$i;
       }?>
       </tr><tr><?php
-      /*** alle 20 Zeilen Header wieder einfuegen ***/
-      if( !($row % 20) )
+      /*** alle 30 Zeilen Header wieder einfuegen ***/
+      if( !($row % 30) )
       {
         $j=0;
         foreach ($this->tag as $cltch => $datm)
