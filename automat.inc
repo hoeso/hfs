@@ -612,6 +612,7 @@ $automat = array(
 		"setzenFortsetzung.prj",
 		"pruefenSymbol.prj",
 		"pokeFortsetzung.prj",
+		"logic2PhysView.prj",
 		"editierenRE.inc",
 		"erlaubenFK.inc",
 		"anbietenFK.prj",
@@ -934,7 +935,9 @@ $automat = array(
 		"setzenFortsetzung.prj",
 		"dbConnect.inc",
 		"routinen.inc",
+		"logic2PhysView.prj",
 		"toggelnEnum.inc",
+		//"phys2LogicalView.prj",
 		"linkFortsetzen.inc",
 	),
 	"uebersichtDauertHinweisend"=>array(
