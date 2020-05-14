@@ -1,0 +1,35 @@
+<?php
+/***
+ *** eingefuehrt um Liste evtl. noch nicht verknuepfter 1:N-Instanzen anzuzeigen
+ ***/
+if( isset($_E) && isset($_E["entitaet"]) && "Proband" == $_E["entitaet"] )
+{
+  $_E["entitaet"] = "OrtBehoerde";
+  $_REQUEST["re"] = $_E["re"] = "1";
+  $_REQUEST["re1"] = $_E["re1"] = "Behoerde";
+  if( isset($_E['countDown']) )
+  {
+    if( !$_E['countDown'] ) // countDown auf 0
+    {
+      $_E['wZu'] = "beendendProbandLauf";
+      include("forkZu.inc");
+    }
+    else
+      --$_E['countDown'];
+  }
+  unset($_E['1n']);
+  unset($arrEM);
+  unset($countEM);
+}
+else if( "erfassendProband" == $_E['wZu'] )
+{
+    $_E['wZu'] = "beendendProbandLauf";
+    include("forkZu.inc");
+} 
+else
+{
+  echo "\n";?></table><?php
+  $_E['wZu'] = "anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
+?>
