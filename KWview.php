@@ -192,7 +192,7 @@ class KWview extends KWmodel
 	<img class="img18" src="images/iconmonstr-user-25-24.png" alt="Probanden" usemap="#proband<?php echo $ancor;?>">
 	<a name='<?php echo $ancor;?>'></a>
         <map name="proband<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,24,24" target="_blank" title='Probanden' href="./mn.php?mn=goto&navi=Proband">
+        <area shape=rect coords="0,0,24,24" target="_blank" title='Probanden' href="./mn.php?mn=goto&1n=1&1n1=OrtBehoerde&i=2&1nf=3&navi=Proband">
         </map>
 	<img class="img18" src="images/iconmonstr-calendar-thin-24.png" alt="Vormerkungen / Termine" usemap="#termin<?php echo $ancor;?>">
 	<a name='<?php echo $ancor;?>'></a>
@@ -464,12 +464,14 @@ class KWview extends KWmodel
               $kw .= " Ort";
 	      $NOTkw .= " Trainer";
 	      $kwTitel  = " Trainer";
+	      $kwTitel  = " " . $this->DatumEU;
             }
 	    else
             {
 	      $kw .= " Trainer";
 	      $NOTkw .= " Ort";
 	      $kwTitel  = " Ort";
+	      $kwTitel  = " " . $this->DatumEU;
             }
 	    ?><td colspan=8>
 	    <!--img class="img18" src="images/punaise-18px.png" alt="diese Uhrzeit" usemap="#pinnen<?php echo $ancor;?>"-->
@@ -522,7 +524,7 @@ class KWview extends KWmodel
 	    <img class="img18" src="images/iconmonstr-user-25-24.png" alt="Probanden" usemap="#proband<?php echo $ancor;?>">
 	    <a name='<?php echo $ancor;?>'></a>
             <map name="proband<?php echo $ancor;?>">
-            <area shape=rect coords="0,0,24,24" target="_blank" title='Probanden' href="./mn.php?mn=goto&navi=Proband">
+            <area shape=rect coords="0,0,24,24" target="_blank" title='Probanden' href="./mn.php?mn=goto&1n=1&1n1=OrtBehoerde&i=2&1nf=3&navi=Proband">
             </map>
 	    <img class="img18" src="images/iconmonstr-calendar-thin-24.png" alt="Vormerkungen / Termine" usemap="#termin<?php echo $ancor;?>">
 	    <a name='<?php echo $ancor;?>'></a>

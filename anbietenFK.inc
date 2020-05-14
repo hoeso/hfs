@@ -11,6 +11,7 @@ if( !$result )
 {
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
+    ?></table><?php
 }
 spaltenNamenHolen( $result, $spaltenName );
 $n = count($spaltenName);
@@ -28,6 +29,7 @@ if( 1 == $nFK )
 {// das war ja wohl nur der eigene Primaerschluessel 'ID'
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
+  ?></table><?php
 }
 ?>
 <hr>
@@ -88,6 +90,7 @@ for( $i=1; $i<$c; $i++)
   {
     $_E['wZu']="anbietendKnopfZurueck";
     include("forkZu.inc");
+    ?></table><?php
   }
   unset($spaltenName);
   spaltenNamenHolen( $result, $spaltenName );
@@ -135,6 +138,7 @@ for( $i=1; $i<$c; $i++)
   {
     $_E['wZu']="anbietendKnopfZurueck";
     include("forkZu.inc");
+    ?></table><?php
   }
   $anz = mysql_num_fields($result);
   unset($spaltenName);

@@ -144,6 +144,8 @@ if( isset($_E["nsl"]) )
       dEcho( $b_, "SL$i: " . $_E["stm$i"] );
   }
 }
+if( isset($_E["klick1"]) )
+  $goto = true;
 if( isset($_E["AND"]) )
 {
   $AND = $_E["AND"];

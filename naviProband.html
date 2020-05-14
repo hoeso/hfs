@@ -10,11 +10,17 @@ naechste Ziffer kleiner ? 1 Wurf : 2 Wuerfe
 
 <ul>
 <li>
-<a href="<?php echo $candyURL['liste']?>">Liste</a>
+<img src="images/iconmonstr-user-25-24.png" alt="neuer Proband" usemap="#Proband">
+<map name="Proband">
+  <area shape=rect coords="0,0,32,32" title='Proband anlegen ...' href="<?php echo $candyURL['Proband']?>">
+</map>
 </li>
 <li>
-<a href="<?php echo $candyURL['Proband']?>">Proband</a>
+<a href="<?php echo $candyURL['liste']?>">Probanden</a>
 </li>
+<!--li>
+<a href="<?php echo $candyURL['Proband']?>">Proband</a>
+</li-->
 <li>
 <a href="<?php echo $candyURL['ProbandMassnahme']?>">Massnahme</a>
 </li>
@@ -43,7 +49,7 @@ naechste Ziffer kleiner ? 1 Wurf : 2 Wuerfe
 <li>
 <a href="<?php echo $candyURL['OrtBehoerde']?>">Wohnort</a>
 </li>
-<li>
+<!--li>
 <a href="<?php echo $candyURL['Adresse']?>">Strasse</a>
 </li>
 <li>
@@ -51,5 +57,5 @@ naechste Ziffer kleiner ? 1 Wurf : 2 Wuerfe
 <map name="adrProband">
   <area shape=rect coords="0,0,32,32" title='Adresse von ...' href="<?php echo $candyURL['ProbandAdresse']?>">
 </map>
-</li>
+</li-->
 </ul>

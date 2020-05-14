@@ -53,6 +53,8 @@ if( false==isset($keinInsert) )
     $actio .= $_E['reInsertWo'];
   else
     $actio .= "9422";
+  if( isset($_E) && isset($_E["klick1"]) )
+    $actio .= "&ju=1";
   $actio .= "&a={$_E['entitaet']}&b={$_E['entitaet']}%20wird%20gespeichert%20...";
   if( isset($_E["navi"]) )
     $actio .= "&navi=" . $_E["navi"];
