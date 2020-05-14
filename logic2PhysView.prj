@@ -5,10 +5,14 @@
  *****************************************************************************/
 if( !isset($_E) )
   return;
-if( isset($_E['entitaet']) && "ProbandTerminDocs" == $_E['entitaet'] )
+if( isset($_E['entitaet']) && "ProbandTerminAnwesend" == $_E['entitaet'] )
   $_E['entitaet'] = "ProbandTermin";
-if( isset($table) && "ProbandTerminDocs" == $table )
+if( isset($table) && "ProbandTerminAnwesend" == $table )
   $table = "ProbandTermin";
+if( isset($_E['entitaet']) && "ProbandMassnahmeBezahlt" == $_E['entitaet'] )
+  $_E['entitaet'] = "ProbandMassnahme";
+if( isset($table) && "ProbandMassnahmeBezahlt" == $table )
+  $table = "ProbandMassnahme";
 else if( isset($_E['lView']) && "Nachschulung" == $_E['lView'] )
   $_E['lView'] = "Termin";
 else if( isset($_E['lView']) && "Docs" == $_E['lView'] )

@@ -152,7 +152,19 @@ switch( $_E['mn'] )
       switch( $_REQUEST['navi'] )
       {
         case 'Docs':
-          $_E['entitaet'] = $_REQUEST["a"] . "Docs";
+	  if( isset($_REQUEST['s']) )
+	  {
+	    switch($_REQUEST['s'])
+	    {
+	      case 'a':
+                $_E['entitaet'] = $_REQUEST["a"] . "Anwesend";
+	      break;
+	      case 'b':
+                $_E['entitaet'] = $_REQUEST["a"] . "Bezahlt";
+                $_E['entitaet'] = "ProbandMassnahmeBezahlt";
+	      break;
+	    }
+	  }
         break;
         default:
           $_E['entitaet'] = $_REQUEST["a"];
