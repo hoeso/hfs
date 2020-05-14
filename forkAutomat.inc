@@ -64,6 +64,22 @@ $forkAutomat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
+	"anlegendTermin"=>array(
+		"insertERM.inc",
+		"nachInsertERM.prj",
+		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
+		"linkFortsetzen.inc",
+		//"nachSpeichernAnzeigen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"betreuend"=>array( // CFS
 		"eiZuBetreuend.prj",
 		"mn.prj",

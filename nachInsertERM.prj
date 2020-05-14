@@ -23,11 +23,19 @@ switch( $table )
     gibFelderArray( $MySQLDb, "SELECT TerminartID, OrtID FROM Termin WHERE $_E[ID]=ID", $a__ );
     if( false == habWas( $a__, 0, 1 ) )
     {
-      ?>Der Trainer des Termins kann nicht ermittelt werden.<?php
-      $wZu="anbietendKnopfZurueck";
+      ?>Da ist was schiefgelaufen, bitte Hr. H&ouml;rmann verst&auml;ndigen +43 677 62960854<br><?php
+      $_E['wZu']="anbietendKnopfZurueck";
       include("forkZu.inc");
     }
-    $trID = gibFeld( $MySQLDb, "SELECT TrainerID FROM TrainerOrtTerminart WHERE $a__[0]=TerminartID AND $a__[1]=OrtID", 0 );
+    else
+    {
+      $trID = gibFeld( $MySQLDb, "SELECT TrainerID FROM TrainerOrtTerminart WHERE $a__[0]=TerminartID AND $a__[1]=OrtID", 0 );
+      if( !$trID )
+      {
+        ?>Der vorbelegte TrainerIn f&uuml;r diesen Ort und dieser Terminart kann nicht ermittelt werden. Der Termin wird mit einer Trainerin eingestellt.<?php
+        $trID = 9;
+      }
+    }
     
     $result = mysql_db_query( $MySQLDb, "UPDATE Termin SET TrainerID=$trID WHERE $_E[ID]=ID" );
     if(!$result)
@@ -36,8 +44,35 @@ switch( $table )
     }
     else
     {
-      ?>Der Trainer wurde gem&auml;&szlig; den Vorgaben gesetzt.<br>
-      Er kann mit dem Bleistift korrigiert werden.<br><?php
+      ?>Der TrainerIn wurde gem&auml;&szlig; den Vorgaben gesetzt.<br>
+      Er/Sie kann mit dem Bleistift korrigiert werden.<br><?php
+    }
+    if( isset($_A['wdh']) )
+    {
+      --$_A['wdh'];
+      if( !$_A['wdh'] )
+      {
+        return;
+      }
+      ?> noch <?php echo $_A['wdh']?> Termine anlegen, bitte ... <br><?php
+      ++$_POST["SELECTRE2"];
+      if( 52 < $_POST["SELECTRE2"] ) // Jahreswechsel beachten
+        $_POST["SELECTRE2"] = "1";
+      $_E['wZu']="anlegendTermin";
+      include("forkZu.inc");
+    }
+    else
+    {
+      $_A['wdh'] = gibFeld( $MySQLDb, "SELECT wdh FROM Terminart WHERE $a__[0]=ID", 0 );
+      if( isset($_A['wdh']) && 0 < $_A['wdh'] )
+      {
+        ?> noch <?php echo $_A['wdh']?> Termine anlegen, bitte ... <br><?php
+	++$_POST["SELECTRE2"];
+	if( 52 < $_POST["SELECTRE2"] ) // Jahreswechsel beachten
+	  $_POST["SELECTRE2"] = "1";
+        $_E['wZu']="anlegendTermin";
+        include("forkZu.inc");
+      }
     }
   break;
   case 'Adresse':
