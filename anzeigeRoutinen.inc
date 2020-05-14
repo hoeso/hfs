@@ -453,8 +453,9 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
         $str = "<A HREF=\"./mn.php?mn=3151&ID=$ident&feld=$arrFeldName[$i]&wert=$elem&table=$table&$proj";
         if( isset($_REQUEST) and isset($_REQUEST["yyR"]) )
 	  $str .= "&yyR=$_REQUEST[yyR]";
-	$str .= "\">";
         echo $str;
+        echo"\" title=\"$arrFeldName[$i]";
+        echo"\">";
         $fAnkern=true;
       }
       if( !isset($vgl) )
