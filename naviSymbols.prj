@@ -74,7 +74,7 @@ switch( $sw )
 <area shape=rect coords="0,0,32,32" title='neue Probanden' href="./mn.php?mn=goto&1n=1&1n1=OrtBehoerde&i=2&1nf=3&navi=Proband<?php echo $str;?>">
 </map>
 <map name="docs">
-<area shape=rect coords="0,0,32,32" title='zu den Anschreiben' href="./mn.php?mn=goto&navi=Docs<?php echo $str;?>">
+<area shape=rect coords="0,0,32,32" title='zu den Anschreiben' href="./mn.php?mn=outer&a=ProbandTermin&navi=Docs<?php echo $str;?>">
 </map>
 <map name="verknuepfen">
 <area shape=rect coords="0,0,32,32" title='zum Verkn&uuml;pfen' href="./mn.php?mn=goto&navi=Verknuepfen<?php echo $str;?>">
