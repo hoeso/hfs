@@ -71,6 +71,7 @@ if( isset( $HTTP_POST_VARS ) )
       case "int":
         $sql .= "$elem";
       break;
+      case "decimal":
       case "real":
         unset( $aDP );
         $aDP = explode( ",", $elem );

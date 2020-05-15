@@ -18,12 +18,10 @@ else if( "Vormerkung" == $zielTabelle && "Frist" == $feld )
 }
 else if( "EDV" == $zielTabelle )
   echo"";
-else if( "anlegendKumul" == $wZu && "Portal" == $zielTabelle && "Schadentag" == $feld )
-  //echo gibFeld( $MySQLDb, "SELECT DATE(DATE_SUB(NOW(), INTERVAL 7 DAY))", 0 );
-  echo "2013-08-10";
-
-else if( "anlegendKumul" == $wZu && "Portal" == $zielTabelle && ("Beginn" == $feld or "commit" == $feld) )
-  echo gibFeld( $MySQLDb, "SELECT NOW()", 0 );
 else
-  echo date ("d.m.Y");
+{
+  $datum = date ("Y-m-d");
+  $datum = setFieldDate($datum, $fHTML5);
+  echo $datum;
+}
 ?>
