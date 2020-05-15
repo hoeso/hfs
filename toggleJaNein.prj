@@ -8,7 +8,6 @@ $toggleJaNein = array(
   "ProbeFS_Proband"=>"ja_nein",
   "anwesend_ProbandTermin"=>"ja_nein",
   "anwesend_ProbandTerminAnwesend"=>"ja_nein",
-  "bezahlt_ProbandMassnahmeBezahlt"=>"ja_nein",
   "bezahlt_ProbandMassnahmeZahlung"=>"ja_nein",
   "bestaetigt_ProbandMassnahme"=>"ja_nein",
   "bezahlt_ProbandMassnahme"=>"ja_nein",

@@ -4,4 +4,9 @@ if( "ProbandMassnahmeZahlung" == $table )
   $table = "ProbandMassnahme";
   $ID = gibFeld( $MySQLDb, "SELECT pm.ID FROM ProbandMassnahmeZahlung pmz JOIN ProbandMassnahme pm ON pmz. ProbandMassnahmeID=pm.ID WHERE $ID=pmz.ID", 0 );
 }
+else if( "ProbandTerminAnwesend" == $table )
+{
+  $table = "ProbandTermin";
+  $ID = gibFeld( $MySQLDb, "SELECT pm.ID FROM ProbandTermin pt JOIN ProbandMassnahme pm ON pt. ProbandMassnahmeID=pm.ID WHERE $ID=pt.ID", 0 );
+}
 ?>

@@ -935,10 +935,10 @@ $automat = array(
 		"setzenFortsetzung.prj",
 		"dbConnect.inc",
 		"routinen.inc",
-		"logic2PhysView.prj",
+		//"logic2PhysView.prj",
 		"toggelnEnum.prj",
 		"toggelnEnum.inc",
-		"phys2LogicalView.prj",
+		//"phys2LogicalView.prj",
 		//"setzenFortsetzung.prj", stiftet momentan Chaos in der bezahlt-Liste
 		"linkFortsetzen.inc",
 	),
