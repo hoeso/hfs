@@ -17,7 +17,11 @@ if( isset($_REQUEST["d"]) )
 if( isset($_REQUEST['d']) )
   hiddenFeldSchreiben( "d", 1 );
   
-if( $table=="Tel" && $recID )
+if( "ProbandMassnahmeBezahlt" == $table && $recID )
+{
+  gibDokumentenVerzeichnis( $recID, $_E['docsP'], $rootSubD, $childSubD );
+}
+else if( $table=="Tel" && $recID )
 {
   /***
   if( false == gibFeld( $MySQLDb, "SELECT ID FROM ProbandTel WHERE TelID=$recID", 0 ) )

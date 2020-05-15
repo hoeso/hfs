@@ -202,7 +202,7 @@ class KWview extends KWmodel
 	<img class="img18" src="images/iconmonstr-document-thin-24.png" alt="Anschreiben" usemap="#docs<?php echo $ancor;?>">
 	<a name='<?php echo $ancor;?>'></a>
         <map name="docs<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,24,24" target="_blank" title='Anschreiben' href="./mn.php?mn=goto&navi=Docs">
+        <area shape=rect coords="0,0,24,24" target="_blank" title='Anschreiben' href="./mn.php?mn=outer&a=ProbandTermin&s=a&navi=Docs">
         </map>
 	<?php
 	$js_str="onchange=\"javascript:self.location='./mn.php?mn=kw&navi=KW&a=Termin&b=" . $NOTtrainerORort . "&k=" . $this->Datum . "&u=" . $NOTkw . "&fKeinUpdate=true&f=' + this.options[this.selectedIndex].value; return true;\"";
@@ -534,7 +534,7 @@ class KWview extends KWmodel
             <img class="img18" src="images/iconmonstr-document-thin-24.png" alt="Anschreiben" usemap="#docs<?php echo $ancor;?>">
             <a name='<?php echo $ancor;?>'></a>
             <map name="docs<?php echo $ancor;?>">
-            <area shape=rect coords="0,0,24,24" target="_blank" title='Anschreiben' href="./mn.php?mn=goto&navi=Docs">
+            <area shape=rect coords="0,0,24,24" target="_blank" title='Anschreiben' href="./mn.php?mn=outer&a=ProbandTermin&s=a&navi=Docs">
             </map>
 	    <?php
 	    $js_str="onchange=\"javascript:self.location='./mn.php?mn=kw&navi=KW&a=Termin&b=" . $NOTtrainerORort . "&k=" . $this->Datum . "&u=" . $NOTkw . "&fKeinUpdate=true&f=' + this.options[this.selectedIndex].value; return true;\"";

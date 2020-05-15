@@ -34,6 +34,7 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "Proband"=>"0",
   "ProbandMassnahme"=>"0",
   "ProbandTerminAnwesend"=>"0",
+  "ProbandMassnahmeBezahlt"=>"0",
   "ProbandTermin"=>"0",
   "Umkreis"=>"0",
   "Vormerkung"=>"0",
