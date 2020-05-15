@@ -22,6 +22,7 @@ $sqlAbbrev = array(
   "OrtBehoerde"=>"ob",
   "Proband"=>"p",
   "ProbandMassnahme"=>"pm",
+  "ProbandMassnahmeZahlung"=>"pmz",
   "ProbandTermin"=>"pt",
   "EDV"=>"EDV",
   "ProbandTel"=>"pt",

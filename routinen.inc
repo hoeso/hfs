@@ -182,5 +182,7 @@ function gibDokumentenVerzeichnis( $sf, $rootDir, &$rootSubD, &$childSubD )
   }
   if( !is_dir( $rootDir . $rootSubD ) )
     mkdir( $rootDir . $rootSubD );
+  if( !is_dir( $rootDir . $rootSubD . $childSubD ) )
+    mkdir( $rootDir . $rootSubD . $childSubD );
 }
 ?>
