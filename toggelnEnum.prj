@@ -1,0 +1,7 @@
+<?php
+if( "ProbandMassnahmeZahlung" == $table )
+{
+  $table = "ProbandMassnahme";
+  $ID = gibFeld( $MySQLDb, "SELECT pm.ID FROM ProbandMassnahmeZahlung pmz JOIN ProbandMassnahme pm ON pmz. ProbandMassnahmeID=pm.ID WHERE $ID=pmz.ID", 0 );
+}
+?>
