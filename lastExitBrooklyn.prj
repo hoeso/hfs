@@ -24,7 +24,12 @@ if( "ProbandMassnahmeZahlung" == $table && $recID )
   $ta_[1]=1;// hier Feld 1 rein = bezahlt
   $di_=count($ta_);
   gibFelderArray( $MySQLDb, "SELECT pm.ID, pm.bezahlt FROM ProbandMassnahmeZahlung pmz JOIN ProbandMassnahme pm ON pmz. ProbandMassnahmeID=pm.ID WHERE $recID=pmz.ID", $ta_ );
-  if( true == habWas( $ta_, 0, $di_-1 ) )
+  if( false == habWas( $ta_, 0, $di_-1 ) )
+  {
+    ?>Massnahme nicht auslesbar.<?php
+    break;
+  }
+   
   {
     /***
      *** hier noch Pruefung ob an allen Terminen anwesend
@@ -34,10 +39,6 @@ if( "ProbandMassnahmeZahlung" == $table && $recID )
       gibDokumentenVerzeichnis( $ta_[0], $_E['docsP'], $rootSubD, $childSubD );
       echo "\n$ta_[0] - $_E[docsP] - $rootSubD - $childSubD";
     }
-  }
-  else
-  {
-    ?>Massnahme nicht auslesbar.<?php
   }
 }
 else if( $table=="Tel" && $recID )
