@@ -907,7 +907,10 @@ $forkAutomat = array(
 		"odtAlloc.prj",
 		"domDocAlloc.inc",
 		"peekVormerkung.prj",
-		"pokeDoc.inc",
+		"patchDoc.inc",
+		"domVormerkung.prj",
+		"stop.inc",
+		"saveDocument.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",

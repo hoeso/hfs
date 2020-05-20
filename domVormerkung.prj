@@ -1,0 +1,45 @@
+<?php
+/************ Input **********************************************************
+ * hier wird der Bericht in das Verzeichnis <AuftragID>/<BerichtNr>.odt gespeichert
+ *            	    : AuftragID
+ * berichtNr  	    : Bericht Nr
+ * ext        	    : Extension des Archivs (.odt)
+ * vorlage    	    : Berichtsvorlage
+ * xmlStream  	    : zum Durchschleusen
+ *            	    : 
+ * _E[leafDoc]      : Proband-Wurzelverzeichnis im Dokumenten-Pool
+ *                  - dorthin wird gespeichert
+ * _A[extension]    : Extension des Archivs (.odt)
+ * _A[rawDoc] 	    : Vorlage
+ * _A['xmlStream']  : generiertes Dokument als Speicherobjekt
+ * 
+ *****************************************************************************/
+$debug=0;
+/*** 1. Verzeichnis fuer den Vertrag anlegen                         ***/
+$vDir = $_E['leafDoc'] . "/v";
+if( !is_dir( $vDir ) )
+  mkdir( $vDir );
+
+/*** 2. bei mehrfachem Anfordern eines Vertrages  den  Dateinamen    ***
+ ***    "inkrementieren"                                             ***/
+$f=1;
+$file = $vDir . "/vv" . $_A['extension'];
+while( file_exists( $file ) )
+{
+  ++$f;
+  $file = $vDir . "/vv-" . $f . $_A['extension'];
+}
+
+/*** 3. Archiv der Vorlage kopieren auf Archiv des Vertrages         ***/
+$_A['doc'] = $file;
+if( $debug ) echo "vorlage: $_A[rawDoc] vertrag: $_A[doc]<br>";
+if( !copy( $_A['rawDoc'], $_A['doc'] ) )
+{
+  $modul=$_SERVER['PHP_SELF'];
+  echo"\n$modul : interner Fehler 01 mit $_A[rawDoc] und $_A[doc]<br>";
+  /*** Verzeichnis sub und sub/b brauchen momentan o+w . ***/
+  exit;
+}
+// spaeter zum Download anzubietendes odt Archiv Objekt erzeugen:
+$archivBericht = new PclZip( $_A['doc'] );
+?>
