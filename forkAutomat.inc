@@ -909,7 +909,6 @@ $forkAutomat = array(
 		"peekVormerkung.prj",
 		"patchDoc.inc",
 		"domVormerkung.prj",
-		"stop.inc",
 		"saveDocument.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext

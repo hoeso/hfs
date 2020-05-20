@@ -20,7 +20,7 @@ if( "5" <= $versionPHP[0] )
   {
     $modul=$_SERVER['PHP_SELF'];
     echo"\n$modul : interner Fehler 02 mit $content<br>";
-    $wZu="anbietendKnopfZurueck";
+    $_E['wZu']="anbietendKnopfZurueck";
     include("forkZu.inc");
   }
 }
@@ -48,7 +48,7 @@ if( !$_A['archiveRawDoc']->delete( PCLZIP_OPT_BY_NAME, $_A['xml'] ) )
   echo"\n$modul : interner Fehler 05 beim L&ouml;schen von $_A[xml]:" . $str . "<br>";
   if( PCLZIP_ERR_NO_ERROR == $str )
     echo"\nM&ouml;glicherweise ist in htdocs kein Schreibrecht gesetzt<br>";
-  $wZu="anbietendKnopfZurueck";
+  $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
 
@@ -57,7 +57,7 @@ if( !$_A['archiveRawDoc']->add( $content, PCLZIP_OPT_REMOVE_ALL_PATH ) )
 {
   $modul=$_SERVER['PHP_SELF'];
   echo"\n$modul : interner Fehler 06 beim Schreiben von $content<br>";
-  $wZu="anbietendKnopfZurueck";
+  $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
 ?>
