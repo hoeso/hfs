@@ -1,0 +1,13 @@
+<?php
+/************ Input **********************************************************
+ * _E[leafDoc]      : Proband-Wurzelverzeichnis im Dokumenten-Pool
+ * _A[rawDoc] 	    : _A[o]? vv.odt ; _A[t]? vt.odt
+ * _A[o]      	    : Ort.ID des vorgemerkten Ortes
+ * _A[t]      	    : Termin.ID des Kurses im Vertrag
+ *            	    : 
+ *****************************************************************************/
+$debug=1;
+if( $debug ) echo "\nI. archivVorlage : $_A[rawDoc]<br>";
+//PclTraceOn(2);
+$_A['archiveRawDoc'] = new PclZip( $_A['rawDoc'] );
+?>

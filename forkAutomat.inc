@@ -80,16 +80,6 @@ $forkAutomat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
-	"betreuend"=>array( // CFS
-		"eiZuBetreuend.prj",
-		"mn.prj",
-		"automatReloaded.inc",
-	),
-	"bevormundend"=>array( // CFS
-		"eiZuBevormundend.prj",
-		"mn.prj",
-		"automatReloaded.inc",
-	),
 	"erfassendProband"=>array( // Kopie von anbietendVerlinkenEntitaet
 		"hauptteil.html",
 		"haupttext.html",
@@ -912,6 +902,20 @@ $forkAutomat = array(
 	"verguetendNachEingang"=>array(
 		"verguetenNachEingang.prj",
 		"triggernSammelgutschriftBetrag.prj",
+	),
+	"vormerkend"=>array(
+		"odtAlloc.prj",
+		"domDocAlloc.inc",
+		"serienfelderVormerkung.prj",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
 	),
 	"waehlend0"=>array(
 		"eiZuWaehlend0.inc",
