@@ -906,7 +906,8 @@ $forkAutomat = array(
 	"vormerkend"=>array(
 		"odtAlloc.prj",
 		"domDocAlloc.inc",
-		"serienfelderVormerkung.prj",
+		"peekVormerkung.prj",
+		"pokeDoc.inc",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",

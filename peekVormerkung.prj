@@ -1,0 +1,31 @@
+<?php
+/*** das Oeffnen des odt-Archivs und das Entpacken der xml-Datei hat funktioniert ***/
+/************ Input **********************************************************
+ * _E[ID]    : ProbandMassnahme.ID
+ * 
+ *****************************************************************************/
+
+$fmtDatum = "'%d.%m.%Y'"; // Tag und Monat stets zweistellig, Jahr vierstellig
+
+if( !isset($_E['ID']) )
+{
+  echo"Unbekannte Proband-Massnahme!? Ende.<br>";
+  $wZu="anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
+$sql = "SELECT b. Bundesland, 'Konstante' FROM Vormerkung v JOIN ProbandMassnahme pm ON v. ProbandMassnahmeID=pm.ID JOIN Ort o ON v. OrtID=o.ID JOIN Bundesland b ON o. BundeslandID=b.ID WHERE $_E[ID]=pm.ID";
+
+$arr[0]=0;// hier Feld 0 rein = Bundesland.Bundesland
+$arr[1]=1;// hier Feld 1 rein = Platzhalter
+
+$dim=count($arr);
+echo"\n<!-- $sql -->";
+gibFelderArray( $MySQLDb, $sql, $arr );
+
+if( false == habWas( $arr, 0, $dim-1 ) )
+{
+  echo"Unbekannte Vormerkung!? Ende.<br>";
+  $wZu="anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
+?>

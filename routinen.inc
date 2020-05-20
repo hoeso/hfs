@@ -24,6 +24,11 @@ function fuellen( $wert, $len, $fuellZ )
 // wenn Inhalt ungleich dem Index, dann wurde gefuellt
 function habWas( $arr, $start, $ende )
 {
+  if( $ende <= $start )
+  {
+    ?>Du stehst wohl auf Endlos-Schleifen, wa?!<br><?php
+    exit;
+  }
   for( $i=$start; $i<=$ende; $i++ )
   {
     if( !isset($arr[$i]) )
