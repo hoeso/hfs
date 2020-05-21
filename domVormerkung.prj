@@ -14,7 +14,7 @@
  * _A['xmlStream']  : generiertes Dokument als Speicherobjekt
  * 
  *****************************************************************************/
-$debug=0;
+$debug=1;
 /*** 1. Verzeichnis fuer den Vertrag anlegen                         ***/
 $vDir = $_E['leafDoc'] . "/v";
 if( !is_dir( $vDir ) )
@@ -41,5 +41,11 @@ if( !copy( $_A['rawDoc'], $_A['doc'] ) )
   exit;
 }
 // spaeter zum Download anzubietendes odt Archiv Objekt erzeugen:
-$archivBericht = new PclZip( $_A['doc'] );
+$_A['archiveRawDoc'] = new PclZip( $_A['doc'] );
+
+
+$_A['archiveDoc'] = new ZipArchive();
+if ($_A['archiveDoc']->open($_A['doc'], ZipArchive::CREATE)!==TRUE) {
+    exit("cannot open <$_A[doc]>\n");
+}
 ?>

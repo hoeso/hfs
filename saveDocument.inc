@@ -12,7 +12,7 @@
  *****************************************************************************/
 $debug=1;
 /*** 1. generierten Inhalt in content.xml bzw. styles.xml zwischenspeichern ***/
-$content = $_E['leafDoc'] . "/" . $_A['xml'];
+$content = $_E['leafDoc'] . "/v/" . $_A['xml'];
 if( $debug ) echo "dokument nach $content<br>";
 if( "5" <= $versionPHP[0] )
 {
@@ -26,7 +26,7 @@ if( "5" <= $versionPHP[0] )
 }
 
 if( $debug ) echo "neues Archiv = $_A[doc]. alter Inhalt: $_A[xml]<br>";
-if( $debug )
+if( 0/*$debug*/ )
 {
   if (($list = $_A['archiveRawDoc']->listContent()) == 0) {
     die("Error : ".$_A['archiveRawDoc']->errorInfo(true));
@@ -41,6 +41,23 @@ if( $debug )
 }
 
 /*** 2. alte Vorlage aus neuem Archiv loeschen                       ***/
+if( FALSE === $_A['archiveDoc']->deleteName($_A['xml']) )
+{
+  ?>Fehler 05 beim L&ouml;schen von <?php echo $_A['xml']?><br><?php
+  $_E['wZu']="anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
+
+
+//if( FALSE === $_A['archiveDoc']->addFile($_A['xml'], basename($_A['xml']) ) )
+if( FALSE === $_A['archiveDoc']->addFile($content, basename($content) ) )
+{
+  ?>Fehler 06 beim Schreiben von <?php echo $content?><br><?php
+  $_E['wZu']="anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
+
+if( 0 ) {
 if( !$_A['archiveRawDoc']->delete( PCLZIP_OPT_BY_NAME, $_A['xml'] ) )
 {
   $modul=$_SERVER['PHP_SELF'];
@@ -52,6 +69,7 @@ if( !$_A['archiveRawDoc']->delete( PCLZIP_OPT_BY_NAME, $_A['xml'] ) )
   include("forkZu.inc");
 }
 
+
 /*** 6. neuen Inhalt ins Archiv schreiben                            ***/
 if( !$_A['archiveRawDoc']->add( $content, PCLZIP_OPT_REMOVE_ALL_PATH ) )
 {
@@ -59,5 +77,6 @@ if( !$_A['archiveRawDoc']->add( $content, PCLZIP_OPT_REMOVE_ALL_PATH ) )
   echo"\n$modul : interner Fehler 06 beim Schreiben von $content<br>";
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
+}
 }
 ?>
