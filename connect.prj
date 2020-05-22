@@ -1,4 +1,20 @@
 <?php
 $_E['projekt']="infar";
 $_E['resourceDatei']="projekt.rc";
+/***
+ *** Projekt-Variablen setzen
+ ***/
+$str = $_E['projekt'] . "Doc";
+$strA = $str . "A";
+$strP = $str . "P";
+if( !isset($_SERVER[$strA]) || !isset($_SERVER[$strP]) )
+{
+  ?>Pfad zur Dokumenten-Verwaltung ist nicht gesetzt.
+  <?php echo "\n";?></div></div>
+  <?php echo "\n";?>
+  </body></html><?php
+  exit;
+}
+$_E['docsA'] = $_SERVER[$strA];
+$_E['docsP'] = $_SERVER[$strP];
 ?>

@@ -3,12 +3,20 @@
  * $_E['entitaet']    :  Name der logischen Liste
  * 
  *****************************************************************************/
-if( isset($_E['lView']) && "Nachschulung" == $_E['lView'] )
+if( !isset($_E) )
+  return;
+if( isset($_E['entitaet']) && "ProbandTerminAnwesend" == $_E['entitaet'] )
+  $_E['entitaet'] = "ProbandTermin";
+if( isset($table) && "ProbandTerminAnwesend" == $table )
+  $table = "ProbandTermin";
+if( isset($_E['entitaet']) && "ProbandMassnahmeBezahlt" == $_E['entitaet'] )
+  $_E['entitaet'] = "ProbandMassnahme";
+if( isset($table) && "ProbandMassnahmeBezahlt" == $table )
+  $table = "ProbandMassnahme";
+else if( isset($_E['lView']) && "Nachschulung" == $_E['lView'] )
   $_E['lView'] = "Termin";
+else if( isset($_E['lView']) && "Docs" == $_E['lView'] )
+  $_E['lView'] = "Proband";
 if( isset($tableRE) && "Eingang" == $tableRE )
   $tableRE = "Portal";
-else if( isset($_E) && isset($_E['entitaet']) && "MA-Einsatz" == $_E['entitaet'] ) // funktioniert nicht
-  $_E['entitaet'] = "MAKlientVS";
-else if( isset($table) && "MA-Einsatz" == $table ) // funktioniert nicht
-  $table = "MAKlientVS";
 ?>

@@ -1,0 +1,26 @@
+<?php
+/************ Input **********************************************************
+ * _A[t]      	    : Termin.ID des Kurses im Vertrag
+ * _A[o]      	    : Ort.ID des vorgemerkten Ortes
+ *            	    : 
+ *****************************************************************************/
+$_A['extension'] = ".odt";
+$_A['xml'] = "content.xml";
+if( isset($_A) and isset($_A['o']) )
+{
+  $_A['rawDoc'] = "docs/vv" . $_A['extension'];
+  $_E['wZu']="vormerkend";
+}
+else if( isset($_A) and isset($_A['t']) )
+{
+  $_A['rawDoc'] = "docs/vt" . $_A['extension'];
+  ?>Kursanmeldungen kommen nach den Vormerkungen dran.<br><?php
+  $_E['wZu']="anbietendKnopfZurueck";
+}
+else
+{
+  ?>Unklar welcher Vertrag (Vormerkung o. Termin) erzeugt werden soll. Ende.<br><?php
+  $_E['wZu']="anbietendKnopfZurueck";
+}
+include("forkZu.inc");
+?>

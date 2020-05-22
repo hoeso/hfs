@@ -1,5 +1,5 @@
 <?php
 if( "Termin" == $zielTabelle && "Kuerzel" == $feld )
-  {}
+{}
   //echo gibFeld( $MySQLDb, "SELECT DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 3 DAY),'%d.%m.%Y')", 0 );
 ?>

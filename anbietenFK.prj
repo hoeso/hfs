@@ -1,8 +1,8 @@
 <?php
 $arrFKMM = array(
-	"MAKlient-"=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
-		"MA",
-		"Klient",
+	"OrtBehoerde"=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
+		"Behoerde",
+		"Ort",
 	),
 );
 $_A['MM'] = array(

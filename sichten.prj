@@ -33,6 +33,7 @@ mitgezaehlt! ***/
   "EDVAngebot_2"=>"nein,ja",// erledigt
   "Termin_1"=>"4,1,2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96",
   "Termin_2"=>"ja,nein", // Vormerkung
+  "Terminart"=>"0,1,2,3,4,5,6,7,8,9",
   "Topic"=>"1,2,3,4,5,6,7,8,9,10",
   "TopicForderung"=>"2,1",
   "Trainer"=>"Mag.,Dr.,Ing.Mag.,",
@@ -132,12 +133,18 @@ $Select=array
   
   "ProbandMail"=>"SELECT pm.ID, CONCAT(p.Vorname,' ',p.Name,' ',DATE_FORMAT(p.geborenAm,'%d.%m.%Y')) AS Proband, m.Mail FROM ProbandMail pm JOIN Mail m ON pm. MailID=m.ID JOIN Proband p ON pm. ProbandID=p.ID",
   
-  "Proband"=>"SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, IF(tel.Tel IS NULL,CONCAT('<a href=\"','mn.php?mn=ij&a=Tel&b=Proband&c=1&r=',p.ID,'\">Tel</a>'),tel.Tel) AS Tel, IF(m.Mail IS NULL,CONCAT('<a href=\"','mn.php?mn=ij&a=Mail&b=Proband&c=1&r=',p.ID,'\">Mail</a>'),m.Mail) AS Mail, IF(ob.PLZ IS NULL,CONCAT('<a href=\"','mn.php?mn=innj&a=ProbandAdresse&b=Proband&c=Adresse&re=1&re1=Behoerde&1n=1&1n1=OrtBehoerde&i=2&sl=2&sl1=Proband&sl2=Adresse&1nf=2&r=',p.ID,'\">Adresse</a>'),CONCAT(ob.Ort,': ',a.Strasse,' ',a.Nr)) AS Adresse FROM Proband p LEFT JOIN ProbandTel pt ON pt.ProbandID=p.ID LEFT JOIN Tel tel ON pt.TelID=tel.ID LEFT JOIN ProbandMail pm ON pm.ProbandID=p.ID LEFT JOIN Mail m ON pm.MailID=m.ID LEFT JOIN ProbandAdresse pa ON pa.ProbandID=p.ID LEFT JOIN Adresse a ON pa.AdresseID=a.ID LEFT JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID",
+  "Proband"=>"SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, IF(tel.Tel IS NULL,CONCAT('<a href=\"','mn.php?mn=ij&a=Tel&b=Proband&c=1&r=',p.ID,'\">Tel</a>'),tel.Tel) AS Tel, IF(m.Mail IS NULL,CONCAT('<a href=\"','mn.php?mn=ij&a=Mail&b=Proband&c=1&r=',p.ID,'\">Mail</a>'),m.Mail) AS Mail, CONCAT(ob.PLZ,' ',ob.ORT,', ',p.Strasse) AS Adresse FROM Proband p LEFT JOIN ProbandTel pt ON pt.ProbandID=p.ID LEFT JOIN Tel tel ON pt.TelID=tel.ID LEFT JOIN ProbandMail pm ON pm.ProbandID=p.ID LEFT JOIN Mail m ON pm.MailID=m.ID JOIN OrtBehoerde ob ON p. OrtBehoerdeID=ob.ID",
   
   "ProbandMassnahme"=>"SELECT pm.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm, m.Massnahme, pm.bezahlt, pm.bestaetigt FROM ProbandMassnahme pm JOIN Proband p ON pm.ProbandID=p.ID JOIN Massnahme m ON pm.MassnahmeID=m.ID",
   
+  "ProbandMassnahmeZahlung"=>"SELECT pmz.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm, m.Massnahme, DATE_FORMAT( pmz.Datum,'%d.%m.%Y' ) AS am, pmz.Betrag, pm.bezahlt  FROM ProbandMassnahmeZahlung pmz JOIN ProbandMassnahme pm ON pmz. ProbandMassnahmeID=pm.ID JOIN Proband p ON pm.ProbandID=p.ID JOIN Massnahme m ON pm.MassnahmeID=m.ID",
+  
   "ProbandTermin"=>"SELECT pt.ID, te.Kuerzel, CONCAT(tr.Name,' ',tr.Vorname) AS Trainer, t.Tag, DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%d. %M' ) AS Termin, TIME_FORMAT(v.Quart,'%H:%i') AS Start, CONCAT(p.Name,' ',p.Vorname) AS Proband, pt.anwesend, m.Massnahme FROM ProbandTermin pt JOIN Termin te ON pt. TerminID=te.ID JOIN Terminart l ON te. TerminartID=l.ID JOIN Ort o ON te. OrtID=o.ID JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID JOIN VS v ON te.VSID=v.ID JOIN ProbandMassnahme pm ON pt. ProbandMassnahmeID=pm.ID JOIN Proband p ON pm.ProbandID=p.ID JOIN Massnahme m ON pm.MassnahmeID=m.ID",
   
+  "ProbandTerminAnwesend"=>"SELECT pt.ID, te.Kuerzel, DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%d. %M %y' ) AS Termin, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm, m.Massnahme, pt.anwesend, pm.bezahlt FROM ProbandMassnahme pm JOIN Proband p ON pm.ProbandID=p.ID JOIN Massnahme m ON pm.MassnahmeID=m.ID JOIN ProbandTermin pt ON pm.ID=pt. ProbandMassnahmeID JOIN Termin te ON pt.TerminID=te.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID",
+
+  "ProbandMassnahmeBezahlt"=>"SELECT pm.ID, te.Kuerzel, DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%d. %M %y' ) AS Termin, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm, m.Massnahme, pt.anwesend, pm.bezahlt, pm.bestaetigt FROM ProbandMassnahme pm JOIN Proband p ON pm.ProbandID=p.ID JOIN Massnahme m ON pm.MassnahmeID=m.ID JOIN ProbandTermin pt ON pm.ID=pt. ProbandMassnahmeID JOIN Termin te ON pt.TerminID=te.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID",
+
   "ProbandTel"=>"SELECT pt.ID, CONCAT(p.Name,' ',p.Vorname,' ',DATE_FORMAT(p.geborenAm,'%d.%m.%Y')) AS Proband, tel.Tel FROM ProbandTel pt JOIN Tel tel ON pt. TelID=tel.ID JOIN Proband p ON pt. ProbandID=p.ID",
   
   "Termin"=>"SELECT te.ID, te.Kuerzel, k.Kategorie AS Kat, CONCAT(LEFT(tr.Vorname,1),LEFT(tr.Name,1)) AS TR, t.Tag, DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%d. %M' ) AS Termin, CONCAT(IF(YEAR(NOW())=j.Jahr,'',DATE_FORMAT(j.Jahr,'%Y-')),kw.KW) AS KW, TIME_FORMAT(v.Quart,'%H:%i') AS Start, ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*te.Dauer), '%H:%i')) AS Ende, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*te.Dauer),'%H:%i') AS Dauer FROM Termin te JOIN Terminart l ON te. TerminartID=l.ID JOIN Kategorie k ON te. KategorieID=k.ID JOIN Ort o ON te. OrtID=o.ID JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID JOIN VS v ON te.VSID=v.ID",
@@ -160,7 +167,7 @@ $Select=array
   
   "Stundensatz"=>"SELECT ss.ID, Stundensatz, Datum FROM Stundensatz ss JOIN Zeitstempel z ON (ss.ZeitstempelID=z.ID)",
 
-  "Vormerkung"=>"SELECT v.ID, CONCAT(o.Kursort,'-',o.Kuerzel) AS Kursort, v.Frist, ma.Massnahme, CONCAT(p.Vorname,' ',p.Name,'-',DATE_FORMAT(p. geborenAm,'%d.%m.%Y')) AS Proband, IF(ob.PLZ IS NULL,CONCAT('<a href=\"','mn.php?mn=innj&a=ProbandAdresse&b=Proband&c=Adresse&re=1&re1=Behoerde&1n=1&1n1=OrtBehoerde&i=2&sl=2&sl1=Proband&sl2=Adresse&1nf=2&r=',p.ID,'\">Adresse</a>'),CONCAT(ob.PLZ,' ',ob.Ort)) AS Wohnsitz FROM Vormerkung v JOIN ProbandMassnahme pm ON v. ProbandMassnahmeID=pm.ID JOIN Massnahme ma ON pm.MassnahmeID=ma.ID JOIN Proband p ON pm. ProbandID=p.ID LEFT JOIN ProbandAdresse pa ON p.ID=pa.ProbandID LEFT JOIN Adresse a ON pa. AdresseID=a.ID LEFT JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID JOIN Ort o ON v.OrtID=o.ID",
+  "Vormerkung"=>"SELECT v.ID, CONCAT(o.Kursort,'-',o.Kuerzel) AS Kursort, v.Frist, ma.Massnahme, CONCAT(p.Vorname,' ',p.Name,'-',DATE_FORMAT(p. geborenAm,'%d.%m.%Y')) AS Proband, v.Kommentar, IF(ob.PLZ IS NULL,CONCAT('<a href=\"','mn.php?mn=innj&a=ProbandAdresse&b=Proband&c=Adresse&re=1&re1=Behoerde&1n=1&1n1=OrtBehoerde&i=2&sl=2&sl1=Proband&sl2=Adresse&1nf=2&r=',p.ID,'\">Adresse</a>'),CONCAT(ob.PLZ,' ',ob.Ort)) AS Wohnsitz FROM Vormerkung v JOIN ProbandMassnahme pm ON v. ProbandMassnahmeID=pm.ID JOIN Massnahme ma ON pm.MassnahmeID=ma.ID JOIN Proband p ON pm. ProbandID=p.ID LEFT JOIN ProbandAdresse pa ON p.ID=pa.ProbandID LEFT JOIN Adresse a ON pa. AdresseID=a.ID LEFT JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID JOIN Ort o ON v.OrtID=o.ID",
 
 /* zum Kopieren:
   ""=>"",
@@ -192,7 +199,10 @@ $OrderBy=array
   "OrtBehoerde"=>" ORDER BY PLZ",
   "Proband"=>" ORDER BY Name, Vorname",
   "ProbandMassnahme"=>" ORDER BY p.Name, p.Vorname, p.geborenAm, m.Massnahme",
+  "ProbandMassnahmeZahlung"=>" ORDER BY p.Name, p.Vorname, p.geborenAm, m.Massnahme",
   "ProbandTermin"=>" ORDER BY Jahr, KW, Tag, Kursort, Terminart,  p.Name, p.Vorname",
+  "ProbandTerminAnwesend"=>" ORDER BY te.Kuerzel",
+  "ProbandMassnahmeBezahlt"=>" ORDER BY te.Kuerzel",
   "Stundensatz"=>" ORDER BY Datum DESC",
   "ProbandTel"=>" ORDER BY Proband, Tel",
   "Termin"=>" ORDER BY j.Jahr, kw.KW, te.TagID, te.vsID",

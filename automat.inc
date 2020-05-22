@@ -118,6 +118,30 @@ $automat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
+	"erzeugendVertrag"=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"dbConnect.inc",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
+		"containerTitel.php",
+		"pclzip.lib.php",
+		"verzweigenZumAnschreiben.prj",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"fuellendRE"=>array( // reine Entitaet
 		"kopfteil.html",
 		"kopfteil.prj",
@@ -612,6 +636,7 @@ $automat = array(
 		"setzenFortsetzung.prj",
 		"pruefenSymbol.prj",
 		"pokeFortsetzung.prj",
+		"logic2PhysView.prj",
 		"editierenRE.inc",
 		"erlaubenFK.inc",
 		"anbietenFK.prj",
@@ -737,6 +762,7 @@ $automat = array(
 		"pokeFortsetzung.prj",
 		"insertERM.inc",
 		"nachInsertERM.prj",
+		"ersetzenTerminKuerzel.prj",
 		"austragenVM.prj",
 		"linkFortsetzen.prj",
 		"linkFortsetzen.inc",
@@ -933,7 +959,11 @@ $automat = array(
 		"setzenFortsetzung.prj",
 		"dbConnect.inc",
 		"routinen.inc",
+		//"logic2PhysView.prj",
+		"toggelnEnum.prj",
 		"toggelnEnum.inc",
+		//"phys2LogicalView.prj",
+		//"setzenFortsetzung.prj", stiftet momentan Chaos in der bezahlt-Liste
 		"linkFortsetzen.inc",
 	),
 	"uebersichtDauertHinweisend"=>array(

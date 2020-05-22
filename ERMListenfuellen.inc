@@ -198,6 +198,7 @@ if( isset($arrEM) )
           echo "<br>";
         }
     }
+    include("hinweis.prj");
     ergebnisListeMitID( $labelEM[$i], $arrEM[$i], count($tabKopf), $Mid, $zeilen );
     $anzListeneintrag += count($Mid);
   }

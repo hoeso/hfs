@@ -17,7 +17,90 @@ if( isset($_REQUEST["d"]) )
 if( isset($_REQUEST['d']) )
   hiddenFeldSchreiben( "d", 1 );
   
-if( $table=="Tel" && $recID )
+if( "ProbandMassnahme" == $table && $recID )
+{
+  /***
+   *** pruefen ob schon Termin oder Vormerkung
+   ***/
+  $tID = gibFeld( $MySQLDb, "SELECT pt.TerminID FROM ProbandTermin pt JOIN ProbandMassnahme pm ON pt. ProbandMassnahmeID=pm.ID WHERE $recID=pm.ID", 0 );
+  if( !$tID )
+    $oID = gibFeld( $MySQLDb, "SELECT v.OrtID FROM Vormerkung v JOIN ProbandMassnahme pm ON v. ProbandMassnahmeID=pm.ID WHERE $recID=pm.ID", 0 );
+  if( !$tID && !$oID )
+  { // weder fixer Kurs noch Vormerkung
+    ?>noch vormerken oder Kurs<?php
+  }
+  else
+  {
+    /***
+     *** Wurzel-Ordner der Dokumentenverwaltung geben lassen
+     ***/
+    gibDokumentenVerzeichnis( $recID, $_E['docsP'], $rootSubD, $childSubD );
+    //echo "\n$recID - $_E[docsP] - $rootSubD - $childSubD";
+    /***
+     *** Vertrag schon raus?
+     ***/
+    $vertrag = $_E['docsP'] . $rootSubD . $childSubD . "/v/[^\.]*";// damit . und .. nicht dabei sind
+    $arrB = glob( $vertrag );
+    if( count($arrB) )
+    {}
+    else
+    {
+      $str = "";
+      if( $tID )
+        $str = "&t=$tID";
+      else if( $oID )
+        $str = "&o=$oID";
+      ?><a href="./mn.php?mn=doc&a=v&b=<?php echo $recID?>&c=<?php echo $_E['docsP']?>&e=<?php echo $rootSubD?>&f=<?php echo $childSubD; echo $str?>&navi=Proband">Vertrag</a>
+      <?php
+    }
+  }
+}
+if( "ProbandMassnahmeZahlung" == $table && $recID )
+{
+  unset($ta_);
+  $ta_[0]=0;// hier Feld 0 rein = ID
+  $ta_[1]=1;// hier Feld 1 rein = bezahlt
+  $di_=count($ta_);
+  gibFelderArray( $MySQLDb, "SELECT pm.ID, pm.bezahlt FROM ProbandMassnahmeZahlung pmz JOIN ProbandMassnahme pm ON pmz. ProbandMassnahmeID=pm.ID WHERE $recID=pmz.ID", $ta_ );
+  if( false == habWas( $ta_, 0, $di_-1 ) )
+  {
+    ?>Massnahme nicht auslesbar.<?php
+  }
+  else
+  {
+    /***
+     *** Wurzel-Ordner der Dokumentenverwaltung geben lassen
+     ***/
+    gibDokumentenVerzeichnis( $ta_[0], $_E['docsP'], $rootSubD, $childSubD );
+    echo "\n$ta_[0] - $_E[docsP] - $rootSubD - $childSubD";
+    /***
+     *** Vertrag schon raus?
+     ***/
+    $vertrag = $_E['docsP'] . $rootSubD . $childSubD . "/v/[^\.]*";// damit . und .. nicht dabei sind
+    $arrB = glob( $vertrag );
+    if( count($arrB) )
+    {
+      ?>Link zum Doc <?php
+    }
+    else
+    {
+      /***
+       *** a: v = Vertrag
+       *** b:  ProbandMassnahme.ID
+       *** c e f: Wurzelverzeichnis in Doc-Verwaltung
+       ***/
+      ?><a href="./mn.php?mn=doc&a=v&b=<?php echo $ta_[0]?>&c=<?php echo $_E['docsP']?>&e=<?php echo $rootSubD?>&f=<?php echo $childSubD?>">Vertrag</a>
+      <?php
+    }
+    /***
+     *** hier noch Pruefung ob an allen Terminen anwesend
+     ***/
+    if( 'ja' == $ta_[1] )
+    {
+    }
+  }
+}
+else if( $table=="Tel" && $recID )
 {
   /***
   if( false == gibFeld( $MySQLDb, "SELECT ID FROM ProbandTel WHERE TelID=$recID", 0 ) )

@@ -24,6 +24,11 @@ function fuellen( $wert, $len, $fuellZ )
 // wenn Inhalt ungleich dem Index, dann wurde gefuellt
 function habWas( $arr, $start, $ende )
 {
+  if( $ende <= $start )
+  {
+    ?>Du stehst wohl auf Endlos-Schleifen, wa?!<br><?php
+    exit;
+  }
   for( $i=$start; $i<=$ende; $i++ )
   {
     if( !isset($arr[$i]) )
@@ -142,4 +147,47 @@ $cfsWochentag = array
   /*6*/"saturday",
   /*7*/"sunday"
 );
+
+function gibDokumentenVerzeichnis( $sf, $rootDir, &$rootSubD, &$childSubD )
+{
+  if( isset( $sf[ 6 ] ) )
+  {
+    $rootSubD = "{$sf[0]}{$sf[1]}{$sf[2]}{$sf[3]}/";
+    $childSubD = intval("{$sf[4]}{$sf[5]}{$sf[6]}");
+  }
+  else if( isset( $sf[ 5 ] ) )
+  {
+    $rootSubD = "{$sf[0]}{$sf[1]}{$sf[2]}/";
+    $childSubD = intval("{$sf[3]}{$sf[4]}{$sf[5]}");
+  }
+  else if( isset( $sf[ 4 ] ) )
+  {
+    $rootSubD = "{$sf[0]}{$sf[1]}/";
+    $childSubD = intval("{$sf[2]}{$sf[3]}{$sf[4]}");
+  }
+  else if( isset( $sf[ 3 ] ) )
+  { // 1000 - 9999
+    $rootSubD = "{$sf[0]}/";
+    $childSubD = intval("{$sf[1]}{$sf[2]}{$sf[3]}");
+  }
+  else if( isset( $sf[ 2 ] ) )
+  { // 100 - 999
+    $rootSubD = "0/";
+    $childSubD = intval("{$sf[0]}{$sf[1]}{$sf[2]}");
+  } // 10 - 99
+  else if( isset( $sf[ 1 ] ) )
+  {
+    $rootSubD = "0/";
+    $childSubD = intval("{$sf[0]}{$sf[1]}");
+  }
+  else if( isset( $sf[ 0 ] ) )
+  { // 0 - 9
+    $rootSubD = "0/";
+    $childSubD = "{$sf[0]}{$sf[1]}";
+  }
+  if( !is_dir( $rootDir . $rootSubD ) )
+    mkdir( $rootDir . $rootSubD );
+  if( !is_dir( $rootDir . $rootSubD . $childSubD ) )
+    mkdir( $rootDir . $rootSubD . $childSubD );
+}
 ?>

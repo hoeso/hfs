@@ -140,19 +140,11 @@ if( $i < $countSL )
 	  $arrSL[ $i ] = "<A HREF=\"$hrefSL1\">$tableSL1</A>";
 	else
 	  $arrSL[ $i ] = $tableSL1;
-	if(!strcmp("anzeigenTabelle",$SL1))
-		$SL1="select * from Sonderleistung";
 	$SL1=str_replace( "\'", "'", $SL1 );
 	$SL1=str_replace( "|", " ", $SL1 );
 	$SL1=str_replace( "&uuml;", "ü", $SL1 );
-	if( isset($globalID) )
-	  $SL1=str_replace( "\$globalID", $globalID, $SL1 );
-	if( isset($gNLID) )
-	  $SL1=str_replace( "\$gNLID", $gNLID, $SL1 );
 	if( isset($SELECTSL1) )
 	  $SL1=str_replace( "\$SELECTSL1", $SELECTSL1, $SL1 );
-	if( isset($gPaketID) )
-	  $SL1=str_replace( "\$gPaketID", $gPaketID, $SL1 );
 //echo"\n<!-- $SL1 --><br>";
 	$SL[ $i ] = $SL1;
 	$labelSL[ $i++ ] = "SL1";
@@ -168,12 +160,8 @@ if( $i < $countSL )
 	$SL2=str_replace( "\'", "'", $SL2 );
 	$SL2=str_replace( "|", " ", $SL2 );
 	$SL2=str_replace( "&uuml;", "ü", $SL2 );
-	if( isset($globalID) )
-	  $SL2=str_replace( "\$globalID", $globalID, $SL2 );
 	if( isset($SELECTSL1) )
 	  $SL2=str_replace( "\$SELECTSL1", $SELECTSL1, $SL2 );
-	if( isset($gPaketID) )
-	  $SL2=str_replace( "\$gPaketID", $gPaketID, $SL2 );
 	$SL[ $i ] = $SL2;
 	$labelSL[ $i++ ] = "SL2";
 	if( $debug )
@@ -184,8 +172,6 @@ if( $i < $countSL )
 	$arrSL[ $i ] = $tableSL3;
 	$SL3=str_replace( "\'", "'", $SL3 );
 	$SL3=str_replace( "&uuml;", "ü", $SL3 );
-	if( isset($globalID) )
-	  $SL3=str_replace( "\$globalID", $globalID, $SL3 );
 	$SL[ $i ] = $SL3;
 	$labelSL[ $i++ ] = "SL3";
 	if( $debug )
@@ -196,8 +182,6 @@ if( $i < $countSL )
 	$arrSL[ $i ] = $tableSL4;
 	$SL4=str_replace( "\'", "'", $SL4 );
 	$SL4=str_replace( "&uuml;", "ü", $SL4 );
-	if( isset($globalID) )
-	  $SL4=str_replace( "\$globalID", $globalID, $SL4 );
 	$SL[ $i ] = $SL4;
 	$labelSL[ $i++ ] = "SL4";
 	if( $debug )

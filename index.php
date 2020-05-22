@@ -44,6 +44,13 @@ if( isset($_REQUEST["navi"]) )
       $_REQUEST["a"] = "Termin";
       $_REQUEST["i"] = "3";
     break;
+    case 'Geld':
+      $_REQUEST['mn'] = "sl_pe";
+      $_REQUEST["a"] = "ProbandMassnahmeZahlung";
+      $_REQUEST["sl"] = "1";
+      $_REQUEST["sl1"] = "ProbandMassnahme";
+      $_REQUEST["i"] = "2";
+    break;
     case 'Plan':
       $_REQUEST['mn'] = "1432";
       $_REQUEST["a"] = "Termin";

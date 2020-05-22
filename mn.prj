@@ -27,6 +27,30 @@ switch( $_E['mn'] )
     $_e = array( $_REQUEST[""], $_REQUEST[""] );
   break;
 */
+  case "doc":
+      /***
+       *** a: v = Vertrag
+       *** b:  ProbandMassnahme.ID
+       *** c e f: Wurzelverzeichnis in Doc-Verwaltung
+       *** o | t:  Ort.ID | Termin.ID
+       ***/
+    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"]) or !isset($_REQUEST["f"]) or !isset($_REQUEST["e"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    switch( $_REQUEST["a"] )
+    {
+      case 'v':
+        $_E['wZu'] = "erzeugendVertrag";
+      break;
+    }
+    $_E['leafDoc'] = $_REQUEST["c"] . $_REQUEST["e"] . $_REQUEST["f"];
+    if( isset($_REQUEST["o"]) )
+      $_A['o'] = $_REQUEST["o"];
+    if( isset($_REQUEST["t"]) )
+      $_A['t'] = $_REQUEST["t"];
+    $_E['entitaet'] = "ProbandMassnahme";
+    $_E['ID'] = $_REQUEST["b"];
+    $_e = array( "neues Anschreiben", $_REQUEST["a"] );
+  break;
   case "goto":
     if( !isset($_REQUEST["navi"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
@@ -148,7 +172,16 @@ switch( $_E['mn'] )
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "listend";
-    $_E['entitaet'] = $_REQUEST["a"];
+    if( isset($_REQUEST["navi"]) )
+      switch( $_REQUEST['navi'] )
+      {
+        case 'Docs':
+                $_E['entitaet'] = $_REQUEST["a"] . "Anwesend";
+        break;
+        default:
+          $_E['entitaet'] = $_REQUEST["a"];
+        break;
+      }
     $_E['lView'] = $_REQUEST["a"];
     $_e = array( $_REQUEST["a"], $_REQUEST["a"] );
   break;
@@ -218,9 +251,10 @@ switch( $_E['mn'] )
 	  $_E["entitaet1N"] = "ProbandMail";
           $_E["sl"] = "1";
           $_E["sl1"] = "Proband";
-	  $_E["stm1"] = "SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
+	  $_E["stm1"] = "SELECT p.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
 	  $_E["stm1-filter"] = " WHERE $_REQUEST[r]=p.ID";
 	}
+	$_E["klick1"] = "true";
     	break;
       case "Tel":
         $_E["stm2"] = "SELECT tel.ID, Tel FROM Tel tel WHERE NOT EXISTS( SELECT TelID FROM ProbandTel WHERE tel.ID=TelID)";
@@ -231,9 +265,10 @@ switch( $_E['mn'] )
 	  $_E["entitaet1N"] = "ProbandTel";
           $_E["sl"] = "1";
           $_E["sl1"] = "Proband";
-	  $_E["stm1"] = "SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
+	  $_E["stm1"] = "SELECT p.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
 	  $_E["stm1-filter"] = " WHERE $_REQUEST[r]=p.ID";
 	}
+	$_E["klick1"] = "true";
     	break;
     }
   break;
@@ -289,7 +324,7 @@ switch( $_E['mn'] )
     	  $_E["stm$i-filter"] = " ORDER BY o.Kuerzel";
         break;
         case "Proband":
-          $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) FROM Proband p";
+          $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) FROM Proband p";
     	  $_E["stm$i-filter"] = " WHERE $_REQUEST[r]=p.ID";
     	  switch( $_REQUEST["re1"] )
     	  {
@@ -330,6 +365,8 @@ switch( $_E['mn'] )
       $_E['value2Join'] = $_REQUEST["value2Join"];
     if( isset($_REQUEST["verbEntitaet"]) )
       $_E['verbEntitaet'] = $_REQUEST["verbEntitaet"];
+    if( isset($_REQUEST["ju"]) )
+      $_E['jumpNow'] = $_REQUEST["ju"];
   break;
   case "kw": // Zeigt Kalender an
     if( !isset($_REQUEST["k"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
@@ -545,7 +582,7 @@ switch( $_E['mn'] )
 	    $_E["stm$i-filter"] = " ORDER BY o.Kuerzel";
           break;
           case "Proband":
-            $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
+            $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
 	    $_E["stm$i-filter"] = " ORDER BY p.Name, p.Vorname, p.geborenAm";
           break;
           case "ProbandMassnahme":
@@ -613,9 +650,9 @@ switch( $_E['mn'] )
           break;
           case "ProbandMassnahme":
 	    /*** mit Adresse: ***/
-            $_E["stm$i"] = "SELECT pm.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, ma.Massnahme, IF(ob.PLZ IS NULL,'Adresse ??',CONCAT('Wohnsitz: ',ob.PLZ,' ',ob.Ort)) FROM ProbandMassnahme pm JOIN Massnahme ma ON pm.MassnahmeID=ma.ID JOIN Proband p ON pm.ProbandID=p.ID LEFT JOIN ProbandAdresse pa ON pm.ProbandID=pa.ProbandID JOIN Adresse a ON pa. AdresseID=a.ID JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID";
+            $_E["stm$i"] = "SELECT pm.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, ma.Massnahme, IF(ob.PLZ IS NULL,'Adresse ??',CONCAT('Wohnsitz: ',ob.PLZ,' ',ob.Ort)) FROM ProbandMassnahme pm JOIN Massnahme ma ON pm.MassnahmeID=ma.ID JOIN Proband p ON pm.ProbandID=p.ID LEFT JOIN ProbandAdresse pa ON pm.ProbandID=pa.ProbandID JOIN Adresse a ON pa. AdresseID=a.ID JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID";
 	    /*** nur Proband: ***/
-            //$_E["stm$i"] = "SELECT pm.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, ma.Massnahme FROM ProbandMassnahme pm JOIN Massnahme ma ON pm.MassnahmeID=ma.ID JOIN Proband p ON pm.ProbandID=p.ID";
+            //$_E["stm$i"] = "SELECT pm.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, ma.Massnahme FROM ProbandMassnahme pm JOIN Massnahme ma ON pm.MassnahmeID=ma.ID JOIN Proband p ON pm.ProbandID=p.ID";
 	    $_E["stm$i-filter"] = " ORDER BY p.Name, ma.Massnahme";
           break;
           default:
@@ -669,7 +706,7 @@ switch( $_E['mn'] )
 	    $_E["stm$i-filter"] = " ORDER BY o.Kuerzel";
           break;
           case "Proband":
-            $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
+            $_E["stm$i"] = "SELECT p.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, DATE_FORMAT( p.geborenAm,'%d.%m.%Y' ) AS geborenAm FROM Proband p";
 	    switch( $_REQUEST["re1"] )
 	    {
 	      case 'Mail':
@@ -1234,6 +1271,8 @@ switch( $_E['mn'] )
     //$_E['entitaet'] = $_REQUEST["zielTabelle"];
     //$_eTitel = array( "in {$_E['entitaet']} speichern ..." );
     $_eTitel = array( $_REQUEST["b"] );
+    if( isset($_REQUEST["klick1"]) )
+      $_E['jumpNow'] = $_REQUEST["klick1"];
     if( isset($_REQUEST["navi"]) )
       $_E['navi'] = $_REQUEST["navi"];
   break;

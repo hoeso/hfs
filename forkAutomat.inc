@@ -64,15 +64,21 @@ $forkAutomat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
-	"betreuend"=>array( // CFS
-		"eiZuBetreuend.prj",
-		"mn.prj",
-		"automatReloaded.inc",
-	),
-	"bevormundend"=>array( // CFS
-		"eiZuBevormundend.prj",
-		"mn.prj",
-		"automatReloaded.inc",
+	"anlegendTermin"=>array(
+		"insertERM.inc",
+		"nachInsertERM.prj",
+		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
+		"linkFortsetzen.inc",
+		//"nachSpeichernAnzeigen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
 	),
 	"erfassendProband"=>array( // Kopie von anbietendVerlinkenEntitaet
 		"hauptteil.html",
@@ -84,11 +90,24 @@ $forkAutomat = array(
 		"pokeFortsetzung.prj",
 		"wohinDamit.prj",
 		"wohinDamit.inc",
+		"eiZuWrapperFK.inc",
 		"formularERMintro.inc",
 		//"mapSpaltennamen.inc",
 		"ERMListenfuellen.inc",
 		"ERMsubmit.inc",
 		"gibWeiter.inc",
+		// 1:N-Liste anbieten
+		"beendenTabelle.inc",
+		"wieWeiterProband.prj",
+		"abstand.html",
+		"wohinDamit.prj",
+		"wohinDamit.inc",
+		"wrapperFBS10.inc",
+		"formularERMintro.inc",
+		//"mapSpaltennamen.inc",
+		"ERMListenfuellen.inc",
+		"ERMsubmit.inc",
+		"wieWeiter.inc",
 		//"anzeigenZieltabelle.inc",
 		"linkFortsetzen.prj",
 		"linkFortsetzen.inc",
@@ -883,6 +902,23 @@ $forkAutomat = array(
 	"verguetendNachEingang"=>array(
 		"verguetenNachEingang.prj",
 		"triggernSammelgutschriftBetrag.prj",
+	),
+	"vormerkend"=>array(
+		"odtAlloc.prj",
+		"domDocAlloc.inc",
+		"peekVormerkung.prj",
+		"patchDoc.inc",
+		"domVormerkung.prj",
+		"saveDocument.inc",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
 	),
 	"waehlend0"=>array(
 		"eiZuWaehlend0.inc",

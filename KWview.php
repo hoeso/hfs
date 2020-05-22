@@ -192,17 +192,17 @@ class KWview extends KWmodel
 	<img class="img18" src="images/iconmonstr-user-25-24.png" alt="Probanden" usemap="#proband<?php echo $ancor;?>">
 	<a name='<?php echo $ancor;?>'></a>
         <map name="proband<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,24,24" target="_blank" title='Probanden' href="./mn.php?mn=goto&navi=Proband">
+        <area shape=rect coords="0,0,24,24" target="_blank" title='Probanden' href="./mn.php?mn=goto&1n=1&1n1=OrtBehoerde&i=2&1nf=3&navi=Proband">
         </map>
 	<img class="img18" src="images/iconmonstr-calendar-thin-24.png" alt="Vormerkungen / Termine" usemap="#termin<?php echo $ancor;?>">
 	<a name='<?php echo $ancor;?>'></a>
         <map name="termin<?php echo $ancor;?>">
         <area shape=rect coords="0,0,24,24" target="_blank" title='Vormerkungen / Termine' href="./mn.php?mn=goto&navi=Plan">
         </map>
-	<img class="img18" src="images/iconmonstr-document-thin-24.png" alt="Anschreiben" usemap="#docs<?php echo $ancor;?>">
+	<img class="img18" src="images/iconmonstr-credit-card-thin-24.png" alt="Anschreiben" usemap="#docs<?php echo $ancor;?>">
 	<a name='<?php echo $ancor;?>'></a>
         <map name="docs<?php echo $ancor;?>">
-        <area shape=rect coords="0,0,24,24" target="_blank" title='Anschreiben' href="./mn.php?mn=goto&navi=Docs">
+        <area shape=rect coords="0,0,24,24" target="_blank" title='Anschreiben' href="./mn.php?mn=outer&a=ProbandMassnahmeZahlung&s=a&navi=Geld">
         </map>
 	<?php
 	$js_str="onchange=\"javascript:self.location='./mn.php?mn=kw&navi=KW&a=Termin&b=" . $NOTtrainerORort . "&k=" . $this->Datum . "&u=" . $NOTkw . "&fKeinUpdate=true&f=' + this.options[this.selectedIndex].value; return true;\"";
@@ -371,7 +371,7 @@ class KWview extends KWmodel
 	      $aSC[$clutch] = $a[$k];
 	    }
 	  }
-          ?><a href="mn.php?mn=planend&a=Termin&sl=5&sl1=Leistung&sl2=Trainer&sl3=Ort&sl2ID=<?php echo $a[6]?>&sl4=<?php echo $row;?>&sl5=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x&i=3" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">+&nbsp;</a>&nbsp;<?php
+          ?><a href="mn.php?mn=planend&a=Termin&sl=5&sl1=Leistung&sl2=Trainer&sl3=Ort&sl1ID=<?php echo $a[7]?>&sl2ID=<?php echo $a[6]?>&sl4=<?php echo $row;?>&sl5=<?php echo $i;?>&navi=Plan&u=KW<?php echo $this->Kalenderwoche;?>&k=<?php echo $this->Kalenderwoche;?>&j=<?php echo $this->Jahr . $d;?>&planungVS_x&i=3" target="_blank" title="<?php echo $dayofweek . " " . $quart[$row];?>">+&nbsp;</a>&nbsp;<?php
 	}
 	if( isset($aSC) )
           foreach ($aSC as $sc => &$counter)
@@ -449,8 +449,8 @@ class KWview extends KWmodel
         ++$i;
       }?>
       </tr><tr><?php
-      /*** alle 20 Zeilen Header wieder einfuegen ***/
-      if( !($row % 20) )
+      /*** alle 30 Zeilen Header wieder einfuegen ***/
+      if( !($row % 30) )
       {
         $j=0;
         foreach ($this->tag as $cltch => $datm)
@@ -464,12 +464,14 @@ class KWview extends KWmodel
               $kw .= " Ort";
 	      $NOTkw .= " Trainer";
 	      $kwTitel  = " Trainer";
+	      $kwTitel  = " " . $this->DatumEU;
             }
 	    else
             {
 	      $kw .= " Trainer";
 	      $NOTkw .= " Ort";
 	      $kwTitel  = " Ort";
+	      $kwTitel  = " " . $this->DatumEU;
             }
 	    ?><td colspan=8>
 	    <!--img class="img18" src="images/punaise-18px.png" alt="diese Uhrzeit" usemap="#pinnen<?php echo $ancor;?>"-->
@@ -509,7 +511,7 @@ class KWview extends KWmodel
       	      $kw_ = new KW( "Y-m-d", $f );
       	      for( $wk=$kw_->Kalenderwoche; $wk < 54; $wk++ )
       	      {
-                ?><a href="./mn.php?mn=kw&a=TerminKW&b=<?php echo $NOTtrainerORort;?>&k=<?php echo $kw_->Datum;?>&navi=KW&u=<?php echo $wk . " " . $kwTitel; echo $f;?>#<?php echo $ancor;?>"><?php echo $kw_->DatumEU . "  [$wk]";?></a><?php
+                ?><a href="./mn.php?mn=kw&a=TerminKW&b=<?php if(isset($NOTtrainerORort)) echo $NOTtrainerORort;?>&k=<?php echo $kw_->Datum;?>&navi=KW&u=<?php echo $wk . " " . $kwTitel; echo $f;?>#<?php echo $ancor;?>"><?php echo $kw_->DatumEU . "  [$wk]";?></a><?php
       	        $kw_ = new KW( $kw_->KWweiter, $f );
       	      }?>
               </div>
@@ -522,17 +524,17 @@ class KWview extends KWmodel
 	    <img class="img18" src="images/iconmonstr-user-25-24.png" alt="Probanden" usemap="#proband<?php echo $ancor;?>">
 	    <a name='<?php echo $ancor;?>'></a>
             <map name="proband<?php echo $ancor;?>">
-            <area shape=rect coords="0,0,24,24" target="_blank" title='Probanden' href="./mn.php?mn=goto&navi=Proband">
+            <area shape=rect coords="0,0,24,24" target="_blank" title='Probanden' href="./mn.php?mn=goto&1n=1&1n1=OrtBehoerde&i=2&1nf=3&navi=Proband">
             </map>
 	    <img class="img18" src="images/iconmonstr-calendar-thin-24.png" alt="Vormerkungen / Termine" usemap="#termin<?php echo $ancor;?>">
 	    <a name='<?php echo $ancor;?>'></a>
             <map name="termin<?php echo $ancor;?>">
             <area shape=rect coords="0,0,24,24" target="_blank" title='Vormerkungen / Termine' href="./mn.php?mn=goto&navi=Plan">
             </map>
-            <img class="img18" src="images/iconmonstr-document-thin-24.png" alt="Anschreiben" usemap="#docs<?php echo $ancor;?>">
+            <img class="img18" src="images/iconmonstr-credit-card-thin-24.png" alt="Anschreiben" usemap="#docs<?php echo $ancor;?>">
             <a name='<?php echo $ancor;?>'></a>
             <map name="docs<?php echo $ancor;?>">
-            <area shape=rect coords="0,0,24,24" target="_blank" title='Anschreiben' href="./mn.php?mn=goto&navi=Docs">
+            <area shape=rect coords="0,0,24,24" target="_blank" title='Anschreiben' href="./mn.php?mn=outer&a=ProbandMassnahmeZahlung&s=a&navi=Geld">
             </map>
 	    <?php
 	    $js_str="onchange=\"javascript:self.location='./mn.php?mn=kw&navi=KW&a=Termin&b=" . $NOTtrainerORort . "&k=" . $this->Datum . "&u=" . $NOTkw . "&fKeinUpdate=true&f=' + this.options[this.selectedIndex].value; return true;\"";

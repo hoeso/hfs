@@ -1,10 +1,6 @@
 <?php
-if( "PaketAuftrag" == $zielTabelle )
-  echo"0,00";//Abzug
-else if( "Auftrag" == $zielTabelle )
-  echo"0,00";//Risiko
-else if( "Angebot" == $zielTabelle )
-  echo"0,00";//Festpreis
+if( "ProbandMassnahmeZahlung" == $zielTabelle )
+  echo"495";
 else
   echo "1";
 ?>
