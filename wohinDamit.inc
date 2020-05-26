@@ -11,7 +11,11 @@ if( isset($_REQUEST['d']) )
   $d="&d";
 else
   $d="";
-echo "\n<form name='frm{$_E['entitaet']}' onSubmit='return pruefenEingaben(this)' action='./mn.php?mn={$_E['recipient']}$d{$_A['form_send']}&a={$_E['entitaet']}&b=in%20{$_E['entitaet']}%20speichern...$candies";
+if( isset($_A['form_send']) )
+  $fs = $_A['form_send'];
+else
+  $fs = "";
+echo "\n<form name='frm{$_E['entitaet']}' onSubmit='return pruefenEingaben(this)' action='./mn.php?mn={$_E['recipient']}$d$fs&a={$_E['entitaet']}&b=in%20{$_E['entitaet']}%20speichern...$candies";
 if( isset($_E['klick1']) )
   echo "&klick1=" . $_E['klick1'];
 if( isset($_E['navi']) )
