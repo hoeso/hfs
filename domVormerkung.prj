@@ -14,7 +14,7 @@
  * _A['xmlStream']  : generiertes Dokument als Speicherobjekt
  * 
  *****************************************************************************/
-$debug=1;
+$debug=0;
 /*** 1. Verzeichnis fuer den Vertrag anlegen                         ***/
 $vDir = $_E['leafDoc'] . "/v";
 if( !is_dir( $vDir ) )

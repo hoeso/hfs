@@ -10,7 +10,7 @@
  * _A[doc]    	    : Dateiname des zu erzeugenden Dokuments
  *            	    : 
  *****************************************************************************/
-$debug=1;
+$debug=0;
 /*** 1. generierten Inhalt in content.xml bzw. styles.xml zwischenspeichern ***/
 $content = $_E['leafDoc'] . "/v/" . $_A['xml'];
 if( $debug ) echo "dokument nach $content<br>";
