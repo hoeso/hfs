@@ -1,0 +1,46 @@
+<?php
+/*** das Oeffnen des odt-Archivs und das Entpacken der xml-Datei hat funktioniert ***/
+/************ Input **********************************************************
+ * _E[ID]    : ProbandMassnahme.ID
+ * 
+ *****************************************************************************/
+
+$fmtDatum = "'%d.%m.%Y'"; // Tag und Monat stets zweistellig, Jahr vierstellig
+
+if( !isset($_E['ID']) )
+{
+  echo"Unbekannte Proband-Massnahme!? Ende.<br>";
+  $wZu="anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
+$sql = "SELECT b.URL, b. Bundesland, b.wo, b.Strasse, b.Ort, b.Tel, b.Fax, b.eMail, p.Vorname, p.Name, b.PLZ, CONCAT(IF('Herr'=p.Anrede,'r',''),' ',p.Anrede) AS Anrede, p.Strasse, CONCAT(ob.PLZ,' ',ob.Ort) AS Ort, DATE_FORMAT( p.geborenAm, $fmtDatum ) AS geboren, DATE_FORMAT( NOW(), $fmtDatum ), o.Ortschaft FROM Vormerkung v JOIN ProbandMassnahme pm ON v. ProbandMassnahmeID=pm.ID JOIN Ort o ON v. OrtID=o.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Proband p ON pm. ProbandID=p.ID JOIN OrtBehoerde ob ON p. OrtBehoerdeID=ob.ID WHERE $_E[ID]=pm.ID";
+
+$arr[0]=0;// hier Feld 0 rein = b.URL
+$arr[1]=1;// hier Feld 1 rein = Bundesland.Bundesland
+$arr[2]=2;// hier Feld 2 rein = b.wo
+$arr[3]=3;// hier Feld 3 rein = b.Strasse
+$arr[4]=4;// hier Feld 4 rein = b.Ort
+$arr[5]=5;// hier Feld 5 rein = b.Tel
+$arr[6]=6;// hier Feld 6 rein = b.Fax
+$arr[7]=7;// hier Feld 7 rein = b.eMail
+$arr[8]=8;// hier Feld 8 rein = p.Vorname
+$arr[9]=9;// hier Feld 9 rein = p.Name
+$arr[10]=10;// hier Feld 10 rein = b.PLZ
+$arr[11]=11;// hier Feld 11 rein = p.Anrede
+$arr[12]=12;// hier Feld 12 rein = p.Strasse
+$arr[13]=13;// hier Feld 13 rein = ob.(PLZ Ort)
+$arr[14]=14;// hier Feld 14 rein = p.geborenAm
+$arr[15]=15;// hier Feld 15 rein = <aktuelles Datum>
+$arr[16]=16;// hier Feld 16 rein = o.Ortschaft (des Kursortes)
+
+$dim=count($arr);
+echo"\n<!-- $sql -->";
+gibFelderArray( $MySQLDb, $sql, $arr );
+
+if( false == habWas( $arr, 0, $dim-1 ) )
+{
+  echo"Unbekannte Vormerkung!? Ende.<br>";
+  $_E['wZu']="anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
+?>

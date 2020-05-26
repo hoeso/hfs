@@ -118,6 +118,30 @@ $automat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
+	"erzeugendVertrag"=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
+		"kopfteil.html",
+		"kopfteil.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"dbConnect.inc",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"setzenFortsetzung.prj",
+		"pokeFortsetzung.prj",
+		"containerTitel.php",
+		"pclzip.lib.php",
+		"verzweigenZumAnschreiben.prj",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"fuellendRE"=>array( // reine Entitaet
 		"kopfteil.html",
 		"kopfteil.prj",

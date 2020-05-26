@@ -288,6 +288,7 @@ function suchenMitPK( $db, $table, $arr, &$nTreffer, &$ID, &$arr2 )
  *****************************************************************************/
 function speichernPKsUndAttr( $lkid, $db, $table, $arrPK, $arrAttr,$UniquePK, &$sql, &$ID )
 {
+  $debug=0;
   $ID = 0;
   $sql = "INSERT INTO $table (ID";
 
@@ -323,8 +324,15 @@ function speichernPKsUndAttr( $lkid, $db, $table, $arrPK, $arrAttr,$UniquePK, &$
 	case "date":
           if( $elem )
           {
-            $aDate = explode(".",$elem);
-            $sql .= ", '".$aDate[2]."-".$aDate[1]."-".$aDate[0]."'";
+	    if( isset($debug) and $debug )
+	      echo "\ndate : $elem<br>";
+	    if( strstr( $elem, "." ) )
+	    {
+              $aDate = explode(".",$elem);
+              $sql .= ", '".$aDate[2]."-".$aDate[1]."-".$aDate[0]."'";
+	    }
+            else
+              $sql .= ", '$elem'";
           }
           else
             $sql .= ", ''";
@@ -333,33 +341,33 @@ function speichernPKsUndAttr( $lkid, $db, $table, $arrPK, $arrAttr,$UniquePK, &$
 	     $sql .= ", '".$elem."'";
 	     break;
 	case "int":
-				     $sql .= ", $elem";
-				     break;
-				case "real":
-				     unset( $aDP );
-				     $aDP = explode( ",", $elem );
-				     if( 1 < count($aDP) )
-					 $elem = "$aDP[0].$aDP[1]";
-				     $sql .= ", $elem";
-				     break;
-				case "string":
-				     $sql .= ", '".$elem."'";
-				     break;
-				case "time":
-				     $sql .= ", '".$elem."'";
-				     break;
-				case "blob":
-				     $sql .= ", '".$elem."'";
-				     break;
-				default:
-					echo "unbekannter Datentyp $arr[1]<br>";
+	     $sql .= ", $elem";
+	     break;
+	case "real":
+	     unset( $aDP );
+	     $aDP = explode( ",", $elem );
+	     if( 1 < count($aDP) )
+		 $elem = "$aDP[0].$aDP[1]";
+	     $sql .= ", $elem";
+	     break;
+	case "string":
+	     $sql .= ", '".$elem."'";
+	     break;
+	case "time":
+	     $sql .= ", '".$elem."'";
+	     break;
+	case "blob":
+	     $sql .= ", '".$elem."'";
+	     break;
+	default:
+	echo "unbekannter Datentyp $arr[1]<br>";
 			}
 		}
 	}	
 
 	$sql .= ")";
 
-	if( isset($debug) )
+	if( isset($debug) and $debug )
 		echo "\n$sql<br>";
 	include("beforeInsertERM.prj");
 	$result = mysql_db_query( $db, $sql );

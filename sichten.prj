@@ -11,8 +11,9 @@ $enumListe=array
 (
 /*** Achtung! enum-Felder, welche in CONCAT Anweisungen stehen, werden nicht
 mitgezaehlt! ***/
-  "Proband_1"=>"nein,ja",// wdhAuffaellig
-  "Proband_2"=>"nein,ja",// ProbeFS
+  "Proband_1"=>"Herr,Frau,",
+  "Proband_2"=>"nein,ja",// wdhAuffaellig
+  "Proband_3"=>"nein,ja",// ProbeFS
   "ProbandMassnahme_1"=>"nein,ja",// bezahlt
   "ProbandMassnahme_2"=>"nein,ja",// bestaetigt
   "ProbandTermin"=>"nein,ja",// anwesend
@@ -167,7 +168,7 @@ $Select=array
   
   "Stundensatz"=>"SELECT ss.ID, Stundensatz, Datum FROM Stundensatz ss JOIN Zeitstempel z ON (ss.ZeitstempelID=z.ID)",
 
-  "Vormerkung"=>"SELECT v.ID, CONCAT(o.Kursort,'-',o.Kuerzel) AS Kursort, v.Frist, ma.Massnahme, CONCAT(p.Vorname,' ',p.Name,'-',DATE_FORMAT(p. geborenAm,'%d.%m.%Y')) AS Proband, v.Kommentar, IF(ob.PLZ IS NULL,CONCAT('<a href=\"','mn.php?mn=innj&a=ProbandAdresse&b=Proband&c=Adresse&re=1&re1=Behoerde&1n=1&1n1=OrtBehoerde&i=2&sl=2&sl1=Proband&sl2=Adresse&1nf=2&r=',p.ID,'\">Adresse</a>'),CONCAT(ob.PLZ,' ',ob.Ort)) AS Wohnsitz FROM Vormerkung v JOIN ProbandMassnahme pm ON v. ProbandMassnahmeID=pm.ID JOIN Massnahme ma ON pm.MassnahmeID=ma.ID JOIN Proband p ON pm. ProbandID=p.ID LEFT JOIN ProbandAdresse pa ON p.ID=pa.ProbandID LEFT JOIN Adresse a ON pa. AdresseID=a.ID LEFT JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID JOIN Ort o ON v.OrtID=o.ID",
+  "Vormerkung"=>"SELECT v.ID, CONCAT(o.Kursort,'-',o.Kuerzel) AS Kursort, v.Frist, ma.Massnahme, CONCAT(p.Vorname,' ',p.Name,'-',DATE_FORMAT(p. geborenAm,'%d.%m.%Y')) AS Proband, v.Kommentar, CONCAT(ob.PLZ,' ',ob.Ort) AS Wohnsitz FROM Vormerkung v JOIN ProbandMassnahme pm ON v. ProbandMassnahmeID=pm.ID JOIN Massnahme ma ON pm.MassnahmeID=ma.ID JOIN Proband p ON pm. ProbandID=p.ID JOIN OrtBehoerde ob ON p. OrtBehoerdeID=ob.ID JOIN Ort o ON v.OrtID=o.ID",
 
 /* zum Kopieren:
   ""=>"",

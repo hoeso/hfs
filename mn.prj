@@ -27,6 +27,30 @@ switch( $_E['mn'] )
     $_e = array( $_REQUEST[""], $_REQUEST[""] );
   break;
 */
+  case "doc":
+      /***
+       *** a: v = Vertrag
+       *** b:  ProbandMassnahme.ID
+       *** c e f: Wurzelverzeichnis in Doc-Verwaltung
+       *** o | t:  Ort.ID | Termin.ID
+       ***/
+    if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) or !isset($_REQUEST["c"]) or !isset($_REQUEST["f"]) or !isset($_REQUEST["e"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    switch( $_REQUEST["a"] )
+    {
+      case 'v':
+        $_E['wZu'] = "erzeugendVertrag";
+      break;
+    }
+    $_E['leafDoc'] = $_REQUEST["c"] . $_REQUEST["e"] . $_REQUEST["f"];
+    if( isset($_REQUEST["o"]) )
+      $_A['o'] = $_REQUEST["o"];
+    if( isset($_REQUEST["t"]) )
+      $_A['t'] = $_REQUEST["t"];
+    $_E['entitaet'] = "ProbandMassnahme";
+    $_E['ID'] = $_REQUEST["b"];
+    $_e = array( "neues Anschreiben", $_REQUEST["a"] );
+  break;
   case "goto":
     if( !isset($_REQUEST["navi"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
@@ -626,7 +650,7 @@ switch( $_E['mn'] )
           break;
           case "ProbandMassnahme":
 	    /*** mit Adresse: ***/
-            $_E["stm$i"] = "SELECT pm.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, ma.Massnahme, IF(ob.PLZ IS NULL,'Adresse ??',CONCAT('Wohnsitz: ',ob.PLZ,' ',ob.Ort)) FROM ProbandMassnahme pm JOIN Massnahme ma ON pm.MassnahmeID=ma.ID JOIN Proband p ON pm.ProbandID=p.ID LEFT JOIN ProbandAdresse pa ON pm.ProbandID=pa.ProbandID JOIN Adresse a ON pa. AdresseID=a.ID JOIN OrtBehoerde ob ON a. OrtBehoerdeID=ob.ID";
+            $_E["stm$i"] = "SELECT pm.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, ma.Massnahme, IF(ob.PLZ IS NULL,'Adresse ??',CONCAT('Wohnsitz: ',ob.PLZ,' ',ob.Ort)) FROM ProbandMassnahme pm JOIN Massnahme ma ON pm.MassnahmeID=ma.ID JOIN Proband p ON pm.ProbandID=p.ID JOIN OrtBehoerde ob ON p. OrtBehoerdeID=ob.ID";
 	    /*** nur Proband: ***/
             //$_E["stm$i"] = "SELECT pm.ID, CONCAT(p.Name,' ',p.Vorname) AS Proband, ma.Massnahme FROM ProbandMassnahme pm JOIN Massnahme ma ON pm.MassnahmeID=ma.ID JOIN Proband p ON pm.ProbandID=p.ID";
 	    $_E["stm$i-filter"] = " ORDER BY p.Name, ma.Massnahme";
