@@ -49,6 +49,7 @@ switch( $_E['mn'] )
       $_A['t'] = $_REQUEST["t"];
     $_E['entitaet'] = "ProbandMassnahme";
     $_E['ID'] = $_REQUEST["b"];
+    $_E["klick1"] = "true"; // Dann wird nach Generieren des Dokuments sofort zurueckgesprungen in die aufrufende Liste
     $_e = array( "neues Anschreiben", $_REQUEST["a"] );
   break;
   case "goto":

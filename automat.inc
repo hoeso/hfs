@@ -131,6 +131,7 @@ $automat = array(
 		"pokeFortsetzung.prj",
 		"containerTitel.php",
 		"pclzip.lib.php",
+		"eiZuWrapperFK.inc", // wg. $goto
 		"verzweigenZumAnschreiben.prj",
 		"linkFortsetzen.inc",
 		"endeContainer.html",//haupttext
