@@ -4,7 +4,7 @@
  *            	    : 
  *****************************************************************************/
 $debug=1;
-if( $debug ) echo"\nDOM-Datei: $_A[xml]<br>";
+if( isset($debug) and $debug ) echo"\nDOM-Datei: $_A[xml]<br>";
 $ret = $_A['archiveRawDoc']->extract( PCLZIP_OPT_BY_NAME, $_A['xml'], PCLZIP_OPT_EXTRACT_AS_STRING );
 if( !$ret )
 {

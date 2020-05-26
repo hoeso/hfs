@@ -6,8 +6,8 @@
  * _A[t]      	    : Termin.ID des Kurses im Vertrag
  *            	    : 
  *****************************************************************************/
-$debug=1;
-if( $debug ) echo "\nI. archivVorlage : $_A[rawDoc]<br>";
+$debug=0;
+if( isset($debug) and $debug ) echo "\nI. archivVorlage : $_A[rawDoc]<br>";
 //PclTraceOn(2);
 $_A['archiveRawDoc'] = new PclZip( $_A['rawDoc'] );
 ?>

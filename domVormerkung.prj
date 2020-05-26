@@ -32,7 +32,7 @@ while( file_exists( $file ) )
 
 /*** 3. Archiv der Vorlage kopieren auf Archiv des Vertrages         ***/
 $_A['doc'] = $file;
-if( $debug ) echo "vorlage: $_A[rawDoc] vertrag: $_A[doc]<br>";
+if( isset($debug) and $debug ) echo "vorlage: $_A[rawDoc] vertrag: $_A[doc]<br>";
 if( !copy( $_A['rawDoc'], $_A['doc'] ) )
 {
   $modul=$_SERVER['PHP_SELF'];

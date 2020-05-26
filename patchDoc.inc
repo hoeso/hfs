@@ -5,8 +5,8 @@
  *            	    : aus der Vorlage
  *            	    : 
  *****************************************************************************/
-$debug = 1;
-if( $debug )
+$debug = 0;
+if( isset($debug) and $debug )
 {
   $str = phpversion();
   echo "<br>PHP $str<br>";
@@ -17,7 +17,7 @@ $str2 = $_A['DOMdoc']->textContent;
 $str3 = $_A['DOMdoc']->nodeType;
 $str4 = $_A['DOMdoc']->nodeName;
 
-if( $debug )
+if( isset($debug) and $debug )
 {
   echo "nodeValue : $str<br>\n";
   echo "textContent : $str2<br>\n";
@@ -41,11 +41,11 @@ if( "5" <= $versionPHP[0] )
     }
     else  ++$i;
   }
-  if( $debug ) echo "\nAnzahl gefundene DOM-Knoten: $i<br>";
+  if( isset($debug) and $debug ) echo "\nAnzahl gefundene DOM-Knoten: $i<br>";
 }
 if( "5" <= $versionPHP[0] )
   $_A['xmlStream'] = $_A['DOMdoc']->saveXML();
-if($debug) echo "$_A[xmlStream]<br>";
+if(isset($debug) and $debug) echo "$_A[xmlStream]<br>";
 /************ Output *********************************************************
  * $ret        	    : Array mit Inhalten des odt Archives
  * _A[DOMdoc]       : DOM Objekt mit content.xml bzw. styles.xml
