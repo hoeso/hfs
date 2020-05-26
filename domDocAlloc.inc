@@ -3,7 +3,7 @@
  * _A[xml] 	    : zu extrahierende xml-Datei
  *            	    : 
  *****************************************************************************/
-$debug=1;
+$debug=0;
 if( isset($debug) and $debug ) echo"\nDOM-Datei: $_A[xml]<br>";
 $ret = $_A['archiveRawDoc']->extract( PCLZIP_OPT_BY_NAME, $_A['xml'], PCLZIP_OPT_EXTRACT_AS_STRING );
 if( !$ret )
