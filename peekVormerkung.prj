@@ -40,7 +40,7 @@ gibFelderArray( $MySQLDb, $sql, $arr );
 if( false == habWas( $arr, 0, $dim-1 ) )
 {
   echo"Unbekannte Vormerkung!? Ende.<br>";
-  $wZu="anbietendKnopfZurueck";
+  $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
 ?>
