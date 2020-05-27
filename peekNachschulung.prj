@@ -39,6 +39,20 @@ $arr[20]=20;// hier Feld 20 rein = t.day.kw.KW.j.Jahr [1]
 $arr[21]=21;// hier Feld 21 rein = Beginn [1]
 $arr[22]=22;// hier Feld 22 rein = Ende [1]
 
+/*
+$arr[23]=23;// hier Feld 23 rein = t.day.kw.KW.j.Jahr [2]
+$arr[24]=24;// hier Feld 24 rein = Beginn [2]
+$arr[25]=25;// hier Feld 25 rein = Ende [2]
+
+$arr[26]=26;// t.day.kw.KW.j.Jahr [3]
+$arr[27]=27;// Beginn [3]
+$arr[28]=28;// Ende [3]
+
+$arr[29]=29;// t.day.kw.KW.j.Jahr [4]
+$arr[30]=30;// Beginn [4]
+$arr[31]=31;// Ende [4]
+*/
+
 $dim=count($arr);
 echo"\n<!-- $sql -->";
 gibFelderArray( $MySQLDb, $sql, $arr );
@@ -49,4 +63,17 @@ if( false == habWas( $arr, 0, $dim-1 ) )
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
+
+for( $i=230; $i<count($arr); $i += $dim )
+{
+  if( 23 == $i ) // hier kommt Termin2
+  {
+    $arr[23] = $arr[45];
+    $arr[$i+1] = $arr[$i+$offs+1];
+    $arr[$i+2] = $arr[$i+$offs+2];
+  }
+}
+$arr[23] = $arr[43]; // Termin2
+$arr[24] = $arr[44]; // Beginn2
+$arr[25] = $arr[45]; // Ende2
 ?>
