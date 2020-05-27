@@ -13,7 +13,7 @@ if( !isset($_E['ID']) )
   $wZu="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
-$sql = "SELECT b.URL, b. Bundesland, b.wo, b.Strasse, b.Ort, b.Tel, b.Fax, b.eMail, p.Vorname, p.Name, b.PLZ, CONCAT(IF('Herr'=p.Anrede,'r',''),' ',p.Anrede,IF(''=p.Titel,'',CONCAT(' ',p.Titel))) AS Anrede, p.Strasse, CONCAT(ob.PLZ,' ',ob.Ort) AS Ort, DATE_FORMAT( p.geborenAm, $fmtDatum ) AS geboren, DATE_FORMAT( NOW(), $fmtDatum ), o.Ortschaft, CONCAT(o.Kursort,', ',o.PLZ,' ',o.Ortschaft,', ',o.Strasse) AS Kursstaette FROM Vormerkung v JOIN ProbandMassnahme pm ON v. ProbandMassnahmeID=pm.ID JOIN Ort o ON v. OrtID=o.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Proband p ON pm. ProbandID=p.ID JOIN OrtBehoerde ob ON p. OrtBehoerdeID=ob.ID WHERE $_E[ID]=pm.ID";
+$sql = "SELECT b.URL, b. Bundesland, b.wo, b.Strasse, b.Ort, b.Tel, b.Fax, b.eMail, p.Vorname, p.Name, b.PLZ, CONCAT(IF('Herr'=p.Anrede,'r',''),' ',p.Anrede,IF(''=p.Titel,'',CONCAT(' ',p.Titel))) AS Anrede, p.Strasse, CONCAT(ob.PLZ,' ',ob.Ort) AS Ort, DATE_FORMAT( p.geborenAm, '%d.%m.%Y' ) AS geboren, DATE_FORMAT( NOW(), '%d.%m.%Y' ), o.Ortschaft, CONCAT(o.Kursort,', ',o.PLZ,' ',o.Ortschaft,', ',o.Strasse) AS Kursstaette FROM ProbandTermin pt JOIN Termin te ON pt. TerminID=te.ID JOIN ProbandMassnahme pm ON pt. ProbandMassnahmeID=pm.ID JOIN Ort o ON te. OrtID=o.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Proband p ON pm. ProbandID=p.ID JOIN OrtBehoerde ob ON p. OrtBehoerdeID=ob.ID WHERE $_E[ID]=pm.ID";
 
 $arr[0]=0;// hier Feld 0 rein = b.URL
 $arr[1]=1;// hier Feld 1 rein = Bundesland.Bundesland

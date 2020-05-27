@@ -12,6 +12,7 @@
  * _A[extension]    : Extension des Archivs (.odt)
  * _A[rawDoc] 	    : Vorlage
  * _A['xmlStream']  : generiertes Dokument als Speicherobjekt
+ * _A[t]            : Buchstabe der Terminart.Art
  * 
  *****************************************************************************/
 $debug=0;
@@ -23,11 +24,11 @@ if( !is_dir( $vDir ) )
 /*** 2. bei mehrfachem Anfordern eines Vertrages  den  Dateinamen    ***
  ***    "inkrementieren"                                             ***/
 $f=1;
-$file = $vDir . "/vv" . $_A['extension'];
+$file = $vDir . "/v" . $_A['t'] . $_A['extension'];
 while( file_exists( $file ) )
 {
   ++$f;
-  $file = $vDir . "/vv-" . $f . $_A['extension'];
+  $file = $vDir . "/v" . $_A['t'] . "-" . $f . $_A['extension'];
 }
 
 /*** 3. Archiv der Vorlage kopieren auf Archiv des Vertrages         ***/

@@ -39,15 +39,26 @@ if( "ProbandMassnahme" == $table && $recID )
     /***
      *** Vertrag schon raus?
      ***/
-    $vertrag = $_E['docsP'] . $rootSubD . $childSubD . "/v/[^\.]*";// damit . und .. nicht dabei sind
+    $vertrag = $_E['docsP'] . $rootSubD . $childSubD . "/v/[^\.]*.odt";// damit . und .. nicht dabei sind
     $arrB = glob( $vertrag );
     if( count($arrB) )
-    {}
+    {
+      /***
+       *** Vertrag anbieten
+       ***/
+      for( $i=0; $i < count($arrB); $i++ )
+      {
+        echo "\n";
+        ?><a href="<?php echo $_E['docsA']. $rootSubD . $childSubD . "/v/" . basename($arrB[$i])?>"><?php echo basename($arrB[$i])?></a><?php
+      }
+    }
     else
     {
       $str = "";
       if( $tID )
-        $str = "&t=$tID";
+      {
+        $str = "&t=" . gibFeld( $MySQLDb, "SELECT ta.Art FROM Termin te JOIN Terminart ta ON te. TerminartID=ta.ID WHERE $tID=te.ID", 0 );
+      }
       else if( $oID )
         $str = "&o=$oID";
       ?><a href="./mn.php?mn=doc&a=v&b=<?php echo $recID?>&c=<?php echo $_E['docsP']?>&e=<?php echo $rootSubD?>&f=<?php echo $childSubD; echo $str?>&navi=Proband">Vertrag</a>

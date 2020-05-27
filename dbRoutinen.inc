@@ -615,7 +615,10 @@ function auslesenEMKette( $db, $table, &$tabKopf, &$Mid, &$zeilen, &$t, &$textna
     if( isset($_E) and isset($_E['1nf']) )
     { // Anzahl der anzuzeigenden Felder der gefundenen RE-Tabelle
       for( $j=1; $j<$_E['1nf']; $j++ )
-        $zeilen[ $offs ] .= " " . $arr[ $bez+$j ];
+      {
+        if( isset($arr[ $bez+$j ]) )
+          $zeilen[ $offs ] .= " " . $arr[ $bez+$j ];
+      }
     }
 
     if( isset($fDebug) )
