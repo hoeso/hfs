@@ -83,7 +83,6 @@ if( "ProbandMassnahmeZahlung" == $table && $recID )
      *** Wurzel-Ordner der Dokumentenverwaltung geben lassen
      ***/
     gibDokumentenVerzeichnis( $ta_[0], $_E['docsP'], $rootSubD, $childSubD );
-    echo "\n$ta_[0] - $_E[docsP] - $rootSubD - $childSubD";
     /***
      *** Vertrag schon raus?
      ***/

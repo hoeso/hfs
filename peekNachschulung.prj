@@ -13,7 +13,7 @@ if( !isset($_E['ID']) )
   $wZu="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
-$sql = "SELECT b.URL, b. Bundesland, b.wo, b.Strasse, b.Ort, b.Tel, b.Fax, b.eMail, p.Vorname, p.Name, b.PLZ, CONCAT(IF('Herr'=p.Anrede,'r',''),' ',p.Anrede,IF(''=p.Titel,'',CONCAT(' ',p.Titel))) AS Anrede, p.Strasse, CONCAT(ob.PLZ,' ',ob.Ort) AS Ort, DATE_FORMAT( p.geborenAm, '%d.%m.%Y' ) AS geboren, DATE_FORMAT( NOW(), '%d.%m.%Y' ), o.Ortschaft, CONCAT(o.Kursort,', ',o.PLZ,' ',o.Ortschaft,', ',o.Strasse) AS Kursstaette FROM ProbandTermin pt JOIN Termin te ON pt. TerminID=te.ID JOIN ProbandMassnahme pm ON pt. ProbandMassnahmeID=pm.ID JOIN Ort o ON te. OrtID=o.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Proband p ON pm. ProbandID=p.ID JOIN OrtBehoerde ob ON p. OrtBehoerdeID=ob.ID WHERE $_E[ID]=pm.ID";
+$sql = "SELECT b.URL, b. Bundesland, b.wo, b.Strasse, b.Ort, b.Tel, b.Fax, b.eMail, p.Vorname, p.Name, b.PLZ, CONCAT(IF('Herr'=p.Anrede,'r',''),' ',p.Anrede,IF(''=p.Titel,'',CONCAT(' ',p.Titel))) AS Anrede, p.Strasse, CONCAT(ob.PLZ,' ',ob.Ort) AS Ort, DATE_FORMAT( p.geborenAm, '%d.%m.%Y' ) AS geboren, DATE_FORMAT( NOW(), '%d.%m.%Y' ) AS Heute, o.Ortschaft, CONCAT(o.Kursort,', ',o.PLZ,' ',o.Ortschaft,', ',o.Strasse) AS Kursstaette, CONCAT('Ihr',IF('Frau'=tr.Anrede,'e Trainerin ist',' Trainer ist'),': ',tr.Titel,' ',tr.Vorname,' ',tr.Name,', ',tr.Telefon) AS TR FROM ProbandTermin pt JOIN Termin te ON pt. TerminID=te.ID JOIN ProbandMassnahme pm ON pt. ProbandMassnahmeID=pm.ID JOIN Ort o ON te. OrtID=o.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Proband p ON pm. ProbandID=p.ID JOIN OrtBehoerde ob ON p. OrtBehoerdeID=ob.ID JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID JOIN VS v ON te.VSID=v.ID JOIN Terminart ta ON te.TerminartID=ta.ID WHERE $_E[ID]pm.ID AND 'n'=ta.Art";
 
 $arr[0]=0;// hier Feld 0 rein = b.URL
 $arr[1]=1;// hier Feld 1 rein = Bundesland.Bundesland
@@ -33,6 +33,7 @@ $arr[14]=14;// hier Feld 14 rein = p.geborenAm
 $arr[15]=15;// hier Feld 15 rein = <aktuelles Datum>
 $arr[16]=16;// hier Feld 16 rein = o.Ortschaft (des Kursortes)
 $arr[17]=17;// hier Feld 17 rein = o.<Kursstaette>
+$arr[18]=18;// hier Feld 18 rein = tr.Trainer+tr.Telefon
 
 $dim=count($arr);
 echo"\n<!-- $sql -->";

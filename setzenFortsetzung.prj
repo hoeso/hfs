@@ -79,7 +79,7 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "Region"=>"mn.php?mn=pe&a=Region",
   "Tel"=>"mn.php?mn=pe&a=Tel",
   "Termin"=>"./mn.php?mn=t&a=Termin&i=6&b=",
-  "Trainer"=>"./mn.php?mn=pe&a=Trainer",
+  "Trainer"=>"./mn.php?mn=pe&a=Trainer&i=2",
   "TrainerOrtTerminart"=>"mn.php?mn=nn&a=TrainerOrtTerminart&sl=1&sl1=Ort&re=2&re1=Trainer&re2=Terminart&i=3",
   "Kategorie"=>"mn.php?mn=pe&a=Kategorie",
   "Terminart"=>"mn.php?mn=pe&a=Terminart",
