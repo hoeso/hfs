@@ -903,6 +903,23 @@ $forkAutomat = array(
 		"verguetenNachEingang.prj",
 		"triggernSammelgutschriftBetrag.prj",
 	),
+	"nachschulend"=>array(
+		"odtAlloc.prj",
+		"domDocAlloc.inc",
+		"peekNachschulung.prj",
+		"patchDoc.inc",
+		"domTermin.prj",
+		"saveDocument.inc",
+		"linkFortsetzen.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",//seitenleiste
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 	"vormerkend"=>array(
 		"odtAlloc.prj",
 		"domDocAlloc.inc",

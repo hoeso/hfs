@@ -13,9 +13,17 @@ if( isset($_A) and isset($_A['o']) )
 }
 else if( isset($_A) and isset($_A['t']) )
 {
-  $_A['rawDoc'] = "docs/vt" . $_A['extension'];
-  ?>Kursanmeldungen kommen nach den Vormerkungen dran.<br><?php
-  $_E['wZu']="anbietendKnopfZurueck";
+  $_A['rawDoc'] = "docs/v" . $_A['t'] . $_A['extension'];
+  switch( $_A['t'] )
+  {
+    case 'n':
+      $_E['wZu']="nachschulend";
+    break;
+    default:
+      ?>Vertr&auml;ge f&uuml;r UE und Verkehrscoaching vielleicht n&auml;chste Woche.<br><?php
+      $_E['wZu']="anbietendKnopfZurueck";
+    break;
+  }
 }
 else
 {

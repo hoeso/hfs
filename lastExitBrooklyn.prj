@@ -56,7 +56,9 @@ if( "ProbandMassnahme" == $table && $recID )
     {
       $str = "";
       if( $tID )
-        $str = "&t=$tID";
+      {
+        $str = "&t=" . gibFeld( $MySQLDb, "SELECT ta.Art FROM Termin te JOIN Terminart ta ON te. TerminartID=ta.ID WHERE $tID=te.ID", 0 );
+      }
       else if( $oID )
         $str = "&o=$oID";
       ?><a href="./mn.php?mn=doc&a=v&b=<?php echo $recID?>&c=<?php echo $_E['docsP']?>&e=<?php echo $rootSubD?>&f=<?php echo $childSubD; echo $str?>&navi=Proband">Vertrag</a>

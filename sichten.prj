@@ -12,8 +12,9 @@ $enumListe=array
 /*** Achtung! enum-Felder, welche in CONCAT Anweisungen stehen, werden nicht
 mitgezaehlt! ***/
   "Proband_1"=>"Herr,Frau,",
-  "Proband_2"=>"nein,ja",// wdhAuffaellig
-  "Proband_3"=>"nein,ja",// ProbeFS
+  "Proband_2"=>",Mag.,Dr.,Ing.Mag.,DI,Prof.",
+  "Proband_3"=>"nein,ja",// wdhAuffaellig
+  "Proband_4"=>"nein,ja",// ProbeFS
   "ProbandMassnahme_1"=>"nein,ja",// bezahlt
   "ProbandMassnahme_2"=>"nein,ja",// bestaetigt
   "ProbandTermin"=>"nein,ja",// anwesend
