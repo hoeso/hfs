@@ -1274,6 +1274,12 @@ switch( $_E['mn'] )
     $_eTitel = array( $_REQUEST["b"] );
     if( isset($_REQUEST["klick1"]) )
       $_E['jumpNow'] = $_REQUEST["klick1"];
+    switch( $_REQUEST["a"] )
+    {
+      case 'ProbandTermin':
+        $_E["klick1"] = "true";
+      break;
+    }
     if( isset($_REQUEST["navi"]) )
       $_E['navi'] = $_REQUEST["navi"];
   break;

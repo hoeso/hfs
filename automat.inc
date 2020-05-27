@@ -738,6 +738,7 @@ $automat = array(
 		"pokeFortsetzung.prj",
 		"insertERM.inc",
 		"nachInsertERM.prj",
+		"eiZuWrapperFK.inc", // wg. $goto
 		"linkFortsetzen.prj",
 		"linkFortsetzen.inc",
 		"nachSpeichernAnzeigen.inc",
