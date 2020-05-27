@@ -615,6 +615,15 @@ switch( $_E['mn'] )
         }
       }
     }
+    switch( $_REQUEST["a"] )
+    {
+      case 'ProbandTermin':
+        if( isset($_REQUEST["i"]) ) // ident: einruecken, gemappt auf gruppenStaerke
+          $_E['ident'] = $_REQUEST["i"];
+	else
+          $_E['ident'] = 5; // Kuerzel Trainer Tag Termin Start
+      break;
+    }
   break;
   case "sl_uk": // Vormerkung
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
