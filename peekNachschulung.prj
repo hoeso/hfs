@@ -13,7 +13,7 @@ if( !isset($_E['ID']) )
   $wZu="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
-$sql = "SELECT b.URL, b. Bundesland, b.wo, b.Strasse, b.Ort, b.Tel, b.Fax, b.eMail, p.Vorname, p.Name, b.PLZ, CONCAT(IF('Herr'=p.Anrede,'r',''),' ',p.Anrede,IF(''=p.Titel,'',CONCAT(' ',p.Titel))) AS Anrede, p.Strasse, CONCAT(ob.PLZ,' ',ob.Ort) AS Ort, DATE_FORMAT( p.geborenAm, '%d.%m.%Y' ) AS geboren, DATE_FORMAT( NOW(), '%d.%m.%Y' ) AS Heute, o.Ortschaft, CONCAT(o.Kursort,', ',o.PLZ,' ',o.Ortschaft,', ',o.Strasse) AS Kursstaette, IF('Frau'=tr.Anrede,'e Trainerin',' Trainer'), CONCAT(tr.Titel,' ',tr.Vorname,' ',tr.Name,', ',tr.Telefon) AS TR, DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%d.%m.%Y' ) AS Termin1, TIME_FORMAT(v.Quart,'%H:%i') AS Start1, LEFT(ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*te.Dauer), '%H:%i')),5) AS Ende FROM ProbandTermin pt JOIN Termin te ON pt. TerminID=te.ID JOIN ProbandMassnahme pm ON pt. ProbandMassnahmeID=pm.ID JOIN Ort o ON te. OrtID=o.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Proband p ON pm. ProbandID=p.ID JOIN OrtBehoerde ob ON p. OrtBehoerdeID=ob.ID JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID JOIN VS v ON te.VSID=v.ID JOIN Terminart ta ON te.TerminartID=ta.ID WHERE $_E[ID]=pm.ID AND 'n'=ta.Art";
+$sql = "SELECT b.URL, b. Bundesland, b.wo, b.Strasse, b.Ort, b.Tel, b.Fax, b.eMail, p.Vorname, p.Name, b.PLZ, CONCAT(IF('Herr'=p.Anrede,'r',''),' ',p.Anrede,IF(''=p.Titel,'',CONCAT(' ',p.Titel))) AS Anrede, p.Strasse, CONCAT(ob.PLZ,' ',ob.Ort) AS Ort, DATE_FORMAT( p.geborenAm, '%d.%m.%Y' ) AS geboren, DATE_FORMAT( NOW(), '%d.%m.%Y' ) AS Heute, o.Ortschaft, CONCAT(o.Kursort,', ',o.PLZ,' ',o.Ortschaft,', ',o.Strasse) AS Kursstaette, IF('Frau'=tr.Anrede,'e Trainerin',' Trainer'), CONCAT(tr.Titel,' ',tr.Vorname,' ',tr.Name,', ',tr.Telefon) AS TR, te.Kuerzel, 'Kosten', DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%d.%m.%Y' ) AS Termin1, TIME_FORMAT(v.Quart,'%H:%i') AS Start1, LEFT(ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*te.Dauer), '%H:%i')),5) AS Ende FROM ProbandTermin pt JOIN Termin te ON pt. TerminID=te.ID JOIN ProbandMassnahme pm ON pt. ProbandMassnahmeID=pm.ID JOIN Ort o ON te. OrtID=o.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Proband p ON pm. ProbandID=p.ID JOIN OrtBehoerde ob ON p. OrtBehoerdeID=ob.ID JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID JOIN VS v ON te.VSID=v.ID JOIN Terminart ta ON te.TerminartID=ta.ID WHERE $_E[ID]=pm.ID AND 'n'=ta.Art";
 
 $arr[0]=0;// hier Feld 0 rein = b.URL
 $arr[1]=1;// hier Feld 1 rein = Bundesland.Bundesland
@@ -35,11 +35,13 @@ $arr[16]=16;// hier Feld 16 rein = o.Ortschaft (des Kursortes)
 $arr[17]=17;// hier Feld 17 rein = o.<Kursstaette>
 $arr[18]=18;// hier Feld 18 rein = tr.Trainer-Intro
 $arr[19]=19;// hier Feld 19 rein = tr.Trainer+tr.Telefon
-$arr[20]=20;// hier Feld 20 rein = t.day.kw.KW.j.Jahr [1]
-$arr[21]=21;// hier Feld 21 rein = Beginn [1]
-$arr[22]=22;// hier Feld 22 rein = Ende [1]
+$arr[20]=20;// hier Feld 20 rein = te.Kuerzel
+$arr[21]=21;// hier Feld 21 rein = Platzhalter fuer MassnahmeGebuehr
+$arr[22]=22;// hier Feld 22 rein = t.day.kw.KW.j.Jahr [1]
+$arr[23]=23;// hier Feld 23 rein = Beginn [1]
+$arr[24]=24;// hier Feld 24 rein = Ende [1]
 
-$offs = 23;
+$offs = 25;
 
 $dim=count($arr);
 echo"\n<!-- $sql -->";
@@ -51,7 +53,7 @@ if( false == habWas( $arr, 0, $dim-1 ) )
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
-$t = $offs; // 23
+$t = $offs; // 25
 /***
  *** die Folge-Termine versorgen:
  ***/
@@ -59,10 +61,16 @@ for( $i=$offs; $i<count($arr); $i += $dim )
 {
   if( 0 == $i % $offs ) // hier kommt Termin2
   {
-    $arr[$t] = $arr[$i+20]; // Termin2|3|4
-    $arr[$t+1] = $arr[$i+21]; // Beginn2|3|4
-    $arr[$t+2] = $arr[$i+22]; // Beginn2|3|4
+    $arr[$t] = $arr[$i+22]; // Termin2|3|4 (22?)
+    $arr[$t+1] = $arr[$i+23]; // Beginn2|3|4
+    $arr[$t+2] = $arr[$i+24]; // Beginn2|3|4
     $t += 3; // naechster Termin-Block
   }
 }
+
+/***
+ *** noch die Kursgebuehr einstellen
+ ***/
+
+$arr[21] = gibFeld( $MySQLDb, "SELECT mg.Gebuehr, DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%Y-%m-%d' ) AS Termin FROM ProbandTermin pt JOIN Termin te ON pt. TerminID=te.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID JOIN ProbandMassnahme pm ON pt. ProbandMassnahmeID=pm.ID JOIN MassnahmeGebuehr mg ON pm. MassnahmeID=mg. MassnahmeID JOIN Zeitstempel z ON mg. ZeitstempelID=z.ID WHERE $_E[ID]=pm.ID AND DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %y'),'%Y-%m-%d' ) >= z.Datum ORDER BY z.Datum DESC LIMIT 1", 0 );
 ?>

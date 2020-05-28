@@ -135,7 +135,9 @@ $Select=array
   
   "MAKlientVS"=>"SELECT mcv.ID, c.Name, c.Vorname, c.geborenAm, m.Name, m.Vorname, CONCAT(IF(YEAR(NOW())=j.Jahr,'',DATE_FORMAT(j.Jahr,'%Y-')),k.KW) AS KW, t.Tag, TIME_FORMAT(v.Quart,'%H:%i') AS Start, ADDTIME(v.Quart, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge), '%H:%i')) AS Ende, TIME_FORMAT(SEC_TO_TIME(TIME_TO_SEC('00:15')*cv.Menge),'%H:%i') AS Dauer FROM MAKlientVS mcv JOIN MAKlient mc ON (mcv.MAKlientID=mc.ID) JOIN MA m ON (mc.MAID=m.ID) JOIN KlientVS cv ON (mcv.KlientVSID=cv.ID) JOIN Jahr j on (cv.JahrID=j.ID) JOIN KW k ON (cv.KWID=k.ID) JOIN Klient c ON (cv.KlientID=c.ID) JOIN Tag t ON (cv.TagID=t.ID) JOIN VS v ON (cv.VSID=v.ID)$_E[where_and]",
   
-  "ProbandMail"=>"SELECT pm.ID, CONCAT(p.Vorname,' ',p.Name,' ',DATE_FORMAT(p.geborenAm,'%d.%m.%Y')) AS Proband, m.Mail FROM ProbandMail pm JOIN Mail m ON pm. MailID=m.ID JOIN Proband p ON pm. ProbandID=p.ID",
+  "MassnahmeGebuehr"=>"SELECT mg.ID, m. Massnahme, z.Datum FROM MassnahmeGebuehr mg JOIN Massnahme m ON mg.MassnahmeID=m.ID JOIN Zeitstempel z ON mg.ZeitstempelID=z.ID",
+
+"ProbandMail"=>"SELECT pm.ID, CONCAT(p.Vorname,' ',p.Name,' ',DATE_FORMAT(p.geborenAm,'%d.%m.%Y')) AS Proband, m.Mail FROM ProbandMail pm JOIN Mail m ON pm. MailID=m.ID JOIN Proband p ON pm. ProbandID=p.ID",
   
   "Proband"=>"SELECT p.ID, CONCAT(p.Vorname,' ',p.Name) AS Proband, IF(tel.Tel IS NULL,CONCAT('<a href=\"','mn.php?mn=ij&a=Tel&b=Proband&c=1&r=',p.ID,'\">Tel</a>'),tel.Tel) AS Tel, IF(m.Mail IS NULL,CONCAT('<a href=\"','mn.php?mn=ij&a=Mail&b=Proband&c=1&r=',p.ID,'\">Mail</a>'),m.Mail) AS Mail, CONCAT(ob.PLZ,' ',ob.ORT,', ',p.Strasse) AS Adresse FROM Proband p LEFT JOIN ProbandTel pt ON pt.ProbandID=p.ID LEFT JOIN Tel tel ON pt.TelID=tel.ID LEFT JOIN ProbandMail pm ON pm.ProbandID=p.ID LEFT JOIN Mail m ON pm.MailID=m.ID JOIN OrtBehoerde ob ON p. OrtBehoerdeID=ob.ID",
   
@@ -198,6 +200,7 @@ $OrderBy=array
   "EDV"=>" ORDER BY ID DESC",
   "EDVAngebot"=>" ORDER BY ID DESC",
   "Terminart"=>" ORDER BY Terminart",
+  "MassnahmeGebuehr"=>" ORDER BY m. Massnahme, z.Datum DESC",
   "Ort"=>" ORDER BY Bundesland, Kursort",
   //"OrtBehoerde"=>" ORDER BY Behoerde, Ort",
   "OrtBehoerde"=>" ORDER BY PLZ",

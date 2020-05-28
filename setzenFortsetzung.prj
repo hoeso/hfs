@@ -29,6 +29,7 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "Trainer"=>"0",
   "TrainerOrtTerminart"=>"0",
   "Massnahme"=>"0",
+  "MassnahmeGebuehr"=>"0",
   "Ort"=>"0",
   "OrtBehoerde"=>"0",
   "Proband"=>"0",
@@ -39,6 +40,7 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "ProbandTermin"=>"0",
   "Umkreis"=>"0",
   "Vormerkung"=>"0",
+  "Zeitstempel"=>"0",
   "docs"=>"0",
   "liste"=>"0",
   );
@@ -85,7 +87,8 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "Terminart"=>"mn.php?mn=pe&a=Terminart",
   "ProbandAdresse"=>"./mn.php?mn=not_exists&a=ProbandAdresse&sl=2&sl1=Proband&navi=Proband&sl2=Adresse&1nf=2",
   "Massnahme"=>"./mn.php?mn=pe&a=Massnahme",
-  "Ort"=>"mn.php?mn=pe_pe&a=Ort&re=1&re1=Bundesland&i=2",
+  "Massnahme"=>"mn.php?mn=pe_pe&a=Ort&re=1&re1=Bundesland&i=2",
+  "MassnahmeGebuehr"=>"mn.php?mn=pe_pe&a=MassnahmeGebuehr&re=2&re1=Massnahme&re2=Zeitstempel",
   "OrtBehoerde"=>"mn.php?mn=pe_pe&a=OrtBehoerde&re=1&re1=Behoerde&i=3",
   //"Proband"=>"mn.php?mn=outer&a=Proband",
   //"Proband"=>"mn.php?mn=goto&a=Proband",
@@ -98,6 +101,7 @@ if( isset($_REQUEST["d"]) && isset($_REQUEST["navi"]) )
   "ProbandTerminAnwesend"=>"./mn.php?mn=sl_pe&a=ProbandTermin&navi=Proband&sl1=Termin&sl=2&sl2=ProbandMassnahme",
   "Umkreis"=>"mn.php?mn=nn&a=Umkreis&re=1&re1=Region&1n=1&1n1=Ort&1nf=2&i=1",
   "Vormerkung"=>"mn.php?mn=sl_uk&a=Vormerkung&sl=2&sl1=Ort&sl2=ProbandMassnahme&i=1",
+  "Zeitstempel"=>"./mn.php?mn=pe&a=Zeitstempel",
   "docs"=>"mn.php?mn=outer&a=ProbandTermin",
   "liste"=>"mn.php?mn=outer&a=Proband",
   );
