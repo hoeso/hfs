@@ -39,19 +39,7 @@ $arr[20]=20;// hier Feld 20 rein = t.day.kw.KW.j.Jahr [1]
 $arr[21]=21;// hier Feld 21 rein = Beginn [1]
 $arr[22]=22;// hier Feld 22 rein = Ende [1]
 
-/***
-$arr[23]=23;// hier Feld 23 rein = t.day.kw.KW.j.Jahr [2]
-$arr[24]=24;// hier Feld 24 rein = Beginn [2]
-$arr[25]=25;// hier Feld 25 rein = Ende [2]
-
-$arr[26]=26;// t.day.kw.KW.j.Jahr [3]
-$arr[27]=27;// Beginn [3]
-$arr[28]=28;// Ende [3]
-
-$arr[29]=29;// t.day.kw.KW.j.Jahr [4]
-$arr[30]=30;// Beginn [4]
-$arr[31]=31;// Ende [4]
- ***/
+$offs = 23;
 
 $dim=count($arr);
 echo"\n<!-- $sql -->";
@@ -63,14 +51,18 @@ if( false == habWas( $arr, 0, $dim-1 ) )
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
-
-for( $i=23; $i<count($arr); $i += $dim )
+$t = $offs; // 23
+/***
+ *** die Folge-Termine versorgen:
+ ***/
+for( $i=$offs; $i<count($arr); $i += $dim )
 {
-  if( 23 == $i ) // hier kommt Termin2
+  if( 0 == $i % $offs ) // hier kommt Termin2
   {
-    $arr[23] = $arr[43]; // Termin2
-    $arr[24] = $arr[44]; // Beginn2
-    $arr[25] = $arr[45]; // Ende2
+    $arr[$t] = $arr[$i+20]; // Termin2|3|4
+    $arr[$t+1] = $arr[$i+21]; // Beginn2|3|4
+    $arr[$t+2] = $arr[$i+22]; // Beginn2|3|4
+    $t += 3; // naechster Termin-Block
   }
 }
 ?>
