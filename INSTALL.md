@@ -7,7 +7,7 @@
 
 ## Linux:
 - We are using the current stable release of Debian 10 (buster) and its packages, others might need some adjustments
-- Set up a Webserver, preferably [LAMP, and create a database user for the project](https://www.cyberciti.biz/faq/how-to-install-lamp-on-debian-10-buster/) 
+- [Set up a Webserver, Database, PHP and create a database user for the project](https://www.cyberciti.biz/faq/how-to-install-lamp-on-debian-10-buster/) 
 - Clone the project from Github to where your Webserver can access it:
 
 `git clone https://github.com/hoeso/hoeso.git`
