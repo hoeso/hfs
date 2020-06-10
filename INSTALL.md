@@ -6,6 +6,7 @@
 - PHP7.x
 
 ## Linux:
+- We are using the current stable release of Debian 10 (buster) and its packages, others might need some adjustments
 - Set up a Webserver, preferably [LAMP](https://www.cyberciti.biz/faq/how-to-install-lamp-on-debian-10-buster/)
 - Clone the project from Github to where your Webserver can access it:
 
@@ -29,3 +30,5 @@ git clone https://github.com/hoeso/hoeso.git
 ```
 
 This way you can simply create a new user whenever you start a new project and have everything neatly separated.
+
+
