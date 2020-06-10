@@ -1,7 +1,7 @@
 # Installation
 
 ## Requirements
-- Apache (Other webservers have not been tested yet)
+- Apache2 (Other webservers have not been tested yet)
 - MariaDB or MySQL
 - PHP7.x
 
