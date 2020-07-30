@@ -39,33 +39,6 @@ if( isset($_REQUEST["navi"]) )
 {
   switch( $_REQUEST["navi"] )
   {
-    case 'Einzeln':
-      $_REQUEST['mn'] = "1432";
-      $_REQUEST["a"] = "Termin";
-      $_REQUEST["i"] = "3";
-    break;
-    case 'Geld':
-      $_REQUEST['mn'] = "sl_pe";
-      $_REQUEST["a"] = "ProbandMassnahmeZahlung";
-      $_REQUEST["sl"] = "1";
-      $_REQUEST["sl1"] = "ProbandMassnahme";
-      $_REQUEST["i"] = "2";
-    break;
-    case 'Plan':
-      $_REQUEST['mn'] = "1432";
-      $_REQUEST["a"] = "Termin";
-      $_REQUEST["i"] = "4";
-    break;
-    case 'Proband':
-      $_REQUEST['mn'] = "np";
-      $_REQUEST["a"] = "Proband";
-      $_A['css'] = "./erica.css";
-    break;
-    case 'Zahnrad':
-      $_REQUEST['mn'] = "pe";
-      $_REQUEST["a"] = "Behoerde";
-      $_A['css'] = "./erica.css";
-    break;
     case 'Verknuepfen':
       $_REQUEST['mn'] = "pe_pe";
       $_REQUEST["a"] = "KursTrainer";
@@ -79,21 +52,7 @@ if( isset($_REQUEST["navi"]) )
 }
 else
 {
-  $_REQUEST['mn'] = "kw";
-  $_REQUEST["a"] = "MAKlientVS";
-  $_REQUEST["b"] = "d";
-  $_REQUEST["k"] = "Y-m-d";
-  //$_REQUEST["navi"] = "KW";
-  $_REQUEST["u"] = "KW#1";
-  /***
-   *** VPI, Schritt 0:
-   *** Eingabe der fixen Stammdaten
-  $_REQUEST['mn'] = "pe";
-  if( !isset($_REQUEST['navi']) )
-    $_REQUEST["navi"] = "Zahnrad";
-  $_REQUEST["a"] = "Kursart";
-  $_A['css'] = "./erica.css";
-   ***/
+  $_REQUEST['mn'] = "check-DB";
 }
 $_E['container']=0; // <div>-Zaehler
 include("mn.php"); 
