@@ -1,1 +1,0 @@
-mysqldump --default-character-set=utf8 --skip-extended-insert -d ass21 | ./refIntegrity.pl > ../loeschBar.prj
