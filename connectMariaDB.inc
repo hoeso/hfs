@@ -1,5 +1,5 @@
 <?php
-include ("fehler.inc");
+include ("dbErrorHandler.inc");
 
 $versionPHP = explode( ".", phpversion() ); 
 if( "5" < $versionPHP[0] )
@@ -8,25 +8,8 @@ if( "5" < $versionPHP[0] )
 // Verbinden zum MySQL-Server
 function verbindenMitMySQLServer( &$lkid, $host, $user, $pw )
 {
-  $lkid = mysql_connect( $host, $user, $pw );
-  if( isset( $debug ) && $debug )
-  {
-    if( !$lkid )
-      echo "Keine Verbindung zu MySQL möglich<br>Läuft der MySQL-Server?<br>";
-    else
-      echo "Geil, Verbindung zu MySQL ist möglich!<br>";
-exit;
-  }
-  if( !$lkid )
-  {
-    /*if( isset( $_E['enableDbg'] ) )*/ exit;
-?>
-<script language=javascript type='text/javascript'>
-  location.href = '/'
-</script>
-<?php
-  }
-  return $lkid;
+  //$lkid = mysql_connect( $host, $user, $pw );
+  return;
 }
 
 // Datenbank wählen

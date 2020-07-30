@@ -1,6 +1,8 @@
 <?php
 /************ Input **********************************************************
  *****************************************************************************/
+require_once ("connectMariaDB.inc");
+
 if( isset($_REQUEST["d"]) )
 {
   $a_ = explode( "/", __file__ );
@@ -9,14 +11,43 @@ if( isset($_REQUEST["d"]) )
 if( isset($_REQUEST["d"]) )
   dEcho( $b_, "wZu: " . $_E['mn'] );
 
-require_once ("verbindenMitMySQL.inc");
 include ("connect.prj");
 
 if( isset($_REQUEST["d"]) )
-  dEcho( $b_, "Trace : DB-Verbindung aufbauen<br>httpd.conf lesen ..." );
+  dEcho( $b_, "Trace : prepare DB-connect<br>read httpd.conf ..." );
 
 // Verbinden zum MySQL-Server
 $str = $_E['projekt'] . 'Host';
+if( !isset($_SERVER[$str]) )
+{
+  ?>fatal error when connecting your project-DB ...
+  <br>please set your projects db-configuration in /etc/apache2/conf-available/<?php echo $_E['projekt']?>.conf:<p>
+  <ol>
+  <li>
+  <b>
+  SetEnv <?php echo $_E['projekt']?>Host "localhost"<br>
+  SetEnv <?php echo $_E['projekt']?>DB     "office"<br>
+  SetEnv <?php echo $_E['projekt']?>DBuser "hfs"<br>
+  SetEnv <?php echo $_E['projekt']?>DBpw   ""<p>
+  </b>
+  when done, enable your conf:
+  </li>
+  <li>
+  <b>
+  sudo a2enconf <?php echo $_E['projekt']?><p>
+  </b>
+  and reload your web-server<br>
+  e.g. on debian:
+  <li>
+  <b>
+  sudo systemctl reload apache2
+  </b>
+  </li>
+  </ol>
+  <?php
+  $_E['wZu']="anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
 $host = $_SERVER[$str];
 if( isset($_REQUEST["d"]) )
   dEcho( $b_, "httpd.conf::$str = $host" );
@@ -31,31 +62,20 @@ $MySQLDb = $_SERVER[$str];
 if( isset($_REQUEST["d"]) )
   dEcho( $b_, "httpd.conf::$str = $MySQLDb" );
 
-if( isset($_REQUEST["d"]) )
-  dEcho( $b_, "jetzt verbinden ..." );
-
-verbindenMitMySQLServer( $lkid, $host, $user, $pw );
-if( !$lkid )
-{
-  echo"\nkeine Verbindung zu MySQL m&ouml;glich($user).<br>";
-  $_E['wZu']="anbietendKnopfZurueck";
-  include("forkZu.inc");
-}
-if( isset($_E['enableDbg']) && $_E['enableDbg'] )
-  echo "\n von MySQL@$host Link $lkid erhalten ...<br>";
 // Datenbank wählen
 $succ=false;
-if( isset($_E['enableDbg']) && $_E['enableDbg'] )
-  echo "\nverbinden zur DB $MySQLDb ...";
+if( isset($_REQUEST["d"]) )
+  dEcho( $b_, "try to connect project-database ..." );
+$lkid=1; // dummy variable for PHP>5 - Wrapper
 verbindenMitMySQLDB( $succ, $MySQLDb, $lkid );
 if( !$succ )
 {
-  echo "\nEs ist ein Fehler aufgetreten beim Versuch, mit der Datenbank $MySQLDb Verbindung aufzunehmen<br>";
+  echo "\nconnecting DB <b>$MySQLDb</b> was not successful<br>";
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }
-if( isset($_E['enableDbg']) && $_E['enableDbg'] )
-  echo "  ok.";
+if( isset($_REQUEST["d"]) )
+  dEcho( $b_, " ok." );
 
 /************ Output *******************
  * $MySQLDb

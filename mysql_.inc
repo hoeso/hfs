@@ -11,9 +11,7 @@ $_E['host'] = "";
 $_E['user'] = "";
 $_E['pw'] = "";
 $_E['mysql'] = "";
-/***
- *** Diese Funktion gibt es nicht mehr
- ***/
+
 function mysql_connect( $host, $user, $pw )
 {
   global $_E;

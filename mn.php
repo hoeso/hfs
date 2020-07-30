@@ -46,7 +46,7 @@ if( isset($_REQUEST['u']) )
   echo $_REQUEST['u'];
 else
 {?>
-INFAR<?php
+HFS-1<?php
 }?>
 </title>
 <meta http-equiv="content-type" content="text/html;charset=utf-8">

@@ -1,15 +1,14 @@
 <?php
-$_E['projekt']="infar";
+$_E['projekt']="hfs";
 $_E['resourceDatei']="projekt.rc";
 /***
- *** Projekt-Variablen setzen
- ***/
+ *** setting advance project variables
 $str = $_E['projekt'] . "Doc";
 $strA = $str . "A";
 $strP = $str . "P";
 if( !isset($_SERVER[$strA]) || !isset($_SERVER[$strP]) )
 {
-  ?>Pfad zur Dokumenten-Verwaltung ist nicht gesetzt.
+  ?>path to document-pool not defined.
   <?php echo "\n";?></div></div>
   <?php echo "\n";?>
   </body></html><?php
@@ -17,4 +16,5 @@ if( !isset($_SERVER[$strA]) || !isset($_SERVER[$strP]) )
 }
 $_E['docsA'] = $_SERVER[$strA];
 $_E['docsP'] = $_SERVER[$strP];
+ ***/
 ?>

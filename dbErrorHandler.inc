@@ -38,12 +38,7 @@ function reagierenAufSQLFehler( $lkid, $sql, &$PKViolation )
 	  if( isset($_eCandy) and isset($_eCandy[$_REQUEST['zielTabelle']]) and !$_eCandy[$_REQUEST['zielTabelle']] )
 	    $_eCandy[$_REQUEST['zielTabelle']] = 1;
 	}
-	?>M&ouml;glicherweise existiert der Eintrag schon<br><?php
-	/***
-	echo "\nDie Anweisung '$sql' ging schief:<br>";
-	echo "\nFehler Nr. $errno<br>";
-	echo "\nFehlermeldung '$errmsg'";
-	 ***/
+	?><!-- Could it be this entry does already exist?<br--><?php
       }
     break;
   }
