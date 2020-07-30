@@ -14,8 +14,6 @@ if( isset($_REQUEST["d"]) )
 }
 if( isset($_REQUEST["d"]) )
   dEcho( $b_, "wZu: " . $_E['mn'] );
-if( !isset($Select) )
-  include("sichten.prj");
 switch( $_E['mn'] )
 {
 /* zum Kopieren:

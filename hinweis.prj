@@ -1,6 +1,0 @@
-<?php
-if( "erfassendProband" == $_E['wZu'] && 'OrtBehoerde' == $arrEM[$i] )
-{
-  ?><h4>Falls der Wohnort in der Liste fehlt:<br>Bitte den Ort zuerst im Formular darunter anlegen ...</h4><?php
-}
-?>

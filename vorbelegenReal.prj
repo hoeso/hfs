@@ -1,6 +1,0 @@
-<?php
-if( "ProbandMassnahmeZahlung" == $zielTabelle )
-  echo"495";
-else
-  echo "1";
-?>

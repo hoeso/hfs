@@ -1,3 +1,0 @@
-<?
-anzeigen( $MySQLDb, $sqlAlle, $TabelleM, "" );
-?>
