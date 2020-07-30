@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
-<title>Flex VPI Suite</title>
+<title>HFS-1</title>
 <script language=javascript type='text/javascript'>
   if( top.location != self.location )
   {

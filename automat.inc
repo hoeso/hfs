@@ -6,9 +6,9 @@
 if( isset($_REQUEST['navi']) )
   $_E['navi'] = $_REQUEST['navi'];
 else if( !isset($_E['navi']) )
-  $_E['navi'] = "Plan";
+  $_E['navi'] = "HFS-1";
 $automat = array(
-/* zum Kopieren
+/* have a copy ...
 	""=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
 		"kopfteil.html",
 		"kopfteil.prj",
@@ -29,65 +29,13 @@ $automat = array(
 		"dbClose.inc",
 	),
 */
-	"anbietend1Zu1ZuN"=>array(
-		"eiZuBspAnbietend1Zu1ZuN.inc",
+	"connectingMariaDB"=>array(
 		"kopfteil.html",
 		"kopfteil.prj",
 		"endeContainer.html",
 		"hauptteil.html",
 		"haupttext.html",
-		"containerTitel.php",
 		"dbConnect.inc",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"setzenFortsetzung.prj",
-		"pokeFortsetzung.prj",
-		"wohinDamit.prj",
-		"wohinDamit.inc",
-		"formularERMintro.inc",
-		//"mapSpaltennamen.inc",
-		"ERMListenfuellen.inc",
-		"ERMsubmit.inc",
-		"gibWeiter.inc",
-		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
-		"endeContainer.html",//haupttext
-		"seitenleiste.html",
-		"hauptnavigation.html",
-		"navi" . $_E['navi'] . ".html",
-		"endeNavigation.html",//seitenleiste
-		"endeContainer.html",
-		"endeContainer.html",//hauptteil
-		"dbClose.inc",
-	),
-	"anbietendFKFormular"=>array(
-		"eiZuWrapperFK.inc",
-		"anbietenVerlinkenEntitaet.inc",
-		"liesMich.txt",
-	),
-	"bspAnzeigendTitel"=>array(
-		"kopfteil.html",
-		"kopfteil.prj",
-		"endeContainer.html",
-		"hauptteil.html",
-		"haupttext.html",
-		"containerTitel.php",
-		"containerTitel.php",
-		"linkFortsetzen.inc",
-		"endeContainer.html",//haupttext
-		"seitenleiste.html",
-		"hauptnavigation.html",
-		"navi" . $_E['navi'] . ".html",
-		"endeNavigation.html",
-		"endeContainer.html",
-		"endeContainer.html",//hauptteil
-	),
-	"bspTheoretisierendDB"=>array(
-		"kopfteil.html",
-		"kopfteil.prj",
-		"endeContainer.html",
-		"hauptteil.html",
-		"haupttext.html",
-		"tutorialDB.html",
 		"containerTitel.php",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
