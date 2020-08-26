@@ -12,7 +12,7 @@ function reagierenAufSQLFehler( $lkid, $sql, &$PKViolation )
   $errno = mysql_errno( $lkid );
   $errmsg = mysql_error( $lkid );
   $PKViolation = false;
-  if( isset($_REQUEST["d"]) )
+  if( isset($_REQUEST["d"]) && isset($b_) )
     dEcho( $b_, "errno: " . $errno );
   switch( $errno )
   {

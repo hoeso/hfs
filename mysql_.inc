@@ -20,6 +20,8 @@ function mysql_connect( $host, $user, $pw )
   $_E['user'] = $user;
   $_E['pw'] = $pw;
   
+  if( isset($_REQUEST["d"]) )
+    dEcho( $b_, "mysql_connect() ..." );
   return 1; // dummy-handle
 }
 
@@ -174,7 +176,8 @@ function mysql_field_flags( $result, $i )
 function mysql_close( $lkid )
 {
   global $_E;
-  mysqli_close ( $_E['mysql'] );
+  if (!mysqli_connect_errno())
+    mysqli_close ( $_E['mysql'] );
 }
 
 ///////
@@ -189,12 +192,14 @@ function mysql_fetch_field( $result, $i )
 ///////
 function mysql_errno( $lkid )
 {
-  return mysqli_errno( $_E['mysql'] );
+  if( isset($_E) && isset($_E['mysql']) )
+    return mysqli_errno( $_E['mysql'] );
 }
 
 ///////
 function mysql_error( $lkid )
 {
-  return mysqli_error( $_E['mysql'] );
+  if( isset($_E) && isset($_E['mysql']) )
+    return mysqli_error( $_E['mysql'] );
 }
 ?>

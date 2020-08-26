@@ -1,8 +1,6 @@
 <?php
 /************ Input **********************************************************
  *****************************************************************************/
-require_once ("connectMariaDB.inc");
-
 if( isset($_REQUEST["d"]) )
 {
   $a_ = explode( "/", __file__ );
@@ -11,6 +9,7 @@ if( isset($_REQUEST["d"]) )
 if( isset($_REQUEST["d"]) )
   dEcho( $b_, "wZu: " . $_E['mn'] );
 
+require_once ("connectMariaDB.inc");
 include ("connect.prj");
 
 if( isset($_REQUEST["d"]) )
@@ -66,7 +65,8 @@ if( isset($_REQUEST["d"]) )
 $succ=false;
 if( isset($_REQUEST["d"]) )
   dEcho( $b_, "try to connect project-database ..." );
-$lkid=1; // dummy variable for PHP>5 - Wrapper
+verbindenMitMySQLServer( $lkid, $host, $user, $pw );
+
 verbindenMitMySQLDB( $succ, $MySQLDb, $lkid );
 if( !$succ )
 {

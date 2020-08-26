@@ -8,7 +8,7 @@ if( "5" < $versionPHP[0] )
 // Verbinden zum MySQL-Server
 function verbindenMitMySQLServer( &$lkid, $host, $user, $pw )
 {
-  //$lkid = mysql_connect( $host, $user, $pw );
+  $lkid = mysql_connect( $host, $user, $pw );
   return;
 }
 
