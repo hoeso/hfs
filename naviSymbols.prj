@@ -1,6 +1,6 @@
 <?php
 $str="";
-$sw="Zahnrad";
+$sw="Station";
 if( isset($_REQUEST['d']) )
   $str = "&d";
 if( isset($_E['navi']) )
@@ -9,97 +9,10 @@ else if( isset($_REQUEST['navi']) )
   $sw = $_REQUEST['navi'];
 switch( $sw )
 {
-/* zum Kopieren:
-  case "":
-  break;
-*/
-  case "CFS":
-  case "Einzeln":
-  case "Plan":
+  case "Station":
   {
-    ?><img src="images/iconmonstr-process-2-32.png" alt="zum Getriebe" usemap="#zahnrad">
-      <img src="images/iconmonstr-link-thin-32.png" alt="zum Verkn&uuml;pfen" usemap="#verknuepfen">
-      <img src="images/iconmonstr-user-25-32.png" alt="neue Probanden" usemap="#proband">
-      <!--img src="images/iconmonstr-document-thin-32.png" alt="Anschreiben" usemap="#docs"-->
-      <img src="images/iconmonstr-credit-card-thin-32.png" alt="Zahlungen" usemap="#geld">
-    <?php
-    $_A['naviSwitch'] = $sw; // fuer begruessen.prj
-  }
-  break;
-  /***
-  case "Docs":
-  {
-    ?><img src="images/iconmonstr-process-2-32.png" alt="zum Getriebe" usemap="#zahnrad">
-      <img src="images/iconmonstr-link-thin-32.png" alt="zum Verkn&uuml;pfen" usemap="#verknuepfen">
-      <img src="images/iconmonstr-user-25-32.png" alt="neue Probanden" usemap="#proband">
-      <img src="images/iconmonstr-calendar-thin-32.png" alt="Kurse UE Vormerkungen" usemap="#kurse">
-      <img src="images/iconmonstr-credit-card-thin-32.png" alt="Zahlungen" usemap="#geld">
-    <?php
-    $_A['naviSwitch'] = $sw; // fuer begruessen.prj
-  }
-  break;
-   ***/
-  case "Geld":
-  {
-    ?><img src="images/iconmonstr-process-2-32.png" alt="zum Getriebe" usemap="#zahnrad">
-      <img src="images/iconmonstr-link-thin-32.png" alt="zum Verkn&uuml;pfen" usemap="#verknuepfen">
-      <img src="images/iconmonstr-user-25-32.png" alt="neue Probanden" usemap="#proband">
-      <img src="images/iconmonstr-calendar-thin-32.png" alt="Kurse UE Vormerkungen" usemap="#kurse">
-      <!--img src="images/iconmonstr-document-thin-32.png" alt="Anschreiben" usemap="#docs"-->
-    <?php
-    $_A['naviSwitch'] = $sw; // fuer begruessen.prj
-  }
-  break;
-  case "Proband":
-  {
-    ?><img src="images/iconmonstr-process-2-32.png" alt="zum Getriebe" usemap="#zahnrad">
-      <img src="images/iconmonstr-link-thin-32.png" alt="zum Verkn&uuml;pfen" usemap="#verknuepfen">
-      <img src="images/iconmonstr-calendar-thin-32.png" alt="Kurse UE Vormerkungen" usemap="#kurse">
-      <!--img src="images/iconmonstr-document-thin-32.png" alt="Anschreiben" usemap="#docs"-->
-      <img src="images/iconmonstr-credit-card-thin-32.png" alt="Zahlungen" usemap="#geld">
-    <?php
-    $_A['naviSwitch'] = $sw; // fuer begruessen.prj
-  }
-  break;
-  case "Verknuepfen":
-  {
-    ?><img src="images/iconmonstr-process-2-32.png" alt="zum Getriebe" usemap="#zahnrad">
-      <img src="images/iconmonstr-user-25-32.png" alt="zur Neuanlage von Probanden" usemap="#proband">
-      <img src="images/iconmonstr-calendar-thin-32.png" alt="Kurse UE Vormerkungen" usemap="#kurse">
-      <!--img src="images/iconmonstr-document-thin-32.png" alt="Anschreiben" usemap="#docs"-->
-      <img src="images/iconmonstr-credit-card-thin-32.png" alt="Zahlungen" usemap="#geld">
-    <?php
-    $_A['naviSwitch'] = $sw; // fuer begruessen.prj
-  }
-  break;
-  case "Zahnrad":
-  {
-    ?><img src="images/iconmonstr-link-thin-32.png" alt="zum Verkn&uuml;pfen" usemap="#verknuepfen">
-      <img src="images/iconmonstr-user-25-32.png" alt="neue Probanden" usemap="#proband">
-      <img src="images/iconmonstr-calendar-thin-32.png" alt="Kurse UE Vormerkungen" usemap="#kurse">
-      <!--img src="images/iconmonstr-document-thin-32.png" alt="Anschreiben" usemap="#docs"-->
-      <img src="images/iconmonstr-credit-card-thin-32.png" alt="Zahlungen" usemap="#geld">
-    <?php
-    $_A['naviSwitch'] = $sw; // fuer begruessen.prj
+    $_A['naviSwitch'] = $sw; // for welcome.prj
   }
   break;
 }
 ?>
-<map name="kurse">
-<area shape=rect coords="0,0,32,32" title='Vormerkungen / Kurse' href="./mn.php?mn=goto&navi=Plan<?php echo $str;?>">
-</map>
-<map name="proband">
-<area shape=rect coords="0,0,32,32" title='neue Probanden' href="./mn.php?mn=goto&1n=1&1n1=OrtBehoerde&i=2&1nf=3&navi=Proband<?php echo $str;?>">
-</map>
-<!--map name="docs">
-<area shape=rect coords="0,0,32,32" title='zu den Anschreiben' href="./mn.php?mn=outer&a=ProbandTermin&s=a&navi=Docs<?php echo $str;?>">
-</map-->
-<map name="geld">
-<area shape=rect coords="0,0,32,32" title='zu den Zahlungen' href="./mn.php?mn=outer&a=ProbandMassnahmeZahlung&s=a&navi=Geld<?php echo $str;?>">
-</map>
-<map name="verknuepfen">
-<area shape=rect coords="0,0,32,32" title='zum Verkn&uuml;pfen' href="./mn.php?mn=goto&navi=Verknuepfen<?php echo $str;?>">
-</map>
-<map name="zahnrad">
-<area shape=rect coords="0,0,32,32" title='zum Getriebe' href="./mn.php?mn=goto&navi=Zahnrad<?php echo $str;?>">
-</map>

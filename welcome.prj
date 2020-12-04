@@ -1,0 +1,29 @@
+<?php
+/************ Input ********************
+ * defined by  naviSymbols.prj:
+ *                            :
+ *                            :
+ ***************************************/
+if( 0 )
+{
+  echo"\n<!-- POSTs ... -->";
+  foreach( $_POST as $k=>$elem )
+    echo"\n<!-- k : $k, elem: $elem -->";
+  echo"\n<!-- REQUESTs ... -->";
+  foreach( $_REQUEST as $k=>$elem )
+    echo"\n<!-- k : $k, elem: $elem -->";
+  exit;
+}
+if( !isset($_A['naviSwitch']) )
+  return;
+switch( $_A['naviSwitch'] )
+{
+  case "Station":
+    $_E['mn'] = "pe";
+    $_E["entitaet"] = $_A['naviSwitch'];
+    $_E['wZu']="fillingPE";
+    $_E['recipient'] = 4224; // speichernd1ZuN
+    include("forkZu.inc");
+  break;
+}
+?>

@@ -149,8 +149,10 @@ if( isset( $dahin ) )
   if( isset($_E['label']) )
     echo $_E['label'];
   else
-    echo "fortsetzen";
+    echo "continue";
   echo"</em></A>\n";?>
+  <?php
+  /***
   <p>
   <form name='frm' action=""><input type="button" value="schliessen" name="schlie" onclick="self.close()"></form>
   <script language=javascript type='text/javascript'>
@@ -159,6 +161,7 @@ if( isset( $dahin ) )
   // -->
   </script>
   <?php
+   ***/
 }
 if( isset($goto) )
 {

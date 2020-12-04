@@ -6,7 +6,7 @@
 if( isset($_REQUEST['navi']) )
   $_E['navi'] = $_REQUEST['navi'];
 else if( !isset($_E['navi']) )
-  $_E['navi'] = "HFS-1";
+  $_E['navi'] = "Station";
 $automat = array(
 /* have a copy ...
 	""=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
@@ -18,7 +18,7 @@ $automat = array(
 		"containerTitel.php",
 		"dbConnect.inc",
 		"containerTitel.php",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -47,6 +47,50 @@ $automat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
+	"wechselndMenue"=>array(
+		"kopfteil.html",
+		"kopfteil.prj",
+		"naviSymbols.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"welcome.prj",
+		"containerTitel.php",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"continueHere.inc",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
+	"fillingPE"=>array( // reine Entitaet
+		"kopfteil.html",
+		"kopfteil.prj",
+		"naviSymbols.prj",
+		"endeContainer.html",
+		"hauptteil.html",
+		"haupttext.html",
+		"containerTitel.php",
+		"dbConnect.inc",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"continueHere.inc",
+		"pruefenEingaben.js",
+		"formPE.inc",
+		"listPE.inc",
+		"prepLastContinue.inc",
+		"giveContinue.inc",
+		"endeContainer.html",//haupttext
+		"seitenleiste.html",
+		"hauptnavigation.html",
+		"navi" . $_E['navi'] . ".html",
+		"endeNavigation.html",
+		"endeContainer.html",
+		"endeContainer.html",//hauptteil
+		"dbClose.inc",
+	),
 /*** internal state-machines: *************************************************/
 	"aenderndRE"=>array(
 		"kopfteil.html",
@@ -60,7 +104,7 @@ $automat = array(
 		"editierenRE.inc",
 		"erlaubenFK.inc",
 		"anbietenFK.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -83,7 +127,7 @@ $automat = array(
 		"setzenFortsetzung.prj",
 		"pokeFortsetzung.prj",
 		"aendernFK.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -106,7 +150,7 @@ $automat = array(
 		"pokeFortsetzung.prj",
 		"updateRE.inc",
 		"linkFortsetzen.prj",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -125,7 +169,7 @@ $automat = array(
 		"setzenFortsetzung.prj",
 		"pokeFortsetzung.prj",
 		"containerTitel.php",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -147,7 +191,7 @@ $automat = array(
 		"setzenFortsetzung.prj",
 		"pokeFortsetzung.prj",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -176,7 +220,7 @@ $automat = array(
 		"anbietenFK.prj",
 		"anbietenFK.inc",
 		"linkFortsetzen.prj",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -197,9 +241,9 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"insertERM.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"nachSpeichernAnzeigen.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -221,7 +265,7 @@ $automat = array(
 		"setzenFortsetzung.prj",
 		"insertRE.inc",
 		"nachInsertRE.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -244,10 +288,10 @@ $automat = array(
 		"insertNN.inc",
 		"hinweis1.inc",
 		"containerHinweis.php",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"containerHinweis.php",
 		"anzeigenNN.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -273,7 +317,7 @@ $automat = array(
 		"nachInsertERM.prj",
 		"eiZuWrapperFK.inc", // wg. $goto
 		"linkFortsetzen.prj",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"nachSpeichernAnzeigen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -300,7 +344,7 @@ $automat = array(
 		"ersetzenTerminKuerzel.prj",
 		"austragenVM.prj",
 		"linkFortsetzen.prj",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"nachSpeichernAnzeigen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -322,7 +366,7 @@ $automat = array(
 		"containerTitel.php",
 		"aendernFK.inc",
 		"setzenFortsetzung.prj",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -367,7 +411,7 @@ $automat = array(
 		"routinen.inc",
 		"pruefenEingaben.js",
 		"plausiIssetA.inc",
-		"formularFuerRE.inc",
+		"formPE.inc",
 		"listenRE.inc",
 	),
 	"gruppierend"=>array(
@@ -454,7 +498,7 @@ $automat = array(
 		"routinen.inc",
 		"insertERM.inc",
 		"nachSpeichern.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"nachSpeichernAnzeigen.inc"
 	),
 	"speicherndMehrfach"=>array(
@@ -480,7 +524,7 @@ $automat = array(
 		"toggelnEnum.inc",
 		//"phys2LogicalView.prj",
 		//"setzenFortsetzung.prj", stiftet momentan Chaos in der bezahlt-Liste
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"uebersichtDauertHinweisend"=>array(
 		"transpHeader.html",
@@ -505,7 +549,7 @@ $automat = array(
 		"sendenDatei.inc",
 		"frmClose.html",
 		"containerTitel.php",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -526,7 +570,7 @@ $automat = array(
 		"dbConnect.inc",
 		"uploaden.inc",
 		"containerTitel.php",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -546,7 +590,7 @@ $automat = array(
 		"tutorialDir.html",
 		"gibVerzeichnis.inc",
 		"containerTitel.php",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",

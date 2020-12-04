@@ -1,0 +1,40 @@
+<?php
+/* diese Abkuerzungen werden fuer die Projekt-Entitaeten in sichten.prj verwendet.
+ * In loeschen.inc muessen diese deshalb auch verwendet werden
+ * weil die Verwendung des Originalnamens der Entitaet in der WHERE-Klausel
+ * einen Fehler erzeugt
+ */
+$sqlAbbrev = array(
+/* zum Kopieren:
+  ""=>"",
+*/
+  "Adresse"=>"a",
+  "BehoerdeMail"=>"bm",
+  "ProbandAdresse"=>"pa",
+  "Bundesland"=>"b",
+  "Kontingent"=>"k",
+  "Kursart"=>"ka",
+  "KursTrainer"=>"kt",
+  "Mail"=>"m",
+  "ProbandMail"=>"pma",
+  "Massnahme"=>"Massnahme",
+  "Dauer"=>"d",
+  "MailProband"=>"mp",
+  "Ort"=>"o",
+  "ProbandOrt"=>"po",
+  "Proband"=>"p",
+  "ProbandBehoerde"=>"pb",
+  "ProbandMassnahme"=>"pm",
+  "ProbandMassnahmeZahlung"=>"pmz",
+  "ProbandTermin"=>"pt",
+  "EDV"=>"EDV",
+  "ProbandTel"=>"pt",
+  "Region"=>"Region",
+  "Termin"=>"te",
+  "Terminart"=>"l",
+  "Trainer"=>"tr",
+  "TrainerOrtTerminart"=>"tol",
+  "Umkreis"=>"u",
+  "Vormerkung"=>"v",
+);
+?>

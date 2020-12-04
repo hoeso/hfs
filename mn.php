@@ -36,6 +36,7 @@ $_E['bodyClass'] = "main";
 $_E['bodyId'] = "main";
 $exitus="you don't exist. Go away!";
 include("mn.prj");
+include("tee.inc");
 ?>
 <!DOCTYPE html>
 <html>

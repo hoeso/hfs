@@ -39,22 +39,20 @@ if( isset($_REQUEST["navi"]) )
 {
   switch( $_REQUEST["navi"] )
   {
-    case 'Verknuepfen':
-      $_REQUEST['mn'] = "pe_pe";
-      $_REQUEST["a"] = "KursTrainer";
+    case 'Station':
+      $_REQUEST['mn'] = "pe";
+      $_REQUEST["a"] = "Station";
       $_A['css'] = "./erica.css";
-      $_REQUEST["re"] = "2";
-      $_REQUEST["re1"] = "Kursart";
-      $_REQUEST["re2"] = "Trainer";
-      $_REQUEST["i"] = "1";
     break;
   }
 }
 else
 {
-  $_REQUEST['mn'] = "check-DB";
+  $_REQUEST['mn'] = "goto";
+  $_REQUEST["navi"] = "Station";
+  $_A['css'] = "./erica.css";
 }
-$_E['container']=0; // <div>-Zaehler
+$_E['container']=0; // <div>-Counter
 include("mn.php"); 
 ?>
 </body>

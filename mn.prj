@@ -25,15 +25,31 @@ switch( $_E['mn'] )
     $_e = array( $_REQUEST[""], $_REQUEST[""] );
   break;
 */
+  case "goto":
+    if( !isset($_REQUEST["navi"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "wechselndMenue";
+    $_E['navi'] = $_REQUEST["navi"];
+    $_E['garbage'] = $_E['bleistift'] = false;
+  break;
+  case "pe": // pure entity
+    if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
+    $_E['bodyID'] = "standard";
+    $_E['wZu'] = "fillingPE";
+    $_E['entitaet'] = $_REQUEST["a"];
+    if( isset($_REQUEST["i"]) ) // ident: einruecken, gemappt auf gruppenStaerke
+      $_E['ident'] = $_REQUEST["i"];
+    $_e = array( $_REQUEST["a"], $_REQUEST["a"] );
+  break;
   case "check-DB":
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "connectingMariaDB";
   break;
 /*#### internal  automatisms: ####*/
-  case "1142": // loeschen ja ... nein ...
+  case "1142": // remove yes ... no ...
     if( isset($_REQUEST["dont"]) )
     {
-      $_eTitel = array( "... es wurde nichts gel&ouml;scht --)" );
+      $_eTitel = array( "... nothing was removed --)" );
       $_E['wZu'] = "anbietendKnopfZurueck";
       break;
     }

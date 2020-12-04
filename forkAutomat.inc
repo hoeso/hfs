@@ -23,8 +23,7 @@ $forkAutomat = array(
 	),
 	"anbietendKnopfZurueck"=>array(
 		"setzenFortsetzung.prj",
-		"pokeFortsetzung.prj",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -45,7 +44,6 @@ $forkAutomat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
-		"pokeFortsetzung.prj",
 		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
@@ -54,7 +52,7 @@ $forkAutomat = array(
 		"ERMsubmit.inc",
 		"gibWeiter.inc",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -68,8 +66,7 @@ $forkAutomat = array(
 		"insertERM.inc",
 		"nachInsertERM.prj",
 		"setzenFortsetzung.prj",
-		"pokeFortsetzung.prj",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		//"nachSpeichernAnzeigen.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -87,7 +84,6 @@ $forkAutomat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
-		"pokeFortsetzung.prj",
 		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"eiZuWrapperFK.inc",
@@ -110,7 +106,7 @@ $forkAutomat = array(
 		"wieWeiter.inc",
 		//"anzeigenZieltabelle.inc",
 		"linkFortsetzen.prj",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -122,7 +118,6 @@ $forkAutomat = array(
 	),
 	"forkendVerlinkenEntitaet"=>array(
 		"setzenFortsetzung.prj",
-		"pokeFortsetzung.prj",
 		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
@@ -131,9 +126,9 @@ $forkAutomat = array(
 		"ERMListenfuellen.prj",
 		"ERMsubmit.inc",
 		"gibWeiter.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -145,7 +140,6 @@ $forkAutomat = array(
 	),
 	"forkendVerlinkenEntitaetJmpFw"=>array(
 		"setzenFortsetzung.prj",
-		"pokeFortsetzung.prj",
 		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
@@ -154,7 +148,7 @@ $forkAutomat = array(
 		"ERMsubmit.inc",
 		"gibWeiter.inc",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -169,12 +163,11 @@ $forkAutomat = array(
 		"containerTitel.php",
 		//"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"setzenFortsetzung.prj",
-		"pokeFortsetzung.prj",
 		"logic2PhysView.prj",
 		"loeschBar.prj",
 		"loeschenVorspiel.prj",
 		"loeschen.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -184,13 +177,14 @@ $forkAutomat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
-	"fuellendRE"=>array( // reine Entitaet
+	"fillingPE"=>array( // insert-form pure entity
 		"containerTitel.php",
-		"setzenFortsetzung.prj",
-		"pokeFortsetzung.prj",
-		"formularFuerRE.inc",
-		"listenRE.inc",
-		"linkFortsetzen.inc",
+		"dbConnect.inc",
+		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"continueHere.inc",
+		"formPE.inc",
+		"listPE.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -207,8 +201,7 @@ $forkAutomat = array(
 		//"logic2PhysView.prj", hat keinen Effekt
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"setzenFortsetzung.prj",
-		"pokeFortsetzung.prj",
+		"continueHere.inc",
 		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
@@ -218,7 +211,7 @@ $forkAutomat = array(
 		"gibWeiter.inc",
 		//"anzeigenZieltabelle.inc",
 		"linkFortsetzen.prj",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -230,15 +223,14 @@ $forkAutomat = array(
 	),
 	"verbindend"=>array( // aus pruefenSymbol.prj: Instanz soll neuen Eintrag in die Verbindung-Entitaet bekommen
 		"wrapperFBS10.inc",
-		"setzenFortsetzung.prj",
-		"pokeFortsetzung.prj",
+		"continueHere.inc",
 		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
 		"ERMListenfuellen.inc",
 		"ERMsubmit.inc",
 		"gibWeiter.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"anzeigenZieltabelle.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -251,8 +243,7 @@ $forkAutomat = array(
 	),
 	"vmVerbindend"=>array( // aus pruefenSymbol.prj: Instanz soll neuen Eintrag in die Verbindung-Entitaet bekommen
 		"wrapperFBS10.inc",
-		"setzenFortsetzung.prj",
-		"pokeFortsetzung.prj",
+		"continueHere.inc",
 		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
@@ -261,8 +252,8 @@ $forkAutomat = array(
 		"ERMsubmit.inc",
 		"gibWeiter.inc",
 		"wieWeiter.prj",
-		//"setzenFortsetzung.prj",
-		"linkFortsetzen.inc",
+		//"continueHere.inc",
+		"giveContinue.inc",
 		"anzeigenZieltabelle.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -301,7 +292,7 @@ $forkAutomat = array(
 	"anbietendUeberschrift"=>array(
  		"anbietenUeberschrift.prj",
 		//"dumpLV.prj",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -326,10 +317,9 @@ $forkAutomat = array(
 		"dbConnect.inc",
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"setzenFortsetzung.prj",
-		"pokeFortsetzung.prj",
+		"continueHere.inc",
 		"aendernPosition.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -351,7 +341,7 @@ $forkAutomat = array(
 		"ERMsubmit.inc",
 	),
 	"anbietendKnopfZurueck"=>array(
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -381,7 +371,7 @@ $forkAutomat = array(
 		"ERMsubmit.inc",
 		"hr.html",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"antwortend"=>array(
 		"eiZuAntwortend.prj",
@@ -397,14 +387,14 @@ $forkAutomat = array(
 		"ERMsubmit.inc",
 		"hr.html",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"anzeigendTabelle"=>array(
 		"eiZuAnzeigendTabelle.inc",
 		"bezug.inc",
 		"ueberschrift.inc",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"bearbeitend"=>array(
 		"eiZuBearbeitend.prj",
@@ -418,14 +408,14 @@ $forkAutomat = array(
 		"ERMsubmit.inc",
 		"hr.html",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"zurueckInnenDienst.prj",
 	),
 	"befragendKriterien"=>array(
 //		"eiZuBefragendKriterien.inc",
 		"befragenTarifkriterien.inc",
 		"prjGlobalCandies.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"beistellend"=>array(
 		"eiZuBeistellend.inc",
@@ -436,7 +426,7 @@ $forkAutomat = array(
 		"ERMsubmit.inc",
 		"hr.html",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"berechnendVersicherer"=>array(
 // die Versicherer-Matrix
@@ -463,7 +453,7 @@ $forkAutomat = array(
 		"ERMsubmit.inc",
 		"hr.html",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"berichtendSub"=>array(
 		"mapInnendienstPort.inc",
@@ -476,7 +466,7 @@ $forkAutomat = array(
 		"ERMsubmit.inc",
 		"hr.html",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"bestimmendIstPreis"=>array(
 		"berechnenTarifPreis.inc",
@@ -492,7 +482,7 @@ $forkAutomat = array(
 		"zeigenTarifkriterien.inc",
 		"befragenTarifkriterien.inc",
 		"prjGlobalCandies.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"dokumentierend"=>array(
 		"eiZuEintretendDoku.inc",// setzt Pfad zu Angeboten+Dokus
@@ -507,7 +497,7 @@ $forkAutomat = array(
 		"schreibenDoku.inc",
 		"konvertierenDoku.prj",
 		"steuerVariablenDoku.html",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"editierendAngebot"=>array(
 		"eiZuEintretendDoku.inc",// setzt Pfad zu Angeboten+Dokus
@@ -523,7 +513,7 @@ $forkAutomat = array(
 		"schreibenAngebot.inc",
 		"konvertierenAngebot.prj",
 		"textBausteine.html",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"eingebendAufwand"=>array(
 		"eiZuEingebendAufwand.inc",
@@ -536,7 +526,7 @@ $forkAutomat = array(
 		"ERMsubmit.inc",
 		"hr.html",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"eingebendErstkontakt"=>array(
 		"eiZuEingebendErstkontakt.inc",
@@ -561,7 +551,7 @@ $forkAutomat = array(
 		"ERMsubmit.inc",
 		"hr.html",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"einstellendBerichteTarif"=>array(
 		"ueberschrift.inc",
@@ -617,7 +607,7 @@ $forkAutomat = array(
 		"zeigenSQL.inc",
 		"p.html",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"hochladendUnterlage"=>array(
 		"mapInnendienstPort.inc",
@@ -628,7 +618,7 @@ $forkAutomat = array(
 		"speichernAction.inc",
 		"hochladenUnterlage.inc",
 		"p.html",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"hochladendUnterlageArchiv"=>array(
 		"eiZuEintretendBericht.inc",
@@ -638,7 +628,7 @@ $forkAutomat = array(
 		"speichernAction.inc",
 		"hochladenUnterlage.inc",
 		"p.html",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"hochladendUnterlagePortal"=>array(
 		"eiZuEintretendBericht.inc",
@@ -648,7 +638,7 @@ $forkAutomat = array(
 		"speichernAction.inc",
 		"hochladenUnterlage.inc",
 		"p.html",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"hoffend"=>array(
 		"reguliererID2Port.inc",
@@ -691,7 +681,7 @@ $forkAutomat = array(
 		"plausiIssetA.inc",
 		"loeschenVorspiel.prj",
 		"loeschen.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"loeschendAuftrag"=>array(
 		"eiZuEintretendBericht.inc",
@@ -707,12 +697,12 @@ $forkAutomat = array(
 		"abbestellenControlling.prj",
 		"beendenVorspiel.inc",
 		"loeschen.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"loeschendPreisTarifAufwand"=>array(
 		"eiZuLoeschendPreisTarifAufwand.inc",
 		"loeschen.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"loeschendRechnung"=>array(
 		"loeschenRechnung.inc",
@@ -720,7 +710,7 @@ $forkAutomat = array(
 	),
 	"manuellAbrechnend"=>array(
 		"manuellAbrechnen.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"nachtragend"=>array(
 		"eiZuNachtragend.prj",
@@ -732,7 +722,7 @@ $forkAutomat = array(
 	),
 /*	"nachfragendStatistik"=>array(
 		"nachfragenStatistik.prj",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),*/
 	"notierend"=>array(
 		"eiZuNotierend.prj",
@@ -745,7 +735,7 @@ $forkAutomat = array(
 		"ERMListenfuellen.inc",
 		"ERMsubmit.inc",
 		"hr.html",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"anzeigenZieltabelle.inc",
 	),
 	"kontingierendMA"=>array( // CFS
@@ -760,7 +750,7 @@ $forkAutomat = array(
 		"kopierenKW.prj",
 		//"mn.prj",
 		//"automatReloaded.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -778,7 +768,7 @@ $forkAutomat = array(
 		"kopierenSchicht.prj",
 		//"mn.prj",
 		//"automatReloaded.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -822,7 +812,7 @@ $forkAutomat = array(
 	),
 	"planendVS"=>array( // CFS
 		"eiZuPlanendVS.prj",
-		"sichten.prj",
+		"select.prj",
 		"mn.prj",
 		"formularERMintro.prj",
 		"automatReloaded.inc",
@@ -832,13 +822,13 @@ $forkAutomat = array(
 		"p.html",
 		"eiZuPruefendVerzug.prj",
 		"editierenRE.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"routendPortal"=>array(
 		"eiZuRoutendPortal.inc",
 		"ueberschrift.inc",
 		"routenPortal.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"ruecksprechend"=>array(
 		"eiZuRuecksprechend.inc",
@@ -862,7 +852,7 @@ $forkAutomat = array(
 	),
 	"schliessendKreis"=>array(
 		"prjGlobalCandies.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"speicherndSL"=>array(
 		"eiZuSpeicherndSL.inc",
@@ -870,21 +860,21 @@ $forkAutomat = array(
 		"transpHeader.html",
 		"updateSL.inc",
 		"fortsetzen.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"speicherndUnter"=>array(
 		"eiZuEintretendBericht.inc",
 		"prjGlobalCandies.inc",
 		"ueberschrift.inc",
 		"berichtSpeichernUnter.prj",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"subControllend"=>array(
 		"ext=pdf.prj",
 		"ueberschrift.inc",
 		"listenFreizugebendeBerichte.inc",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"suchendTarif"=>array(
 		"eiZuSuchendTarif.inc",
@@ -892,7 +882,7 @@ $forkAutomat = array(
 		"transpHeader.html",
 		"ueberschrift.inc",
 		"suchenTarifMitSchadenhoehe.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"verguetendAnhangNachEingang"=>array(
 		"lesenAnhangTarife.prj",
@@ -910,7 +900,7 @@ $forkAutomat = array(
 		"patchDoc.inc",
 		"domTermin.prj",
 		"saveDocument.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -927,7 +917,7 @@ $forkAutomat = array(
 		"patchDoc.inc",
 		"domVormerkung.prj",
 		"saveDocument.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
 		"hauptnavigation.html",
@@ -945,7 +935,7 @@ $forkAutomat = array(
 		"mapSpaltennamen.inc",
 		"ERMListenfuellen.inc",
 		"ERMsubmit.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"1intelligenterListeneintrag.inc",
 	),
 	"waehlendBericht"=>array(
@@ -970,7 +960,7 @@ $forkAutomat = array(
 		"ERMsubmit.inc",
 		"anbietenHochladenUnterlage.inc",
 		"p.html",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"waehlendPartner"=>array(
 		"eiZuWaehlend0.inc",
@@ -981,7 +971,7 @@ $forkAutomat = array(
 		"ERMListenfuellen.inc",
 		"ERMsubmit.inc", // bis hier gleich mit waehlend0
 		"p.html",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"triggernNeuerPartner.prj",
 	),
 	"widersprochenHabend"=>array(
@@ -990,7 +980,7 @@ $forkAutomat = array(
 		"bezug.inc",
 		"ueberschrift.inc",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"maAbwesend"=>array( // CFS
 		"jquery.html",
@@ -1105,7 +1095,7 @@ $forkAutomat = array(
 		"eiZuZeigendControllingGutschriften.prj",
 		"ueberschrift.inc",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"zeigendDeckblatt"=>array(
 		"eiZuZeigendDeckblatt.inc",
@@ -1189,7 +1179,7 @@ $forkAutomat = array(
 		"zeigenDetails.inc",
 //		"zeigenVNAdresse.inc",
 //		"zeigenAnspruchsteller.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"zeigendDetailsArchiv"=>array(
 		"eiZuZeigendDetailsArchiv.inc",
@@ -1200,29 +1190,29 @@ $forkAutomat = array(
 		"zeigenUnterlagen.inc",
 //		"eiZuZeigendAktennotizArchiv.prj",
 		"popID.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"zeigenDetails.inc",
 //		"zeigenVNAdresse.inc",
 //		"zeigenAnspruchsteller.inc",
 		"ID=auftragabrechnung.auftragID.inc",
 		"forkNachtrag.prj",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"zeigendDetailsAuftrag"=>array(
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"eiZuZeigendDetailsAuftrag.inc",
 		"zeigenAuftragPortDetails.inc",
 		"zeigenVNAdresse.inc",
 		"zeigenAnspruchsteller.inc",
 		"forkErstkontakt.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"zeigendDetailsErledigt"=>array(
 		"eiZuEintretendBericht.inc",
 		"pushID.inc",
 		"ID=regieaufwand.auftragID.inc",
 		"ueberschrift.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"anbietenFreigabe.inc",
 		"zeigenUnterlagen.inc",
 		"pruefenFreigabe.inc",
@@ -1239,13 +1229,13 @@ $forkAutomat = array(
 		"zeigenDetailsPortal.inc",
 		"zeigenPortalVNAdresse.inc",
 		"zeigenPortalAnspruchsteller.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"zeigendDetailsRechnung"=>array(
 		"eiZuZeigendDetailsRechnung.inc",
 		"eiZuEintretendBericht.inc",
 		"zeigenDetails.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"zeigendDruckAnsicht"=>array(
 		"zeigendDruckAnsicht.css",
@@ -1256,13 +1246,13 @@ $forkAutomat = array(
 		"frmRechnungBetrag.inc",
 		"popID.inc",
 		"frmRechnungFuss.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"zeigendKriterienBefragend"=>array(
 		"zeigenTarifkriterien.inc",
 		"befragenTarifkriterien.inc",
 		"prjGlobalCandies.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 	"zeigendNachtrag"=>array(
 		"eiZuZeigendNachtrag.prj",
@@ -1274,7 +1264,7 @@ $forkAutomat = array(
 		"eiZuZeigendNachtragEingang.prj",
 		"ueberschrift.inc",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 		"triggernDetailsPortal.prj",
 	),
 	"zeigendNachtragErstkontakt"=>array(
@@ -1289,7 +1279,7 @@ $forkAutomat = array(
 		"eiZuZeigendVerzug.prj",
 		"ueberschrift.inc",
 		"anzeigenZieltabelle.inc",
-		"linkFortsetzen.inc",
+		"giveContinue.inc",
 	),
 /* zum Kopieren
 	""=>array(

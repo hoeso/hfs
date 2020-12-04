@@ -1,0 +1,23 @@
+<?php
+/*** place your menu-links here                                            ***/
+
+/***
+ *** this is the value of the starting primary key for the collaboration
+ *** it will be initialised in the state-machine
+ ***/
+$_eCandy = array(
+"Station"=>"0",
+);
+
+  $_eOverlay = array(
+);
+
+/***
+ *** here are your menu-urls
+ *** they serve for the continue-mechanism
+ *** to stay in context
+ ***/
+$candyURL = array(
+"Station"=>"mn.php?mn=pe&a=Station&u=Test-Location",
+);
+?>
