@@ -101,9 +101,9 @@ $automat = array(
 		"containerTitel.php",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"editierenRE.inc",
-		"erlaubenFK.inc",
-		"anbietenFK.inc",
+		"editPE.inc",
+		"offerForeignKey.inc",
+		"displayForeignKey.inc",
 		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -125,7 +125,6 @@ $automat = array(
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
-		"pokeFortsetzung.prj",
 		"aendernFK.inc",
 		"giveContinue.inc",
 		"endeContainer.html",//haupttext
@@ -147,9 +146,8 @@ $automat = array(
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
-		"pokeFortsetzung.prj",
-		"updateRE.inc",
-		"linkFortsetzen.prj",
+		"updatePE.inc",
+		"giveContinue.prj",
 		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -167,7 +165,6 @@ $automat = array(
 		"hauptteil.html",
 		"haupttext.html",
 		"continueHere.inc",
-		"pokeFortsetzung.prj",
 		"containerTitel.php",
 		"giveContinue.inc",
 		"endeContainer.html",//haupttext
@@ -189,7 +186,6 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
-		"pokeFortsetzung.prj",
 		"anzeigenZieltabelle.inc",
 		"giveContinue.inc",
 		"endeContainer.html",//haupttext
@@ -212,14 +208,12 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
-		"pruefenSymbol.prj",
-		"pokeFortsetzung.prj",
-		"logic2PhysView.prj",
-		"editierenRE.inc",
-		"erlaubenFK.inc",
-		"anbietenFK.prj",
-		"anbietenFK.inc",
-		"linkFortsetzen.prj",
+		"actOnSymbol.prj",
+		"editPE.inc",
+		"offerForeignKey.inc",
+		"displayForeignKey.prj",
+		"displayForeignKey.inc",
+		"giveContinue.prj",
 		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -312,11 +306,10 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
-		"pokeFortsetzung.prj",
 		"insertERM.inc",
 		"nachInsertERM.prj",
 		"eiZuWrapperFK.inc", // wg. $goto
-		"linkFortsetzen.prj",
+		"giveContinue.prj",
 		"giveContinue.inc",
 		"nachSpeichernAnzeigen.inc",
 		"endeContainer.html",//haupttext
@@ -338,12 +331,11 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
-		"pokeFortsetzung.prj",
 		"insertERM.inc",
 		"nachInsertERM.prj",
 		"ersetzenTerminKuerzel.prj",
 		"austragenVM.prj",
-		"linkFortsetzen.prj",
+		"giveContinue.prj",
 		"giveContinue.inc",
 		"nachSpeichernAnzeigen.inc",
 		"endeContainer.html",//haupttext
@@ -519,7 +511,6 @@ $automat = array(
 		"continueHere.inc",
 		"dbConnect.inc",
 		"routinen.inc",
-		//"logic2PhysView.prj",
 		"toggelnEnum.prj",
 		"toggelnEnum.inc",
 		//"phys2LogicalView.prj",

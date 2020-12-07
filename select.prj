@@ -46,7 +46,7 @@ $Select=array
 /* zum Kopieren:
   ""=>"",
 */
-  "Station"=>"SELECT ID, Station FROM Station",
+  "Station"=>"SELECT s.ID, s.Station FROM Station s",
 /* zum Kopieren:
   ""=>"",
 

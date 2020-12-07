@@ -1,0 +1,16 @@
+<?php
+$arrFKMM = array(
+	"ProbandOrt"=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
+		"SELECT ID, PLZ, Ort FROM ProbandOrt ORDER BY Ort",
+	),
+);
+$_A['MM'] = array(
+	"MAKlient"=>array( // junction entity: 
+		"SELECT  mc.ID, m.Name, m.Vorname, c.Name, c.Vorname, DATE_FORMAT(c.geborenAm, '%d.%m.%Y') FROM MAKlient mc JOIN MA m ON (mc.MAID=m.ID) JOIN Klient c ON (mc.KlientID=c.ID) WHERE mc.KlientID = ( SELECT KlientID FROM MAKlient WHERE ID=", // Kriterium fuer Tausch
+		" )",
+	),
+	"Proband"=>array( // vorgeschlagene HTML-Struktur fuer Menue + Inhalt
+		"SELECT ID, PLZ, Ort FROM ProbandOrt ORDER BY Ort",
+	),
+);
+?>

@@ -105,7 +105,7 @@ $forkAutomat = array(
 		"ERMsubmit.inc",
 		"wieWeiter.inc",
 		//"anzeigenZieltabelle.inc",
-		"linkFortsetzen.prj",
+		"giveContinue.prj",
 		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -210,7 +210,7 @@ $forkAutomat = array(
 		"ERMsubmit.inc",
 		"gibWeiter.inc",
 		//"anzeigenZieltabelle.inc",
-		"linkFortsetzen.prj",
+		"giveContinue.prj",
 		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -821,7 +821,7 @@ $forkAutomat = array(
                 "bezug.inc",
 		"p.html",
 		"eiZuPruefendVerzug.prj",
-		"editierenRE.inc",
+		"editPE.inc",
 		"giveContinue.inc",
 	),
 	"routendPortal"=>array(

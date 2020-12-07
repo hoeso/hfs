@@ -1,0 +1,52 @@
+<?php
+/***
+ * gedruecktes Symbol pruefen + gegebenenfalls ausfuehren:
+ ***/
+unset($_E['wZu']);
+if( isset($_REQUEST["update_x"]) )
+{
+  /***
+   *** hier wird in Automaten verzweigt, welche das Editieren von
+   *** mehreren, mit der aufrufenden Entitaet verknuepften
+   *** Entitaeten ermoeglicht
+   ***/
+  $_A['update'] = true;
+  return; //Standardverhalten
+}
+else if( isset($_REQUEST["pinnend_x"]) )
+{
+  $goto = true;
+  $_E['wZu'] = $wZu="anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
+else if( isset($_REQUEST["delete_x"]) )
+{
+  $delTab=$_E['entitaet'];
+  $_E['wZu']="fragendLoeschen";
+}
+else if( isset($_REQUEST["delete"]) )
+{
+  $delTab=$_E['entitaet'];
+  $_E['wZu']="fragendLoeschen";
+}
+else if( isset($_REQUEST["symbol_x"]) )
+  $_E['wZu']="anbietendKnopfZurueck";
+else if( isset($_REQUEST["rauf_x"]) )
+{
+  $_E['wZu']="aenderndPosition";
+  $_A['Richtung'] = "kleiner";
+}
+else if( isset($_REQUEST["runter_x"]) )
+{
+  $_E['wZu']="aenderndPosition";
+  $_A['Richtung'] = "groesser";
+}
+if( isset($_E['wZu']) )
+  include("forkZu.inc");
+else
+{
+  ?>F&uuml;r dieses Symbol ist kein Verhalten hinterlegt im Modul <em>pruefenSymbol.prj</em><?php
+  $_E['wZu']="anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
+?>
