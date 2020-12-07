@@ -239,11 +239,8 @@ $mapAushang["<="]="qm";
           $fChecked = true;
         }
       }
-      ?><img src='images/zwischenPfeil.gif'><?php
-      if( "Paket" != $table )
-      {
-        ?><input type=image src='imagesquit.gif'><?php
-      }
+      ?><img src='icons/zwischenPfeil.gif'><?php
+      ?><input type=image src='imagesquit.gif'><?php
       ?></td><?php
     }
     if( $istKeineID )
@@ -308,7 +305,7 @@ $mapAushang["<="]="qm";
   if( $fSubmit )
   {
     ?><td><?php echo "\n";
-    ?><input type=image src='images/del.gif' name='delete'>
+    ?><input type=image src='icons/del.gif' name='delete'>
     </td>
     </FORM><?php
   }
@@ -325,7 +322,7 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
   "Gutschrift",
   "vmKursort",
   );
-  include( "toggleJaNein.prj" );
+  include( "toggleYesNo.prj" );
   global $WohnungID;
   global $rootTabelle;
   global $gruppe;
@@ -387,7 +384,7 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
       $ident=$elem;
       if( $iFarbReihe == $ident )
         $fAnmalen = true;
-      include("faerbenZeile.prj");
+      include("highlightRow.prj");
     }
     if( $auchID )
     {
@@ -407,22 +404,22 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
           $fChecked = true;
         }
       }
-      ?><img src='images/zwischenPfeil.gif'><input type=image src='images/quit.gif'></td><?php
+      ?><img src='icons/zwischenPfeil.gif'><input type=image src='icons/quit.gif'></td><?php
     }
     if( $istKeineID )
     {
-      if( 'date' == $arrFeldTyp[$i] )
+      if( isset($arrFeldTyp[$i]) && 'date' == $arrFeldTyp[$i] )
       {
         $arr = explode( "-", $elem );
         if( 4 == strlen( $arr[0] ) )
           $elem = "$arr[2].$arr[1].$arr[0]";
       }
-      else if( 'time' == $arrFeldTyp[$i] )
+      else if( isset($arrFeldTyp[$i]) && 'time' == $arrFeldTyp[$i] )
       {
         $arr = explode( ":", $elem );
         $elem = "$arr[0]:$arr[1]";
       }
-      include("anzeigeRoutinen.prj");
+      //include("anzeigeRoutinen.prj");
       if( isset( $fTooltip ) )
         ;// $farbe ist bereits gesetzt
       else if( isset( $fAnmalen ) )
@@ -452,16 +449,19 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
         echo $farbe;
       }
       ?>><?php
-      $key=$arrFeldName[$i] . "_" . $table;
-      if( isset($toggleJaNein["$key"]) && strstr( $arrFeldFlag[$i], 'enum' ) && strstr( $toggleJaNein["$key"], $elem ) )
+      if( isset($arrFeldName[$i]) )
       {
-        $str = "<A HREF=\"./mn.php?mn=3151&ID=$ident&feld=$arrFeldName[$i]&wert=$elem&table=$table&$proj";
-        if( isset($_REQUEST) and isset($_REQUEST["yyR"]) )
-	  $str .= "&yyR=$_REQUEST[yyR]";
-        echo $str;
-        echo"\" title=\"$arrFeldName[$i]";
-        echo"\">";
-        $fAnkern=true;
+        $key=$arrFeldName[$i] . "_" . $table;
+        if( isset($toggleYesNo["$key"]) && strstr( $arrFeldFlag[$i], 'enum' ) && strstr( $toggleYesNo["$key"], $elem ) )
+        {
+          $str = "<A HREF=\"./mn.php?mn=3151&ID=$ident&feld=$arrFeldName[$i]&wert=$elem&table=$table&$proj";
+          if( isset($_REQUEST) and isset($_REQUEST["yyR"]) )
+            $str .= "&yyR=$_REQUEST[yyR]";
+          echo $str;
+          echo"\" title=\"$arrFeldName[$i]";
+          echo"\">";
+          $fAnkern=true;
+        }
       }
       if( !isset($vgl) )
         $vgl="";
@@ -476,7 +476,7 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
           unset( $fragment );
         }
       }
-      if( isset($toggleJaNein["$key"]) && strstr( $arrFeldFlag[$i], 'enum' ) && strstr( $toggleJaNein["$key"], $elem ) )
+      if( isset($key) && isset($toggleYesNo["$key"]) && strstr( $arrFeldFlag[$i], 'enum' ) && strstr( $toggleYesNo["$key"], $elem ) )
       {
       }
       if( isset($fAnkern) and true == $fAnkern )
@@ -513,7 +513,7 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
 
   if( !isset($gutschriftZugestellt) && !$fPopup && !isset($_E['bleistift']) )
   {
-    ?><input type=image src='images/edit.gif' name='update'><?php
+    ?><input type=image src='icons/edit.gif' name='update'><?php
   }
   $fSubmit = true;
   foreach( $arrNichtLoeschen as $k )
@@ -521,7 +521,7 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
   $fSubmit = false;
   if( $fSubmit && !isset($gutschriftZugestellt) && !$fPopup && !$fKeinDelete && !isset($_E['garbage']) )
   {
-    ?><input type=image src='images/del.gif' name='delete'><?php
+    ?><input type=image src='icons/del.gif' name='delete'><?php
   }
   echo "\n"; // HTML-Quelltext besser lesbar
   ?></td></form><?php
@@ -595,7 +595,7 @@ global $pw;
               $Summenwert += $elem;
               $elem = number_format($elem,'2',',','.');
             }
-            include("anzeigeRoutinen.prj");
+            //include("anzeigeRoutinen.prj");
             echo_("\n\t\t<td bgcolor='#E8E8E8' ");
             $j=$i-1;
             if( isset( $aColspan[$j] ) )//{echo"> $j : $aColspan[$j]</tr></table>";exit;}
@@ -634,7 +634,7 @@ global $pw;
     {
       echo_("\n<td>");
       //formularKnopf("l&ouml;schen...", "delete");
-      echo_("\n<INPUT TYPE=image src='images/del.gif' NAME='delete'>");
+      echo_("\n<INPUT TYPE=image src='icons/del.gif' NAME='delete'>");
       echo_("</td>");
       echo_("\n</FORM>");
     }

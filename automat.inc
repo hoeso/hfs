@@ -124,7 +124,7 @@ $automat = array(
 		"dbConnect.inc",
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"setzenFortsetzung.prj",
+		"continueHere.inc",
 		"pokeFortsetzung.prj",
 		"aendernFK.inc",
 		"giveContinue.inc",
@@ -146,7 +146,7 @@ $automat = array(
 		"dbConnect.inc",
 		"containerTitel.php",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"setzenFortsetzung.prj",
+		"continueHere.inc",
 		"pokeFortsetzung.prj",
 		"updateRE.inc",
 		"linkFortsetzen.prj",
@@ -166,7 +166,7 @@ $automat = array(
 		"endeContainer.html",
 		"hauptteil.html",
 		"haupttext.html",
-		"setzenFortsetzung.prj",
+		"continueHere.inc",
 		"pokeFortsetzung.prj",
 		"containerTitel.php",
 		"giveContinue.inc",
@@ -188,7 +188,7 @@ $automat = array(
 		"containerTitel.php",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"setzenFortsetzung.prj",
+		"continueHere.inc",
 		"pokeFortsetzung.prj",
 		"anzeigenZieltabelle.inc",
 		"giveContinue.inc",
@@ -211,7 +211,7 @@ $automat = array(
 		"containerTitel.php",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"setzenFortsetzung.prj",
+		"continueHere.inc",
 		"pruefenSymbol.prj",
 		"pokeFortsetzung.prj",
 		"logic2PhysView.prj",
@@ -253,7 +253,7 @@ $automat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
-	"speicherndRE"=>array(
+	"savingPE"=>array(
 		"kopfteil.html",
 		"kopfteil.prj",
 		"endeContainer.html",
@@ -262,9 +262,9 @@ $automat = array(
 		"containerTitel.php",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"setzenFortsetzung.prj",
-		"insertRE.inc",
-		"nachInsertRE.inc",
+		"continueHere.inc",
+		"insertPE.inc",
+		"afterInsertPE.inc",
 		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -311,7 +311,7 @@ $automat = array(
 		"containerTitel.php",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"setzenFortsetzung.prj",
+		"continueHere.inc",
 		"pokeFortsetzung.prj",
 		"insertERM.inc",
 		"nachInsertERM.prj",
@@ -337,7 +337,7 @@ $automat = array(
 		"containerTitel.php",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"setzenFortsetzung.prj",
+		"continueHere.inc",
 		"pokeFortsetzung.prj",
 		"insertERM.inc",
 		"nachInsertERM.prj",
@@ -365,7 +365,7 @@ $automat = array(
 		"dbConnect.inc",
 		"containerTitel.php",
 		"aendernFK.inc",
-		"setzenFortsetzung.prj",
+		"continueHere.inc",
 		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -516,14 +516,14 @@ $automat = array(
 	),
 	"toggelndEnum"=>array(
 		"eiZuToggelndEnum.inc",
-		"setzenFortsetzung.prj",
+		"continueHere.inc",
 		"dbConnect.inc",
 		"routinen.inc",
 		//"logic2PhysView.prj",
 		"toggelnEnum.prj",
 		"toggelnEnum.inc",
 		//"phys2LogicalView.prj",
-		//"setzenFortsetzung.prj", stiftet momentan Chaos in der bezahlt-Liste
+		//"continueHere.inc", stiftet momentan Chaos in der bezahlt-Liste
 		"giveContinue.inc",
 	),
 	"uebersichtDauertHinweisend"=>array(

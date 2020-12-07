@@ -60,7 +60,7 @@ switch( $_E['mn'] )
     $_E['wZu'] = "pruefendSymbol";
     $_E['entitaet'] = $_REQUEST["a"];
     $_E['ID'] = $_REQUEST["ID"];
-    $_eTitel = array( "{$_E['entitaet']} l&ouml;schen ..." );
+    $_eTitel = array( "Deleting from {$_E['entitaet']} ..." );
   break;
   case "1433": // 
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
@@ -93,12 +93,12 @@ switch( $_E['mn'] )
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "speicherndNN";
     $_E['entitaet'] = $_REQUEST["TabelleM"];
-    $_eTitel = array( "{$_REQUEST['TabelleM']} speichern" );
+    $_eTitel = array( "Saving {$_REQUEST['TabelleM']}" );
   break;
-  case "9422": // speicherndRE
+  case "9422": // savingPE - Pure Entity
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
-    $_E['wZu'] = "speicherndRE";
+    $_E['wZu'] = "savingPE";
     $_E['entitaet'] = $_REQUEST["a"];
     $_eTitel = array( $_REQUEST["b"] );
     if( isset($_REQUEST["navi"]) )
@@ -122,7 +122,7 @@ switch( $_E['mn'] )
     $_E['wZu'] = "aenderungSpeicherndFK";
     $_E['entitaet'] = $_REQUEST["a"];
     $_E['ID'] = $_REQUEST["ID"];
-    $_eTitel = array( "{$_REQUEST["a"]} &Auml;nderung gespeichert." );
+    $_eTitel = array( "{$_REQUEST["a"]} updated." );
     if( isset($_REQUEST["navi"]) )
       $_E['navi'] = $_REQUEST["navi"];
   break;
@@ -132,7 +132,7 @@ switch( $_E['mn'] )
     $_E['wZu'] = "aenderungSpeicherndRE";
     $_E['entitaet'] = $_REQUEST["a"];
     $_E['ID'] = $_REQUEST["ID"];
-    $_eTitel = array( "{$_REQUEST["a"]} &Auml;nderung gespeichert." );
+    $_eTitel = array( "{$_REQUEST["a"]} updated." );
     if( isset($_REQUEST["navi"]) )
       $_E['navi'] = $_REQUEST["navi"];
   break;
@@ -145,7 +145,7 @@ switch( $_E['mn'] )
     if( isset($_REQUEST["d"]) )
       dEcho( $b_, "speichernd1ZuN in " . $_E['entitaet'] );
     //$_E['entitaet'] = $_REQUEST["zielTabelle"];
-    //$_eTitel = array( "in {$_E['entitaet']} speichern ..." );
+    //$_eTitel = array( "Saving into {$_E['entitaet']} ..." );
     $_eTitel = array( $_REQUEST["b"] );
     if( isset($_REQUEST["klick1"]) )
       $_E['jumpNow'] = $_REQUEST["klick1"];
@@ -161,7 +161,7 @@ switch( $_E['mn'] )
   case "7321": // erkannte Tabellenueberschrift abfragen
     if( isset($_REQUEST["dont"]) )
     {
-      $_eTitel = array( "... es wurde nichts gel&ouml;scht --)" );
+      $_eTitel = array( "... nothing deleted --)" );
       $_E['wZu'] = "anbietendKnopfZurueck";
       break;
     }
@@ -172,7 +172,7 @@ switch( $_E['mn'] )
     $_E['wZu'] = "pruefendSymbol";
     $_E['entitaet'] = $_REQUEST["a"];
     $_E['ID'] = $_REQUEST["ID"];
-    $_eTitel = array( "{$_E['entitaet']} l&ouml;schen ..." );
+    $_eTitel = array( "Deleting from {$_E['entitaet']} ..." );
   break;
   default:
     ?>you don't exist. Go away!<?php

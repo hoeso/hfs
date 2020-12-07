@@ -11,6 +11,14 @@ while( $row=mysql_fetch_array( $result, MYSQL_NUM ) )
   foreach( $arrNichtAendern as $k )
     if( 0 == strcmp( $k, $_E['entitaet'] ) )
       $fAendern = false;
+    if( !isset($arrFeldTyp) )
+      $arrFeldTyp = array();
+    if( !isset($arrFeldFlag) )
+      $arrFeldFlag = array();
+    if( !isset($arrFeldName) )
+      $arrFeldName = array();
+    if( !isset($ActionSuffix) )
+      $ActionSuffix = "";
     if( $fAendern )
       ausgebenAlsTabellenzeileZumAendern( $row, $auchIDausgeben, $fChecked, $arrFeldTyp, $arrFeldFlag, $arrFeldName, $_E['entitaet'], $ActionSuffix, $iFarbReihe );
     else

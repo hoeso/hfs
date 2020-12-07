@@ -1,0 +1,581 @@
+<?php
+/************ Input **********************************************************
+ * die Datei wird von anzeigeRoutinen includiert als projektspezifisch
+ * table	    : die angezeigte Tabelle
+ * 
+ *****************************************************************************/
+global $candyURL;
+global $Select;
+$fDebug=0;
+if( $fDebug ) echo "table: $table. recID : $recID";
+if( isset($_REQUEST["d"]) )
+{
+  $a_ = explode( "/", __file__ );
+  $b_ = $a_[count($a_)-1];
+}
+if( isset($_REQUEST['d']) )
+  hiddenFeldSchreiben( "d", 1 );
+  
+if( "ProbandMassnahme" == $table && $recID )
+{
+  /***
+   *** pruefen ob schon Termin oder Vormerkung
+   ***/
+  $tID = gibFeld( $MySQLDb, "SELECT pt.TerminID FROM ProbandTermin pt JOIN ProbandMassnahme pm ON pt. ProbandMassnahmeID=pm.ID WHERE $recID=pm.ID", 0 );
+  if( !$tID )
+    $oID = gibFeld( $MySQLDb, "SELECT v.OrtID FROM Vormerkung v JOIN ProbandMassnahme pm ON v. ProbandMassnahmeID=pm.ID WHERE $recID=pm.ID", 0 );
+  if( !$tID && !$oID )
+  { // weder fixer Kurs noch Vormerkung
+    ?><a href="./mn.php?mn=sl_uk&a=Vormerkung&sl=2&sl1=Ort&sl2=ProbandMassnahme&SELECTSL2=<?php echo $recID?>&i=1&u=Vormerkungen&navi=Proband">Vormerkung</a>
+    <?php
+  }
+  else
+  {
+    /***
+     *** Wurzel-Ordner der Dokumentenverwaltung geben lassen
+     ***/
+    gibDokumentenVerzeichnis( $recID, $_E['docsP'], $rootSubD, $childSubD );
+    //echo "\n$recID - $_E[docsP] - $rootSubD - $childSubD";
+    /***
+     *** Anschreiben schon raus?
+     ***/
+    $vertrag = $_E['docsP'] . $rootSubD . $childSubD . "/v/[^\.]*.pdf";// damit . und .. nicht dabei sind
+    $arrB = glob( $vertrag );
+    if( count($arrB) )
+    {
+      /***
+       *** Anschreiben anbieten
+       ***/
+      for( $i=0; $i < count($arrB); $i++ )
+      {
+        echo "\n";
+        ?><a href="<?php echo $_E['docsA']. $rootSubD . $childSubD . "/v/" . basename($arrB[$i])?>"><?php echo basename($arrB[$i])?></a>
+	<?php
+	$path_parts = pathinfo( basename($arrB[$i]) );
+	if( "pdf" == $path_parts['extension'] )
+	{?>
+          <input type=image class="img18" src="images/iconmonstr-police-4-16.png" name='deldocV' title="Anschreiben abschie&szlig;en" alt="Anschreiben l&ouml;schen">&nbsp;<?php
+	  if( !gibFeld( $MySQLDb, "SELECT p.Name, mp.Datum FROM MailProband mp JOIN ProbandMassnahme pm ON mp.ProbandMassnahmeID=pm.ID JOIN Proband p ON pm.ProbandID=p.ID WHERE $recID=mp.ProbandMassnahmeID", 0 ) )
+	  {?>
+            <input type=image class="img18" src="images/iconmonstr-mail-thin-16.png" name='mailV' title="Anschreiben zusenden" alt="Anschreiben zusenden"><?php
+	  }
+	  else
+	  {
+            ?><input type=image class="img18" src="images/iconmonstr-mail-pink-16.png" name='mailV' title="Anschreiben nochmal zusenden" alt="Anschreiben nochmal zusenden"><?php
+	  }
+          hiddenFeldSchreiben( "docV", $_E['docsP'] . $rootSubD . $childSubD . "/v/" . basename($arrB[$i]) );
+          hiddenFeldSchreiben( "l", "Senden" );
+          //hiddenFeldSchreiben( "d", "1" );// Debug-Ausgaben ausloesen
+	}
+      }
+    }
+    else
+    {
+      $str = "";
+      if( $tID )
+      {
+        $str = "&t=" . gibFeld( $MySQLDb, "SELECT ta.Art FROM Termin te JOIN Terminart ta ON te. TerminartID=ta.ID WHERE $tID=te.ID", 0 );
+      }
+      else if( $oID )
+        $str = "&o=$oID";
+      ?><a href="./mn.php?mn=doc&a=v&b=<?php echo $recID?>&c=<?php echo $_E['docsP']?>&e=<?php echo $rootSubD?>&f=<?php echo $childSubD; echo $str?>&navi=Proband">Anschreiben</a>
+      <?php
+    }
+    if( 'ja' == gibFeld( $MySQLDb, "SELECT m.Bestaetigung FROM ProbandMassnahme pm JOIN Massnahme m ON pm.MassnahmeID=m.ID WHERE $recID=pm.ID", 0 ) )
+    {
+      /***
+       *** Kann schon bestaetigt werden?
+       ***/
+      if( gibFeld( $MySQLDb, "SELECT COUNT(*) FROM ProbandMassnahme WHERE 'ja'=teilgenommen AND 'ja'=bezahlt AND $recID=ID", 0 ) )
+      {
+        $bestaetigung = $_E['docsP'] . $rootSubD . $childSubD . "/b/[^\.]*.pdf";// damit . und .. nicht dabei sind
+        $arrB = glob( $bestaetigung );
+        if( count($arrB) )
+        {
+          /***
+           *** Bestaetigung anbieten
+           ***/
+          for( $i=0; $i < count($arrB); $i++ )
+          {
+            echo "\n";
+            ?><a href="<?php echo $_E['docsA']. $rootSubD . $childSubD . "/b/" . basename($arrB[$i])?>"><?php echo basename($arrB[$i])?></a>
+    	    <?php
+    	    $path_parts = pathinfo( basename($arrB[$i]) );
+    	    if( "pdf" == $path_parts['extension'] )
+    	    {?>
+              <input type=image class="img18" src="images/iconmonstr-police-4-16.png" name='deldocB' title="Best&auml;tigung abschie&szlig;en" alt="Best&auml;tigung l&ouml;schen">&nbsp;<?php
+	      if( !gibFeld( $MySQLDb, "SELECT b.Behoerde, mb.Datum FROM MailBehoerde mb JOIN BehoerdeMail bm ON mb. BehoerdeMailID=bm.ID JOIN Behoerde b ON bm.BehoerdeID=b.ID WHERE $recID=mb.ProbandMassnahmeID", 0 ) )
+	      {
+                ?><input type=image class="img18" src="images/iconmonstr-mail-thin-16.png" name='mailB' title="Best&auml;tigung an Beh&ouml;rde" alt="Best&auml;tigung an Beh&ouml;rde"><?php
+	      }
+	      else
+	      {
+                ?><input type=image class="img18" src="images/iconmonstr-mail-pink-16.png" name='mailB' title="Best&auml;tigung nochmal senden" alt="Best&auml;tigung nochmal senden"><?php
+	      }
+              hiddenFeldSchreiben( "docB", $_E['docsP'] . $rootSubD . $childSubD . "/b/" . basename($arrB[$i]) );
+              hiddenFeldSchreiben( "l", "Senden" );
+              //hiddenFeldSchreiben( "d", "1" );// Debug-Ausgaben ausloesen
+	    }
+          }
+        }
+        else
+        {
+          $str = "";
+          if( $tID )
+          {
+            $str = "&t=" . gibFeld( $MySQLDb, "SELECT ta.Art FROM Termin te JOIN Terminart ta ON te. TerminartID=ta.ID WHERE $tID=te.ID", 0 );
+          }
+          else if( $oID )
+            $str = "&o=$oID";
+          ?><a href="./mn.php?mn=doc&a=b&b=<?php echo $recID?>&c=<?php echo $_E['docsP']?>&e=<?php echo $rootSubD?>&f=<?php echo $childSubD; echo $str?>&navi=Proband">Best&auml;tigung</a>
+          <img src="images/iconmonstr-calendar-thin-16.png" alt="Datum f&uuml;r Best&auml;tigung" usemap="#bestaetigungDatum<?php echo $recID?>">
+          <map name="bestaetigungDatum<?php echo $recID?>">
+          <area shape=rect coords="0,0,16,16" title='Datum f&uuml;r Best&auml;tigung' href="./mn.php?mn=dbe&a=b&b=<?php echo $recID?>&c=<?php echo $_E['docsP']?>&e=<?php echo $rootSubD?>&f=<?php echo $childSubD; echo $str?>&navi=Proband">
+          </map>
+          <?php
+        }
+      }
+    }
+  }
+  if( !isset( $fAnmalen ) )
+  {
+    ?><input type=image class="img18" src="images/iconmonstr-circle-thin-12.png" name='pinnend' title="Zeile markieren" alt="Zeile markieren"><?php
+  }
+  //hiddenFeldSchreiben( "d", "1" );// Debug-Ausgaben ausloesen
+}
+if( "ProbandMassnahmeZahlung" == $table && $recID )
+{
+  unset($ta_);
+  $ta_[0]=0;// hier Feld 0 rein = ID
+  $ta_[1]=1;// hier Feld 1 rein = bezahlt
+  $di_=count($ta_);
+  gibFelderArray( $MySQLDb, "SELECT pm.ID, pm.bezahlt FROM ProbandMassnahmeZahlung pmz JOIN ProbandMassnahme pm ON pmz. ProbandMassnahmeID=pm.ID WHERE $recID=pmz.ID", $ta_ );
+  if( false == habWas( $ta_, 0, $di_-1 ) )
+  {
+    ?>Massnahme nicht auslesbar.<?php
+  }
+  else
+  {
+    /***
+     *** Wurzel-Ordner der Dokumentenverwaltung geben lassen
+     ***/
+    gibDokumentenVerzeichnis( $ta_[0], $_E['docsP'], $rootSubD, $childSubD );
+    /***
+     *** Anschreiben schon raus?
+     ***/
+    $vertrag = $_E['docsP'] . $rootSubD . $childSubD . "/v/[^\.]*";// damit . und .. nicht dabei sind
+    $arrB = glob( $vertrag );
+    if( count($arrB) )
+    {
+      ?>Mahnung<?php
+    }
+    else
+    {
+      /***
+       *** a: v = Anschreiben
+       *** b:  ProbandMassnahme.ID
+       *** c e f: Wurzelverzeichnis in Doc-Verwaltung
+       ***/
+      ?><a href="./mn.php?mn=doc&a=v&b=<?php echo $ta_[0]?>&c=<?php echo $_E['docsP']?>&e=<?php echo $rootSubD?>&f=<?php echo $childSubD?>">Anschreiben</a>
+      <?php
+    }
+    /***
+     *** hier noch Pruefung ob an allen Terminen anwesend
+     ***/
+    if( 'ja' == $ta_[1] )
+    {
+    }
+  }
+}
+if( "ProbandTermin" == $table && $recID )
+{
+  /***
+   *** gibt es noch ausstehende Termine?
+   ***/
+  $pmID = gibFeld( $MySQLDb, "SELECT ProbandMassnahmeID FROM ProbandTermin WHERE $recID=ID", 0 );
+  unset($te_);
+  $te_[0]=0;// hier Feld 0 rein = Termin.Kuerzel
+  $te_[1]=1;// hier Feld 1 rein = Termin
+  $te_[2]=2;// hier Feld 2 rein = anwesend
+  $di_=count($te_);
+  gibFelderArray( $MySQLDb, "SELECT te.Kuerzel, DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',LPAD(kw.KW,2,'0'),',',j.Jahr), '%W, %u, %Y'),'%d. %M' ) AS Termin, pt.anwesend FROM ProbandTermin pt JOIN ProbandMassnahme pm ON pt. ProbandMassnahmeID=pm.ID JOIN Termin te ON pt. TerminID=te.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID WHERE $pmID=pm.ID AND $recID<>pt.ID", $te_ );
+  if( false == habWas( $te_, 0, $di_-1 ) )
+  {
+    unset($te_);
+  }
+  if( 'ja' == gibFeld( $MySQLDb, "SELECT p. wdhAuffaellig FROM ProbandTermin pt JOIN ProbandMassnahme pm ON pt. ProbandMassnahmeID =pm.ID JOIN Proband p ON pm. ProbandID =p.ID WHERE $recID=pt.ID", 0 ) ) // ist Proband wiederholt auffaellig geworden?
+  {
+    /***
+     *** statt Bild der Text 'ZS' ...
+    ?><img src="images/iconmonstr-document-thin-16.png" alt="Zusatz-Termin" usemap="#zusatztermin<?php echo $recID?>">
+    <map name="zusatztermin<?php echo $recID?>">
+    <area shape=rect coords="0,0,16,16" title='Zusatz-Sitzung' href="./mn.php?mn=zst&a=ProbandMassnahme&re=1&re1=Massnahme&sl=1&sl1=Proband&i=2&u=Massnahme Proband&SELECTSL2=<?php echo $pmID?>&u=<?php echo gibFeld( $MySQLDb, "SELECT p.Name FROM ProbandMassnahme pm JOIN Proband p ON pm.ProbandID=p.ID WHERE $pmID=pm.ID", 0 )?>&navi=Proband&ID=<?php echo $recID;?>&ProbandMassnahme=<?php echo "$pmID#$pmID"?>" target="_blank">
+    </map>
+    <?php
+     ***/
+    /***
+     *** Zusatz-Termin schon hinterlegt?
+     ***/
+    unset($zs_);
+    $pID = gibFeld( $MySQLDb, "SELECT ProbandID FROM ProbandMassnahme WHERE $pmID=ID", 0 );
+    if( $pID )
+    {
+      $zs_[0]=0;// hier Feld 0 rein = m.Massnahme
+      $zs_[1]=1;// hier Feld 1 rein = ZS Datum
+      $zs_[2]=2;// hier Feld 2 rein = ZS Uhrzeit
+      $zs_[3]=3;// hier Feld 3 rein = pt.ID
+      $zs_[4]=4;// hier Feld 4 rein = te.ID
+      $diZS_=count($zs_);
+      gibFelderArray( $MySQLDb, "SELECT LEFT(m.Massnahme,2), DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %Y'),'%d.%m.' ), TIME_FORMAT(v.Quart,'%H:%i'), pt.ID, te.ID FROM ProbandTermin pt JOIN Termin te ON pt. TerminID=te.ID JOIN Terminart l ON te. TerminartID=l.ID JOIN Ort o ON te. OrtID=o.ID JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID JOIN VS v ON te.VSID=v.ID JOIN ProbandMassnahme pm ON pt. ProbandMassnahmeID=pm.ID JOIN Proband p ON pm.ProbandID=p.ID JOIN Massnahme m ON pm.MassnahmeID=m.ID WHERE $pID=pm.ProbandID AND ('ES' = m.Massnahme OR 'ES OK' = m.Massnahme OR 'ZuSitz' = m.Massnahme)", $zs_ );
+      if( false == habWas( $zs_, 0, $diZS_-1 ) )
+      {
+        unset($zs_);
+      }
+    }
+    if( $pID && isset($zs_) )
+    {
+      echo "$zs_[0] $zs_[1] $zs_[2] ";
+      ?>
+      <img src="images/iconmonstr-police-4-16.png" alt="ZS l&ouml;schen" usemap="#rmZS<?php echo $recID?>">
+      <map name="rmZS<?php echo $recID?>">
+      <area shape=rect coords="0,0,16,16" title='ZS abschie&szlig;en' href="./mn.php?mn=idrm&a=<?php echo $zs_[3]?>&b=ProbandTermin&e=Termin&c=<?php echo $zs_[4]?>&ID=<?php echo $recID?>">
+      </map><?php
+    }
+    else
+    {
+      $r1 = gibFeld( $MySQLDb, "SELECT te.VSID FROM ProbandTermin pt JOIN Termin te ON pt. TerminID=te.ID WHERE $recID=pt.ID", 0 );
+      $r1 -= 4;
+      ?><a href="./mn.php?mn=zst&a=ProbandES&re=1&re1=VS&r1=<?php echo $r1?>&sl=3&sl1=Proband&sl2=Massnahme&sl3=Ort&i=2&u=Massnahme Proband&SELECTSL2=<?php echo $pmID?>&u=<?php echo gibFeld( $MySQLDb, "SELECT p.Name FROM ProbandMassnahme pm JOIN Proband p ON pm.ProbandID=p.ID WHERE $pmID=pm.ID", 0 )?>&navi=Proband&ID=<?php echo $recID;?>&ProbandMassnahme=<?php echo "$pmID#$pmID"?>" title='Zusatzsitzung anlegen'">ZS</a>
+      <?php
+    }
+  }
+  else
+  {
+    /***
+     *** Zusatz-Termin schon hinterlegt?
+     ***/
+    unset($zs_);
+    $pID = gibFeld( $MySQLDb, "SELECT ProbandID FROM ProbandMassnahme WHERE $pmID=ID", 0 );
+    if( $pID )
+    {
+      $zs_[0]=0;// hier Feld 0 rein = m.Massnahme
+      $zs_[1]=1;// hier Feld 1 rein = ZS Datum
+      $zs_[2]=2;// hier Feld 2 rein = ZS Uhrzeit
+      $zs_[3]=3;// hier Feld 3 rein = pt.ID
+      $zs_[4]=4;// hier Feld 4 rein = te.ID
+      $diZS_=count($zs_);
+      gibFelderArray( $MySQLDb, "SELECT LEFT(m.Massnahme,2), DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',kw.KW,',',j.Jahr), '%W, %u, %Y'),'%d.%m.' ), TIME_FORMAT(v.Quart,'%H:%i'), pt.ID, te.ID FROM ProbandTermin pt JOIN Termin te ON pt. TerminID=te.ID JOIN Terminart l ON te. TerminartID=l.ID JOIN Ort o ON te. OrtID=o.ID JOIN Trainer tr ON te.TrainerID=tr.ID JOIN Bundesland b ON o. BundeslandID=b.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID JOIN VS v ON te.VSID=v.ID JOIN ProbandMassnahme pm ON pt. ProbandMassnahmeID=pm.ID JOIN Proband p ON pm.ProbandID=p.ID JOIN Massnahme m ON pm.MassnahmeID=m.ID WHERE $pID=pm.ProbandID AND ('ES' = m.Massnahme OR 'ES OK' = m.Massnahme OR 'ZuSitz' = m.Massnahme)", $zs_ );
+      if( false == habWas( $zs_, 0, $diZS_-1 ) )
+      {
+        unset($zs_);
+      }
+    }
+    if( $pID && isset($zs_) )
+    {
+      echo "$zs_[0] $zs_[1] $zs_[2] ";
+      ?>
+      <img src="images/iconmonstr-police-4-16.png" alt="ZS l&ouml;schen" usemap="#rmZS<?php echo $recID?>">
+      <map name="rmZS<?php echo $recID?>">
+      <area shape=rect coords="0,0,16,16" title='ZS abschie&szlig;en' href="./mn.php?mn=idrm&a=<?php echo $zs_[3]?>&b=ProbandTermin&e=Termin&c=<?php echo $zs_[4]?>&ID=<?php echo $recID?>">
+      </map><?php
+    }
+  }
+  /***
+   *** Trainer soll nicht dorthin wechseln koennen
+  // In die Massnahme-Liste zu den Anschreiben springen
+  if( 'nein' == gibFeld( $MySQLDb, "SELECT pt.anwesend FROM ProbandTermin pt JOIN Termin te ON pt. TerminID=te.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te.KWID=kw.ID JOIN Tag t On te. TagID=t.ID WHERE STR_TO_DATE(CONCAT(t.day,',',LPAD(kw.KW,2,'0'),',',j.Jahr), '%W, %u, %Y') >= DATE(NOW()) AND $recID=pt.ID", 0 ) ) // liegen Termine in der Zukunft?
+  {
+    ?><img src="images/iconmonstr-document-thin-16.png" alt="zum Anschreiben" usemap="#anschreiben<?php echo $recID?>">
+    <map name="anschreiben<?php echo $recID?>">
+    <area shape=rect coords="0,0,16,16" title='zum Anschreiben' href="./mn.php?mn=sl_pe&a=ProbandMassnahme&re=1&re1=Massnahme&sl=1&sl1=Proband&i=2&u=Massnahme Proband&SELECTSL2=<?php echo $pmID?>&u=<?php echo gibFeld( $MySQLDb, "SELECT p.Name FROM ProbandMassnahme pm JOIN Proband p ON pm.ProbandID=p.ID WHERE $pmID=pm.ID", 0 )?>&navi=Proband&ID=<?php echo $recID;?>&ProbandMassnahme=<?php echo "$pmID#$pmID"?>" target="_blank">
+    </map>
+    <?php
+  }
+   *** Trainer soll nicht dorthin wechseln koennen
+   else if( !gibFeld( $MySQLDb, "SELECT pt.anwesend FROM ProbandTermin pt JOIN Termin te ON pt. TerminID=te.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te.KWID=kw.ID JOIN Tag t On te. TagID=t.ID JOIN ProbandMassnahme pm ON pt.ProbandMassnahmeID=pm.ID WHERE STR_TO_DATE(CONCAT(t.day,',',LPAD(kw.KW,2,'0'),',',j.Jahr), '%W, %u, %Y') > DATE(NOW()) AND $pmID=pm.ID", 0 ) ) // keine Termine mehr zu besuchen?
+  {
+    ?><img src="images/iconmonstr-document-thin-16.png" alt="zur Kursbest&auml;tigung" usemap="#bestaetigung<?php echo $recID?>">
+    <map name="bestaetigung<?php echo $recID?>">
+    <area shape=rect coords="0,0,16,16" title='zur Best&auml;tigung' href="./mn.php?mn=sl_pe&a=ProbandMassnahme&re=1&re1=Massnahme&sl=1&sl1=Proband&i=2&u=Massnahme Proband&SELECTSL2=<?php echo $pmID?>&u=<?php echo gibFeld( $MySQLDb, "SELECT p.Name FROM ProbandMassnahme pm JOIN Proband p ON pm.ProbandID=p.ID WHERE $pmID=pm.ID", 0 )?>&navi=Proband&ID=<?php echo $recID;?>&ProbandMassnahme=<?php echo "$pmID#$pmID"?>" target="_blank">
+    </map>
+    <?php
+  }
+  //if( 'nein' == gibFeld( $MySQLDb, "SELECT pt.anwesend FROM ProbandTermin pt JOIN Termin te ON pt. TerminID=te.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te.KWID=kw.ID JOIN Tag t On te. TagID=t.ID WHERE STR_TO_DATE(CONCAT(t.day,',',LPAD(kw.KW,2,'0'),',',j.Jahr), '%W, %u, %Y') < DATE(NOW()) AND $recID=pt.ID", 0 ) )
+   ***/
+  {
+    ?><img src="images/iconmonstr-school-29-16.png" alt="neuer Termin" usemap="#eszs<?php echo $recID?>">
+    <map name="eszs<?php echo $recID?>">
+    <area shape=rect coords="0,0,16,16" title='<?php if( isset($te_) ) {for( $t=0; $t < count($te_); $t += $di_ ){$t1 = $t+1;$t2 = $t+2; echo "$te_[$t] $te_[$t1] $te_[$t2]\n";}} else echo 'Keine weiteren Termine'?>' href="./mn.php?mn=eszs&a=ProbandTermin&sl=2&sl1=Termin&sl2=ProbandMassnahme&sl2=ProbandMassnahme&SELECTSL2=<?php echo gibFeld($MySQLDb,"SELECT ProbandMassnahmeID FROM ProbandTermin WHERE $recID=ID",0)?>&u=ESZ&navi=Proband&ID=<?php echo $recID;?>">
+    </map>
+    <?php
+  }
+  unset($te_);
+  $te_[0]=0;// hier Feld 0 rein = ProbandMassnahmeZahlung.Datum
+  $te_[1]=1;// hier Feld 1 rein = ProbandMassnahmeZahlung.Betrag
+  $te_[2]=2;// hier Feld 2 rein = ProbandMassnahmeZahlung.Einzahlung
+  $di_=count($te_);
+  gibFelderArray( $MySQLDb, "SELECT DATE_FORMAT( pmz.Datum,'%d. %M' ), pmz.Betrag, pmz.Einzahlung FROM ProbandMassnahme pm JOIN ProbandMassnahmeZahlung pmz ON pm.ID=pmz.ProbandMassnahmeID WHERE $pmID=pm.ID", $te_ );
+  if( false == habWas( $te_, 0, $di_-1 ) )
+  {
+    unset($te_);
+  }
+ /***
+  *** Trainer soll nicht dorthin wechseln koennen
+  ?><img src="images/<?php if( isset($te_) ) { ?>iconmonstr-credit-card-thin-16.png"<?php } else { ?>iconmonstr-minus-circle-thin-16.png<?php } ?>" alt="Einzahlungen" usemap="#euro<?php echo $recID?>">
+  <map name="euro<?php echo $recID?>">
+  <area shape=rect coords="0,0,16,16" title='<?php if( isset($te_) ) {for( $t=0; $t < count($te_); $t += $di_ ){$t1 = $t+1;$t2 = $t+2; echo "$te_[$t] $te_[$t1] $te_[$t2]\n";}} else echo 'Keine Einzahlungen'?>' href="./mn.php?mn=kg&a=ProbandMassnahmeZahlung&sl=1&sl1=ProbandMassnahme&SELECTSL1=<?php echo gibFeld($MySQLDb,"SELECT ProbandMassnahmeID FROM ProbandTermin WHERE $recID=ID",0)?>&u=Einzahlungen&navi=Proband&ID=<?php echo $recID;?>">
+  </map>
+  <?php
+   ***/
+}
+else if( $table=="Tel" && $recID )
+{
+  /***
+  if( false == gibFeld( $MySQLDb, "SELECT ID FROM ProbandTel WHERE TelID=$recID", 0 ) )
+  {?>
+    <INPUT TYPE=image src='images/iconmonstr-user-9-16.png' NAME='addProband' title='Proband anlegen'>
+    <INPUT TYPE=image src='images/iconmonstr-link-6-16.png' NAME='joinProband' title='Bestehenden Kontakt erweitern'>
+    <?php
+    //hiddenFeldSchreiben( "d", "1" );// Debug-Ausgaben ausloesen
+  }
+   ***/
+}
+else if( $table=="Vormerkung" && $recID )
+{
+  if( isset($Select) and isset($Select[$table]) )
+  {
+    unset($c_);
+    $c_ = explode( "FROM", $Select[$table] );
+    $filt = " WHERE $recID=v.ID";
+    $ortID = gibFeld( $MySQLDb, "SELECT o.ID FROM " . $c_[1] . $filt, 0 );
+    //echo "SELECT o.ID FROM " . $c_[1] . " WHERE $recID=v.ID" . "<br>";
+  }
+  /*** Pruefen ob es schon einen Kurs gibt: ***/
+  $str = "SELECT te.ID, DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',LPAD(kw.KW,2,'0'),',',j.Jahr), '%W, %u, %Y'),'%Y-%m-%d' ) AS Termin FROM Termin te JOIN Ort o ON te.OrtID=o.ID JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID WHERE $ortID=o.ID AND DATE(NOW()) <= DATE_FORMAT( STR_TO_DATE(CONCAT(t.day,',',LPAD(kw.KW,2,'0'),',',j.Jahr), '%W, %u, %Y'),'%Y-%m-%d' )";
+  $termin = gibFeld( $MySQLDb, $str, 0 );
+  $o = gibFeld( $MySQLDb, "SELECT Kursort FROM Ort WHERE ID=$ortID", 0 );
+  echo"\n"; // erzeugt Zeilenumbruch im HTML-Quelltext
+  if( $termin ) // es gibt einen Kurs:
+  {
+    ?>
+      <INPUT TYPE=image src='images/iconmonstr-school-29-16.png' NAME='flushVM' title='Probanden in Termin von <?php echo $o ?> &uuml;bernehmen'>
+      <?php
+      hiddenFeldSchreiben( "rID", $ortID );
+      //hiddenFeldSchreiben( "loopInput", "mn.php?mn=sl_uk&a=Vormerkung&sl=2&sl1=Ort&sl2=ProbandMassnahme&i=1&navi=Plan&b=v" );
+      //hiddenFeldSchreiben( "d", "1" );// Debug-Ausgaben ausloesen
+
+      unset($te_);
+      $te_[0]=0;// hier Feld 0 rein = TerminartID
+      $te_[1]=1;// hier Feld 1 rein = KategorieID
+      $te_[2]=2;// hier Feld 2 rein = OrtID
+      $te_[3]=3;// hier Feld 3 rein = JahrID
+      $te_[4]=4;// hier Feld 4 rein = KWID
+      $di_=count($te_);
+      gibFelderArray( $MySQLDb, "SELECT TerminartID, KategorieID, OrtID, JahrID, KWID FROM Termin WHERE $termin=ID", $te_ );
+      if( true == habWas( $te_, 0, $di_-1 ) )
+      {
+        $kw1 = $te_[4]+1;
+        $kw2 = $te_[4]+2;
+        $kw3 = $te_[4]+3;
+        unset($id_);
+        $sql_ = "SELECT ID FROM Termin WHERE '.UE'<>RIGHT(Kuerzel, 3) AND $te_[0]=TerminartID AND $te_[1]=KategorieID AND $te_[2]=OrtID AND $te_[3]=JahrID AND ($kw1=KWID OR $kw2=KWID OR $kw3=KWID)";
+        gibFeldArray( $MySQLDb, $sql_, 0, $id_ );
+        if( 0 < count($id_) )
+        {
+          hiddenFeldSchreiben( "gibMehrTermine", count($id_) );
+      	for( $t=0; $t < count($id_); $t++ )
+      	{
+      	  $t1 = $t+1;
+          hiddenFeldSchreiben( "teID$t1", $id_[$t] );
+      	}
+      }
+    }
+  }
+  else
+  {  /*** Symbol o. Hinweis dass noch ein Termin anzulegen ist ***/
+    ?><img class="img18" src="images/iconmonstr-calendar-thin-16.png" title="noch kein Termin festgesetzt f&uuml;r <?php echo $o ?>" alt="Termin?"><?php
+  }
+}
+else if( $table=="Mail" && $recID )
+{
+  /***
+  if( false == gibFeld( $MySQLDb, "SELECT ID FROM ProbandMail WHERE MailID=$recID", 0 ) )
+  {?>
+    <INPUT TYPE=image src='images/iconmonstr-link-6-16.png' NAME='joinMail' title='Bestehenden Kontakt erweitern'>
+    <?php
+    //hiddenFeldSchreiben( "d", "1" );// Debug-Ausgaben ausloesen
+  }
+   ***/
+}
+else if( $table=="Proband" && $recID )
+{
+  if( gibFeld( $MySQLDb, "SELECT p.ID FROM Proband p WHERE $recID=p.ID AND NOT EXISTS ( SELECT ProbandID FROM ProbandMassnahme WHERE ProbandID=p.ID)", 0 ) )
+  {
+    ?>
+    <img src="images/iconmonstr-wrench-2-16.png" alt="Massnahme" usemap="#massnahme<?php echo $recID?>">
+    <map name="massnahme<?php echo $recID?>">
+    <area shape=rect coords="0,0,16,16" title='Massnahme' href="./mn.php?mn=sl_pe&a=ProbandMassnahme&navi=Proband&re=1&re1=Massnahme&sl=1&sl1=Proband&i=2&u=Massnahme%20Proband&SELECTSL1=<?php echo $recID?>">
+    </map><?php
+  }
+  /***
+  if( isset($_E['ID2join']) and isset($_E['entitaet2join']) and isset($_E['value2join']) )
+  {
+    if( "Tel" == $_E['entitaet2join'] )
+    {?><INPUT TYPE=image src='images/iconmonstr-phone-11-16.png' NAME='addTelefon' title='<?php echo $_E['value2join'];?> zuweisen'><?php
+      hiddenFeldSchreiben( "ID2join", $_E['ID2join'] );
+      hiddenFeldSchreiben( "entitaet2join", $_E['entitaet2join'] );
+      hiddenFeldSchreiben( "value2join", $_E['value2join'] );
+    }
+  }
+  else
+  {?>
+    <img src="images/iconmonstr-phone-3-16.png" alt="neue Nr ..." usemap="#telVon">
+    <map name="telVon">
+    <area shape=rect coords="0,0,32,32" title='Tel von ...' href="<?php echo $candyURL['ProbandTel']?>">
+    </map><?php
+  }
+   ***/
+}
+else if( "Termin"==$table && $recID )
+{
+  if( gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Termin te JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID WHERE $recID=te.ID AND DATE(NOW()) <= STR_TO_DATE(CONCAT(t.day,',',LPAD(kw.KW,2,'0'),',',j.Jahr), '%W, %u, %Y')", 0 ) )
+  {
+    ?><b><?php echo gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Termin te JOIN ProbandTermin pt ON te.ID=pt.TerminID WHERE $recID=te.ID", 0 );
+    ?></b>&nbsp;&nbsp;<INPUT TYPE=image src='images/iconmonstr-user-10-16.png' NAME='terminProband' title='Proband hinzuf&uuml;gen/anzeigen'><?php
+    //hiddenFeldSchreiben( "d", "blatt" );//da geht's weiter
+    if( file_exists( "$_E[docsP]kb/$recID.pdf" ) )
+    {
+      //echo "\n$_E[docsP]kb/$recID.pdf ";
+      ?><a href="<?php echo $_E['docsA'] . "/kb/$recID.pdf"?>"><?php echo "$recID.pdf"?></a>
+      <input type=image class="img18" src="images/iconmonstr-police-4-16.png" name='delKB' title="Kursblatt abschie&szlig;en" alt="Kursblatt l&ouml;schen">&nbsp;<?php
+      hiddenFeldSchreiben( "docKB", "$_E[docsP]kb/$recID.pdf" );
+
+      if( !gibFeld( $MySQLDb, "SELECT mt.Text FROM MailTrainer mt JOIN Termin te ON mt. TerminID=te.ID WHERE mt. TrainerID=te. TrainerID AND $recID=te.ID", 0 ) )
+      {?>
+        <input type=image class="img18" src="images/iconmonstr-mail-thin-16.png" name='mailK' title="Kursblatt zusenden" alt="Kursblatt zusenden"><?php
+      }
+      else
+      {
+        ?><input type=image class="img18" src="images/iconmonstr-mail-pink-16.png" name='mailK' title="Kursblatt nochmal zusenden" alt="Kursblatt nochmal zusenden"><?php
+      }
+      hiddenFeldSchreiben( "l", "Senden" );
+      //hiddenFeldSchreiben( "d", "1" );// Debug-Ausgaben ausloesen
+    }
+    else
+    { // Kursblatt generieren anbieten
+      ?>
+      <img src="images/iconmonstr-task-thin-16.png" alt="Kursblatt" usemap="#kursBlatt<?php echo $recID?>">
+      <map name="kursBlatt<?php echo $recID?>">
+      <area shape=rect coords="0,0,16,16" title='zum Kursblatt' href="./mn.php?mn=kbl&a=Kursblatt&b=<?php echo $recID?>&c=<?php echo gibFeld( $MySQLDb, "SELECT Kuerzel FROM Termin WHERE $recID=ID", 0 )?>&e=<?php echo $_E['docsP']?>kb/">
+      </map><?php
+    }
+   
+    //hiddenFeldSchreiben( "navi", "Plan" );//
+    //hiddenFeldSchreiben( "d", "1" );// Debug-Ausgaben ausloesen
+
+    unset($te_);
+    $te_[0]=0;// hier Feld 0 rein = TerminartID
+    $te_[1]=1;// hier Feld 1 rein = KategorieID
+    $te_[2]=2;// hier Feld 2 rein = OrtID
+    $te_[3]=3;// hier Feld 3 rein = JahrID
+    $te_[4]=4;// hier Feld 4 rein = KWID
+    $te_[5]=5;// hier Feld 5 rein = Kuerzel
+    $di_=count($te_);
+    gibFelderArray( $MySQLDb, "SELECT TerminartID, KategorieID, OrtID, JahrID, KWID, Kuerzel FROM Termin WHERE $recID=ID", $te_ );
+    if( true == habWas( $te_, 0, $di_-1 ) )
+    {
+      $kw1 = $te_[4]+1;
+      $kw2 = $te_[4]+2;
+      $kw3 = $te_[4]+3;
+      unset($id_);
+      $sql_ = "SELECT ID FROM Termin WHERE '.UE'<>RIGHT(Kuerzel, 3) AND $te_[0]=TerminartID AND $te_[1]=KategorieID AND $te_[2]=OrtID AND $te_[3]=JahrID AND ($kw1=KWID OR $kw2=KWID OR $kw3=KWID)";
+      $sql_ = "SELECT ID FROM Termin WHERE '$te_[5]'=Kuerzel AND $recID<ID ORDER BY ID";
+      gibFeldArray( $MySQLDb, $sql_, 0, $id_ );
+      if( 0 < count($id_) )
+      {
+        hiddenFeldSchreiben( "gibMehrTermine", count($id_) );
+	for( $t=0; $t < count($id_); $t++ )
+	{
+	  $t1 = $t+1;
+          hiddenFeldSchreiben( "teID$t1", $id_[$t] );
+	}
+      }
+    }
+  }
+  else if( gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Termin te JOIN Jahr j ON te. JahrID=j.ID JOIN KW kw ON te. KWID=kw.ID JOIN Tag t ON te. TagID=t.ID WHERE $recID=te.ID", 0 ) )
+  { // Termin in der Vergangenheit: Probanden-Liste anzeigen
+    ?><b><?php echo gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Termin te JOIN ProbandTermin pt ON te.ID=pt.TerminID WHERE $recID=te.ID", 0 );
+    ?></b>&nbsp;&nbsp;<INPUT TYPE=image src='images/iconmonstr-user-male-thin-16.png' NAME='terminProband' title='Proband hinzuf&uuml;gen/anzeigen'><?php
+  }
+}
+else if( ( $table=="EDV" ) && $recID )
+{
+  $count=gibFeld( $MySQLDb, "SELECT COUNT(*) FROM EDV WHERE ID=$recID AND installiertAm IS NOT NULL", 0 );
+  if( $count )
+    echo "\n<INPUT TYPE=image src='images/lichtAus.gif' NAME='diskussion'>";
+  else
+  {
+    $count=gibFeld( $MySQLDb, "SELECT COUNT(*) FROM EDV WHERE ID=$recID AND 'ja'=LEFT(akzeptiert,2)", 0 );
+    if( !$count )
+    {
+      $count=gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Diskussion WHERE Diskussion.EDVID=$recID AND 'nein'=gelesen", 0 );
+      if( $count )
+        echo "\n<INPUT TYPE=image src='images/mail_reply.gif' NAME='diskussion'>";
+      else
+        echo "\n<INPUT TYPE=image src='images/lichtAus.gif' NAME='diskussion'>";
+    }
+    else
+    {
+      $count=gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Diskussion WHERE Diskussion.EDVID=$recID AND 'nein'=gelesen", 0 );
+      if( !$count )
+        echo "\n<INPUT TYPE=image src='images/lichtAn.gif' NAME='diskussion'>";
+      else
+        echo "\n<INPUT TYPE=image src='images/mail_reply.gif' NAME='diskussion'>";
+    }
+  }
+}
+else if( ( $table=="Angebot" ) && $recID )
+{
+?>
+<INPUT TYPE=image src='images/down.gif' NAME='runter'>
+<INPUT TYPE=image src='images/up.gif' NAME='rauf'>
+<?php
+  hiddenFeldSchreiben( "zumVaschiam", "Position" );//das zu verschiebende enum-numerische Feld
+  hiddenFeldSchreiben( "woVaschiam", "EDVID" );//der gruppierende Fremdschluessel
+  hiddenFeldSchreiben( "doVaschiam", "Angebot" );//die Tabelle, in welcher die Verschiebung erfolgt
+  $count=gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Beistellung WHERE Beistellung.AngebotID=$recID", 0 );
+  if( !$count )
+    echo "\n<INPUT TYPE=image src='images/lupe.gif' NAME='beistellung'>";
+  else
+  {
+    $count=gibFeld( $MySQLDb, "SELECT COUNT(*) FROM Beistellung WHERE Beistellung.AngebotID=$recID AND 'nein'=erfolgt", 0 );
+    if( $count )
+      echo "\n<INPUT TYPE=image src='images/lichtAus.gif' NAME='beistellung'>";
+    else
+      echo "\n<INPUT TYPE=image src='images/lichtAn.gif' NAME='beistellung'>";
+  }
+  $str=gibFeld( $MySQLDb, "SELECT Section FROM $table WHERE ID=$recID", 0 );
+  if( !strstr( $str, "okumentation" ) && !strstr( $str, "inspielen und Abnahme" ) )
+  {
+?>
+<INPUT TYPE=image src='images/dokuUser.gif' NAME='dokuUser'>&nbsp;<INPUT TYPE=image src='images/dokuCode.gif' NAME='dokuCode'>
+<?php
+  }
+}
+if( isset($_REQUEST["prepfork3docC"]) )
+  hiddenFeldSchreiben( "prepfork2docC", $_REQUEST["prepfork3docC"] );
+else if( isset($_REQUEST["prepfork2docC"]) )
+  hiddenFeldSchreiben( "prepforkdocC", $_REQUEST["prepfork2docC"] );
+else if( isset($_REQUEST["prepforkdocC"]) )
+  hiddenFeldSchreiben( "forkdocC", $_REQUEST["prepforkdocC"] );
+else if( isset($_REQUEST["prepare3docC"]) )
+  hiddenFeldSchreiben( "prepare2docC", $_REQUEST["prepare3docC"] );
+else if( isset($_REQUEST["prepare2docC"]) )
+  hiddenFeldSchreiben( "preparedocC", $_REQUEST["prepare2docC"] );
+else if( isset($_REQUEST["preparedocC"]) )
+  hiddenFeldSchreiben( "docC", $_REQUEST["preparedocC"] );
+if( isset($_REQUEST["docZustand"]) )
+  hiddenFeldSchreiben( "docZustand", $_REQUEST["docZustand"] );
+if( isset($_REQUEST["fKeinVorspann"]) )
+  hiddenFeldSchreiben( "fKeinVorspann", $_REQUEST["fKeinVorspann"] );
+?>
