@@ -1,6 +1,6 @@
 <?php
 /* diese Abkuerzungen werden fuer die Projekt-Entitaeten in select.prj verwendet.
- * In loeschen.inc muessen diese deshalb auch verwendet werden
+ * In delete.inc muessen diese deshalb auch verwendet werden
  * weil die Verwendung des Originalnamens der Entitaet in der WHERE-Klausel
  * einen Fehler erzeugt
  */

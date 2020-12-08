@@ -22,7 +22,7 @@ $forkAutomat = array(
 		"beendendProbandLauf.prj",
 	),
 	"anbietendKnopfZurueck"=>array(
-		"setzenFortsetzung.prj",
+		"continueHere.inc",
 		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -43,7 +43,7 @@ $forkAutomat = array(
 		"containerTitel.php",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"setzenFortsetzung.prj",
+		"continueHere.inc",
 		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
@@ -65,7 +65,7 @@ $forkAutomat = array(
 	"anlegendTermin"=>array(
 		"insertERM.inc",
 		"nachInsertERM.prj",
-		"setzenFortsetzung.prj",
+		"continueHere.inc",
 		"giveContinue.inc",
 		//"nachSpeichernAnzeigen.inc",
 		"endeContainer.html",//haupttext
@@ -83,7 +83,7 @@ $forkAutomat = array(
 		"containerTitel.php",
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"setzenFortsetzung.prj",
+		"continueHere.inc",
 		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"eiZuWrapperFK.inc",
@@ -117,7 +117,7 @@ $forkAutomat = array(
 		"dbClose.inc",
 	),
 	"forkendVerlinkenEntitaet"=>array(
-		"setzenFortsetzung.prj",
+		"continueHere.inc",
 		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
@@ -139,7 +139,7 @@ $forkAutomat = array(
 		"dbClose.inc",
 	),
 	"forkendVerlinkenEntitaetJmpFw"=>array(
-		"setzenFortsetzung.prj",
+		"continueHere.inc",
 		"wohinDamit.prj",
 		"wohinDamit.inc",
 		"formularERMintro.inc",
@@ -162,11 +162,11 @@ $forkAutomat = array(
 		"dbConnect.inc",
 		"containerTitel.php",
 		//"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"setzenFortsetzung.prj",
-		"logic2PhysView.prj",
-		"loeschBar.prj",
-		"loeschenVorspiel.prj",
-		"loeschen.inc",
+		"continueHere.inc",
+		//"logic2PhysView.prj",
+		"deleteConditions.prj",
+		"gameB4Delete.prj",
+		"delete.inc",
 		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -677,36 +677,36 @@ $forkAutomat = array(
 	),
 	"loeschend"=>array(
 		"eiZuLoeschend.prj",
-		"loeschBar.prj",
+		"deleteConditions.prj",
 		"plausiIssetA.inc",
-		"loeschenVorspiel.prj",
-		"loeschen.inc",
+		"gameB4Delete.prj",
+		"delete.inc",
 		"giveContinue.inc",
 	),
 	"loeschendAuftrag"=>array(
 		"eiZuEintretendBericht.inc",
 		"sagObBericht.inc",
 		"stornoMitUnterlagen.prj",
-		"loeschen.inc",
+		"delete.inc",
 	),
 	"loeschendAuftragabrechnung"=>array(
 		"loeschenAuftragabrechnung.inc",
-		"loeschen.inc",
+		"delete.inc",
 	),
 	"loeschendControllingGutschrift"=>array(
 		"abbestellenControlling.prj",
 		"beendenVorspiel.inc",
-		"loeschen.inc",
+		"delete.inc",
 		"giveContinue.inc",
 	),
 	"loeschendPreisTarifAufwand"=>array(
 		"eiZuLoeschendPreisTarifAufwand.inc",
-		"loeschen.inc",
+		"delete.inc",
 		"giveContinue.inc",
 	),
 	"loeschendRechnung"=>array(
 		"loeschenRechnung.inc",
-		"loeschen.inc",
+		"delete.inc",
 	),
 	"manuellAbrechnend"=>array(
 		"manuellAbrechnen.inc",

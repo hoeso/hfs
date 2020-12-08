@@ -248,8 +248,9 @@ $mapAushang["<="]="qm";
       if( false == istForeignKeyName( $spalte[$i] ) )
       {
         $fUnterdruecken=false;
-        for($c=0;$c<count($unterdrueckteSpalte);$c++)
-          if( $unterdrueckteSpalte[$c] == $spalte[$i] )
+	if( isset($unterdrueckteSpalte) )
+          for($c=0;$c<count($unterdrueckteSpalte);$c++)
+            if( $unterdrueckteSpalte[$c] == $spalte[$i] )
               $fUnterdruecken=true;
         if( false == $fUnterdruecken )
         {

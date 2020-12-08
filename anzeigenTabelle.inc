@@ -70,7 +70,7 @@ if( isset($_REQUEST["d"]) )
     }
   }
   tabelleBeginnen( $table );
-  include("logic2PhysView.prj");
+  //include("logic2PhysView.prj");
   dEcho( "anzeigenTabelle.inc", $table );
   ausgebenAlsTabellenkopf( $spaltenName, $auchIDausgeben, $cSpalten, $sql, $table, "", $fHeader );
   //
@@ -95,7 +95,7 @@ if( isset($_REQUEST["d"]) )
       ausgebenAlsTabellenzeileZumAendern( $row, $auchIDausgeben, $fChecked, $arrFeldTyp, $arrFeldFlag, $arrFeldName, $table, $ActionSuffix, $iFarbReihe );
     else
     {
-      ausgebenAlsTabellenzeile( $row, $auchIDausgeben, $fChecked, $spaltenName, $globalID, $arrFeldTyp, $table, $ActionSuffix, "", $dummy );
+      ausgebenAlsTabellenzeile( $row, $auchIDausgeben, $fChecked, $spaltenName, /*$globalID*/1, $arrFeldTyp, $table, $ActionSuffix, "", $dummy );
     }
     tabellenZeileBeenden();
   }
