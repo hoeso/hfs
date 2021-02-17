@@ -429,20 +429,6 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
 	$farbe = '#DDDDDD'; // hell-grau
       else if( $zuFaerbendeCols && $zuFaerbendeCols >= $i )
         $farbe = $faerbung;
-//    else if( false == isset( $zuFaerbendeCols ) || $zuFaerbendeCols < $i )
-  //    $farbe = '#E8E8E8';
-      // Iss de Bearbeitung und hamma vielleicht an Verzug?
-      if( "AuftragPort" == $table )
-      {
-        $f = gibFeld( $MySQLDb, "SELECT Status FROM AuftragVerzug WHERE $recID=AuftragID", 0 );
-        if( $f )
-        {
-          if( 'gelb' == $f )
-            $farbe = 'yellow';
-          else if( 'rot' == $f )
-            $farbe = 'red';
-        }
-      }
       ?><td<?php
       if( isset($farbe) )
       {
@@ -488,8 +474,6 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
     {
       $istKeineID = true;
       $str = "./mn.php?mn=3653&a=$table&$proj";
-      if( "Verzoegerung" == $table )
-        $str .= "&WohnungID=$WohnungID";
       if( $ActionSuffix )
         $str .= $ActionSuffix;
       formularBeginnen($str, "");
@@ -514,7 +498,18 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
 
   if( !isset($gutschriftZugestellt) && !$fPopup && !isset($_E['bleistift']) )
   {
-    ?><input type=image src='icons/edit.gif' name='update'><?php
+    if(0)
+    {
+      ?><input type=image src='icons/edit.gif' name='update'><?php
+    }
+    else if( isset( $recID) )
+    {
+      ?><img src="icons/iconmonstr-pencil-thin-16.png" alt="Edit ..." usemap="#edit<?php echo $recID?>">
+      <map name="edit<?php echo $recID?>">
+      <area shape=rect coords="0,0,16,16" title='Edit ...' href="./mn.php?mn=e&a=<?php echo $table?>&b=<?php echo $recID?>">
+      </map>
+      <?php
+    }
   }
   $fSubmit = true;
   foreach( $arrNichtLoeschen as $k )
@@ -522,7 +517,18 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
   $fSubmit = false;
   if( $fSubmit && !isset($gutschriftZugestellt) && !$fPopup && !$fKeinDelete && !isset($_E['garbage']) )
   {
-    ?><input type=image src='icons/del.gif' name='delete'><?php
+    if(1)
+    {
+      ?><input type=image src='icons/del.gif' name='delete'><?php
+    }
+    else if( isset( $recID) )
+    {
+      ?><img src="icons/iconmonstr-pencil-thin-16.png" alt="Edit ..." usemap="#edit<?php echo $recID?>">
+      <map name="edit<?php echo $recID?>">
+      <area shape=rect coords="0,0,16,16" title='Edit ...' href="./mn.php?mn=e&a=<?php echo $table?>&b=<?php echo $recID?>">
+      </map>
+      <?php
+    }
   }
   echo "\n"; // HTML-Quelltext besser lesbar
   ?></td></form><?php
