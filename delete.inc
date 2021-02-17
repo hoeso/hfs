@@ -1,6 +1,6 @@
 <?php
 /************ Input ****************************************************************
- * $delTab                        : Tabelle, aus der ein Satz geloescht werden soll
+ * $_E[entitaet]                  : Tabelle, aus der ein Satz geloescht werden soll
  * $_E['ID']                      : Der Primaerschluessel des Datensatzes
  * $loeschenVorspiel              : bestimmte Entitaeten erzwingen eine Abzweigung
  *                                : vor dem eigentlichen Loeschen.
@@ -13,6 +13,7 @@
  *                                : dieses Modul includiert sein
  *                                : 
  ***********************************************************************************/
+$delTab=$_E['entitaet'];
 /************************
  * das Loeschen verzweigt entsprechend des Array
  * eintrags aus loeschenVorspiel
@@ -31,7 +32,7 @@ $bremse = false;
 
 $c=count($arrRefs);
 if( isset($arrRefs[$delTab]) )
-{ // die generierten Abhaengigkeiten ( ~/public_html/db$ mysqldump -d -uregula erica | ./refIntegrity.pl > ../loeschBar.prj ) durchlaufen 
+{ // die generierten Abhaengigkeiten ( ~/public_html/db$ mysqldump -d -uhfs sarscov2t | ./refIntegrity.pl > ../loeschBar.prj ) durchlaufen 
   foreach( $arrRefs[$delTab] as $refTab )
   {
     if( "1-leaf" == $refTab )

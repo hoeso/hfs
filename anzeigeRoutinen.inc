@@ -517,15 +517,15 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
   $fSubmit = false;
   if( $fSubmit && !isset($gutschriftZugestellt) && !$fPopup && !$fKeinDelete && !isset($_E['garbage']) )
   {
-    if(1)
+    if(0)
     {
       ?><input type=image src='icons/del.gif' name='delete'><?php
     }
     else if( isset( $recID) )
     {
-      ?><img src="icons/iconmonstr-pencil-thin-16.png" alt="Edit ..." usemap="#edit<?php echo $recID?>">
-      <map name="edit<?php echo $recID?>">
-      <area shape=rect coords="0,0,16,16" title='Edit ...' href="./mn.php?mn=e&a=<?php echo $table?>&b=<?php echo $recID?>">
+      ?><img src="icons/iconmonstr-trash-can-thin-16.png" alt="Remove ..." usemap="#delete<?php echo $recID?>">
+      <map name="delete<?php echo $recID?>">
+      <area shape=rect coords="0,0,16,16" title='Remove ...' href="./mn.php?mn=cd&a=<?php echo $table?>&b=<?php echo $recID?>">
       </map>
       <?php
     }

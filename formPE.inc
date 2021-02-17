@@ -61,7 +61,7 @@ if( false==isset($keinInsert) )
    *** projekt-spezifischer Code: nicht gut ...
    ***/
   if( isset($_E) && isset($_E['entitaet']) && "Sondertermin" <> $_E['entitaet'] )
-    $actio .= "&a={$_E['entitaet']}&b={$_E['entitaet']}%20wird%20gespeichert%20...";
+    $actio .= "&a={$_E['entitaet']}&b={$_E['entitaet']}-Instance%20is%20going%20to%20be%20saved%20...";
   if( isset($_E["navi"]) )
     $actio .= "&navi=" . $_E["navi"];
   if( isset($_REQUEST["d"]) )
