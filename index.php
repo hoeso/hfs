@@ -49,6 +49,7 @@ if( isset($_REQUEST["navi"]) )
 else
 {
   $_REQUEST['mn'] = "goto";
+  $_E['entitaet'] = "Station";
   $_REQUEST["navi"] = "Station";
   $_A['css'] = "./erica.css";
 }

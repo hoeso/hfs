@@ -30,7 +30,7 @@ switch( $_E['mn'] )
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "wechselndMenue";
     $_E['navi'] = $_REQUEST["navi"];
-    $_E['garbage'] = $_E['bleistift'] = false;
+    //$_E['garbage'] = $_E['bleistift'] = false;
   break;
   case "cd": // confirm removing entity-instance ...
     if( !isset($_REQUEST["a"]) or !isset($_REQUEST["b"]) ) { echo $exitus; return; }

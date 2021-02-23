@@ -14,8 +14,10 @@ if( 0 )
     echo"\n<!-- k : $k, elem: $elem -->";
   exit;
 }
+
 if( !isset($_A['naviSwitch']) )
   return;
+
 switch( $_A['naviSwitch'] )
 {
   case "Station":

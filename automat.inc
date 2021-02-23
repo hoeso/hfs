@@ -129,7 +129,7 @@ $automat = array(
 		"dbConnect.inc",
 		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
-		"pruefenEingaben.js",
+		//"pruefenEingaben.js",
 		"formPE.inc",
 		"listPE.inc",
 		"prepLastContinue.inc",

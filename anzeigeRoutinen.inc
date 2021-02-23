@@ -514,7 +514,10 @@ function ausgebenAlsTabellenzeileZumAendern( $row, $auchID, &$fChecked, $arrFeld
   $fSubmit = true;
   foreach( $arrNichtLoeschen as $k )
     if( 0 == strcmp( $k, $table ) )
-  $fSubmit = false;
+      $fSubmit = false;
+  /***
+   *** condition for displaying update- and delete-icons
+   ***/
   if( $fSubmit && !isset($gutschriftZugestellt) && !$fPopup && !$fKeinDelete && !isset($_E['garbage']) )
   {
     if(0)
