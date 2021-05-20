@@ -29,7 +29,7 @@ $forkAutomat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includes dbRoutines.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		"wohinDamit.prj",
 		"wohinDamit.inc",
@@ -94,7 +94,7 @@ $forkAutomat = array(
 	"fragendLoeschen"=>array(
 		"dbConnect.inc",
 		"containerTitel.php",
-		//"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		//"routinen.inc", // includes dbRoutines.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		//"logic2PhysView.prj",
 		"deleteConditions.prj",
@@ -113,7 +113,7 @@ $forkAutomat = array(
 	"fillingPE"=>array( // insert-form pure entity
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includes dbRoutines.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		"formPE.inc",
 		"listPE.inc",
@@ -172,7 +172,7 @@ $forkAutomat = array(
 	"aenderndPosition"=>array(
 		"dbConnect.inc",
 		"containerTitel.php",
-		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includes dbRoutines.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		"aendernPosition.inc",
 		"giveContinue.inc",

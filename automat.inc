@@ -56,7 +56,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includes dbRoutines.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		//"actOnSymbol.prj",
 		"deleteConditions.prj",
@@ -81,7 +81,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includes dbRoutines.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		//"actOnSymbol.prj",
 		"editPE.inc",
@@ -127,7 +127,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includes dbRoutines.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		//"pruefenEingaben.js",
 		"formPE.inc",
@@ -152,7 +152,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includes dbRoutines.inc, anzeigeRoutinen.inc
 		"editPE.inc",
 		"offerForeignKey.inc",
 		"displayForeignKey.inc",
@@ -175,7 +175,7 @@ $automat = array(
 		"haupttext.html",
 		"dbConnect.inc",
 		"containerTitel.php",
-		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includes dbRoutines.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		"aendernFK.inc",
 		"giveContinue.inc",
@@ -196,7 +196,7 @@ $automat = array(
 		"haupttext.html",
 		"dbConnect.inc",
 		"containerTitel.php",
-		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includes dbRoutines.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		"updatePE.inc",
 		"giveContinue.prj",
@@ -236,7 +236,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includes dbRoutines.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		"anzeigenZieltabelle.inc",
 		"giveContinue.inc",
@@ -258,7 +258,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routines.inc", // includiert dbRoutinen.inc, anzeigeroutines.inc
+		"routines.inc", // includes dbRoutines.inc, anzeigeroutines.inc
 		"continueHere.inc",
 		"actOnSymbol.prj",
 		"editPE.inc",
@@ -285,7 +285,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includes dbRoutines.inc, anzeigeRoutinen.inc
 		"insertERM.inc",
 		"giveContinue.inc",
 		"nachSpeichernAnzeigen.inc",
@@ -307,7 +307,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includes dbRoutines.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		"insertPE.inc",
 		"afterInsertPE.inc",
@@ -330,7 +330,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includes dbRoutines.inc, anzeigeRoutinen.inc
 		"insertNN.inc",
 		"hinweis1.inc",
 		"containerHinweis.php",
@@ -356,37 +356,11 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includes dbRoutines.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		"insertERM.inc",
 		"nachInsertERM.prj",
 		"eiZuWrapperFK.inc", // wg. $goto
-		"giveContinue.prj",
-		"giveContinue.inc",
-		"nachSpeichernAnzeigen.inc",
-		"endeContainer.html",//haupttext
-		"seitenleiste.html",
-		"hauptnavigation.html",
-		"navi" . $_E['navi'] . ".html",
-		"endeNavigation.html",
-		"endeContainer.html",//seitenleiste
-		"endeContainer.html",//hauptteil
-		"dbClose.inc",
-	),
-	"speicherndVM"=>array(
-		"kopfteil.html",
-		"kopfteil.prj",
-		"endeContainer.html",
-		"hauptteil.html",
-		"haupttext.html",
-		"containerTitel.php",
-		"dbConnect.inc",
-		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"continueHere.inc",
-		"insertERM.inc",
-		"nachInsertERM.prj",
-		"ersetzenTerminKuerzel.prj",
-		"austragenVM.prj",
 		"giveContinue.prj",
 		"giveContinue.inc",
 		"nachSpeichernAnzeigen.inc",
@@ -725,86 +699,6 @@ $automat = array(
 		"mapSpaltennamen.inc",
 		"ERMListenfuellen.inc",
 		"ERMsubmit.inc",
-	),
-	"zeigendBilder"=>array(
-		"eiZuEintretend.inc",
-		"row01.inc",
-		"verbindenMitDB.inc",
-		"routines.inc",
-		"navBar.bilder.inc",
-	),
-	"zeigendDruckansicht"=>array(
-		"eiZuZeigendDruckansicht.inc",
-		"verbindenMitDB.inc",
-		"routines.inc",
-		"bezug.inc",
-		"ueberschrift.inc",
-		"plausiIssetA.inc",
-		"zeigenDruckansicht.inc"
-	),
-	"zeigendDummy"=>array(
-		"eiZuEintretend.inc",
-		"row01.inc",
-		"navBar.dummy.inc",
-	),
-	"zeigendFotostrecke"=>array(
-		"eiZuEintretend.inc",
-		"row01.inc",
-		"eiZuZeigendFotostrecke.inc",
-		"verbindenMitDB.inc",
-		"routines.inc",
-		"navBar.bilder.inc",
-		"oeffnenDIV_main.html",
-		"fotoStrecke.inc",
-		"schliessenDIV.html",
-	),
-	"zeigendKW"=>array(
-		//"kopfteil.html",
-		"kopfteil.prj",
-		//"naviSymbols.prj",
-		//"endeContainer.html",
-		"hauptteil.html",
-		"haupttext.html",
-		"dbConnect.inc",
-		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
-		"MAAbwesenheit.php",
-		"cal.css",
-		"KWview.php",
-		"KW.prj",
-		"containerTitel.php",
-		"endeContainer.html",//haupttext
-		//"seitenleiste.html",
-		//"hauptnavigation.html",
-		//"navi" . $_E['navi'] . ".html",
-		//"endeNavigation.html",
-		//"endeContainer.html",
-		"endeContainer.html",//hauptteil
-		"dbClose.inc",
-	),
-	"zeigendPlan"=>array(
-		"hauptteil.html",
-		"haupttext.html",
-		"dbConnect.inc",
-		"anzeigeRoutinen.inc",
-		"Plan.php",
-		"Plan.prj",
-		"containerTitel.php",
-		"endeContainer.html",//haupttext
-		//"seitenleiste.html",
-		//"hauptnavigation.html",
-		//"navi" . $_E['navi'] . ".html",
-		//"endeNavigation.html",
-		//"endeContainer.html",
-		"endeContainer.html",//hauptteil
-		"dbClose.inc",
-	),
-	"zeigendImpressum"=>array(
-		"eiZuEintretend.inc",
-		"row01.inc",
-		"navBar.impressum.inc",
-		"oeffnenDIV_main.html",
-		"impressum.inc",
-		"schliessenDIV.html",
 	),
 /* zum Kopieren
 	""=>array(

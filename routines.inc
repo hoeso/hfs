@@ -1,9 +1,9 @@
 <?php
 include ("dateiRoutinen.inc");
 include ("anzeigeRoutinen.inc");
-include ("dbRoutinen.inc");
+include ("dbRoutines.inc");
 include ("zeitRoutinen.inc");
-include ("anzeigenTabelle.inc");// enthaelt das Select-Stmt-Array $Select
+include ("anzeigenTabelle.inc");// contains the Select-Stmt-Array $Select
 include "entitySQLAbbrev.prj";
 
 function fuellen( $wert, $len, $fuellZ )
