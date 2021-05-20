@@ -84,7 +84,7 @@ function lesenRETabelle( &$result, $db, $table, $suffix )
 {
   global $BOGesID;
   global $lkid;
-  include "dbRoutinen.prj";
+  include "dbRoutines.prj";
   $sql = "SELECT * FROM $table ";
   if( $suffix and isset($appendix[$table]) )
   {
