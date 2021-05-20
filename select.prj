@@ -4,7 +4,7 @@ if( isset($_REQUEST["d"]) )
   $a_ = explode( "/", __file__ );
   $b_ = $a_[count($a_)-1];
 }
-// enum-Listen der Zieltabellen.
+// enum-lists of the entities to be filled.
 // Hat eine Zieltabelle mehr als ein enum-Feld, dann gibt es 2 Eintraege
 // wie z.B. bei Tabelle GewerkTaktplan
 $enumListe=array
@@ -46,7 +46,9 @@ $Select=array
 /* zum Kopieren:
   ""=>"",
 */
-  "Station"=>"SELECT s.ID, s.Station FROM Station s",
+  "District"=>"SELECT d.ID, d.District FROM District d",
+  "Station"=>"SELECT s.ID, d.District, s.Station FROM Station s LEFT JOIN District d ON s.DistrictID=d.ID",
+  "Test"=>"SELECT t.ID, t.Test FROM Test t",
 /* zum Kopieren:
   ""=>"",
 
@@ -59,9 +61,9 @@ if( isset($_E["filter"]) and isset($_E['entitaet']) and isset($Select[ $_E['enti
   if( isset($_REQUEST["d"]) )
     dEcho( $b_, "Select[entitaet]: " . $Select[ $_E['entitaet'] ] );
   /***
-   *** $_E[filter] wird in ERMsubmit.inc sonst nochmal gesetzt
+   *** $_E[filter] wird in formFKsubmit.inc sonst nochmal gesetzt
    *** andere Automaten die _E[filter] setzen haben sowohl dieses Modul als auch
-   *** ERMsubmit.inc includiert, deshalb wird dort _A[filterDone] gebraucht.
+   *** formFKsubmit.inc includiert, deshalb wird dort _A[filterDone] gebraucht.
    ***/
   $_A['filterDone'] = true;
   //unset($_E["filter"]);
@@ -72,66 +74,7 @@ $OrderBy=array
 /* zum Kopieren:
   ""=>"",
 */
-  "Station"=>" ORDER BY Station",
-  "BehoerdeMail"=>" ORDER BY Behoerde, Mail",
-  "ProbandAdresse"=>" ORDER BY Name, Vorname, Ort",
-  "Angebot"=>" ORDER BY Position",
-  "Dauer"=>" ORDER BY ka.Kursart, d.Termine DESC",
-  "EDV"=>" ORDER BY ID DESC",
-  "EDVAngebot"=>" ORDER BY ID DESC",
-  "Kursblatt"=>" ORDER BY j.Jahr, kw.KW, te.TagID, te.vsID",
-  "Terminart"=>" ORDER BY Terminart",
-  "MailProband"=>" ORDER BY p.Name, p.Vorname, mp.Datum DESC",
-  "MassnahmeGebuehr"=>" ORDER BY m. Massnahme, z.Datum DESC",
-  "MassnahmeGutachten"=>" ORDER BY m. Massnahme",
-  "Ort"=>" ORDER BY Bundesland, Kursort",
-  "ProbandOrt"=>" ORDER BY Behoerde, Ort",
-  //"ProbandOrt"=>" ORDER BY PLZ",
-  "Proband"=>" ORDER BY Name, Vorname",
-  "ProbandBehoerde"=>" ORDER BY b.Behoerde, p.Name, p.Vorname, Adresse",
-  "ProbandMail"=>" ORDER BY p.Vorname, p.Name, p.geborenAm DESC",
-  "ProbandMassnahme"=>" ORDER BY p.Name, p.Vorname, p.geborenAm, m.Massnahme",
-  "ProbandMassnahmeZahlung"=>" ORDER BY p.Name, p.Vorname, p.geborenAm, m.Massnahme",
-  "ProbandTermin"=>" ORDER BY te.Kuerzel, Jahr, KW, Tag, Kursort, Terminart,  p.Name, p.Vorname",
-  "ProbandTerminAnwesend"=>" ORDER BY te.Kuerzel",
-  "ProbandMassnahmeBezahlt"=>" ORDER BY te.Kuerzel",
-  "Stundensatz"=>" ORDER BY Datum DESC",
-  "ProbandTel"=>" ORDER BY Proband, Tel",
-  "Termin"=>" ORDER BY RIGHT(te.Kuerzel,2) DESC, j.Jahr, kw.KW, te.TagID, te.vsID",
-  "Trainer"=>" ORDER BY Name, Vorname",
-  "TrainerOrtTerminart"=>" ORDER BY Bundesland, Terminart, Trainer, Ort",
-  "TrainerZugang"=>" ORDER BY Trainer",
-  "Umkreis"=>" ORDER BY Region, Kuerzel",
-  "Vormerkung"=>" ORDER BY Kursort, Name, Vorname",
-);
-
-$gfaerbteSpoidn = array(
-	"AuftragRegulierer"=>array(
-		7,
-		"FFFFFF",
-	),
-	"AuftragCenterRegulierer"=>array(
-		10,
-		"FFFFFF",
-	),
-	"EDV"=>array(
-		6,
-		"FFFFFF",
-	),
-	"Eingang"=>array(
-		9,
-		"FFFFFF",
-	),
-	"EingangCenter"=>array(
-		9,
-		"FFFFFF",
-	),
-	"FreigabeBericht"=>array(
-		3,
-		"FFFFFF",
-	),
-);
-$SelectNurPK=array
-(
+  "Station"=>" ORDER BY District, Station",
+  "Test"=>" ORDER BY Test",
 );
 ?>

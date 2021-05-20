@@ -1,0 +1,16 @@
+<?php
+if( "Termin" == $zielTabelle && "Kuerzel" == $feld )
+{
+  if( isset($_REQUEST['teKue']) )
+    echo " $_REQUEST[teKue]"; // funktioniert nicht
+}
+  //echo gibFeld( $MySQLDb, "SELECT DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 3 DAY),'%d.%m.%Y')", 0 );
+else if( ("MailTrainerBestaetigung" == $zielTabelle or "SammelmailBehoerde" == $zielTabelle) && "Kuerzel" == $feld && isset($_A['kuerzel']) )
+{
+  echo $_A['kuerzel'];
+}
+else if( "Beginn" == $zielTabelle && "Kurs" == $feld && isset($_E) && isset($_E['ID']) )
+{
+  echo gibFeld( $MySQLDb, "SELECT Kuerzel FROM Kuerzel WHERE $_E[ID]=ID", 0 );
+}
+?>

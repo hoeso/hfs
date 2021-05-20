@@ -1,13 +1,12 @@
 <?php
-/* diese Abkuerzungen werden fuer die Projekt-Entitaeten in select.prj verwendet.
- * In delete.inc muessen diese deshalb auch verwendet werden
- * weil die Verwendung des Originalnamens der Entitaet in der WHERE-Klausel
- * einen Fehler erzeugt
+/* these Entity-Shortcuts are being used in the projects' SELECT-Statements, see select.prj.
  */
 $sqlAbbrev = array(
 /* to copy:
   ""=>"",
 */
+  "District"=>"d",
   "Station"=>"s",
+  "Test"=>"t",
 );
 ?>

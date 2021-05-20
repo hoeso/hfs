@@ -844,7 +844,7 @@ function ausgebenAlsTabelleZumVertikalenAendern( $spaltenName, $auchID, &$cSpalt
   if( isset($_E['mainLink']) )
     hiddenFeldSchreiben( "__#__mainLink", $_E['mainLink'] );
   echo "<td colspan=2 align=center>";
-  formularKnopf("&Auml;nderung &uuml;bernehmen", "");
+  formularKnopf("update ...", "");
   echo "</td>";
   echo"\n</FORM>";
 
@@ -1215,7 +1215,7 @@ function ausgebenAlsNeueTabellenzeile( $result, $table, $enumListe = "" )
     $c=1;
     $eL = $enumListe[$table . "_" . $c];
   }
-  else
+  else if( isset($enumListe[$table]) )
     //$eL = $enumListe;
     $eL = $enumListe[$table];
   $anz = mysql_num_fields($result);
@@ -1226,6 +1226,12 @@ function ausgebenAlsNeueTabellenzeile( $result, $table, $enumListe = "" )
   $_E['focusMe'] = "frm" . $table . "." . $table . "_" . mysql_field_type( $result, 1 ) . "_" . mysql_field_name( $result, 1 ) . ".focus()";
   for( $i=1; $i < $anz; $i++ )
   {//var_dump($eL);
+    /*
+     * suppress PHP-NOTICE in case
+     * the entity does not enum
+     */
+    if( !isset($eL) )
+      $eL = "";
     formularAttribut( $table, $result, $i, "", $eL, 0, $fEnum );
     if( isset($c) and true == $fEnum )
     {

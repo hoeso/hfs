@@ -44,7 +44,7 @@ if( isset($arrRefs[$delTab]) )
     $treffer = gibFeld( $MySQLDb, $sql, 0 );
     if( $treffer )
     {// das sind die bestehenden Referenzen
-      echo"\nEs existieren noch $treffer Verweise auf diesen Eintrag unter ";
+      echo"\nThere are still $treffer relations to this instance existing at ";
       echo"\n<!-- Referenz in $refTab -->";
       $bremse = true;
       $sql=$Select["$refTab"];
@@ -87,7 +87,7 @@ if( isset($arrRefs[$delTab]) )
       else
         echo $refTab;
       ?></A><?php
-      include "loeschen.prj";
+      //include "loeschen.prj";
       ?>.<p><?php
     }
     $geprueft = true;
@@ -96,7 +96,7 @@ if( isset($arrRefs[$delTab]) )
 
 if( $bremse )
 {
-  echo"\nDeshalb darf dieser Eintrag noch nicht gel&ouml;scht werden<br>";
+  echo"\nThus this instance must not be deleted up to now.<br>";
   $_E['wZu']="anbietendKnopfZurueck";
   include("forkZu.inc");
 }

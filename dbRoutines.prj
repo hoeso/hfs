@@ -4,7 +4,7 @@
  **** Sortierung angegeben werden.                                        *****/
 
 $appendix=array(
-  "Station"=>" ORDER BY Station",
+  "District"=>" ORDER BY District",
   "Test"=>" ORDER BY Test",
   "Tel"=>" WHERE NOT EXISTS (SELECT TelID FROM ProbandTel WHERE Tel.ID=TelID) ORDER BY Tel",
 );

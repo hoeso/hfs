@@ -6,7 +6,9 @@
  *** it will be initialised in the state-machine
  ***/
 $_eCandy = array(
+"District"=>"0",
 "Station"=>"0",
+"Test"=>"0",
 );
 
   $_eOverlay = array(
@@ -18,6 +20,8 @@ $_eCandy = array(
  *** to stay in context
  ***/
 $candyURL = array(
-"Station"=>"mn.php?mn=pe&a=Station&u=Test-Location",
+"District"=>"mn.php?mn=pe&a=District&u=Test-Location",
+"Station"=>"mn.php?mn=1n&re=1&re1=District&a=Station&u=Test-Station",
+"Test"=>"mn.php?mn=pe&a=Test&u=Test",
 );
 ?>

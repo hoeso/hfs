@@ -143,6 +143,11 @@ $automat = array(
 		"endeContainer.html",//hauptteil
 		"dbClose.inc",
 	),
+	"joiningEntities"=>array(
+		"wrapperListing.prj",
+		"wrapperFBS10.inc",
+		"anbietenVerlinkenEntitaet.inc",
+	),
 /*** internal state-machines: *************************************************/
 	"aenderndRE"=>array(
 		"kopfteil.html",
@@ -238,7 +243,7 @@ $automat = array(
 		"dbConnect.inc",
 		"routines.inc", // includes dbRoutines.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
-		"anzeigenZieltabelle.inc",
+		"listInstances.inc",
 		"giveContinue.inc",
 		"endeContainer.html",//haupttext
 		"seitenleiste.html",
@@ -360,7 +365,7 @@ $automat = array(
 		"continueHere.inc",
 		"insertERM.inc",
 		"nachInsertERM.prj",
-		"eiZuWrapperFK.inc", // wg. $goto
+		"wrapperFK.inc", // wg. $goto
 		"giveContinue.prj",
 		"giveContinue.inc",
 		"nachSpeichernAnzeigen.inc",
@@ -401,7 +406,7 @@ $automat = array(
 		"bezug.inc",
 		"ueberschrift.inc",
 		"austauschenSonderzeichen.inc",
-		"anzeigenZieltabelle.inc"
+		"listInstances.inc"
 	),
 	"aufhebendAuswahl"=>array(
 		"aufhebenAuswahl.inc",
@@ -443,9 +448,9 @@ $automat = array(
 		"speichernAction.inc",
 		"formularERMintro.inc",
 		"mapSpaltennamen.inc",
-		"ERMListenfuellen.inc",
-		"ERMsubmit.inc",
-		"anzeigenZieltabelle.inc"
+		"fillingFKform.inc",
+		"formFKsubmit.inc",
+		"listInstances.inc"
 	),
 	"gruppierendERM"=>array(
 		"eiZuGruppierendERM.inc",
@@ -459,9 +464,9 @@ $automat = array(
 		"speichernAction.inc",
 		"formularERMintro.inc",
 		"mapSpaltennamen.inc",
-		"ERMListenfuellen.inc",
-		"ERMsubmit.inc",
-		"anzeigenZieltabelle.inc"
+		"fillingFKform.inc",
+		"formFKsubmit.inc",
+		"listInstances.inc"
 	),
 	"hinweisend"=>array(
 		"transpHeader.html",
@@ -500,7 +505,7 @@ $automat = array(
 		"ueberschrift.inc",
 		"routines.inc",
 		"formularFuerMM.inc",
-		"anzeigenZieltabelle.inc"
+		"listInstances.inc"
 	),
 	"nachAuswahlZeigendLeerseite"=>array(
 		"verbindenMitDB.inc",
@@ -628,10 +633,10 @@ $automat = array(
 		"speichernAction.inc",
 		"formularERMintro.inc",
 		"mapSpaltennamen.inc",
-		"ERMListenfuellen.inc",
-		"ERMsubmit.inc",
+		"fillingFKform.inc",
+		"formFKsubmit.inc",
 		"1intelligenterListeneintrag.inc",
-		"anzeigenZieltabelle.inc",
+		"listInstances.inc",
 	),
 	"waehlend0_hermannFrieb"=>array(
 		"eiZuEintretend.inc",
@@ -642,8 +647,8 @@ $automat = array(
 		"routines.inc",
 		"speichernAction.inc",
 		"formularERMintro.inc",
-		"ERMListenfuellen.inc",
-		"ERMsubmit.inc",
+		"fillingFKform.inc",
+		"formFKsubmit.inc",
 //		"1intelligenterListeneintrag.inc",
 	),
 	"waehlend1"=>array(
@@ -654,8 +659,8 @@ $automat = array(
 		"merkenTopID.inc",
 		"formularERMintro.inc",
 		"mapSpaltennamen.inc",
-		"ERMListenfuellen.inc",
-		"ERMsubmit.inc",
+		"fillingFKform.inc",
+		"formFKsubmit.inc",
 		"1intelligenterListeneintrag.inc",
 	),
 	"waehlend2"=>array(
@@ -666,8 +671,8 @@ $automat = array(
 		"waehlenLoop.inc",
 		"formularERMintro.inc",
 		"mapSpaltennamen.inc",
-		"ERMListenfuellen.inc",
-		"ERMsubmit.inc",
+		"fillingFKform.inc",
+		"formFKsubmit.inc",
 		"1intelligenterListeneintrag.inc",
 	),
 	"waehlendKlasse"=>array(
@@ -684,8 +689,8 @@ $automat = array(
 		"speichernAction.inc",
 		"formularERMintro.inc",
 //		"mapSpaltennamen.inc",
-		"ERMListenfuellen.inc",
-		"ERMsubmit.inc",
+		"fillingFKform.inc",
+		"formFKsubmit.inc",
 //		"1intelligenterListeneintrag.inc",
 		"schliessenDIV.html",
 	),
@@ -697,8 +702,8 @@ $automat = array(
 		"waehlenSL2.inc",
 		"formularERMintro.inc",
 		"mapSpaltennamen.inc",
-		"ERMListenfuellen.inc",
-		"ERMsubmit.inc",
+		"fillingFKform.inc",
+		"formFKsubmit.inc",
 	),
 /* zum Kopieren
 	""=>array(
