@@ -1,0 +1,11 @@
+</div>
+<?php
+if( isset($_E) && isset($_E['container']) && !$_E['container'] )
+{
+  ?>Zuviele Container wurden geschlossen!<br><?php
+  exit;
+  $_E['wZu'] = "anbietendKnopfZurueck";
+  include("forkZu.inc");
+}
+--$_E['container'];
+?>

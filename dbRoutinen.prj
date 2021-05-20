@@ -1,0 +1,39 @@
+<?php
+/**** reine Entitaeten werden in der Funktion lesenRETabelle() ausgelesen *****
+ **** mit SELECT * FROM TABLE. In diesem Abschnitt kann die projektspezifische
+ **** Sortierung angegeben werden.                                        *****/
+
+$appendix=array(
+  "Behoerde"=>" ORDER BY Behoerde",
+  "Beziehung"=>" ORDER BY Beziehung DESC",
+  "Kategorie"=>" ORDER BY Kategorie",
+  "MA"=>" ORDER BY planen, Name, Vorname",
+  "Massnahme"=>" ORDER BY Massnahme",
+  "Mail"=>" WHERE NOT EXISTS (SELECT MailID FROM ProbandMail WHERE Mail.ID=MailID) ORDER BY Mail",
+  //"Proband"=>" WHERE NOT EXISTS (SELECT ProbandID FROM ProbandTel WHERE Proband.ID=ProbandID) ORDER BY Name, Vorname, geborenAm",
+  "Proband"=>" ORDER BY Name, Vorname, geborenAm",
+  "Tel"=>" WHERE NOT EXISTS (SELECT TelID FROM ProbandTel WHERE Tel.ID=TelID) ORDER BY Tel",
+  "Region"=>" ORDER BY Region",
+  "Zeitstempel"=>" ORDER BY Datum DESC",
+);
+
+/***
+ * hier werden alle Tabellen angegeben, welche eine bestimmte Sicht
+ * wiedergeben sollen. Beispiel: die Gesellschaften eines Unternehmens
+ * greifen auf jeweils nur auf ihren eigenen Kundenstamm zu
+ * 'Kunde' ist vom Wesen her eine reine Entitaet, erhaelt jedoch durch
+ * diese geforderte Mandantenfaehigkeit einen Foreign Key. Dieser
+ * bedeutet jedoch keine 1:M Beziehung, sondern ist nur ein Filter.
+ * Daher sollen vom Wesen her reine Entitaeten nachwievor als solche
+ * gesehen werden koennen.
+ * Deshalb wird hier der Hash hashMandant eingefuehrt zusammen mit dem
+ * Hash hashMandantenKey. Anhand der beiden Eintraege kann die jeweilige
+ * Mandantensicht der reinen Entitaet gefiltert werden.
+ ***/
+$hashMandant = array (
+  "Bauleiter"=>"GesellschaftID",
+  "Wohnungsgesellschaft"=>"GesellschaftID",
+);
+$hashKey = array (
+  "GesellschaftID"=>$BOGesID );
+?>
