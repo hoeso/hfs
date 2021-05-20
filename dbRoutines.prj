@@ -4,17 +4,9 @@
  **** Sortierung angegeben werden.                                        *****/
 
 $appendix=array(
-  "Behoerde"=>" ORDER BY Behoerde",
-  "Beziehung"=>" ORDER BY Beziehung DESC",
-  "Kategorie"=>" ORDER BY Kategorie",
-  "MA"=>" ORDER BY planen, Name, Vorname",
-  "Massnahme"=>" ORDER BY Massnahme",
-  "Mail"=>" WHERE NOT EXISTS (SELECT MailID FROM ProbandMail WHERE Mail.ID=MailID) ORDER BY Mail",
-  //"Proband"=>" WHERE NOT EXISTS (SELECT ProbandID FROM ProbandTel WHERE Proband.ID=ProbandID) ORDER BY Name, Vorname, geborenAm",
-  "Proband"=>" ORDER BY Name, Vorname, geborenAm",
+  "Station"=>" ORDER BY Station",
+  "Test"=>" ORDER BY Test",
   "Tel"=>" WHERE NOT EXISTS (SELECT TelID FROM ProbandTel WHERE Tel.ID=TelID) ORDER BY Tel",
-  "Region"=>" ORDER BY Region",
-  "Zeitstempel"=>" ORDER BY Datum DESC",
 );
 
 /***
