@@ -56,7 +56,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		//"actOnSymbol.prj",
 		"deleteConditions.prj",
@@ -81,7 +81,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		//"actOnSymbol.prj",
 		"editPE.inc",
@@ -127,7 +127,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		//"pruefenEingaben.js",
 		"formPE.inc",
@@ -152,7 +152,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"editPE.inc",
 		"offerForeignKey.inc",
 		"displayForeignKey.inc",
@@ -175,7 +175,7 @@ $automat = array(
 		"haupttext.html",
 		"dbConnect.inc",
 		"containerTitel.php",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		"aendernFK.inc",
 		"giveContinue.inc",
@@ -196,7 +196,7 @@ $automat = array(
 		"haupttext.html",
 		"dbConnect.inc",
 		"containerTitel.php",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		"updatePE.inc",
 		"giveContinue.prj",
@@ -236,7 +236,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		"anzeigenZieltabelle.inc",
 		"giveContinue.inc",
@@ -258,7 +258,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includiert dbRoutinen.inc, anzeigeroutines.inc
 		"continueHere.inc",
 		"actOnSymbol.prj",
 		"editPE.inc",
@@ -285,7 +285,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"insertERM.inc",
 		"giveContinue.inc",
 		"nachSpeichernAnzeigen.inc",
@@ -307,7 +307,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		"insertPE.inc",
 		"afterInsertPE.inc",
@@ -330,7 +330,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"insertNN.inc",
 		"hinweis1.inc",
 		"containerHinweis.php",
@@ -356,7 +356,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		"insertERM.inc",
 		"nachInsertERM.prj",
@@ -381,7 +381,7 @@ $automat = array(
 		"haupttext.html",
 		"containerTitel.php",
 		"dbConnect.inc",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		"insertERM.inc",
 		"nachInsertERM.prj",
@@ -423,7 +423,7 @@ $automat = array(
 	"anzeigendTabelle"=>array(
 		"eiZuAnzeigendTabelle.inc",
 		"verbindenMitDB.inc",
-		"routinen.inc",
+		"routines.inc",
 		"bezug.inc",
 		"ueberschrift.inc",
 		"austauschenSonderzeichen.inc",
@@ -444,7 +444,7 @@ $automat = array(
 		"verbindenMitDB.inc",
 		"transpHeader.html",
 		"ueberschrift.inc",
-		"routinen.inc",
+		"routines.inc",
 		"EMWalkIntro.inc",
 		"EMWalkAction.inc",
 		"EMWalkSubmit.inc"
@@ -452,7 +452,7 @@ $automat = array(
 	"grunddatenEingebend"=>array(
 		"eiZuGrunddatenEingebend.inc",
 		"verbindenMitDB.inc",
-		"routinen.inc",
+		"routines.inc",
 		"pruefenEingaben.js",
 		"plausiIssetA.inc",
 		"formPE.inc",
@@ -462,7 +462,7 @@ $automat = array(
 		"verbindenMitDB.inc",
 		"transpHeader.html",
 		"ueberschrift.inc",
-		"routinen.inc",
+		"routines.inc",
 		"gruppieren.inc",
 		"pruefenEingaben.js",
 		"plausiIssetA.inc",
@@ -477,7 +477,7 @@ $automat = array(
 		"eiZuGruppierendERM.inc",
 		"verbindenMitDB.inc",
 		"transpHeader.html",
-		"routinen.inc",
+		"routines.inc",
 		"bezug.inc",
 		"ueberschrift.inc",
 		"pruefenEingaben.js",
@@ -498,7 +498,7 @@ $automat = array(
 		"verbindenMitDB.inc",
 		"transpHeader.html",
 		"ueberschrift.inc",
-		"routinen.inc",
+		"routines.inc",
 		"loeschBar.prj",
 		"pruefenKonsistenz.inc"
 	),
@@ -524,13 +524,13 @@ $automat = array(
 		"verbindenMitDB.inc",
 		"transpHeader.html",
 		"ueberschrift.inc",
-		"routinen.inc",
+		"routines.inc",
 		"formularFuerMM.inc",
 		"anzeigenZieltabelle.inc"
 	),
 	"nachAuswahlZeigendLeerseite"=>array(
 		"verbindenMitDB.inc",
-		"routinen.inc",
+		"routines.inc",
 		"globalisierenNL.inc",
 		"logoPage.auftrag.php"
 	),
@@ -539,7 +539,7 @@ $automat = array(
 		"verbindenMitDB.inc",
 		"transpHeader.html",
 		"ueberschrift.inc",
-		"routinen.inc",
+		"routines.inc",
 		"insertERM.inc",
 		"nachSpeichern.inc",
 		"giveContinue.inc",
@@ -549,20 +549,20 @@ $automat = array(
 		"verbindenMitDB.inc",
 		"transpHeader.html",
 		"ueberschrift.inc",
-		"routinen.inc",
+		"routines.inc",
 		"multiInsert.inc"
 	),
 	"speicherndMM"=>array(
 		"eiZuSpeicherndMM.inc",
 		"verbindenMitDB.inc",
-		"routinen.inc",
+		"routines.inc",
 		"insertMM.inc"
 	),
 	"toggelndEnum"=>array(
 		"eiZuToggelndEnum.inc",
 		"continueHere.inc",
 		"dbConnect.inc",
-		"routinen.inc",
+		"routines.inc",
 		"toggelnEnum.prj",
 		"toggelnEnum.inc",
 		//"phys2LogicalView.prj",
@@ -646,7 +646,7 @@ $automat = array(
 		"eiZuWaehlend0.inc",
 		"verbindenMitDB.inc",
 		"transpHeader.html",
-		"routinen.inc",
+		"routines.inc",
 		"bezug.inc",
 		"ueberschrift.inc",
 		"pruefenEingaben.js",
@@ -665,7 +665,7 @@ $automat = array(
 		"eiZuWaehlend0.inc",
 		"navBar.lernunterstuetzung.inc",
 		"verbindenMitDB.inc",
-		"routinen.inc",
+		"routines.inc",
 		"speichernAction.inc",
 		"formularERMintro.inc",
 		"ERMListenfuellen.inc",
@@ -676,7 +676,7 @@ $automat = array(
 		"verbindenMitDB.inc",
 		"transpHeader.html",
 		"ueberschrift.inc",
-		"routinen.inc",
+		"routines.inc",
 		"merkenTopID.inc",
 		"formularERMintro.inc",
 		"mapSpaltennamen.inc",
@@ -688,7 +688,7 @@ $automat = array(
 		"verbindenMitDB.inc",
 		"transpHeader.html",
 		"ueberschrift.inc",
-		"routinen.inc",
+		"routines.inc",
 		"waehlenLoop.inc",
 		"formularERMintro.inc",
 		"mapSpaltennamen.inc",
@@ -704,7 +704,7 @@ $automat = array(
 		"oeffnenDIV_main.html",
 		"sprechstundenHinweis.inc",
 		"verbindenMitDB.inc",
-		"routinen.inc",
+		"routines.inc",
 //		"pruefenEingaben.js",
 //		"plausiIssetA.inc",
 		"speichernAction.inc",
@@ -719,7 +719,7 @@ $automat = array(
 		"verbindenMitDB.inc",
 		"transpHeader.html",
 		"ueberschrift.inc",
-		"routinen.inc",
+		"routines.inc",
 		"waehlenSL2.inc",
 		"formularERMintro.inc",
 		"mapSpaltennamen.inc",
@@ -730,13 +730,13 @@ $automat = array(
 		"eiZuEintretend.inc",
 		"row01.inc",
 		"verbindenMitDB.inc",
-		"routinen.inc",
+		"routines.inc",
 		"navBar.bilder.inc",
 	),
 	"zeigendDruckansicht"=>array(
 		"eiZuZeigendDruckansicht.inc",
 		"verbindenMitDB.inc",
-		"routinen.inc",
+		"routines.inc",
 		"bezug.inc",
 		"ueberschrift.inc",
 		"plausiIssetA.inc",
@@ -752,7 +752,7 @@ $automat = array(
 		"row01.inc",
 		"eiZuZeigendFotostrecke.inc",
 		"verbindenMitDB.inc",
-		"routinen.inc",
+		"routines.inc",
 		"navBar.bilder.inc",
 		"oeffnenDIV_main.html",
 		"fotoStrecke.inc",
@@ -766,7 +766,7 @@ $automat = array(
 		"hauptteil.html",
 		"haupttext.html",
 		"dbConnect.inc",
-		"routinen.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
+		"routines.inc", // includiert dbRoutinen.inc, anzeigeRoutinen.inc
 		"MAAbwesenheit.php",
 		"cal.css",
 		"KWview.php",
