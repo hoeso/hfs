@@ -47,7 +47,7 @@ $Select=array
   ""=>"",
 */
   "District"=>"SELECT d.ID, d.District FROM District d",
-  "Station"=>"SELECT s.ID, d.District, s.Station FROM Station s LEFT JOIN District d ON s.DistrictID=d.ID",
+  "Station"=>"SELECT s.ID, d.District, s.Station FROM Station s JOIN District d ON s.DistrictID=d.ID",
   "Test"=>"SELECT t.ID, t.Test FROM Test t",
 /* zum Kopieren:
   ""=>"",
