@@ -18,6 +18,6 @@ $_eCandy = array(
  *** to stay in context
  ***/
 $candyURL = array(
-"District"=>"mn.php?mn=pe&a=District&u=District",
+"District"=>"mn.php?mn=pe&a=District&u=Station-District",
 );
 ?>
