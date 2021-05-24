@@ -39,9 +39,9 @@ if( isset($_REQUEST["navi"]) )
 {
   switch( $_REQUEST["navi"] )
   {
-    case 'Station':
+    case 'Elements':
       $_REQUEST['mn'] = "pe";
-      $_REQUEST["a"] = "Station";
+      $_REQUEST["a"] = "District";
       $_A['css'] = "./erica.css";
     break;
   }
@@ -49,8 +49,8 @@ if( isset($_REQUEST["navi"]) )
 else
 {
   $_REQUEST['mn'] = "goto";
-  $_E['entitaet'] = "Station";
-  $_REQUEST["navi"] = "Station";
+  $_E['entitaet'] = "District";
+  $_REQUEST["navi"] = "Elements";
   $_A['css'] = "./erica.css";
 }
 $_E['container']=0; // <div>-Counter
