@@ -40,8 +40,10 @@ if( isset($_REQUEST["navi"]) )
   switch( $_REQUEST["navi"] )
   {
     case 'Station':
-      $_REQUEST['mn'] = "pe";
+      $_REQUEST['mn'] = "1n";
       $_REQUEST["a"] = "Station";
+      $_REQUEST["pe"] = "1";
+      $_REQUEST["pe1"] = "District";
       $_A['css'] = "./erica.css";
     break;
   }
