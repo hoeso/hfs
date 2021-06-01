@@ -59,16 +59,16 @@ switch( $_E['mn'] )
   break;
   case "1n": // creating a 1:n relation
     if( !isset($_REQUEST["a"]) ) { echo $exitus; return; }
-    if( isset($_REQUEST["re"]) and !isset($_REQUEST["re1"]) ) { echo $exitus; return; }
+    if( isset($_REQUEST["pe"]) and !isset($_REQUEST["pe1"]) ) { echo $exitus; return; }
     $_E['bodyID'] = "standard";
     $_E['wZu'] = "joiningEntities";
     $_E['entitaet'] = $_REQUEST["a"];
-    if( isset($_REQUEST["re"]) and $_REQUEST["re"] )
+    if( isset($_REQUEST["pe"]) and $_REQUEST["pe"] )
     {
-      $_E['re'] = $_REQUEST["re"];
+      $_E['re'] = $_REQUEST["pe"];
       for( $i=1; $i <= $_E['re'] and $i < 6; $i++ )
-        if( isset($_REQUEST["re$i"]) )
-          $_E["re$i"] = $_REQUEST["re$i"];
+        if( isset($_REQUEST["pe$i"]) )
+          $_E["re$i"] = $_REQUEST["pe$i"];
     }
     $_E['recipient'] = 4224; // speichernd1ZuN
   break;

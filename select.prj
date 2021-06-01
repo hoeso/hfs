@@ -25,8 +25,8 @@ $enumOVL=array
 
 $filterJahr=array
 (
-	"ArchivZAV"=>" AND '#filterjahr#'=YEAR(Portal.commit)",
-	"AuftragRegulierer"=>" AND '#filterjahr#'=YEAR(Portal.commit)",
+	"A"=>" AND '#filterjahr#'=YEAR(P.commit)",
+	"Au"=>" AND '#filterjahr#'=YEAR(P.commit)",
 );
 
 if( false == isset( $AND ) )
