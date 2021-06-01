@@ -21,7 +21,7 @@ $_eCandy = array(
  ***/
 $candyURL = array(
 "District"=>"mn.php?mn=pe&a=District&u=Test-Location",
-"Station"=>"mn.php?mn=1n&re=1&re1=District&a=Station&u=Test-Station",
+"Station"=>"mn.php?mn=1n&pe=1&pe1=District&a=Station&u=Test-Station",
 "Test"=>"mn.php?mn=pe&a=Test&u=Test",
 );
 ?>
