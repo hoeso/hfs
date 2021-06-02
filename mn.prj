@@ -68,7 +68,7 @@ switch( $_E['mn'] )
       $_E['re'] = $_REQUEST["pe"];
       for( $i=1; $i <= $_E['re'] and $i < 6; $i++ )
         if( isset($_REQUEST["pe$i"]) )
-          $_E["re$i"] = $_REQUEST["pe$i"];
+          $_E["pe$i"] = $_REQUEST["pe$i"];
     }
     $_E['recipient'] = 4224; // speichernd1ZuN
   break;

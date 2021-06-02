@@ -12,21 +12,21 @@ if( isset($_E['entitaet']) )
 if( isset($_E['Label']) )
   $strSubmitLabel = $_E['Label'];
 
-if( isset($_E["re"]) )
+if( isset($_E["pe"]) )
 {
-  $countRE = $_E["re"];
+  $countRE = $_E["pe"];
   for( $i=1; $i <= $_E['re'] and $i < 6; $i++ )
   {
     if( 1 == $i )
-      $tableRE1 = $_E["re$i"];
+      $tableRE1 = $_E["pe$i"];
     else if( 2 == $i )
-      $tableRE2 = $_E["re$i"];
+      $tableRE2 = $_E["pe$i"];
     else if( 3 == $i )
-      $tableRE3 = $_E["re$i"];
+      $tableRE3 = $_E["pe$i"];
     else if( 4 == $i )
-      $tableRE4 = $_E["re$i"];
+      $tableRE4 = $_E["pe$i"];
     else if( 5 == $i )
-      $tableRE5 = $_E["re$i"];
+      $tableRE5 = $_E["pe$i"];
   }
 }
 if( isset($_E["1n"]) )
