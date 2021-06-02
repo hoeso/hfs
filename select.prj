@@ -14,7 +14,7 @@ $enumListe=array
 */
 /*** Achtung! enum-Felder, welche in CONCAT Anweisungen stehen, werden nicht
 mitgezaehlt! ***/
-  "Station"=>"ar",// tld
+  "District"=>"ar",// tld
 );
 
 $enumOVL=array
@@ -46,7 +46,7 @@ $Select=array
 /* zum Kopieren:
   ""=>"",
 */
-  "Station"=>"SELECT s.ID, s.Station FROM Station s",
+  "District"=>"SELECT s.ID, s.District FROM District s",
 /* zum Kopieren:
   ""=>"",
 
@@ -72,7 +72,7 @@ $OrderBy=array
 /* zum Kopieren:
   ""=>"",
 */
-  "Station"=>" ORDER BY Station",
+  "District"=>" ORDER BY District",
   "BehoerdeMail"=>" ORDER BY Behoerde, Mail",
   "ProbandAdresse"=>" ORDER BY Name, Vorname, Ort",
   "Angebot"=>" ORDER BY Position",
