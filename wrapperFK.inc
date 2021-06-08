@@ -15,7 +15,7 @@ if( isset($_E['Label']) )
 if( isset($_E["pe"]) )
 {
   $countRE = $_E["pe"];
-  for( $i=1; $i <= $_E['re'] and $i < 6; $i++ )
+  for( $i=1; $i <= $_E['pe'] and $i < 6; $i++ )
   {
     if( 1 == $i )
       $tableRE1 = $_E["pe$i"];
