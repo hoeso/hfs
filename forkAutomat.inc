@@ -32,7 +32,7 @@ $forkAutomat = array(
 		"routines.inc", // includes dbRoutines.inc, anzeigeRoutinen.inc
 		"continueHere.inc",
 		//"wohinDamit.prj",
-		//"wohinDamit.inc",
+		"postTo.inc",
 		"formularERMintro.inc",
 		"fillingFKform.inc",
 		"formFKsubmit.inc",
@@ -50,7 +50,7 @@ $forkAutomat = array(
 	"forkendVerlinkenEntitaet"=>array(
 		"continueHere.inc",
 		"wohinDamit.prj",
-		"wohinDamit.inc",
+		"postTo.inc",
 		"formularERMintro.inc",
 		//"mapSpaltennamen.inc",
 		"fillingFKform.inc",
@@ -71,7 +71,7 @@ $forkAutomat = array(
 	"forkendVerlinkenEntitaetJmpFw"=>array(
 		"continueHere.inc",
 		"wohinDamit.prj",
-		"wohinDamit.inc",
+		"postTo.inc",
 		"formularERMintro.inc",
 		//"mapSpaltennamen.inc",
 		"fillingFKform.inc",
@@ -127,7 +127,7 @@ $forkAutomat = array(
 		"wrapperFBS10.inc",
 		"continueHere.inc",
 		"wohinDamit.prj",
-		"wohinDamit.inc",
+		"postTo.inc",
 		"formularERMintro.inc",
 		"fillingFKform.inc",
 		"formFKsubmit.inc",

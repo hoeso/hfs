@@ -2,9 +2,9 @@
 if( isset($strSubmitLabel) )
     $value=$strSubmitLabel;
 else if( $zielTabelle )
-    $value="speichern";
+    $value="save it!";
 else
-    $value="weiter >>";
+    $value="continue >>";
 
 if( !isset($keinInsert) or false == $keinInsert )
 {
