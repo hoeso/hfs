@@ -14,7 +14,7 @@ $enumListe=array
 */
 /*** Achtung! enum-Felder, welche in CONCAT Anweisungen stehen, werden nicht
 mitgezaehlt! ***/
-  "Station"=>"ar",// tld
+  "District"=>"ar",// tld
 );
 
 $enumOVL=array
