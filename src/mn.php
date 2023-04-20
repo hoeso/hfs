@@ -36,6 +36,26 @@ $_E['bodyClass'] = "main";
 $_E['bodyId'] = "main";
 $exitus="you don't exist. Go away!";
 include("mn.prj");
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<title><?php
+if( isset($_REQUEST['u']) )
+  echo $_REQUEST['u'];
+else
+{?>
+HFS-1<?php
+}?>
+</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<link rel="stylesheet" href="<?php if( isset($_A['css']) ) echo $_A['css']; else echo "./erica.css";?>" media="screen" title="Flex Care Suite-Stylesheet" />
+</head>
+<body class="<?php
+echo $_E['bodyClass'];
+?>" id="<?php
+echo $_E['bodyId'];
+?>"><?php
 function logZustandswechsel( $str )
 {
   echo"\n<!-- Eintreten in Zustand $str ... -->\n";
