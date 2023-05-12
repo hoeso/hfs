@@ -1,0 +1,26 @@
+services:
+    hfs:
+        build:
+            context: .
+        depends_on:
+            - db
+        ports:
+            - 8000:80
+        environment:
+            hfsHost: db
+            hfsDB: hfs
+            hfsDBuser: root
+            hfsDBpw: hfs
+    db:
+        image: docker.io/mariadb
+
+        restart: always
+        volumes:
+            - db:/var/lib/mysql
+        environment:
+            MARIADB_AUTO_UPGRADE: "true"
+            MARIADB_ROOT_PASSWORD: "hfs"
+            MARIADB_DATABASE: "hfs"
+
+volumes:
+    db:
