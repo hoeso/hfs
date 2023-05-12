@@ -6,4 +6,5 @@ RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 RUN mv "$PHP_INI_DIR/php.ini-$BUILD_TYPE" "$PHP_INI_DIR/php.ini"
 RUN printf 'PassEnv hfsHost\nPassEnv hfsDB\nPassEnv hfsDBuser\nPassEnv hfsDBpw\n' >  /etc/apache2/conf-available/hfs.conf && a2enconf hfs
 
-COPY . /var/www/html/
+COPY ./public_html /var/www/html/
+COPY ./src /var/www/

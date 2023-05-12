@@ -9,7 +9,8 @@ services:
         depends_on:
             - db
         volumes:
-            - ".:/var/www/html/"
+            - "./public_html:/var/www/html/"
+            - "./src:/var/www/src/"
         environment:
             hfsHost: db
             hfsDB: hfs
