@@ -1,3 +1,5 @@
 *~
+db/*
+!db/createUser.sql
 service/*
 images/*-300px.png
